@@ -3,6 +3,8 @@ package de.ingrid.importer.udk;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import de.ingrid.importer.udk.provider.InMemoryDataProvider;
+
 /**
  * Hello world!
  * 
@@ -16,11 +18,14 @@ public class Importer {
 
 	public static void main(String[] args) {
 		
+		ImportDescriptor descr = null;
 		try {
-			ImportDescriptor descr = ImporterHelper.getDescriptor(args);
+			descr = ImportDescriptorHelper.getDescriptor(args);
 		} catch (IllegalArgumentException e) {
 			return;
 		}
+		
+		InMemoryDataProvider data = new InMemoryDataProvider(descr);
         
         /* build input structure
 		 * 
