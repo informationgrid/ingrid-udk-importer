@@ -1,0 +1,34 @@
+<xml xmlns:s='uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882'
+	xmlns:dt='uuid:C2F41010-65B3-11d1-A29F-00AA00C14882'
+	xmlns:rs='urn:schemas-microsoft-com:rowset'
+	xmlns:z='#RowsetSchema'>
+<s:Schema id='RowsetSchema'>
+	<s:ElementType name='row' content='eltOnly' rs:updatable='true'>
+		<s:AttributeType name='attr_id' rs:number='1' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='T08_attr'
+			 rs:basecolumn='attr_id' rs:keycolumn='true'>
+			<s:datatype dt:type='string' dt:maxLength='40' rs:maybenull='false'/>
+		</s:AttributeType>
+		<s:AttributeType name='obj_id' rs:number='2' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='T08_attr'
+			 rs:basecolumn='obj_id' rs:keycolumn='true'>
+			<s:datatype dt:type='string' dt:maxLength='40' rs:maybenull='false'/>
+		</s:AttributeType>
+		<s:AttributeType name='data' rs:number='3' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T08_attr' rs:basecolumn='data'>
+			<s:datatype dt:type='string' dt:maxLength='255'/>
+		</s:AttributeType>
+		<s:AttributeType name='mod_type' rs:number='4' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='T08_attr'
+			 rs:basecolumn='mod_type'>
+			<s:datatype dt:type='string' dt:maxLength='1' rs:maybenull='false'/>
+		</s:AttributeType>
+		<s:extends type='rs:rowbase'/>
+	</s:ElementType>
+</s:Schema>
+<rs:data>
+	<z:row attr_id='3D6FF764-9DF1-4E90-B152-CD4631EFC019' obj_id='A27268C5-A7DC-4EC2-9FDE-8318097BD7FD' data='100 %'
+		 mod_type='D'/>
+	<z:row attr_id='6BF03CAC-8D38-4741-A4E0-30D29F0147EA' obj_id='A27268C5-A7DC-4EC2-9FDE-8318097BD7FD' data='1:25000'
+		 mod_type='D'/>
+	<z:row attr_id='B927CEE3-0EF9-480B-989B-082DA06CF130' obj_id='A27268C5-A7DC-4EC2-9FDE-8318097BD7FD' data='Datenserie'
+		 mod_type='D'/>
+</rs:data>
+</xml>

@@ -1,0 +1,784 @@
+<xml xmlns:s='uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882'
+	xmlns:dt='uuid:C2F41010-65B3-11d1-A29F-00AA00C14882'
+	xmlns:rs='urn:schemas-microsoft-com:rowset'
+	xmlns:z='#RowsetSchema'>
+<s:Schema id='RowsetSchema'>
+	<s:ElementType name='row' content='eltOnly' rs:updatable='true'>
+		<s:AttributeType name='codelist_id' rs:number='1' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='sys_codelist_domain'
+			 rs:basecolumn='codelist_id' rs:keycolumn='true'>
+			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true' rs:maybenull='false'/>
+		</s:AttributeType>
+		<s:AttributeType name='domain_id' rs:number='2' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='sys_codelist_domain'
+			 rs:basecolumn='domain_id' rs:keycolumn='true'>
+			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true' rs:maybenull='false'/>
+		</s:AttributeType>
+		<s:AttributeType name='lang_id' rs:number='3' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='sys_codelist_domain'
+			 rs:basecolumn='lang_id' rs:keycolumn='true'>
+			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true' rs:maybenull='false'/>
+		</s:AttributeType>
+		<s:AttributeType name='name' rs:number='4' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='sys_codelist_domain' rs:basecolumn='name'>
+			<s:datatype dt:type='string' dt:maxLength='255'/>
+		</s:AttributeType>
+		<s:AttributeType name='description' rs:number='5' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='sys_codelist_domain' rs:basecolumn='description'>
+			<s:datatype dt:type='string' dt:maxLength='255'/>
+		</s:AttributeType>
+		<s:AttributeType name='def_domain' rs:number='6' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='sys_codelist_domain' rs:basecolumn='def_domain'>
+			<s:datatype dt:type='i2' dt:maxLength='2' rs:precision='5' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:extends type='rs:rowbase'/>
+	</s:ElementType>
+</s:Schema>
+<rs:data>
+	<z:row codelist_id='100' domain_id='4178' lang_id='94' name='EPSG:4178 / Pulkovo 1942(83) / geographisch' description='Pulkovo 1942(83) / geographisch'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='4178' lang_id='121' name='EPSG:4178 / Pulkovo 1942(83) / geographisch' description='Pulkovo 1942(83) / geographisch'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='4230' lang_id='94' name='EPSG:4230 / ED50 / geographisch ' description='ED50 / geographisch '
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='4230' lang_id='121' name='EPSG:4230 / ED50 / geographisch ' description='ED50 / geographisch '
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='4258' lang_id='94' name='EPSG:4258 / ETRS89 / geographisch' description='ETRS89 / geographisch'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='4258' lang_id='121' name='EPSG:4258 / ETRS89 / geographisch' description='ETRS89 / geographisch'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='4284' lang_id='94' name='EPSG:4284 / Pulkovo 1942 / geographisch' description='Pulkovo 1942 / geographisch'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='4284' lang_id='121' name='EPSG:4284 / Pulkovo 1942 / geographisch' description='Pulkovo 1942 / geographisch'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='4314' lang_id='94' name='EPSG:4314 / DHDN / geographisch' description='DHDN / geographisch'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='4314' lang_id='121' name='EPSG:4314 / DHDN / geographisch' description='DHDN / geographisch'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='4326' lang_id='94' name='EPSG:4326 / WGS 84 / geographisch' description='WGS 84 / geographisch'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='4326' lang_id='121' name='EPSG:4326 / WGS 84 / geographisch' description='WGS 84 / geographisch'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='23031' lang_id='94' name='EPSG:23031 / ED50 / UTM Zone 31N' description='ED50 / UTM Zone 31N'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='23031' lang_id='121' name='EPSG:23031 / ED50 / UTM Zone 31N' description='ED50 / UTM Zone 31N'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='23032' lang_id='94' name='EPSG:23032 / ED50 / UTM Zone 32N' description='ED50 / UTM Zone 32N'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='23032' lang_id='121' name='EPSG:23032 / ED50 / UTM Zone 32N' description='ED50 / UTM Zone 32N'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='23033' lang_id='94' name='EPSG:23033 / ED50 / UTM Zone 33N' description='ED50 / UTM Zone 33N'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='23033' lang_id='121' name='EPSG:23033 / ED50 / UTM Zone 33N' description='ED50 / UTM Zone 33N'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='23631' lang_id='94' name='EPSG:32631 / WGS 84 / UTM Zone 31N' description='WGS 84 / UTM Zone 31N'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='23631' lang_id='121' name='EPSG:32631 / WGS 84 / UTM Zone 31N' description='WGS 84 / UTM Zone 31N'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='23632' lang_id='94' name='EPSG:32632 / WGS 84 / UTM Zone 32N/33N' description='WGS 84 / UTM Zone 32N/33N'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='23632' lang_id='121' name='EPSG:32632 / WGS 84 / UTM Zone 32N/33N' description='WGS 84 / UTM Zone 32N/33N'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='25831' lang_id='94' name='EPSG:25831 / ETRS89 / UTM Zone 31N ' description='ETRS89 / UTM Zone 31N '
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='25831' lang_id='121' name='EPSG:25831 / ETRS89 / UTM Zone 31N ' description='ETRS89 / UTM Zone 31N '
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='25832' lang_id='94' name='EPSG:25832 / ETRS89 / UTM Zone 32N' description='ETRS89 / UTM Zone 32N'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='25832' lang_id='121' name='EPSG:25832 / ETRS89 / UTM Zone 32N' description='ETRS89 / UTM Zone 32N'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='25833' lang_id='94' name='EPSG:25833 / ETRS89 / UTM Zone 33N' description='ETRS89 / UTM Zone 33N'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='25833' lang_id='121' name='EPSG:25833 / ETRS89 / UTM Zone 33N' description='ETRS89 / UTM Zone 33N'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='28463' lang_id='94' name='EPSG:28463 / Pulkovo 1942 / Gauss-Krüger 2N/3N '
+		 description='Pulkovo 1942 / Gauss-Krüger 2N/3N ' def_domain='0'/>
+	<z:row codelist_id='100' domain_id='28463' lang_id='121' name='EPSG:28463 / Pulkovo 1942 / Gauss-Krüger 2N/3N '
+		 description='Pulkovo 1942 / Gauss-Krüger 2N/3N ' def_domain='0'/>
+	<z:row codelist_id='100' domain_id='31281' lang_id='94' name='EPSG:31281 / MGI (Ferro) / Austria West Zone'
+		 description='-' def_domain='0'/>
+	<z:row codelist_id='100' domain_id='31281' lang_id='121' name='EPSG:31281 / MGI (Ferro) / Austria West Zone'
+		 description='-' def_domain='0'/>
+	<z:row codelist_id='100' domain_id='31282' lang_id='94' name='EPSG:31282 / MGI (Ferro) / Austria Central Zone'
+		 description='-' def_domain='0'/>
+	<z:row codelist_id='100' domain_id='31282' lang_id='121' name='EPSG:31282 / MGI (Ferro) / Austria Central Zone'
+		 description='-' def_domain='0'/>
+	<z:row codelist_id='100' domain_id='31283' lang_id='94' name='EPSG:31283 / MGI (Ferro) / Austria East Zone'
+		 description='-' def_domain='0'/>
+	<z:row codelist_id='100' domain_id='31283' lang_id='121' name='EPSG:31283 / MGI (Ferro) / Austria East Zone'
+		 description='-' def_domain='0'/>
+	<z:row codelist_id='100' domain_id='31284' lang_id='94' name='EPSG:31284 / MGI / M28' description='-' def_domain='0'/>
+	<z:row codelist_id='100' domain_id='31284' lang_id='121' name='EPSG:31284 / MGI / M28' description='-' def_domain='0'/>
+	<z:row codelist_id='100' domain_id='31285' lang_id='94' name='EPSG:31285 / MGI / M31' description='-' def_domain='0'/>
+	<z:row codelist_id='100' domain_id='31285' lang_id='121' name='EPSG:31285 / MGI / M31' description='-' def_domain='0'/>
+	<z:row codelist_id='100' domain_id='31286' lang_id='94' name='EPSG:31286 / MGI / M34' description='-' def_domain='0'/>
+	<z:row codelist_id='100' domain_id='31286' lang_id='121' name='EPSG:31286 / MGI / M34' description='-' def_domain='0'/>
+	<z:row codelist_id='100' domain_id='31287' lang_id='94' name='EPSG:31287 / MGI / Austria Lambert' description='-'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='31287' lang_id='121' name='EPSG:31287 / MGI / Austria Lambert' description='-'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='31288' lang_id='94' name='EPSG:31288 / MGI (Ferro) / M28' description='-'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='31288' lang_id='121' name='EPSG:31288 / MGI (Ferro) / M28' description='-'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='31289' lang_id='94' name='EPSG:31289 / MGI (Ferro) / M31' description='-'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='31289' lang_id='121' name='EPSG:31289 / MGI (Ferro) / M31' description='-'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='31290' lang_id='94' name='EPSG:31290 / MGI (Ferro) / M34' description='-'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='31290' lang_id='121' name='EPSG:31290 / MGI (Ferro) / M34' description='-'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='31291' lang_id='94' name='EPSG:31291 / MGI (Ferro) / Austria West Zone'
+		 description='-' def_domain='0'/>
+	<z:row codelist_id='100' domain_id='31291' lang_id='121' name='EPSG:31291 / MGI (Ferro) / Austria West Zone'
+		 description='-' def_domain='0'/>
+	<z:row codelist_id='100' domain_id='31292' lang_id='94' name='EPSG:31292 / MGI (Ferro) / Austria Central Zone'
+		 description='-' def_domain='0'/>
+	<z:row codelist_id='100' domain_id='31292' lang_id='121' name='EPSG:31292 / MGI (Ferro) / Austria Central Zone'
+		 description='-' def_domain='0'/>
+	<z:row codelist_id='100' domain_id='31293' lang_id='94' name='EPSG:31293 / MGI (Ferro) / Austria East Zone'
+		 description='-' def_domain='0'/>
+	<z:row codelist_id='100' domain_id='31293' lang_id='121' name='EPSG:31293 / MGI (Ferro) / Austria East Zone'
+		 description='-' def_domain='0'/>
+	<z:row codelist_id='100' domain_id='31466' lang_id='94' name='EPSG:31466 / DHDN / Gauss-Krüger Zone 2' description='DHDN / Gauss-Krüger Zone 2'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='31466' lang_id='121' name='EPSG:31466 / DHDN / Gauss-Krüger Zone 2' description='DHDN / Gauss-Krüger Zone 2'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='31467' lang_id='94' name='EPSG:31467 /DHDN / Gauss-Krüger Zone 3' description='DHDN / Gauss-Krüger Zone 3'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='31467' lang_id='121' name='EPSG:31467 /DHDN / Gauss-Krüger Zone 3' description='DHDN / Gauss-Krüger Zone 3'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='31468' lang_id='94' name='EPSG:31468 / DHDN / Gauss-Krüger Zone 4' description='DHDN / Gauss-Krüger Zone 4'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='31468' lang_id='121' name='EPSG:31468 / DHDN / Gauss-Krüger Zone 4' description='DHDN / Gauss-Krüger Zone 4'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='31469' lang_id='94' name='EPSG:31469 / DHDN / Gauss-Krüger Zone 5' description='DHDN / Gauss-Krüger Zone 5'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='31469' lang_id='121' name='EPSG:31469 / DHDN / Gauss-Krüger Zone 5' description='DHDN / Gauss-Krüger Zone 5'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='31491' lang_id='94' name='EPSG:31491 / DHDN / Germany zone 1 ' description='DHDN / Germany zone 1 '
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='31491' lang_id='121' name='EPSG:31491 / DHDN / Germany zone 1 ' description='DHDN / Germany zone 1 '
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='31492' lang_id='94' name='EPSG:31492 /DHDN / Germany zone 2' description='DHDN / Germany zone 2'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='31492' lang_id='121' name='EPSG:31492 /DHDN / Germany zone 2' description='DHDN / Germany zone 2'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='31493' lang_id='94' name='EPSG:31493 / DHDN / Germany zone 3' description='DHDN / Germany zone 3'
+		 def_domain='1'/>
+	<z:row codelist_id='100' domain_id='31493' lang_id='121' name='EPSG:31493 / DHDN / Germany zone 3' description='DHDN / Germany zone 3'
+		 def_domain='1'/>
+	<z:row codelist_id='100' domain_id='31494' lang_id='94' name='EPSG:31494 / DHDN / Germany zone 4' description='DHDN / Germany zone 4'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='31494' lang_id='121' name='EPSG:31494 / DHDN / Germany zone 4' description='DHDN / Germany zone 4'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='31495' lang_id='94' name='EPSG:31495 / DHDN / Germany zone 5' description='DHDN / Germany zone 5'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='31495' lang_id='121' name='EPSG:31495 / DHDN / Germany zone 5' description='DHDN / Germany zone 5'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='9000001' lang_id='94' name='DE_42/83 / GK_3' description='Datum 42/83 with Gauss-Krüger-System'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='9000001' lang_id='121' name='DE_42/83 / GK_3' description='Datum 42/83 with Gauss-Krüger-System'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='9000002' lang_id='94' name='DE_DHDN / GK_3' description='Datum DHDN with Gauss-Krüger-System (also known as Rauenberg or Potsdam Datum)'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='9000002' lang_id='121' name='DE_DHDN / GK_3' description='Datum DHDN with Gauss-Krüger-System (also known as Rauenberg or Potsdam Datum)'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='9000003' lang_id='94' name='DE_ETRS89 / UTM' description='Datum ETRS89 for Federal State Brandenburg with UTM Projection (one zone extended)'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='9000003' lang_id='121' name='DE_ETRS89 / UTM' description='Datum ETRS89 for Federal State Brandenburg with UTM Projection (one zone extended)'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='9000004' lang_id='94' name='DE_PD/83 / GK_3' description='Datum PD/83 with Gauss-Krüger-System (realisation of Postdam Datum for Federal State Thüringen)'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='9000005' lang_id='121' name='DE_PD/83 / GK_3' description='Datum PD/83 with Gauss-Krüger-System (realisation of Postdam Datum for Federal State Thüringen)'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='9000006' lang_id='94' name='DE_RD/83 / GK_3' description='Datum RD/83 with Gauss-Krüger-System (realisation of Rauenberg Datum for Federal State Sachsen)'
+		 def_domain='0'/>
+	<z:row codelist_id='100' domain_id='9000006' lang_id='121' name='DE_RD/83 / GK_3' description='Datum RD/83 with Gauss-Krüger-System (realisation of Rauenberg Datum for Federal State Sachsen)'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='62' lang_id='94' name='Mean Sea Level' description='-' def_domain='0'/>
+	<z:row codelist_id='101' domain_id='62' lang_id='121' name='Mean Sea Level' description='-' def_domain='0'/>
+	<z:row codelist_id='101' domain_id='63' lang_id='94' name='Ordnance Datum Newlyn' description='-' def_domain='0'/>
+	<z:row codelist_id='101' domain_id='63' lang_id='121' name='Ordnance Datum Newlyn' description='-' def_domain='0'/>
+	<z:row codelist_id='101' domain_id='64' lang_id='94' name='National Geodetic Vertical Datum 1929' description='26 tide gauges in the US and Canada.'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='64' lang_id='121' name='National Geodetic Vertical Datum 1929' description='26 tide gauges in the US and Canada.'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='65' lang_id='94' name='North American Vertical Datum 1988' description='Father&#x27;s Point, Rimouski, Quebec.'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='65' lang_id='121' name='North American Vertical Datum 1988' description='Father&#x27;s Point, Rimouski, Quebec.'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5105' lang_id='94' name='Baltic Sea' description='Average water level at Kronshtadt'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5105' lang_id='121' name='Baltic Sea' description='Average water level at Kronshtadt'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5107' lang_id='94' name='Nivellement general de la France' description='Mean sea level at Marseille'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5107' lang_id='121' name='Nivellement general de la France' description='Mean sea level at Marseille'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5109' lang_id='94' name='Normaal Amsterdams Peil' description='wird in alten Bundesländern genutzt'
+		 def_domain='1'/>
+	<z:row codelist_id='101' domain_id='5109' lang_id='121' name='Amsterdamer Pegel (NN)' description='wird in alten Bundesländern genutzt'
+		 def_domain='1'/>
+	<z:row codelist_id='101' domain_id='5110' lang_id='94' name='Oostende' description='Mean low water during 1958'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5110' lang_id='121' name='Oostende' description='Mean low water during 1958'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5113' lang_id='94' name='Sea Level' description='-' def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5113' lang_id='121' name='Sea Level' description='-' def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5114' lang_id='94' name='Canadian Vertical Datum of 1928' description='-'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5114' lang_id='121' name='Canadian Vertical Datum of 1928' description='-'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5115' lang_id='94' name='Piraeus Harbour 1986' description='MSL determined during 1986.'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5115' lang_id='121' name='Piraeus Harbour 1986' description='MSL determined during 1986.'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5116' lang_id='94' name='Helsinki 1960' description='MSL at Helsinki during 1960.'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5116' lang_id='121' name='Helsinki 1960' description='MSL at Helsinki during 1960.'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5117' lang_id='94' name='Rikets hojdsystem 1970' description='-' def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5117' lang_id='121' name='Rikets hojdsystem 1970' description='-' def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5118' lang_id='94' name='Nivellement general de la France - Lalle' description='Mean sea level at Marseille.'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5118' lang_id='121' name='Nivellement general de la France - Lalle' description='Mean sea level at Marseille.'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5119' lang_id='94' name='Nivellement general de la France - IGN69' description='Mean sea level at Marseille.'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5119' lang_id='121' name='Nivellement general de la France - IGN69' description='Mean sea level at Marseille.'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5120' lang_id='94' name='Nivellement general de la France - IGN78' description='-'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5120' lang_id='121' name='Nivellement general de la France - IGN78' description='-'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5123' lang_id='94' name='PDO Height Datum 1993' description='-' def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5123' lang_id='121' name='PDO Height Datum 1993' description='-' def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5127' lang_id='94' name='Landesnivellement 1902' description='Origin at Repere Pierre du Niton (RPN) 373.6 metres above msl derived at Marseille.'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5127' lang_id='121' name='Landesnivellement 1902' description='Origin at Repere Pierre du Niton (RPN) 373.6 metres above msl derived at Marseille.'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5128' lang_id='94' name='Landeshohennetz 1995' description='Origin at Repere Pierre du Niton (RPN) 373.6 metres above msl derived at Marseille.'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5128' lang_id='121' name='Landeshohennetz 1995' description='Origin at Repere Pierre du Niton (RPN) 373.6 metres above msl derived at Marseille.'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5129' lang_id='94' name='European Vertical Reference Frame 2000' description='Geopotential number at Normaal Amsterdams Peil is zero.'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5129' lang_id='121' name='European Vertical Reference Frame 2000' description='Geopotential number at Normaal Amsterdams Peil is zero.'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5130' lang_id='94' name='Malin Head' description='Mean sea level between January 1960 and December 1969.'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5130' lang_id='121' name='Malin Head' description='Mean sea level between January 1960 and December 1969.'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5131' lang_id='94' name='Belfast Lough' description='Mean sea level between 1951 and 1956 at Clarendon Dock, Belfast.'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5131' lang_id='121' name='Belfast Lough' description='Mean sea level between 1951 and 1956 at Clarendon Dock, Belfast.'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5132' lang_id='94' name='Dansk Normal Nul' description='-' def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5132' lang_id='121' name='Dansk Normal Nul' description='-' def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5138' lang_id='94' name='Ordnance Datum Newlyn (Orkney Isles)' description='-'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5138' lang_id='121' name='Ordnance Datum Newlyn (Orkney Isles)' description='-'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5139' lang_id='94' name='Fair Isle' description='-' def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5139' lang_id='121' name='Fair Isle' description='-' def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5140' lang_id='94' name='Lerwick' description='-' def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5140' lang_id='121' name='Lerwick' description='-' def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5141' lang_id='94' name='Foula' description='-' def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5141' lang_id='121' name='Foula' description='-' def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5142' lang_id='94' name='Sule Skerry' description='-' def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5142' lang_id='121' name='Sule Skerry' description='-' def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5143' lang_id='94' name='North Rona' description='-' def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5143' lang_id='121' name='North Rona' description='-' def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5144' lang_id='94' name='Stornoway' description='-' def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5144' lang_id='121' name='Stornoway' description='-' def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5145' lang_id='94' name='St. Kilda' description='-' def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5145' lang_id='121' name='St. Kilda' description='-' def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5146' lang_id='94' name='Flannan Isles' description='-' def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5146' lang_id='121' name='Flannan Isles' description='-' def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5147' lang_id='94' name='St. Marys' description='-' def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5147' lang_id='121' name='St. Marys' description='-' def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5148' lang_id='94' name='Douglas' description='-' def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5148' lang_id='121' name='Douglas' description='-' def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5149' lang_id='94' name='Fao' description='-' def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5149' lang_id='121' name='Fao' description='-' def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5151' lang_id='94' name='Nivellement General Nouvelle Caledonie' description='-'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='5151' lang_id='121' name='Nivellement General Nouvelle Caledonie' description='-'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='900001' lang_id='94' name='Kronstädter Pegel (HN)' description='wird in neuen Bundesländern genutzt'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='900001' lang_id='121' name='Kronstädter Pegel (HN)' description='wird in neuen Bundesländern genutzt'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='900002' lang_id='94' name='DE_AMST / NH' description='normal heights referred to tide gauge Amsterdam (also known as DHHN92)'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='900002' lang_id='121' name='DE_AMST / NH' description='normal heights referred to tide gauge Amsterdam (also known as DHHN92)'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='900003' lang_id='94' name='DE_AMST / NOH' description='normal-orthometric heights referred to tide gauge Amsterdam (also known as DHHN85)'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='900003' lang_id='121' name='DE_AMST / NOH' description='normal-orthometric heights referred to tide gauge Amsterdam (also known as DHHN85)'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='900004' lang_id='94' name='DE_KRON / NH' description='normal heights referred to tide gauge Kronstadt (also known as SNN76)'
+		 def_domain='0'/>
+	<z:row codelist_id='101' domain_id='900004' lang_id='121' name='DE_KRON / NH' description='normal heights referred to tide gauge Kronstadt (also known as SNN76)'
+		 def_domain='0'/>
+	<z:row codelist_id='102' domain_id='4' lang_id='94' name='Zoll' description='Zoll' def_domain='0'/>
+	<z:row codelist_id='102' domain_id='4' lang_id='121' name='Inch' description='Inch' def_domain='0'/>
+	<z:row codelist_id='102' domain_id='9001' lang_id='94' name='Metre' description='Metre' def_domain='1'/>
+	<z:row codelist_id='102' domain_id='9001' lang_id='121' name='Meter' description='Meter' def_domain='1'/>
+	<z:row codelist_id='102' domain_id='9002' lang_id='94' name='Foot' description='Foot' def_domain='0'/>
+	<z:row codelist_id='102' domain_id='9002' lang_id='121' name='Fuss' description='Fuss' def_domain='0'/>
+	<z:row codelist_id='102' domain_id='9036' lang_id='94' name='Kilometre' description='Kilometre' def_domain='0'/>
+	<z:row codelist_id='102' domain_id='9036' lang_id='121' name='Kilometer' description='Kilometer' def_domain='0'/>
+	<z:row codelist_id='502' domain_id='1' lang_id='94' name='creation' description='date identifies when the resource was brought into existence'
+		 def_domain='1'/>
+	<z:row codelist_id='502' domain_id='1' lang_id='121' name='Erstellung' description='Datum, wann die Quelle geschaffen wurde'
+		 def_domain='1'/>
+	<z:row codelist_id='502' domain_id='2' lang_id='94' name='publication' description='date identifies when the resource was issued'
+		 def_domain='0'/>
+	<z:row codelist_id='502' domain_id='2' lang_id='121' name='Publikation' description='Dateum, wann die Quelle publiziert wurde'
+		 def_domain='0'/>
+	<z:row codelist_id='502' domain_id='3' lang_id='94' name='revision' description='date identifies when the resource was examined or re-examined and improved or amended'
+		 def_domain='0'/>
+	<z:row codelist_id='502' domain_id='3' lang_id='121' name='letzte Änderung' description='Datum, wann eine Revision durchgeführt wurde'
+		 def_domain='0'/>
+	<z:row codelist_id='505' domain_id='1' lang_id='94' name='Provider' description='Party that supplies the resource'
+		 def_domain='0'/>
+	<z:row codelist_id='505' domain_id='1' lang_id='121' name='Anbieter' description='Anbieter der Datenquelle'
+		 def_domain='0'/>
+	<z:row codelist_id='505' domain_id='2' lang_id='94' name='Custodian' description='Party that accepts accountability and responsibility for the data and ensures appropriate care and maintenance of the resource'
+		 def_domain='0'/>
+	<z:row codelist_id='505' domain_id='2' lang_id='121' name='Datenverantwortung' description='Verantworlicher für die Datenquelle und deren Pflege'
+		 def_domain='0'/>
+	<z:row codelist_id='505' domain_id='3' lang_id='94' name='Owner' description='Party that owns the resource'
+		 def_domain='0'/>
+	<z:row codelist_id='505' domain_id='3' lang_id='121' name='Halter' description='Halter der Datenquelle' def_domain='0'/>
+	<z:row codelist_id='505' domain_id='4' lang_id='94' name='User' description='Party who uses the resource' def_domain='0'/>
+	<z:row codelist_id='505' domain_id='4' lang_id='121' name='Benutzer' description='Benutzer der Datenquelle'
+		 def_domain='0'/>
+	<z:row codelist_id='505' domain_id='5' lang_id='94' name='Distributor' description='Party who distributes the resource'
+		 def_domain='0'/>
+	<z:row codelist_id='505' domain_id='5' lang_id='121' name='Vertrieb' description='Vertreiber der Datenquelle'
+		 def_domain='0'/>
+	<z:row codelist_id='505' domain_id='6' lang_id='94' name='Originator' description='Party who created the resource'
+		 def_domain='0'/>
+	<z:row codelist_id='505' domain_id='6' lang_id='121' name='Herkunft' description='Ersteller der Datenquelle'
+		 def_domain='0'/>
+	<z:row codelist_id='505' domain_id='7' lang_id='94' name='Point of Contact' description='Party who can be contacted for acquiring knowledge about or acquisition of the resource'
+		 def_domain='1'/>
+	<z:row codelist_id='505' domain_id='7' lang_id='121' name='Auskunft' description='Kontaktperson, die Informationen über die Datenqulle geben kann'
+		 def_domain='1'/>
+	<z:row codelist_id='505' domain_id='8' lang_id='94' name='Principal Investigator' description='Key party responsible for gathering information and conducting research'
+		 def_domain='0'/>
+	<z:row codelist_id='505' domain_id='8' lang_id='121' name='Datenerfassung' description='Verantworlicher für die Zusammenstellung der Informationen und Durchführung von Forschung'
+		 def_domain='0'/>
+	<z:row codelist_id='505' domain_id='9' lang_id='94' name='Processor' description='Party who has processed the data in a manner such that the resource has been modified'
+		 def_domain='0'/>
+	<z:row codelist_id='505' domain_id='9' lang_id='121' name='Auswertung' description='Bearbeiter der Daten in einer Art, dass die Quelle modifiziert wurde.'
+		 def_domain='0'/>
+	<z:row codelist_id='505' domain_id='10' lang_id='94' name='Publisher' description='Party who published the resource'
+		 def_domain='0'/>
+	<z:row codelist_id='505' domain_id='10' lang_id='121' name='Herausgeber' description='Phblizierer der Datenquelle'
+		 def_domain='0'/>
+	<z:row codelist_id='510' domain_id='1' lang_id='94' name='ucs2' description='16-bit fixed size Universal Character Set, based on ISO/IEC 10646'
+		 def_domain='0'/>
+	<z:row codelist_id='510' domain_id='1' lang_id='121' name='ucs2' description='16-bit fixierte Größe Universal Character Set, basierend auf ISO/IEC 10646'
+		 def_domain='0'/>
+	<z:row codelist_id='510' domain_id='2' lang_id='94' name='ucs4' description='32-bit fixed size Universal Character Set, based on ISO/IEC 10646'
+		 def_domain='0'/>
+	<z:row codelist_id='510' domain_id='2' lang_id='121' name='ucs4' description='32-bit fixierte Größe Universal Character Set, basierend auf ISO/IEC 10646'
+		 def_domain='0'/>
+	<z:row codelist_id='510' domain_id='3' lang_id='94' name='utf7' description='7-bit variable size UCS Transfer Format, based on ISO/IEC 10646'
+		 def_domain='0'/>
+	<z:row codelist_id='510' domain_id='3' lang_id='121' name='utf7' description='7-bit variable Größe UCS Transfer Format, basierend auf ISO/IEC 10646'
+		 def_domain='0'/>
+	<z:row codelist_id='510' domain_id='4' lang_id='94' name='utf8' description='8-bit variable size UCS Transfer Format, based on ISO/IEC 10646'
+		 def_domain='0'/>
+	<z:row codelist_id='510' domain_id='4' lang_id='121' name='utf8' description='8-bit variable Größe UCS Transfer Format, basierend auf ISO/IEC 10646'
+		 def_domain='0'/>
+	<z:row codelist_id='510' domain_id='5' lang_id='94' name='utf16' description='16-bit variable size UCS Transfer Format, based on ISO/IEC 10646'
+		 def_domain='0'/>
+	<z:row codelist_id='510' domain_id='5' lang_id='121' name='utf16' description='16-bit variable Größe UCS Transfer Format, basierend auf ISO/IEC 10646'
+		 def_domain='0'/>
+	<z:row codelist_id='510' domain_id='6' lang_id='94' name='8859part1' description='latin-1, west European' def_domain='0'/>
+	<z:row codelist_id='510' domain_id='6' lang_id='121' name='8859part1' description='latin-1, Westeuropäischer'
+		 def_domain='0'/>
+	<z:row codelist_id='510' domain_id='7' lang_id='94' name='8859part2' description='latin-2, central European'
+		 def_domain='0'/>
+	<z:row codelist_id='510' domain_id='7' lang_id='121' name='8859part2' description='latin-2, Zentraleuropäischer'
+		 def_domain='0'/>
+	<z:row codelist_id='510' domain_id='8' lang_id='94' name='8859part3' description='latin-3, south European' def_domain='0'/>
+	<z:row codelist_id='510' domain_id='8' lang_id='121' name='8859part3' description='latin-3, Südeuropäischer'
+		 def_domain='0'/>
+	<z:row codelist_id='510' domain_id='9' lang_id='94' name='8859part4' description='latin-4, north European' def_domain='0'/>
+	<z:row codelist_id='510' domain_id='9' lang_id='121' name='8859part4' description='latin-4, Nordeuropäischer'
+		 def_domain='0'/>
+	<z:row codelist_id='510' domain_id='10' lang_id='94' name='8859part5' description='cyrillic code set' def_domain='0'/>
+	<z:row codelist_id='510' domain_id='10' lang_id='121' name='8859part5' description='Cyrillisch' def_domain='0'/>
+	<z:row codelist_id='510' domain_id='11' lang_id='94' name='8859part6' description='arabic code set' def_domain='0'/>
+	<z:row codelist_id='510' domain_id='11' lang_id='121' name='8859part6' description='Arabisch' def_domain='0'/>
+	<z:row codelist_id='510' domain_id='12' lang_id='94' name='8859part7' description='greek code set' def_domain='0'/>
+	<z:row codelist_id='510' domain_id='12' lang_id='121' name='8859part7' description='Griechisch' def_domain='0'/>
+	<z:row codelist_id='510' domain_id='13' lang_id='94' name='8859part8' description='hebrew code set' def_domain='0'/>
+	<z:row codelist_id='510' domain_id='13' lang_id='121' name='8859part8' description='Hebräisch' def_domain='0'/>
+	<z:row codelist_id='510' domain_id='14' lang_id='94' name='8859part9' description='latin-5, Turkish code set'
+		 def_domain='0'/>
+	<z:row codelist_id='510' domain_id='14' lang_id='121' name='8859part9' description='latin-5, Türkisch' def_domain='0'/>
+	<z:row codelist_id='510' domain_id='15' lang_id='94' name='8859part11' description='thai code set' def_domain='0'/>
+	<z:row codelist_id='510' domain_id='15' lang_id='121' name='8859part11' description='Tailändisch' def_domain='0'/>
+	<z:row codelist_id='510' domain_id='16' lang_id='94' name='8859part14' description='latin-8 code set' def_domain='0'/>
+	<z:row codelist_id='510' domain_id='16' lang_id='121' name='8859part14' description='latin-8' def_domain='0'/>
+	<z:row codelist_id='510' domain_id='17' lang_id='94' name='8859part15' description='latin-9 code set' def_domain='0'/>
+	<z:row codelist_id='510' domain_id='17' lang_id='121' name='8859part15' description='latin-9' def_domain='0'/>
+	<z:row codelist_id='510' domain_id='18' lang_id='94' name='Jis' description='japanese code set used for electronic transmission'
+		 def_domain='0'/>
+	<z:row codelist_id='510' domain_id='18' lang_id='121' name='Jis' description='Japanisch' def_domain='0'/>
+	<z:row codelist_id='510' domain_id='19' lang_id='94' name='ShiftJIS' description='japanese code set used on MS-DOS based machines'
+		 def_domain='0'/>
+	<z:row codelist_id='510' domain_id='19' lang_id='121' name='ShiftJIS' description='Japanisch (MS-DOS)' def_domain='0'/>
+	<z:row codelist_id='510' domain_id='20' lang_id='94' name='EucJP' description='japanese code set used on UNIX based machines'
+		 def_domain='0'/>
+	<z:row codelist_id='510' domain_id='20' lang_id='121' name='EucJP' description='Japanisch (UNIX)' def_domain='0'/>
+	<z:row codelist_id='510' domain_id='21' lang_id='94' name='UsAscii' description='united states ASCII code set (ISO 646 US)'
+		 def_domain='0'/>
+	<z:row codelist_id='510' domain_id='21' lang_id='121' name='UsAscii' description='USA ASCII' def_domain='0'/>
+	<z:row codelist_id='510' domain_id='22' lang_id='94' name='Ebcdic' description='ibm mainframe code set' def_domain='0'/>
+	<z:row codelist_id='510' domain_id='22' lang_id='121' name='Ebcdic' description='IBM Mainfraime' def_domain='0'/>
+	<z:row codelist_id='510' domain_id='23' lang_id='94' name='EucKR' description='korean code set' def_domain='0'/>
+	<z:row codelist_id='510' domain_id='23' lang_id='121' name='EucKR' description='Koreanisch' def_domain='0'/>
+	<z:row codelist_id='510' domain_id='24' lang_id='94' name='big5' description='taiwanese code set' def_domain='0'/>
+	<z:row codelist_id='510' domain_id='24' lang_id='121' name='big5' description='Tawainesisch' def_domain='0'/>
+	<z:row codelist_id='515' domain_id='1' lang_id='94' name='complexes' description='set of geometric primitives such that their boundaries can be represented as a union of other primitives'
+		 def_domain='0'/>
+	<z:row codelist_id='515' domain_id='1' lang_id='121' name='Komplex' description='Satz geometrischer Primitiver, wobei deren Grenzen durch ein Zusammenschluss anderer Primitiver gebildet werden können'
+		 def_domain='0'/>
+	<z:row codelist_id='515' domain_id='2' lang_id='94' name='composites' description='connected set of curves, solids or surfaces'
+		 def_domain='0'/>
+	<z:row codelist_id='515' domain_id='2' lang_id='121' name='Verbund' description='verbundener Satz von Kurven, Körpern oder Oberflächen'
+		 def_domain='0'/>
+	<z:row codelist_id='515' domain_id='3' lang_id='94' name='curve' description='bounded, 1-dimensional geometric primitive, representing the continuous image of a line'
+		 def_domain='0'/>
+	<z:row codelist_id='515' domain_id='3' lang_id='121' name='Kurve' description='beschränkte, 1-D geometrische Primitive, die ein continuierliches Bild einer Linie darstellt'
+		 def_domain='0'/>
+	<z:row codelist_id='515' domain_id='4' lang_id='94' name='point' description='zero-dimensional geometric primitive, representing a position but not having an extent'
+		 def_domain='0'/>
+	<z:row codelist_id='515' domain_id='4' lang_id='121' name='Punkt' description='0-D geometrische Primitive, welche eine Position beschreibt ohne eine Ausdehnung zu haben'
+		 def_domain='0'/>
+	<z:row codelist_id='515' domain_id='5' lang_id='94' name='solid' description='bounded, connected 3-dimensional geometric primitive, representing the continuous image of a region of space'
+		 def_domain='0'/>
+	<z:row codelist_id='515' domain_id='5' lang_id='121' name='Körper' description='begrenzte, verbundene 3-D geometrische Primitive, welche ein kontinuierliches Bild eines Raumes beschreibt'
+		 def_domain='0'/>
+	<z:row codelist_id='515' domain_id='6' lang_id='94' name='surface' description='bounded, connected 2-dimensional geometric, representing the continuous image of a region of a plane'
+		 def_domain='0'/>
+	<z:row codelist_id='515' domain_id='6' lang_id='121' name='Oberfläche' description='begrenzte, verbundene 2-D geometrische Primitive, welche ein kontinuierliches Bild einer Ebene oder Region beschreibt'
+		 def_domain='0'/>
+	<z:row codelist_id='517' domain_id='1' lang_id='94' name='Discipline' description='keyword identifies a branch of instruction or specialized learning'
+		 def_domain='0'/>
+	<z:row codelist_id='517' domain_id='1' lang_id='121' name='Wissenszweig' description='Zweig einer Ausbildung oder spezialisierten Lernens'
+		 def_domain='0'/>
+	<z:row codelist_id='517' domain_id='2' lang_id='94' name='Place' description='keyword identifies a location'
+		 def_domain='0'/>
+	<z:row codelist_id='517' domain_id='2' lang_id='121' name='Ortsangabe' description='Ortsangabe' def_domain='0'/>
+	<z:row codelist_id='517' domain_id='3' lang_id='94' name='Stratum' description='keyword identifies the layer(s) of any deposited substance'
+		 def_domain='0'/>
+	<z:row codelist_id='517' domain_id='3' lang_id='121' name='Schicht' description='Schichten einer hinterlegten Substanz'
+		 def_domain='0'/>
+	<z:row codelist_id='517' domain_id='4' lang_id='94' name='Temporal' description='keyword identifies a time period related to the dataset'
+		 def_domain='0'/>
+	<z:row codelist_id='517' domain_id='4' lang_id='121' name='Zeitraum' description='Zeitraum in Bezug auf den Datensatz'
+		 def_domain='0'/>
+	<z:row codelist_id='517' domain_id='5' lang_id='94' name='Theme' description='keyword identifies a particular subject or topic'
+		 def_domain='0'/>
+	<z:row codelist_id='517' domain_id='5' lang_id='121' name='Themenbereich' description='Spezielles Fachgebiet oder Thema'
+		 def_domain='0'/>
+	<z:row codelist_id='518' domain_id='1' lang_id='94' name='continual' description='data is repeatedly and frequently updated'
+		 def_domain='1'/>
+	<z:row codelist_id='518' domain_id='1' lang_id='121' name='kontinuierlich' description='Datenupdate  häufig'
+		 def_domain='1'/>
+	<z:row codelist_id='518' domain_id='2' lang_id='94' name='daily' description='Data is updated each day' def_domain='0'/>
+	<z:row codelist_id='518' domain_id='2' lang_id='121' name='täglich' description='Datenupdate täglich' def_domain='0'/>
+	<z:row codelist_id='518' domain_id='3' lang_id='94' name='weekly' description='Ddata is updated on a weekly basis'
+		 def_domain='0'/>
+	<z:row codelist_id='518' domain_id='3' lang_id='121' name='wöchentlich' description='Datenupdate wöchentlich'
+		 def_domain='0'/>
+	<z:row codelist_id='518' domain_id='4' lang_id='94' name='fortnightly' description='Data is updated every two weeks'
+		 def_domain='0'/>
+	<z:row codelist_id='518' domain_id='4' lang_id='121' name='vierzehntägig' description='Datenupdate alle 2 Wochen'
+		 def_domain='0'/>
+	<z:row codelist_id='518' domain_id='5' lang_id='94' name='monthly' description='Data is updated each month'
+		 def_domain='0'/>
+	<z:row codelist_id='518' domain_id='5' lang_id='121' name='monatlich' description='Datenupdate monatlich' def_domain='0'/>
+	<z:row codelist_id='518' domain_id='6' lang_id='94' name='quarterly' description='Data is updated every three months'
+		 def_domain='0'/>
+	<z:row codelist_id='518' domain_id='6' lang_id='121' name='vierteljährlich' description='Datenupdate alle 3 Monate'
+		 def_domain='0'/>
+	<z:row codelist_id='518' domain_id='7' lang_id='94' name='biannually' description='Data is updated twice each year'
+		 def_domain='0'/>
+	<z:row codelist_id='518' domain_id='7' lang_id='121' name='halbjährlich' description='Datenupdate halbjährlich'
+		 def_domain='0'/>
+	<z:row codelist_id='518' domain_id='8' lang_id='94' name='annually' description='Data is updated every year'
+		 def_domain='0'/>
+	<z:row codelist_id='518' domain_id='8' lang_id='121' name='jährlich' description='Datenupdate jährlich' def_domain='0'/>
+	<z:row codelist_id='518' domain_id='9' lang_id='94' name='as Needed' description='Data is updated as deemed necessary'
+		 def_domain='0'/>
+	<z:row codelist_id='518' domain_id='9' lang_id='121' name='bei Bedarf' description='Datenupdate wenn nötig'
+		 def_domain='0'/>
+	<z:row codelist_id='518' domain_id='10' lang_id='94' name='irregular' description='Data is updated in intervals that are uneven in duration'
+		 def_domain='0'/>
+	<z:row codelist_id='518' domain_id='10' lang_id='121' name='unregelmäßig' description='Datenupdate in unregelmäßigen Abständen'
+		 def_domain='0'/>
+	<z:row codelist_id='518' domain_id='11' lang_id='94' name='notPlanned' description='There are no plans to update the data'
+		 def_domain='0'/>
+	<z:row codelist_id='518' domain_id='11' lang_id='121' name='einmalig' description='Datenupdate nicht geplant'
+		 def_domain='0'/>
+	<z:row codelist_id='518' domain_id='12' lang_id='94' name='unknown' description='Frequency of maintenance for the data is not known'
+		 def_domain='0'/>
+	<z:row codelist_id='518' domain_id='12' lang_id='121' name='unbekannt' description='Datenupdate unbekannt' def_domain='0'/>
+	<z:row codelist_id='520' domain_id='1' lang_id='94' name='CD Rom' description='CD Rom' def_domain='0'/>
+	<z:row codelist_id='520' domain_id='1' lang_id='121' name='CD-ROM' description='CD-ROM' def_domain='0'/>
+	<z:row codelist_id='520' domain_id='2' lang_id='94' name='dvd' description='dvd' def_domain='0'/>
+	<z:row codelist_id='520' domain_id='2' lang_id='121' name='DVD' description='DVD' def_domain='0'/>
+	<z:row codelist_id='520' domain_id='3' lang_id='94' name='dvd Rom' description='dvd Rom' def_domain='0'/>
+	<z:row codelist_id='520' domain_id='3' lang_id='121' name='DVD-ROM' description='DVD-ROM' def_domain='0'/>
+	<z:row codelist_id='520' domain_id='4' lang_id='94' name='3.5-inch diskette' description='3&#x27;&#x27; Floppy'
+		 def_domain='0'/>
+	<z:row codelist_id='520' domain_id='4' lang_id='121' name='3,5-Zoll Diskette' description='3’’ Floppy' def_domain='0'/>
+	<z:row codelist_id='520' domain_id='5' lang_id='94' name='5.25-inch diskette' description='5 ¼’’ Floppy'
+		 def_domain='0'/>
+	<z:row codelist_id='520' domain_id='5' lang_id='121' name='5,25-Zoll Diskette' description='5 ¼’’ Floppy'
+		 def_domain='0'/>
+	<z:row codelist_id='520' domain_id='6' lang_id='94' name='7 trackTape' description='7 trackTape' def_domain='0'/>
+	<z:row codelist_id='520' domain_id='6' lang_id='121' name='7 Spur Band' description='7 Spur Tape' def_domain='0'/>
+	<z:row codelist_id='520' domain_id='7' lang_id='94' name='9 track Tape' description='9 track Tape' def_domain='0'/>
+	<z:row codelist_id='520' domain_id='7' lang_id='121' name='9 Spur Band' description='9 Spur Tape' def_domain='0'/>
+	<z:row codelist_id='520' domain_id='8' lang_id='94' name='3480 Cartridge' description='3480Cartridge' def_domain='0'/>
+	<z:row codelist_id='520' domain_id='8' lang_id='121' name='3480 Bandkassette' description='3480 Cartridge' def_domain='0'/>
+	<z:row codelist_id='520' domain_id='9' lang_id='94' name='3490 Cartridge' description='3490 Cartridge' def_domain='0'/>
+	<z:row codelist_id='520' domain_id='9' lang_id='121' name='3490 Bandkassette' description='3490 Cartridge' def_domain='0'/>
+	<z:row codelist_id='520' domain_id='10' lang_id='94' name='3580 Cartridge' description='3580Cartridge' def_domain='0'/>
+	<z:row codelist_id='520' domain_id='10' lang_id='121' name='3580 Bandkassette' description='3580 Cartridge'
+		 def_domain='0'/>
+	<z:row codelist_id='520' domain_id='11' lang_id='94' name='4mm Cartridge Tape' description='4mm Cartridge Tape'
+		 def_domain='0'/>
+	<z:row codelist_id='520' domain_id='11' lang_id='121' name='4mm Bandkassette' description='4mm Cartridge Tape'
+		 def_domain='0'/>
+	<z:row codelist_id='520' domain_id='12' lang_id='94' name='8mm Cartridge Tape' description='8mm Cartridge Tape'
+		 def_domain='0'/>
+	<z:row codelist_id='520' domain_id='12' lang_id='121' name='8mm Bandkassette' description='8mm Cartridge Tape'
+		 def_domain='0'/>
+	<z:row codelist_id='520' domain_id='13' lang_id='94' name='0.25-inch Cartridge Tape' description='¼ ‘’ Cartridge Tape'
+		 def_domain='0'/>
+	<z:row codelist_id='520' domain_id='13' lang_id='121' name='1/4-Zoll Bandkassette' description='¼ ‘’ Cartridge Tape'
+		 def_domain='0'/>
+	<z:row codelist_id='520' domain_id='14' lang_id='94' name='Digital Linear Tape' description='digital Linear Tape'
+		 def_domain='0'/>
+	<z:row codelist_id='520' domain_id='14' lang_id='121' name='Digitales Band' description='Digitales Tape' def_domain='0'/>
+	<z:row codelist_id='520' domain_id='15' lang_id='94' name='Online' description='online' def_domain='0'/>
+	<z:row codelist_id='520' domain_id='15' lang_id='121' name='Online Link' description='Online Link' def_domain='0'/>
+	<z:row codelist_id='520' domain_id='16' lang_id='94' name='Satellite' description='Satellite' def_domain='0'/>
+	<z:row codelist_id='520' domain_id='16' lang_id='121' name='Satellitenverbindung' description='Satellitenverbindung'
+		 def_domain='0'/>
+	<z:row codelist_id='520' domain_id='17' lang_id='94' name='Telephone Link' description='telephone Link' def_domain='0'/>
+	<z:row codelist_id='520' domain_id='17' lang_id='121' name='Telefon' description='Telefonverbindung' def_domain='0'/>
+	<z:row codelist_id='520' domain_id='18' lang_id='94' name='Hardcopy' description='hardcopy' def_domain='1'/>
+	<z:row codelist_id='520' domain_id='18' lang_id='121' name='Papier' description='Kopie (Papier), Druckerzeugnisse usw.'
+		 def_domain='1'/>
+	<z:row codelist_id='520' domain_id='900001' lang_id='94' name='unknown' description='-' def_domain='0'/>
+	<z:row codelist_id='520' domain_id='900001' lang_id='121' name='unbekannt (*)' description='für Altdatenübernahme'
+		 def_domain='0'/>
+	<z:row codelist_id='520' domain_id='900002' lang_id='94' name='faxback' description='faxback' def_domain='0'/>
+	<z:row codelist_id='520' domain_id='900002' lang_id='121' name='Faxabruf' description='Faxabruf' def_domain='0'/>
+	<z:row codelist_id='520' domain_id='900003' lang_id='94' name='mobile radio' description='mobile radio' def_domain='0'/>
+	<z:row codelist_id='520' domain_id='900003' lang_id='121' name='Mobilfunk' description='Mobilfunk' def_domain='0'/>
+	<z:row codelist_id='520' domain_id='900004' lang_id='94' name='broadcast' description='broadcast' def_domain='0'/>
+	<z:row codelist_id='520' domain_id='900004' lang_id='121' name='Rundfunk' description='Rundfunk und Fernsehen'
+		 def_domain='0'/>
+	<z:row codelist_id='520' domain_id='900005' lang_id='94' name='video text' description='video text' def_domain='0'/>
+	<z:row codelist_id='520' domain_id='900005' lang_id='121' name='Videotext' description='Videotext' def_domain='0'/>
+	<z:row codelist_id='520' domain_id='900006' lang_id='94' name='Analog Photography' description='-' def_domain='0'/>
+	<z:row codelist_id='520' domain_id='900006' lang_id='121' name='analoge Fotografie' description='-' def_domain='0'/>
+	<z:row codelist_id='520' domain_id='900007' lang_id='94' name='microfilm' description='-' def_domain='0'/>
+	<z:row codelist_id='520' domain_id='900007' lang_id='121' name='Mikrofilm' description='-' def_domain='0'/>
+	<z:row codelist_id='520' domain_id='900008' lang_id='94' name='Zip Drive' description='-' def_domain='0'/>
+	<z:row codelist_id='520' domain_id='900008' lang_id='121' name='ZIP-Laufwerk' description='-' def_domain='0'/>
+	<z:row codelist_id='520' domain_id='900009' lang_id='94' name='e-mail' description='-' def_domain='0'/>
+	<z:row codelist_id='520' domain_id='900009' lang_id='121' name='E-Mail' description='-' def_domain='0'/>
+	<z:row codelist_id='520' domain_id='900010' lang_id='94' name='Info Kiosk' description='-' def_domain='0'/>
+	<z:row codelist_id='520' domain_id='900010' lang_id='121' name='Infokiosk' description='-' def_domain='0'/>
+	<z:row codelist_id='523' domain_id='1' lang_id='94' name='completed' description='production of the data has been completed'
+		 def_domain='1'/>
+	<z:row codelist_id='523' domain_id='1' lang_id='121' name='abgeschlossen' description='Datenproduktion ist abgeschlossen'
+		 def_domain='1'/>
+	<z:row codelist_id='523' domain_id='2' lang_id='94' name='historicalArchive' description='Data has been stored in an offline storage facility'
+		 def_domain='0'/>
+	<z:row codelist_id='523' domain_id='2' lang_id='121' name='archiviert' description='Die Daten sind in einem Archiv abgelegt'
+		 def_domain='0'/>
+	<z:row codelist_id='523' domain_id='3' lang_id='94' name='obsolete' description='Data is no longer relevant'
+		 def_domain='0'/>
+	<z:row codelist_id='523' domain_id='3' lang_id='121' name='obsolet' description='Die Daten sind nicht mehr länger relevant'
+		 def_domain='0'/>
+	<z:row codelist_id='523' domain_id='4' lang_id='94' name='onGoing' description='Data is continually being updated'
+		 def_domain='0'/>
+	<z:row codelist_id='523' domain_id='4' lang_id='121' name='kontinuierlich' description='Daten werden kontinuierlich erneuert'
+		 def_domain='0'/>
+	<z:row codelist_id='523' domain_id='5' lang_id='94' name='planned' description='fixed date has been established upon or by which the data will be created or updated'
+		 def_domain='0'/>
+	<z:row codelist_id='523' domain_id='5' lang_id='121' name='geplant' description='Ein Zeitpunkt wurde festgelegt, an dem die Daten kreiert werden'
+		 def_domain='0'/>
+	<z:row codelist_id='523' domain_id='6' lang_id='94' name='required' description='Data needs to be generated or updated'
+		 def_domain='0'/>
+	<z:row codelist_id='523' domain_id='6' lang_id='121' name='benötigt' description='Die Daten müssen generiert bzw. erneuert werden'
+		 def_domain='0'/>
+	<z:row codelist_id='523' domain_id='7' lang_id='94' name='underdevelopment' description='Data is currently in the process of being created'
+		 def_domain='0'/>
+	<z:row codelist_id='523' domain_id='7' lang_id='121' name='in Erstellung' description='Die Daten werden gerade kreiert'
+		 def_domain='0'/>
+	<z:row codelist_id='523' domain_id='900001' lang_id='94' name='inOperation' description='-' def_domain='0'/>
+	<z:row codelist_id='523' domain_id='900001' lang_id='121' name='in Produktion' description='Informationssystem als produktiv genutztes System'
+		 def_domain='0'/>
+	<z:row codelist_id='525' domain_id='5' lang_id='94' name='Dataset' description='information applies to the dataset'
+		 def_domain='1'/>
+	<z:row codelist_id='525' domain_id='5' lang_id='121' name='Datensatz' description='Information zu dem Datensatz'
+		 def_domain='1'/>
+	<z:row codelist_id='525' domain_id='6' lang_id='94' name='Dataseries' description='information applies to the series'
+		 def_domain='0'/>
+	<z:row codelist_id='525' domain_id='6' lang_id='121' name='Datenserie' description='Information zu der Datenserie'
+		 def_domain='0'/>
+	<z:row codelist_id='526' domain_id='1' lang_id='94' name='vector' description='vector data is used to represent geographic data'
+		 def_domain='0'/>
+	<z:row codelist_id='526' domain_id='1' lang_id='121' name='Vektor' description='Geographische Daten werden mittels Verktordaten präsentiert'
+		 def_domain='0'/>
+	<z:row codelist_id='526' domain_id='2' lang_id='94' name='grid' description='grid data is used to represent geographic data'
+		 def_domain='0'/>
+	<z:row codelist_id='526' domain_id='2' lang_id='121' name='Rasterdaten' description='Geographische Daten werden mittels Rasterdaten dargestellt'
+		 def_domain='0'/>
+	<z:row codelist_id='526' domain_id='3' lang_id='94' name='textTable' description='textual or tabular data is used to represent geographic data'
+		 def_domain='0'/>
+	<z:row codelist_id='526' domain_id='3' lang_id='121' name='Texttabelle' description='Geographische Daten werden mittels Texttabellen dargestellt'
+		 def_domain='0'/>
+	<z:row codelist_id='526' domain_id='4' lang_id='94' name='TIN' description='triangulated irregular network'
+		 def_domain='0'/>
+	<z:row codelist_id='526' domain_id='4' lang_id='121' name='TIN' description='Geographische Daten werden mittels eines trinangulären irregulären Netzes dargestellt dargestellt'
+		 def_domain='0'/>
+	<z:row codelist_id='526' domain_id='5' lang_id='94' name='stereoModel' description='three-dimensional view formed by the intersecting homologous rays of an overlapping pair of images'
+		 def_domain='0'/>
+	<z:row codelist_id='526' domain_id='5' lang_id='121' name='Stereomodell' description='Geographische Daten werden mittels eines stereosehenden Models dargestellt'
+		 def_domain='0'/>
+	<z:row codelist_id='526' domain_id='6' lang_id='94' name='video' description='scene from a video recording'
+		 def_domain='0'/>
+	<z:row codelist_id='526' domain_id='6' lang_id='121' name='Video' description='Geographische Daten werden mittels einer Videoaufnahme dargestellt'
+		 def_domain='0'/>
+	<z:row codelist_id='527' domain_id='1' lang_id='94' name='Farming' description='rearing of animals and/or cultivation of plants'
+		 def_domain='0'/>
+	<z:row codelist_id='527' domain_id='1' lang_id='121' name='Landwirtschaft' description='Landwirtschaft (Tierzucht oder Pflanzenanbau)'
+		 def_domain='0'/>
+	<z:row codelist_id='527' domain_id='2' lang_id='94' name='Biota' description='flora and/or fauna in natural environment. Examples: wildlife, vegetation, biological sciences, ecology, wilderness, sealife, wetlands, habitat'
+		 def_domain='0'/>
+	<z:row codelist_id='527' domain_id='2' lang_id='121' name='Flora, Fauna, Habitate' description='Flora und Fauna in der natürlichen Umwelt'
+		 def_domain='0'/>
+	<z:row codelist_id='527' domain_id='3' lang_id='94' name='Boundaries' description='legal land descriptions. Examples: political and administrative boundaries'
+		 def_domain='0'/>
+	<z:row codelist_id='527' domain_id='3' lang_id='121' name='Grenzen' description='Rechtl. Beschreibungen und Grenzen von Land'
+		 def_domain='0'/>
+	<z:row codelist_id='527' domain_id='4' lang_id='94' name='Climatology MeteorologyAtmosphere' description='processes and phenomena of the atmosphere. Examples: cloud cover, weather, climate, atmospheric conditions, climate change, precipitation'
+		 def_domain='0'/>
+	<z:row codelist_id='527' domain_id='4' lang_id='121' name='Klima und Atmosphäre' description='Prozesse und Phänomene der Atmosphäre'
+		 def_domain='0'/>
+	<z:row codelist_id='527' domain_id='5' lang_id='94' name='Economy' description='economic activities, conditions and employment. Examples: production, labour, revenue, commerce, industry, tourism and ecotourism, forestry, fisheries, commercial or subsistence hunting, etc.'
+		 def_domain='0'/>
+	<z:row codelist_id='527' domain_id='5' lang_id='121' name='Ökonomie' description='Ökonomische Aktivitäten, Konditionen und beschäftigung'
+		 def_domain='0'/>
+	<z:row codelist_id='527' domain_id='6' lang_id='94' name='Elevation' description='height above or below sea level. Examples: altitude, bathymetry, digital elevation models, slope, derived products'
+		 def_domain='0'/>
+	<z:row codelist_id='527' domain_id='6' lang_id='121' name='Höhe' description='Höhe über oder unter NN' def_domain='0'/>
+	<z:row codelist_id='527' domain_id='7' lang_id='94' name='Environment' description='environmental resources, protection and conservation. Examples: environmental pollution, waste storage and treatment, environmental impact assessment, monitoring environmental risk, nature reserves, landscape'
+		 def_domain='1'/>
+	<z:row codelist_id='527' domain_id='7' lang_id='121' name='Umwelt' description='Umweltresourcen, -schutz und -erhaltung'
+		 def_domain='1'/>
+	<z:row codelist_id='527' domain_id='8' lang_id='94' name='Geoscientific Information' description='information pertaining to earth sciences. Examples: geophysical features and processes, geology, minerals, sciences dealing with the composition, structure and origin of the earth’s rocks, risks of earthquakes'
+		 def_domain='0'/>
+	<z:row codelist_id='527' domain_id='8' lang_id='121' name='Geowissenschaft' description='Information die Geowissenshaften betreffend'
+		 def_domain='0'/>
+	<z:row codelist_id='527' domain_id='9' lang_id='94' name='Health' description='health, health services, human ecology, and safety. Examples: disease and illness, factors affecting health, hygiene, substance abuse, mental and physical health, health services'
+		 def_domain='0'/>
+	<z:row codelist_id='527' domain_id='9' lang_id='121' name='Gesundheit' description='Gesundheit, Gesundheitsservices, Humanökologie und Sicherheit'
+		 def_domain='0'/>
+	<z:row codelist_id='527' domain_id='10' lang_id='94' name='Imagery Base Maps EarthCover' description='base maps. Examples: land cover, topographic maps, imagery, unclassified images, annotations'
+		 def_domain='0'/>
+	<z:row codelist_id='527' domain_id='10' lang_id='121' name='Karten' description='Karten' def_domain='0'/>
+	<z:row codelist_id='527' domain_id='11' lang_id='94' name='Intelligence Military' description='military bases, structures, activities. Examples: barracks, training grounds, military transportation, information'
+		 def_domain='0'/>
+	<z:row codelist_id='527' domain_id='11' lang_id='121' name='Militär' description='Militärische Stützpunkte, Strikturen und Aktivitäten'
+		 def_domain='0'/>
+	<z:row codelist_id='527' domain_id='12' lang_id='94' name='Inland Waters' description='inland water features, drainage systems and their characteristics. Examples: rivers and glaciers, salt lakes, water utilization plans, dams, currents, floods, water quality, hydrographic charts'
+		 def_domain='0'/>
+	<z:row codelist_id='527' domain_id='12' lang_id='121' name='Binnengewässer' description='Inlandwasser, Abflüsse und deren Eigenschaften und Charakteristika'
+		 def_domain='0'/>
+	<z:row codelist_id='527' domain_id='13' lang_id='94' name='Location' description='positional information and services. Examples: addresses, geodetic networks, control points, postal zones and services, place names'
+		 def_domain='0'/>
+	<z:row codelist_id='527' domain_id='13' lang_id='121' name='Ortsangabe' description='Ortsangaben und -services'
+		 def_domain='0'/>
+	<z:row codelist_id='527' domain_id='14' lang_id='94' name='Oceans' description='features and characteristics of salt water bodies (excluding inland waters): Examples: tides, tidal waves, coastal information, reefs'
+		 def_domain='0'/>
+	<z:row codelist_id='527' domain_id='14' lang_id='121' name='Ozeane' description='Ozeane und deren Charakteristika und Eigenschaften'
+		 def_domain='0'/>
+	<z:row codelist_id='527' domain_id='15' lang_id='94' name='PlanningCadastre' description='information used for appropriate actions for future use of the land Examples: land use maps, zoning maps, cadastral surveys, land ownership'
+		 def_domain='0'/>
+	<z:row codelist_id='527' domain_id='15' lang_id='121' name='Kataster' description='Informationen zu angemessenem Handeln für die zukünftige Nutzung des Landes'
+		 def_domain='0'/>
+	<z:row codelist_id='527' domain_id='16' lang_id='94' name='Society' description='characteristics of society and cultures. Examples: settlements, anthropology, archaeology, education, traditionalbeliefs, manners and customs, demographic data, recreational areas and activities,'
+		 def_domain='0'/>
+	<z:row codelist_id='527' domain_id='16' lang_id='121' name='Gesellschaft' description='Charakteristika von Gesellschaft und Kulturen'
+		 def_domain='0'/>
+	<z:row codelist_id='527' domain_id='17' lang_id='94' name='Structure' description='man-made construction. Examples: buildings, museums, churches, factories, housing, monuments, shops, towers'
+		 def_domain='0'/>
+	<z:row codelist_id='527' domain_id='17' lang_id='121' name='Bau' description='Kontsruktionen (von Menschen geshaffen)'
+		 def_domain='0'/>
+	<z:row codelist_id='527' domain_id='18' lang_id='121' name='Transport' description='Hilfsmittel und Geräte zum Befördern von Personen und/oder Gütern'
+		 def_domain='0'/>
+	<z:row codelist_id='527' domain_id='19' lang_id='121' name='Energie und Kommunikation' description='Energie-, Wasser- und Abfallsysteme sowie Kommunikationsinfrastruktur und Services.'
+		 def_domain='0'/>
+	<z:row codelist_id='528' domain_id='1' lang_id='94' name='geometryOnly' description='geometry objects without any additional structure which describes topology'
+		 def_domain='1'/>
+	<z:row codelist_id='528' domain_id='1' lang_id='121' name='geometrisch' description='Geometrisch Objekte ohn jegliche Struktur, die die Topologie beschreibt'
+		 def_domain='1'/>
+	<z:row codelist_id='528' domain_id='2' lang_id='94' name='topology1D' description='1-dimensional topological complex'
+		 def_domain='0'/>
+	<z:row codelist_id='528' domain_id='2' lang_id='121' name='Topologie (1D)' description='1-dimensionaler topologischer Komplex'
+		 def_domain='0'/>
+	<z:row codelist_id='528' domain_id='3' lang_id='94' name='planarGraph' description='1-dimensional topological complex which is planar'
+		 def_domain='0'/>
+	<z:row codelist_id='527' domain_id='18' lang_id='94' name='Transportation' description='means and aids for conveying persons and/or goods. Examples: roads, airports/airstrips, shipping routes, tunnels, nautical charts, vehicle or vessel location, aeronautical charts, railways'
+		 def_domain='0'/>
+	<z:row codelist_id='527' domain_id='19' lang_id='94' name='Utilities Communication' description='energy, water and waste systems and communications infrastructure and services. Examples: hydroelectricity, geothermal, solar and nuclear sources of energy, water purification and distribution, sewage collection and disposal, etc.'
+		 def_domain='0'/>
+	<z:row codelist_id='528' domain_id='3' lang_id='121' name='Planar (1D)' description='1-dimensionaler topologischer Komplex, der eine Fläche ist'
+		 def_domain='0'/>
+	<z:row codelist_id='528' domain_id='4' lang_id='94' name='fullPlanarGraph' description='2-dimensional topological complex which is planar'
+		 def_domain='0'/>
+	<z:row codelist_id='528' domain_id='4' lang_id='121' name='Planar (2D)' description='2-dimensionaler topologischer Komplex, der eine Fläche ist'
+		 def_domain='0'/>
+	<z:row codelist_id='528' domain_id='5' lang_id='94' name='surfaceGraph' description='1-dimensional topological complex which is isomorphic to a subset of a surface'
+		 def_domain='0'/>
+	<z:row codelist_id='528' domain_id='5' lang_id='121' name='Oberflächengraph (1D)' description='1-dimensionaler topologischer Komplex, der isomorph zu einer Untermenge einer Oberfläche ist'
+		 def_domain='0'/>
+	<z:row codelist_id='528' domain_id='6' lang_id='94' name='fullSurfaceGraph' description='2-dimensional topological complex which is isomorphic to a subset of a surface'
+		 def_domain='0'/>
+	<z:row codelist_id='528' domain_id='6' lang_id='121' name='Oberfläche(2D)' description='2-dimensionaler topologischer Komplex, der isomorph zu einer Untermenge einer Oberfläche ist'
+		 def_domain='0'/>
+	<z:row codelist_id='528' domain_id='7' lang_id='94' name='topology3D' description='3-dimensional topological complex'
+		 def_domain='0'/>
+	<z:row codelist_id='528' domain_id='7' lang_id='121' name='Topologie (3D)' description='3-dimensionaler topologischer Komplex'
+		 def_domain='0'/>
+	<z:row codelist_id='528' domain_id='8' lang_id='94' name='fullTopology3D' description='complete coverage of a 3D coordinate space'
+		 def_domain='0'/>
+	<z:row codelist_id='528' domain_id='8' lang_id='121' name='Raum (3D)' description='Komplette Abdeckung eines 3-D Koordinatenraumes'
+		 def_domain='0'/>
+	<z:row codelist_id='528' domain_id='9' lang_id='94' name='abstract' description='topological complex without any specified geometric realization'
+		 def_domain='0'/>
+	<z:row codelist_id='528' domain_id='9' lang_id='121' name='Abstrakte Topologie' description='Topologischer Komplex ohne jegliche spezifische geometrische Realisierung'
+		 def_domain='0'/>
+	<z:row codelist_id='99999999' domain_id='94' lang_id='94' name='English' description='-' def_domain='0'/>
+	<z:row codelist_id='99999999' domain_id='94' lang_id='121' name='Englisch' description='-' def_domain='0'/>
+	<z:row codelist_id='99999999' domain_id='121' lang_id='94' name='German' description='-' def_domain='1'/>
+	<z:row codelist_id='99999999' domain_id='121' lang_id='121' name='Deutsch' description='-' def_domain='1'/>
+</rs:data>
+</xml>

@@ -1,0 +1,74 @@
+<xml xmlns:s='uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882'
+	xmlns:dt='uuid:C2F41010-65B3-11d1-A29F-00AA00C14882'
+	xmlns:rs='urn:schemas-microsoft-com:rowset'
+	xmlns:z='#RowsetSchema'>
+<s:Schema id='RowsetSchema'>
+	<s:ElementType name='row' content='eltOnly' rs:updatable='true'>
+		<s:AttributeType name='inst_id' rs:number='1' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='sys_akt_def'
+			 rs:basecolumn='inst_id' rs:keycolumn='true'>
+			<s:datatype dt:type='string' dt:maxLength='50' rs:maybenull='false'/>
+		</s:AttributeType>
+		<s:AttributeType name='inst_name' rs:number='2' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='sys_akt_def' rs:basecolumn='inst_name'>
+			<s:datatype dt:type='string' dt:maxLength='120'/>
+		</s:AttributeType>
+		<s:AttributeType name='bemerk' rs:number='3' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='sys_akt_def' rs:basecolumn='bemerk'>
+			<s:datatype dt:type='string' dt:maxLength='120'/>
+		</s:AttributeType>
+		<s:AttributeType name='status' rs:number='4' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='sys_akt_def' rs:basecolumn='status'>
+			<s:datatype dt:type='string' dt:maxLength='2'/>
+		</s:AttributeType>
+		<s:AttributeType name='last_nr' rs:number='5' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='sys_akt_def' rs:basecolumn='last_nr'>
+			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='aktuell' rs:number='6' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='sys_akt_def' rs:basecolumn='aktuell'>
+			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='ff_nr' rs:number='7' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='sys_akt_def' rs:basecolumn='ff_nr'>
+			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='mf_nr' rs:number='8' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='sys_akt_def' rs:basecolumn='mf_nr'>
+			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='vt_nr' rs:number='9' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='sys_akt_def' rs:basecolumn='vt_nr'>
+			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='ak_nr' rs:number='10' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='sys_akt_def' rs:basecolumn='ak_nr'>
+			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='data' rs:number='11' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='sys_akt_def' rs:basecolumn='data'>
+			<s:datatype dt:type='string' dt:maxLength='40'/>
+		</s:AttributeType>
+		<s:AttributeType name='date_rec' rs:number='12' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='sys_akt_def' rs:basecolumn='date_rec'>
+			<s:datatype dt:type='string' dt:maxLength='14'/>
+		</s:AttributeType>
+		<s:AttributeType name='date_send' rs:number='13' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='sys_akt_def' rs:basecolumn='date_send'>
+			<s:datatype dt:type='string' dt:maxLength='14'/>
+		</s:AttributeType>
+		<s:extends type='rs:rowbase'/>
+	</s:ElementType>
+</s:Schema>
+<rs:data>
+	<z:row inst_id='Z#F8035309-53FD-44A7-AAA3-26CE59A0954F' inst_name='HOME' bemerk='Angben über die eigene Instanz'
+		 status='A' last_nr='0' aktuell='0' ff_nr='0' mf_nr='0' vt_nr='3' ak_nr='0' data='' date_rec='' date_send='20060509144253'/>
+	<z:row inst_id='I#87A8CB06-CBFE-49DB-A394-D78F62E2B9F4' inst_name='KUG' bemerk='Export für Bereitstellung im V-UDK'
+		 status='A' last_nr='0' aktuell='0' ff_nr='0' mf_nr='0' vt_nr='0' ak_nr='0' data='' date_rec='' date_send='20050519083344'/>
+	<z:row inst_id='Z#E9EAB278-012F-4C2A-B0F4-8B68CA60310C' inst_name='HOME' bemerk='Angben über die eigene Instanz'
+		 status='A' last_nr='0' aktuell='0' ff_nr='0' mf_nr='0' vt_nr='0' ak_nr='0' data='' date_rec='' date_send=''/>
+	<z:row inst_id='I#CD6B5DE5-0DEA-46EA-AF77-CA67435CC7CF' inst_name='LfUG' bemerk='26.04.2007' status='A' last_nr='0'
+		 aktuell='0' ff_nr='0' mf_nr='0' vt_nr='0' ak_nr='0' data='' date_rec='' date_send='20070426114633'/>
+	<z:row inst_id='I#499E33BA-6891-45AA-B73B-1DD7186DDB1B' inst_name='HARTSCH' bemerk='' status='A' last_nr='0'
+		 aktuell='0' ff_nr='0' mf_nr='0' vt_nr='0' ak_nr='0' data='' date_rec='' date_send='20060509155356'/>
+</rs:data>
+</xml>

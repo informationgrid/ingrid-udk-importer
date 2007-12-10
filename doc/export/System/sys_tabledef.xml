@@ -1,0 +1,1049 @@
+<xml xmlns:s='uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882'
+	xmlns:dt='uuid:C2F41010-65B3-11d1-A29F-00AA00C14882'
+	xmlns:rs='urn:schemas-microsoft-com:rowset'
+	xmlns:z='#RowsetSchema'>
+<s:Schema id='RowsetSchema'>
+	<s:ElementType name='row' content='eltOnly' rs:updatable='true'>
+		<s:AttributeType name='alias_id' rs:number='1' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='sys_tabledef'
+			 rs:basecolumn='alias_id' rs:keycolumn='true'>
+			<s:datatype dt:type='string' dt:maxLength='50' rs:maybenull='false'/>
+		</s:AttributeType>
+		<s:AttributeType name='type' rs:number='2' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='sys_tabledef' rs:basecolumn='type'>
+			<s:datatype dt:type='i2' dt:maxLength='2' rs:precision='5' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='table_name' rs:number='3' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='sys_tabledef' rs:basecolumn='table_name'>
+			<s:datatype dt:type='string' dt:maxLength='50'/>
+		</s:AttributeType>
+		<s:AttributeType name='field_name' rs:number='4' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='sys_tabledef' rs:basecolumn='field_name'>
+			<s:datatype dt:type='string' dt:maxLength='50'/>
+		</s:AttributeType>
+		<s:AttributeType name='required_flag' rs:number='5' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='sys_tabledef' rs:basecolumn='required_flag'>
+			<s:datatype dt:type='i2' dt:maxLength='2' rs:precision='5' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='typ' rs:number='6' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='sys_tabledef' rs:basecolumn='typ'>
+			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='datatype' rs:number='7' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='sys_tabledef' rs:basecolumn='datatype'>
+			<s:datatype dt:type='i2' dt:maxLength='2' rs:precision='5' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='prttype' rs:number='8' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='sys_tabledef' rs:basecolumn='prttype'>
+			<s:datatype dt:type='string' dt:maxLength='50'/>
+		</s:AttributeType>
+		<s:AttributeType name='prttab' rs:number='9' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='sys_tabledef' rs:basecolumn='prttab'>
+			<s:datatype dt:type='i2' dt:maxLength='2' rs:precision='5' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='alias' rs:number='10' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='sys_tabledef' rs:basecolumn='alias'>
+			<s:datatype dt:type='string' dt:maxLength='100'/>
+		</s:AttributeType>
+		<s:AttributeType name='expimp' rs:number='11' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='sys_tabledef' rs:basecolumn='expimp'>
+			<s:datatype dt:type='i2' dt:maxLength='2' rs:precision='5' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='detailsearch' rs:number='12' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='sys_tabledef' rs:basecolumn='detailsearch'>
+			<s:datatype dt:type='i2' dt:maxLength='2' rs:precision='5' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='index_flag' rs:number='13' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='sys_tabledef' rs:basecolumn='index_flag'>
+			<s:datatype dt:type='i2' dt:maxLength='2' rs:precision='5' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='rtf' rs:number='14' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='sys_tabledef' rs:basecolumn='rtf'>
+			<s:datatype dt:type='i2' dt:maxLength='2' rs:precision='5' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='dtd_element' rs:number='15' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='sys_tabledef' rs:basecolumn='dtd_element'>
+			<s:datatype dt:type='string' dt:maxLength='80'/>
+		</s:AttributeType>
+		<s:AttributeType name='obj_class' rs:number='16' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='sys_tabledef' rs:basecolumn='obj_class'>
+			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='gui_id' rs:number='17' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='sys_tabledef' rs:basecolumn='gui_id'>
+			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='codelist_id' rs:number='18' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='sys_tabledef' rs:basecolumn='codelist_id'>
+			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:extends type='rs:rowbase'/>
+	</s:ElementType>
+</s:Schema>
+<rs:data>
+	<z:row alias_id='1' type='0' table_name='T01_object' field_name='' required_flag='0' typ='32' datatype='0' prttype='1'
+		 prttab='1' alias='Objekte' expimp='1' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='10' type='1' table_name='1' field_name='mod_time' required_flag='511' typ='0' datatype='1'
+		 prttype='Aenderungsdatum' alias='Zuletzt geändert am' detailsearch='0' index_flag='0' rtf='1306' dtd_element='date-of-last-modification'
+		 obj_class='0'/>
+	<z:row alias_id='100' type='1' table_name='89' field_name='doc_info' required_flag='0' typ='256' datatype='1'
+		 prttype='FBLitWeitereAngaben' alias='Weitere Angaben' detailsearch='1' index_flag='1' rtf='410' dtd_element='additional-bibliographic-info'
+		 obj_class='2'/>
+	<z:row alias_id='101' type='1' table_name='89' field_name='base' required_flag='0' typ='256' datatype='1' prttype='FBLitBasisdaten'
+		 alias='Basisdaten' detailsearch='1' index_flag='1' rtf='411' dtd_element='source' obj_class='2'/>
+	<z:row alias_id='102' type='1' table_name='89' field_name='isbn' required_flag='0' typ='256' datatype='1' prttype='FBLitISBN'
+		 alias='ISBN' detailsearch='1' index_flag='0' rtf='412' dtd_element='isbn' obj_class='2'/>
+	<z:row alias_id='103' type='1' table_name='89' field_name='publishing' required_flag='0' typ='256' datatype='1'
+		 prttype='FBLitVerlage' alias='Verlag' detailsearch='1' index_flag='1' rtf='413' dtd_element='publisher' obj_class='2'/>
+	<z:row alias_id='104' type='1' table_name='89' field_name='description' required_flag='0' typ='256' datatype='1'
+		 prttype='FBLitErlaeuterung' alias='Erläuterung' detailsearch='1' index_flag='1' rtf='414' dtd_element='description-of-tech-domain'
+		 obj_class='2'/>
+	<z:row alias_id='105' type='1' table_name='89' field_name='mod_type' required_flag='0' typ='-1' datatype='1'
+		 prttype='' alias='Änderungskennzeichen' detailsearch='0' index_flag='0' rtf='415'/>
+	<z:row alias_id='106' type='0' table_name='T011_obj_project' field_name='' required_flag='0' typ='1024' datatype='0'
+		 prttype='2' prttab='1' alias='Projekt...' expimp='1' detailsearch='0' index_flag='0' obj_class='4'/>
+	<z:row alias_id='107' type='1' table_name='106' field_name='obj_id' required_flag='0' typ='0' datatype='1' prttype=''
+		 prttab='3' alias='obj_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='108' type='1' table_name='106' field_name='leader' required_flag='0' typ='1024' datatype='1'
+		 prttype='FBProProjektleiter' alias='Projektleiter' detailsearch='1' index_flag='1' rtf='601' dtd_element='leader-description'
+		 obj_class='4'/>
+	<z:row alias_id='109' type='1' table_name='106' field_name='member' required_flag='0' typ='1024' datatype='1'
+		 prttype='FBProBeteiligte' alias='Beteiligte' detailsearch='1' index_flag='1' rtf='602' dtd_element='member-description'
+		 obj_class='4'/>
+	<z:row alias_id='11' type='1' table_name='1' field_name='obj_class' required_flag='511' typ='0' datatype='1'
+		 prttype='KlassenID' alias='Objekt-Klasse ID' detailsearch='0' index_flag='0' dtd_element='object-class' obj_class='0'/>
+	<z:row alias_id='110' type='1' table_name='106' field_name='description' required_flag='0' typ='1024' datatype='1'
+		 prttype='FBProErlaeuterung' alias='Erläuterung' detailsearch='1' index_flag='1' rtf='603' dtd_element='description-of-tech-domain'
+		 obj_class='4'/>
+	<z:row alias_id='111' type='1' table_name='106' field_name='mod_type' required_flag='0' typ='0' datatype='1'
+		 prttype='' alias='Änderungskennzeichen' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='112' type='0' table_name='T011_obj_serv' field_name='' required_flag='0' typ='512' datatype='0'
+		 prttype='2' prttab='1' alias='Dienst...' expimp='1' detailsearch='0' index_flag='0' obj_class='3'/>
+	<z:row alias_id='113' type='1' table_name='112' field_name='obj_id' required_flag='0' typ='0' datatype='1' prttype=''
+		 prttab='3' alias='obj_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='1131' type='1' table_name='112' field_name='type' required_flag='0' typ='512' datatype='1'
+		 prttype='FBSerServicetyp' alias='Servicetyp' detailsearch='1' index_flag='0' rtf='501' dtd_element='service-type'
+		 obj_class='3'/>
+	<z:row alias_id='114' type='1' table_name='112' field_name='history' required_flag='0' typ='512' datatype='1'
+		 prttype='FBSerHistorie' alias='Historie' detailsearch='1' index_flag='1' rtf='504' dtd_element='system-history'
+		 obj_class='3'/>
+	<z:row alias_id='115' type='1' table_name='112' field_name='environment' required_flag='0' typ='512' datatype='1'
+		 prttype='FBSerSystemumgebung' alias='Systemumgebung' detailsearch='1' index_flag='1' rtf='503' dtd_element='system-environment'
+		 obj_class='3'/>
+	<z:row alias_id='116' type='1' table_name='112' field_name='base' required_flag='0' typ='512' datatype='1' prttype='FBSerBasisdaten'
+		 alias='Basisdaten' detailsearch='1' index_flag='1' rtf='505' dtd_element='database-of-system' obj_class='3'/>
+	<z:row alias_id='117' type='1' table_name='112' field_name='description' required_flag='0' typ='512' datatype='1'
+		 prttype='FBSerErlaeuterung' alias='Erläuterung' detailsearch='1' index_flag='1' rtf='506' dtd_element='description-of-tech-domain'
+		 obj_class='3'/>
+	<z:row alias_id='118' type='1' table_name='112' field_name='mod_type' required_flag='0' typ='0' datatype='1'
+		 prttype='' alias='Änderungskennzeichen' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='119' type='0' table_name='T011_obj_serv_version' field_name='' required_flag='0' typ='512'
+		 datatype='0' prttype='2' prttab='1' alias='Dienst...' expimp='1' detailsearch='0' index_flag='0' obj_class='3'/>
+	<z:row alias_id='12' type='1' table_name='1' field_name='mod_id' required_flag='511' typ='0' datatype='1' prttype='GeaendertVon'
+		 alias='Zuletzt geändert von' detailsearch='0' index_flag='0' rtf='1305' dtd_element='modificator-identifier'
+		 obj_class='0'/>
+	<z:row alias_id='120' type='1' table_name='119' field_name='obj_id' required_flag='0' typ='0' datatype='1' prttype=''
+		 prttab='3' alias='obj_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='121' type='1' table_name='119' field_name='line' required_flag='0' typ='0' datatype='2' prttype=''
+		 alias='line' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='122' type='1' table_name='119' field_name='version' required_flag='0' typ='512' datatype='1'
+		 prttype='FBSerServiceVersion' alias='Version des Service' detailsearch='1' index_flag='1' rtf='502' dtd_element='service-type-version'
+		 obj_class='3'/>
+	<z:row alias_id='123' type='1' table_name='119' field_name='mod_type' required_flag='0' typ='0' datatype='1'
+		 prttype='' alias='Änderungskennzeichen' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='124' type='0' table_name='T011_township' field_name='' required_flag='0' datatype='0' prttype=''
+		 prttab='1' alias='Objekte: Raumbezug' expimp='1' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='125' type='1' table_name='124' field_name='obj_id' required_flag='0' typ='0' datatype='1' prttype=''
+		 prttab='3' alias='obj_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='126' type='1' table_name='124' field_name='line' required_flag='0' typ='0' datatype='2' prttype=''
+		 alias='line' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='127' type='1' table_name='124' field_name='township_no' required_flag='0' typ='0' datatype='1'
+		 prttype='AdmEinheit' alias='Administrative Einheit' detailsearch='1' index_flag='0' dtd_element='location-code'
+		 obj_class='6'/>
+	<z:row alias_id='128' type='1' table_name='124' field_name='mod_type' required_flag='0' typ='0' datatype='1'
+		 prttype='' alias='Änderungskennzeichen' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='129' type='0' table_name='T0110_avail_format' field_name='' required_flag='0' typ='4064' datatype='0'
+		 prttype='' prttab='1' alias='Objekte: Datenformat' expimp='1' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='13' type='1' table_name='1' field_name='obj_descr' required_flag='511' typ='32' datatype='1'
+		 prttype='ObjektBeschreibung' alias='Beschreibung' detailsearch='0' index_flag='1' rtf='103' dtd_element='abstract'
+		 obj_class='0'/>
+	<z:row alias_id='130' type='1' table_name='129' field_name='obj_id' required_flag='0' typ='0' datatype='1' prttype=''
+		 prttab='3' alias='obj_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='131' type='1' table_name='129' field_name='name' required_flag='0' typ='0' datatype='1' prttype='Datenformat'
+		 alias='Name' detailsearch='1' index_flag='1' dtd_element='data-format' obj_class='6'/>
+	<z:row alias_id='132' type='1' table_name='129' field_name='line' required_flag='0' typ='0' datatype='2' prttype=''
+		 alias='line' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='133' type='1' table_name='129' field_name='mod_type' required_flag='0' typ='0' datatype='1'
+		 prttype='' alias='Änderungskennzeichen' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='134' type='0' table_name='T0111_env_class' field_name='' required_flag='0' datatype='0' prttype=''
+		 prttab='1' alias='Umweltklassifikation' expimp='1' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='135' type='1' table_name='134' field_name='obj_id' required_flag='0' typ='0' datatype='1' prttype=''
+		 prttab='3' alias='obj_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='136' type='1' table_name='134' field_name='name' required_flag='0' typ='0' datatype='1' prttype='UmwKlassifikationsID'
+		 alias='Umweltklassifikation ID' detailsearch='1' index_flag='0' rtf='1104' dtd_element='classification' obj_class='6'/>
+	<z:row alias_id='137' type='1' table_name='134' field_name='line' required_flag='0' typ='0' datatype='2' prttype=''
+		 alias='line' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='138' type='1' table_name='134' field_name='mod_type' required_flag='0' typ='0' datatype='1'
+		 prttype='' alias='Änderungskennzeichen' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='139' type='0' table_name='T0111_st_env_class' field_name='' required_flag='0' datatype='0'
+		 prttype='' prttab='1' alias='0111_st_env_classes' expimp='0' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='14' type='1' table_name='1' field_name='info_note' required_flag='0' typ='32' datatype='1'
+		 prttype='ZIHerstellungszweck' alias='Herstellungszweck' detailsearch='1' index_flag='1' rtf='1006' dtd_element='dataset-intentions'
+		 obj_class='0'/>
+	<z:row alias_id='140' type='1' table_name='139' field_name='env_id' required_flag='0' typ='0' datatype='1' prttype=''
+		 prttab='3' alias='env_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='141' type='1' table_name='139' field_name='env_descr' required_flag='0' typ='0' datatype='1'
+		 prttype='Umweltklassifikation' alias='Umweltklassifikation' detailsearch='0' index_flag='0' rtf='1103'/>
+	<z:row alias_id='142' type='0' table_name='T012_obj_adr' field_name='' required_flag='0' datatype='0' prttype=''
+		 prttab='1' alias='012_obj_adr' expimp='1' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='143' type='1' table_name='142' field_name='obj_id' required_flag='0' typ='0' datatype='1' prttype=''
+		 prttab='3' alias='obj_id' detailsearch='0' index_flag='0' dtd_element='object-identifier' obj_class='7'/>
+	<z:row alias_id='144' type='1' table_name='142' field_name='adr_id' required_flag='0' typ='0' datatype='1' prttype=''
+		 alias='adr_id' detailsearch='0' index_flag='0' dtd_element='adress-identifier' obj_class='7'/>
+	<z:row alias_id='145' type='1' table_name='142' field_name='special_ref' required_flag='0' typ='0' datatype='1'
+		 prttype='VerweiseAdrRef' alias='Fachlicher Bezug' detailsearch='0' index_flag='0' rtf='99' dtd_element='relation-reference-id'
+		 obj_class='7'/>
+	<z:row alias_id='146' type='1' table_name='142' field_name='typ' required_flag='0' typ='0' datatype='2' prttype='VerweiseAdrTyp'
+		 alias='Beziehungstyp' detailsearch='0' index_flag='0' rtf='99' dtd_element='relation-type-id' obj_class='7'/>
+	<z:row alias_id='148' type='1' table_name='142' field_name='mod_time' required_flag='0' typ='0' datatype='1'
+		 prttype='' alias='mod_time' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='149' type='1' table_name='142' field_name='mod_type' required_flag='0' typ='0' datatype='1'
+		 prttype='' alias='Änderungskennzeichen' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='150' type='0' table_name='T012_obj_obj' field_name='' required_flag='0' datatype='0' prttype=''
+		 prttab='1' alias='012_obj_obj' expimp='1' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='151' type='1' table_name='150' field_name='object_from_id' required_flag='0' typ='0' datatype='1'
+		 prttype='' prttab='3' alias='object_from_id' detailsearch='0' index_flag='0' dtd_element='parent-object-control-identifier'
+		 obj_class='8'/>
+	<z:row alias_id='152' type='1' table_name='150' field_name='object_to_id' required_flag='0' typ='0' datatype='1'
+		 prttype='' alias='object_to_id' detailsearch='0' index_flag='0' dtd_element='child-object-control-identifier'
+		 obj_class='8'/>
+	<z:row alias_id='153' type='1' table_name='150' field_name='typ' required_flag='0' typ='0' datatype='2' prttype=''
+		 alias='typ' detailsearch='0' index_flag='0' dtd_element='parent-child' obj_class='8'/>
+	<z:row alias_id='154' type='1' table_name='150' field_name='special_ref' required_flag='0' typ='0' datatype='2'
+		 prttype='' alias='Fachlicher Bezug' detailsearch='0' index_flag='0' dtd_element='relation-type' obj_class='8'/>
+	<z:row alias_id='155' type='1' table_name='150' field_name='descr' required_flag='0' typ='0' datatype='1' prttype=''
+		 alias='Erläuterung' detailsearch='0' index_flag='0' dtd_element='relation-description' obj_class='8'/>
+	<z:row alias_id='156' type='1' table_name='150' field_name='mod_type' required_flag='0' typ='0' datatype='1'
+		 prttype='' alias='Änderungskennzeichen' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='157' type='1' table_name='150' field_name='line' required_flag='0' typ='0' datatype='2' prttype=''
+		 alias='line' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='16' type='1' table_name='1' field_name='avail_access_note' required_flag='0' typ='32' datatype='1'
+		 prttype='ZINutzungsanmerkung' alias='Nutzungsanmerkung' detailsearch='1' index_flag='1' rtf='1013' dtd_element='use-constraints'
+		 obj_class='0'/>
+	<z:row alias_id='163' type='0' table_name='T014_info_impart' field_name='' required_flag='0' typ='4064' datatype='0'
+		 prttype='' prttab='1' alias='Objekte' expimp='1' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='164' type='1' table_name='163' field_name='obj_id' required_flag='0' typ='0' datatype='1' prttype=''
+		 prttab='3' alias='obj_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='165' type='1' table_name='163' field_name='name' required_flag='0' typ='4064' datatype='1'
+		 prttype='ZIWeitergabeAn' alias='XML-Export Kriterium' detailsearch='1' index_flag='1' rtf='1004' dtd_element='export-to'
+		 obj_class='6'/>
+	<z:row alias_id='166' type='1' table_name='163' field_name='line' required_flag='0' typ='0' datatype='2' prttype=''
+		 alias='line' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='167' type='1' table_name='163' field_name='mod_type' required_flag='0' typ='0' datatype='1'
+		 prttype='' alias='Änderungskennzeichen' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='168' type='0' table_name='T015_legist' field_name='' required_flag='0' typ='4064' datatype='0'
+		 prttype='' prttab='1' alias='Objekte' expimp='1' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='169' type='1' table_name='168' field_name='obj_id' required_flag='0' typ='0' datatype='1' prttype=''
+		 prttab='3' alias='obj_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='170' type='1' table_name='168' field_name='name' required_flag='0' typ='4064' datatype='1'
+		 prttype='ZIRechtlGrundlage' alias='Rechtliche Grundlage' detailsearch='1' index_flag='1' rtf='1005' dtd_element='legislation'
+		 obj_class='6'/>
+	<z:row alias_id='171' type='1' table_name='168' field_name='line' required_flag='0' typ='0' datatype='2' prttype=''
+		 alias='line' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='172' type='1' table_name='168' field_name='mod_type' required_flag='0' typ='0' datatype='1'
+		 prttype='' alias='Änderungskennzeichen' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='177' type='0' table_name='T016_ole_ref' field_name='' required_flag='0' typ='4064' datatype='0'
+		 prttype='' prttab='1' alias='016_ole_ref' expimp='1' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='178' type='1' table_name='177' field_name='obj_id' required_flag='0' typ='0' datatype='1' prttype=''
+		 prttab='3' alias='obj_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='179' type='1' table_name='177' field_name='ole_object' required_flag='0' typ='4064' datatype='1'
+		 prttype='' alias='OLE-Objekt' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='180' type='1' table_name='177' field_name='special_ref' required_flag='0' typ='4064' datatype='2'
+		 prttype='' alias='Fachlicher Bezug' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='181' type='1' table_name='177' field_name='content' required_flag='0' typ='4064' datatype='1'
+		 prttype='' alias='Inhalt' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='182' type='1' table_name='177' field_name='descr' required_flag='0' typ='4064' datatype='1'
+		 prttype='' alias='Verweisname' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='183' type='1' table_name='177' field_name='mod_type' required_flag='0' typ='0' datatype='1'
+		 prttype='' alias='Änderungskennzeichen' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='184' type='1' table_name='177' field_name='line' required_flag='0' typ='0' datatype='2' prttype=''
+		 alias='line' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='187' type='0' table_name='T017_url_ref' field_name='' required_flag='0' typ='4064' datatype='0'
+		 prttype='' prttab='1' alias='017_url_ref' expimp='1' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='188' type='1' table_name='187' field_name='obj_id' required_flag='0' typ='0' datatype='1' prttype=''
+		 prttab='3' alias='obj_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='189' type='1' table_name='187' field_name='url_link' required_flag='0' typ='4064' datatype='1'
+		 prttype='' alias='URL-Verweis' detailsearch='0' index_flag='0' dtd_element='linkage-url' obj_class='6'/>
+	<z:row alias_id='190' type='1' table_name='187' field_name='special_ref' required_flag='0' typ='4064' datatype='2'
+		 prttype='' alias='Fachlicher Bezug' detailsearch='0' index_flag='0' dtd_element='linkage-reference-id' obj_class='6'/>
+	<z:row alias_id='191' type='1' table_name='187' field_name='content' required_flag='0' typ='4064' datatype='1'
+		 prttype='' alias='Inhalt' detailsearch='0' index_flag='0' dtd_element='linkage-name' obj_class='6'/>
+	<z:row alias_id='192' type='1' table_name='187' field_name='datatype' required_flag='0' typ='4064' datatype='1'
+		 prttype='' alias='Beziehungstyp' detailsearch='0' index_flag='0' dtd_element='linkage-datatype' obj_class='6'/>
+	<z:row alias_id='193' type='1' table_name='187' field_name='volume' required_flag='0' typ='4064' datatype='1'
+		 prttype='' alias='Datenvolumen' detailsearch='0' index_flag='0' dtd_element='linkage-volume' obj_class='6'/>
+	<z:row alias_id='194' type='1' table_name='187' field_name='icon' required_flag='0' typ='4064' datatype='1'
+		 prttype='' alias='URL (Icon)' detailsearch='0' index_flag='0' dtd_element='linkage-icon-url' obj_class='6'/>
+	<z:row alias_id='195' type='1' table_name='187' field_name='icon_text' required_flag='0' typ='4064' datatype='1'
+		 prttype='' alias='URL (Text)' detailsearch='0' index_flag='0' dtd_element='linkage-icon-text' obj_class='6'/>
+	<z:row alias_id='196' type='1' table_name='187' field_name='descr' required_flag='0' typ='4064' datatype='1'
+		 prttype='' alias='Verweisname' detailsearch='0' index_flag='0' dtd_element='linkage-description' obj_class='6'/>
+	<z:row alias_id='197' type='1' table_name='187' field_name='mod_type' required_flag='0' typ='0' datatype='1'
+		 prttype='' alias='Änderungskennzeichen' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='198' type='1' table_name='187' field_name='line' required_flag='0' typ='0' datatype='2' prttype=''
+		 alias='line' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='2' type='1' table_name='1' field_name='obj_id' required_flag='511' typ='0' datatype='1' prttype='ObjID'
+		 prttab='3' alias='Objekt-ID' detailsearch='1' index_flag='0' rtf='1301' dtd_element='object-identifier' obj_class='0'/>
+	<z:row alias_id='20' type='1' table_name='1' field_name='loc_descr' required_flag='0' typ='32' datatype='1'
+		 prttype='RBErlaeuterung' alias='Erläuterung Raumbezug' detailsearch='1' index_flag='1' rtf='810' dtd_element='description-of-spatial-domain'
+		 obj_class='0'/>
+	<z:row alias_id='204' type='0' table_name='T019_coordinates' field_name='' required_flag='0' typ='4064' datatype='0'
+		 prttype='' prttab='1' alias='Objekte : Raumbezug' expimp='1' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='205' type='1' table_name='204' field_name='obj_id' required_flag='0' typ='0' datatype='1' prttype=''
+		 prttab='3' alias='obj_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='206' type='1' table_name='204' field_name='loc_x_koord1' required_flag='0' typ='4064' datatype='1'
+		 prttype='' alias='Rechts1' detailsearch='1' index_flag='0' dtd_element='west-bounding-coordinate' obj_class='6'/>
+	<z:row alias_id='2061' type='1' table_name='204' field_name='geo_x1' required_flag='0' typ='0' datatype='1'
+		 prttype='' alias='x1 geographisch' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='207' type='1' table_name='204' field_name='loc_y_koord1' required_flag='0' typ='4064' datatype='1'
+		 prttype='' alias='Hoch1' detailsearch='1' index_flag='0' dtd_element='south-bounding-coordinate' obj_class='6'/>
+	<z:row alias_id='2071' type='1' table_name='204' field_name='geo_y1' required_flag='0' typ='0' datatype='1'
+		 prttype='' alias='y1 geographisch' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='2081' type='1' table_name='204' field_name='geo_x2' required_flag='0' typ='0' datatype='1'
+		 prttype='' alias='x2 geographisch' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='209' type='1' table_name='204' field_name='loc_x_koord2' required_flag='0' typ='4064' datatype='1'
+		 prttype='' alias='Rechts2' detailsearch='1' index_flag='0' dtd_element='east-bounding-coordinate' obj_class='6'/>
+	<z:row alias_id='2091' type='1' table_name='204' field_name='geo_y2' required_flag='0' typ='0' datatype='1'
+		 prttype='' alias='y2 geographisch' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='21' type='1' table_name='1' field_name='time_from' required_flag='0' typ='32' datatype='1'
+		 prttype='ZBVon' alias='Zeit (von)' detailsearch='1' index_flag='0' rtf='902' dtd_element='beginning-date' obj_class='0'/>
+	<z:row alias_id='210' type='1' table_name='204' field_name='loc_y_koord2' required_flag='0' typ='4064' datatype='1'
+		 prttype='' alias='Hoch2' detailsearch='1' index_flag='0' dtd_element='north-bounding-coordinate' obj_class='6'/>
+	<z:row alias_id='212' type='1' table_name='204' field_name='bezug' required_flag='0' typ='4064' datatype='1'
+		 prttype='GeogrEinheit' alias='Staat/Region/Naturraum' detailsearch='1' index_flag='1' dtd_element='region' obj_class='6'/>
+	<z:row alias_id='213' type='1' table_name='204' field_name='line' required_flag='0' typ='0' datatype='2' prttype=''
+		 alias='line' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='214' type='1' table_name='204' field_name='mod_type' required_flag='0' typ='-1' datatype='1'
+		 prttype='' alias='Änderungskennzeichen' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='215' type='0' table_name='T02_address' field_name='' required_flag='0' typ='1' datatype='0'
+		 prttype='1' prttab='2' alias='Adressen' expimp='2' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='216' type='1' table_name='215' field_name='adr_id' required_flag='15' typ='0' datatype='1'
+		 prttype='AdrID' prttab='4' alias='Adreß-ID' detailsearch='2' index_flag='0' rtf='99' dtd_element='address-identifier'
+		 obj_class='20'/>
+	<z:row alias_id='217' type='1' table_name='215' field_name='typ' required_flag='15' typ='0' datatype='1' prttype='AdrTyp'
+		 alias='Adress-Typ' detailsearch='0' index_flag='0' rtf='99' dtd_element='type-of-address' obj_class='20'/>
+	<z:row alias_id='218' type='1' table_name='215' field_name='institution' required_flag='3' typ='6' datatype='1'
+		 prttype='AdrInstitution' alias='Institution' detailsearch='2' index_flag='2' rtf='99' dtd_element='organisation'
+		 obj_class='20'/>
+	<z:row alias_id='22' type='1' table_name='1' field_name='time_to' required_flag='0' typ='32' datatype='1' prttype='ZBBis'
+		 alias='Zeit (bis)' detailsearch='1' index_flag='0' rtf='903' dtd_element='ending-date' obj_class='0'/>
+	<z:row alias_id='220' type='1' table_name='215' field_name='address' required_flag='4' typ='24' datatype='1'
+		 prttype='AdrAnrede' alias='Anrede' detailsearch='2' index_flag='0' rtf='99' dtd_element='name-form' obj_class='20'/>
+	<z:row alias_id='221' type='1' table_name='215' field_name='title' required_flag='0' typ='24' datatype='1' prttype='AdrTitel'
+		 alias='Titel' detailsearch='2' index_flag='0' rtf='99' dtd_element='title-or-function' obj_class='20'/>
+	<z:row alias_id='222' type='1' table_name='215' field_name='lastname' required_flag='12' typ='24' datatype='1'
+		 prttype='AdrNachname' alias='Nachname' detailsearch='2' index_flag='2' rtf='99' dtd_element='name' obj_class='20'/>
+	<z:row alias_id='223' type='1' table_name='215' field_name='firstname' required_flag='0' typ='24' datatype='1'
+		 prttype='AdrVorname' alias='Vorname' detailsearch='2' index_flag='2' rtf='99' dtd_element='given-name' obj_class='20'/>
+	<z:row alias_id='224' type='1' table_name='215' field_name='street' required_flag='0' typ='1' datatype='1' prttype='AdrStraße'
+		 alias='Straße' detailsearch='2' index_flag='2' rtf='99' dtd_element='street' obj_class='20'/>
+	<z:row alias_id='225' type='1' table_name='215' field_name='state_id' required_flag='15' typ='1' datatype='1'
+		 prttype='AdrStaatID' alias='Staat' detailsearch='2' index_flag='0' rtf='99' dtd_element='postal-code-of-country'
+		 obj_class='20'/>
+	<z:row alias_id='226' type='1' table_name='215' field_name='postcode' required_flag='0' typ='1' datatype='1'
+		 prttype='AdrPLZ' alias='PLZ' detailsearch='2' index_flag='0' rtf='99' dtd_element='postal-code' obj_class='20'/>
+	<z:row alias_id='227' type='1' table_name='215' field_name='city' required_flag='15' typ='1' datatype='1' prttype='AdrOrt'
+		 alias='Ort' detailsearch='2' index_flag='2' rtf='99' dtd_element='city' obj_class='20'/>
+	<z:row alias_id='228' type='1' table_name='215' field_name='postbox_pc' required_flag='0' typ='1' datatype='1'
+		 prttype='AdrPLZPostf' alias='PLZ Postfach' detailsearch='2' index_flag='0' rtf='99' dtd_element='post-box-postal-code'
+		 obj_class='20'/>
+	<z:row alias_id='229' type='1' table_name='215' field_name='postbox' required_flag='0' typ='1' datatype='1'
+		 prttype='AdrPostfach' alias='Postfach' detailsearch='2' index_flag='0' rtf='99' dtd_element='post-box' obj_class='20'/>
+	<z:row alias_id='23' type='1' table_name='1' field_name='time_descr' required_flag='0' typ='32' datatype='1'
+		 prttype='ZBErlaeuterung' alias='Erläuterung Zeitbezug' detailsearch='1' index_flag='1' rtf='911' dtd_element='description-of-temporal-domain'
+		 obj_class='0'/>
+	<z:row alias_id='230' type='1' table_name='215' field_name='job' required_flag='0' typ='1' datatype='1' prttype='AdrFunktion'
+		 alias='Aufgaben' detailsearch='0' index_flag='2' rtf='130' dtd_element='function' obj_class='20'/>
+	<z:row alias_id='231' type='1' table_name='215' field_name='descr' required_flag='0' typ='1' datatype='1' prttype='AdrBeschreib'
+		 alias='Notizen' detailsearch='2' index_flag='2' rtf='132' dtd_element='address-description' obj_class='20'/>
+	<z:row alias_id='232' type='1' table_name='215' field_name='root' required_flag='15' typ='0' datatype='2' prttype=''
+		 alias='root' detailsearch='0' index_flag='0' dtd_element='no-of-parents' obj_class='20'/>
+	<z:row alias_id='233' type='1' table_name='215' field_name='cat_id' required_flag='15' typ='0' datatype='1'
+		 prttype='AdrKatalogID' alias='Katalog_ID' detailsearch='0' index_flag='0' rtf='99' dtd_element='catalogue-identifier'
+		 obj_class='20'/>
+	<z:row alias_id='234' type='1' table_name='215' field_name='mod_time' required_flag='15' typ='0' datatype='1'
+		 prttype='AdrAenderungsdatum' alias='Zuletzt geändert am' detailsearch='0' index_flag='0' rtf='1306' dtd_element='date-of-last-modification'
+		 obj_class='20'/>
+	<z:row alias_id='235' type='1' table_name='215' field_name='mod_id' required_flag='15' typ='0' datatype='1'
+		 prttype='AdrAenderungskennz' alias='Zuletzt geändert von' detailsearch='0' index_flag='0' rtf='1305' dtd_element='modificator-identifier'
+		 obj_class='20'/>
+	<z:row alias_id='236' type='1' table_name='215' field_name='create_time' required_flag='0' typ='0' datatype='1'
+		 prttype='AdrErstellungsdatum' alias='Erstellt am' detailsearch='0' index_flag='0' rtf='1304' dtd_element='date-of-creation'
+		 obj_class='20'/>
+	<z:row alias_id='237' type='1' table_name='215' field_name='create_id' required_flag='0' typ='0' datatype='1'
+		 prttype='AdrErstellungskennz' alias='Erstellt von' detailsearch='0' index_flag='0' rtf='1303' dtd_element='creator-identifier'
+		 obj_class='20'/>
+	<z:row alias_id='238' type='1' table_name='215' field_name='mod_type' required_flag='15' typ='-1' datatype='1'
+		 prttype='' alias='Änderungskennzeichen' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='239' type='0' table_name='T021_communication' field_name='' required_flag='0' typ='31' datatype='0'
+		 prttype='' alias='Kommunikation' expimp='2' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='24' type='1' table_name='1' field_name='time_period' required_flag='0' typ='32' datatype='2'
+		 prttype='ZBPeriodizitaet' alias='Periodizität' detailsearch='1' index_flag='1' rtf='905' dtd_element='time-period'
+		 obj_class='0' gui_id='1240' codelist_id='518'/>
+	<z:row alias_id='240' type='1' table_name='239' field_name='adr_id' required_flag='0' typ='0' datatype='1' prttype=''
+		 prttab='4' alias='adr_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='241' type='1' table_name='239' field_name='comm_type' required_flag='0' typ='31' datatype='1'
+		 prttype='CommNr' alias='comm_type' detailsearch='0' index_flag='0' rtf='99' dtd_element='communication-medium'
+		 obj_class='21'/>
+	<z:row alias_id='242' type='1' table_name='239' field_name='comm_value' required_flag='0' typ='31' datatype='1'
+		 prttype='CommTyp' alias='Kommunikationswert' detailsearch='0' index_flag='0' rtf='99' dtd_element='communication-value'
+		 obj_class='21'/>
+	<z:row alias_id='243' type='1' table_name='239' field_name='descr' required_flag='0' typ='31' datatype='1' prttype='CommBeschr'
+		 alias='Beschreibung' detailsearch='0' index_flag='0' rtf='99' dtd_element='description' obj_class='21'/>
+	<z:row alias_id='244' type='1' table_name='239' field_name='line' required_flag='0' typ='0' datatype='2' prttype=''
+		 alias='line' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='245' type='1' table_name='239' field_name='mod_type' required_flag='0' typ='0' datatype='1'
+		 prttype='' alias='Änderungskennzeichen' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='246' type='0' table_name='T022_adr_adr' field_name='' required_flag='0' datatype='0' prttype=''
+		 alias='T022_adr_adr' expimp='2' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='247' type='1' table_name='246' field_name='adr_from_id' required_flag='0' typ='0' datatype='1'
+		 prttype='VerweiseAdrFrom' prttab='4' alias='adr_from_id' detailsearch='0' index_flag='0' rtf='99' dtd_element='parent-address-control-identifier'
+		 obj_class='22'/>
+	<z:row alias_id='248' type='1' table_name='246' field_name='adr_to_id' required_flag='0' typ='0' datatype='1'
+		 prttype='VerweiseAdrTo' alias='adr_to_id' detailsearch='0' index_flag='0' rtf='99' dtd_element='child-address-control-identifier'
+		 obj_class='22'/>
+	<z:row alias_id='249' type='1' table_name='246' field_name='mod_time' required_flag='0' typ='0' datatype='1'
+		 prttype='VerweiseAdrErstellungsdatum' alias='Zuletzt geändert am' detailsearch='0' index_flag='0' rtf='99'/>
+	<z:row alias_id='25' type='1' table_name='1' field_name='time_interval' required_flag='0' typ='32' datatype='1'
+		 prttype='ZBIntervall' alias='Intervall' detailsearch='1' index_flag='0' rtf='907' dtd_element='time-step' obj_class='0'/>
+	<z:row alias_id='250' type='1' table_name='246' field_name='mod_type' required_flag='0' typ='0' datatype='1'
+		 prttype='VerweiseAdrAktZyklus' alias='Änderungskennzeichen' detailsearch='0' index_flag='0' rtf='99'/>
+	<z:row alias_id='251' type='0' table_name='T08_attr' field_name='' required_flag='0' datatype='0' prttype=''
+		 prttab='0' alias='T08_attr' expimp='1' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='252' type='1' table_name='251' field_name='attr_id' required_flag='0' typ='0' datatype='1'
+		 prttype='' alias='attr_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='253' type='1' table_name='251' field_name='adr_id' required_flag='0' typ='0' datatype='1' prttype=''
+		 alias='adr_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='254' type='1' table_name='251' field_name='field' required_flag='0' typ='0' datatype='1' prttype=''
+		 alias='field' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='255' type='0' table_name='T08_attrtyp' field_name='' required_flag='0' datatype='0' prttype=''
+		 prttab='0' alias='T08_attrtyp' expimp='0' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='256' type='1' table_name='255' field_name='attr_id' required_flag='0' typ='0' datatype='1'
+		 prttype='' alias='attr_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='257' type='1' table_name='255' field_name='attr_name' required_flag='0' typ='0' datatype='1'
+		 prttype='' alias='attr_name' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='258' type='1' table_name='255' field_name='xpos' required_flag='0' typ='0' datatype='1' prttype=''
+		 alias='xpos' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='259' type='1' table_name='255' field_name='ypos' required_flag='0' typ='0' datatype='1' prttype=''
+		 alias='ypos' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='26' type='1' table_name='1' field_name='time_alle' required_flag='0' typ='32' datatype='1'
+		 prttype='ZBAlle' alias='Zeitbezug alle' detailsearch='1' index_flag='0' rtf='906' dtd_element='time-scale' obj_class='0'/>
+	<z:row alias_id='260' type='1' table_name='255' field_name='length' required_flag='0' typ='0' datatype='1' prttype=''
+		 alias='length' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='261' type='0' table_name='T03_catalogue' field_name='' required_flag='0' datatype='0' prttab='3'
+		 alias='T03_catalogue' expimp='3' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='262' type='1' table_name='261' field_name='cat_id' required_flag='0' typ='0' datatype='1' prttype='KatalogID'
+		 prttab='5' alias='Katalog-ID' detailsearch='0' index_flag='0' rtf='1350' dtd_element='catalogue-identifier' obj_class='30'/>
+	<z:row alias_id='263' type='1' table_name='261' field_name='country' required_flag='0' typ='0' datatype='1'
+		 prttype='' alias='country' detailsearch='0' index_flag='0' dtd_element='country' obj_class='30'/>
+	<z:row alias_id='264' type='1' table_name='261' field_name='state' required_flag='0' typ='0' datatype='1' prttype=''
+		 alias='state' detailsearch='0' index_flag='0' dtd_element='state' obj_class='30'/>
+	<z:row alias_id='265' type='1' table_name='261' field_name='catalogue' required_flag='0' typ='0' datatype='1'
+		 prttype='KatalogName' alias='Katalogname' detailsearch='0' index_flag='0' rtf='101' dtd_element='catalogue-name'
+		 obj_class='30'/>
+	<z:row alias_id='266' type='1' table_name='261' field_name='mod_type' required_flag='0' typ='0' datatype='1'
+		 prttype='' alias='Änderungskennzeichen' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='267' type='1' table_name='261' field_name='mod_time' required_flag='0' typ='0' datatype='1'
+		 prttype='' alias='Zuletzt geändert am' detailsearch='0' index_flag='0' dtd_element='date-of-last-modification'
+		 obj_class='30'/>
+	<z:row alias_id='268' type='1' table_name='261' field_name='knot_counter' required_flag='0' typ='0' datatype='2'
+		 prttype='' alias='knot_counter' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='269' type='0' table_name='T04_search' field_name='' required_flag='0' datatype='0' prttype=''
+		 prttab='3' alias='Verschlagw.' expimp='3' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='27' type='1' table_name='1' field_name='time_type' required_flag='0' typ='32' datatype='1'
+		 prttype='ZBTyp' alias='Zeitbezug Typ' detailsearch='1' index_flag='0' rtf='901' dtd_element='time-type' obj_class='0'/>
+	<z:row alias_id='270' type='1' table_name='269' field_name='cat_id' required_flag='0' typ='0' datatype='1' prttype=''
+		 alias='cat_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='271' type='1' table_name='269' field_name='obj_id' required_flag='0' typ='0' datatype='1' prttype=''
+		 prttab='5' alias='obj_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='272' type='1' table_name='269' field_name='type' required_flag='0' typ='0' datatype='1' prttype=''
+		 alias='type' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='273' type='1' table_name='269' field_name='line' required_flag='0' typ='0' datatype='2' prttype=''
+		 alias='line' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='274' type='1' table_name='269' field_name='searchterm' required_flag='0' typ='0' datatype='1'
+		 prttype='' alias='Suchbegriff' detailsearch='3' index_flag='0' dtd_element='controlled-term | uncontrolled-term'
+		 obj_class='40'/>
+	<z:row alias_id='275' type='1' table_name='269' field_name='th_desc_no' required_flag='0' typ='0' datatype='2'
+		 prttype='' alias='desc_no' detailsearch='0' index_flag='0' dtd_element='Attribut desc_id' obj_class='40'/>
+	<z:row alias_id='276' type='1' table_name='269' field_name='mod_time' required_flag='0' typ='0' datatype='1'
+		 prttype='' alias='Zuletzt geändert am' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='277' type='1' table_name='269' field_name='mod_type' required_flag='0' typ='-1' datatype='1'
+		 prttype='' alias='Änderungskennzeichen' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='278' type='0' table_name='T05_user' field_name='' required_flag='0' datatype='0' prttype='1'
+		 prttab='4' alias='T05_user' expimp='4' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='279' type='1' table_name='278' field_name='user_id' required_flag='0' typ='0' datatype='1'
+		 prttype='UserID' alias='user_id' detailsearch='0' index_flag='0' rtf='99'/>
+	<z:row alias_id='280' type='1' table_name='278' field_name='user_name' required_flag='1' typ='0' datatype='1'
+		 prttype='UserName' alias='user_name' detailsearch='0' index_flag='0' rtf='99'/>
+	<z:row alias_id='281' type='1' table_name='278' field_name='password' required_flag='1' typ='0' datatype='1'
+		 prttype='UserPassword' alias='password' detailsearch='0' index_flag='0' rtf='99'/>
+	<z:row alias_id='282' type='1' table_name='278' field_name='group_flag' required_flag='1' typ='0' datatype='2'
+		 prttype='UserGroup' alias='group' detailsearch='0' index_flag='0' rtf='99'/>
+	<z:row alias_id='283' type='1' table_name='278' field_name='address_id' required_flag='1' typ='0' datatype='1'
+		 prttype='UserAdrID' alias='address_id' detailsearch='0' index_flag='0' rtf='99'/>
+	<z:row alias_id='284' type='1' table_name='278' field_name='create_id' required_flag='0' typ='0' datatype='1'
+		 prttype='CreateUserID' alias='create_user_id' detailsearch='0' index_flag='0' rtf='99'/>
+	<z:row alias_id='285' type='1' table_name='278' field_name='create_time' required_flag='0' typ='0' datatype='1'
+		 prttype='UserCreateTime' alias='create_time' detailsearch='0' index_flag='0' rtf='99'/>
+	<z:row alias_id='286' type='1' table_name='278' field_name='mod_id' required_flag='0' typ='0' datatype='1' prttype='ModUsrID'
+		 alias='modify_user_id' detailsearch='0' index_flag='0' rtf='99'/>
+	<z:row alias_id='287' type='1' table_name='278' field_name='mod_time' required_flag='0' typ='0' datatype='1'
+		 prttype='UserModTime' alias='modify_time' detailsearch='0' index_flag='0' rtf='99'/>
+	<z:row alias_id='288' type='1' table_name='278' field_name='mod_type' required_flag='0' typ='0' datatype='1'
+		 prttype='' alias='Änderungskennzeichen' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='289' type='0' table_name='T051_user_link' field_name='' required_flag='0' datatype='0' prttype=''
+		 prttab='4' alias='T051_user_link' expimp='4' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='29' type='1' table_name='1' field_name='mod_type' required_flag='0' typ='-1' datatype='1' prttype=''
+		 alias='Änderungskennzeichen' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='290' type='1' table_name='289' field_name='user_from_id' required_flag='0' typ='0' datatype='1'
+		 prttype='UserFromID' alias='user_from_id' detailsearch='0' index_flag='0' rtf='99'/>
+	<z:row alias_id='291' type='1' table_name='289' field_name='user_to_id' required_flag='0' typ='0' datatype='1'
+		 prttype='UserToID' alias='user_to_id' detailsearch='0' index_flag='0' rtf='99'/>
+	<z:row alias_id='292' type='0' table_name='T052_user_account' field_name='' required_flag='0' datatype='0' prttype=''
+		 prttab='4' alias='T052_user_account' expimp='4' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='293' type='1' table_name='292' field_name='user_id' required_flag='0' typ='0' datatype='1'
+		 prttype='' alias='user_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='294' type='1' table_name='292' field_name='obj_id' required_flag='0' typ='0' datatype='1' prttype='UserObjID'
+		 alias='obj_id' detailsearch='0' index_flag='0' rtf='99'/>
+	<z:row alias_id='295' type='1' table_name='292' field_name='create_time' required_flag='0' typ='0' datatype='1'
+		 prttype='' alias='create_time' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='296' type='0' table_name='T07_country' field_name='' required_flag='0' datatype='0' prttype=''
+		 alias='T07_country' expimp='0' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='297' type='1' table_name='296' field_name='country_id' required_flag='0' typ='0' datatype='1'
+		 prttype='' prttab='5' alias='country_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='298' type='1' table_name='296' field_name='country' required_flag='0' typ='0' datatype='1'
+		 prttype='' alias='country' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='299' type='1' table_name='296' field_name='mod_time' required_flag='0' typ='0' datatype='1'
+		 prttype='' alias='mod_time' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='3' type='1' table_name='1' field_name='root' required_flag='0' typ='0' datatype='2' prttype=''
+		 alias='root' detailsearch='0' index_flag='0' dtd_element='no-of-parents' obj_class='0'/>
+	<z:row alias_id='30' type='0' table_name='T01_st_class' field_name='' required_flag='0' datatype='0' prttype=''
+		 alias='01_st_class' expimp='0' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='300' type='1' table_name='296' field_name='mod_type' required_flag='0' typ='0' datatype='1'
+		 prttype='' alias='Änderungskennzeichen' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='301' type='0' table_name='T071_state' field_name='' required_flag='0' datatype='0' prttype=''
+		 alias='T071_state' expimp='0' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='302' type='1' table_name='301' field_name='country_id' required_flag='0' typ='0' datatype='1'
+		 prttype='' alias='country_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='303' type='1' table_name='301' field_name='state_id' required_flag='0' typ='0' datatype='1'
+		 prttype='' prttab='5' alias='state_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='304' type='1' table_name='301' field_name='state' required_flag='0' typ='0' datatype='1' alias='state'
+		 detailsearch='0' index_flag='0'/>
+	<z:row alias_id='305' type='1' table_name='301' field_name='mod_time' required_flag='0' typ='0' datatype='1'
+		 prttype='' alias='mod_time' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='306' type='1' table_name='301' field_name='mod_type' required_flag='0' typ='0' datatype='1'
+		 prttype='' alias='Änderungskennzeichen' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='308' type='1' table_name='307' field_name='entry' required_flag='0' datatype='1' prttype=''
+		 alias='entry' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='309' type='1' table_name='307' field_name='value' required_flag='0' datatype='1' prttype=''
+		 alias='value' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='31' type='1' table_name='30' field_name='class_id' required_flag='0' typ='0' datatype='1' prttype=''
+		 prttab='3' alias='class_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='310' type='0' table_name='sys_gui' field_name='' required_flag='0' datatype='0' prttype=''
+		 prttab='0' alias='sys_gui' expimp='0' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='311' type='1' table_name='310' field_name='gui_id' required_flag='0' datatype='2' prttype=''
+		 alias='gui_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='312' type='1' table_name='310' field_name='name' required_flag='0' datatype='1' prttype=''
+		 alias='name' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='313' type='0' table_name='sys_list' field_name='' required_flag='0' datatype='0' prttype=''
+		 prttab='0' alias='sys_list' expimp='0' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='314' type='1' table_name='313' field_name='lst_id' required_flag='0' datatype='2' prttype=''
+		 alias='lst_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='315' type='1' table_name='313' field_name='entry_id' required_flag='0' datatype='2' prttype=''
+		 alias='entry_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='316' type='1' table_name='313' field_name='db_id' required_flag='0' datatype='1' prttype=''
+		 alias='db_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='317' type='1' table_name='313' field_name='name' required_flag='0' datatype='1' prttype=''
+		 alias='name' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='318' type='1' table_name='313' field_name='data' required_flag='0' datatype='2' prttype=''
+		 alias='data' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='319' type='1' table_name='313' field_name='lang_id' required_flag='0' datatype='2' prttype=''
+		 alias='lang_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='32' type='1' table_name='30' field_name='class_name' required_flag='0' typ='0' datatype='1'
+		 prttype='' alias='Klasse' detailsearch='0' index_flag='0' rtf='102' dtd_element='object-class' obj_class='-1'/>
+	<z:row alias_id='320' type='0' table_name='sys_tabledef' field_name='' required_flag='0' datatype='0' prttype=''
+		 prttab='0' alias='sys_tabledef' expimp='0' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='321' type='1' table_name='320' field_name='alias_id' required_flag='0' datatype='1' prttype=''
+		 alias='alias_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='322' type='1' table_name='320' field_name='type' required_flag='0' datatype='2' prttype=''
+		 alias='type' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='323' type='1' table_name='320' field_name='table_name' required_flag='0' datatype='1' prttype=''
+		 alias='table' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='324' type='1' table_name='320' field_name='field_name' required_flag='0' datatype='1' prttype=''
+		 alias='field' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='325' type='1' table_name='320' field_name='datatype' required_flag='0' datatype='1' prttype=''
+		 alias='datatype' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='326' type='1' table_name='320' field_name='prttype' required_flag='0' datatype='1' prttype=''
+		 alias='prttype' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='327' type='1' table_name='320' field_name='alias' required_flag='0' datatype='1' prttype=''
+		 alias='alias' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='328' type='1' table_name='320' field_name='expimp' required_flag='0' datatype='2' prttype=''
+		 alias='expimp' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='329' type='1' table_name='320' field_name='detailsearch' required_flag='0' datatype='1' prttype=''
+		 alias='detailsearch' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='33' type='0' table_name='T01_st_region' field_name='' required_flag='0' datatype='0' prttype=''
+		 alias='01_st_region' expimp='0' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='330' type='1' table_name='320' field_name='index_flag' required_flag='0' datatype='1' prttype=''
+		 alias='index' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='331' type='0' table_name='ZZ_ImportThesDesc' field_name='' required_flag='0' datatype='0' prttype=''
+		 alias='ZZ_ImportThesDesc' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='332' type='1' table_name='278' field_name='link_to' required_flag='0' typ='0' datatype='1'
+		 prttype='UsrLink' prttab='0' alias='UserLink' detailsearch='0' index_flag='0' rtf='99'/>
+	<z:row alias_id='333' type='0' table_name='278' field_name='cat_id' required_flag='0' typ='0' datatype='0' prttype=''
+		 prttab='0' alias='KatalogID' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='334' type='1' table_name='177' field_name='typ' required_flag='0' typ='4064' datatype='2' prttype='OLETyp'
+		 alias='Typ' detailsearch='0' index_flag='0' rtf='99'/>
+	<z:row alias_id='336' type='0' table_name='T08_attrlist' field_name='' required_flag='0' typ='0' datatype='0'
+		 prttype='' alias='' expimp='0' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='337' type='1' table_name='336' field_name='attr_id' required_flag='0' typ='0' datatype='0'
+		 prttype='' alias='' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='338' type='1' table_name='336' field_name='counter' required_flag='0' typ='0' datatype='0'
+		 prttype='' alias='' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='339' type='1' table_name='336' field_name='data' required_flag='0' typ='0' datatype='0' prttype=''
+		 alias='' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='34' type='1' table_name='33' field_name='loc_town_no' required_flag='0' typ='0' datatype='1'
+		 prttype='' prttab='3' alias='loc_town_no' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='340' type='1' table_name='336' field_name='mod_type' required_flag='0' typ='0' datatype='0'
+		 prttype='' alias='' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='341' type='1' table_name='1' field_name='time_status' required_flag='0' typ='32' datatype='2'
+		 prttype='ZBStatus' alias='Status' detailsearch='1' index_flag='0' rtf='904' dtd_element='time-status' obj_class='0'
+		 gui_id='1220' codelist_id='523'/>
+	<z:row alias_id='35' type='1' table_name='33' field_name='region_id' required_flag='0' typ='0' datatype='1'
+		 prttype='' alias='region_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='350' type='0' table_name='sys_option' field_name='' required_flag='0' typ='0' datatype='0'
+		 prttype='' prttab='0' alias='sys_option' expimp='0' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='351' type='0' table_name='T053_user_option' field_name='' required_flag='0' typ='0' datatype='0'
+		 prttype='' prttab='0' alias='T053_user_option' expimp='4' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='36' type='1' table_name='33' field_name='region' required_flag='0' typ='0' datatype='1' prttype=''
+		 alias='region' detailsearch='0' index_flag='0' dtd_element='sub-municipal' obj_class='-1'/>
+	<z:row alias_id='360' type='0' table_name='sys_akt_def' field_name='' required_flag='0' typ='0' datatype='0'
+		 prttype='' prttab='0' alias='sys_akt_def' expimp='5' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='361' type='0' table_name='sys_agent_def' field_name='' required_flag='0' typ='0' datatype='0'
+		 prttype='' prttab='0' alias='sys_agent_def' expimp='5' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='362' type='0' table_name='sys_agent_rec' field_name='' required_flag='0' typ='0' datatype='0'
+		 prttype='' prttab='0' alias='sys_agent_rec' expimp='5' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='363' type='0' table_name='sys_agent_send' field_name='' required_flag='0' typ='0' datatype='0'
+		 prttype='' prttab='0' alias='sys_agent_send' expimp='5' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='364' type='0' table_name='sys_def' field_name='' required_flag='0' typ='0' datatype='0' prttype=''
+		 prttab='0' alias='sys_def' expimp='5' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='37' type='0' table_name='T01_st_township' field_name='' required_flag='0' datatype='0' prttype=''
+		 prttab='1' alias='01_st_township' expimp='0' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='370' type='0' table_name='sys_codelist' required_flag='0' datatype='0' prttab='0' alias='sys_codelist'
+		 expimp='0' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='371' type='1' table_name='370' field_name='codelist_id' required_flag='0' datatype='2' alias='codelist_id'
+		 detailsearch='0' index_flag='0'/>
+	<z:row alias_id='372' type='1' table_name='370' field_name='name' required_flag='0' datatype='1' alias='name'
+		 detailsearch='0' index_flag='0'/>
+	<z:row alias_id='373' type='1' table_name='370' field_name='default_enabled' required_flag='0' datatype='2'
+		 alias='default_enabled' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='374' type='1' table_name='370' field_name='maintainable' required_flag='0' datatype='2' alias='maintainable'
+		 detailsearch='0' index_flag='0'/>
+	<z:row alias_id='38' type='1' table_name='37' field_name='loc_town_no' required_flag='0' typ='0' datatype='1'
+		 prttype='' prttab='3' alias='loc_town_no' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='380' type='0' table_name='sys_codelist_domain' required_flag='0' datatype='0' prttab='0' alias='sys_codelist_domain'
+		 expimp='0' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='381' type='1' table_name='380' field_name='codelist_id' required_flag='0' datatype='2' alias='codelist_id'
+		 detailsearch='0' index_flag='0'/>
+	<z:row alias_id='382' type='1' table_name='380' field_name='domain_id' required_flag='0' datatype='2' alias='domain_id_id'
+		 detailsearch='0' index_flag='0'/>
+	<z:row alias_id='383' type='1' table_name='380' field_name='lang_id' required_flag='0' datatype='2' alias='lang_id'
+		 detailsearch='0' index_flag='0'/>
+	<z:row alias_id='384' type='1' table_name='380' field_name='name' required_flag='0' datatype='1' alias='name'
+		 detailsearch='0' index_flag='0'/>
+	<z:row alias_id='385' type='1' table_name='380' field_name='description' required_flag='0' datatype='1' alias='description'
+		 detailsearch='0' index_flag='0'/>
+	<z:row alias_id='386' type='1' table_name='380' field_name='def_domain' required_flag='0' datatype='2' alias='def_domain'
+		 detailsearch='0' index_flag='0'/>
+	<z:row alias_id='39' type='1' table_name='37' field_name='state' required_flag='0' typ='0' datatype='1' prttype=''
+		 alias='state' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='390' type='0' table_name='sys_language' required_flag='0' datatype='0' prttab='0' alias='sys_language'
+		 expimp='0' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='391' type='1' table_name='390' field_name='lang_id' required_flag='0' datatype='2' alias='lang_id'
+		 detailsearch='0' index_flag='0'/>
+	<z:row alias_id='392' type='1' table_name='390' field_name='name' required_flag='0' datatype='1' alias='name'
+		 detailsearch='0' index_flag='0'/>
+	<z:row alias_id='393' type='1' table_name='390' field_name='description' required_flag='0' datatype='1' alias='description'
+		 detailsearch='0' index_flag='0'/>
+	<z:row alias_id='394' type='1' table_name='390' field_name='def_lang' required_flag='0' datatype='2' alias='def_lang'
+		 detailsearch='0' index_flag='0'/>
+	<z:row alias_id='4' type='1' table_name='1' field_name='cat_id' required_flag='511' typ='0' datatype='1' prttype='KatalogID'
+		 alias='Katalog ID' detailsearch='0' index_flag='0' dtd_element='catalogue-identifier' obj_class='0'/>
+	<z:row alias_id='40' type='1' table_name='37' field_name='district' required_flag='0' typ='0' datatype='1' prttype=''
+		 alias='district' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='400' type='0' table_name='sys_advise' field_name='' required_flag='0' datatype='0' prttype=''
+		 prttab='0' alias='sys_advise' expimp='0' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='401' type='0' table_name='sys_adv_adv' field_name='' required_flag='0' datatype='0' prttype=''
+		 prttab='0' alias='sys_adv_adv' expimp='0' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='402' type='0' table_name='T01_st_bbox' field_name='' required_flag='0' datatype='0' prttype=''
+		 prttab='1' alias='T01_st_bbox' expimp='0' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='406' type='1' table_name='187' field_name='special_name' required_flag='0' typ='4064' datatype='1'
+		 alias='Orginal Obj-ID' detailsearch='0' index_flag='0' dtd_element='linkage-reference' obj_class='6'/>
+	<z:row alias_id='407' type='1' table_name='1' field_name='org_id' required_flag='0' typ='0' datatype='1' prttype='OrgObjID'
+		 alias='Orginal Obj-ID' detailsearch='0' index_flag='0' dtd_element='original-control-identifier' obj_class='-1'/>
+	<z:row alias_id='408' type='1' table_name='187' field_name='url_type' required_flag='0' typ='0' datatype='1'
+		 prttype='UrlType' alias='URL Typ' detailsearch='1' index_flag='0' dtd_element='linkage-url-type' obj_class='6'/>
+	<z:row alias_id='409' type='1' table_name='215' field_name='org_adr_id' required_flag='0' typ='0' datatype='1'
+		 prttype='OrgAdrID' alias='Orginal Adress-ID' detailsearch='0' index_flag='0' dtd_element='original-address-identifier'
+		 obj_class='20'/>
+	<z:row alias_id='41' type='1' table_name='37' field_name='country' required_flag='0' typ='0' datatype='1' prttype=''
+		 alias='country' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='410' type='1' table_name='142' field_name='special_name' required_flag='0' typ='0' datatype='1'
+		 prttype='SpecName' alias='Special Name' detailsearch='0' index_flag='0' dtd_element='relation-type' obj_class='7'/>
+	<z:row alias_id='411' type='1' table_name='1' field_name='publish_id' required_flag='0' typ='0' datatype='2'
+		 prttype='Zipubcondition' alias='Veröffentlichung' detailsearch='1' index_flag='0' rtf='1003' dtd_element='publication-condition'
+		 obj_class='0'/>
+	<z:row alias_id='412' type='1' table_name='320' field_name='dtd_element' required_flag='0' typ='0' datatype='1'
+		 prttype='' alias='dtd_element' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='413' type='1' table_name='320' field_name='obj_class' required_flag='0' typ='0' datatype='2'
+		 prttype='' alias='obj_class' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='42' type='1' table_name='37' field_name='township' required_flag='0' typ='0' datatype='1' prttype=''
+		 alias='township' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='43' type='0' table_name='T011_obj_data' field_name='' required_flag='0' typ='2048' datatype='0'
+		 prttype='2' prttab='1' alias='Datensammlung...' expimp='1' detailsearch='0' index_flag='0' obj_class='5'/>
+	<z:row alias_id='44' type='1' table_name='43' field_name='obj_id' required_flag='0' typ='0' datatype='1' prttype=''
+		 prttab='3' alias='obj_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='45' type='1' table_name='43' field_name='base' required_flag='0' typ='2048' datatype='1' prttype='FBDatDatengrundlage'
+		 alias='Methode/Datengrundlage' detailsearch='1' index_flag='1' rtf='701' dtd_element='method' obj_class='5'/>
+	<z:row alias_id='46' type='1' table_name='43' field_name='description' required_flag='0' typ='2048' datatype='1'
+		 prttype='FBDatErlaeuterung' alias='Erläuterung' detailsearch='1' index_flag='1' rtf='702' dtd_element='description-of-tech-domain'
+		 obj_class='5'/>
+	<z:row alias_id='47' type='1' table_name='43' field_name='mod_type' required_flag='0' typ='-1' datatype='1'
+		 prttype='' alias='Änderungskennzeichen' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='48' type='0' table_name='T011_obj_data_para' field_name='' required_flag='0' typ='2048' datatype='0'
+		 prttype='2' prttab='1' alias='Datensammlung...' expimp='1' detailsearch='0' index_flag='0' obj_class='5'/>
+	<z:row alias_id='49' type='1' table_name='48' field_name='obj_id' required_flag='0' typ='0' datatype='1' prttype=''
+		 prttab='3' alias='obj_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='50' type='1' table_name='48' field_name='line' required_flag='0' typ='-1' datatype='2' prttype=''
+		 alias='line' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='500' type='1' table_name='1' field_name='dataset_alternate_name' required_flag='0' typ='0'
+		 datatype='1' prttype='ObjektKurzBeschreibung' alias='Kurzbezeichnung' detailsearch='0' index_flag='0' rtf='104'
+		 dtd_element='dataset-alternate-name' obj_class='0' gui_id='5000'/>
+	<z:row alias_id='501' type='1' table_name='1' field_name='vertical_extent_maximum' required_flag='0' typ='0'
+		 datatype='2' prttype='RBVE_max' alias='Maximum' detailsearch='1' index_flag='0' rtf='807' dtd_element='vertical-extent-maximum'
+		 obj_class='0' gui_id='5020'/>
+	<z:row alias_id='502' type='1' table_name='1' field_name='vertical_extent_unit' required_flag='0' typ='0' datatype='2'
+		 prttype='RBVE_unit' alias='Maßeinheit' detailsearch='1' index_flag='0' rtf='808' dtd_element='vertical-extent-unit'
+		 obj_class='0' gui_id='5021' codelist_id='102'/>
+	<z:row alias_id='503' type='1' table_name='1' field_name='vertical_extent_vdatum' required_flag='0' typ='0'
+		 datatype='2' prttype='RBVE_vdatum' alias='Vertikal Datum' detailsearch='1' index_flag='0' rtf='809' dtd_element='vertical-extent-vdatum'
+		 obj_class='0' gui_id='5022' codelist_id='101'/>
+	<z:row alias_id='504' type='1' table_name='1' field_name='vertical_extent_minimum' required_flag='0' typ='0'
+		 datatype='2' prttype='RBVE_min' alias='Minimum' detailsearch='1' index_flag='0' rtf='806' dtd_element='vertical-extent-minimum'
+		 obj_class='0' gui_id='5020'/>
+	<z:row alias_id='506' type='1' table_name='1' field_name='dataset_usage' required_flag='0' typ='0' datatype='1'
+		 prttype='ZIEignungNutzung' alias='Eignung/Nutzung' detailsearch='1' index_flag='0' rtf='1007' dtd_element='dataset-usage'
+		 obj_class='0' gui_id='5040'/>
+	<z:row alias_id='507' type='1' table_name='1' field_name='metadata_language' required_flag='511' typ='0' datatype='2'
+		 prttype='ZIMDSprache' alias='Sprache des Metadatensatzes' detailsearch='1' index_flag='0' rtf='1001' dtd_element='metadata-language'
+		 obj_class='0' gui_id='5041' codelist_id='99999999'/>
+	<z:row alias_id='508' type='1' table_name='1' field_name='data_language' required_flag='511' typ='0' datatype='2'
+		 prttype='ZIDSSprache' alias='Sprache des Datensatzes' detailsearch='1' index_flag='0' rtf='1002' dtd_element='data-language'
+		 obj_class='0' gui_id='5042' codelist_id='99999999'/>
+	<z:row alias_id='51' type='1' table_name='48' field_name='parameter' required_flag='0' typ='2048' datatype='1'
+		 prttype='Parameter' alias='Parameter' detailsearch='1' index_flag='1' rtf='99' dtd_element='parameter' obj_class='5'/>
+	<z:row alias_id='510' type='1' table_name='1' field_name='fees' required_flag='0' typ='0' datatype='1' prttype='ZIKosten'
+		 alias='Kosten' detailsearch='1' index_flag='0' rtf='1014' dtd_element='fees' obj_class='0' gui_id='5051'/>
+	<z:row alias_id='511' type='1' table_name='1' field_name='ordering_instructions' required_flag='0' typ='0' datatype='1'
+		 prttype='ZIBestellinfo' alias='Bestellinformation' detailsearch='1' index_flag='0' rtf='1012' dtd_element='ordering-instructions'
+		 obj_class='0' gui_id='5052'/>
+	<z:row alias_id='512' type='1' table_name='1' field_name='metadata_standard_name' required_flag='0' typ='0'
+		 datatype='2' prttype='MDStandardName' alias='Standardname des Metadatensatzes' detailsearch='0' index_flag='0'
+		 dtd_element='metadata-standard-name' obj_class='0'/>
+	<z:row alias_id='513' type='1' table_name='1' field_name='metadata_standard_version' required_flag='0' typ='0'
+		 datatype='2' prttype='MDStandardVersion' alias='Standardversion des Metadatensatzes' detailsearch='0' index_flag='0'
+		 dtd_element='metadata-standard-version' obj_class='0'/>
+	<z:row alias_id='515' type='1' table_name='1' field_name='metadata_character_set' required_flag='0' typ='0'
+		 datatype='2' prttype='MDZeichensatz' alias='Zeichensatz des Metadatensatzes' detailsearch='0' index_flag='0'
+		 dtd_element='metadata-character-set' obj_class='0' gui_id='6001' codelist_id='510'/>
+	<z:row alias_id='516' type='1' table_name='1' field_name='dataset_character_set' required_flag='0' typ='0' datatype='2'
+		 prttype='ZeichensatzDS' alias='Zeichensatz des Datensatzes' detailsearch='0' index_flag='0' dtd_element='dataset-character-set'
+		 obj_class='0' gui_id='6002' codelist_id='510'/>
+	<z:row alias_id='52' type='1' table_name='48' field_name='unit' required_flag='0' typ='2048' datatype='1' prttype=''
+		 alias='Ergänzende Angaben' detailsearch='1' index_flag='1' dtd_element='supplementary-information' obj_class='5'/>
+	<z:row alias_id='520' type='1' table_name='129' field_name='version' required_flag='0' typ='0' datatype='1'
+		 alias='Version' detailsearch='1' index_flag='0' gui_id='1320'/>
+	<z:row alias_id='521' type='1' table_name='129' field_name='file_decompression_technique' required_flag='0'
+		 typ='0' datatype='1' alias='Kompressionstechnik' detailsearch='1' index_flag='0' gui_id='1320'/>
+	<z:row alias_id='522' type='1' table_name='129' field_name='specification' required_flag='0' typ='0' datatype='1'
+		 alias='Bildpunkttiefe' detailsearch='1' index_flag='0' gui_id='1320'/>
+	<z:row alias_id='53' type='1' table_name='48' field_name='mod_type' required_flag='0' typ='-1' datatype='1'
+		 prttype='' alias='mod_type' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='534' type='1' table_name='610' field_name='geometric_object_type' required_flag='0' typ='128'
+		 datatype='2' prttype='FBGeoGeometrietyp' alias='Geometrietyp' detailsearch='1' index_flag='0' rtf='318' dtd_element='geometric-object-type'
+		 obj_class='1' gui_id='5064' codelist_id='515'/>
+	<z:row alias_id='535' type='1' table_name='610' field_name='geometric_object_count' required_flag='0' typ='128'
+		 datatype='0' prttype='FBGeoElementanzahl' alias='Elementanzahl' detailsearch='0' index_flag='0' rtf='319' dtd_element='geometric-object-count'
+		 obj_class='1' gui_id='5065'/>
+	<z:row alias_id='537' type='1' table_name='79' field_name='resolution_ground' required_flag='0' typ='128' datatype='0'
+		 prttype='FBGeoBodenauflösung' alias='Bodenauflösung' detailsearch='0' index_flag='0' rtf='307' dtd_element='resolution-ground'
+		 obj_class='1' gui_id='3525'/>
+	<z:row alias_id='538' type='1' table_name='79' field_name='resolution_scan' required_flag='0' typ='128' datatype='0'
+		 prttype='FBGeoScanauflösung' alias='Scanauflösung' detailsearch='0' index_flag='0' rtf='308' dtd_element='resolution-scan'
+		 obj_class='1' gui_id='3525'/>
+	<z:row alias_id='54' type='0' table_name='T011_obj_geo' field_name='' required_flag='0' typ='128' datatype='0'
+		 prttype='2' prttab='1' alias='Geo...' expimp='1' detailsearch='0' index_flag='0' obj_class='1'/>
+	<z:row alias_id='541' type='1' table_name='54' field_name='obj_id' required_flag='0' typ='0' datatype='1' prttype=''
+		 prttab='3' alias='Objekt-ID' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='5410' type='1' table_name='54' field_name='mod_type' required_flag='0' typ='-1' datatype='1'
+		 prttype='' alias='Änderungskennzeichen' detailsearch='0' index_flag='0' rtf='318'/>
+	<z:row alias_id='5411' type='1' table_name='54' field_name='keyc_incl_w_dataset' required_flag='0' typ='0' datatype='0'
+		 alias='Im Datensatz enthalten' detailsearch='0' index_flag='0' dtd_element='keyc-incl-w-dataset' obj_class='1'/>
+	<z:row alias_id='5412' type='1' table_name='54' field_name='pos_accuracy_vertical' required_flag='0' typ='128'
+		 datatype='2' prttype='FBGeoHoehengenauigkeit' alias='Höhengenauigkeit' detailsearch='1' index_flag='0' rtf='309'
+		 dtd_element='pos-accuracy-vertical' obj_class='1' gui_id='5069'/>
+	<z:row alias_id='5413' type='1' table_name='54' field_name='vector_topology_level' required_flag='0' typ='128'
+		 datatype='2' prttype='FBGeoTopoInfo' alias='Topologieinformation' detailsearch='1' index_flag='0' rtf='317' dtd_element='vector-topology-level'
+		 obj_class='1' gui_id='5063' codelist_id='528'/>
+	<z:row alias_id='542' type='1' table_name='54' field_name='method' required_flag='0' typ='128' datatype='1'
+		 prttype='FBGeoMethode' alias='Herstellungsprozess' detailsearch='1' index_flag='1' rtf='323' dtd_element='method-of-production'
+		 obj_class='1'/>
+	<z:row alias_id='543' type='1' table_name='54' field_name='coord' required_flag='0' typ='128' datatype='1' prttype='FBGeoRaumbezugssystem_coord'
+		 alias='Raumbezugssystem' detailsearch='0' index_flag='1' rtf='305' dtd_element='co-ordinate-system' obj_class='1'/>
+	<z:row alias_id='544' type='1' table_name='54' field_name='referencesystem_id' required_flag='0' typ='128' datatype='2'
+		 prttype='FBGeoRaumbezugssystem_refSysId' alias='Raumbezugssystem' detailsearch='1' index_flag='0' rtf='305' dtd_element='reference-system-id'
+		 obj_class='1' gui_id='3500' codelist_id='100'/>
+	<z:row alias_id='545' type='1' table_name='54' field_name='rec_exact' required_flag='0' typ='128' datatype='2'
+		 prttype='FBGeoLagegenauigkeit' alias='Lagegenauigkeit' detailsearch='1' index_flag='0' rtf='310' dtd_element='resolution'
+		 obj_class='1'/>
+	<z:row alias_id='546' type='1' table_name='54' field_name='rec_grade' required_flag='0' typ='128' datatype='2'
+		 prttype='FBGeoErfassungsgrad' alias='Erfassungsgrad' detailsearch='1' index_flag='1' rtf='304' dtd_element='degree-of-record'
+		 obj_class='1'/>
+	<z:row alias_id='547' type='1' table_name='54' field_name='special_base' required_flag='0' typ='128' datatype='1'
+		 prttype='FBGeoFachlGrundlage' alias='Fachliche Grundlage' detailsearch='1' index_flag='1' rtf='320' dtd_element='technical-base'
+		 obj_class='1'/>
+	<z:row alias_id='548' type='1' table_name='54' field_name='data_base' required_flag='0' typ='128' datatype='1'
+		 prttype='FBGeoDatengrundlage' alias='Datengrundlage' detailsearch='1' index_flag='1' rtf='321' dtd_element='data'
+		 obj_class='1'/>
+	<z:row alias_id='549' type='1' table_name='54' field_name='hierarchy_level' required_flag='2' typ='128' datatype='2'
+		 prttype='FBGeoDatensatzDatenserie' alias='Datensatz/Datenserie' detailsearch='1' index_flag='0' rtf='301' dtd_element='hierarchy-level'
+		 obj_class='1' gui_id='5061' codelist_id='525'/>
+	<z:row alias_id='550' type='1' table_name='68' field_name='date' required_flag='0' typ='128' datatype='0' prttype='FBGeoSchlüsselkatalogDatum'
+		 alias='Datum' detailsearch='0' index_flag='0' rtf='315' dtd_element='key-date' obj_class='1' gui_id='3535'/>
+	<z:row alias_id='551' type='1' table_name='68' field_name='edition' required_flag='0' typ='128' datatype='0'
+		 prttype='FBGeoSchlüsselkatalogVersion' alias='Version' detailsearch='0' index_flag='0' rtf='316' dtd_element='edition'
+		 obj_class='1' gui_id='3535'/>
+	<z:row alias_id='560' type='1' table_name='84' field_name='symbol_date' required_flag='0' typ='128' datatype='0'
+		 prttype='FBGeoSymbolDatum' alias='Datum' detailsearch='0' index_flag='0' rtf='312' dtd_element='symbol-date'
+		 obj_class='1' gui_id='3555'/>
+	<z:row alias_id='561' type='1' table_name='84' field_name='edition' required_flag='0' typ='128' datatype='0'
+		 prttype='FBGeoSymbolVersion' alias='Version' detailsearch='0' index_flag='0' rtf='313' dtd_element='edition'
+		 obj_class='1' gui_id='3555'/>
+	<z:row alias_id='570' type='0' table_name='T011_obj_geo_supplinfo' required_flag='0' typ='1024' datatype='0'
+		 prttype='2' prttab='1' alias='Attributinformation' expimp='1' detailsearch='0' index_flag='0' obj_class='1'/>
+	<z:row alias_id='571' type='1' table_name='570' field_name='obj_id' required_flag='0' typ='0' datatype='1' prttab='3'
+		 alias='obj_id' detailsearch='0' index_flag='0' gui_id='5070'/>
+	<z:row alias_id='572' type='1' table_name='570' field_name='line' required_flag='0' typ='0' datatype='2' alias='line'
+		 detailsearch='0' index_flag='0' gui_id='5070'/>
+	<z:row alias_id='574' type='1' table_name='570' field_name='feature_type' required_flag='0' typ='128' datatype='1'
+		 prttype='FBGeoSachdaten' alias='Sachdaten' detailsearch='1' index_flag='0' rtf='322' dtd_element='feature-type'
+		 obj_class='1' gui_id='5070'/>
+	<z:row alias_id='577' type='1' table_name='570' field_name='mod_type' required_flag='0' typ='0' datatype='1'
+		 alias='mod_type' detailsearch='0' index_flag='0' gui_id='5070'/>
+	<z:row alias_id='580' type='0' table_name='T0113_dataset_reference' required_flag='0' typ='1024' datatype='0'
+		 prttab='1' alias='Datensatzzeitbezug' expimp='1' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='581' type='1' table_name='580' field_name='obj_id' required_flag='0' typ='0' datatype='1' prttab='3'
+		 alias='obj_id' detailsearch='0' index_flag='0' gui_id='5080'/>
+	<z:row alias_id='582' type='1' table_name='580' field_name='line' required_flag='0' typ='0' datatype='2' alias='line'
+		 detailsearch='0' index_flag='0' gui_id='5080'/>
+	<z:row alias_id='583' type='1' table_name='580' field_name='date' required_flag='0' typ='0' datatype='1' alias='Datum'
+		 detailsearch='1' index_flag='0' dtd_element='reference-date' obj_class='6' gui_id='5080'/>
+	<z:row alias_id='584' type='1' table_name='580' field_name='type' required_flag='0' typ='0' datatype='2' alias='Typ'
+		 detailsearch='1' index_flag='0' dtd_element='dataset-reference-type' obj_class='6' gui_id='5080' codelist_id='502'/>
+	<z:row alias_id='585' type='1' table_name='580' field_name='mod_type' required_flag='0' typ='0' datatype='1'
+		 alias='mod_type' detailsearch='0' index_flag='0' gui_id='5080'/>
+	<z:row alias_id='590' type='0' table_name='T0112_media_option' required_flag='0' typ='1024' datatype='0' prttab='1'
+		 alias='Objekte: Medienoption' expimp='1' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='591' type='1' table_name='590' field_name='obj_id' required_flag='0' typ='0' datatype='1' prttab='3'
+		 alias='obj_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='592' type='1' table_name='590' field_name='line' required_flag='0' typ='0' datatype='2' alias='line'
+		 detailsearch='0' index_flag='0'/>
+	<z:row alias_id='593' type='1' table_name='590' field_name='medium_name' required_flag='0' typ='4064' datatype='2'
+		 prttype='ZIMedienoption' alias='Mediumname' detailsearch='1' index_flag='0' dtd_element='medium-name' obj_class='6'
+		 gui_id='1310' codelist_id='520'/>
+	<z:row alias_id='594' type='1' table_name='590' field_name='medium_note' required_flag='0' typ='0' datatype='1'
+		 prttype='ZIMedienoption' alias='Speicherort' detailsearch='1' index_flag='0' dtd_element='medium-note' obj_class='6'
+		 gui_id='5090'/>
+	<z:row alias_id='595' type='1' table_name='590' field_name='transfer_size' required_flag='0' typ='0' datatype='1'
+		 prttype='ZIMedienoption' alias='Datenvolumen' detailsearch='1' index_flag='0' dtd_element='transfer-size' obj_class='6'
+		 gui_id='5050'/>
+	<z:row alias_id='596' type='1' table_name='590' field_name='mod_type' required_flag='0' typ='0' datatype='1'
+		 alias='mod_type' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='599' type='1' table_name='301' field_name='loc_town_no' required_flag='0' typ='0' datatype='1'
+		 alias='loc_town_no' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='6' type='1' table_name='1' field_name='obj_name' required_flag='511' typ='32' datatype='1'
+		 prttype='Objektname' alias='Objektname' detailsearch='1' index_flag='1' rtf='100' dtd_element='title' obj_class='0'/>
+	<z:row alias_id='610' type='0' table_name='T011_obj_geo_vector' required_flag='0' typ='1024' datatype='0' prttype='2'
+		 prttab='1' alias='Vektorformat' expimp='1' detailsearch='0' index_flag='0' obj_class='1'/>
+	<z:row alias_id='611' type='1' table_name='610' field_name='obj_id' required_flag='0' typ='0' datatype='1' prttab='3'
+		 alias='obj_id' detailsearch='0' index_flag='0' obj_class='1' gui_id='5064'/>
+	<z:row alias_id='612' type='1' table_name='610' field_name='line' required_flag='0' typ='0' datatype='2' alias='line'
+		 detailsearch='0' index_flag='0' obj_class='1' gui_id='5064'/>
+	<z:row alias_id='615' type='1' table_name='610' field_name='mod_type' required_flag='0' typ='0' datatype='1'
+		 alias='mod_type' detailsearch='0' index_flag='0' obj_class='1' gui_id='5064'/>
+	<z:row alias_id='630' type='0' table_name='T011_obj_serv_operation' required_flag='0' typ='512' datatype='0'
+		 prttab='1' alias='Dienst...' expimp='1' detailsearch='0' index_flag='0' obj_class='3'/>
+	<z:row alias_id='6301' type='1' table_name='630' field_name='obj_id' required_flag='0' typ='0' datatype='1'
+		 prttab='3' alias='obj_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='6302' type='1' table_name='630' field_name='line' required_flag='0' typ='0' datatype='2' alias='line'
+		 detailsearch='0' index_flag='0'/>
+	<z:row alias_id='6303' type='1' table_name='630' field_name='name' required_flag='0' typ='512' datatype='1'
+		 prttype='FBSerOp' alias='Name der Operation' detailsearch='1' index_flag='1' rtf='507' obj_class='3'/>
+	<z:row alias_id='6304' type='1' table_name='630' field_name='descr' required_flag='0' typ='512' datatype='1'
+		 prttype='FBSerOp' alias='Beschreibung' detailsearch='1' index_flag='1' rtf='508' obj_class='3'/>
+	<z:row alias_id='6305' type='1' table_name='630' field_name='invocation_name' required_flag='0' typ='512' datatype='1'
+		 prttype='FBSerOp' alias='Aufruf' detailsearch='1' index_flag='1' rtf='509' obj_class='3'/>
+	<z:row alias_id='6306' type='1' table_name='630' field_name='mod_type' required_flag='0' typ='0' datatype='1'
+		 alias='Änderungskennzeichen' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='631' type='0' table_name='T011_obj_serv_op_platform' required_flag='0' typ='512' datatype='0'
+		 prttype='2' prttab='1' alias='Dienst...' expimp='1' detailsearch='0' index_flag='0' obj_class='3'/>
+	<z:row alias_id='6311' type='1' table_name='631' field_name='obj_id' required_flag='0' typ='0' datatype='1'
+		 prttab='3' alias='obj_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='6312' type='1' table_name='631' field_name='line' required_flag='0' typ='0' datatype='2' alias='line'
+		 detailsearch='0' index_flag='0'/>
+	<z:row alias_id='6313' type='1' table_name='631' field_name='dcp_line' required_flag='0' typ='0' datatype='2'
+		 alias='dcp_line' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='6314' type='1' table_name='631' field_name='platform' required_flag='0' typ='512' datatype='1'
+		 alias='Verteilte Installationsplattformen' detailsearch='1' index_flag='1' obj_class='3'/>
+	<z:row alias_id='6315' type='1' table_name='631' field_name='mod_type' required_flag='0' typ='0' datatype='1'
+		 alias='Änderungskennzeichen' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='632' type='0' table_name='T011_obj_serv_op_connpoint' required_flag='0' typ='512' datatype='0'
+		 prttype='2' prttab='1' alias='Dienst...' expimp='1' detailsearch='0' index_flag='0' obj_class='3'/>
+	<z:row alias_id='6321' type='1' table_name='632' field_name='obj_id' required_flag='0' typ='0' datatype='1'
+		 prttab='3' alias='obj_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='6322' type='1' table_name='632' field_name='line' required_flag='0' typ='0' datatype='2' alias='line'
+		 detailsearch='0' index_flag='0'/>
+	<z:row alias_id='6323' type='1' table_name='632' field_name='conn_line' required_flag='0' typ='0' datatype='2'
+		 alias='conn_line' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='6324' type='1' table_name='632' field_name='connect_point' required_flag='0' typ='512' datatype='1'
+		 alias='Zugriffsadresse' detailsearch='1' index_flag='1' obj_class='3'/>
+	<z:row alias_id='6325' type='1' table_name='632' field_name='mod_type' required_flag='0' typ='0' datatype='1'
+		 alias='Änderungskennzeichen' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='633' type='0' table_name='T011_obj_serv_op_depends' required_flag='0' typ='512' datatype='0'
+		 prttype='2' prttab='1' alias='Dienst...' expimp='1' detailsearch='0' index_flag='0' obj_class='3'/>
+	<z:row alias_id='6331' type='1' table_name='633' field_name='obj_id' required_flag='0' typ='0' datatype='1'
+		 prttab='3' alias='obj_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='6332' type='1' table_name='633' field_name='line' required_flag='0' typ='0' datatype='2' alias='line'
+		 detailsearch='0' index_flag='0'/>
+	<z:row alias_id='6333' type='1' table_name='633' field_name='dep_line' required_flag='0' typ='0' datatype='2'
+		 alias='dep_line' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='6334' type='1' table_name='633' field_name='depends_on' required_flag='0' typ='512' datatype='1'
+		 alias='Abhängigkeiten' detailsearch='1' index_flag='1' obj_class='3'/>
+	<z:row alias_id='6335' type='1' table_name='633' field_name='mod_type' required_flag='0' typ='0' datatype='1'
+		 alias='Änderungskennzeichen' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='634' type='0' table_name='T011_obj_serv_op_para' required_flag='0' typ='512' datatype='0' prttype='2'
+		 prttab='1' alias='Dienst...' expimp='1' detailsearch='0' index_flag='0' obj_class='3'/>
+	<z:row alias_id='6341' type='1' table_name='634' field_name='obj_id' required_flag='0' typ='0' datatype='1'
+		 prttab='3' alias='obj_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='6342' type='1' table_name='634' field_name='line' required_flag='0' typ='0' datatype='2' alias='line'
+		 detailsearch='0' index_flag='0'/>
+	<z:row alias_id='6343' type='1' table_name='634' field_name='para_line' required_flag='0' typ='0' datatype='2'
+		 alias='para_line' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='6344' type='1' table_name='634' field_name='name' required_flag='0' typ='512' datatype='1'
+		 alias='Name' detailsearch='1' index_flag='1' obj_class='3'/>
+	<z:row alias_id='6345' type='1' table_name='634' field_name='direction' required_flag='0' typ='512' datatype='1'
+		 alias='Richtung' detailsearch='1' index_flag='1' obj_class='3'/>
+	<z:row alias_id='6346' type='1' table_name='634' field_name='descr' required_flag='0' typ='512' datatype='1'
+		 alias='Beschreibung' detailsearch='1' index_flag='1' obj_class='3'/>
+	<z:row alias_id='6347' type='1' table_name='634' field_name='optional' required_flag='0' typ='512' datatype='2'
+		 alias='Ist Optional' detailsearch='0' index_flag='0' obj_class='3'/>
+	<z:row alias_id='6348' type='1' table_name='634' field_name='repeatability' required_flag='0' typ='512' datatype='2'
+		 alias='Mehrfachangabe' detailsearch='0' index_flag='0' obj_class='3'/>
+	<z:row alias_id='6349' type='1' table_name='634' field_name='mod_type' required_flag='0' typ='0' datatype='1'
+		 alias='Änderungskennzeichen' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='68' type='0' table_name='T011_obj_geo_keyc' field_name='' required_flag='0' typ='128' datatype='0'
+		 prttype='2' prttab='1' alias='Geo...' expimp='1' detailsearch='0' index_flag='0' obj_class='1'/>
+	<z:row alias_id='69' type='1' table_name='68' field_name='obj_id' required_flag='0' typ='0' datatype='1' prttype=''
+		 prttab='3' alias='obj_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='70' type='1' table_name='68' field_name='line' required_flag='0' typ='-1' datatype='2' prttype=''
+		 alias='line' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='71' type='1' table_name='68' field_name='subject_cat' required_flag='0' typ='128' datatype='1'
+		 prttype='FBGeoSchlüsselkatalogTitel' alias='Schlüsselkatalog Titel' detailsearch='1' index_flag='1' rtf='314'
+		 dtd_element='key-catalogue' obj_class='1'/>
+	<z:row alias_id='72' type='1' table_name='68' field_name='mod_type' required_flag='0' typ='-1' datatype='1'
+		 prttype='' alias='mod_type' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='73' type='0' table_name='T011_obj_geo_spatial_rep' required_flag='0' typ='128' datatype='0'
+		 prttype='2' prttab='1' alias='Geo...' expimp='1' detailsearch='0' index_flag='0' obj_class='1'/>
+	<z:row alias_id='731' type='1' table_name='73' field_name='obj_id' required_flag='0' typ='0' datatype='1' prttab='3'
+		 alias='obj_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='732' type='1' table_name='73' field_name='line' required_flag='0' typ='-1' datatype='2' alias='line'
+		 detailsearch='0' index_flag='0'/>
+	<z:row alias_id='733' type='1' table_name='73' field_name='type' required_flag='0' typ='128' datatype='2' prttype='FBGeoDigRep'
+		 alias='Digitale Repräsentation' detailsearch='1' index_flag='0' rtf='303' dtd_element='spatial-representation-type'
+		 obj_class='1' gui_id='5062' codelist_id='526'/>
+	<z:row alias_id='734' type='1' table_name='73' field_name='mod_type' required_flag='0' typ='0' datatype='1'
+		 alias='Änderungskennzeichen' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='74' type='0' table_name='T011_obj_geo_topic_cat' required_flag='0' typ='128' datatype='0' prttype='2'
+		 prttab='1' alias='Geo...' expimp='1' detailsearch='0' index_flag='0' obj_class='1'/>
+	<z:row alias_id='741' type='1' table_name='74' field_name='obj_id' required_flag='0' typ='0' datatype='1' prttab='3'
+		 alias='obj_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='742' type='1' table_name='74' field_name='line' required_flag='0' typ='-1' datatype='2' alias='line'
+		 detailsearch='0' index_flag='0'/>
+	<z:row alias_id='743' type='1' table_name='74' field_name='topic_category' required_flag='2' typ='128' datatype='2'
+		 prttype='FBGeoThemenKategorie' alias='Themenkategorie' detailsearch='1' index_flag='0' rtf='302' dtd_element='dataset-topic-category'
+		 obj_class='1' gui_id='5060' codelist_id='527'/>
+	<z:row alias_id='744' type='1' table_name='74' field_name='mod_type' required_flag='0' typ='0' datatype='1'
+		 alias='Änderungskennzeichen' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='79' type='0' table_name='T011_obj_geo_scale' field_name='' required_flag='0' typ='128' datatype='0'
+		 prttype='2' prttab='1' alias='Geo...' expimp='1' detailsearch='0' index_flag='0' obj_class='1'/>
+	<z:row alias_id='8' type='1' table_name='1' field_name='create_time' required_flag='511' typ='0' datatype='1'
+		 prttype='Erstellungsdatum' alias='Erstellt am' detailsearch='0' index_flag='0' rtf='1304' dtd_element='date-of-creation'
+		 obj_class='0'/>
+	<z:row alias_id='80' type='1' table_name='79' field_name='obj_id' required_flag='0' typ='0' datatype='1' prttype=''
+		 prttab='3' alias='obj_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='81' type='1' table_name='79' field_name='line' required_flag='0' typ='-1' datatype='2' prttype=''
+		 alias='line' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='82' type='1' table_name='79' field_name='scale' required_flag='0' typ='128' datatype='1' prttype='FBGeoMaßstab'
+		 alias='Maßstab' detailsearch='1' index_flag='0' rtf='306' dtd_element='publication-scale' obj_class='1' gui_id='3525'/>
+	<z:row alias_id='83' type='1' table_name='79' field_name='mod_type' required_flag='0' typ='-1' datatype='1'
+		 prttype='' alias='mod_type' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='84' type='0' table_name='T011_obj_geo_symc' field_name='' required_flag='0' typ='128' datatype='0'
+		 prttype='2' prttab='1' alias='Geo...' expimp='1' detailsearch='0' index_flag='0' obj_class='1'/>
+	<z:row alias_id='85' type='1' table_name='84' field_name='obj_id' required_flag='0' typ='0' datatype='1' prttype=''
+		 prttab='3' alias='obj_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='86' type='1' table_name='84' field_name='line' required_flag='0' typ='-1' datatype='2' prttype=''
+		 alias='line' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='87' type='1' table_name='84' field_name='symbol_cat' required_flag='0' typ='128' datatype='1'
+		 prttype='FBGeoSymbolKatalog' alias='Symbolkatalog Titel' detailsearch='1' index_flag='1' rtf='311' dtd_element='symbol-catalogue'
+		 obj_class='1'/>
+	<z:row alias_id='88' type='1' table_name='84' field_name='mod_type' required_flag='0' typ='-1' datatype='1'
+		 prttype='' alias='Änderungskennzeichen' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='89' type='0' table_name='T011_obj_literatur' field_name='' required_flag='0' typ='256' datatype='0'
+		 prttype='2' prttab='1' alias='Dokument...' expimp='1' detailsearch='0' index_flag='0' obj_class='2'/>
+	<z:row alias_id='9' type='1' table_name='1' field_name='create_id' required_flag='511' typ='0' datatype='1'
+		 prttype='ErstelltVon' alias='Erstellt von' detailsearch='0' index_flag='0' rtf='1303' dtd_element='creator-identifier'
+		 obj_class='0'/>
+	<z:row alias_id='90' type='1' table_name='89' field_name='obj_id' required_flag='0' typ='0' datatype='1' prttype=''
+		 prttab='3' alias='obj_id' detailsearch='0' index_flag='0'/>
+	<z:row alias_id='91' type='1' table_name='89' field_name='autor' required_flag='0' typ='256' datatype='1' prttype='FBLitAutor'
+		 alias='Autor' detailsearch='1' index_flag='1' rtf='401' dtd_element='author' obj_class='2'/>
+	<z:row alias_id='92' type='1' table_name='89' field_name='publisher' required_flag='0' typ='256' datatype='1'
+		 prttype='FBLitHerausgeber' alias='Herausgeber' detailsearch='1' index_flag='1' rtf='402' dtd_element='editor'
+		 obj_class='2'/>
+	<z:row alias_id='93' type='1' table_name='89' field_name='typ' required_flag='0' typ='256' datatype='1' prttype='FBLitDokumenttyp'
+		 alias='Dokumenttyp' detailsearch='1' index_flag='1' rtf='403' dtd_element='type-of-document' obj_class='2'/>
+	<z:row alias_id='94' type='1' table_name='89' field_name='publish_in' required_flag='0' typ='256' datatype='1'
+		 prttype='FBLitErschienenIn' alias='Erschienen in' detailsearch='1' index_flag='1' rtf='404' dtd_element='published-in'
+		 obj_class='2'/>
+	<z:row alias_id='95' type='1' table_name='89' field_name='volume' required_flag='0' typ='256' datatype='1' prttype='FBLitVolume'
+		 alias='Band/Heft' detailsearch='1' index_flag='0' rtf='405' dtd_element='volume' obj_class='2'/>
+	<z:row alias_id='96' type='1' table_name='89' field_name='sides' required_flag='0' typ='256' datatype='1' prttype='FBLitSeiten'
+		 alias='Seiten' detailsearch='1' index_flag='0' rtf='406' dtd_element='pages' obj_class='2'/>
+	<z:row alias_id='97' type='1' table_name='89' field_name='publish_year' required_flag='0' typ='256' datatype='1'
+		 prttype='FBLitErscheinungsjahr' alias='Erscheinungsjahr' detailsearch='1' index_flag='0' rtf='407' dtd_element='year'
+		 obj_class='2'/>
+	<z:row alias_id='98' type='1' table_name='89' field_name='publish_loc' required_flag='0' typ='256' datatype='1'
+		 prttype='FBLitErscheinungsort' alias='Erscheinungsort' detailsearch='1' index_flag='1' rtf='408' dtd_element='publishing-place'
+		 obj_class='2'/>
+	<z:row alias_id='99' type='1' table_name='89' field_name='loc' required_flag='0' typ='256' datatype='1' prttype='FBLitStandort'
+		 alias='Standort' detailsearch='1' index_flag='1' rtf='409' dtd_element='location' obj_class='2'/>
+</rs:data>
+</xml>

@@ -1,0 +1,1270 @@
+<xml xmlns:s='uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882'
+	xmlns:dt='uuid:C2F41010-65B3-11d1-A29F-00AA00C14882'
+	xmlns:rs='urn:schemas-microsoft-com:rowset'
+	xmlns:z='#RowsetSchema'>
+<s:Schema id='RowsetSchema'>
+	<s:ElementType name='row' content='eltOnly' rs:updatable='true'>
+		<s:AttributeType name='obj_id' rs:number='1' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='T011_obj_data_para'
+			 rs:basecolumn='obj_id' rs:keycolumn='true'>
+			<s:datatype dt:type='string' dt:maxLength='40' rs:maybenull='false'/>
+		</s:AttributeType>
+		<s:AttributeType name='line' rs:number='2' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='T011_obj_data_para'
+			 rs:basecolumn='line' rs:keycolumn='true'>
+			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true' rs:maybenull='false'/>
+		</s:AttributeType>
+		<s:AttributeType name='parameter' rs:number='3' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T011_obj_data_para' rs:basecolumn='parameter'>
+			<s:datatype dt:type='string' dt:maxLength='80'/>
+		</s:AttributeType>
+		<s:AttributeType name='unit' rs:number='4' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T011_obj_data_para' rs:basecolumn='unit'>
+			<s:datatype dt:type='string' dt:maxLength='120'/>
+		</s:AttributeType>
+		<s:AttributeType name='mod_type' rs:number='5' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T011_obj_data_para' rs:basecolumn='mod_type'>
+			<s:datatype dt:type='string' dt:maxLength='1'/>
+		</s:AttributeType>
+		<s:extends type='rs:rowbase'/>
+	</s:ElementType>
+</s:Schema>
+<rs:data>
+	<z:row obj_id='DB3E2D89-F22D-4D3C-9566-7EA590F47F96' line='1' parameter='Gewässerdaten' unit='Name, Gewässerlänge, Gebietskennzahl, Flusskilometer, Gewässereinzugsgebiet, MQ, MNQ, RW/HW'
+		 mod_type='D'/>
+	<z:row obj_id='DB3E2D89-F22D-4D3C-9566-7EA590F47F96' line='2' parameter='Daten zur Querverbauung' unit='Betriebszustand, Wehrhöhe, Länge der Ausleitung, Rückstaulänge, Verwendungszweck, Art der Querverbauung, Eigentümer, Rec'
+		 mod_type='D'/>
+	<z:row obj_id='DB3E2D89-F22D-4D3C-9566-7EA590F47F96' line='3' parameter='Daten zur Wasserkraftanlage' unit='Betriebszustand, Jahr der Inbetriebnahme, Art der WKA, Turbinenzahl, -art und -leistung, Entnahmemenge, Nutzfallhöhe'
+		 mod_type='D'/>
+	<z:row obj_id='84A516B8-0C64-4A36-862C-AE31F41F21B4' line='3' parameter='Daten zur Wasserkraftanlage' unit='Betriebszustand, Jahr der Inbetriebnahme, Art der WKA, Turbinenzahl, -art und -leistung, Entnahmemenge, Nutzfallhöhe'
+		 mod_type='U'/>
+	<z:row obj_id='84A516B8-0C64-4A36-862C-AE31F41F21B4' line='4' parameter='Fischereiökologische Daten' unit='Wehr passierbar, Fischaufstiegsanlage (FAA): vorhanden-funktionstüchtig, Bauweise, Rechenabstand, Mindestwassermenge'
+		 mod_type='U'/>
+	<z:row obj_id='73F88440-9CDD-4DA7-A123-1D124FDC0F66' line='2' parameter='Gewässer' unit='morpho-, hydrologisch- und pyhsiographische Daten'
+		 mod_type='U'/>
+	<z:row obj_id='73F88440-9CDD-4DA7-A123-1D124FDC0F66' line='3' parameter='Fang' unit='Methodik, Technik, Fangraten'
+		 mod_type='U'/>
+	<z:row obj_id='EB0C78EE-B25C-465A-B403-2F450E92D224' line='1' parameter='VG 1: leichte Böden diluvialer Herkunft, vorherrschend D1-D2'
+		 unit='landwirtschaftliche Nutzfläche, durchschnittlicher Grünlandanteil, landwirtschaftliche Vergleichszahl'
+		 mod_type='D'/>
+	<z:row obj_id='EB0C78EE-B25C-465A-B403-2F450E92D224' line='2' parameter='VG 2: Braunerden des Löß (Lö3-Lö5) sowie rostfarbene Waldböden (Lö5-Lö'
+		 unit='landwirtschaftliche Nutzfläche, durchschnittlicher Grünlandanteil, landwirtschaftliche Vergleichszahl'
+		 mod_type='D'/>
+	<z:row obj_id='EB0C78EE-B25C-465A-B403-2F450E92D224' line='3' parameter='VG 3: flachgründigen Lößböden, tief eingeschnittene Täler'
+		 unit='landwirtschaftliche Nutzfläche, durchschnittlicher Grünlandanteil, landwirtschaftliche Vergleichszahl'
+		 mod_type='D'/>
+	<z:row obj_id='EB0C78EE-B25C-465A-B403-2F450E92D224' line='4' parameter='VG 4: lehmig verwitterte Gneisböden, lehmig sandige Schieferböden (V7-V8)'
+		 unit='landwirtschaftliche Nutzfläche, durchschnittlicher Grünlandanteil, landwirtschaftliche Vergleichszahl'
+		 mod_type='D'/>
+	<z:row obj_id='EB0C78EE-B25C-465A-B403-2F450E92D224' line='5' parameter='VG 5: Verwitterungsböden (V9)' unit='landwirtschaftliche Nutzfläche, durchschnittlicher Grünlandanteil, landwirtschaftliche Vergleichszahl'
+		 mod_type='D'/>
+	<z:row obj_id='EB0C78EE-B25C-465A-B403-2F450E92D224' line='6' parameter='VG 6: Verwitterungsböden, Lehm bis lehmiger Sand (V5 und V6) '
+		 unit='landwirtschaftliche Nutzfläche, durchschnittlicher Grünlandanteil, landwirtschaftliche Vergleichszahl'
+		 mod_type='D'/>
+	<z:row obj_id='EB0C78EE-B25C-465A-B403-2F450E92D224' line='7' parameter='VG 7: Lößböden (Lö5-Lö6) ' unit='landwirtschaftliche Nutzfläche, durchschnittlicher Grünlandanteil, landwirtschaftliche Vergleichszahl'
+		 mod_type='D'/>
+	<z:row obj_id='EB0C78EE-B25C-465A-B403-2F450E92D224' line='8' parameter='VG 8: braune Waldböden (NStE Lö3-Lö4 )'
+		 unit='landwirtschaftliche Nutzfläche, durchschnittlicher Grünlandanteil, landwirtschaftliche Vergleichszahl'
+		 mod_type='D'/>
+	<z:row obj_id='EB0C78EE-B25C-465A-B403-2F450E92D224' line='9' parameter='VG 9:  Lößböden (Lö2-Lö4)' unit='landwirtschaftliche Nutzfläche, durchschnittlicher Grünlandanteil, landwirtschaftliche Vergleichszahl'
+		 mod_type='D'/>
+	<z:row obj_id='EB0C78EE-B25C-465A-B403-2F450E92D224' line='10' parameter='VG 10: leichte Böden diluvialer Entstehung (D3 und D4)'
+		 unit='landwirtschaftliche Nutzfläche, durchschnittlicher Grünlandanteil, landwirtschaftliche Vergleichszahl'
+		 mod_type='D'/>
+	<z:row obj_id='240F27B3-049C-4299-85E5-7A999A99F21E' line='10' parameter='Lufttemperatur' unit='in 20 cm und 200 cm Höhe'
+		 mod_type='U'/>
+	<z:row obj_id='240F27B3-049C-4299-85E5-7A999A99F21E' line='11' parameter='Bodentemperatur' unit='in 5 cm und in 20 cm Tiefe'
+		 mod_type='I'/>
+	<z:row obj_id='240F27B3-049C-4299-85E5-7A999A99F21E' line='12' parameter='Luftfeuchte' unit='in %, in 200 cm Höhe'
+		 mod_type='U'/>
+	<z:row obj_id='240F27B3-049C-4299-85E5-7A999A99F21E' line='13' parameter='Windgeschwindigkeit' unit='in m/s, in 250 cm Höhe'
+		 mod_type='U'/>
+	<z:row obj_id='240F27B3-049C-4299-85E5-7A999A99F21E' line='14' parameter='Niederschlag' unit='in mm, in 100 cm Höhe'
+		 mod_type='U'/>
+	<z:row obj_id='240F27B3-049C-4299-85E5-7A999A99F21E' line='15' parameter='Blattnässe' unit='in %, in 100 cm Höhe'
+		 mod_type='U'/>
+	<z:row obj_id='240F27B3-049C-4299-85E5-7A999A99F21E' line='16' parameter='Globalstrahlung' unit='in W/m2, in 200 cm Höhe'
+		 mod_type='U'/>
+	<z:row obj_id='7C61138B-F77E-4B40-8BF6-58F8D506E597' line='1' parameter='Messung der Deposition in Bulk-Sammlern'
+		 unit='in kg/ha/a, 314 cm² Auffangfläche, 1 m Höhe' mod_type='D'/>
+	<z:row obj_id='3AC4D1C3-DD9F-4791-A366-5AC431C9E534' line='1' parameter='P' unit='CAL-löslich' mod_type='U'/>
+	<z:row obj_id='73F88440-9CDD-4DA7-A123-1D124FDC0F66' line='1' parameter='Fischart' unit='Größenklassen, Gewicht, Besiedlungsdichte'
+		 mod_type='U'/>
+	<z:row obj_id='7C61138B-F77E-4B40-8BF6-58F8D506E597' line='2' parameter='Schwefel' unit='in kg/ha/a' mod_type='I'/>
+	<z:row obj_id='7C61138B-F77E-4B40-8BF6-58F8D506E597' line='3' parameter='Stickstoff' unit='in kg/ha/a' mod_type='I'/>
+	<z:row obj_id='3AC4D1C3-DD9F-4791-A366-5AC431C9E534' line='2' parameter='K' unit='CAL-löslich' mod_type='U'/>
+	<z:row obj_id='3AC4D1C3-DD9F-4791-A366-5AC431C9E534' line='3' parameter='Mg' unit='pflanzenverfügbar' mod_type='U'/>
+	<z:row obj_id='3AC4D1C3-DD9F-4791-A366-5AC431C9E534' line='4' parameter='pH-Wert' unit='Kalkversorgung  Kalkversorgung'
+		 mod_type='U'/>
+	<z:row obj_id='755D0871-DB27-441A-B25C-64BC0D1B9860' line='1' parameter='xxx' unit='xxx' mod_type='D'/>
+	<z:row obj_id='1C6E3D75-81BB-4D4F-94AB-70DC0E8A31AE' line='1' parameter='VG 1: leichte Böden diluvialer Herkunft, vorherrschend D1-D2'
+		 unit='landwirtschaftliche Nutzfläche, durchschnittlicher Grünlandanteil, landwirtschaftliche Vergleichszahl'
+		 mod_type='D'/>
+	<z:row obj_id='1C6E3D75-81BB-4D4F-94AB-70DC0E8A31AE' line='2' parameter='VG 2: Braunerden des Löß (Lö3-Lö5) sowie rostfarbene Waldböden (Lö5-Lö'
+		 unit='landwirtschaftliche Nutzfläche, durchschnittlicher Grünlandanteil, landwirtschaftliche Vergleichszahl'
+		 mod_type='D'/>
+	<z:row obj_id='1C6E3D75-81BB-4D4F-94AB-70DC0E8A31AE' line='3' parameter='VG 3: flachgründigen Lößböden, tief eingeschnittene Täler'
+		 unit='landwirtschaftliche Nutzfläche, durchschnittlicher Grünlandanteil, landwirtschaftliche Vergleichszahl'
+		 mod_type='D'/>
+	<z:row obj_id='1C6E3D75-81BB-4D4F-94AB-70DC0E8A31AE' line='4' parameter='VG 4: lehmig verwitterte Gneisböden, lehmig sandige Schieferböden (V7-V8)'
+		 unit='landwirtschaftliche Nutzfläche, durchschnittlicher Grünlandanteil, landwirtschaftliche Vergleichszahl'
+		 mod_type='D'/>
+	<z:row obj_id='1C6E3D75-81BB-4D4F-94AB-70DC0E8A31AE' line='5' parameter='VG 5: Verwitterungsböden (V9)' unit='landwirtschaftliche Nutzfläche, durchschnittlicher Grünlandanteil, landwirtschaftliche Vergleichszahl'
+		 mod_type='D'/>
+	<z:row obj_id='1C6E3D75-81BB-4D4F-94AB-70DC0E8A31AE' line='6' parameter='VG 6: Verwitterungsböden, Lehm bis lehmiger Sand (V5 und V6) '
+		 unit='landwirtschaftliche Nutzfläche, durchschnittlicher Grünlandanteil, landwirtschaftliche Vergleichszahl'
+		 mod_type='D'/>
+	<z:row obj_id='1C6E3D75-81BB-4D4F-94AB-70DC0E8A31AE' line='7' parameter='VG 7: Lößböden (Lö5-Lö6) ' unit='landwirtschaftliche Nutzfläche, durchschnittlicher Grünlandanteil, landwirtschaftliche Vergleichszahl'
+		 mod_type='D'/>
+	<z:row obj_id='1C6E3D75-81BB-4D4F-94AB-70DC0E8A31AE' line='8' parameter='VG 8: braune Waldböden (NStE Lö3-Lö4 )'
+		 unit='landwirtschaftliche Nutzfläche, durchschnittlicher Grünlandanteil, landwirtschaftliche Vergleichszahl'
+		 mod_type='D'/>
+	<z:row obj_id='1C6E3D75-81BB-4D4F-94AB-70DC0E8A31AE' line='9' parameter='VG 9:  Lößböden (Lö2-Lö4)' unit='landwirtschaftliche Nutzfläche, durchschnittlicher Grünlandanteil, landwirtschaftliche Vergleichszahl'
+		 mod_type='D'/>
+	<z:row obj_id='1C6E3D75-81BB-4D4F-94AB-70DC0E8A31AE' line='10' parameter='VG 10: leichte Böden diluvialer Entstehung (D3 und D4)'
+		 unit='landwirtschaftliche Nutzfläche, durchschnittlicher Grünlandanteil, landwirtschaftliche Vergleichszahl'
+		 mod_type='D'/>
+	<z:row obj_id='1C6E3D75-81BB-4D4F-94AB-70DC0E8A31AE' line='11' parameter='VG 11: mineralische Nassböden mit hohen Lehm- und Tonanteilen (Al3)'
+		 unit='landwirtschaftliche Nutzfläche, durchschnittlicher Grünlandanteil, landwirtschaftliche Vergleichszahl'
+		 mod_type='D'/>
+	<z:row obj_id='C679CBED-656F-43E0-A17C-786DCABCA96F' line='1' parameter='VG 1: leichte Böden diluvialer Herkunft, vorherrschend D1-D2'
+		 unit='landwirtschaftliche Nutzfläche, durchschnittlicher Grünlandanteil, landwirtschaftliche Vergleichszahl'
+		 mod_type='D'/>
+	<z:row obj_id='C679CBED-656F-43E0-A17C-786DCABCA96F' line='2' parameter='VG 2: Braunerden des Löß (Lö3-Lö5) sowie rostfarbene Waldböden (Lö5-Lö'
+		 unit='landwirtschaftliche Nutzfläche, durchschnittlicher Grünlandanteil, landwirtschaftliche Vergleichszahl'
+		 mod_type='D'/>
+	<z:row obj_id='C679CBED-656F-43E0-A17C-786DCABCA96F' line='3' parameter='VG 3: flachgründigen Lößböden, tief eingeschnittene Täler'
+		 unit='landwirtschaftliche Nutzfläche, durchschnittlicher Grünlandanteil, landwirtschaftliche Vergleichszahl'
+		 mod_type='D'/>
+	<z:row obj_id='C679CBED-656F-43E0-A17C-786DCABCA96F' line='5' parameter='VG 5: Verwitterungsböden (V9)' unit='landwirtschaftliche Nutzfläche, durchschnittlicher Grünlandanteil, landwirtschaftliche Vergleichszahl'
+		 mod_type='D'/>
+	<z:row obj_id='C679CBED-656F-43E0-A17C-786DCABCA96F' line='7' parameter='VG 7: Lößböden (Lö5-Lö6) ' unit='landwirtschaftliche Nutzfläche, durchschnittlicher Grünlandanteil, landwirtschaftliche Vergleichszahl'
+		 mod_type='D'/>
+	<z:row obj_id='C679CBED-656F-43E0-A17C-786DCABCA96F' line='8' parameter='VG 8: braune Waldböden (NStE Lö3-Lö4 )'
+		 unit='landwirtschaftliche Nutzfläche, durchschnittlicher Grünlandanteil, landwirtschaftliche Vergleichszahl'
+		 mod_type='D'/>
+	<z:row obj_id='C679CBED-656F-43E0-A17C-786DCABCA96F' line='4' parameter='VG 4: lehmig verwitterte Gneisböden, lehmig sandige Schieferböden (V7-V8)'
+		 unit='landwirtschaftliche Nutzfläche, durchschnittlicher Grünlandanteil, landwirtschaftliche Vergleichszahl'
+		 mod_type='D'/>
+	<z:row obj_id='C679CBED-656F-43E0-A17C-786DCABCA96F' line='6' parameter='VG 6: Verwitterungsböden, Lehm bis lehmiger Sand (V5 und V6) '
+		 unit='landwirtschaftliche Nutzfläche, durchschnittlicher Grünlandanteil, landwirtschaftliche Vergleichszahl'
+		 mod_type='D'/>
+	<z:row obj_id='C679CBED-656F-43E0-A17C-786DCABCA96F' line='9' parameter='VG 9:  Lößböden (Lö2-Lö4)' unit='landwirtschaftliche Nutzfläche, durchschnittlicher Grünlandanteil, landwirtschaftliche Vergleichszahl'
+		 mod_type='D'/>
+	<z:row obj_id='C679CBED-656F-43E0-A17C-786DCABCA96F' line='10' parameter='VG 10: leichte Böden diluvialer Entstehung (D3 und D4)'
+		 unit='landwirtschaftliche Nutzfläche, durchschnittlicher Grünlandanteil, landwirtschaftliche Vergleichszahl'
+		 mod_type='D'/>
+	<z:row obj_id='8D6BB63D-AE37-4A15-8FC1-7EBCB30A7B5C' line='1' parameter='administrative Angaben sowie zu Firma/Betreiber'
+		 unit='' mod_type='I'/>
+	<z:row obj_id='8D6BB63D-AE37-4A15-8FC1-7EBCB30A7B5C' line='2' parameter='Standort der Anlage' unit='Gemeinde'
+		 mod_type='I'/>
+	<z:row obj_id='8D6BB63D-AE37-4A15-8FC1-7EBCB30A7B5C' line='3' parameter='Datum der Inbetriebnahme' unit='' mod_type='I'/>
+	<z:row obj_id='F1EF262E-E558-4649-9FE6-D1F4DAA5EB96' line='1' parameter='administrative Abgaben sowie zu Firma/Betreiber'
+		 unit='' mod_type='I'/>
+	<z:row obj_id='F1EF262E-E558-4649-9FE6-D1F4DAA5EB96' line='2' parameter='Standort der Windenergieanlage' unit='Rechtswert/Hochwert'
+		 mod_type='I'/>
+	<z:row obj_id='F1EF262E-E558-4649-9FE6-D1F4DAA5EB96' line='3' parameter='Zugehörigkeit zu Vorranggebiet WEA'
+		 unit='' mod_type='I'/>
+	<z:row obj_id='F3D148C0-CE51-11D3-8BF6-00105A493192' line='1' parameter='Grundwasserstand, -menge, -beschaffenheit'
+		 unit='--' mod_type='N'/>
+	<z:row obj_id='F3D15014-CE51-11D3-8BF6-00105A493192' line='1' parameter='Niederschlagsmenge' unit='mm' mod_type='N'/>
+	<z:row obj_id='F3D1506B-CE51-11D3-8BF6-00105A493192' line='1' parameter='Wasserstand' unit='cm' mod_type='N'/>
+	<z:row obj_id='F3D15343-CE51-11D3-8BF6-00105A493192' line='1' parameter='Klärschlammenge in t/a Trockensubstanz'
+		 unit='--' mod_type='N'/>
+	<z:row obj_id='F3D1539E-CE51-11D3-8BF6-00105A493192' line='1' parameter='Abfallgebührenstruktur und -höhe'
+		 unit='--' mod_type='N'/>
+	<z:row obj_id='F3D15FB1-CE51-11D3-8BF6-00105A493192' line='1' mod_type='N'/>
+	<z:row obj_id='9E48DB24-8BD4-11D5-9350-0048543011FC' line='1' parameter='Luftdruck' unit='' mod_type='N'/>
+	<z:row obj_id='9E48DB24-8BD4-11D5-9350-0048543011FC' line='2' parameter='Lufttemperatur' unit='' mod_type='N'/>
+	<z:row obj_id='9E48DB24-8BD4-11D5-9350-0048543011FC' line='3' parameter='Luftfeuchte' unit='' mod_type='N'/>
+	<z:row obj_id='9E48DB24-8BD4-11D5-9350-0048543011FC' line='4' parameter='Windgeschwindigkeit' unit='' mod_type='N'/>
+	<z:row obj_id='9E48DB24-8BD4-11D5-9350-0048543011FC' line='5' parameter='Windrichtung' unit='' mod_type='N'/>
+	<z:row obj_id='9E48DB24-8BD4-11D5-9350-0048543011FC' line='6' parameter='Niederschlag' unit='' mod_type='N'/>
+	<z:row obj_id='9E48DB24-8BD4-11D5-9350-0048543011FC' line='7' parameter='Verdunstung' unit='' mod_type='N'/>
+	<z:row obj_id='9E48DB24-8BD4-11D5-9350-0048543011FC' line='8' parameter='Taupunkttemperatur' unit='' mod_type='N'/>
+	<z:row obj_id='9E48DB2A-8BD4-11D5-9350-0048543011FC' line='1' parameter='Ammonium' unit='' mod_type='N'/>
+	<z:row obj_id='5AEC35FD-CE55-11D3-8BF6-00105A493192' line='1' parameter='Schwermetalle und Arsen; ergänzende Angaben'
+		 unit='' mod_type='N'/>
+	<z:row obj_id='9E48DB2A-8BD4-11D5-9350-0048543011FC' line='2' parameter='Nitrat' unit='' mod_type='N'/>
+	<z:row obj_id='9E48DB2A-8BD4-11D5-9350-0048543011FC' line='3' parameter='Nitrit' unit='' mod_type='N'/>
+	<z:row obj_id='9E48DB2A-8BD4-11D5-9350-0048543011FC' line='4' parameter='Otho-Phosphat' unit='' mod_type='N'/>
+	<z:row obj_id='9E48DB2A-8BD4-11D5-9350-0048543011FC' line='5' parameter='Gesamteisen' unit='' mod_type='N'/>
+	<z:row obj_id='9E48DB2A-8BD4-11D5-9350-0048543011FC' line='6' parameter='Gesamthärte' unit='' mod_type='N'/>
+	<z:row obj_id='9E48DB2A-8BD4-11D5-9350-0048543011FC' line='7' parameter='Sauerstoffgehalt' unit='' mod_type='N'/>
+	<z:row obj_id='9E48DB2A-8BD4-11D5-9350-0048543011FC' line='8' parameter='pH-Wert' unit='' mod_type='N'/>
+	<z:row obj_id='9E48DB2A-8BD4-11D5-9350-0048543011FC' line='9' parameter='Biochemischer Sauerstoffbedarf' unit=''
+		 mod_type='N'/>
+	<z:row obj_id='9E48DB2A-8BD4-11D5-9350-0048543011FC' line='10' parameter='Alkalität/ Salzsäurebindungsvermögen'
+		 unit='' mod_type='N'/>
+	<z:row obj_id='9E48DB2D-8BD4-11D5-9350-0048543011FC' line='1' parameter='Ammonium' unit='' mod_type='N'/>
+	<z:row obj_id='9E48DB2D-8BD4-11D5-9350-0048543011FC' line='2' parameter='Nitrat' unit='' mod_type='N'/>
+	<z:row obj_id='9E48DB2D-8BD4-11D5-9350-0048543011FC' line='3' parameter='Nitrit' unit='' mod_type='N'/>
+	<z:row obj_id='9E48DB2D-8BD4-11D5-9350-0048543011FC' line='4' parameter='Otho-Phosphat' unit='' mod_type='N'/>
+	<z:row obj_id='9E48DB2D-8BD4-11D5-9350-0048543011FC' line='5' parameter='Gesamteisen' unit='' mod_type='N'/>
+	<z:row obj_id='9E48DB2D-8BD4-11D5-9350-0048543011FC' line='6' parameter='Gesamthärte' unit='' mod_type='N'/>
+	<z:row obj_id='9E48DB2D-8BD4-11D5-9350-0048543011FC' line='7' parameter='Sauerstoffgehalt' unit='' mod_type='N'/>
+	<z:row obj_id='9E48DB2D-8BD4-11D5-9350-0048543011FC' line='8' parameter='pH-Wert' unit='' mod_type='N'/>
+	<z:row obj_id='9E48DB2D-8BD4-11D5-9350-0048543011FC' line='9' parameter='Biochemischer Sauerstoffbedarf' unit=''
+		 mod_type='N'/>
+	<z:row obj_id='9E48DB2D-8BD4-11D5-9350-0048543011FC' line='10' parameter='Alkalität/ Salzsäurebindungsvermögen'
+		 unit='' mod_type='N'/>
+	<z:row obj_id='4AD9A975-0A6D-11D6-9350-0048543011FC' line='1' parameter='Geometrisches und Trigonometrisches Alignement'
+		 unit='' mod_type='N'/>
+	<z:row obj_id='4AD9A975-0A6D-11D6-9350-0048543011FC' line='2' parameter='Drahtalignement' unit='' mod_type='N'/>
+	<z:row obj_id='4AD9A975-0A6D-11D6-9350-0048543011FC' line='3' parameter='Triangulation' unit='' mod_type='N'/>
+	<z:row obj_id='4AD9A975-0A6D-11D6-9350-0048543011FC' line='4' parameter='Kombiniertes Netz' unit='' mod_type='N'/>
+	<z:row obj_id='4AD9A975-0A6D-11D6-9350-0048543011FC' line='5' parameter='Trilateration' unit='' mod_type='N'/>
+	<z:row obj_id='4AD9A975-0A6D-11D6-9350-0048543011FC' line='6' parameter='Geometrisches,  Hydrostatisches und Trigonometrisches Nivellement'
+		 unit='' mod_type='N'/>
+	<z:row obj_id='4AD9A975-0A6D-11D6-9350-0048543011FC' line='7' parameter='Klinometer' unit='' mod_type='N'/>
+	<z:row obj_id='4AD9A975-0A6D-11D6-9350-0048543011FC' line='8' parameter='Pfeilerneigung' unit='' mod_type='N'/>
+	<z:row obj_id='C30785C6-8C9A-11D5-9350-0048543011FC' line='9' parameter='pH-Wert' unit='' mod_type='N'/>
+	<z:row obj_id='C30785C6-8C9A-11D5-9350-0048543011FC' line='10' parameter='Ammonium' unit='' mod_type='N'/>
+	<z:row obj_id='C30785C6-8C9A-11D5-9350-0048543011FC' line='11' parameter='Nitrat' unit='' mod_type='N'/>
+	<z:row obj_id='C30785C6-8C9A-11D5-9350-0048543011FC' line='12' parameter='Nitrit' unit='' mod_type='N'/>
+	<z:row obj_id='C30785C6-8C9A-11D5-9350-0048543011FC' line='13' parameter='Orthophosphat' unit='' mod_type='N'/>
+	<z:row obj_id='C30785C6-8C9A-11D5-9350-0048543011FC' line='14' parameter='Sulfat' unit='' mod_type='N'/>
+	<z:row obj_id='EAE629AB-CB12-11D5-9350-0048543011FC' line='1' parameter='Standort' unit='' mod_type='N'/>
+	<z:row obj_id='EAE629AB-CB12-11D5-9350-0048543011FC' line='2' parameter='HW/ RW' unit='' mod_type='N'/>
+	<z:row obj_id='EAE629AB-CB12-11D5-9350-0048543011FC' line='3' parameter='Bauliche Angaben' unit='' mod_type='N'/>
+	<z:row obj_id='EAE629AC-CB12-11D5-9350-0048543011FC' line='1' parameter='Standort' unit='' mod_type='N'/>
+	<z:row obj_id='EAE629AC-CB12-11D5-9350-0048543011FC' line='2' parameter='HW/ RW' unit='' mod_type='N'/>
+	<z:row obj_id='EAE629AC-CB12-11D5-9350-0048543011FC' line='3' parameter='Bauliche Angaben' unit='' mod_type='N'/>
+	<z:row obj_id='EAE629AD-CB12-11D5-9350-0048543011FC' line='1' parameter='Standort' unit='' mod_type='N'/>
+	<z:row obj_id='EAE629AD-CB12-11D5-9350-0048543011FC' line='2' parameter='HW/ RW' unit='' mod_type='N'/>
+	<z:row obj_id='4AD9A975-0A6D-11D6-9350-0048543011FC' line='9' parameter='Pendellot, Schwimmlot und Optisches Lot'
+		 unit='' mod_type='N'/>
+	<z:row obj_id='EAE629AE-CB12-11D5-9350-0048543011FC' line='1' parameter='Standort' unit='' mod_type='N'/>
+	<z:row obj_id='EAE629AE-CB12-11D5-9350-0048543011FC' line='2' parameter='HW/ RW' unit='' mod_type='N'/>
+	<z:row obj_id='EAE629AE-CB12-11D5-9350-0048543011FC' line='3' parameter='Bauliche Angaben' unit='' mod_type='N'/>
+	<z:row obj_id='EAE629AF-CB12-11D5-9350-0048543011FC' line='1' parameter='Standort' unit='' mod_type='N'/>
+	<z:row obj_id='EAE629AF-CB12-11D5-9350-0048543011FC' line='2' parameter='HW/ RW' unit='' mod_type='N'/>
+	<z:row obj_id='EAE629AF-CB12-11D5-9350-0048543011FC' line='3' parameter='Bauliche Angaben' unit='' mod_type='N'/>
+	<z:row obj_id='4AD9A975-0A6D-11D6-9350-0048543011FC' line='10' parameter='Referenzpendel' unit='' mod_type='N'/>
+	<z:row obj_id='4AD9A975-0A6D-11D6-9350-0048543011FC' line='11' parameter='Fugenmessung' unit='' mod_type='N'/>
+	<z:row obj_id='4AD9A975-0A6D-11D6-9350-0048543011FC' line='12' parameter='Extensometer' unit='' mod_type='N'/>
+	<z:row obj_id='4AD9A975-0A6D-11D6-9350-0048543011FC' line='13' parameter='Sohlenwasserdruck' unit='' mod_type='N'/>
+	<z:row obj_id='4AD9A975-0A6D-11D6-9350-0048543011FC' line='14' parameter='Porenwasserdruck' unit='' mod_type='N'/>
+	<z:row obj_id='4AD9A975-0A6D-11D6-9350-0048543011FC' line='15' parameter='Wasserstand' unit='' mod_type='N'/>
+	<z:row obj_id='4AD9A975-0A6D-11D6-9350-0048543011FC' line='16' parameter='Sickerwasserabfluss' unit='' mod_type='N'/>
+	<z:row obj_id='4AD9A975-0A6D-11D6-9350-0048543011FC' line='17' parameter='Mauertemperatur' unit='' mod_type='N'/>
+	<z:row obj_id='13A43007-CBA4-11D5-9350-0048543011FC' line='1' parameter='Probekreisbäume' unit='' mod_type='N'/>
+	<z:row obj_id='13A43007-CBA4-11D5-9350-0048543011FC' line='2' parameter='Totholz' unit='' mod_type='N'/>
+	<z:row obj_id='13A43007-CBA4-11D5-9350-0048543011FC' line='3' parameter='Waldverjüngung' unit='' mod_type='N'/>
+	<z:row obj_id='13A43007-CBA4-11D5-9350-0048543011FC' line='4' parameter='Boden- bzw. Strauchvegetation' unit=''
+		 mod_type='N'/>
+	<z:row obj_id='13A43007-CBA4-11D5-9350-0048543011FC' line='5' parameter='Standortsdaten' unit='' mod_type='N'/>
+	<z:row obj_id='13A43007-CBA4-11D5-9350-0048543011FC' line='6' parameter='Holz- bzw. Nichtholzbodenfläche der Inventurgebietsfläche'
+		 unit='' mod_type='N'/>
+	<z:row obj_id='8F590A41-E7E2-11D5-9350-0048543011FC' line='4' parameter='Freisetzungen' unit='' mod_type='N'/>
+	<z:row obj_id='8F590A41-E7E2-11D5-9350-0048543011FC' line='5' parameter='Betreiber' unit='' mod_type='N'/>
+	<z:row obj_id='8F590A41-E7E2-11D5-9350-0048543011FC' line='6' parameter='Personen' unit='' mod_type='N'/>
+	<z:row obj_id='8F590A41-E7E2-11D5-9350-0048543011FC' line='7' parameter='Ärzte' unit='' mod_type='N'/>
+	<z:row obj_id='97DDE3A6-C6D6-11D5-9350-0048543011FC' line='1' parameter='Baumbestand' unit='' mod_type='N'/>
+	<z:row obj_id='97DDE3A6-C6D6-11D5-9350-0048543011FC' line='2' parameter='Baumpflege' unit='' mod_type='N'/>
+	<z:row obj_id='97DDE3A6-C6D6-11D5-9350-0048543011FC' line='3' parameter='Alterstruktur' unit='' mod_type='N'/>
+	<z:row obj_id='97DDE3A6-C6D6-11D5-9350-0048543011FC' line='4' parameter='Unterwuchs' unit='' mod_type='N'/>
+	<z:row obj_id='97DDE3A6-C6D6-11D5-9350-0048543011FC' line='5' parameter='Bewirtschaftungsart' unit='' mod_type='N'/>
+	<z:row obj_id='97DDE3A6-C6D6-11D5-9350-0048543011FC' line='6' parameter='Strukturen' unit='' mod_type='N'/>
+	<z:row obj_id='97DDE3A6-C6D6-11D5-9350-0048543011FC' line='7' parameter='floristische Ausstattung' unit='' mod_type='N'/>
+	<z:row obj_id='97DDE3A6-C6D6-11D5-9350-0048543011FC' line='8' parameter='faunistische Ausstattung' unit='' mod_type='N'/>
+	<z:row obj_id='97DDE3A6-C6D6-11D5-9350-0048543011FC' line='9' parameter='aktuelle/ potentielle Gefährdung'
+		 unit='' mod_type='N'/>
+	<z:row obj_id='97DDE3A6-C6D6-11D5-9350-0048543011FC' line='10' parameter='Flurstück' unit='' mod_type='N'/>
+	<z:row obj_id='97DDE3A6-C6D6-11D5-9350-0048543011FC' line='11' parameter='Gemarkung' unit='' mod_type='N'/>
+	<z:row obj_id='97DDE3A6-C6D6-11D5-9350-0048543011FC' line='12' parameter='Gemeinde' unit='' mod_type='N'/>
+	<z:row obj_id='97DDE3A8-C6D6-11D5-9350-0048543011FC' line='1' parameter='Name des Gewässers' unit='' mod_type='N'/>
+	<z:row obj_id='97DDE3A8-C6D6-11D5-9350-0048543011FC' line='2' parameter='Gewässernummer' unit='' mod_type='N'/>
+	<z:row obj_id='97DDE3A8-C6D6-11D5-9350-0048543011FC' line='3' parameter='Ort' unit='' mod_type='N'/>
+	<z:row obj_id='97DDE3A8-C6D6-11D5-9350-0048543011FC' line='4' parameter='Meßtischblatt' unit='' mod_type='N'/>
+	<z:row obj_id='97DDE3A8-C6D6-11D5-9350-0048543011FC' line='5' parameter='Hochwert/ Rechtswert, müNN' unit=''
+		 mod_type='N'/>
+	<z:row obj_id='97DDE3A8-C6D6-11D5-9350-0048543011FC' line='6' parameter='Wasserfläche' unit='m2' mod_type='N'/>
+	<z:row obj_id='97DDE3A8-C6D6-11D5-9350-0048543011FC' line='7' parameter='Eigentümer' unit='' mod_type='N'/>
+	<z:row obj_id='97DDE3A8-C6D6-11D5-9350-0048543011FC' line='8' parameter='Gemarkung' unit='' mod_type='N'/>
+	<z:row obj_id='97DDE3A8-C6D6-11D5-9350-0048543011FC' line='9' parameter='Flurstück' unit='' mod_type='N'/>
+	<z:row obj_id='97DDE3A8-C6D6-11D5-9350-0048543011FC' line='10' parameter='Nutzer/ Nutzung' unit='' mod_type='N'/>
+	<z:row obj_id='97DDE3A8-C6D6-11D5-9350-0048543011FC' line='11' parameter='Umland/ Umlandfläche/ Umlandnutzer'
+		 unit='' mod_type='N'/>
+	<z:row obj_id='97DDE3A8-C6D6-11D5-9350-0048543011FC' line='12' parameter='Biotopbeschreibung, Biotopausprägung'
+		 unit='' mod_type='N'/>
+	<z:row obj_id='97DDE3A8-C6D6-11D5-9350-0048543011FC' line='13' parameter='Beschattung' unit='' mod_type='N'/>
+	<z:row obj_id='97DDE3A8-C6D6-11D5-9350-0048543011FC' line='14' parameter='Gehölze' unit='' mod_type='N'/>
+	<z:row obj_id='97DDE3A8-C6D6-11D5-9350-0048543011FC' line='15' parameter='Flora/ Vegetation' unit='' mod_type='N'/>
+	<z:row obj_id='97DDE3A8-C6D6-11D5-9350-0048543011FC' line='16' parameter='Fauna' unit='' mod_type='N'/>
+	<z:row obj_id='97DDE3A8-C6D6-11D5-9350-0048543011FC' line='17' parameter='Wassertiefe' unit='' mod_type='N'/>
+	<z:row obj_id='97DDE3A8-C6D6-11D5-9350-0048543011FC' line='18' parameter='Zufluß' unit='' mod_type='N'/>
+	<z:row obj_id='97DDE3A8-C6D6-11D5-9350-0048543011FC' line='19' parameter='Damm' unit='' mod_type='N'/>
+	<z:row obj_id='97DDE3A8-C6D6-11D5-9350-0048543011FC' line='20' parameter='Schäden' unit='' mod_type='N'/>
+	<z:row obj_id='97DDE3A8-C6D6-11D5-9350-0048543011FC' line='21' parameter='notwendige Pflege' unit='' mod_type='N'/>
+	<z:row obj_id='13A4300A-CBA4-11D5-9350-0048543011FC' line='1' parameter='Flurstück' unit='' mod_type='N'/>
+	<z:row obj_id='13A4300A-CBA4-11D5-9350-0048543011FC' line='2' parameter='Gemarkung' unit='' mod_type='N'/>
+	<z:row obj_id='13A4300A-CBA4-11D5-9350-0048543011FC' line='3' parameter='Art der Maßnahme' unit='' mod_type='N'/>
+	<z:row obj_id='13A4300A-CBA4-11D5-9350-0048543011FC' line='4' parameter='Antragsteller' unit='' mod_type='N'/>
+	<z:row obj_id='13A4300A-CBA4-11D5-9350-0048543011FC' line='5' parameter='Datum der Antragstellung' unit='' mod_type='N'/>
+	<z:row obj_id='13A4300A-CBA4-11D5-9350-0048543011FC' line='6' parameter='Entscheidungsbehörde' unit='' mod_type='N'/>
+	<z:row obj_id='13A4300A-CBA4-11D5-9350-0048543011FC' line='7' parameter='Datum der Entscheidung' unit='' mod_type='N'/>
+	<z:row obj_id='13A4300A-CBA4-11D5-9350-0048543011FC' line='8' parameter='Art und Inhalt der Entscheidung' unit=''
+		 mod_type='N'/>
+	<z:row obj_id='13A4300A-CBA4-11D5-9350-0048543011FC' line='9' parameter='wesentliche Auflagen/ Nebenbestimmungen'
+		 unit='' mod_type='N'/>
+	<z:row obj_id='8F590A41-E7E2-11D5-9350-0048543011FC' line='1' parameter='Angaben zu gentechnischen Anlagen'
+		 unit='' mod_type='N'/>
+	<z:row obj_id='8F590A41-E7E2-11D5-9350-0048543011FC' line='2' parameter='Angaben zu gentechnischen Arbeiten'
+		 unit='' mod_type='N'/>
+	<z:row obj_id='8F590A41-E7E2-11D5-9350-0048543011FC' line='3' parameter='Organismen' unit='' mod_type='N'/>
+	<z:row obj_id='4AD9A980-0A6D-11D6-9350-0048543011FC' line='9' parameter='Talsperreninhalt' unit='Mio m3' mod_type='N'/>
+	<z:row obj_id='4AD9A980-0A6D-11D6-9350-0048543011FC' line='10' parameter='Zufluß zu Talsperre' unit='m3/s/d'
+		 mod_type='N'/>
+	<z:row obj_id='4AD9A980-0A6D-11D6-9350-0048543011FC' line='11' parameter='Trinkwasserabgabe' unit='m3/s (Tagesmittelwert)'
+		 mod_type='N'/>
+	<z:row obj_id='4AD9A980-0A6D-11D6-9350-0048543011FC' line='12' parameter='Brauchwasserabgabe' unit='m3/s (Tagesmittelwert)'
+		 mod_type='N'/>
+	<z:row obj_id='4AD9A980-0A6D-11D6-9350-0048543011FC' line='13' parameter='Wildbettabgabe' unit='m3/s (Tagesmittelwert)'
+		 mod_type='N'/>
+	<z:row obj_id='4AD9A980-0A6D-11D6-9350-0048543011FC' line='14' parameter='Niederschlag' unit='mm; l/m2' mod_type='N'/>
+	<z:row obj_id='4AD9A980-0A6D-11D6-9350-0048543011FC' line='15' parameter='Sichttiefe' unit='m' mod_type='N'/>
+	<z:row obj_id='E1C31EF4-81CE-4CFD-8207-EC0E0A8DCA6C' line='1' parameter='aktuelle adminsitrative Zuordnung'
+		 unit='Regierungsbezirk, Landkreis, kreisfreie Stadt,' mod_type='D'/>
+	<z:row obj_id='E1C31EF4-81CE-4CFD-8207-EC0E0A8DCA6C' line='2' parameter='adminsitrative Zuordnung vor 1989'
+		 unit='Altkreis DDR' mod_type='D'/>
+	<z:row obj_id='9B78DF8F-A820-4962-A378-3A15A5D0ECE6' line='1' parameter='Koordinaten' unit='Gauss-Krüger' mod_type='N'/>
+	<z:row obj_id='9B78DF8F-A820-4962-A378-3A15A5D0ECE6' line='2' parameter='Bohransatzpunkt' unit='m über NN'
+		 mod_type='N'/>
+	<z:row obj_id='9B78DF8F-A820-4962-A378-3A15A5D0ECE6' line='3' parameter='Endteufe' unit='m' mod_type='N'/>
+	<z:row obj_id='877B8AAC-E185-4BF5-9A8B-AF873BFD8021' line='1' parameter='Koordinaten' unit='Gauss-Krüger' mod_type='N'/>
+	<z:row obj_id='E1C31EF4-81CE-4CFD-8207-EC0E0A8DCA6C' line='3' parameter='aktuelle Aufbewahrungs- bzw. Fundstelle'
+		 unit='Adresse, Ansprechpartner' mod_type='D'/>
+	<z:row obj_id='0913676B-EE58-483C-B8FF-251F7A99A296' line='1' parameter='Laborativ ermittelte Parameter werden erfaßt.'
+		 unit='-' mod_type='N'/>
+	<z:row obj_id='7734BE34-0990-49BB-8A8E-0EEB902F2B54' line='3' parameter='Koordinaten' unit='Gauss-Krüger' mod_type='N'/>
+	<z:row obj_id='C271B4C3-1E55-4439-9823-3A5AB05B0FC7' line='1' parameter='Wildart' unit='Soll-/Istvergleich'
+		 mod_type='N'/>
+	<z:row obj_id='C271B4C3-1E55-4439-9823-3A5AB05B0FC7' line='2' parameter='Altersklassen' mod_type='N'/>
+	<z:row obj_id='C271B4C3-1E55-4439-9823-3A5AB05B0FC7' line='3' parameter='Geschlecht' mod_type='N'/>
+	<z:row obj_id='C271B4C3-1E55-4439-9823-3A5AB05B0FC7' line='4' parameter='Abschussplan' unit='ansonsten nur Stückzahl bei nicht geplanten Wildarten'
+		 mod_type='N'/>
+	<z:row obj_id='8A847828-BFC4-48C4-8593-10E6CCAF48D4' line='1' parameter='Flächen ' unit='nach Eigenjagd- und gemeinschaftlichen Jagdbezirken sowie Verwaltungsjagdbezirken'
+		 mod_type='N'/>
+	<z:row obj_id='8A847828-BFC4-48C4-8593-10E6CCAF48D4' line='2' parameter='Jahresjagdscheine und Dreijahresjagdscheine'
+		 unit='davon Jugendliche, Falkner, Frauen, Ausländer' mod_type='N'/>
+	<z:row obj_id='7655B013-D52A-481D-8C86-30F613370B1B' line='2' parameter='Chemische Analyse der Blattinhaltsstoffe'
+		 unit='bisher einmalig' mod_type='N'/>
+	<z:row obj_id='7655B013-D52A-481D-8C86-30F613370B1B' line='3' parameter='Analyse der Bodenfestphase' unit='bisher einmalig'
+		 mod_type='N'/>
+	<z:row obj_id='D5797981-EE12-4919-BC3C-90ACA45EFF66' line='1' parameter='den Kronenzustand' unit='jährlich'
+		 mod_type='N'/>
+	<z:row obj_id='D5797981-EE12-4919-BC3C-90ACA45EFF66' line='2' parameter='Chemische Analye der Blattinhaltsstoffe'
+		 unit='alle zwei Jahre' mod_type='N'/>
+	<z:row obj_id='D5797981-EE12-4919-BC3C-90ACA45EFF66' line='7' parameter='Stoffeinträge aus der Atmosphäre (im Waldbestand und auf der Freifläche)'
+		 unit='wöchentlich bis 1/4-jährlich: Niederschlagsmenge (pH, Leitfähigkeit), Makroelemente, Schwermetalle'
+		 mod_type='N'/>
+	<z:row obj_id='D5797981-EE12-4919-BC3C-90ACA45EFF66' line='9' parameter='Meteorologie (auf der Freifläche)'
+		 unit='Globalstrahlung, Luftfeuchtigkeit, Lufttemperatur, Bodentemperatur, Windrichtung, Windgeschwindigkeit, Niederschlag'
+		 mod_type='N'/>
+	<z:row obj_id='A3840095-1A3C-4C7E-8366-FF18B2A43DC8' line='1' parameter='Kalkungsfläche [ha] und Kalkmenge [t]'
+		 unit='Kalenderjahr' mod_type='N'/>
+	<z:row obj_id='9C8E5AC3-E6DC-43FA-8829-0186B5572DD3' line='1' parameter='Geräte-, Methoden- und Installationsinformationen '
+		 unit='zu jedem Datensatz' mod_type='N'/>
+	<z:row obj_id='6E0FCAAA-251B-444E-8E05-AE100066FFDA' line='1' parameter='Meta-Informationen' unit='zu räumlichen Messsituationen der einzelnen Messfelder'
+		 mod_type='N'/>
+	<z:row obj_id='A8EDE365-D430-4755-8E5E-80201DD3C6A4' line='1' parameter='Ertragskundliche Merkmale' unit='Baumart, Höhe, Brusthöhendurchmesser, Grünäste (0 - 3 u. 3 - 6 m), Grundfläche, HD-Verhältnis, Herkunft'
+		 mod_type='N'/>
+	<z:row obj_id='54510D63-E7C2-4FEF-85CD-C673E03FDA5D' line='1' parameter='Assimilation und Transpiration' unit=''
+		 mod_type='N'/>
+	<z:row obj_id='E792FAF5-F858-418C-83F3-FACA3D6CD7C3' line='1' parameter='Vegetation' unit='Angaben zu Arten, Deckungsgraden, Zeigerwerte nach Ellenberg, Soziabilität, Schichtenzugehörigkeit, Bodenvegetationstyp'
+		 mod_type='N'/>
+	<z:row obj_id='43164966-98CE-4185-8230-F84DA75C1165' line='1' parameter='Forstamt' unit='' mod_type='N'/>
+	<z:row obj_id='43164966-98CE-4185-8230-F84DA75C1165' line='2' parameter='Waldfläche' unit='in ha' mod_type='N'/>
+	<z:row obj_id='C679CBED-656F-43E0-A17C-786DCABCA96F' line='11' parameter='VG 11: mineralische Nassböden mit hohen Lehm- und Tonanteilen (Al3)'
+		 unit='landwirtschaftliche Nutzfläche, durchschnittlicher Grünlandanteil, landwirtschaftliche Vergleichszahl'
+		 mod_type='D'/>
+	<z:row obj_id='F1EF262E-E558-4649-9FE6-D1F4DAA5EB96' line='4' parameter='Nabenhöhe' unit='in m' mod_type='I'/>
+	<z:row obj_id='F1EF262E-E558-4649-9FE6-D1F4DAA5EB96' line='5' parameter='Rotordurchmesser' unit='in m' mod_type='I'/>
+	<z:row obj_id='F1EF262E-E558-4649-9FE6-D1F4DAA5EB96' line='6' parameter='Nennleistung' unit='in kW' mod_type='I'/>
+	<z:row obj_id='F1EF262E-E558-4649-9FE6-D1F4DAA5EB96' line='7' parameter='Betriebszustand' unit='in Betrieb oder nicht in Betrieb'
+		 mod_type='I'/>
+	<z:row obj_id='F1EF262E-E558-4649-9FE6-D1F4DAA5EB96' line='8' parameter='Energieertrag' unit='in kWh' mod_type='I'/>
+	<z:row obj_id='34F94DB0-FCD7-40C9-A79A-672C1EC75774' line='1' parameter='administrative Angaben sowie zu Firma/Betreiber'
+		 unit='' mod_type='I'/>
+	<z:row obj_id='34F94DB0-FCD7-40C9-A79A-672C1EC75774' line='2' parameter='Standort der Anlage' unit='Gemeinde'
+		 mod_type='I'/>
+	<z:row obj_id='34F94DB0-FCD7-40C9-A79A-672C1EC75774' line='3' parameter='Feuerungswärmeleistung' unit='in kW'
+		 mod_type='I'/>
+	<z:row obj_id='34F94DB0-FCD7-40C9-A79A-672C1EC75774' line='4' parameter='Datum der Inbetriebnahme' unit='' mod_type='I'/>
+	<z:row obj_id='78992812-E8A0-47CB-AF43-399229740451' line='1' parameter='administrative Angaben sowie zu Firma/betreiber'
+		 unit='' mod_type='I'/>
+	<z:row obj_id='78992812-E8A0-47CB-AF43-399229740451' line='2' parameter='Standort der Anlage' unit='Rechtswert/Hochwert'
+		 mod_type='I'/>
+	<z:row obj_id='78992812-E8A0-47CB-AF43-399229740451' line='3' parameter='Betriebsart des Kraftwerkes' unit='Kraftwerk (KW) und/oder Blockheizkraftwerk (BHKW)'
+		 mod_type='I'/>
+	<z:row obj_id='78992812-E8A0-47CB-AF43-399229740451' line='4' parameter='elektrische Nennleistung' unit='in kW'
+		 mod_type='I'/>
+	<z:row obj_id='43164966-98CE-4185-8230-F84DA75C1165' line='3' parameter='Holzboden' unit='in ha' mod_type='N'/>
+	<z:row obj_id='43164966-98CE-4185-8230-F84DA75C1165' line='4' parameter='Nichtholzboden' unit='in ha' mod_type='N'/>
+	<z:row obj_id='43164966-98CE-4185-8230-F84DA75C1165' line='5' parameter='Baumarten' unit='' mod_type='N'/>
+	<z:row obj_id='43164966-98CE-4185-8230-F84DA75C1165' line='6' parameter='Altersklassen' unit='' mod_type='N'/>
+	<z:row obj_id='43164966-98CE-4185-8230-F84DA75C1165' line='7' parameter='Standortsformengruppen' unit='' mod_type='N'/>
+	<z:row obj_id='43164966-98CE-4185-8230-F84DA75C1165' line='8' parameter='Waldfunktionen' unit='' mod_type='N'/>
+	<z:row obj_id='43164966-98CE-4185-8230-F84DA75C1165' line='9' parameter='Bestandeszieltyp' unit='' mod_type='N'/>
+	<z:row obj_id='43164966-98CE-4185-8230-F84DA75C1165' line='10' parameter='Bestandesbeschreibung' unit='' mod_type='N'/>
+	<z:row obj_id='43164966-98CE-4185-8230-F84DA75C1165' line='11' parameter='Betriebsart' unit='' mod_type='N'/>
+	<z:row obj_id='43164966-98CE-4185-8230-F84DA75C1165' line='12' parameter='Eigentumsart' unit='' mod_type='N'/>
+	<z:row obj_id='43164966-98CE-4185-8230-F84DA75C1165' line='13' parameter='Bestockungstypen' unit='' mod_type='N'/>
+	<z:row obj_id='43164966-98CE-4185-8230-F84DA75C1165' line='14' parameter='Klimastufen' unit='' mod_type='N'/>
+	<z:row obj_id='43164966-98CE-4185-8230-F84DA75C1165' line='15' parameter='Bestandesentstehung' unit='' mod_type='N'/>
+	<z:row obj_id='43164966-98CE-4185-8230-F84DA75C1165' line='16' parameter='Produktionziel' unit='' mod_type='N'/>
+	<z:row obj_id='43164966-98CE-4185-8230-F84DA75C1165' line='17' parameter='Befahrbarkeit' unit='' mod_type='N'/>
+	<z:row obj_id='43164966-98CE-4185-8230-F84DA75C1165' line='18' parameter='Standortsgefahren' unit='' mod_type='N'/>
+	<z:row obj_id='D04CE079-DB9A-4129-9342-616636A3A0C6' line='1' parameter='Zeitpunkt des Auftretens des Schadens'
+		 unit='' mod_type='N'/>
+	<z:row obj_id='D04CE079-DB9A-4129-9342-616636A3A0C6' line='2' parameter='Art des Schadenserregers' unit='' mod_type='N'/>
+	<z:row obj_id='D04CE079-DB9A-4129-9342-616636A3A0C6' line='3' parameter='Quantität des Schadenserregers' unit=''
+		 mod_type='N'/>
+	<z:row obj_id='D04CE079-DB9A-4129-9342-616636A3A0C6' line='4' parameter='Flächendeckung' unit='' mod_type='N'/>
+	<z:row obj_id='A8EDE365-D430-4755-8E5E-80201DD3C6A4' line='2' parameter='' unit='Höhe Kronenansatz, Höhe max. Kronenbreite, Höhe Totastansatz, Länge Totastbereich, Kennung, Kraftsche Stammklasse'
+		 mod_type='N'/>
+	<z:row obj_id='A8EDE365-D430-4755-8E5E-80201DD3C6A4' line='3' parameter='' unit='Kronenradius, Kronenwinkel, Kronenlänge, Kronenbreite, Länge Lichtkrone, Bestandesschicht, Vitalität'
+		 mod_type='N'/>
+	<z:row obj_id='A8EDE365-D430-4755-8E5E-80201DD3C6A4' line='4' parameter='Qualitative Merkmale unterteilt in 0 - 3 und 3 - 6 m Abschnitte'
+		 unit='Abholzigkeit, Astigkeit, Beginn Spiegelrinde, Beulen, Drehwuchs, Fäll- und Rückeschäden, Güteklassen,Sortim.
+Güteklasse'
+		 mod_type='N'/>
+	<z:row obj_id='A8EDE365-D430-4755-8E5E-80201DD3C6A4' line='5' parameter='Qualitative Merkmale ohne Unterteilung'
+		 unit='Krümmung, nicht definierte Rindenschäden, Rindenbrand, Rindenrisse, Rindenschäden, Schälschäden, Höhe Kronenansatz, '
+		 mod_type='N'/>
+	<z:row obj_id='A8EDE365-D430-4755-8E5E-80201DD3C6A4' line='6' parameter='' unit='Schleimfluss, Stammklasse, Trockenäste, Wasserreiser, Weißfäule'
+		 mod_type='N'/>
+	<z:row obj_id='A8EDE365-D430-4755-8E5E-80201DD3C6A4' line='7' parameter='Bestandesstrukturelle Merkmale' unit='Baumpositionen, Bestandesschicht, Baumhöhe, Kronenbreite, Kronenlänge, Kronenradius, Kronenwinkel'
+		 mod_type='N'/>
+	<z:row obj_id='A8EDE365-D430-4755-8E5E-80201DD3C6A4' line='8' parameter='' unit='Kennung, Kraftsche Stammklasse'
+		 mod_type='N'/>
+	<z:row obj_id='A8EDE365-D430-4755-8E5E-80201DD3C6A4' line='9' parameter='Vegetationsaufnahmen' unit='x/y Koordinaten zur Darstellung v. Polygonflächen mit verschiedenen Anteilen der Bodenvegetation'
+		 mod_type='N'/>
+	<z:row obj_id='A8EDE365-D430-4755-8E5E-80201DD3C6A4' line='10' parameter='' unit='Positionsdaten, Bodenvegetationstypen, Anteil der Bodenvegetationstypen auf der jeweiligen Fläche'
+		 mod_type='N'/>
+	<z:row obj_id='54510D63-E7C2-4FEF-85CD-C673E03FDA5D' line='2' parameter='Umweltbedingungen zum Messzeitpunkt am Messobjekt'
+		 unit='Lufttemperaturen , -Feuchtigkeiten sowie Objekttemperaturen und PAR-Strahlungen' mod_type='N'/>
+	<z:row obj_id='E792FAF5-F858-418C-83F3-FACA3D6CD7C3' line='2' parameter='Naturverjüngung' unit='Lage der Probekreise zur Verjüngungsaufnahme, Baumarten, Angabe der Höhenklassen'
+		 mod_type='N'/>
+	<z:row obj_id='6E0FCAAA-251B-444E-8E05-AE100066FFDA' line='2' parameter='' unit='für jeden Messort einer Messgröße: Typ, Einsatzzeiträume, Kalibrierungen der Sensoren
+  eingesetzter Sensoren
+'
+		 mod_type='N'/>
+	<z:row obj_id='6E0FCAAA-251B-444E-8E05-AE100066FFDA' line='3' parameter='' unit='Datenverfügbarkeit und Korrekturstatus der Daten räumlich und zeitlich frei wählbarer Bereiche'
+		 mod_type='N'/>
+	<z:row obj_id='6E0FCAAA-251B-444E-8E05-AE100066FFDA' line='4' parameter='Meteorologische Messungen auf Freiflächen im Wald'
+		 unit='als Stundensumme: Niederschlag in [mm] min. mit 2 unterschiedlichen Geräten' mod_type='N'/>
+	<z:row obj_id='6E0FCAAA-251B-444E-8E05-AE100066FFDA' line='5' parameter='' unit='als Stundenmittel und -Extremwerte aus jeweils 12 Einzelmessungen:'
+		 mod_type='N'/>
+	<z:row obj_id='6E0FCAAA-251B-444E-8E05-AE100066FFDA' line='6' parameter='' unit='Lufttemperatur / Luftfeuchte [2m Höhe] mit 2 redundanten Sensoren'
+		 mod_type='N'/>
+	<z:row obj_id='6E0FCAAA-251B-444E-8E05-AE100066FFDA' line='7' parameter='' unit='Bodentemperatur in 10 und 30 cm Tiefe'
+		 mod_type='N'/>
+	<z:row obj_id='6E0FCAAA-251B-444E-8E05-AE100066FFDA' line='8' parameter='' unit='als Stundenmittel und Extremwerte aus 120 Einzelmessungen:'
+		 mod_type='N'/>
+	<z:row obj_id='6E0FCAAA-251B-444E-8E05-AE100066FFDA' line='9' parameter='' unit='Globalstrahlung, PAR-Strahlung [2m Höhe], Windgeschwindigkeit [10 m Höhe]'
+		 mod_type='N'/>
+	<z:row obj_id='6E0FCAAA-251B-444E-8E05-AE100066FFDA' line='10' parameter='' unit='Vektorielles Stundenmittel aus 120 Einzelmesungen: Windrichtung'
+		 mod_type='N'/>
+	<z:row obj_id='6E0FCAAA-251B-444E-8E05-AE100066FFDA' line='11' parameter='Meteorologische Größen (in je 2 mikroklimatisch differenzierbaren  Beständen)'
+		 unit='als Stundensumme: Niederschlag in [mm] min. mit 2 Geräten' mod_type='N'/>
+	<z:row obj_id='6E0FCAAA-251B-444E-8E05-AE100066FFDA' line='12' parameter='' unit='als Stundenmittel aus jeweils 12 Einzelmessungen: Lufttemperatur/ Luftfeuchte [2m Höhe]'
+		 mod_type='N'/>
+	<z:row obj_id='6E0FCAAA-251B-444E-8E05-AE100066FFDA' line='13' parameter='' unit='als Stundenmittel und Extremwerte aus 120 Einzelmessungen: Globalstrahlung  [2m Höhe]'
+		 mod_type='N'/>
+	<z:row obj_id='6E0FCAAA-251B-444E-8E05-AE100066FFDA' line='14' parameter='Mikroklimatische- und Bodenfeuchtemessungen'
+		 unit='in jeweils 2-4 waldbaulich differenzierten Varianten:' mod_type='N'/>
+	<z:row obj_id='6E0FCAAA-251B-444E-8E05-AE100066FFDA' line='15' parameter='' unit='Bodentemperaturen in 10, 30, 60, 80 und 100 cm Tiefe [standörtlich differenziert]'
+		 mod_type='N'/>
+	<z:row obj_id='6E0FCAAA-251B-444E-8E05-AE100066FFDA' line='16' parameter='' unit='Druckaufnehmer- Bodensaugspannungen in 10, 30, 60, 80, 100 cm Tiefe [standörtlich differenziert]'
+		 mod_type='N'/>
+	<z:row obj_id='6E0FCAAA-251B-444E-8E05-AE100066FFDA' line='17' parameter='' unit='Equitensiometer- Bodensaugspannungen in 30 und 60 100 cm Tiefe [standörtlich differenziert]'
+		 mod_type='N'/>
+	<z:row obj_id='6E0FCAAA-251B-444E-8E05-AE100066FFDA' line='18' parameter='' unit='Vol. Bodenfeuchtemessungen in 30 und 60 cm Tiefe'
+		 mod_type='N'/>
+	<z:row obj_id='6E0FCAAA-251B-444E-8E05-AE100066FFDA' line='19' parameter='' unit='als Stundenmittel und Extremwerte aus 120 Einzelmessungen: PAR-Strahlung [2m Höhe]'
+		 mod_type='N'/>
+	<z:row obj_id='17FDAFB8-580D-46D3-845C-AD303464F801' line='4' parameter='Kronenzustand' unit='Waldzustandserhebung (WZE):jährliche Aufnahme
+ Parameter: Kronenzustand
+'
+		 mod_type='N'/>
+	<z:row obj_id='17FDAFB8-580D-46D3-845C-AD303464F801' line='5' parameter='Bodentypisierung, Humusformen' unit='Bodenzustandserhebung (BZE); periodische Aufnahme, bisher einmalig (Wiederholung für 2006 geplant)'
+		 mod_type='N'/>
+	<z:row obj_id='17FDAFB8-580D-46D3-845C-AD303464F801' line='6' parameter='Vegetationsaufnahmen' unit='BZE' mod_type='N'/>
+	<z:row obj_id='17FDAFB8-580D-46D3-845C-AD303464F801' line='7' parameter='Chemische Analysen der organischen Auflagen inkl. Schwermetallgehalte'
+		 unit='BZE' mod_type='N'/>
+	<z:row obj_id='17FDAFB8-580D-46D3-845C-AD303464F801' line='8' parameter='Nährelementvorräte im Wurzelbereich'
+		 unit='BZE' mod_type='N'/>
+	<z:row obj_id='17FDAFB8-580D-46D3-845C-AD303464F801' line='9' parameter='Chemische Analyse der Blattinhaltsstoffe'
+		 unit='BZE' mod_type='N'/>
+	<z:row obj_id='87275CC8-3C32-4827-A413-2E29F9B3D8D9' line='4' parameter='Humusformen, C/N- und C/P-Verhältnisse'
+		 unit='Substratgruppen, Bodentypen, Organische Auflagen' mod_type='N'/>
+	<z:row obj_id='87275CC8-3C32-4827-A413-2E29F9B3D8D9' line='5' parameter='Schwermetallgehalte' unit='Blei, Kupfer, Zink, Cadmium'
+		 mod_type='N'/>
+	<z:row obj_id='87275CC8-3C32-4827-A413-2E29F9B3D8D9' line='6' parameter='Bodenazidität: pH-Werte und Pufferbereiche, effektive Kationenaustauschkapazität'
+		 unit='Mineralboden' mod_type='N'/>
+	<z:row obj_id='87275CC8-3C32-4827-A413-2E29F9B3D8D9' line='7' parameter='Basensättigung' unit='Mineralboden'
+		 mod_type='N'/>
+	<z:row obj_id='87275CC8-3C32-4827-A413-2E29F9B3D8D9' line='8' parameter='Sättigung austauschbarer Säure (Fe+H- u. Al-Sättigung)'
+		 unit='Minderalboden' mod_type='N'/>
+	<z:row obj_id='87275CC8-3C32-4827-A413-2E29F9B3D8D9' line='9' parameter='Basenneutralisierungskapazität (BNK)'
+		 unit='Minderalboden' mod_type='N'/>
+	<z:row obj_id='87275CC8-3C32-4827-A413-2E29F9B3D8D9' line='10' parameter='Nährelementvorräte im Wurzelbereich'
+		 unit='Minderalboden' mod_type='N'/>
+	<z:row obj_id='87275CC8-3C32-4827-A413-2E29F9B3D8D9' line='11' parameter='Ca/Al- und Mg/Al-Verhältnis in der Bodenlösung'
+		 unit='1:2-Extrakt' mod_type='N'/>
+	<z:row obj_id='87275CC8-3C32-4827-A413-2E29F9B3D8D9' line='12' parameter='Sulfat in der Bodenlösung' unit=''
+		 mod_type='N'/>
+	<z:row obj_id='87275CC8-3C32-4827-A413-2E29F9B3D8D9' line='13' parameter='Kritische Belastungsraten (Critical Loads)'
+		 unit='für eutrophierenden Stickstoff und für die Säurebildner Schwefel und Stickstoff' mod_type='N'/>
+	<z:row obj_id='87275CC8-3C32-4827-A413-2E29F9B3D8D9' line='14' parameter='Ernährung von Fichten- und Kiefernbeständen'
+		 unit='' mod_type='N'/>
+	<z:row obj_id='47A16330-3E79-414E-9C4E-87533B1C9F87' line='4' parameter='Standortsdaten' unit='' mod_type='N'/>
+	<z:row obj_id='47A16330-3E79-414E-9C4E-87533B1C9F87' line='5' parameter='Deposition und Kronenraumbilanz' unit=''
+		 mod_type='N'/>
+	<z:row obj_id='47A16330-3E79-414E-9C4E-87533B1C9F87' line='6' parameter='Bestandesdaten' unit='' mod_type='N'/>
+	<z:row obj_id='47A16330-3E79-414E-9C4E-87533B1C9F87' line='7' parameter='Stoffgehalte des Bestandes und der Streu'
+		 unit='' mod_type='N'/>
+	<z:row obj_id='47A16330-3E79-414E-9C4E-87533B1C9F87' line='8' parameter='layerweise Angaben zum Boden und der Bodenlösung'
+		 unit='' mod_type='N'/>
+	<z:row obj_id='47A16330-3E79-414E-9C4E-87533B1C9F87' line='9' parameter='Forstliche Nutzung' unit='' mod_type='N'/>
+	<z:row obj_id='47A16330-3E79-414E-9C4E-87533B1C9F87' line='10' parameter='Fehleranalyse in PROFILE' unit=''
+		 mod_type='N'/>
+	<z:row obj_id='47A16330-3E79-414E-9C4E-87533B1C9F87' line='11' parameter='Trockendepositionsmodellierung' unit=''
+		 mod_type='N'/>
+	<z:row obj_id='47A16330-3E79-414E-9C4E-87533B1C9F87' line='12' parameter='Meteorologie, Stoffkonzentration im Niederschlag und in der Luft'
+		 unit='' mod_type='N'/>
+	<z:row obj_id='47A16330-3E79-414E-9C4E-87533B1C9F87' line='13' parameter='Critical loads und deren Überschreitungen'
+		 unit='für Schwefel und eutrophierenden Stickstoff sowie für Säureeinträge' mod_type='N'/>
+	<z:row obj_id='47A16330-3E79-414E-9C4E-87533B1C9F87' line='14' parameter='Massenbilanzmethode (SMB)' unit=''
+		 mod_type='N'/>
+	<z:row obj_id='47A16330-3E79-414E-9C4E-87533B1C9F87' line='15' parameter='dynamische Modellierung mittels SAFE'
+		 unit='' mod_type='N'/>
+	<z:row obj_id='AB88FBBA-A652-4510-BF86-445C68E7A4BF' line='4' parameter='Aufnahmemethoden' unit='' mod_type='N'/>
+	<z:row obj_id='AB88FBBA-A652-4510-BF86-445C68E7A4BF' line='5' parameter='Auswertungsmethoden' unit='' mod_type='N'/>
+	<z:row obj_id='AB88FBBA-A652-4510-BF86-445C68E7A4BF' line='6' parameter='ökologische Artengruppen' unit=''
+		 mod_type='N'/>
+	<z:row obj_id='AB88FBBA-A652-4510-BF86-445C68E7A4BF' line='7' parameter='ökologische Zeigerwerte' unit='Zeigerwertspektren nach Artengruppen, Schichten oder Gesamtaufnahmen'
+		 mod_type='N'/>
+	<z:row obj_id='AB88FBBA-A652-4510-BF86-445C68E7A4BF' line='8' parameter='Deckungsgrade' unit='' mod_type='N'/>
+	<z:row obj_id='AB88FBBA-A652-4510-BF86-445C68E7A4BF' line='9' parameter='mittlere Reaktionswerte' unit='' mod_type='N'/>
+	<z:row obj_id='AB88FBBA-A652-4510-BF86-445C68E7A4BF' line='10' parameter='Artenzahlen und Stetigkeit' unit=''
+		 mod_type='N'/>
+	<z:row obj_id='AB88FBBA-A652-4510-BF86-445C68E7A4BF' line='11' parameter='Veränderung Ähnlichkeitsindex' unit='qualitativ: nach Soerensen (1948) bzw. Jaccard (1901); quantitativ: nach Glearson (1920) und Ellenberg (1956) '
+		 mod_type='N'/>
+	<z:row obj_id='AB88FBBA-A652-4510-BF86-445C68E7A4BF' line='12' parameter='Soziologisches Verhalten der Gefäßpflanzen'
+		 unit='Spektren der soziologischen Hierarchie nach Ellenberg (1992) und Oberndorfer (1990)' mod_type='N'/>
+	<z:row obj_id='AB88FBBA-A652-4510-BF86-445C68E7A4BF' line='13' parameter='Indikation der Luftgüte' unit='mittels epiphytischer Moose und Flechten'
+		 mod_type='N'/>
+	<z:row obj_id='8A28385A-B115-433D-B504-961C80049F1F' line='11' parameter='' unit='Kontinuierliche Meßreihen'
+		 mod_type='N'/>
+	<z:row obj_id='8A28385A-B115-433D-B504-961C80049F1F' line='12' parameter='Zustand des Waldbestandes (periodische Zustandserhebungen)'
+		 unit='Terrestrische Schadansprache zur Dokumentation des Schadverlaufs, jährlich' mod_type='N'/>
+	<z:row obj_id='8A28385A-B115-433D-B504-961C80049F1F' line='13' parameter='Meteorologie (Kontinuierliche Meßreihen auf Freiflächen, kontinuierlich)'
+		 unit='Globalstrahlung, Luftfeuchtigkeit, Lufttemperatur, Bodentemperatur, Windrichtung, Windgeschwindigkeit, Niederschlag'
+		 mod_type='N'/>
+	<z:row obj_id='8A28385A-B115-433D-B504-961C80049F1F' line='14' parameter='Stoffeinträge aus der Atmosphäre (im Waldbestand und auf der Freifläche, kont.)'
+		 unit='Niederschlagsmenge (pH, Leitfähigkeit) , wöchentlich' mod_type='N'/>
+	<z:row obj_id='8A28385A-B115-433D-B504-961C80049F1F' line='15' parameter='' unit='Makroelemente (NO3-N, NH4-N, Org.-N, SO4-S, PO4-P, Cl, Ca, Mg, Na) wöchentlich'
+		 mod_type='N'/>
+	<z:row obj_id='8A28385A-B115-433D-B504-961C80049F1F' line='16' parameter='' unit='* Schwermetalle  (Pb, Cd, Zn, Mn, Fe, Cu, Hg), 1/4-jährlich'
+		 mod_type='N'/>
+	<z:row obj_id='8A28385A-B115-433D-B504-961C80049F1F' line='17' parameter='Stoffinhalte des Bodensickerwassers (Waldbestand) und des Quellwassers (kontin.)'
+		 unit='Menge (pH, Leitfähigkeit) 14 tägig' mod_type='N'/>
+	<z:row obj_id='8A28385A-B115-433D-B504-961C80049F1F' line='18' parameter='' unit='Makroelemente (analog &#x22;Stoffeinträge&#x22;; Al, Fe, DOC) 14-tägig'
+		 mod_type='N'/>
+	<z:row obj_id='8A28385A-B115-433D-B504-961C80049F1F' line='19' parameter='' unit='Schwermetalle' mod_type='N'/>
+	<z:row obj_id='8A28385A-B115-433D-B504-961C80049F1F' line='20' parameter='Erfassung des Streufalls (kontinuierlich)'
+		 unit='Makroelemente (Cges, Nges, Pges, S, Na, Ca, K, Mg) monatlich' mod_type='N'/>
+	<z:row obj_id='8A28385A-B115-433D-B504-961C80049F1F' line='21' parameter='' unit='Ertragskundliche Parameter, Baumwachstum, (Durchmesser, Höhe, Kronenansatz, 6 Kronenradien, 5-jährlig'
+		 mod_type='N'/>
+	<z:row obj_id='8A28385A-B115-433D-B504-961C80049F1F' line='22' parameter='Bodenchemismus (Festphase) BZE' unit=''
+		 mod_type='N'/>
+	<z:row obj_id='8A28385A-B115-433D-B504-961C80049F1F' line='23' parameter='Waldernährung' unit='Nadelproben aus der Baumkrone , 2-jährig'
+		 mod_type='N'/>
+	<z:row obj_id='8A28385A-B115-433D-B504-961C80049F1F' line='24' parameter='Vegetation' unit='jährlich' mod_type='N'/>
+	<z:row obj_id='8A28385A-B115-433D-B504-961C80049F1F' line='25' parameter='mittlere monatliche Konzentrationen von SO2, NH3, NO2 und O3 in der Luft'
+		 unit='monatlich' mod_type='N'/>
+	<z:row obj_id='8A28385A-B115-433D-B504-961C80049F1F' line='26' parameter='Phänologie (in Vorbereitung)	' unit=''
+		 mod_type='N'/>
+	<z:row obj_id='CCF0CF54-3753-4EB9-B09E-8CE065FDC7E6' line='11' parameter='Humusformen' unit='Substratgruppen, Bodentypen, Organische Auflagen'
+		 mod_type='N'/>
+	<z:row obj_id='CCF0CF54-3753-4EB9-B09E-8CE065FDC7E6' line='12' parameter='C/N- und C/P-Verhältnisse' unit='Substratgruppen, Bodentypen, Organische Auflagen'
+		 mod_type='N'/>
+	<z:row obj_id='CCF0CF54-3753-4EB9-B09E-8CE065FDC7E6' line='13' parameter='Schwermetallgehalte: Blei, Kupfer, Zink, Cadmium'
+		 unit='Substratgruppen, Bodentypen, Organische Auflagen' mod_type='N'/>
+	<z:row obj_id='CCF0CF54-3753-4EB9-B09E-8CE065FDC7E6' line='14' parameter='Bodenazidität: pH-Werte und Pufferbereiche'
+		 unit='Mineralboden' mod_type='N'/>
+	<z:row obj_id='CCF0CF54-3753-4EB9-B09E-8CE065FDC7E6' line='15' parameter='effektive Kationenaustauschkapazität (Ake)'
+		 unit='Mineralboden' mod_type='N'/>
+	<z:row obj_id='CCF0CF54-3753-4EB9-B09E-8CE065FDC7E6' line='16' parameter='Basensättigung' unit='Mineralboden'
+		 mod_type='N'/>
+	<z:row obj_id='CCF0CF54-3753-4EB9-B09E-8CE065FDC7E6' line='17' parameter='Sättigung austauschbarer Säure (Fe+H- u. Al-Sättigung)'
+		 unit='Mineralboden' mod_type='N'/>
+	<z:row obj_id='CCF0CF54-3753-4EB9-B09E-8CE065FDC7E6' line='18' parameter='Basenneutralisierungskapazität (BNK)'
+		 unit='Mineralboden' mod_type='N'/>
+	<z:row obj_id='CCF0CF54-3753-4EB9-B09E-8CE065FDC7E6' line='19' parameter='Nährelementvorräte im Wurzelbereich'
+		 unit='' mod_type='N'/>
+	<z:row obj_id='75730AC4-9E53-4FBC-A93D-78A0AA92833C' line='11' parameter='Standortsdaten' unit='' mod_type='N'/>
+	<z:row obj_id='75730AC4-9E53-4FBC-A93D-78A0AA92833C' line='12' parameter='Deposition und Kronenraumbilanz' unit=''
+		 mod_type='N'/>
+	<z:row obj_id='75730AC4-9E53-4FBC-A93D-78A0AA92833C' line='13' parameter='Bestandesdaten' unit='' mod_type='N'/>
+	<z:row obj_id='D5797981-EE12-4919-BC3C-90ACA45EFF66' line='11' parameter='Stoffinhalte des Bodensickerwassers (Waldbestand) und des Quellwassers'
+		 unit='14-tägig: Menge (pH, Leitfähigkeit), Makroelemente, Schwermetalle' mod_type='N'/>
+	<z:row obj_id='D5797981-EE12-4919-BC3C-90ACA45EFF66' line='12' parameter='Erfassung des Streufalls' unit='monatlich: Makroelemente, Schwermetalle'
+		 mod_type='N'/>
+	<z:row obj_id='4FC8F4E1-55BE-444F-B38A-E325CF40C85C' line='1' parameter='Namen der Baumart' unit='' mod_type='N'/>
+	<z:row obj_id='4FC8F4E1-55BE-444F-B38A-E325CF40C85C' line='2' parameter='Geographische Lage' unit='' mod_type='N'/>
+	<z:row obj_id='4FC8F4E1-55BE-444F-B38A-E325CF40C85C' line='3' parameter='Höenlage' unit='' mod_type='N'/>
+	<z:row obj_id='4FC8F4E1-55BE-444F-B38A-E325CF40C85C' line='4' parameter='Fläche' unit='' mod_type='N'/>
+	<z:row obj_id='4FC8F4E1-55BE-444F-B38A-E325CF40C85C' line='5' parameter='Alter' unit='' mod_type='N'/>
+	<z:row obj_id='4FC8F4E1-55BE-444F-B38A-E325CF40C85C' line='6' parameter='Ursprung' unit='' mod_type='N'/>
+	<z:row obj_id='4FC8F4E1-55BE-444F-B38A-E325CF40C85C' line='7' parameter='Besitzart' unit='' mod_type='N'/>
+	<z:row obj_id='4FC8F4E1-55BE-444F-B38A-E325CF40C85C' line='8' parameter='Spezifische Angaben für das jeweilige Generhaltungsobjekt'
+		 unit='' mod_type='N'/>
+	<z:row obj_id='4E9C4630-A34A-4D85-84EC-71D30B9A46F6' line='1' parameter='Methodische Grundzüge des Verfahrens der forstlichen Standortskartierung'
+		 mod_type='N'/>
+	<z:row obj_id='4E9C4630-A34A-4D85-84EC-71D30B9A46F6' line='2' parameter='Rahmenwerte der Klimastufen und Leitbaumarten'
+		 unit='Tabellen' mod_type='N'/>
+	<z:row obj_id='75730AC4-9E53-4FBC-A93D-78A0AA92833C' line='14' parameter='Stoffgehalte des Bestandes und der Streu'
+		 unit='' mod_type='N'/>
+	<z:row obj_id='75730AC4-9E53-4FBC-A93D-78A0AA92833C' line='15' parameter='layerweise Angaben zum Boden und der Bodenlösung'
+		 unit='' mod_type='N'/>
+	<z:row obj_id='75730AC4-9E53-4FBC-A93D-78A0AA92833C' line='16' parameter='Forstliche Nutzung' unit='' mod_type='N'/>
+	<z:row obj_id='75730AC4-9E53-4FBC-A93D-78A0AA92833C' line='17' parameter='Fehleranalyse in PROFILE' unit=''
+		 mod_type='N'/>
+	<z:row obj_id='75730AC4-9E53-4FBC-A93D-78A0AA92833C' line='18' parameter='Trockendepositionsmodellierung' unit=''
+		 mod_type='N'/>
+	<z:row obj_id='75730AC4-9E53-4FBC-A93D-78A0AA92833C' line='19' parameter='Meteorologie' unit='' mod_type='N'/>
+	<z:row obj_id='75730AC4-9E53-4FBC-A93D-78A0AA92833C' line='20' parameter='Stoffkonzentration im Niederschlag und in der Luft'
+		 unit='' mod_type='N'/>
+	<z:row obj_id='75730AC4-9E53-4FBC-A93D-78A0AA92833C' line='21' parameter='Critical loads und deren Überschreitungen'
+		 unit='für Schwefel und eutrophierenden Stickstoff sowie für Säureeinträge' mod_type='N'/>
+	<z:row obj_id='75730AC4-9E53-4FBC-A93D-78A0AA92833C' line='22' parameter='Massenbilanzmethode (SMB)' unit=''
+		 mod_type='N'/>
+	<z:row obj_id='75730AC4-9E53-4FBC-A93D-78A0AA92833C' line='23' parameter='dynamische Modellierung mittels SAFE
+
+'
+		 unit='' mod_type='N'/>
+	<z:row obj_id='A9888F7E-8889-4F0B-8E29-6F6AE34181F3' line='11' parameter='SO2 (Schwefeldioxid)' unit='Konzentrationsmessungen zu den Schadgasen als monatliche Mittelwerte
+
+'
+		 mod_type='N'/>
+	<z:row obj_id='A9888F7E-8889-4F0B-8E29-6F6AE34181F3' line='12' parameter='O3 (Ozon)' unit='Konzentrationsmessungen zu den Schadgasen als monatliche Mittelwerte
+
+Konzentrationsmessungen zu den Schadgasen als mo'
+		 mod_type='N'/>
+	<z:row obj_id='A9888F7E-8889-4F0B-8E29-6F6AE34181F3' line='13' parameter='NH3 (Ammoniak)' unit='Konzentrationsmessungen zu den Schadgasen als monatliche Mittelwerte
+
+'
+		 mod_type='N'/>
+	<z:row obj_id='A9888F7E-8889-4F0B-8E29-6F6AE34181F3' line='14' parameter='NO2 (Stickstoffdioxid)' unit='Konzentrationsmessungen zu den Schadgasen als monatliche Mittelwerte
+
+'
+		 mod_type='N'/>
+	<z:row obj_id='FBB8AFA2-5B08-4BE2-919A-57EDBC98862D' line='11' parameter='Aufnahmemethoden' unit='' mod_type='N'/>
+	<z:row obj_id='FBB8AFA2-5B08-4BE2-919A-57EDBC98862D' line='12' parameter='Auswertungsmethoden' unit='' mod_type='N'/>
+	<z:row obj_id='FBB8AFA2-5B08-4BE2-919A-57EDBC98862D' line='13' parameter='ökologische Artengruppen' unit=''
+		 mod_type='N'/>
+	<z:row obj_id='FBB8AFA2-5B08-4BE2-919A-57EDBC98862D' line='14' parameter='Ökologische Zeigerwerte' unit=''
+		 mod_type='N'/>
+	<z:row obj_id='FBB8AFA2-5B08-4BE2-919A-57EDBC98862D' line='15' parameter='Deckungsgrade' unit='Gesamtdeckung der Schichten, Abundanz (Deckung),'
+		 mod_type='N'/>
+	<z:row obj_id='FBB8AFA2-5B08-4BE2-919A-57EDBC98862D' line='16' parameter='mittlere Reaktionswerte' unit='' mod_type='N'/>
+	<z:row obj_id='FBB8AFA2-5B08-4BE2-919A-57EDBC98862D' line='17' parameter='Artenzahlen und Stetigkeit' unit=''
+		 mod_type='N'/>
+	<z:row obj_id='FBB8AFA2-5B08-4BE2-919A-57EDBC98862D' line='18' parameter='Veränderung Ähnlichkeitsindex' unit=''
+		 mod_type='N'/>
+	<z:row obj_id='FBB8AFA2-5B08-4BE2-919A-57EDBC98862D' line='19' parameter='Soziologisches Verhalten der Gefäßpflanzen'
+		 unit='' mod_type='N'/>
+	<z:row obj_id='FBB8AFA2-5B08-4BE2-919A-57EDBC98862D' line='20' parameter='Indikation der Luftgüte mittels epiphytischer Moose und Flechten'
+		 unit='' mod_type='N'/>
+	<z:row obj_id='86A0BAF2-206F-4BBF-8BBA-EB1451D6652A' line='11' parameter='Bestandeshöhenkurven' unit='' mod_type='N'/>
+	<z:row obj_id='86A0BAF2-206F-4BBF-8BBA-EB1451D6652A' line='12' parameter='Derbholzformzahlen' unit='' mod_type='N'/>
+	<z:row obj_id='86A0BAF2-206F-4BBF-8BBA-EB1451D6652A' line='13' parameter='Ertragsdaten' unit='' mod_type='N'/>
+	<z:row obj_id='86A0BAF2-206F-4BBF-8BBA-EB1451D6652A' line='14' parameter='Bestockungsgrad' unit='' mod_type='N'/>
+	<z:row obj_id='86A0BAF2-206F-4BBF-8BBA-EB1451D6652A' line='15' parameter='Radialzuwachs' unit='' mod_type='N'/>
+	<z:row obj_id='86A0BAF2-206F-4BBF-8BBA-EB1451D6652A' line='16' parameter='Grundflächenzuwachs' unit='' mod_type='N'/>
+	<z:row obj_id='17FDAFB8-580D-46D3-845C-AD303464F801' line='10' parameter='Kronenzustand' unit='Waldzustandserhebung (WZE): jährlich
+'
+		 mod_type='N'/>
+	<z:row obj_id='17FDAFB8-580D-46D3-845C-AD303464F801' line='11' parameter='Kronenschluß' unit='WZE' mod_type='N'/>
+	<z:row obj_id='17FDAFB8-580D-46D3-845C-AD303464F801' line='12' parameter='Stufigkeit d. Bestandes' unit='WZE'
+		 mod_type='N'/>
+	<z:row obj_id='17FDAFB8-580D-46D3-845C-AD303464F801' line='13' parameter='Baumart' unit='WZE' mod_type='N'/>
+	<z:row obj_id='17FDAFB8-580D-46D3-845C-AD303464F801' line='14' parameter='Nadel- / Blattverlust' unit='in 5 %-Stufen, WZE'
+		 mod_type='N'/>
+	<z:row obj_id='17FDAFB8-580D-46D3-845C-AD303464F801' line='15' parameter='Verfärbung' unit='in 5 %-Stufen, WZE'
+		 mod_type='N'/>
+	<z:row obj_id='17FDAFB8-580D-46D3-845C-AD303464F801' line='16' parameter='Kraftsche Stammklasse' unit='WZE'
+		 mod_type='N'/>
+	<z:row obj_id='17FDAFB8-580D-46D3-845C-AD303464F801' line='17' parameter='Brusthöhenduchmesser' unit='bei allen fest markierten Bäumen , WZE'
+		 mod_type='N'/>
+	<z:row obj_id='17FDAFB8-580D-46D3-845C-AD303464F801' line='18' parameter='Wildschäden' unit='WZE' mod_type='N'/>
+	<z:row obj_id='17FDAFB8-580D-46D3-845C-AD303464F801' line='19' parameter='Pilz- und Insektenbefall' unit='WZE'
+		 mod_type='N'/>
+	<z:row obj_id='17FDAFB8-580D-46D3-845C-AD303464F801' line='20' parameter='Intensität des Insekten- und Pilzbefalls'
+		 unit='WZE' mod_type='N'/>
+	<z:row obj_id='17FDAFB8-580D-46D3-845C-AD303464F801' line='21' parameter='Abgestorbener Wipfel' unit='0 - Schadmerkmal tritt nicht auf, 1- neu, 2 - alt, WZE
+'
+		 mod_type='N'/>
+	<z:row obj_id='17FDAFB8-580D-46D3-845C-AD303464F801' line='22' parameter='Kronenbruch' unit='WZE' mod_type='N'/>
+	<z:row obj_id='17FDAFB8-580D-46D3-845C-AD303464F801' line='23' parameter='Abiotische Schäden' unit='Dürre,  Windwirkung, Frost, Feuer, Fäll- und Rückeschäden, Sonne, Blitz, WZE
+7 - Blitz
+9 - andere
+'
+		 mod_type='N'/>
+	<z:row obj_id='17FDAFB8-580D-46D3-845C-AD303464F801' line='24' parameter='Fruchtanhang' unit='WZE' mod_type='N'/>
+	<z:row obj_id='17FDAFB8-580D-46D3-845C-AD303464F801' line='25' parameter='bei Kiefer: Anzahl der Nadeljahrgänge'
+		 unit='WZE' mod_type='N'/>
+	<z:row obj_id='17FDAFB8-580D-46D3-845C-AD303464F801' line='26' parameter='Einsehbarkeit der Krone' unit='WZE'
+		 mod_type='N'/>
+	<z:row obj_id='8A28385A-B115-433D-B504-961C80049F1F' line='27' parameter='Konenzustand' unit='weitestgehend analog Level I'
+		 mod_type='N'/>
+	<z:row obj_id='7655B013-D52A-481D-8C86-30F613370B1B' line='4' parameter='Kronenzustand' unit='jährlich' mod_type='N'/>
+	<z:row obj_id='7655B013-D52A-481D-8C86-30F613370B1B' line='5' parameter='Kronenschluß' unit='jährlich' mod_type='N'/>
+	<z:row obj_id='7655B013-D52A-481D-8C86-30F613370B1B' line='6' parameter='Stufigkeit des Bestandes' unit='jährlich'
+		 mod_type='N'/>
+	<z:row obj_id='7655B013-D52A-481D-8C86-30F613370B1B' line='7' parameter='Baumart' unit='jährlich' mod_type='N'/>
+	<z:row obj_id='7655B013-D52A-481D-8C86-30F613370B1B' line='8' parameter='Nadel- / Blattverlust' unit='in 5%-Stufen, jährlich'
+		 mod_type='N'/>
+	<z:row obj_id='7655B013-D52A-481D-8C86-30F613370B1B' line='9' parameter='Verfärbung' unit='jährlich' mod_type='N'/>
+	<z:row obj_id='7655B013-D52A-481D-8C86-30F613370B1B' line='10' parameter='Kraftsche Stammklasse' unit='jährlich'
+		 mod_type='N'/>
+	<z:row obj_id='7655B013-D52A-481D-8C86-30F613370B1B' line='11' parameter='Brusthöhenduchmesser' unit='bei allen fest markierten Bäumen, jährlich'
+		 mod_type='N'/>
+	<z:row obj_id='7655B013-D52A-481D-8C86-30F613370B1B' line='12' parameter='Wildschäden' unit='jährlich' mod_type='N'/>
+	<z:row obj_id='7655B013-D52A-481D-8C86-30F613370B1B' line='13' parameter='Pilz- und Insektenbefall' unit='jährlich'
+		 mod_type='N'/>
+	<z:row obj_id='7655B013-D52A-481D-8C86-30F613370B1B' line='14' parameter='Intensität des Insekten- und Pilzbefalls'
+		 unit='jährlich' mod_type='N'/>
+	<z:row obj_id='7655B013-D52A-481D-8C86-30F613370B1B' line='15' parameter='Kronenbruch' unit='jährlich' mod_type='N'/>
+	<z:row obj_id='7655B013-D52A-481D-8C86-30F613370B1B' line='16' parameter='abgestorbener Wipfel' unit='0 - Schadmerkmal tritt nicht auf, 1- neu, 2 - alt, jährlich
+'
+		 mod_type='N'/>
+	<z:row obj_id='7655B013-D52A-481D-8C86-30F613370B1B' line='17' parameter='abiotische Schäden' unit='Dürre,  Windwirkung, Frost, Feuer, Fäll- und Rückeschäden, Sonne, Blitz, jährlich
+7 - Blitz
+9 - andere
+'
+		 mod_type='N'/>
+	<z:row obj_id='7655B013-D52A-481D-8C86-30F613370B1B' line='18' parameter='Fruchtanhang' unit='jährlich' mod_type='N'/>
+	<z:row obj_id='7655B013-D52A-481D-8C86-30F613370B1B' line='19' parameter='bei Kiefer: Anzahl der Nadejahrgänge'
+		 unit='jährlich' mod_type='N'/>
+	<z:row obj_id='7655B013-D52A-481D-8C86-30F613370B1B' line='20' parameter='Einsehbarkeit der Krone' unit='jährlich'
+		 mod_type='N'/>
+	<z:row obj_id='6AE742E7-05E9-407F-9E7E-934382A15D21' line='5' parameter='1000-Stück-Masse [g] von recenten und 2- bzw. 3-jährigen Nadeln'
+		 unit='(Kiefer bzw. Fichte) aus der belichteten Oberkrone von n = 3 Bäumen je Baumart am jeweiligen Probepunkt'
+		 mod_type='N'/>
+	<z:row obj_id='6AE742E7-05E9-407F-9E7E-934382A15D21' line='6' parameter='Mengen-Elementgehalte und Spurenelemt-Gehalte'
+		 unit='in recenten und 2- bzw. 3-jährigen Nadeln; C, N, S, P, K, Ca, Mg als mg/g Trockenmasse;' mod_type='N'/>
+	<z:row obj_id='6AE742E7-05E9-407F-9E7E-934382A15D21' line='7' parameter='' unit='Mn, Fe, Al, Zn, Cu, tlw. Pb, Ni, als mg/kg Trockenmasse'
+		 mod_type='N'/>
+	<z:row obj_id='6AE742E7-05E9-407F-9E7E-934382A15D21' line='8' parameter='C- und N-bezogene Mengenelement-Quotienten'
+		 unit='' mod_type='N'/>
+	<z:row obj_id='00B2028C-89C6-4C4F-9E5D-948DB8B4383F' line='5' parameter='1000-Stück-Masse [g] von recenten und 2- bzw.3-jährigen Nadeln'
+		 unit='Kiefer bzw. Fichte; aus der belichteten Oberkrone von n = 6-9 Bäumen je Baumart an der jeweiligen Untersuchungseinheit'
+		 mod_type='N'/>
+	<z:row obj_id='00B2028C-89C6-4C4F-9E5D-948DB8B4383F' line='6' parameter='100-Stück-Masse [g] von recenten Blättern'
+		 unit='Traubeneiche, Rotbuche, Hainbuche; aus der belichteten Oberkrone von n = 6-9 Bäumen je Baumart an der Untersungseinheit'
+		 mod_type='N'/>
+	<z:row obj_id='00B2028C-89C6-4C4F-9E5D-948DB8B4383F' line='7' parameter='Mengen-Elementgehalte' unit='C, N, S, P, K, Ca, Mg als mg/g Trockenmasse; ) in recenten und 2- bzw. 3-jährigen Nadeln bzw. recenten Blättern'
+		 mod_type='N'/>
+	<z:row obj_id='00B2028C-89C6-4C4F-9E5D-948DB8B4383F' line='8' parameter='Spurenelemt-Gehalte' unit='Mn, Fe, Al, Zn, Cu, tlw. Pb, Ni, F als mg/kg Trockenmasse; ) in recenten und 2- bzw. 3-jährigen Nadeln bzw. rec Blättern'
+		 mod_type='N'/>
+	<z:row obj_id='00B2028C-89C6-4C4F-9E5D-948DB8B4383F' line='9' parameter='C- und N-bezogene Mengenelement-Quotienten'
+		 unit='' mod_type='N'/>
+	<z:row obj_id='A3840095-1A3C-4C7E-8366-FF18B2A43DC8' line='7' parameter='' unit='Dosis [t/ha] und Kalksorte/-herkunft'
+		 mod_type='N'/>
+	<z:row obj_id='A3840095-1A3C-4C7E-8366-FF18B2A43DC8' line='8' parameter='' unit='Eigentümer (LW, KÖW, PW, BW)'
+		 mod_type='N'/>
+	<z:row obj_id='A3840095-1A3C-4C7E-8366-FF18B2A43DC8' line='9' parameter='' unit='Ausbringtechnologie (Flug-, Blasegerät, manuell)'
+		 mod_type='N'/>
+	<z:row obj_id='A3840095-1A3C-4C7E-8366-FF18B2A43DC8' line='10' parameter='Gesamtfläche und Kalkmenge' unit=''
+		 mod_type='N'/>
+	<z:row obj_id='9C8E5AC3-E6DC-43FA-8829-0186B5572DD3' line='2' parameter='Methoden- und Installationsinformationen'
+		 unit='' mod_type='N'/>
+	<z:row obj_id='9C8E5AC3-E6DC-43FA-8829-0186B5572DD3' line='3' parameter='Niederschlagsmengen (Freiland, Kronentraufe, Stammabfluss)'
+		 unit='Messdaten' mod_type='N'/>
+	<z:row obj_id='9C8E5AC3-E6DC-43FA-8829-0186B5572DD3' line='4' parameter='Streufallmengen' unit='' mod_type='N'/>
+	<z:row obj_id='9C8E5AC3-E6DC-43FA-8829-0186B5572DD3' line='5' parameter='Chemische Analysen der Haupt- und Spurenelemente'
+		 unit='für Niederschlag, Streufall, Quell- und Sickerwässer sowie für Nadel- und Blattuntersuchungen' mod_type='N'/>
+	<z:row obj_id='9C8E5AC3-E6DC-43FA-8829-0186B5572DD3' line='6' parameter='Bodenwasserhaushalt (Tensionen)' unit='Messdaten'
+		 mod_type='N'/>
+	<z:row obj_id='9C8E5AC3-E6DC-43FA-8829-0186B5572DD3' line='7' parameter='Luftchemie' unit='Messdaten der Passivsammler'
+		 mod_type='N'/>
+	<z:row obj_id='AB88FBBA-A652-4510-BF86-445C68E7A4BF' line='14' parameter='Orts- und Projektbeschreibung' unit=''
+		 mod_type='N'/>
+	<z:row obj_id='AB88FBBA-A652-4510-BF86-445C68E7A4BF' line='15' parameter='Profil- und Horizontbeschreibung nach SEA /KA4'
+		 unit='' mod_type='N'/>
+	<z:row obj_id='AB88FBBA-A652-4510-BF86-445C68E7A4BF' line='16' parameter='Vegetation' unit='Hauptbaumart, Nebenbaumart, Gesamtdeckung der Schichten, Artnamen Artenlisten n. Ellenberg (1992)'
+		 mod_type='N'/>
+	<z:row obj_id='AB88FBBA-A652-4510-BF86-445C68E7A4BF' line='17' parameter='' unit='synonymisiert u.a. mit der Artenliste der Flora europaea (1998/99), Abundanz (Deckung), Wuchssubstrat (Moose/Flechten)'
+		 mod_type='N'/>
+	<z:row obj_id='FBB8AFA2-5B08-4BE2-919A-57EDBC98862D' line='21' parameter='Orts- und Projektbeschreibung' unit=''
+		 mod_type='N'/>
+	<z:row obj_id='FBB8AFA2-5B08-4BE2-919A-57EDBC98862D' line='22' parameter='Wuchssubstrat' unit='Moose/Flechten'
+		 mod_type='N'/>
+	<z:row obj_id='FBB8AFA2-5B08-4BE2-919A-57EDBC98862D' line='23' parameter='Phänologie' unit='vegetativ/generativ), Höhe der Blüte/des Blattes'
+		 mod_type='N'/>
+	<z:row obj_id='FBB8AFA2-5B08-4BE2-919A-57EDBC98862D' line='24' parameter='Zeigerwerte' unit='Zeigerwertspektren nach Artengruppen, Schichten oder Gesamtaufnahmen'
+		 mod_type='N'/>
+	<z:row obj_id='2AB58899-7A20-4F90-BCFA-03A11BA35968' line='1' parameter='Wasserstand' unit='cm' mod_type='N'/>
+	<z:row obj_id='2AB58899-7A20-4F90-BCFA-03A11BA35968' line='2' parameter='Durchfluss' unit='m³/s' mod_type='N'/>
+	<z:row obj_id='2AB58899-7A20-4F90-BCFA-03A11BA35968' line='3' parameter='Pegelstammdaten' unit='' mod_type='N'/>
+	<z:row obj_id='2AB58899-7A20-4F90-BCFA-03A11BA35968' line='4' parameter='W/Q-Beziehungen' unit='' mod_type='N'/>
+	<z:row obj_id='2AB58899-7A20-4F90-BCFA-03A11BA35968' line='5' parameter='Statistik' unit='' mod_type='N'/>
+	<z:row obj_id='C0A6C708-0BEC-485D-A49D-C7EAA43D0D4A' line='1' parameter='Klimadaten' unit='' mod_type='N'/>
+	<z:row obj_id='C0A6C708-0BEC-485D-A49D-C7EAA43D0D4A' line='2' parameter='Verdunstung' unit='' mod_type='N'/>
+	<z:row obj_id='C0A6C708-0BEC-485D-A49D-C7EAA43D0D4A' line='3' parameter='Versickerung' unit='' mod_type='N'/>
+	<z:row obj_id='C0A6C708-0BEC-485D-A49D-C7EAA43D0D4A' line='4' parameter='Beschaffenheit' unit='' mod_type='N'/>
+	<z:row obj_id='8E1A0E30-3ED9-4152-93B4-88B98C15E70C' line='1' parameter='Pegelname' unit='' mod_type='N'/>
+	<z:row obj_id='8E1A0E30-3ED9-4152-93B4-88B98C15E70C' line='2' parameter='Gewässer' mod_type='N'/>
+	<z:row obj_id='8E1A0E30-3ED9-4152-93B4-88B98C15E70C' line='3' parameter='Gewässerfolge' mod_type='N'/>
+	<z:row obj_id='8E1A0E30-3ED9-4152-93B4-88B98C15E70C' line='4' parameter='Gebiet' mod_type='N'/>
+	<z:row obj_id='8E1A0E30-3ED9-4152-93B4-88B98C15E70C' line='5' parameter='Gebietskennzahl' mod_type='N'/>
+	<z:row obj_id='8E1A0E30-3ED9-4152-93B4-88B98C15E70C' line='6' parameter='Topographische Karte' unit='TK 25'
+		 mod_type='N'/>
+	<z:row obj_id='8E1A0E30-3ED9-4152-93B4-88B98C15E70C' line='7' parameter='Koordinaten' unit='Rechts- und Hochwerte'
+		 mod_type='N'/>
+	<z:row obj_id='8E1A0E30-3ED9-4152-93B4-88B98C15E70C' line='8' parameter='Lage am Gewässer' unit='Flusskilometer, rechts, links'
+		 mod_type='N'/>
+	<z:row obj_id='8E1A0E30-3ED9-4152-93B4-88B98C15E70C' line='9' parameter='Pegelnullpunkt' unit='über NN' mod_type='N'/>
+	<z:row obj_id='8E1A0E30-3ED9-4152-93B4-88B98C15E70C' line='10' parameter='Messstellennummer' mod_type='N'/>
+	<z:row obj_id='8E1A0E30-3ED9-4152-93B4-88B98C15E70C' line='11' parameter='Funktion' unit='W, Q, TW, HWW, DGJ'
+		 mod_type='N'/>
+	<z:row obj_id='C40765FB-F771-4D97-94AF-49FC5FE22C40' line='1' parameter='Gebietskennzahl' mod_type='N'/>
+	<z:row obj_id='C40765FB-F771-4D97-94AF-49FC5FE22C40' line='2' parameter='Gewässer' mod_type='N'/>
+	<z:row obj_id='C40765FB-F771-4D97-94AF-49FC5FE22C40' line='3' parameter='Flusslänge' unit='km' mod_type='N'/>
+	<z:row obj_id='C40765FB-F771-4D97-94AF-49FC5FE22C40' line='4' parameter='Lage' unit='L-links, r-rechts, b-beidseitig'
+		 mod_type='N'/>
+	<z:row obj_id='C40765FB-F771-4D97-94AF-49FC5FE22C40' line='5' parameter='Teileinzugsgebiet' unit='km²' mod_type='N'/>
+	<z:row obj_id='5AEC35FD-CE55-11D3-8BF6-00105A493192' line='2' parameter='Makro- und Mikroelemente; ergänzende Angaben'
+		 unit='' mod_type='N'/>
+	<z:row obj_id='5AEC35FD-CE55-11D3-8BF6-00105A493192' line='3' parameter='Bodenkenngrößen; ergänzende Angaben'
+		 unit='' mod_type='N'/>
+	<z:row obj_id='CB285E4F-7223-47A6-9247-B301506D4837' line='1' parameter='Pegelbögen' unit='' mod_type='N'/>
+	<z:row obj_id='CB285E4F-7223-47A6-9247-B301506D4837' line='2' parameter='Pegelstammbücher' unit='' mod_type='N'/>
+	<z:row obj_id='CB285E4F-7223-47A6-9247-B301506D4837' line='3' parameter='Pegelakten' unit='' mod_type='N'/>
+	<z:row obj_id='CB285E4F-7223-47A6-9247-B301506D4837' line='4' parameter='Wasserstandslisten' unit='' mod_type='N'/>
+	<z:row obj_id='473EFA37-F65E-4F93-AF51-2A05C2A647CC' line='1' parameter='Kapazität in t/h und t/a' unit='--'
+		 mod_type='N'/>
+	<z:row obj_id='C03F5586-2C9B-434C-ABA5-DCB0D719418D' line='1' parameter='Kapazität in t/h und t/a' unit='--'
+		 mod_type='N'/>
+	<z:row obj_id='84A516B8-0C64-4A36-862C-AE31F41F21B4' line='1' parameter='Gewässerdaten' unit='Name, Gewässerlänge, Gebietskennzahl, Flusskilometer, Gewässereinzugsgebiet, MQ, MNQ, RW/HW'
+		 mod_type='U'/>
+	<z:row obj_id='84A516B8-0C64-4A36-862C-AE31F41F21B4' line='2' parameter='Daten zur Querverbauung' unit='Betriebszustand, Wehrhöhe, Länge der Ausleitung, Rückstaulänge, Verwendungszweck, Art der Querverbauung, Eigentümer'
+		 mod_type='U'/>
+	<z:row obj_id='78992812-E8A0-47CB-AF43-399229740451' line='5' parameter='thermische Nennleistung' unit='in kW'
+		 mod_type='I'/>
+	<z:row obj_id='D2FC7D7C-6B56-4644-B81E-58FA66F8850E' line='1' parameter='verfügbares, genehmigtes und geplantes Restvolumen'
+		 unit='in m3' mod_type='N'/>
+	<z:row obj_id='D2FC7D7C-6B56-4644-B81E-58FA66F8850E' line='2' parameter='Ablagerungszeitraum' mod_type='N'/>
+	<z:row obj_id='D2FC7D7C-6B56-4644-B81E-58FA66F8850E' line='3' parameter='Gesamt- und Ablagerungsfläche' unit='in ha'
+		 mod_type='N'/>
+	<z:row obj_id='D2FC7D7C-6B56-4644-B81E-58FA66F8850E' line='4' parameter='Basis- und Oberflächenabdichtung'
+		 mod_type='N'/>
+	<z:row obj_id='D2FC7D7C-6B56-4644-B81E-58FA66F8850E' line='5' parameter='Sickerwasserfassung  und- behandlung'
+		 mod_type='N'/>
+	<z:row obj_id='D2FC7D7C-6B56-4644-B81E-58FA66F8850E' line='6' parameter='Gasfassung  und -verwertung' mod_type='N'/>
+	<z:row obj_id='D2FC7D7C-6B56-4644-B81E-58FA66F8850E' line='7' parameter='Name' mod_type='N'/>
+	<z:row obj_id='D2FC7D7C-6B56-4644-B81E-58FA66F8850E' line='8' parameter='Betreiber' mod_type='N'/>
+	<z:row obj_id='D2FC7D7C-6B56-4644-B81E-58FA66F8850E' line='9' parameter='GK-Koordinaten (Mittelpunkt)' mod_type='N'/>
+	<z:row obj_id='D2FC7D7C-6B56-4644-B81E-58FA66F8850E' line='10' parameter='Geologische Barriere' mod_type='N'/>
+	<z:row obj_id='D2FC7D7C-6B56-4644-B81E-58FA66F8850E' line='11' parameter='Öffentlich-Rechtlicher Vertrag' mod_type='N'/>
+	<z:row obj_id='D18F2D37-942E-4142-BA22-CDFD750E0196' line='12' parameter='Kategorie' mod_type='N'/>
+	<z:row obj_id='D18F2D37-942E-4142-BA22-CDFD750E0196' line='13' parameter='Altdokumente' mod_type='N'/>
+	<z:row obj_id='D18F2D37-942E-4142-BA22-CDFD750E0196' line='14' parameter='Altanlagenanzeige' mod_type='N'/>
+	<z:row obj_id='D18F2D37-942E-4142-BA22-CDFD750E0196' line='15' parameter='Stilllegungsanzeige' mod_type='N'/>
+	<z:row obj_id='D18F2D37-942E-4142-BA22-CDFD750E0196' line='16' parameter='Inhaber' mod_type='N'/>
+	<z:row obj_id='D18F2D37-942E-4142-BA22-CDFD750E0196' line='17' parameter='Förderung' mod_type='N'/>
+	<z:row obj_id='D18F2D37-942E-4142-BA22-CDFD750E0196' line='18' parameter='Planungen' mod_type='N'/>
+	<z:row obj_id='D18F2D37-942E-4142-BA22-CDFD750E0196' line='19' parameter='Bauabnahmen' mod_type='N'/>
+	<z:row obj_id='D18F2D37-942E-4142-BA22-CDFD750E0196' line='20' parameter='behördliche Überwachungen' mod_type='N'/>
+	<z:row obj_id='D18F2D37-942E-4142-BA22-CDFD750E0196' line='21' parameter='Überwachungen des Deponieinhabers'
+		 mod_type='N'/>
+	<z:row obj_id='6146CBAB-ABA1-4D6A-AD5C-8250B0ECD29B' line='1' parameter='Geräuschimmission' mod_type='N'/>
+	<z:row obj_id='6146CBAB-ABA1-4D6A-AD5C-8250B0ECD29B' line='3' parameter='Schall-Emissionswerte' mod_type='N'/>
+	<z:row obj_id='CB8153C2-3684-48A2-B662-F53EF81F3D00' line='1' parameter='Geräuschimmission' mod_type='N'/>
+	<z:row obj_id='CB8153C2-3684-48A2-B662-F53EF81F3D00' line='3' parameter='zulässige Schall-Emissionswerte' mod_type='N'/>
+	<z:row obj_id='E47190AF-114D-4AA6-AE41-4BFE1A3735CB' line='1' parameter='Schutzstatus' mod_type='N'/>
+	<z:row obj_id='E47190AF-114D-4AA6-AE41-4BFE1A3735CB' line='2' parameter='Arteninventar Flora/Fauna' mod_type='N'/>
+	<z:row obj_id='E47190AF-114D-4AA6-AE41-4BFE1A3735CB' line='3' parameter='Nutzung' mod_type='N'/>
+	<z:row obj_id='F3579F99-094B-453D-B505-A80060DC46B7' line='3' parameter='Grenzwerte' unit='ordnungsrechtlich'
+		 mod_type='N'/>
+	<z:row obj_id='F3579F99-094B-453D-B505-A80060DC46B7' line='5' parameter='Erklärungswerte der Betreiber' mod_type='N'/>
+	<z:row obj_id='F3579F99-094B-453D-B505-A80060DC46B7' line='6' parameter='Meßwerte der behördlichen Überwachung'
+		 mod_type='N'/>
+	<z:row obj_id='F3579F99-094B-453D-B505-A80060DC46B7' line='7' parameter='Größenklasse' mod_type='N'/>
+	<z:row obj_id='F3579F99-094B-453D-B505-A80060DC46B7' line='8' parameter='Anhang' mod_type='N'/>
+	<z:row obj_id='F3579F99-094B-453D-B505-A80060DC46B7' line='9' parameter='Ausbaugröße in E und EW' mod_type='N'/>
+	<z:row obj_id='F3579F99-094B-453D-B505-A80060DC46B7' line='10' parameter='Anschlußgröße in E und EW Ist und soll 2005'
+		 mod_type='N'/>
+	<z:row obj_id='F3579F99-094B-453D-B505-A80060DC46B7' line='12' parameter='Jahr der Inbetriebnahme bzw. Stillegung'
+		 mod_type='N'/>
+	<z:row obj_id='F3579F99-094B-453D-B505-A80060DC46B7' line='13' parameter='Betreiber/Eigentümer' mod_type='N'/>
+	<z:row obj_id='F3579F99-094B-453D-B505-A80060DC46B7' line='14' parameter='Einleitstelle in Gauß-Krüger-Koordinaten'
+		 mod_type='N'/>
+	<z:row obj_id='F3579F99-094B-453D-B505-A80060DC46B7' line='15' parameter='Einleitgewässer' mod_type='N'/>
+	<z:row obj_id='F3579F99-094B-453D-B505-A80060DC46B7' line='16' parameter='Zahl der Einwohner Ist gemeindeteilkonkret'
+		 mod_type='N'/>
+	<z:row obj_id='F3579F99-094B-453D-B505-A80060DC46B7' line='19' parameter='Anschluß an Kläranlage Ist und Soll 2005 gemeindeteilkonkret'
+		 mod_type='N'/>
+	<z:row obj_id='F3579F99-094B-453D-B505-A80060DC46B7' line='20' parameter='Verdichtungsgebiete gemeindeteilkonkret'
+		 mod_type='N'/>
+	<z:row obj_id='F3579F99-094B-453D-B505-A80060DC46B7' line='21' parameter='empfindliche Gebiete gemeindeteilkonkret'
+		 unit='Schutz Nordsee und Standgewässer' mod_type='N'/>
+	<z:row obj_id='F3579F99-094B-453D-B505-A80060DC46B7' line='22' parameter='relevante Trinkwasserschutzzonen für Gemeindeteile'
+		 mod_type='N'/>
+	<z:row obj_id='F3579F99-094B-453D-B505-A80060DC46B7' line='4' parameter='Überwachungswerte' unit='abwasserabgaberelevant'
+		 mod_type='N'/>
+	<z:row obj_id='F3579F99-094B-453D-B505-A80060DC46B7' line='11' parameter='Technischer Ausbaugrad (Reinigungsstufen)  Ist und Soll 2005'
+		 mod_type='N'/>
+	<z:row obj_id='F3579F99-094B-453D-B505-A80060DC46B7' line='17' parameter='Zahl der Einwohner mit Anschluß an Kläranlage Ist und Soll 2005'
+		 mod_type='N'/>
+	<z:row obj_id='F3579F99-094B-453D-B505-A80060DC46B7' line='18' parameter='Zahl der Einwohner mit Anschluß an Kanal Ist und Soll 2005'
+		 mod_type='N'/>
+	<z:row obj_id='3E2F95AA-5C13-4CED-8C9F-BD7EC846969B' line='1' parameter='verfügbares, genehmigtes und geplantes Restvolumen'
+		 unit='in m3' mod_type='N'/>
+	<z:row obj_id='3E2F95AA-5C13-4CED-8C9F-BD7EC846969B' line='2' parameter='Ablagerungszeitraum' mod_type='N'/>
+	<z:row obj_id='3E2F95AA-5C13-4CED-8C9F-BD7EC846969B' line='3' parameter='Gesamt- und Ablagerungsfläche' unit='in ha'
+		 mod_type='N'/>
+	<z:row obj_id='3E2F95AA-5C13-4CED-8C9F-BD7EC846969B' line='4' parameter='Basis- und Oberflächenabdichtung'
+		 mod_type='N'/>
+	<z:row obj_id='3E2F95AA-5C13-4CED-8C9F-BD7EC846969B' line='5' parameter='Sickerwasserfassung  und- behandlung'
+		 mod_type='N'/>
+	<z:row obj_id='3E2F95AA-5C13-4CED-8C9F-BD7EC846969B' line='6' parameter='Gasfassung  und -verwertung' mod_type='N'/>
+	<z:row obj_id='3E2F95AA-5C13-4CED-8C9F-BD7EC846969B' line='7' parameter='Name' mod_type='N'/>
+	<z:row obj_id='3E2F95AA-5C13-4CED-8C9F-BD7EC846969B' line='8' parameter='Betreiber' mod_type='N'/>
+	<z:row obj_id='3E2F95AA-5C13-4CED-8C9F-BD7EC846969B' line='9' parameter='GK-Koordinaten (Mittelpunkt)' mod_type='N'/>
+	<z:row obj_id='651916FA-CAA8-4179-B5E8-CC0F67AE2DFC' line='1' parameter='verfügbares, genehmigtes und geplantes Restvolumen'
+		 unit='in m3' mod_type='N'/>
+	<z:row obj_id='651916FA-CAA8-4179-B5E8-CC0F67AE2DFC' line='2' parameter='Ablagerungszeitraum' mod_type='N'/>
+	<z:row obj_id='651916FA-CAA8-4179-B5E8-CC0F67AE2DFC' line='3' parameter='Gesamt- und Ablagerungsfläche' unit='in ha'
+		 mod_type='N'/>
+	<z:row obj_id='651916FA-CAA8-4179-B5E8-CC0F67AE2DFC' line='4' parameter='Basis- und Oberflächenabdichtung'
+		 mod_type='N'/>
+	<z:row obj_id='651916FA-CAA8-4179-B5E8-CC0F67AE2DFC' line='5' parameter='Sickerwasserfassung  und -behandlung'
+		 mod_type='N'/>
+	<z:row obj_id='651916FA-CAA8-4179-B5E8-CC0F67AE2DFC' line='6' parameter='Gasfassung  und -verwertung' mod_type='N'/>
+	<z:row obj_id='651916FA-CAA8-4179-B5E8-CC0F67AE2DFC' line='7' parameter='Name' mod_type='N'/>
+	<z:row obj_id='651916FA-CAA8-4179-B5E8-CC0F67AE2DFC' line='8' parameter='Betreiber' mod_type='N'/>
+	<z:row obj_id='651916FA-CAA8-4179-B5E8-CC0F67AE2DFC' line='9' parameter='GK-Koordinaten (Mittelpunkt)' mod_type='N'/>
+	<z:row obj_id='ABB612E2-B301-426B-8B46-05A916C8C887' line='1' parameter='Geräuschimmission' mod_type='N'/>
+	<z:row obj_id='ABB612E2-B301-426B-8B46-05A916C8C887' line='3' parameter='zulässige Schall-Emissionswerte' mod_type='N'/>
+	<z:row obj_id='7C56953D-EA01-4A03-B87E-927621C7E02C' line='1' parameter='Arteninventar Flora' mod_type='N'/>
+	<z:row obj_id='7C56953D-EA01-4A03-B87E-927621C7E02C' line='2' parameter='Arteninventar Fauna' mod_type='N'/>
+	<z:row obj_id='7C56953D-EA01-4A03-B87E-927621C7E02C' line='3' parameter='Nutzung' mod_type='N'/>
+	<z:row obj_id='5756A737-3D53-47A8-B3D7-C4CABA28F4AF' line='4' parameter='Überwachungswerte' unit='abwasserabgaberelevant'
+		 mod_type='N'/>
+	<z:row obj_id='5756A737-3D53-47A8-B3D7-C4CABA28F4AF' line='5' parameter='Erklärungswerte der Betreiber' mod_type='N'/>
+	<z:row obj_id='5756A737-3D53-47A8-B3D7-C4CABA28F4AF' line='6' parameter='Meßwerte der behördlichen Überwachung'
+		 mod_type='N'/>
+	<z:row obj_id='5756A737-3D53-47A8-B3D7-C4CABA28F4AF' line='8' parameter='Anhang' mod_type='N'/>
+	<z:row obj_id='5756A737-3D53-47A8-B3D7-C4CABA28F4AF' line='9' parameter='Ausbaugröße in E und EW' mod_type='N'/>
+	<z:row obj_id='5756A737-3D53-47A8-B3D7-C4CABA28F4AF' line='10' parameter='Anschlußgröße in E und EW Ist und soll 2005'
+		 mod_type='N'/>
+	<z:row obj_id='5756A737-3D53-47A8-B3D7-C4CABA28F4AF' line='11' parameter='Technischer Ausbaugrad (Reinigungsstufen)  Ist und Soll 2005'
+		 mod_type='N'/>
+	<z:row obj_id='5756A737-3D53-47A8-B3D7-C4CABA28F4AF' line='12' parameter='Jahr der Inbetriebnahme bzw. Stillegung'
+		 mod_type='N'/>
+	<z:row obj_id='5756A737-3D53-47A8-B3D7-C4CABA28F4AF' line='13' parameter='Betreiber/Eigentümer' mod_type='N'/>
+	<z:row obj_id='5756A737-3D53-47A8-B3D7-C4CABA28F4AF' line='14' parameter='Einleitstelle in Gauß-Krüger-Koordinaten'
+		 mod_type='N'/>
+	<z:row obj_id='5756A737-3D53-47A8-B3D7-C4CABA28F4AF' line='15' parameter='Einleitgewässer' mod_type='N'/>
+	<z:row obj_id='5756A737-3D53-47A8-B3D7-C4CABA28F4AF' line='16' parameter='Zahl der Einwohner Ist gemeindeteilkonkret'
+		 mod_type='N'/>
+	<z:row obj_id='5756A737-3D53-47A8-B3D7-C4CABA28F4AF' line='17' parameter='Zahl der Einwohner mit Anschluß an Kläranlage Ist und Soll 2005'
+		 mod_type='N'/>
+	<z:row obj_id='5756A737-3D53-47A8-B3D7-C4CABA28F4AF' line='18' parameter='Zahl der Einwohner mit Anschluß an Kanal Ist und Soll 2005'
+		 mod_type='N'/>
+	<z:row obj_id='5756A737-3D53-47A8-B3D7-C4CABA28F4AF' line='19' parameter='Anschluß an Kläranlage Ist und Soll 2005 gemeindeteilkonkret'
+		 mod_type='N'/>
+	<z:row obj_id='5756A737-3D53-47A8-B3D7-C4CABA28F4AF' line='20' parameter='Verdichtungsgebiete gemeindeteilkonkret'
+		 mod_type='N'/>
+	<z:row obj_id='5756A737-3D53-47A8-B3D7-C4CABA28F4AF' line='22' parameter='relevante Trinkwasserschutzzonen für Gemeindeteile'
+		 mod_type='N'/>
+	<z:row obj_id='5756A737-3D53-47A8-B3D7-C4CABA28F4AF' line='3' parameter='Grenzwerte' unit='ordnungsrechtlich'
+		 mod_type='N'/>
+	<z:row obj_id='5756A737-3D53-47A8-B3D7-C4CABA28F4AF' line='7' parameter='Größenklasse' mod_type='N'/>
+	<z:row obj_id='5756A737-3D53-47A8-B3D7-C4CABA28F4AF' line='21' parameter='empfindliche Gebiete gemeindeteilkonkret'
+		 unit='Schutz Nordsee und Standgewässer' mod_type='N'/>
+	<z:row obj_id='3AF5109B-4D84-436D-9216-67A9375F070C' line='1' parameter='verfügbares, genehmigtes und geplantes Restvolumen'
+		 unit='in m3' mod_type='N'/>
+	<z:row obj_id='3AF5109B-4D84-436D-9216-67A9375F070C' line='2' parameter='Ablagerungszeitraum' mod_type='N'/>
+	<z:row obj_id='3AF5109B-4D84-436D-9216-67A9375F070C' line='3' parameter='Gesamt- und Ablagerungsfläche' unit='in ha'
+		 mod_type='N'/>
+	<z:row obj_id='3AF5109B-4D84-436D-9216-67A9375F070C' line='4' parameter='Basis- und Oberflächenabdichtung'
+		 mod_type='N'/>
+	<z:row obj_id='3AF5109B-4D84-436D-9216-67A9375F070C' line='5' parameter='Sickerwasserfassung  und -behandlung'
+		 mod_type='N'/>
+	<z:row obj_id='3AF5109B-4D84-436D-9216-67A9375F070C' line='6' parameter='Gasfassung  und -verwertung' mod_type='N'/>
+	<z:row obj_id='3AF5109B-4D84-436D-9216-67A9375F070C' line='7' parameter='Name' mod_type='N'/>
+	<z:row obj_id='3AF5109B-4D84-436D-9216-67A9375F070C' line='8' parameter='Betreiber' mod_type='N'/>
+	<z:row obj_id='3AF5109B-4D84-436D-9216-67A9375F070C' line='9' parameter='GK-Koordinaten (Mittelpunkt)' mod_type='N'/>
+	<z:row obj_id='D0E4F5CA-B334-4895-89F0-1B517A670E1B' line='1' parameter='Geräuschimmission' mod_type='N'/>
+	<z:row obj_id='D0E4F5CA-B334-4895-89F0-1B517A670E1B' line='3' parameter='zulässige Schall-Emissionswerte' mod_type='N'/>
+	<z:row obj_id='F0189C0D-C95C-4562-8A79-1E0431A7FC25' line='1' mod_type='N'/>
+	<z:row obj_id='512478BC-0B8D-4CB5-AC2A-1BD247E1632E' line='1' parameter='Rote-Liste gefährdeter Biotope' mod_type='N'/>
+	<z:row obj_id='512478BC-0B8D-4CB5-AC2A-1BD247E1632E' line='2' parameter='Pflanzengesellschaften' mod_type='N'/>
+	<z:row obj_id='512478BC-0B8D-4CB5-AC2A-1BD247E1632E' line='3' parameter='für den Naturschutz besonders wertvolle Biotope'
+		 unit='selektive Biotopkartierung' mod_type='N'/>
+	<z:row obj_id='4FB8DBD9-5094-40F4-91D7-C7FBB59E103C' line='1' parameter='Abfallaufkommen in t/a' mod_type='N'/>
+	<z:row obj_id='F4093285-F462-4E6B-9069-E3C966F2622D' line='1' parameter='verfügbares, genehmigtes und geplantes Restvolumen'
+		 unit='in m3' mod_type='N'/>
+	<z:row obj_id='F4093285-F462-4E6B-9069-E3C966F2622D' line='2' parameter='Ablagerungszeitraum' mod_type='N'/>
+	<z:row obj_id='F4093285-F462-4E6B-9069-E3C966F2622D' line='3' parameter='Gesamt- und Ablagerungsfläche' unit='in ha'
+		 mod_type='N'/>
+	<z:row obj_id='F4093285-F462-4E6B-9069-E3C966F2622D' line='4' parameter='Basis- und Oberflächenabdichtung'
+		 mod_type='N'/>
+	<z:row obj_id='F4093285-F462-4E6B-9069-E3C966F2622D' line='6' parameter='Gasfassung  und -verwertung' mod_type='N'/>
+	<z:row obj_id='F4093285-F462-4E6B-9069-E3C966F2622D' line='9' parameter='GK-Koordinaten (Mittelpunkt)' mod_type='N'/>
+	<z:row obj_id='F4093285-F462-4E6B-9069-E3C966F2622D' line='5' parameter='Sickerwasserfassung  und- behandlung'
+		 mod_type='N'/>
+	<z:row obj_id='F4093285-F462-4E6B-9069-E3C966F2622D' line='7' parameter='Name' mod_type='N'/>
+	<z:row obj_id='F4093285-F462-4E6B-9069-E3C966F2622D' line='8' parameter='Betreiber' mod_type='N'/>
+	<z:row obj_id='3C871B82-436C-4546-BE6A-1CE5CC49C3F6' line='1' mod_type='N'/>
+	<z:row obj_id='6701A2E3-4BAD-4F4D-976D-37EA2E8A2403' line='1' parameter='Geräuschimmission' mod_type='N'/>
+	<z:row obj_id='6701A2E3-4BAD-4F4D-976D-37EA2E8A2403' line='3' parameter='Schall-Emissionswerte' mod_type='N'/>
+	<z:row obj_id='FB0ED051-558D-41D7-AC6E-38035887CC76' line='1' parameter='Daten zum Arteninventar Flora und Fauna'
+		 mod_type='N'/>
+	<z:row obj_id='FB0ED051-558D-41D7-AC6E-38035887CC76' line='2' parameter='Nutzung' mod_type='N'/>
+	<z:row obj_id='35CEC514-8951-4BA3-9C5B-32A2B8AD5639' line='1' parameter='administrative Angaben sowie zu Firma/Betreiber'
+		 unit='' mod_type='D'/>
+	<z:row obj_id='35CEC514-8951-4BA3-9C5B-32A2B8AD5639' line='2' parameter='Standort der Anlage' unit='Gemeinde'
+		 mod_type='D'/>
+	<z:row obj_id='35CEC514-8951-4BA3-9C5B-32A2B8AD5639' line='3' parameter='Feuerungswärmeleistung' unit='in kW'
+		 mod_type='D'/>
+	<z:row obj_id='35CEC514-8951-4BA3-9C5B-32A2B8AD5639' line='4' parameter='Datum der Inbetriebnahme' unit='' mod_type='D'/>
+	<z:row obj_id='5E4A71E7-072C-46A5-974B-8FB524445E8D' line='1' parameter='administrative Angaben sowie zu Firmen/Betreiber'
+		 unit='' mod_type='D'/>
+	<z:row obj_id='5E4A71E7-072C-46A5-974B-8FB524445E8D' line='2' parameter='Standort der Anlage' unit='Rechtswert/Hochwert bei PV-KW'
+		 mod_type='D'/>
+	<z:row obj_id='5E4A71E7-072C-46A5-974B-8FB524445E8D' line='3' parameter='Nennleistung' unit='kWpeak' mod_type='D'/>
+	<z:row obj_id='5E4A71E7-072C-46A5-974B-8FB524445E8D' line='4' parameter='Betriebszustand' unit='in Betrieb oder nicht in Betrieb'
+		 mod_type='D'/>
+	<z:row obj_id='5E4A71E7-072C-46A5-974B-8FB524445E8D' line='5' parameter='Modulfläche' unit='m²' mod_type='D'/>
+	<z:row obj_id='5E4A71E7-072C-46A5-974B-8FB524445E8D' line='6' parameter='Energieertrag' unit='in kWh' mod_type='D'/>
+	<z:row obj_id='1848108B-D268-4B12-95D8-870E6E0A51ED' line='1' parameter='administrative Angaben sowie zu Firma/Betreiber'
+		 unit='' mod_type='D'/>
+	<z:row obj_id='1848108B-D268-4B12-95D8-870E6E0A51ED' line='2' parameter='Standort der Anlage' unit='Gemeinde'
+		 mod_type='D'/>
+	<z:row obj_id='1848108B-D268-4B12-95D8-870E6E0A51ED' line='3' parameter='Datum der Inbetriebnahme' unit='' mod_type='D'/>
+	<z:row obj_id='B0BB3FE4-3F55-4EB8-B4B8-E38130E8691A' line='1' parameter='administrative Angaben sowie zu Firma/Betreiber'
+		 unit='' mod_type='D'/>
+	<z:row obj_id='B0BB3FE4-3F55-4EB8-B4B8-E38130E8691A' line='2' parameter='Gewässername' unit='' mod_type='D'/>
+	<z:row obj_id='B0BB3FE4-3F55-4EB8-B4B8-E38130E8691A' line='3' parameter='Flussgebiet des Gewässers' unit='künftig geplante Angabe'
+		 mod_type='D'/>
+	<z:row obj_id='B0BB3FE4-3F55-4EB8-B4B8-E38130E8691A' line='4' parameter='Standort der Anlage' unit='Rechtswert/Hochwert'
+		 mod_type='D'/>
+	<z:row obj_id='B0BB3FE4-3F55-4EB8-B4B8-E38130E8691A' line='5' parameter='Betriebsart des Kraftwerkes' unit='F (Fluß-), A (Ausleit-), PS (Pumpspeicher-), S (Speicherkraftwerk), N (Nebenanlage)'
+		 mod_type='D'/>
+	<z:row obj_id='B0BB3FE4-3F55-4EB8-B4B8-E38130E8691A' line='6' parameter='Nennleistung' unit='in kW' mod_type='D'/>
+	<z:row obj_id='B0BB3FE4-3F55-4EB8-B4B8-E38130E8691A' line='7' parameter='Betriebszustand' unit='in Betrieb oder nicht in Betrieb'
+		 mod_type='D'/>
+	<z:row obj_id='526A966C-927B-489F-9914-9ED97275E5BD' line='1' parameter='administrative Angaben sowie zu Firma/betreiber'
+		 unit='' mod_type='D'/>
+	<z:row obj_id='526A966C-927B-489F-9914-9ED97275E5BD' line='2' parameter='Standort der Anlage' unit='Rechtswert/Hochwert'
+		 mod_type='D'/>
+	<z:row obj_id='526A966C-927B-489F-9914-9ED97275E5BD' line='3' parameter='Betriebsart des Kraftwerkes' unit='Kraftwerk (KW) und/oder Blockheizkraftwerk (BHKW)'
+		 mod_type='D'/>
+	<z:row obj_id='526A966C-927B-489F-9914-9ED97275E5BD' line='4' parameter='elektrische Nennleistung' unit='in kW'
+		 mod_type='D'/>
+	<z:row obj_id='526A966C-927B-489F-9914-9ED97275E5BD' line='5' parameter='thermische Nennleistung' unit='in kW'
+		 mod_type='D'/>
+	<z:row obj_id='526A966C-927B-489F-9914-9ED97275E5BD' line='6' parameter='Energiertrag' unit='in kWh' mod_type='D'/>
+	<z:row obj_id='526A966C-927B-489F-9914-9ED97275E5BD' line='7' parameter='Datum der Inbetriebnahme' unit='' mod_type='D'/>
+	<z:row obj_id='C7E058B5-762D-4E7F-A17E-CA452FD73F47' line='2' parameter='Angaben zu Anlagen des BImSchG' unit='.'
+		 mod_type='N'/>
+	<z:row obj_id='C7E058B5-762D-4E7F-A17E-CA452FD73F47' line='3' parameter='Überwachung' mod_type='N'/>
+	<z:row obj_id='C7E058B5-762D-4E7F-A17E-CA452FD73F47' line='4' parameter='Störfall-Verordnung' mod_type='N'/>
+	<z:row obj_id='C7E058B5-762D-4E7F-A17E-CA452FD73F47' line='5' parameter='Nachbarschaftsbeschwerden' mod_type='N'/>
+	<z:row obj_id='C7E058B5-762D-4E7F-A17E-CA452FD73F47' line='6' parameter='Emissionserklärungen' mod_type='N'/>
+	<z:row obj_id='2F61ADD7-B1D4-40EC-B3C5-5CC0D9A1D65E' line='1' parameter='administrative Abgaben sowie zu Firma/Betreiber'
+		 unit='' mod_type='D'/>
+	<z:row obj_id='2F61ADD7-B1D4-40EC-B3C5-5CC0D9A1D65E' line='2' parameter='Standort der Windenergieanlage' unit='Rechtswert/Hochwert'
+		 mod_type='D'/>
+	<z:row obj_id='2F61ADD7-B1D4-40EC-B3C5-5CC0D9A1D65E' line='3' parameter='Zugehörigkeit zu Vorranggebiet WEA'
+		 unit='' mod_type='D'/>
+	<z:row obj_id='2F61ADD7-B1D4-40EC-B3C5-5CC0D9A1D65E' line='4' parameter='Nabenhöhe' unit='in m' mod_type='D'/>
+	<z:row obj_id='2F61ADD7-B1D4-40EC-B3C5-5CC0D9A1D65E' line='5' parameter='Rotordurchmesser' unit='in m' mod_type='D'/>
+	<z:row obj_id='2F61ADD7-B1D4-40EC-B3C5-5CC0D9A1D65E' line='6' parameter='Nennleistung' unit='in kW' mod_type='D'/>
+	<z:row obj_id='2F61ADD7-B1D4-40EC-B3C5-5CC0D9A1D65E' line='7' parameter='Betriebszustand' unit='in Betrieb oder nicht in Betrieb'
+		 mod_type='D'/>
+	<z:row obj_id='2F61ADD7-B1D4-40EC-B3C5-5CC0D9A1D65E' line='8' parameter='Energieertrag' unit='in kWh' mod_type='D'/>
+	<z:row obj_id='B23ADF71-63B4-42A0-97C9-AF1109C2A170' line='1' parameter='administrative Angaben sowie zu Firma/Betreiber'
+		 unit='' mod_type='D'/>
+	<z:row obj_id='B23ADF71-63B4-42A0-97C9-AF1109C2A170' line='2' parameter='Standort der Anlage' unit='Rechtswert/Hochwert'
+		 mod_type='D'/>
+	<z:row obj_id='B23ADF71-63B4-42A0-97C9-AF1109C2A170' line='3' parameter='Betriebsart des Kraftwerkes' unit='Strom- (KW) und/oder Wärmekraftwerk (HW), Heizkraftwerk (HKW), Blockheizkraftwerk (BHKW)'
+		 mod_type='D'/>
+	<z:row obj_id='B23ADF71-63B4-42A0-97C9-AF1109C2A170' line='4' parameter='elektrische Nennleistung' unit='in kW'
+		 mod_type='D'/>
+	<z:row obj_id='B23ADF71-63B4-42A0-97C9-AF1109C2A170' line='5' parameter='thermische Nennleistung' unit='in kW'
+		 mod_type='D'/>
+	<z:row obj_id='B23ADF71-63B4-42A0-97C9-AF1109C2A170' line='6' parameter='Energieträger' unit='' mod_type='D'/>
+	<z:row obj_id='B23ADF71-63B4-42A0-97C9-AF1109C2A170' line='7' parameter='Datum der Inbetriebnahme' unit='' mod_type='D'/>
+	<z:row obj_id='B23ADF71-63B4-42A0-97C9-AF1109C2A170' line='8' parameter='Energieertrag' unit='in kWh' mod_type='D'/>
+	<z:row obj_id='EB0C78EE-B25C-465A-B403-2F450E92D224' line='11' parameter='VG 11: mineralische Nassböden mit hohen Lehm- und Tonanteilen (Al3)'
+		 unit='landwirtschaftliche Nutzfläche, durchschnittlicher Grünlandanteil, landwirtschaftliche Vergleichszahl'
+		 mod_type='D'/>
+	<z:row obj_id='78992812-E8A0-47CB-AF43-399229740451' line='6' parameter='Energiertrag' unit='in kWh' mod_type='I'/>
+	<z:row obj_id='78992812-E8A0-47CB-AF43-399229740451' line='7' parameter='Datum der Inbetriebnahme' unit='' mod_type='I'/>
+	<z:row obj_id='3E11132C-151A-455B-9684-AB030B0F310F' line='1' parameter='administrative Angaben sowie zu Firmen/Betreiber'
+		 unit='' mod_type='I'/>
+	<z:row obj_id='3E11132C-151A-455B-9684-AB030B0F310F' line='2' parameter='Standort der Anlage' unit='Rechtswert/Hochwert bei PV-KW'
+		 mod_type='I'/>
+	<z:row obj_id='3E11132C-151A-455B-9684-AB030B0F310F' line='3' parameter='Nennleistung' unit='kWpeak' mod_type='I'/>
+	<z:row obj_id='3E11132C-151A-455B-9684-AB030B0F310F' line='4' parameter='Betriebszustand' unit='in Betrieb oder nicht in Betrieb'
+		 mod_type='I'/>
+	<z:row obj_id='3E11132C-151A-455B-9684-AB030B0F310F' line='5' parameter='Modulfläche' unit='m²' mod_type='I'/>
+	<z:row obj_id='3E11132C-151A-455B-9684-AB030B0F310F' line='6' parameter='Energieertrag' unit='in kWh' mod_type='I'/>
+	<z:row obj_id='6CC9795E-7F12-4DC0-B3F3-32D70AE2E9A5' line='1' parameter='administrative Angaben sowie zu Firma/Betreiber'
+		 unit='' mod_type='I'/>
+	<z:row obj_id='6CC9795E-7F12-4DC0-B3F3-32D70AE2E9A5' line='2' parameter='Gewässername' unit='' mod_type='I'/>
+	<z:row obj_id='6CC9795E-7F12-4DC0-B3F3-32D70AE2E9A5' line='3' parameter='Flussgebiet des Gewässers' unit='künftig geplante Angabe'
+		 mod_type='I'/>
+	<z:row obj_id='6CC9795E-7F12-4DC0-B3F3-32D70AE2E9A5' line='4' parameter='Standort der Anlage' unit='Rechtswert/Hochwert'
+		 mod_type='I'/>
+	<z:row obj_id='6CC9795E-7F12-4DC0-B3F3-32D70AE2E9A5' line='5' parameter='Betriebsart des Kraftwerkes' unit='F (Fluß-), A (Ausleit-), PS (Pumpspeicher-), S (Speicherkraftwerk), N (Nebenanlage)'
+		 mod_type='I'/>
+	<z:row obj_id='6CC9795E-7F12-4DC0-B3F3-32D70AE2E9A5' line='6' parameter='Nennleistung' unit='in kW' mod_type='I'/>
+	<z:row obj_id='6CC9795E-7F12-4DC0-B3F3-32D70AE2E9A5' line='7' parameter='Betriebszustand' unit='in Betrieb oder nicht in Betrieb'
+		 mod_type='I'/>
+	<z:row obj_id='29FE57A7-B311-43C6-8B7C-E5ED7736E96C' line='1' parameter='administrative Angaben sowie zu Firma/Betreiber'
+		 unit='' mod_type='I'/>
+	<z:row obj_id='29FE57A7-B311-43C6-8B7C-E5ED7736E96C' line='2' parameter='Standort der Anlage' unit='Rechtswert/Hochwert'
+		 mod_type='I'/>
+	<z:row obj_id='DB3E2D89-F22D-4D3C-9566-7EA590F47F96' line='4' parameter='Fischereiökologische Daten' unit='Wehr passierbar, Fischaufstiegsanlage (FAA): vorhanden-funktionstüchtig, Bauweise, Rechenabstand, Mindestwassermenge'
+		 mod_type='D'/>
+	<z:row obj_id='240F27B3-049C-4299-85E5-7A999A99F21E' line='1' parameter='Bodentemperatur' unit='in 0,2 und 0,5 m Tefe'
+		 mod_type='D'/>
+	<z:row obj_id='240F27B3-049C-4299-85E5-7A999A99F21E' line='2' parameter='Lufttemperatur' unit='in 0,2 und 2 m Höhe'
+		 mod_type='D'/>
+	<z:row obj_id='240F27B3-049C-4299-85E5-7A999A99F21E' line='3' parameter='relative Luftfeuchte' unit='in 2 m Höhe'
+		 mod_type='D'/>
+	<z:row obj_id='240F27B3-049C-4299-85E5-7A999A99F21E' line='4' parameter='Blattbenetzung' unit='in 1 m Höhe'
+		 mod_type='D'/>
+	<z:row obj_id='240F27B3-049C-4299-85E5-7A999A99F21E' line='5' parameter='Globalstrahung' unit='in 2 m Höhe'
+		 mod_type='D'/>
+	<z:row obj_id='9385B020-EEDE-4FBF-AB33-010993227487' line='4' parameter='Fledermausart' unit='' mod_type='N'/>
+	<z:row obj_id='9385B020-EEDE-4FBF-AB33-010993227487' line='5' parameter='Ringnummer' unit='' mod_type='N'/>
+	<z:row obj_id='9385B020-EEDE-4FBF-AB33-010993227487' line='6' parameter='Datum, Ort der Beringung' unit='' mod_type='N'/>
+	<z:row obj_id='9385B020-EEDE-4FBF-AB33-010993227487' line='7' parameter='Datum, Ort des Wiederfundes' unit=''
+		 mod_type='N'/>
+	<z:row obj_id='9385B020-EEDE-4FBF-AB33-010993227487' line='8' parameter='Umstände des Wiederfundes' unit=''
+		 mod_type='N'/>
+	<z:row obj_id='B792AD5F-ACA1-462B-8E2C-B3F7F9D3DA44' line='4' parameter='Brutpaare im MTBQ (ermittelt oder geschätzt)'
+		 unit='nur für ausgewählte Vogelarten' mod_type='N'/>
+	<z:row obj_id='240F27B3-049C-4299-85E5-7A999A99F21E' line='6' parameter='Niederschlag' unit='in 1 m Höhe' mod_type='D'/>
+	<z:row obj_id='240F27B3-049C-4299-85E5-7A999A99F21E' line='7' parameter='Windgeschwindigkeit' unit='in 2,5 m Höhe'
+		 mod_type='D'/>
+	<z:row obj_id='240F27B3-049C-4299-85E5-7A999A99F21E' line='8' parameter='Windrichtung' unit='in 2,5 m Höhe'
+		 mod_type='D'/>
+	<z:row obj_id='6C649FAC-4625-4830-8212-478F185AE4D0' line='4' parameter='Titel, ggf. Artname' unit='' mod_type='N'/>
+	<z:row obj_id='6C649FAC-4625-4830-8212-478F185AE4D0' line='5' parameter='Autor' unit='' mod_type='N'/>
+	<z:row obj_id='6C649FAC-4625-4830-8212-478F185AE4D0' line='6' parameter='Verwaltungsangaben (Nr., Ausleihe, Veröffentlichungen, etc.)'
+		 unit='' mod_type='N'/>
+	<z:row obj_id='240F27B3-049C-4299-85E5-7A999A99F21E' line='9' parameter='Bodensaugspannung' unit='in 0,3 und 0,6 m Tiefe'
+		 mod_type='D'/>
+	<z:row obj_id='240F27B3-049C-4299-85E5-7A999A99F21E' line='17' parameter='Windrichtung' unit='1-16, in 250 cm Höhe'
+		 mod_type='I'/>
+	<z:row obj_id='C4AFA2F7-F499-4ECA-B4BA-B2079164E1C0' line='10' parameter='Lufttemperatur' unit='in 20 cm und 200 cm Höhe'
+		 mod_type='D'/>
+	<z:row obj_id='C4AFA2F7-F499-4ECA-B4BA-B2079164E1C0' line='11' parameter='Bodentemperatur' unit='in 5 cm und in 20 cm Tiefe'
+		 mod_type='D'/>
+	<z:row obj_id='C4AFA2F7-F499-4ECA-B4BA-B2079164E1C0' line='12' parameter='Luftfeuchte' unit='in %, in 200 cm Höhe'
+		 mod_type='D'/>
+	<z:row obj_id='C4AFA2F7-F499-4ECA-B4BA-B2079164E1C0' line='13' parameter='Windgeschwindigkeit' unit='in m/s, in 250 cm Höhe'
+		 mod_type='D'/>
+	<z:row obj_id='C4AFA2F7-F499-4ECA-B4BA-B2079164E1C0' line='14' parameter='Niederschlag' unit='in mm, in 100 cm Höhe'
+		 mod_type='D'/>
+	<z:row obj_id='C4AFA2F7-F499-4ECA-B4BA-B2079164E1C0' line='15' parameter='Blattnässe' unit='in %, in 100 cm Höhe'
+		 mod_type='D'/>
+	<z:row obj_id='C4AFA2F7-F499-4ECA-B4BA-B2079164E1C0' line='16' parameter='Globalstrahlung' unit='in W/m2, in 200 cm Höhe'
+		 mod_type='D'/>
+	<z:row obj_id='C4AFA2F7-F499-4ECA-B4BA-B2079164E1C0' line='17' parameter='Windrichtung' unit='1-16, in 250 cm Höhe'
+		 mod_type='D'/>
+	<z:row obj_id='29FE57A7-B311-43C6-8B7C-E5ED7736E96C' line='3' parameter='Betriebsart des Kraftwerkes' unit='Strom- (KW) und/oder Wärmekraftwerk (HW), Heizkraftwerk (HKW), Blockheizkraftwerk (BHKW)'
+		 mod_type='I'/>
+	<z:row obj_id='29FE57A7-B311-43C6-8B7C-E5ED7736E96C' line='4' parameter='elektrische Nennleistung' unit='in kW'
+		 mod_type='I'/>
+	<z:row obj_id='29FE57A7-B311-43C6-8B7C-E5ED7736E96C' line='5' parameter='thermische Nennleistung' unit='in kW'
+		 mod_type='I'/>
+	<z:row obj_id='29FE57A7-B311-43C6-8B7C-E5ED7736E96C' line='6' parameter='Energieträger' unit='' mod_type='I'/>
+	<z:row obj_id='DF8728DC-BEBB-44F9-817F-1260F211AACF' line='1' parameter='CO' unit='' mod_type='D'/>
+	<z:row obj_id='DF8728DC-BEBB-44F9-817F-1260F211AACF' line='2' parameter='NO' unit='' mod_type='D'/>
+	<z:row obj_id='DF8728DC-BEBB-44F9-817F-1260F211AACF' line='3' parameter='NO2' unit='' mod_type='D'/>
+	<z:row obj_id='DF8728DC-BEBB-44F9-817F-1260F211AACF' line='4' parameter='Ozon' unit='' mod_type='D'/>
+	<z:row obj_id='DF8728DC-BEBB-44F9-817F-1260F211AACF' line='5' parameter='PM10' unit='einschließlich ausgewählter Inhaltsstoffe (15)'
+		 mod_type='D'/>
+	<z:row obj_id='DF8728DC-BEBB-44F9-817F-1260F211AACF' line='6' parameter='SO&#x22;' unit='' mod_type='D'/>
+	<z:row obj_id='DF8728DC-BEBB-44F9-817F-1260F211AACF' line='7' parameter='Bezol' unit='' mod_type='D'/>
+	<z:row obj_id='DF8728DC-BEBB-44F9-817F-1260F211AACF' line='8' parameter='Toluol' unit='' mod_type='D'/>
+	<z:row obj_id='DF8728DC-BEBB-44F9-817F-1260F211AACF' line='9' parameter='Xylol' unit='' mod_type='D'/>
+	<z:row obj_id='DF8728DC-BEBB-44F9-817F-1260F211AACF' line='10' parameter='meteorologische Daten' unit='' mod_type='D'/>
+	<z:row obj_id='4428BD45-DBC2-440F-8F34-653827312920' line='1' parameter='Natrium' unit='' mod_type='D'/>
+	<z:row obj_id='4428BD45-DBC2-440F-8F34-653827312920' line='2' parameter='Kalium' unit='' mod_type='D'/>
+	<z:row obj_id='4428BD45-DBC2-440F-8F34-653827312920' line='3' parameter='Kalzium' unit='' mod_type='D'/>
+	<z:row obj_id='4428BD45-DBC2-440F-8F34-653827312920' line='4' parameter='Magnesium' unit='' mod_type='D'/>
+	<z:row obj_id='4428BD45-DBC2-440F-8F34-653827312920' line='5' parameter='Ammonium' unit='' mod_type='D'/>
+	<z:row obj_id='4428BD45-DBC2-440F-8F34-653827312920' line='6' parameter='Sulfat' unit='' mod_type='D'/>
+	<z:row obj_id='4428BD45-DBC2-440F-8F34-653827312920' line='7' parameter='Nitrat' unit='' mod_type='D'/>
+	<z:row obj_id='4428BD45-DBC2-440F-8F34-653827312920' line='8' parameter='Chlorid' unit='' mod_type='D'/>
+	<z:row obj_id='00D11149-1AC5-4543-9DF1-AA794395A7AA' line='1' parameter='Betroffenheit durch Straßenverkehrslärm'
+		 unit='' mod_type='D'/>
+	<z:row obj_id='29FE57A7-B311-43C6-8B7C-E5ED7736E96C' line='7' parameter='Datum der Inbetriebnahme' unit='' mod_type='I'/>
+	<z:row obj_id='29FE57A7-B311-43C6-8B7C-E5ED7736E96C' line='8' parameter='Energieertrag' unit='in kWh' mod_type='I'/>
+	<z:row obj_id='313D408A-20E5-49F0-96F9-6B7D47726015' line='1' parameter='PM 10' unit='Feinstaub 10 µm' mod_type='D'/>
+	<z:row obj_id='313D408A-20E5-49F0-96F9-6B7D47726015' line='2' parameter='PM 2,5' unit='Feinstaub 2,5 µm' mod_type='D'/>
+	<z:row obj_id='313D408A-20E5-49F0-96F9-6B7D47726015' line='3' parameter='NOx (Stickoxide)' unit='' mod_type='D'/>
+	<z:row obj_id='313D408A-20E5-49F0-96F9-6B7D47726015' line='4' parameter='CO (Kohlenmonoxid)' unit='' mod_type='D'/>
+	<z:row obj_id='313D408A-20E5-49F0-96F9-6B7D47726015' line='5' parameter='SO2 (Schwefeldioxid)' unit='' mod_type='D'/>
+	<z:row obj_id='313D408A-20E5-49F0-96F9-6B7D47726015' line='6' parameter='C6H6 (Benzol)' unit='' mod_type='D'/>
+	<z:row obj_id='313D408A-20E5-49F0-96F9-6B7D47726015' line='7' parameter='O3 (Ozon)' unit='' mod_type='D'/>
+	<z:row obj_id='313D408A-20E5-49F0-96F9-6B7D47726015' line='8' parameter='PAK (Polyzyklische Aromatische Kohlenwasserstoffe)'
+		 unit='' mod_type='D'/>
+	<z:row obj_id='313D408A-20E5-49F0-96F9-6B7D47726015' line='9' parameter='SM (Schwermetalle)' unit='' mod_type='D'/>
+	<z:row obj_id='313D408A-20E5-49F0-96F9-6B7D47726015' line='10' parameter='Ruß' unit='' mod_type='D'/>
+	<z:row obj_id='313D408A-20E5-49F0-96F9-6B7D47726015' line='11' parameter='meteorologische Daten' unit='Windrichtung, Windgeschwindigkeit, Luftdruck, Luftemperatur, Luftfeuchte, Globalstrahlung'
+		 mod_type='D'/>
+	<z:row obj_id='313D408A-20E5-49F0-96F9-6B7D47726015' line='12' parameter='Daten zur Standortcharakteristik'
+		 unit='bitte anführen/ergänzen....' mod_type='D'/>
+	<z:row obj_id='6CA6CF40-CE57-11D3-8BF6-00105A493192' line='2' parameter='Gamma Orsdosisleistung (ODL)' unit='mSv'
+		 mod_type='I'/>
+	<z:row obj_id='6CA6CF40-CE57-11D3-8BF6-00105A493192' line='3' parameter='Aktivitätskonzentration Luft: Pb 212 und Pb 214'
+		 unit='Bq/m3' mod_type='I'/>
+	<z:row obj_id='C6169C41-D3FF-47A7-82C2-CA9C4802EBF0' line='1' parameter='bitte wesentliche DB-Parametergruppen benennen'
+		 unit='' mod_type='D'/>
+	<z:row obj_id='C6169C41-D3FF-47A7-82C2-CA9C4802EBF0' line='2' parameter='Makrozoobenthos' unit='Saprobienindex'
+		 mod_type='U'/>
+	<z:row obj_id='C6169C41-D3FF-47A7-82C2-CA9C4802EBF0' line='3' parameter='Makrophyten' unit='' mod_type='I'/>
+	<z:row obj_id='C6169C41-D3FF-47A7-82C2-CA9C4802EBF0' line='4' parameter='Phytoplankton' unit='Chlorophyll' mod_type='U'/>
+	<z:row obj_id='C6169C41-D3FF-47A7-82C2-CA9C4802EBF0' line='5' parameter='Mikrobiologische Parameter' unit='Koloniezahl, Koliforme'
+		 mod_type='U'/>
+	<z:row obj_id='C6169C41-D3FF-47A7-82C2-CA9C4802EBF0' line='6' parameter='Toxikologische Parameter' unit='Leuchtbakterientest, Daphnientest'
+		 mod_type='I'/>
+	<z:row obj_id='6CA6D18A-CE57-11D3-8BF6-00105A493192' line='1' parameter='Grundwasserstand' unit='' mod_type='I'/>
+	<z:row obj_id='6CA6D0B5-CE57-11D3-8BF6-00105A493192' line='1' parameter='Sickerwassermenge' unit='' mod_type='I'/>
+	<z:row obj_id='6CA6D0B5-CE57-11D3-8BF6-00105A493192' line='2' parameter='Sickerwasserbeschaffenheit' unit=''
+		 mod_type='I'/>
+	<z:row obj_id='6CA6D0B5-CE57-11D3-8BF6-00105A493192' line='3' parameter='Verdunstung' unit='' mod_type='I'/>
+	<z:row obj_id='6CA6D0B5-CE57-11D3-8BF6-00105A493192' line='4' parameter='Bodenwasservorratsänderung' unit=''
+		 mod_type='I'/>
+	<z:row obj_id='6CA6D0B5-CE57-11D3-8BF6-00105A493192' line='5' parameter='Bewirtschaftungsdaten' unit='' mod_type='I'/>
+	<z:row obj_id='6CA6D0B5-CE57-11D3-8BF6-00105A493192' line='6' parameter='Klimadaten Brandis' unit='übliche Parameter wie DWD'
+		 mod_type='U'/>
+	<z:row obj_id='F388499F-61B7-4D72-BE5B-78396F03860A' line='1' parameter='Durchflusswassermenge' unit='Wasserstands-/Durchflussbeziehungen'
+		 mod_type='U'/>
+	<z:row obj_id='6CA6D143-CE57-11D3-8BF6-00105A493192' line='1' parameter='Niederschlagsmenge' unit='tägliche Kontrollmessungen mittels Hellmann-Messer, Wasseräquivalents der Schneedecke'
+		 mod_type='U'/>
+	<z:row obj_id='6CA6D18A-CE57-11D3-8BF6-00105A493192' line='2' parameter='anorganische Wasserinhaltsstoffe' unit=''
+		 mod_type='I'/>
+	<z:row obj_id='6CA6D0B5-CE57-11D3-8BF6-00105A493192' line='7' parameter='Saugspannung' unit='' mod_type='I'/>
+	<z:row obj_id='6CA6D0B5-CE57-11D3-8BF6-00105A493192' line='8' parameter='Bodenwassergehalt' unit='' mod_type='I'/>
+	<z:row obj_id='C6169C41-D3FF-47A7-82C2-CA9C4802EBF0' line='7' parameter='Phytobenthos' unit='sonstiges Phytobenthos, Diatomeen'
+		 mod_type='I'/>
+	<z:row obj_id='6CA6CF40-CE57-11D3-8BF6-00105A493192' line='1' parameter='Aktivitätskonzentration künstlicher Radionuklide'
+		 unit='Bq/l, Bq/kg' mod_type='U'/>
+	<z:row obj_id='F388499F-61B7-4D72-BE5B-78396F03860A' line='2' parameter='Wasserstand' unit='Wassertemperaturen'
+		 mod_type='U'/>
+</rs:data>
+</xml>

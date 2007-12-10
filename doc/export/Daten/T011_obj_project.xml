@@ -1,0 +1,951 @@
+<xml xmlns:s='uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882'
+	xmlns:dt='uuid:C2F41010-65B3-11d1-A29F-00AA00C14882'
+	xmlns:rs='urn:schemas-microsoft-com:rowset'
+	xmlns:z='#RowsetSchema'>
+<s:Schema id='RowsetSchema'>
+	<s:ElementType name='row' content='eltOnly' rs:updatable='true'>
+		<s:AttributeType name='obj_id' rs:number='1' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='T011_obj_project'
+			 rs:basecolumn='obj_id' rs:keycolumn='true'>
+			<s:datatype dt:type='string' dt:maxLength='40' rs:maybenull='false'/>
+		</s:AttributeType>
+		<s:AttributeType name='leader' rs:number='2' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T011_obj_project' rs:basecolumn='leader'>
+			<s:datatype dt:type='string' dt:maxLength='80'/>
+		</s:AttributeType>
+		<s:AttributeType name='member' rs:number='3' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T011_obj_project' rs:basecolumn='member'>
+			<s:datatype dt:type='string' dt:maxLength='255'/>
+		</s:AttributeType>
+		<s:AttributeType name='description' rs:number='4' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T011_obj_project' rs:basecolumn='description'>
+			<s:datatype dt:type='string' dt:maxLength='1073741823' rs:long='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='mod_type' rs:number='5' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T011_obj_project' rs:basecolumn='mod_type'>
+			<s:datatype dt:type='string' dt:maxLength='1'/>
+		</s:AttributeType>
+		<s:extends type='rs:rowbase'/>
+	</s:ElementType>
+</s:Schema>
+<rs:data>
+	<z:row obj_id='4428BD45-DBC2-440F-8F34-653827312920' mod_type='D'/>
+	<z:row obj_id='A31539B1-0843-4EF8-BB2D-87D2790F9B96' leader='Dr. W. Schmidt' member='Unter Leitung der SYDRO Consult GbR (Darmstadt) sind in die Untersuchung die Technische Universität Darmstadt, die Ingenieurgesellschaft Prof. Dr. Sieker mbH (Berlin), die Technische Universität Berlin und die LfL eingebunden.'
+		 description='Das Projekt wird von der Deutschen Bundesstifftung Umwelt gefördert . ' mod_type='D'/>
+	<z:row obj_id='780AAC96-8F86-41C8-9D9C-FC6ACB0EA17E' leader='xxxxxxxxxxxxxxxxx' member='xxxxxxxxxxxxxxx' description='xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+		 mod_type='D'/>
+	<z:row obj_id='2C7497A5-AB84-4A2D-AE63-020C98299159' leader='xxxxxxxxxxxxxxxxx' member='xxxxxxxxxxxxxxx' description='xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+		 mod_type='D'/>
+	<z:row obj_id='73B632ED-6BBC-42BA-88B1-EF45BF5ACE5C' leader='xxxxxxxxxxxxxxxxx' member='xxxxxxxxxxxxxxx' description='xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+		 mod_type='D'/>
+	<z:row obj_id='D94FD8D6-5541-4035-816A-DF45AC8B5C08' leader='Herr Dr. Füllner' mod_type='U'/>
+	<z:row obj_id='131FD5F3-4394-4484-9B8F-C582CE457D05' leader='Herr Dr. Füllner' mod_type='U'/>
+	<z:row obj_id='128D1E29-E040-41CB-8D28-F7E7460A98DF' mod_type='U'/>
+	<z:row obj_id='2F6B9048-7ED4-4CDB-A502-831A17704346' mod_type='U'/>
+	<z:row obj_id='EA953AF0-5FF4-44B1-AECA-9C834A059BF7' description='Frage 1: welche Gewässereinzugsgebiete bzw. Fließgewässer wurden bisher beprobt ?
+Frage 2: sicher werden die Ergebnise datenbankrelevant abgelegt - hat es Sinn, auf eine solche Datensammlung zu vereiesen ? Wenn ja, in welcher Form ? 
+
+Untersuchungen von Fischen aus der Elbe auf: Lindan, Hexachlorbenzol (HCB), PCB´s, DDT und Metabolithen, Cadmium, Blei, Quecksilber, weitere Schwermetalle
+Untersuchungen von Fischen aus der Freiberger Mulde auf: Kohlenwasserstoffe, Schwermetalle....bitte ergänzen !'
+		 mod_type='U'/>
+	<z:row obj_id='DE41E755-15FD-46D4-9E15-EDA165AA5A96' member='Institut für Binnenfischerei e.V. Potsdam-Sacrow'
+		 mod_type='U'/>
+	<z:row obj_id='5D432E5A-BD3E-4876-A86F-845BDF77F63E' leader='Frau A. Münnich' member='' mod_type='D'/>
+	<z:row obj_id='A0A17CAA-9687-4822-A445-72A4F16544EE' leader='Frau A. Münnich' member='Mehrländerprojekt mit TLL, Bay LfL und KTBL'
+		 mod_type='D'/>
+	<z:row obj_id='7569B005-FCB8-41E0-B575-B0F633C67594' leader='Herr M. Thieme' member='' mod_type='D'/>
+	<z:row obj_id='F8AFB44C-AC5E-40E7-883A-6B3A0A434031' leader='Frau A. Schaerff' member='' mod_type='D'/>
+	<z:row obj_id='02022773-F73F-4085-B832-8F031F16E3C8' leader='Dr. habil. C. Röhricht' mod_type='U'/>
+	<z:row obj_id='C72833EC-86E4-4610-A448-2413711976FF' leader='Herr M. Hänsel' mod_type='U'/>
+	<z:row obj_id='FF432DF7-BE18-40BB-84C2-7247C97C6352' leader='Herr M. Hänsel' description='Das Erzeugen von Feldfutter ist im ökologischen Landbau von überragender Bedeutung nicht nur für die Tierhaltung, sondern auch für den Pfanzenbau selbst. Im Pflanzenbau trägt das Feldfutter die unersetzliche Funktion der Stickstofffixierung durch Leguminosenanbau sowie die Regulierung von ausdauernden Unkräutern über die Schnittnutzung. Somit beträgt der Ackerflächenanteil des Feldfutters im ökologischen Landbau ca. 30%.  Der Anbau und die Nutzung der Futterpflanzen muß standorttypisch gestaltet werden, dazu stellt der ökologische Landbau eigene Anforderungen zum Beispiel an die Unkrautregulierung und den Pflanzenschutz. Selbst die Sortenwahl bedarf eigener Betrachtungen, um einen optimalen Kulturverlauf zu gewährleisten.
+'
+		 mod_type='U'/>
+	<z:row obj_id='57AA5539-4942-4CCD-9CAD-CDF48D66527C' leader='Dr. M. Grunert' mod_type='U'/>
+	<z:row obj_id='85AF41CD-4821-4A97-A073-335F20BB29CA' leader='Dr. E. Albert' mod_type='U'/>
+	<z:row obj_id='B5945485-0BF5-4780-B571-12B750425D75' leader='M. Hänsel' mod_type='D'/>
+	<z:row obj_id='CC3738A4-CE8B-4103-95AE-CB74406A338D' leader='Dr. M. Grunert' description='Da die Herausnahme von Roggen aus der Intervention geplant ist werden erhebliche Absatzprobleme für Betriebe der leichten Standorte Sachsens erwartet.
+Die Projektergebnisse fließen in kürzlich begonnene Projekte zur Verarbeitungstechnik von Roggen für verschiedene technische Einsatzgebiete (Bindemittel, Spritzgießen, Dämmstoffe, vernetzte Roggen-Biopolymere) ein. 
+'
+		 mod_type='D'/>
+	<z:row obj_id='E0F2FBF1-8FA8-4340-93D0-2A3609A4E8C0' leader='' description='Rahmenprojekt: Entwicklung und Erprobung von Algorithmen der teilschlagspezifische Bewirtschaftung zur Verbesserung der Effizienz des Betriebsmitteleinsatzes und zur Reduktion von Umweltbelastung in Sachsen'
+		 mod_type='U'/>
+	<z:row obj_id='33E1F72A-D6B3-4E27-9324-BA57EF5655A1' leader='Dr. W. Schmidt' member='E. Müller (LfL)
+Staatliche Ämter für Landwirtschaft  (ÄfL)
+Regierungspräsidium Chemnitz, Abteilung Landwirtschaft
+im Auftrag des Sächsischen Staatministeriums für Umwelt und Landwirtschaft (SMUL) 
+'
+		 description='15 Landwirtschaftsunternehmen im Freistaat Sachsen haben sich im Rahmen des Projektes bereit erklärt, als Konsultationsbetriebe ihre gewonnenen Erfahrungen anderen Landwirten zu vermitteln. 
+'
+		 mod_type='D'/>
+	<z:row obj_id='04CB2FEA-B763-425A-A630-5D5E6AE65AE3' leader='Dr. W.-A. Schmidt' mod_type='U'/>
+	<z:row obj_id='32318BA8-A803-409E-8589-5EAB9EB6FF7C' leader='Dr. H. Kolbe' mod_type='U'/>
+	<z:row obj_id='0E26FD2C-0BF1-44E1-A6A4-FD86A75BC9DF' leader='H. Stahl' mod_type='D'/>
+	<z:row obj_id='4C942D88-3B87-4D2F-A607-EC7E9256B2CC' leader='Dr. W. Schmidt' mod_type='D'/>
+	<z:row obj_id='9CC10145-94FB-45FA-9E34-7A56C943076E' leader='Dr. W. Schmidt' mod_type='D'/>
+	<z:row obj_id='174C3DAD-C2C7-427F-BD95-CECDC0EBFB1A' leader='Frau B. Krellig' mod_type='D'/>
+	<z:row obj_id='3939CBC6-63BD-490B-BB95-5514C74B36B3' leader='Dr. W. Wiedemann' mod_type='U'/>
+	<z:row obj_id='A73ED934-AC83-4F4E-B0E3-6C79543B3A2D' leader='Dr. G. Schmiedeknecht' mod_type='U'/>
+	<z:row obj_id='2E4F6016-7759-4628-B4D7-EEC47E4D2813' leader='Frau A. Thate' member='' description='Durch die Liberalisierung der Agrarmärkte in Europa haben sich die Vermarktungschancen für eine Reihe landwirtschaftlicher Erzeugnisse deutlich verschlechtert  Deshalb ist in den letzten Jahren im intensiven Marktfruchtanbau  ein deutlicher Trend zur Fruchtartenkonzentration insbesondere auf Winterweizen und Winterraps mit den sich daraus ergebenen phytosanitären Problemen zu beobachten.'
+		 mod_type='D'/>
+	<z:row obj_id='B4797FC1-477B-4B01-9F36-480A8E748C4E' leader='Frau A. Thate' member='' mod_type='D'/>
+	<z:row obj_id='06E875A3-069A-43DA-81E1-414D109F00C8' leader='Frau E. Meinlschmidt' member='' mod_type='D'/>
+	<z:row obj_id='188A0022-D8CE-43A1-9B40-145F095B9AA8' leader='Herr Dr. O. Nitzsche' member='' description='Die Landwirtschaft gilt als Hauptverursacher der diffusen Belastung von Gewässern durch den Eintrag von Nährstoffen und Pflanzenschutzmitteln. Dabei sind mit dem vertikalen Fluss durch den Boden in Richtung Grundwasser oder Zwischenschichtabfluss und dem Oberflächenabfluss prinzipiell zwei Eintragspfade zu unterscheiden. Durch die Anwendung erosionsmindernder Maßnahmen wie z.B. der konservierenden Bodenbearbeitung auf derzeit über 30 % der Ackerfläche in Sachsen wird die Infiltration von Wasser in den Boden gefördert und das Auftreten von Oberflächenabfluss reduziert. 
+In diesem Zusammenhang besteht die Befürchtung, dass es durch die gesteigerte Infiltration zu einer erhöhten vertikalen Verlagerung von Nährstoffen und Pflanzenschutzmitteln kommt. Verschiedene theoretische Ableitungen und Grundlagenuntersuchungen zu diesem Thema kommen in Bezug auf die veränderte Stoffverlagerung zu grundlegend unterschiedlichen Aussagen. Ursache sind unterschiedliche Grundannahmen in Bezug auf die Fließvorgänge sowie die Ausbringung (Zeit und Ort) der untersuchten Stoffe.
+Im Rahmen des Vorhabens stellt sich die Frage, ob unter praxisüblichen Bedingungen bei Anwendung der konservierenden Bodenbearbeitung die Reduzierung der Bodenerosion und der oberflächlichen Stoffverlagerung durch eine Erhöhung der vertikalen Stoffverlagerung &#x22;erkauft&#x22; wird. Verlässliche Antworten auf diese Frage sind sowohl für konservierend wirtschaftende Landwirtschaftsbetriebe als auch für die Agrarpolitik und die Beratung notwendig, um ggf. bei einem Auftreten unerwünschter Effekte frühzeitig mit geeigneten Maßnahmen gegensteuern zu können.
+'
+		 mod_type='U'/>
+	<z:row obj_id='2E49460C-F15C-4394-AA25-2930F236D104' leader='Frau D. Krieg' member='Mehrländerprojekt &#x22;Erzeugung von Ethanolgetreide und Schlempeverfütterung&#x22; 
+Länder bitte ergänzen '
+		 mod_type='U'/>
+	<z:row obj_id='5E57F118-AAA9-48D1-821F-7AE7686BBB33' leader='Dr. Thomas Knobloch (Betreuung eines Projektabschnittes)'
+		 member='Verband Deutscher Landwirtschaftlicher Untersuchungs- und Forschungsanstalten (VDLUFA) ' description='Der Verband Deutscher Landwirtschaftlicher Untersuchungs- und Forschungsanstalten (VDLUFA) ist Initiator dieses Projektes. Bei der Bundesanstalt für Landwirtschaft und Ernährung (BLE) wurde ein Projektantrag gestellt. Die Sächsische Landesanstalt für Landwirtschaft ist in dieses Projekt eingebunden. Ein Mitarbeiter des Referats 82  leistet einen Teil der fachlichen Betreuung des Projektes. '
+		 mod_type='U'/>
+	<z:row obj_id='99C7116C-4B37-41EB-9BF0-63E86CB8B308' leader='Frau Dr. H. Mietke-Hofmann' member='' description='Im Rahmen eines vorangegangenen FuE-Vorhabens &#x22;Charakterisierung und Identifizierung von Bacillus cereus-Isolaten aus Futtermitteln und Lebensmitteln mittels FTIR-Spektroskopie&#x22; konnten probiotische B. cereus -Stämme eindeutig von  Wildstämmen unterschieden werden, was für Fragestellungen der amtlichen Futtermittelkontrolle aber auch für lebensmittelhygienische Belange von großer Bedeutung ist. '
+		 mod_type='U'/>
+	<z:row obj_id='71E85011-B8C9-4CEC-8A82-DE1BDD14475C' leader='Frau Dr. H. Mietke-Hofmann' member='' mod_type='U'/>
+	<z:row obj_id='192756A6-BFC7-4C62-80ED-7B48D7CC014C' leader='Herr Dr. habil. R. Mönicke' member='' mod_type='U'/>
+	<z:row obj_id='FD0AAAF7-AA78-42E7-B38D-537C0C453BED' leader='Herr Dr. M. Menge' member='' mod_type='D'/>
+	<z:row obj_id='29CAD90D-3B4B-4BBD-A667-34A545114861' description='- Objekt = GL für o.g. 3 FA/Objekte: &#x22;SM-Transferarbeit&#x22; über 4a, publiziert in: Schriftenreihe 2.Jg, H3, S. 55-79 (Herr Dr. Mönicke)'
+		 mod_type='D'/>
+	<z:row obj_id='2C18BDAA-9167-4F0A-818F-4CB38D9C1F03' leader='Dr. W.-A. Schmidt' mod_type='D'/>
+	<z:row obj_id='B4998ACD-AE63-465D-975F-E58AFFADCA9E' leader='Dr. W. Schmidt' member='' description='Erlass des SMUL vom 27.07.01, Az.32-8548.01'
+		 mod_type='D'/>
+	<z:row obj_id='69D4BC2C-C905-486B-B678-2DB2BB753E33' leader='Dr. W. Schmidt' member='E. Müller' mod_type='D'/>
+	<z:row obj_id='6A36BF5F-5F12-4F21-9647-9E8545A3E5C6' leader='Dr. W.-A. Schmidt' member='Universität Hannover, Institut für Wasserwirtschaft, Institut für Bodenkunde, 
+Brandenburgische Technische Universität Cottbus, Lehrstuhl  Abwassertechnik
+Ingenieurgesellschaft Prof. Sieker mbH, Berlin
+Sächsische Landesanstalt für Landwirtscha'
+		 description='DBU-Projekt AZ15877' mod_type='U'/>
+	<z:row obj_id='23CE7549-76EC-492F-A28F-D9DA4A281DB3' leader='Dr. Hermann Laber
+' mod_type='U'/>
+	<z:row obj_id='C45A9D05-56A0-4B77-B371-E7DEE1E63C7E' member='Gemeinschaftsprojekt der Landesanstalten für Landwirtschaft der Länder Sachsen, Thüringen und Sachsen-Anhalt zum Thema: &#x22;Erarbeitung von Strategien zur Verbesserung der Stabilität und Nutzungsdauer in der Sauenhaltung in Mitteldeutschland&#x22;'
+		 mod_type='U'/>
+	<z:row obj_id='B4199F4A-0CF7-4808-BDAD-A4BF6E2C4489' leader='Dr. C. Krüger' mod_type='U'/>
+	<z:row obj_id='F728BF7B-0DAD-413A-8870-F9B07CCD4354' description='Nationales Fachprogramm zur Erhaltung und nachhaltigen Nutzung tiergenetischer Ressourcen
+Verankerung im novellierten Tierzuchtgesetz §§ 1 und 9
+'
+		 mod_type='U'/>
+	<z:row obj_id='D2AAB897-D261-43CC-ADCD-6AC3565E929D' leader='Dr. W. Schmidt' mod_type='D'/>
+	<z:row obj_id='30D89570-B3EB-4B08-8EB6-FF432376C04B' description='gefördert durch das Bundesministerium für Bildung und Forschung FKZ: 0339588 
+'
+		 mod_type='D'/>
+	<z:row obj_id='F4CB9EB7-7BC6-403B-B16A-E9002B537E01' leader='Dr. W. Schmidt' description='Der Endbericht wurde in der Schriftenreihe der LfL veröffentlicht.'
+		 mod_type='D'/>
+	<z:row obj_id='384DF0EA-8B0F-11D5-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='384DF0EC-8B0F-11D5-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='384DF104-8B0F-11D5-9350-0048543011FC' leader='' member='' description='' mod_type='N'/>
+	<z:row obj_id='384DF10D-8B0F-11D5-9350-0048543011FC' leader='' member='' description='' mod_type='N'/>
+	<z:row obj_id='384DF10C-8B0F-11D5-9350-0048543011FC' leader='' member='' description='' mod_type='N'/>
+	<z:row obj_id='384DF10B-8B0F-11D5-9350-0048543011FC' leader='' member='' description='' mod_type='N'/>
+	<z:row obj_id='384DF10A-8B0F-11D5-9350-0048543011FC' leader='' member='' description='' mod_type='N'/>
+	<z:row obj_id='384DF109-8B0F-11D5-9350-0048543011FC' leader='' member='' description='' mod_type='N'/>
+	<z:row obj_id='384DF108-8B0F-11D5-9350-0048543011FC' leader='' member='' description='' mod_type='N'/>
+	<z:row obj_id='384DF107-8B0F-11D5-9350-0048543011FC' leader='' member='' description='' mod_type='N'/>
+	<z:row obj_id='384DF111-8B0F-11D5-9350-0048543011FC' leader='' member='' description='' mod_type='N'/>
+	<z:row obj_id='384DF110-8B0F-11D5-9350-0048543011FC' leader='' member='' description='' mod_type='N'/>
+	<z:row obj_id='384DF103-8B0F-11D5-9350-0048543011FC' leader='' member='' description='' mod_type='U'/>
+	<z:row obj_id='777D98EA-8D69-11D5-9350-0048543011FC' leader='' member='' description='' mod_type='N'/>
+	<z:row obj_id='777D98EB-8D69-11D5-9350-0048543011FC' leader='' member='' description='' mod_type='N'/>
+	<z:row obj_id='777D98EC-8D69-11D5-9350-0048543011FC' leader='' member='' description='' mod_type='N'/>
+	<z:row obj_id='777D98ED-8D69-11D5-9350-0048543011FC' leader='' member='' description='' mod_type='N'/>
+	<z:row obj_id='9161A1F1-9D65-4503-B216-98A1F71D43E1' leader='Dr. W.-A. Schmidt' member='Universität Hannover, Institut für Wasserwirtschaft, Institut für Bodenkunde,  Brandenburgische Technische Universität Cottbus, Lehrstuhl  Abwassertechnik Ingenieurgesellschaft Prof. Sieker mbH, Berlin Sächsische Landesanstalt für Landwirtschaft'
+		 description='DBU-Projekt AZ15877' mod_type='D'/>
+	<z:row obj_id='93FAD491-9D22-4BF1-88F5-38167D504428' leader='Dr. U. Bergfeld' mod_type='U'/>
+	<z:row obj_id='09183F76-E3F1-4338-A050-64B73ECBA689' leader='Dr. R. Klemm' description='Das gegenwärtig im Entwurf vorliegende Tierzuchtgesetz fordert ein Monitoring der genetischen Vielfalt.'
+		 mod_type='U'/>
+	<z:row obj_id='CFD7E166-A600-45B0-9655-29F273E7598C' description='Die TA-Luft begrenzt momentan die Freisetzung von Gesamt- und PM 10-Staub. Angedacht ist außerdem die Festlegung von Grenzwerten für die Emission von PM 2.5-Staub. Für die Gesamt- und PM 10-Staub liegen derzeit nur unzureichende, für PM 2.5-Staub gegenwärtig keine Emissionswerte vor.
+Das Vorgängerprojekt &#x22;Quantifizierung von Emissionen aus der Rinderhaltung&#x22; wurde 2005 abgeschlossen. Ziel war 
+- die Erarbeitung einer Methode zur einfachen Ermittlung des Luftvolumenstroms frei gelüfteter Ställe,
+- die Ermittlung von Emissionsfaktoren für konventionell und ökologisch bewirtschaftete Rinderställe sowie
+- die Ausweisung flächenspezifischer Emissionen für emittierende Flächen im Stall und Auslauf in Abhänigkeit von Temperatur, Luftgeschwindigkeit und Sauberkeit.'
+		 mod_type='U'/>
+	<z:row obj_id='A5ED2183-9B60-4D0A-8387-786299B5B311' mod_type='U'/>
+	<z:row obj_id='7D86BD6A-80F2-4554-865C-9BD2F8F9C6BF' leader='Dr. Gabriele Krieghoff
+' mod_type='U'/>
+	<z:row obj_id='FA035F48-7EA8-4926-BED2-C2B45523BE6A' leader='Dr. Hermann Laber ' mod_type='U'/>
+	<z:row obj_id='33391FF2-F900-419F-9522-DEC21A64D1B6' leader='Herr S. Wartenberg
+' mod_type='U'/>
+	<z:row obj_id='6BCB4B9F-DB24-43D9-B71D-E34D4552A9DB' description='Ermittlung des Anteils der Mutterkühe, die für die Reproduktion des Mutterkuhbestandes erforderlich sind unter Beachtung der Nutzungsdauer bzw. Reproduktionsrate, des Erstkalbealters sowie der Verluste. Erstellung von Kreuzungszuchtprogrammen und Anpaarungsplänen in den Betrieben.'
+		 mod_type='U'/>
+	<z:row obj_id='18DA7759-9B0F-40DC-8BBB-46020D14FC36' leader='Herr M. Hänsel' mod_type='U'/>
+	<z:row obj_id='C2F0FC38-12CD-46D6-AAF9-B8C6D86EB5F0' leader='Dr. habil. C. Röhricht' member='Verbundprojekt Biomasseanbau und -verwertung als Energieträger/Humusstoff von Flächen mit unterschiedlichem Schwermetallbelastungsgrad und Grünlandgebieten.'
+		 mod_type='U'/>
+	<z:row obj_id='7710B87A-E781-481B-AEDE-2BE1ED4F6BEE' leader='Herr Dr. R. Klose' member='' description='Zur Dynamik des As im Boden und zum Transfer in die Pflanzen ist bisher wenig bekannt, so dass eine Gefahrenabschätzung sehr unsicher ist. Im Projekt soll der Versuch unternommen werden, Entscheidungen über die Nutzung As-belasteter Böden auf eine sicherere Basis zu stellen.
+Werden nur die Regelungen der Bundesbodenschutzverordnung herangezogen und vom Arsengehalt im Boden auf den in der Pflanze geschlossen, so muß in unverhältnismäßig großen Gebieten Sachsens die Grünlandproduktion  eingestellt werden.  Es soll ein besserer Zusammenhang zwischen Bodenparametern und dem späteren Gehalt in der Pflanze gefunden werden, um möglichst viele landwirtschaftliche Nutzflächen in der Futtermittelproduktion zu halten. 
+Der zu führende Nachweis einer geringen Toxizität der vorkommenden Arsenverbindungen soll Argument für eine Änderung des Futtermittelgrenzwertes sein.
+'
+		 mod_type='U'/>
+	<z:row obj_id='7BF5BE93-B244-47E7-A4AE-ACF6EC333A8A' leader='H. Stahl' description='
+.' mod_type='U'/>
+	<z:row obj_id='6A15B869-DC09-4BC8-BE64-7060A4F32FA3' leader='Dr. W. Schmidt' member='E. Müller (LfL) Staatliche Ämter für Landwirtschaft  (ÄfL) Regierungspräsidium Chemnitz, Abteilung Landwirtschaft im Auftrag des Sächsischen Staatministeriums für Umwelt und Landwirtschaft (SMUL)  '
+		 description='15 Landwirtschaftsunternehmen im Freistaat Sachsen haben sich im Rahmen des Projektes bereit erklärt, als Konsultationsbetriebe ihre gewonnenen Erfahrungen anderen Landwirten zu vermitteln.  '
+		 mod_type='U'/>
+	<z:row obj_id='B66C8741-D0AA-492F-88CB-E40E39B2B6DF' leader='Dr. W. Schmidt' member='Unter Leitung der SYDRO Consult GbR (Darmstadt) sind in die Untersuchung die Technische Universität Darmstadt, die Ingenieurgesellschaft Prof. Dr. Sieker mbH (Berlin), die Technische Universität Berlin und die LfL eingebunden.'
+		 description='Das Projekt wird von der Deutschen Bundesstifftung Umwelt gefördert. ' mod_type='U'/>
+	<z:row obj_id='95E040B3-DFB3-4672-98E6-88A27C1C0A70' member='gesamter Geschäftsbereich des SMUL' mod_type='U'/>
+	<z:row obj_id='FA102351-A02F-4703-A8A6-2DBCEFE4285B' member='Sächsisches Landesamt für Umwelt und Geologie Abteilung 2,  Sächsisches Staatsministerium für Umwelt und Landwirtschaft, Ref. 52'
+		 mod_type='I'/>
+	<z:row obj_id='2BA034A0-AA74-4D80-BCBA-44E8C41DA7C9' mod_type='I'/>
+	<z:row obj_id='3BB3D6B5-1456-47D7-B67B-01AE305D106A' leader='? bitte ergänzen' member='Landesamt für Umwelt und Geologie, Leipziger Institut für Troposphärenforschung'
+		 description=' ' mod_type='D'/>
+	<z:row obj_id='25345B4D-4408-446B-BEB8-64704C70EDBD' leader='Frau K. Jäkel' member='' mod_type='D'/>
+	<z:row obj_id='92E36458-F98B-4D57-9E65-F2FC8638B0AB' leader='Frau A. Münnich' member='' mod_type='D'/>
+	<z:row obj_id='376B52BA-1792-468F-9537-946C480F4FFF' leader='Herr M. Thieme' member='' mod_type='D'/>
+	<z:row obj_id='FD65FA28-7946-491C-AA00-2285AA62B63D' leader='Dr. habil. C. Röhricht' description='Rahmenprojekt: Entwicklung und Erprobung standortangepasster Anbausysteme für Sachsen unter besonderer Berücksichtigung der Klimaänderung '
+		 mod_type='U'/>
+	<z:row obj_id='13BD9B80-77E8-4ECA-808E-712317523A92' leader='Frau A. Thate' member='' mod_type='D'/>
+	<z:row obj_id='80939944-FF61-454B-999D-AEEF286BE5CF' leader='Frau Prof. Dr. Annette Zeyner (AUF Rostock)' member='Frau Dr. H. Mietke-Hofmann '
+		 description='Die Projektleitung liegt in den Händen der Agrar- und Umweltwissenschaftlichen Fakultät der Universität Rostock (AUF Rostock). Die Sächsische Landesanstalt für Landwirtschaft bearbeitet Teilfragen des Projektes.'
+		 mod_type='U'/>
+	<z:row obj_id='74678506-3F71-4174-965D-01520723CACE' leader='Dr, O. Steinhöfel' member='' description='Impulse für die aktuelle Futtermittelrechtssprechung müssen fast ausschließlich aus Sachsen erwartet werden. 
+In den Böden des Erzgebirges, Erzgebirgsvorlandes bzw. in den Auen der das Erzgebirge entwässernden Flüsse können, geogen bedingt, erhöhte Gehalte an Arsen vorkommen. Insbesondere die Futtergrundlage für Wiederkäuer ist, bedingt durch die essentielle Grobfutterfütterung, stark vom Standort abhängig. 
+Die Bundesbodenschutzverordnung hat bei Grünlandnutzung für Arsen einen Maßnahmenwert von 50 mg je kg Bodentrockenmasse festgelegt. Dieser Wert wird in einigen sächsischen Regionen zum Teil deutlich überschritten (siehe LfUG-Bericht zur Situation in den Muldeauen). Die Futtermittelverordnung schreibt für Arsen einen Höchstgehalt von 2 mg je kg (bei 88 % Trockenmasse) fest. Da bereits eine geringe Zusatzverschmutzung des Grundfutters ausreicht, um den gesetzlich festgelegten Höchstwert zu übersteigen, sind sächsische Auengebiete als Futtergrundlage für Wiederkäuer potentiell vakant. 
+'
+		 mod_type='U'/>
+	<z:row obj_id='872C2DC7-EA61-453B-B243-89815D49A1B4' leader='Dr. U. Wanka' description='Ziel des Vorhabens ist es, für die Praxis Empfehlungen zur umweltgerechten Gestaltung von alternativen Legehennenhaltungsverfahren zu erarbeiten. Gesetzlicher Hintergrund ist, dass alle Tierhaltungsanlagen spezifische Anforderungen entsprechend der TA-Luft und genehmigungsbedürftige Anlagen die Festlegungen der TA-Lärm einzuhalten haben. Mit Verbot der Käfighaltung ist eine Umstellung auf alternative Haltungsverfahren verbunden.Die alternativen Verfahren emittieren deutliche höhere Mengen an Ammoniak, Staub und Geruchsstoffen. Besonders problematisch ist gegenwärtig der Systemwechsel von Käfighaltung auf alternative Verfahren für bestehende Anlagen, die zur Vermeidung von Geruchsbelästigungen in oder an den Wald gebaut wurden. Mit Novellierung der TA-Luft wurde zum Schutz N-empfindlicher Ökosysteme die Freisetzung von Ammoniak aus Anlagen begrenzt sowie Ammoniakrichtwerte für die maximal zulässige Gesamt- bzw. Zusatzbelastung im Immissionsbereich festgelegt. '
+		 mod_type='D'/>
+	<z:row obj_id='819BF4FF-9B14-4312-8024-1B658004C4FE' leader='H. Stahl' mod_type='U'/>
+	<z:row obj_id='91C9A2FE-6C8B-4A08-996C-50DF84EDC271' leader='Herr Dr. M. Menge' member='' mod_type='I'/>
+	<z:row obj_id='15AFFD24-FF99-46A1-B1F0-32218CDD2E3E' leader='Dr. W.-A. Schmidt' mod_type='U'/>
+	<z:row obj_id='F3D14A4F-CE51-11D3-8BF6-00105A493192' member='LfUG, StUFA Leipzig, Ingenieurbüros: HGN Torgau, IBGW Leipzig, G.E.O.S Freiberg'
+		 description='Name: Aufstellung von Grundwasserbilanzen' mod_type='N'/>
+	<z:row obj_id='9E48DB20-8BD4-11D5-9350-0048543011FC' leader='' member='' description='h' mod_type='N'/>
+	<z:row obj_id='9E48DB22-8BD4-11D5-9350-0048543011FC' leader='Biosphärenreservat &#x22;Oberlausitzer Heide- und Teichlandschaft&#x22;'
+		 member='Büro für Stadtbauwesen und Umweltplanung, Bautzen' description='' mod_type='N'/>
+	<z:row obj_id='9E48DB23-8BD4-11D5-9350-0048543011FC' leader='' member='' description='' mod_type='N'/>
+	<z:row obj_id='B211A1CA-0B1F-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='6CDB1AA5-8CB7-11D5-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='DB5CB446-C61B-11D5-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='9855D2EA-CA30-11D5-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='13A43039-CBA4-11D5-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='13A43038-CBA4-11D5-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='13A43037-CBA4-11D5-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='13A43036-CBA4-11D5-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='13A43035-CBA4-11D5-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='13A43034-CBA4-11D5-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='13A43033-CBA4-11D5-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='13A43032-CBA4-11D5-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='13A4303F-CBA4-11D5-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='13A43047-CBA4-11D5-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='13A43046-CBA4-11D5-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='13A43045-CBA4-11D5-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='13A43044-CBA4-11D5-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='72F3C489-CBF2-11D5-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='72F3C488-CBF2-11D5-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='72F3C487-CBF2-11D5-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='9855D2EB-CA30-11D5-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='8F590A2D-E7E2-11D5-9350-0048543011FC' leader='
+
+' member='' description='Technische Universität Dresden, Fakultät für Maschinenwesen Institut für Energietechnik
+01069 Dresden, Postfach 
+www.tu-dresden.de/mw/iet/KET/akr.html
+'
+		 mod_type='U'/>
+	<z:row obj_id='B814A302-56CF-4571-A517-E37B211CFDC9' leader='Dr. W. Schmidt' mod_type='U'/>
+	<z:row obj_id='1B43079A-E954-11D5-9350-0048543011FC' member='Bundesanstalt für Züchtungsforschung an Kulturpflanzen 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'
+		 mod_type='N'/>
+	<z:row obj_id='8EF0A852-0BC5-4162-A613-0DB636843023' leader='Dr. W. Schmidt' member='Unter Leitung der SYDRO Consult GbR (Darmstadt) sind in die Untersuchung die Technische Universität Darmstadt, die Ingenieurgesellschaft Prof. Dr. Sieker mbH (Berlin), die Technische Universität Berlin und die LfL eingebunden.'
+		 description='Das Projekt wird von der Deutschen Bundesstifftung Umwelt gefördert. ' mod_type='D'/>
+	<z:row obj_id='1B43079D-E954-11D5-9350-0048543011FC' member='Technische Universität Dresden, Institut für Lebensmittel- und Bioverfahrenstechnik
+
+
+
+'
+		 mod_type='N'/>
+	<z:row obj_id='1B43079F-E954-11D5-9350-0048543011FC' member='Sächsisches Institut für Angewandte Biotechnologie e.V. (SIAB)
+
+
+
+'
+		 mod_type='N'/>
+	<z:row obj_id='1B4307A1-E954-11D5-9350-0048543011FC' member='Universität Leipzig, Institut für Botanik
+
+
+
+
+'
+		 mod_type='N'/>
+	<z:row obj_id='1B4307A2-E954-11D5-9350-0048543011FC' member='Technische Universität Dresden, Institut für Biochemie
+
+
+
+
+
+
+'
+		 mod_type='N'/>
+	<z:row obj_id='1B4307A4-E954-11D5-9350-0048543011FC' member='TU Bergakademie Freiberg, IÖZ
+
+
+
+
+
+
+
+
+'
+		 mod_type='N'/>
+	<z:row obj_id='1B4307A5-E954-11D5-9350-0048543011FC' member='UFZ-Umweltforschungszentrum Leipzig-Halle GmbH, Sektion Sanierungsforschung
+
+
+
+
+
+
+
+
+
+
+'
+		 mod_type='N'/>
+	<z:row obj_id='1B4307A6-E954-11D5-9350-0048543011FC' member='UFZ-Umweltforschungszentrum Leipzig-Halle GmbH, Umweltbiotechnologisches Zentrum
+
+
+
+
+
+
+
+
+
+
+
+'
+		 mod_type='N'/>
+	<z:row obj_id='1B4307A7-E954-11D5-9350-0048543011FC' member='UFZ-Umweltforschungszentrum Leipzig-Halle GmbH
+
+
+
+
+
+
+
+
+
+
+
+'
+		 mod_type='N'/>
+	<z:row obj_id='1B4307AA-E954-11D5-9350-0048543011FC' member='Universitätsklinikum Carl Gustav Carus an der TU Dresden, Klinik und Poliklinik für Kinderheilkunde
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'
+		 mod_type='N'/>
+	<z:row obj_id='4F0A4980-BD55-4355-8F2F-5A39873A4E33' mod_type='D'/>
+	<z:row obj_id='1B4307AC-E954-11D5-9350-0048543011FC' member='
+
+Universität Leipzig
+Institut für Klinische Immunologie und Transfusionsmedizin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'
+		 mod_type='N'/>
+	<z:row obj_id='1B4307AD-E954-11D5-9350-0048543011FC' member='Technische Universität Dresden, Institut für Holz- und Papiertechnik
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'
+		 mod_type='N'/>
+	<z:row obj_id='1B4307AE-E954-11D5-9350-0048543011FC' member='BioPlanta GmbH
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'
+		 mod_type='N'/>
+	<z:row obj_id='D367420C-B2EA-4CD6-94F0-88FCEADACD80' description='gefördert durch das Bundesministerium für Bildung und Forschung FKZ: 0339588  '
+		 mod_type='U'/>
+	<z:row obj_id='1B4307B1-E954-11D5-9350-0048543011FC' member='Universität Leipzig, Institut für Tierhygiene und Öffentliches Veterinärwesen
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'
+		 mod_type='N'/>
+	<z:row obj_id='1B4307B2-E954-11D5-9350-0048543011FC' member='Technische Universität Dresden, Institut für Forstbotanik und Forstbiologie
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'
+		 mod_type='N'/>
+	<z:row obj_id='1B4307D0-E954-11D5-9350-0048543011FC' leader='' member='' description='' mod_type='N'/>
+	<z:row obj_id='1B4307CF-E954-11D5-9350-0048543011FC' leader='' member='' description='' mod_type='N'/>
+	<z:row obj_id='C3D051C8-81A8-4A2A-BB58-3A0766170353' leader='Herr W. Worm' member='' mod_type='U'/>
+	<z:row obj_id='1B4307D5-E954-11D5-9350-0048543011FC' leader='SMUL (Auftraggeber)' member='Firma PROGNOS GmbH'
+		 description='' mod_type='N'/>
+	<z:row obj_id='1B4307D4-E954-11D5-9350-0048543011FC' leader='SMUL (Auftraggeber)' member='FUGRO CONSULT GmbH'
+		 description='' mod_type='N'/>
+	<z:row obj_id='1B4307D3-E954-11D5-9350-0048543011FC' leader='SMUL' member='' description='' mod_type='N'/>
+	<z:row obj_id='1B4307DA-E954-11D5-9350-0048543011FC' leader='SMUL (Auftraggeber)' member='Firma ECOTEC Institut für chemisch-technische und ökonomische Forschung und Beratung'
+		 description='' mod_type='N'/>
+	<z:row obj_id='7B52B0E6-EE0D-11D5-9350-0048543011FC' leader='' member='' description='' mod_type='U'/>
+	<z:row obj_id='D075B8BF-0122-11D6-9350-0048543011FC' member='Biosphärenreservat Oberlausitzer Heide- und Teichlandschaft
+Förderverein für die Natur der Oberlausitzer Heide- und Teichlandschaft e.V.'
+		 mod_type='N'/>
+	<z:row obj_id='D075B8C0-0122-11D6-9350-0048543011FC' member='Biosphärenreservat Oberlausitzer Heide- und Teichlandschaft
+Förderverein für die Natur der Oberlausitzer Heide- und Teichlandschaft e.V.'
+		 mod_type='N'/>
+	<z:row obj_id='D075B8C1-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B8C2-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B8C3-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B8C8-0122-11D6-9350-0048543011FC' leader='' member='' description='' mod_type='N'/>
+	<z:row obj_id='D075B8C9-0122-11D6-9350-0048543011FC' leader='' member='' description='' mod_type='N'/>
+	<z:row obj_id='D075B8DB-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B8DC-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B8DD-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B8DE-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B8DF-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B8E0-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B8E1-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B8E2-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B8E3-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B8B9-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B8BA-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B8E4-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B8E5-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B8E6-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B8E7-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B8E8-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B8EA-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B8EB-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B8EC-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B8ED-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B91F-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B920-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B921-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B922-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='1F5A9606-0347-11D6-9350-0048543011FC' leader='' member='' description='' mod_type='U'/>
+	<z:row obj_id='1F5A9607-0347-11D6-9350-0048543011FC' leader='' member='' description='' mod_type='N'/>
+	<z:row obj_id='D075B866-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B867-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B869-0122-11D6-9350-0048543011FC' leader='' member='' description='' mod_type='N'/>
+	<z:row obj_id='B737D062-A6C7-4BB5-9DEA-61472A7E257A' leader='Herr M. Thieme' member='' mod_type='U'/>
+	<z:row obj_id='7CD7D76C-8223-446A-8BD6-A1EBF5102C18' leader='LfUG' member='Institut für Interdisziplinäre Isotopenforschung Leipzig; FH Görlitz/ Zittau; Hydroisotop Piewak'
+		 description=' ' mod_type='U'/>
+	<z:row obj_id='E306BE5D-3582-4663-8A56-E14BE9BF0504' leader='LfUG, UBG, ALTRAC' member='LfUG: Frau Hurst, Herr Pfeiffer'
+		 description=' ' mod_type='U'/>
+	<z:row obj_id='D075B868-0122-11D6-9350-0048543011FC' leader='GFN (Gesellschaft für Freilandökologie und Naturschutzplanung mbH)'
+		 member='GFN (Gesellschaft für Freilandökologie und Naturschutzplanung mbH), H&#x26;G Dresden/Freital) und IDUS (Ottendorf-Okrilla)'
+		 mod_type='N'/>
+	<z:row obj_id='D075B86A-0122-11D6-9350-0048543011FC' leader='' member='' description='' mod_type='N'/>
+	<z:row obj_id='D075B86B-0122-11D6-9350-0048543011FC' leader='' member='' description='' mod_type='N'/>
+	<z:row obj_id='D075B86C-0122-11D6-9350-0048543011FC' leader='' member='' description='' mod_type='N'/>
+	<z:row obj_id='D075B86D-0122-11D6-9350-0048543011FC' leader='' member='' description='' mod_type='N'/>
+	<z:row obj_id='D075B86E-0122-11D6-9350-0048543011FC' leader='' member='' description='' mod_type='N'/>
+	<z:row obj_id='D075B86F-0122-11D6-9350-0048543011FC' leader='LPBR Landschafts-PLANUNG Dr. Böhnert &#x26; Dr. Reichhoff GmbH Freital Sa.'
+		 member='IDUS GmbH' mod_type='N'/>
+	<z:row obj_id='D075B870-0122-11D6-9350-0048543011FC' leader='LPBR Landschafts-PLANUNG Dr. Böhnert &#x26; Dr. Reichhoff GmbH Freital Sa.'
+		 member='IDUS GmbH' mod_type='N'/>
+	<z:row obj_id='D075B871-0122-11D6-9350-0048543011FC' leader='LPBR Landschafts-PLANUNG Dr. Böhnert &#x26; Dr. Reichhoff GmbH Freital Sa.'
+		 member='IDUS GmbH' mod_type='N'/>
+	<z:row obj_id='D075B872-0122-11D6-9350-0048543011FC' leader='LPBR Landschafts-PLANUNG Dr. Böhnert &#x26; Dr. Reichhoff GmbH Freital Sa.'
+		 member='IDUS GmbH' mod_type='N'/>
+	<z:row obj_id='D075B873-0122-11D6-9350-0048543011FC' leader='LPBR Landschafts-PLANUNG Dr. Böhnert &#x26; Dr. Reichhoff GmbH Freital Sa.'
+		 member='IDUS GmbH' mod_type='N'/>
+	<z:row obj_id='D075B874-0122-11D6-9350-0048543011FC' leader='LPBR Landschafts-PLANUNG Dr. Böhnert &#x26; Dr. Reichhoff GmbH Freital Sa.'
+		 member='IDUS GmbH' mod_type='N'/>
+	<z:row obj_id='D075B875-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B876-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B877-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B878-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B879-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B87A-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B87B-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B87C-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B87D-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B87E-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='1F5A9608-0347-11D6-9350-0048543011FC' leader='' member='' description='' mod_type='N'/>
+	<z:row obj_id='1F5A9609-0347-11D6-9350-0048543011FC' leader='' member='' description='' mod_type='N'/>
+	<z:row obj_id='1F5A960A-0347-11D6-9350-0048543011FC' leader='' member='' description='' mod_type='N'/>
+	<z:row obj_id='1F5A960F-0347-11D6-9350-0048543011FC' leader='' member='' description='' mod_type='N'/>
+	<z:row obj_id='1F5A9610-0347-11D6-9350-0048543011FC' leader='' member='' description='' mod_type='N'/>
+	<z:row obj_id='1F5A9611-0347-11D6-9350-0048543011FC' leader='' member='' description='' mod_type='N'/>
+	<z:row obj_id='1F5A9612-0347-11D6-9350-0048543011FC' leader='' member='' description='' mod_type='N'/>
+	<z:row obj_id='09CF14E9-08D9-11D6-9350-0048543011FC' leader='' member='' description='' mod_type='N'/>
+	<z:row obj_id='B211A1CC-0B1F-11D6-9350-0048543011FC' leader='' member='' description='' mod_type='N'/>
+	<z:row obj_id='C256A3E7-1624-11D6-9350-0048543011FC' member='Technische Universität Dresden, Institut für Virologie
+
+
+
+'
+		 mod_type='N'/>
+	<z:row obj_id='C256A3ED-1624-11D6-9350-0048543011FC' member='Universität Leipzig, Institut für Biochemie
+
+
+'
+		 mod_type='N'/>
+	<z:row obj_id='D075B897-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B896-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B895-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B8BB-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B8BC-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B8BD-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B8BE-0122-11D6-9350-0048543011FC' member='Biosphärenreservat Oberlausitzer Heide- und Teichlandschaft
+Förderverein für die Natur der Oberlausitzer Heide- und Teichlandschaft e.V.'
+		 mod_type='N'/>
+	<z:row obj_id='FD18AFB5-49A0-466D-B104-BE4F06870A12' leader='Herr Dr. Füllner' member='' mod_type='U'/>
+	<z:row obj_id='59DEFF02-6FAA-4632-BE96-0A835BEADFF0' leader='Herr Dr. Füllner' member='XXX' mod_type='D'/>
+	<z:row obj_id='1EBE71A0-8D89-41D6-A8BF-9EDD5C2FA99C' mod_type='N'/>
+	<z:row obj_id='62644EEA-3FFF-43B5-BB58-C60B366DEDC6' mod_type='N'/>
+	<z:row obj_id='21A4CB9B-25D9-47DA-AC0F-B013AB5C0E10' leader='LfUG' member='Arbeitsgemeischaft Sächsischer Botaniker im Landesverein Sächsischer Heimatschutz e.V.'
+		 mod_type='N'/>
+	<z:row obj_id='0F91368C-C0AE-4DDE-BF80-2CE6E8CDD906' mod_type='N'/>
+	<z:row obj_id='6F78905B-BE03-4D58-A76C-73117B42447D' leader='S. Rau (LfUG)' member='Naturschutzinstitut Dresden des NABU, Sächsische Vogelschutzwarte Neschwitz u.a. '
+		 mod_type='N'/>
+	<z:row obj_id='F306725C-2BEF-4ADC-BEDA-0621694E8C50' member='LfUG, RP Chemnitz (StUFA Plauen)' mod_type='N'/>
+	<z:row obj_id='80CD6B5A-5BBC-4185-ABE9-4072F2A4AFA0' leader='LfUG' member='Fa. Idus - Biologisch analytisches Umweltlabor, Ottendorf-Okrilla (Raum Großenhain)
+Prof. Hellriegel-Institut Bernburg (Raum NW-Sachsen)'
+		 mod_type='N'/>
+	<z:row obj_id='133721A6-FEC5-4B81-9528-86722975632B' mod_type='N'/>
+	<z:row obj_id='DDEC9F23-3B9D-4C4C-BD79-B230348FE8E3' mod_type='N'/>
+	<z:row obj_id='70DC17D1-7B6C-4B3E-A9AE-55508B340D83' mod_type='N'/>
+	<z:row obj_id='D8424DFA-95DB-4EA2-BBCB-E659C70181ED' mod_type='N'/>
+	<z:row obj_id='46F8D427-CCFA-44B7-9999-C346E6D8A502' mod_type='N'/>
+	<z:row obj_id='6EBA277C-E71F-42DA-A27A-45CFEB56603A' member='LfUG sowie Werkvertragsnehmer' mod_type='N'/>
+	<z:row obj_id='8420798B-845B-4792-AD2E-8668F4155EC6' mod_type='N'/>
+	<z:row obj_id='B1A479A1-106C-4DB8-A555-3FA477D29375' leader='xxxxxxxxxxxxxxxxx' member='xxxxxxxxxxxxxxx' description='xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+		 mod_type='D'/>
+	<z:row obj_id='43CB25AD-4912-4738-8D3E-61EA98DA7B5B' mod_type='N'/>
+	<z:row obj_id='28CDA848-03CD-42C4-AF43-C4EC322EEBB0' leader='Frau Dr. B. Wolff' member='R. Habermann, K. Arendt'
+		 description='Arbeitsbericht des Instituts für Forstökologie und Walderfassung 99/3
+
+PCC, PROGRAMME CO-ORDINATING CENTRE (1998): Manual on Methods and Criteria for Harmonized 
+Sampling, Assessment, Monitoring and Analysis of the Effects of Air Pollution on Forests  / Programme Co-ordinating Centre (PCC). 4th Edition, Losebl.-Ausg. - Hamburg: 1998
+
+'
+		 mod_type='N'/>
+	<z:row obj_id='5FA6A9E1-99D0-49B4-9F37-A320978ACCF7' leader='Landesforstpräsidium' member='Landesforstpräsidium
+TU Dresden, Professur Forsttechnik
+
+'
+		 mod_type='N'/>
+	<z:row obj_id='4C4BC3F8-5D62-470B-B795-6CBFFEBB6267' leader='LFP' member='Forstreferendare' description='Arbeiten im Rahmen der des Vorbereitungsdienstes für den höheren Forstdienst (Referendariat) im Ausbildungsabschnitt Landespflege/Naturschutz'
+		 mod_type='N'/>
+	<z:row obj_id='1194D934-60B2-4BCB-9A87-8F3B00DACB02' member='Landesforstpräsidium' mod_type='N'/>
+	<z:row obj_id='D76AA26A-4644-4DC1-91F9-5E801800774F' leader='LFP' member='Landesforstpräsidium (LFP), Sächsische Forstämter, Schutzgemeinschaft Deutscher Wald'
+		 mod_type='N'/>
+	<z:row obj_id='E2CEA745-27F3-4288-85F7-FB33C822A558' member='gesamter Geschäftsbereich des SMUL' mod_type='D'/>
+	<z:row obj_id='B2537936-9FDC-4051-B187-47B192428A60' member='Sächsische Staatsministerium für Umwelt und Lnadwirtschaft, 
+Sächsische Landesamt für Umwelt und Geologie,
+Landesforstpräsidium Sachsen, 
+Sächsische Landesanstalt für Landwirtschaft, 
+Landestalsperrenverwaltung des Freistaates Sachsen'
+		 mod_type='D'/>
+	<z:row obj_id='C1010133-5999-46EC-80AB-EB28377C111C' mod_type='D'/>
+	<z:row obj_id='60CA2FA7-7A47-4830-8D8B-9F126913EF1C' member='Sächsisches Landesamt für Umwelt und Geologie
+Abteilung 2, 
+Sächsisches Staatsministerium für Umwelt und Landwirtschaft, Ref. 52'
+		 mod_type='D'/>
+	<z:row obj_id='4BDAC980-350E-42B4-884A-1941BDF58E75' leader='Umweltbundesamt' member='Umweltbundesamt
+alle Bundesländer'
+		 mod_type='U'/>
+	<z:row obj_id='4107BE91-0F70-4A66-9A3D-BA4F29C4A691' description='als Bucherscheinung geplant' mod_type='U'/>
+	<z:row obj_id='7F85C86D-3394-4407-B2BB-284C242B3C8A' leader='SN: Koordinierungsstelle UDK
+Vertretung Bund-Länderkooperation: Frau Bachmann'
+		 member='GB des SMUL
+Bund/Länderkooperation  UDK' description=' ' mod_type='U'/>
+	<z:row obj_id='2C5954CC-B0C4-4D52-B147-10977B183BB6' leader='Dr. Hennig (LfUG)' member='LfUG Abt. 2,3,4,5
+LfL
+LfP
+IHK
+StaLA'
+		 description=' ' mod_type='U'/>
+	<z:row obj_id='E5466C6E-7312-40BB-BF0C-65D1B0EE0FFA' mod_type='U'/>
+	<z:row obj_id='3ED7F2FE-F593-46EA-AAF6-384C9829842B' leader='Herr Dr. Füllner' mod_type='U'/>
+	<z:row obj_id='5E94850F-F0BB-45DA-857B-1EFBA44D8AFB' leader='Staatliches Umweltfachamt Chemnitz' description='detaillierte Ergebnisse sind im Arten- und Biotopschutzbeicht zusammengefaßt veröffentlicht'
+		 mod_type='N'/>
+	<z:row obj_id='C7F70F80-B3AB-45A2-9A0F-1DAC97B007F5' mod_type='U'/>
+	<z:row obj_id='B1B715E4-7185-4245-A16F-18FCFE5E1C99' leader='Frau K. Jäkel' member='' mod_type='D'/>
+	<z:row obj_id='E1C31EF4-81CE-4CFD-8207-EC0E0A8DCA6C' leader='Herr M. Thieme' member='' mod_type='D'/>
+	<z:row obj_id='EC4BEC7C-F7C6-4BCF-97D5-E8A84C13A98B' mod_type='N'/>
+	<z:row obj_id='C39B0923-EA66-441C-A1E0-B9ADE7583A43' member='Walter-Meusel-Stiftung, Arktisch-Alpiner Garten'
+		 mod_type='N'/>
+	<z:row obj_id='44B2330D-D35D-4913-9A62-5937FBCB278A' leader='Herr M. Thieme' member='' mod_type='D'/>
+	<z:row obj_id='4BE6A553-3C45-490B-BAEC-D343B1427D30' mod_type='N'/>
+	<z:row obj_id='D9D872A9-79AF-4887-9BD9-339100C9D1A2' leader='Dr. H. Kolbe' mod_type='U'/>
+	<z:row obj_id='DFF3CFDE-CAB7-44F9-9DE7-3C8002600BAF' leader='H. Stahl' mod_type='D'/>
+	<z:row obj_id='191CBF9E-2AAC-4191-9292-D39DFFCC94CD' leader='Frau Dr. G. Köhler' member='' mod_type='D'/>
+	<z:row obj_id='1F81234E-6DE5-4160-A951-F1F133F1F40A' leader='Herr Dr. J. Schönherr' member='' description='Das Projekt wird fremdfinanziert von der BLE im Interesse des BMVEL. Auftragnehmer ist der VDLUFA,  Fachgruppe Futtermittel. Betreut wird das Projekt von Dr. Jens Schönherr. '
+		 mod_type='U'/>
+	<z:row obj_id='B35E016E-949A-49DF-BD2B-011D11BA5914' member='Sächsische Staatsministerium für Umwelt und Lnadwirtschaft,  Sächsische Landesamt für Umwelt und Geologie, Landesforstpräsidium Sachsen,  Sächsische Landesanstalt für Landwirtschaft,  Landestalsperrenverwaltung des Freistaates Sachsen'
+		 mod_type='U'/>
+	<z:row obj_id='74176A32-85B0-451E-962E-A5BBEFF1EE35' leader='??' member='Kommission &#x22;Reinhaltung der Luft&#x22;'
+		 mod_type='D'/>
+	<z:row obj_id='1CEAFC6A-C983-43E0-B90D-B2C69A2971AD' mod_type='U'/>
+	<z:row obj_id='F02ED400-070A-4F6C-9AAD-8D6F83829D3A' mod_type='D'/>
+	<z:row obj_id='8299470F-AFD3-40C3-B3E0-DC931CA955BE' mod_type='U'/>
+	<z:row obj_id='5EE20676-D848-4BFE-91CC-CF3B21FEB752' mod_type='N'/>
+	<z:row obj_id='F7C55766-4248-4982-A77F-63995B1DCD9A' mod_type='N'/>
+	<z:row obj_id='DECEFD06-7367-46EA-9B12-4453680679FB' member='NABU, Landschaftspflegeverbände, Untere Naturschützbehörden der LRA Vogtlandkreis und Aue-Schwarzenberg'
+		 mod_type='N'/>
+	<z:row obj_id='0C36A659-8382-439B-80B8-4FC9F9AF4128' member='Ehrenamtliche, Private, Verbände, Untere Naturschutzbehörden'
+		 mod_type='N'/>
+	<z:row obj_id='960D4794-4AED-4D92-9E14-A90F165817E9' member='LfUG' mod_type='N'/>
+	<z:row obj_id='DB8344EB-B8A3-44ED-B2F0-918F751CAA6F' member='Private,  Angelverband Südsachsen-Mulde-Elster e.V., landwirtschaftliche Betriebe, SMUL, LfUG, Untere Naturschutzbehörde LRA Vogtlandkreis'
+		 mod_type='N'/>
+	<z:row obj_id='E0C94803-7CF1-4370-B49D-436ED90BB33E' member='SMUL, LfUG, Untere Naturschutzbehörden des LK Vogtlandkreises sowie Anrainergemeinden'
+		 mod_type='N'/>
+	<z:row obj_id='3BE61065-2D2F-4207-B1FE-7F73821B8E0A' member='LfUG, Private, Verbände' mod_type='N'/>
+	<z:row obj_id='58DACD3C-97F9-4508-8896-050CC7D994E6' leader='Dr. habil. C. Röhricht' description='Rahmenprojekt: Entwicklung und Erprobung standortangepasster Anbausysteme für Sachsen unter besonderer Berücksichtigung der Klimaänderung '
+		 mod_type='U'/>
+	<z:row obj_id='BDDF8B0C-C4B4-41E1-B310-AE024977040E' member='Sächsisches Landesamt für Umwelt und Geologie: Referate 21,  26 und 41
+Sächsische Landesanstalt für Landwirtschaft: Fachbereich 4'
+		 mod_type='U'/>
+	<z:row obj_id='254B1819-3D17-43A4-A49D-DA8D6078183B' leader='LfUG' member='Durchführung des LIFE-Umwelt-Projekt UFIPOLNET unter Federführung (Leadpartnerschaft) des LfUG.'
+		 description='UBG-seitige Mitarbeit an der praktischen Umsetzung der Probenahme, Kalibrierung und Messung mit einem Messgerät-Prototyp in der Station Dresden Nord.
+
+UFIPOLNET - Ultrafine particle size distributions in air pollution monitoring networks
+(Korngrößenverteilung von Nanopartikeln in Messnetzen zur Luftüberwachung) '
+		 mod_type='D'/>
+	<z:row obj_id='A0FA0564-51F1-42BA-ABDA-C942AA5070B6' mod_type='I'/>
+	<z:row obj_id='69BEA9EC-1D0F-4E03-9777-DE4DC7637B68' mod_type='I'/>
+	<z:row obj_id='2C841813-750E-45EE-AC1A-FC03F27F1E01' mod_type='U'/>
+	<z:row obj_id='11516E7F-BBC2-4A4C-86FD-68F846B9E3F9' mod_type='U'/>
+	<z:row obj_id='3F0888F4-5E4B-45BF-9D36-C17FF86C7956' mod_type='N'/>
+	<z:row obj_id='1E16412E-3E21-405A-AE85-A50B32C32EFC' member='Staatliche Tschechische Naturschutzagentur Teplice, Privater Naturschutz
+'
+		 mod_type='N'/>
+	<z:row obj_id='E8EF9B97-B236-4AF0-8E18-660B8B3214A8' member='Ehrenamtlicher Naturschutz' description='
+' mod_type='N'/>
+	<z:row obj_id='5AE0A838-A5B1-493A-9972-2D939F881B01' member='Naturschutzinstitut Region Dresden, ornithologische Fachgruppen'
+		 mod_type='N'/>
+	<z:row obj_id='35DB0DC8-20CD-432F-A6AE-D635813E56A5' member='Ehrenamtliche, Private, Verbände, Untere Naturschutzbehörden'
+		 mod_type='N'/>
+	<z:row obj_id='91984FAF-4D1C-4CA3-A96E-15A7F4600E9F' mod_type='N'/>
+	<z:row obj_id='E87504FA-F6EE-4087-9220-F3E353C5E960' member='LfUG, Ehrenamtlicher Naturschutz' mod_type='N'/>
+	<z:row obj_id='CAF90979-AF60-465D-888B-C08354E4370F' mod_type='N'/>
+	<z:row obj_id='90DB6432-74F1-47EB-99A5-DF7524894FD4' member='Landesverein Sächsischer Heimatschutz, TU Dresden'
+		 mod_type='N'/>
+	<z:row obj_id='D9AFC06B-D177-4745-9BFD-27C10FABA362' mod_type='N'/>
+	<z:row obj_id='0F086304-D07C-4F21-AC41-BC6C302255C2' member='Ehrenamtlicher Naturschutz' description='
+' mod_type='N'/>
+	<z:row obj_id='510AAC4A-AF2B-4002-9FAA-79D7F0E64C1A' mod_type='N'/>
+	<z:row obj_id='62535074-684D-44DF-952A-39E635D6DACA' mod_type='N'/>
+	<z:row obj_id='6F584C86-A812-415A-92AB-38324E2E508D' mod_type='N'/>
+	<z:row obj_id='8D846DCC-4E95-4CA6-A3D6-D10D270C7329' member='Landschaftspflegeverbände, Amt für Ländliche Neuordnung Kamenz, LRA Löbau/Zittau, Naturschutzstation Neschwitz, Zweckverband Naturschutzregion Neiße'
+		 mod_type='N'/>
+	<z:row obj_id='E9C530C6-8B98-42DA-A1A2-D9DCFC51B03B' member='Zweckverband Naturschutzregion Neiße' mod_type='N'/>
+	<z:row obj_id='60A837A1-90B1-4F79-BE31-F9A22CBF0F72' member='LAUBAG, Bundeswehr, Zweckverband Naturschutzregion Neiße'
+		 mod_type='N'/>
+	<z:row obj_id='12DF8743-93F4-4D5C-9B9B-866AE75B5570' member='ESAG' mod_type='N'/>
+	<z:row obj_id='0AEBA0B5-EB24-46FE-A7C6-7D6E0003AD36' member='ESAG
+
+' mod_type='N'/>
+	<z:row obj_id='F81863E3-82AA-4172-B1B3-156180B1D331' mod_type='N'/>
+	<z:row obj_id='C929C1A3-4953-44DD-A328-2C96697258BB' member='LAUBAG' mod_type='N'/>
+	<z:row obj_id='243FA0FA-C55A-461B-AED4-480A3860D830' member='Ehrenamtliche, Verbände, Straßenbauämter, NABU'
+		 mod_type='N'/>
+	<z:row obj_id='6DA521C5-C84E-4A22-AF92-086FC00B469D' description='Sachsen Vorkommen Fischotter europäische Bedeutung
+von LfUG initiiert
+'
+		 mod_type='N'/>
+	<z:row obj_id='E88FB49A-7ABE-46C4-BC0F-99C92A32DDB8' member='Naturschutzstation Weißwasser, Zweckverband Naturschutzregion Neiße, LRA Zittau (untere Naturschutzbehörde und Straßenbauamt)'
+		 mod_type='N'/>
+	<z:row obj_id='A9746BFE-7C52-4AFD-A1D8-79FA49962740' member='Naturschutzinstitut Region Dresden, ornithologische Fachgruppen'
+		 mod_type='N'/>
+	<z:row obj_id='011C6948-8012-473B-A75F-486BD849D2D3' member='Sächsischer Verein für Fledermausschutz, NABU'
+		 description='im LRA Löbau/Zittau Teilprojekt - Erfassung der Wochenstuben' mod_type='N'/>
+	<z:row obj_id='6F6973E9-0564-4033-924D-282BE5F3214F' description='Planungen auf der Grundlage der jeweils einschlägigen Fachgesetze'
+		 mod_type='N'/>
+	<z:row obj_id='4601D458-D3E9-4025-BAD0-203CEBB9EA3B' leader='Herr Dr. Füllner' mod_type='U'/>
+	<z:row obj_id='61622C10-95C5-42D4-A7AD-41F461D0F2B5' leader='Dr. W.-A. Schmidt' mod_type='D'/>
+	<z:row obj_id='57881D17-E042-4963-9836-9077BA00C3C4' leader='Herr Dr. K. Westphal' member='' mod_type='U'/>
+	<z:row obj_id='CDBBADF9-3097-4758-BAEA-020451AA596C' leader='Herr Dr. R. Klose' member='- LfUG-LfL-Projektà Schwermetalle Pflanze-Boden Vereinigte Milde (Daten = LfUG) - FA = Beratungsempfehlungen für LW zu &#x22;Schwermetalltransfer&#x22; - Objekt: Arsentransfer  - Objekt = GL für o.g. 3 FA/Objekte: &#x22;SM-Transferarbeit&#x22; über 4a, publiziert'
+		 description='Auf Grund geogener - und zum Teil auch anthropogener - Ursachen ist in Teilen Sachsens die Einhaltung der Arsenhöchstgehalte für Futtermittel problematisch. Auf über 47.000 ha LN wird der Maßnahmewert der BBodSchV für Arsen bei der Nutzungsart Grünland überschritten, womit die Gefahr des unzulässig hohen Eintrags dieses Schadelements in die Nahrungskette potentiell besteht. Durch die Angleichung von Futter- und Lebensmittelrecht wird die Einführung eines Lebensmittelhöchstgehaltes für Arsen erwartet. Durch die bekannte regionale Belastung sächsischer Ackerflächen mit Arsen wird die Einhaltung dieses Höchstgehaltes problematisch.'
+		 mod_type='D'/>
+	<z:row obj_id='E1741241-B48A-4976-B013-930E9384167C' leader='Herr Dr. R. Klose' member='- LfUG-LfL-Projektà Schwermetalle Pflanze-Boden Vereinigte Milde (Daten = LfUG) - FA = Beratungsempfehlungen für LW zu &#x22;Schwermetalltransfer&#x22; - Objekt: Arsentransfer  - Objekt = GL für o.g. 3 FA/Objekte: &#x22;SM-Transferarbeit&#x22; über 4a, publiziert'
+		 description='Auf Grund geogener - und zum Teil auch anthropogener - Ursachen ist in Teilen Sachsens die Einhaltung der Arsenhöchstgehalte für Futtermittel problematisch. Auf über 47.000 ha LN wird der Maßnahmewert der BBodSchV für Arsen bei der Nutzungsart Grünland überschritten, womit die Gefahr des unzulässig hohen Eintrags dieses Schadelements in die Nahrungskette potentiell besteht. Durch die Angleichung von Futter- und Lebensmittelrecht wird die Einführung eines Lebensmittelhöchstgehaltes für Arsen erwartet. Durch die bekannte regionale Belastung sächsischer Ackerflächen mit Arsen wird die Einhaltung dieses Höchstgehaltes problematisch.'
+		 mod_type='D'/>
+	<z:row obj_id='3EA55122-9AED-476F-97E9-886D818874B8' leader='Dr. W. Schmidt' mod_type='U'/>
+	<z:row obj_id='F4A5886C-4108-40A8-85CC-678D8F71B341' leader='Dr. W. Schmidt' mod_type='D'/>
+	<z:row obj_id='1566FB67-C161-4A8B-A62A-9FE207525A5B' mod_type='N'/>
+	<z:row obj_id='D3240231-D018-47CD-8BEA-48F21886E84F' member='Ehrenamtliche, Private, Verbände, Untere Naturschutzbehörden'
+		 mod_type='N'/>
+	<z:row obj_id='84007002-216F-489A-A62B-CFDAA099566A' member='LfUG' mod_type='N'/>
+	<z:row obj_id='1AFCFDA1-43E0-4518-9C8B-E06909AC2EF5' member='Private, landwirtschaftliche Betriebe, SMUL, LfUG, Untere Naturschutzbehörde LRA Delitzsch'
+		 mod_type='N'/>
+	<z:row obj_id='A8BA95F6-8D35-4294-A6B5-3B03F9D77C37' leader='Projektmanager Hr. Krönert' member='Zweckverband Presseler Heidewald- und Moorgebiet, Untere Naturschutzbehörde LK Delitzsch, Torgau-Oschatz, NABU, SMUL, Bundesamt für Naturschutz'
+		 mod_type='N'/>
+	<z:row obj_id='0C072545-652B-48B4-BCCB-19E86B9D424D' member='SMUL, LfUG, Untere Naturschutzbehörden der Landkreise Delitzsch und Muldentalkreis'
+		 mod_type='N'/>
+	<z:row obj_id='D2CF2F9B-B227-4E05-9E74-65BD0DF76EC8' member='LfUG, Private, Verbände' mod_type='N'/>
+	<z:row obj_id='DF8669B7-79BC-416A-92F4-08D332D05493' leader='Hans-Jürgen Schlegel' member='LfUG und Partner'
+		 description='Themenbearbeitung bis Dezember 2005
+Publikation/Bericht im Jahre 2006 geplant
+Veröffentlichung der Karten im Internet'
+		 mod_type='D'/>
+	<z:row obj_id='F00FD47F-07FE-468D-8AD4-115CA0955A56' mod_type='U'/>
+	<z:row obj_id='3F8FA7FD-D7E3-40A0-B3A8-7C7D4A463E25' leader='' member='TU Dresden, Institut für Forstbotanik und Forstzoologie'
+		 mod_type='U'/>
+	<z:row obj_id='B494B2C1-CF01-429A-9D1F-35EEE3245A5C' member='TU Dresden, Institut für Biochemie' mod_type='U'/>
+	<z:row obj_id='68B700D9-2EF6-4BCF-BA62-F43364BF2F5D' member='Umweltforschungszentrum Leipzig-Halle GmbH, Abt. Zelltoxikologie'
+		 mod_type='I'/>
+	<z:row obj_id='BF4B9D78-595D-4C14-8BCE-BECA17A9F740' member='Sächsisches Institut für Angewandte Biotechnolgie e.V.'
+		 mod_type='U'/>
+	<z:row obj_id='9144AB51-614C-4463-B105-CF907FDF483F' mod_type='U'/>
+	<z:row obj_id='EBDF5141-FB98-447D-BC93-1FDE6B5BD7F8' member='TU Dresden, Institut für Botanik' mod_type='U'/>
+	<z:row obj_id='A70142CD-DA06-464B-AB47-E6220C89E15A' leader='Dr. U. Wanka' description='Die alternativen Verfahren der Legehennenhaltung emittieren deutliche höhere Mengen an Ammoniak, Staub und Geruchsstoffen. Besonders problematisch ist gegenwärtig der Systemwechsel von Käfighaltung auf alternative Verfahren für bestehende Anlagen, die zur Vermeidung von Geruchsbelästigungen in oder an den Wald gebaut wurden. Mit Novellierung der TA-Luft wurde zum Schutz N-empfindlicher Ökosysteme die Freisetzung von Ammoniak aus Anlagen begrenzt sowie Ammoniakrichtwerte für die maximal zulässige Gesamt- bzw. Zusatzbelastung im Immissionsbereich festgelegt.'
+		 mod_type='U'/>
+	<z:row obj_id='C93CA91C-9AAC-4460-94D6-7A06E1465B64' leader='Herr Dr. M. Menge' member='' mod_type='D'/>
+	<z:row obj_id='F9502A07-F610-46FE-9185-16FC9842CB08' leader='Dr. W. Schmidt' mod_type='U'/>
+	<z:row obj_id='26466B8C-20C2-4676-B8A5-3AC3E84953FE' leader='Hans-Jürgen Schlegel' member='LfUG und Partner'
+		 description='Themenbearbeitung bis Dezember 2005 Publikation/Bericht im Jahre 2006 geplant Veröffentlichung der Karten im Internet'
+		 mod_type='U'/>
+	<z:row obj_id='54872BBA-2E20-4DA1-A503-9269568604DC' leader='Herr Uwe Köhler (UBG)' member='im Auftrag des SMUL'
+		 mod_type='D'/>
+	<z:row obj_id='8629EA85-92BE-48DF-8E9A-51278C573096' member='Bundesanstalt für Züchtungsforschung Pillnitz, Institut für Obstzüchtung'
+		 mod_type='U'/>
+	<z:row obj_id='1C096362-EA15-4793-9FED-8E4CFB16DD92' member='TU Bergakademie Freiberg, Interdisziplinäres Ökologisches Zentrum'
+		 mod_type='U'/>
+	<z:row obj_id='9C3E9931-569F-48F8-B141-C56DD4FD3B86' member='Umweltforschungszentrum Leipzig-Halle GmbH, Abt. Umwelttoxikologie'
+		 mod_type='U'/>
+	<z:row obj_id='4CCD1B73-5D8D-4CAE-9EF4-3C637BC749C6' member='Umweltforschungszentrum Leipzig-Halle GmbH, Abt. Umweltmikrobiologie'
+		 mod_type='U'/>
+	<z:row obj_id='FD08A9D6-2981-498E-8F8A-3F70E341CF0C' leader='Herr Krause' member='Fachliche Bearbeitung:
+Abteilungen 2,3,4,5 des Sächsischen Landesamtes für Umwelt und Geologie
+Herausgeber:
+Sächsisches Staatsministerium für Umwelt und Landwirtschaft'
+		 mod_type='U'/>
+	<z:row obj_id='C3FE8A0E-1B6E-4143-B4EF-12037D84A49C' leader='Regionale Planungsstelle Chemnitz' mod_type='N'/>
+	<z:row obj_id='47C09E2F-998B-4FCF-B557-17D91F39A107' mod_type='N'/>
+	<z:row obj_id='A72DEF8C-AFCD-411D-8CA1-FC6B9392C0E1' mod_type='N'/>
+	<z:row obj_id='6E7C3646-331E-45F6-B94D-A79ACE9BE3EB' mod_type='N'/>
+	<z:row obj_id='CA7DC174-8B0F-47C0-9060-66B9E655142D' mod_type='N'/>
+	<z:row obj_id='A4C51BBA-362B-4130-95E8-98AAD43DA14B' mod_type='N'/>
+	<z:row obj_id='93EBCD05-DD83-4DD8-ACF6-211227FC7461' mod_type='N'/>
+	<z:row obj_id='0CB67977-9FAE-4E93-8A61-AB6784932F76' mod_type='N'/>
+	<z:row obj_id='AE7B6A84-810B-495A-B269-3AF982CE28B9' mod_type='N'/>
+	<z:row obj_id='0948D070-7D92-4382-80DF-738D742F81C6' mod_type='N'/>
+	<z:row obj_id='1B35C3C9-D91A-45A4-BA6B-C1A422C643E6' mod_type='N'/>
+	<z:row obj_id='406C2B7F-F5F2-437F-AF43-A36FE2D3AC22' mod_type='U'/>
+	<z:row obj_id='337E5165-8F06-44EF-917D-E96C0D030FFF' mod_type='N'/>
+	<z:row obj_id='4F950B7E-E46E-4B75-8E5A-E5CF1EDEC6D5' mod_type='N'/>
+	<z:row obj_id='C1898B17-5B65-4ECE-920A-6C9090EF9536' mod_type='N'/>
+	<z:row obj_id='04D90D96-C73A-4405-AC6E-9EC4EA4D01A1' mod_type='N'/>
+	<z:row obj_id='E11065FC-F4DD-4810-96D5-61D6B42F40C5' mod_type='N'/>
+	<z:row obj_id='EF65B9D0-0520-4973-B00F-FBD8DD63A367' mod_type='N'/>
+	<z:row obj_id='EBD11BDD-7C2F-4F8D-8A3C-6D91AB33510F' mod_type='N'/>
+	<z:row obj_id='40069297-05CF-4C75-AC99-36743F012116' mod_type='N'/>
+	<z:row obj_id='1D211C1F-4254-4EC9-9215-B5AB50AD63DB' mod_type='N'/>
+	<z:row obj_id='C4D2B7BB-06D7-4EA5-9A93-7D7434701F56' mod_type='D'/>
+	<z:row obj_id='F9862665-D853-4A78-AEB8-AEDD1EAAB7CD' mod_type='D'/>
+	<z:row obj_id='81B1AA3A-EFF9-4B48-AEA9-3526809BD846' mod_type='D'/>
+	<z:row obj_id='BF632FC6-63A0-4B31-B697-DEB584C01AD8' mod_type='D'/>
+	<z:row obj_id='96875F87-FD40-4B8C-8541-6B9BCDB98E68' mod_type='D'/>
+	<z:row obj_id='7B9CD101-8FA8-41C0-8E19-3F94195FFF74' mod_type='D'/>
+	<z:row obj_id='27EB5277-06FC-4F36-8CBE-0A048AFA7FBA' mod_type='D'/>
+	<z:row obj_id='8844B700-9AB5-4633-9805-0135176FE9EA' mod_type='D'/>
+	<z:row obj_id='0F9BBB09-F45E-4139-9228-70C9A3D121BA' mod_type='D'/>
+	<z:row obj_id='EDA367D3-99A4-45EE-9081-AB9D01B11198' mod_type='D'/>
+	<z:row obj_id='7CF41D85-8DF8-4854-82AB-049E5FF8A28D' mod_type='N'/>
+	<z:row obj_id='89B1DCA4-D62A-41BD-8BBF-C00595EC9ACA' mod_type='D'/>
+	<z:row obj_id='CDEDBD3B-F056-4A13-921A-1A16F39E6B2C' mod_type='D'/>
+	<z:row obj_id='6B6C2F8A-30A1-4E70-938E-B27AEA1AF18B' mod_type='D'/>
+	<z:row obj_id='D48AE48D-BAC8-433F-A22B-BC6DF91A008A' mod_type='D'/>
+	<z:row obj_id='D892F9D3-0CC2-4E91-A0F0-2FFEF12C6DBE' mod_type='D'/>
+	<z:row obj_id='51FE18B7-230D-42E2-BF94-EC231BFECD1F' mod_type='D'/>
+	<z:row obj_id='A83EB520-43AF-4797-87D5-F7884C150C4F' mod_type='N'/>
+	<z:row obj_id='9D6E0D29-A463-492A-9C83-8DDC6E831578' mod_type='N'/>
+	<z:row obj_id='F3FB87A2-623D-4F63-AEDC-71D914CECB19' mod_type='N'/>
+	<z:row obj_id='A7B9F667-47B4-426F-B112-9238ED16FE30' mod_type='D'/>
+	<z:row obj_id='33904584-1F49-47AD-BA14-76A3D157E19D' mod_type='N'/>
+	<z:row obj_id='1E1AC66F-D6D1-4313-9298-CA6A59C70EB9' description='Sächsische Förderrichtlinie Gewässergüte vom 18.11.2002 (SächsABl. Nr. 50/2002)'
+		 mod_type='U'/>
+	<z:row obj_id='29106A94-0C51-4766-955A-264658F4E7E4' leader='Herr Dr. Füllner' member='SMUL, LfL, LfUG' mod_type='U'/>
+	<z:row obj_id='0E3CE039-1BA4-4961-A676-7D1C28097A86' leader='Dr. habil C. Röhricht' mod_type='D'/>
+	<z:row obj_id='9E7E8024-62CE-4BDC-B694-E39070D14ACD' mod_type='N'/>
+	<z:row obj_id='3BC5D03F-712D-4EEF-9FE0-524DA678C4AB' mod_type='N'/>
+	<z:row obj_id='775D9BC7-BFB8-465B-875F-471C3FC02D86' mod_type='N'/>
+	<z:row obj_id='AEF21FDA-5509-44C8-B368-2CE21CD2B4CF' leader='Dr. habil. C. Röhricht' mod_type='U'/>
+	<z:row obj_id='2608EBE4-F6AC-429F-8359-A614C36947CA' leader='Dr. H. Kolbe' description='Zusätzllich wird eine Datenbank für ökologisch wirtschaftende Betriebe für das BEFU-Programm ausgearbeitet und steht allen Ökobetrieben in Sachsen (ca. 300 Betriebe mit 2,5 % der Landwirtschaftsfläche in Sachsen) zur Verfügung. 
+'
+		 mod_type='U'/>
+	<z:row obj_id='C7FDC410-0BE1-449B-A173-60655CB4F2AA' leader='Röhricht, Dr. habil Christian' mod_type='D'/>
+	<z:row obj_id='A1D0493F-542B-4EAE-B01F-BDE2076D11AA' mod_type='N'/>
+	<z:row obj_id='145A3CE5-F31F-45BE-BBD5-6F620028DEA2' mod_type='N'/>
+	<z:row obj_id='7D4ABAFD-CBF5-4CC6-9E2D-FF86BF35D5D5' mod_type='N'/>
+	<z:row obj_id='39017375-FEA5-4D83-8CE8-22DE88057369' leader='Röhricht, Dr. habil Christian' mod_type='D'/>
+	<z:row obj_id='34F4CF0F-FD81-43E4-A48E-47DCECAA4AC6' mod_type='N'/>
+	<z:row obj_id='D7E39AA9-F37E-4145-AE48-7745E76004BC' mod_type='N'/>
+	<z:row obj_id='71F9B3D8-F96F-4576-913D-4A822C25BB3D' leader='Röhricht, Dr. habil Christian' mod_type='D'/>
+	<z:row obj_id='272CB104-4346-4EDB-91C4-1B35221AB51C' member='Parameter: Schwermetalle und Arsen
+Parameter: Makro- und Mikroelemente
+'
+		 mod_type='U'/>
+	<z:row obj_id='339AC357-ADA5-409A-8329-63295A49165C' leader='Röhricht, Dr. habil Christian' mod_type='D'/>
+	<z:row obj_id='A365ABFC-A395-4B01-BF60-3D00E14B4E1E' leader='Röhricht, Dr. habil Christian' mod_type='D'/>
+	<z:row obj_id='1EA56A63-A467-458B-88C1-F0089730D583' leader='Dr. C. Röhricht' member='xxxen.' mod_type='D'/>
+	<z:row obj_id='7FCF6188-7BF6-4989-BB9D-056B442B3CA2' leader='Röhricht, Dr. habil Christian' mod_type='D'/>
+	<z:row obj_id='A26C8AF8-BF53-4957-8ABD-33581E6DA4B6' leader='Röhricht, Dr. habil Christian' mod_type='D'/>
+	<z:row obj_id='6D99BCAB-8306-403F-9705-DD04CA2306DA' leader='Röhricht, Dr. habil Christian' mod_type='D'/>
+	<z:row obj_id='E02C374A-78D7-4757-8CA3-37D5DCB23A4A' leader='Röhricht, Dr. habil Christian' mod_type='D'/>
+	<z:row obj_id='8DE248F9-7471-4AA6-A041-0C44CF4E2F13' leader='Röhricht, Dr. habil Christian' mod_type='D'/>
+	<z:row obj_id='C9271342-213D-437A-935E-72550623EDC1' leader='Röhricht, Dr. habil Christian' mod_type='D'/>
+	<z:row obj_id='799A465F-1010-4392-998C-488C063B7618' leader='Röhricht, Dr. habil Christian' mod_type='D'/>
+	<z:row obj_id='79C9EFE4-1EB1-4984-8F9C-396EE380E350' leader='Dr. habil. C. Röhricht' mod_type='U'/>
+	<z:row obj_id='E8B6F35E-9E95-464E-8CB2-C5B98152787F' leader='Dr. habil. C. Röhricht' mod_type='U'/>
+	<z:row obj_id='28F9EBDB-9817-460B-B825-C4C58B9ACBA0' leader='Dr. C. Schiefer' member='Mit den Landesanstalten Bayerns, Sachsen-Anhalts und Thüringens baut die LfL ein System zum effektiven Langzeitmonitoring auf, um arbeitsteilig relevante Einzelprobleme der Wirkung von gentechnisch veränderten Pflanzen auf  Agrarökosysteme zu untersuchen.'
+		 mod_type='U'/>
+	<z:row obj_id='7016B5EA-C797-4258-9C21-33DBD8C8A381' leader='Frau Trapp, Herr Schott' mod_type='D'/>
+	<z:row obj_id='7A738A25-098A-4A93-A4BF-90EF5858CF3A' leader='Frau P. Pölitz' member='' mod_type='D'/>
+	<z:row obj_id='83242CC1-F8BA-45CE-AAAE-B0FE993CA737' leader='Dr. W. Schmidt' description='Der Endbericht wurde in der Schriftenreihe der LfL veröffentlicht.'
+		 mod_type='D'/>
+	<z:row obj_id='8B7A185F-E63C-4DBC-ACEC-E462639AA882' leader='Regionale Planungsstelle Radebeul ' mod_type='N'/>
+	<z:row obj_id='C4243D31-8BFA-43F3-8190-D5976F199F2A' member='Parameter: Schwermetalle und Arsen; Ergänzende Angaben
+Parameter: Makro- und Mikroelemente; Ergänzende Angaben'
+		 mod_type='N'/>
+	<z:row obj_id='32CC97F4-9BB1-47D5-BAD9-BADF8376B7BA' leader='Frau A. Thate' member='Beteiligung an Mehrländervorhaben der ZEPP'
+		 mod_type='U'/>
+	<z:row obj_id='C6DAE32F-0DA8-4043-B7CA-098E66E95CD5' leader='Herr E. Harbrecht' member='' mod_type='D'/>
+	<z:row obj_id='1432CD98-6668-4EC5-A96C-CC20E5C40371' leader='Frau Dr. B. Dittrich' member='' mod_type='U'/>
+	<z:row obj_id='4CB6B6DB-887D-485B-9120-362EFD8A7768' leader='Herr Dr. R. Klose' member='- LfUG-LfL-Projektà Schwermetalle Pflanze-Boden Vereinigte Milde (Daten = LfUG)
+- FA = Beratungsempfehlungen für LW zu &#x22;Schwermetalltransfer&#x22;
+- Objekt: Arsentransfer 
+- Objekt = GL für o.g. 3 FA/Objekte: &#x22;SM-Transferarbeit&#x22; über 4a, publiziert'
+		 description='Auf Grund geogener - und zum Teil auch anthropogener - Ursachen ist in Teilen Sachsens die Einhaltung der Arsenhöchstgehalte für Futtermittel problematisch. Auf über 47.000 ha LN wird der Maßnahmewert der BBodSchV für Arsen bei der Nutzungsart Grünland überschritten, womit die Gefahr des unzulässig hohen Eintrags dieses Schadelements in die Nahrungskette potentiell besteht. Durch die Angleichung von Futter- und Lebensmittelrecht wird die Einführung eines Lebensmittelhöchstgehaltes für Arsen erwartet. Durch die regionale Belastung sächsischer Ackerflächen mit Arsen wird die Einhaltung dieses Höchstgehaltes problematisch.'
+		 mod_type='U'/>
+	<z:row obj_id='1D34211C-DF83-4D4C-8C59-5DCE9729304C' leader='Dr. W. Schmidt' member='E. Müller' mod_type='U'/>
+	<z:row obj_id='FC840FF2-1E67-4F4D-958A-52AC04701D50' leader='Dr. W. Schmidt' member='' description='Erlass des SMUL vom 27.07.01, Az.32-8548.01'
+		 mod_type='U'/>
+	<z:row obj_id='311CD41F-18D5-4D3F-BBD3-CFDC6A3E3325' member='Gemeinschaftsprojekt der Landesanstalten für Landwirtschaft der Länder Sachsen, Thüringen und Sachsen-Anhalt zum Thema: &#x22;Erarbeitung von Strategien zur Verbesserung der Stabilität und Nutzungsdauer in der Sauenhaltung in Mitteldeutschland&#x22;'
+		 mod_type='U'/>
+	<z:row obj_id='DD02A8CD-0BAE-48A7-A9F6-A6C13750617D' mod_type='I'/>
+	<z:row obj_id='4DEC2C0E-9C40-42F4-9D18-791F7D72EF11' mod_type='U'/>
+	<z:row obj_id='252F89BB-8DD6-4CC3-9E26-44EB73CCE25B' mod_type='D'/>
+	<z:row obj_id='1C587160-ECE1-461F-89D2-829CE929C654' mod_type='U'/>
+	<z:row obj_id='D0EE0467-B4E5-42BF-B3E4-FFC2C52D5D62' mod_type='U'/>
+</rs:data>
+</xml>

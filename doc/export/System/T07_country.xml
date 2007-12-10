@@ -1,0 +1,30 @@
+<xml xmlns:s='uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882'
+	xmlns:dt='uuid:C2F41010-65B3-11d1-A29F-00AA00C14882'
+	xmlns:rs='urn:schemas-microsoft-com:rowset'
+	xmlns:z='#RowsetSchema'>
+<s:Schema id='RowsetSchema'>
+	<s:ElementType name='row' content='eltOnly' rs:updatable='true'>
+		<s:AttributeType name='country_id' rs:number='1' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='T07_country'
+			 rs:basecolumn='country_id' rs:keycolumn='true'>
+			<s:datatype dt:type='string' dt:maxLength='3' rs:maybenull='false'/>
+		</s:AttributeType>
+		<s:AttributeType name='country' rs:number='2' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T07_country' rs:basecolumn='country'>
+			<s:datatype dt:type='string' dt:maxLength='50'/>
+		</s:AttributeType>
+		<s:AttributeType name='mod_time' rs:number='3' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T07_country' rs:basecolumn='mod_time'>
+			<s:datatype dt:type='string' dt:maxLength='14'/>
+		</s:AttributeType>
+		<s:AttributeType name='mod_type' rs:number='4' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='T07_country'
+			 rs:basecolumn='mod_type'>
+			<s:datatype dt:type='string' dt:maxLength='1' rs:maybenull='false'/>
+		</s:AttributeType>
+		<s:extends type='rs:rowbase'/>
+	</s:ElementType>
+</s:Schema>
+<rs:data>
+	<z:row country_id='A' country='Österreich' mod_type='N'/>
+	<z:row country_id='D' country='Deutschland' mod_type='N'/>
+</rs:data>
+</xml>

@@ -1,0 +1,501 @@
+<xml xmlns:s='uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882'
+	xmlns:dt='uuid:C2F41010-65B3-11d1-A29F-00AA00C14882'
+	xmlns:rs='urn:schemas-microsoft-com:rowset'
+	xmlns:z='#RowsetSchema'>
+<s:Schema id='RowsetSchema'>
+	<s:ElementType name='row' content='eltOnly' rs:updatable='true'>
+		<s:AttributeType name='lst_id' rs:number='1' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='sys_list'
+			 rs:basecolumn='lst_id' rs:keycolumn='true'>
+			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true' rs:maybenull='false'/>
+		</s:AttributeType>
+		<s:AttributeType name='entry_id' rs:number='2' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='sys_list'
+			 rs:basecolumn='entry_id' rs:keycolumn='true'>
+			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true' rs:maybenull='false'/>
+		</s:AttributeType>
+		<s:AttributeType name='lang_id' rs:number='3' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='sys_list'
+			 rs:basecolumn='lang_id' rs:keycolumn='true'>
+			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true' rs:maybenull='false'/>
+		</s:AttributeType>
+		<s:AttributeType name='db_id' rs:number='4' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='sys_list' rs:basecolumn='db_id'>
+			<s:datatype dt:type='string' dt:maxLength='5'/>
+		</s:AttributeType>
+		<s:AttributeType name='name' rs:number='5' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='sys_list' rs:basecolumn='name'>
+			<s:datatype dt:type='string' dt:maxLength='120'/>
+		</s:AttributeType>
+		<s:AttributeType name='data' rs:number='6' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='sys_list' rs:basecolumn='data'>
+			<s:datatype dt:type='i2' dt:maxLength='2' rs:precision='5' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='codelist_id' rs:number='7' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='sys_list' rs:basecolumn='codelist_id'>
+			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='domain_id' rs:number='8' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='sys_list' rs:basecolumn='domain_id'>
+			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='maintainable' rs:number='9' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='sys_list' rs:basecolumn='maintainable'>
+			<s:datatype dt:type='i2' dt:maxLength='2' rs:precision='5' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:extends type='rs:rowbase'/>
+	</s:ElementType>
+</s:Schema>
+<rs:data>
+	<z:row lst_id='1000' entry_id='1' lang_id='121' db_id='' name='Auskunft' data='50' codelist_id='505' domain_id='7'
+		 maintainable='0'/>
+	<z:row lst_id='1000' entry_id='2' lang_id='121' db_id='' name='Datenhalter' data='50' codelist_id='505' domain_id='3'
+		 maintainable='0'/>
+	<z:row lst_id='1000' entry_id='3' lang_id='121' db_id='' name='Datenverantwortung' data='50' codelist_id='505'
+		 domain_id='2' maintainable='0'/>
+	<z:row lst_id='1000' entry_id='4' lang_id='121' name='Anbieter' data='50' codelist_id='505' domain_id='1' maintainable='0'/>
+	<z:row lst_id='1000' entry_id='5' lang_id='121' name='Benutzer' data='50' codelist_id='505' domain_id='4' maintainable='0'/>
+	<z:row lst_id='1000' entry_id='6' lang_id='121' name='Vertrieb' data='50' codelist_id='505' domain_id='5' maintainable='0'/>
+	<z:row lst_id='1000' entry_id='7' lang_id='121' name='Herkunft' data='50' codelist_id='505' domain_id='6' maintainable='0'/>
+	<z:row lst_id='1000' entry_id='8' lang_id='121' name='Datenerfassung' data='50' codelist_id='505' domain_id='8'
+		 maintainable='0'/>
+	<z:row lst_id='1000' entry_id='9' lang_id='121' name='Auswertung' data='50' codelist_id='505' domain_id='9'
+		 maintainable='0'/>
+	<z:row lst_id='1000' entry_id='10' lang_id='121' name='Herausgeber' data='50' codelist_id='505' domain_id='10'
+		 maintainable='0'/>
+	<z:row lst_id='1100' entry_id='1' lang_id='121' db_id='' name='Riesa-Torgauer Elbtal' data='120' maintainable='1'/>
+	<z:row lst_id='1100' entry_id='2' lang_id='121' db_id='' name='Düben-Dahlener Heide' data='120' maintainable='1'/>
+	<z:row lst_id='1100' entry_id='4' lang_id='121' db_id='' name='Luckau-Calauer Becken' data='120' maintainable='1'/>
+	<z:row lst_id='1100' entry_id='5' lang_id='121' db_id='' name='Niederlausitzer Grenzwall' data='120' maintainable='1'/>
+	<z:row lst_id='1100' entry_id='6' lang_id='121' db_id='' name='Muskauer Heide' data='120' maintainable='1'/>
+	<z:row lst_id='1100' entry_id='7' lang_id='121' db_id='' name='Leipziger Land' data='120' maintainable='1'/>
+	<z:row lst_id='1100' entry_id='8' lang_id='121' db_id='' name='Senftenberg-Finsterwalder Becken und Platten'
+		 data='120' maintainable='1'/>
+	<z:row lst_id='1100' entry_id='9' lang_id='121' db_id='' name='Königsbrück-Ruhlander Heiden' data='120' maintainable='1'/>
+	<z:row lst_id='1100' entry_id='10' lang_id='121' db_id='' name='Oberlausitzer Heide- und Teichgebiet' data='120'
+		 maintainable='1'/>
+	<z:row lst_id='1100' entry_id='11' lang_id='121' db_id='' name='Nordsächsisches Platten- und Hügelland' data='120'
+		 maintainable='1'/>
+	<z:row lst_id='1100' entry_id='12' lang_id='121' db_id='' name='Elsterwerda-Herzberger Elsterniederung' data='120'
+		 maintainable='1'/>
+	<z:row lst_id='1350' entry_id='132' lang_id='121' db_id='' name='ZKBS-Verordnung (ZKBSV)' data='0' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='135' lang_id='121' db_id='' name='Strahlenschutzverordnung (StrlSchV)' data='0'
+		 maintainable='1'/>
+	<z:row lst_id='1350' entry_id='138' lang_id='121' db_id='' name='Störfallverordnung (StFV)' data='0' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='143' lang_id='121' db_id='' name='Gentechnik-Verfahrensverordnung (GenTVfV)'
+		 data='0' maintainable='1'/>
+	<z:row lst_id='1200' entry_id='1' lang_id='121' db_id='v' name='von' data='50' maintainable='0'/>
+	<z:row lst_id='1200' entry_id='2' lang_id='121' db_id='s' name='seit' data='50' maintainable='0'/>
+	<z:row lst_id='1200' entry_id='3' lang_id='121' db_id='a' name='am' data='50' maintainable='0'/>
+	<z:row lst_id='1230' entry_id='1' lang_id='121' db_id='' name='Sekunden' data='50' maintainable='0'/>
+	<z:row lst_id='1230' entry_id='2' lang_id='121' db_id='' name='Minuten' data='50' maintainable='0'/>
+	<z:row lst_id='1230' entry_id='3' lang_id='121' db_id='S' name='Stunden' data='50' maintainable='0'/>
+	<z:row lst_id='1230' entry_id='4' lang_id='121' db_id='T' name='Tage' data='50' maintainable='0'/>
+	<z:row lst_id='1230' entry_id='5' lang_id='121' db_id='M' name='Monate' data='50' maintainable='0'/>
+	<z:row lst_id='1230' entry_id='6' lang_id='121' db_id='J' name='Jahre' data='50' maintainable='0'/>
+	<z:row lst_id='1320' entry_id='1' lang_id='121' db_id='' name='WinWord' data='50' maintainable='1'/>
+	<z:row lst_id='1320' entry_id='2' lang_id='121' db_id='' name='ASCII' data='50' maintainable='1'/>
+	<z:row lst_id='1320' entry_id='3' lang_id='121' db_id='' name='Excel' data='50' maintainable='1'/>
+	<z:row lst_id='1320' entry_id='4' lang_id='121' db_id='' name='TIFF' data='50' maintainable='1'/>
+	<z:row lst_id='1320' entry_id='5' lang_id='121' db_id='' name='Bitmap' data='50' maintainable='1'/>
+	<z:row lst_id='1320' entry_id='6' lang_id='121' db_id='' name='GIF' data='50' maintainable='1'/>
+	<z:row lst_id='1320' entry_id='7' lang_id='121' db_id='' name='shape-files' data='50' maintainable='1'/>
+	<z:row lst_id='1320' entry_id='8' lang_id='121' db_id='' name='DXF' data='50' maintainable='1'/>
+	<z:row lst_id='1320' entry_id='9' lang_id='121' db_id='' name='HTML' data='50' maintainable='1'/>
+	<z:row lst_id='1320' entry_id='10' lang_id='121' db_id='' name='ARC/INFO-Coverage' data='50' maintainable='1'/>
+	<z:row lst_id='1320' entry_id='11' lang_id='121' db_id='' name='EDBS' data='50' maintainable='1'/>
+	<z:row lst_id='1320' entry_id='12' lang_id='121' db_id='' name='E00-Austauschformat' data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='144' lang_id='121' db_id='' name='Gentechnik-Sicherheitsverordnung (GenTSV)'
+		 data='0' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='145' lang_id='121' db_id='' name='Gentechnik-Notfallverordnung (GenTNotfV)' data='0'
+		 maintainable='1'/>
+	<z:row lst_id='1350' entry_id='146' lang_id='121' db_id='' name='Gentechnik-Anhörungsverordnung (GenTAnhV)'
+		 data='0' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='147' lang_id='121' db_id='' name='Bundes-Bodenschutzverordnung (BBodSchV)' data='0'
+		 maintainable='1'/>
+	<z:row lst_id='1350' entry_id='148' lang_id='121' db_id='' name='Bundes-Bodenschutzgesetz (BBodSchG)' data='0'
+		 maintainable='1'/>
+	<z:row lst_id='1350' entry_id='150' lang_id='121' db_id='' name='Verordnung (EG) Nr. 1896/2000 (1. Review-VO)'
+		 data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='151' lang_id='121' db_id='' name='Verordnung (EG) Nr. 2032/2003 (2. Review-VO)'
+		 data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='152' lang_id='121' db_id='' name='Biozid-Zulassungsverordnung (ChemBiozidZulV)'
+		 data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='153' lang_id='121' db_id='' name='Chemikalien-Verbotsverordnung (ChemVerbotsV)'
+		 data='0' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='154' lang_id='121' db_id='' name='Gentechnik-Aufzeichnungsverordnung (GenTAufzV)'
+		 data='0' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='156' lang_id='121' db_id='' name='Sächsisches Waldgesetz (SächsWaldG)' data='50'
+		 maintainable='1'/>
+	<z:row lst_id='1350' entry_id='158' lang_id='121' db_id='' name='Sächsisches Wassergesetz (SächsWG)' data='0'
+		 maintainable='1'/>
+	<z:row lst_id='1350' entry_id='159' lang_id='121' db_id='' name='Sächsische Trinkwassergewinnungsverordnung (SächsTWGewVO)'
+		 data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='160' lang_id='121' db_id='' name='Sächsische Badegewässerverordnung (SächsBadegewV)'
+		 data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='161' lang_id='121' db_id='' name='Sächsische Fischgewässerverordnung (SächsFischgewV)'
+		 data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='162' lang_id='121' db_id='' name='EU-Wasserrahmenrichtlinie (WRRL)' data='50'
+		 maintainable='1'/>
+	<z:row lst_id='1350' entry_id='164' lang_id='121' db_id='' name='Forstschädenausgleichsgesetz (FschAusglG)'
+		 data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='165' lang_id='121' db_id='' name='Forstvermehrungsgutgesetz (FoVG)' data='50'
+		 maintainable='1'/>
+	<z:row lst_id='1350' entry_id='166' lang_id='121' db_id='' name='Biodiversitätskonvention - biolog. Vielfalt'
+		 data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='167' lang_id='121' db_id='' name='Grundwasserverordnung (GrwV)' data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='168' lang_id='121' db_id='' name='Ordnungswidrigkeitengesetz (OWiG)' data='50'
+		 maintainable='1'/>
+	<z:row lst_id='1350' entry_id='170' lang_id='121' db_id='' name='Sächsisches Brandschutzgesetz (SächsBrandSchG)'
+		 data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='171' lang_id='121' db_id='' name='Sächsisches Denkmalschutzgesetz (SächsDSchG)'
+		 data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='172' lang_id='121' db_id='' name='Landesjagdgesetz (SächsLJagdG)' data='50'
+		 maintainable='1'/>
+	<z:row lst_id='1350' entry_id='173' lang_id='121' db_id='' name='Sächsisches Ordnungswidrigkeitengesetz (SächsOWiG)'
+		 data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='174' lang_id='121' db_id='' name='Sächsisches Polizeigesetz (SächsPolG)' data='50'
+		 maintainable='1'/>
+	<z:row lst_id='1350' entry_id='175' lang_id='121' db_id='' name='EU-Verordnung (EWG) Nr. 3528/86' data='50'
+		 maintainable='1'/>
+	<z:row lst_id='1350' entry_id='176' lang_id='121' db_id='' name='EU-Verordnung (EWG) Nr. 2157/92' data='50'
+		 maintainable='1'/>
+	<z:row lst_id='1350' entry_id='177' lang_id='121' db_id='' name='EU-Verordnung (EWG) Nr. 1091/94' data='50'
+		 maintainable='1'/>
+	<z:row lst_id='1350' entry_id='178' lang_id='121' db_id='' name='EU-Verordnung (EG) 804/2002 Level I und II'
+		 data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='179' lang_id='121' db_id='' name='Hochwassernachrichten- u. Alarmdienstverordnung (HWNAV)'
+		 data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='180' lang_id='121' db_id='' name='Haldenverordnung (HaldVO)' data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='181' lang_id='121' db_id='' name='Gewährl. Atomsicherheit, Strahlenschutz (VOAS)'
+		 data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='182' lang_id='121' db_id='' name='Hochwassermeldeordnung (HWMO)' data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='183' lang_id='121' db_id='' name='Sächsisches UmweltverträglichkeitsprG (SächsUVPG)'
+		 data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='184' lang_id='121' db_id='' name='Landesabfallgesetz' data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='185' lang_id='121' db_id='' name='Erneuerbares Energien Gesetz (EEG)' data='50'
+		 maintainable='1'/>
+	<z:row lst_id='1350' entry_id='186' lang_id='121' db_id='' name='Sächsisches Klimaschutzprogramm (2001)' data='50'
+		 maintainable='1'/>
+	<z:row lst_id='1350' entry_id='187' lang_id='121' db_id='' name='Biomasseverordnung (BiomasseV)' data='50' maintainable='1'/>
+	<z:row lst_id='1370' entry_id='1' lang_id='121' db_id='' name='CDS' data='50' maintainable='1'/>
+	<z:row lst_id='2240' entry_id='1' lang_id='121' db_id='' name='ASCII' data='50' maintainable='1'/>
+	<z:row lst_id='2240' entry_id='2' lang_id='121' db_id='' name='HTML' data='50' maintainable='1'/>
+	<z:row lst_id='2240' entry_id='3' lang_id='121' db_id='' name='GIF' data='50' maintainable='1'/>
+	<z:row lst_id='2251' entry_id='1' lang_id='121' db_id='' name='Internet' data='50' maintainable='1'/>
+	<z:row lst_id='2251' entry_id='2' lang_id='121' db_id='' name='Intranet' data='50' maintainable='1'/>
+	<z:row lst_id='3230' entry_id='1' lang_id='121' db_id='' name='Fachinformationssystem' data='50' maintainable='1'/>
+	<z:row lst_id='3230' entry_id='2' lang_id='121' db_id='' name='Metainformationssystem' data='50' maintainable='1'/>
+	<z:row lst_id='3230' entry_id='3' lang_id='121' db_id='' name='Geographisches Informationssystem' data='50'
+		 maintainable='1'/>
+	<z:row lst_id='3385' entry_id='1' lang_id='121' db_id='' name='Aufsatz/Artikel/Tagungsbeitrag' data='50' maintainable='1'/>
+	<z:row lst_id='3385' entry_id='2' lang_id='121' db_id='' name='Broschüre/Bericht' data='50' maintainable='1'/>
+	<z:row lst_id='3385' entry_id='3' lang_id='121' db_id='' name='Zeitschrift' data='50' maintainable='1'/>
+	<z:row lst_id='3385' entry_id='4' lang_id='121' db_id='' name='Buch/Monographie/Reihe' data='50' maintainable='1'/>
+	<z:row lst_id='3385' entry_id='5' lang_id='121' db_id='' name='Tagungsband/Sammelwerk' data='50' maintainable='1'/>
+	<z:row lst_id='3385' entry_id='6' lang_id='121' db_id='' name='Fachgutachten' data='50' maintainable='1'/>
+	<z:row lst_id='3535' entry_id='1' lang_id='121' name='von Drachenfels 94' data='50' maintainable='1'/>
+	<z:row lst_id='3555' entry_id='1' lang_id='121' name='Ganzflächige Biotopkartierung 94' data='50' maintainable='1'/>
+	<z:row lst_id='3561' entry_id='1' lang_id='121' db_id='' name='Nienburg (Weser)' data='50' maintainable='1'/>
+	<z:row lst_id='3561' entry_id='2' lang_id='121' db_id='' name='Damme (Dümmer)' data='50' maintainable='1'/>
+	<z:row lst_id='3571' entry_id='1' lang_id='121' db_id='' name='Internet' data='50' maintainable='1'/>
+	<z:row lst_id='3571' entry_id='2' lang_id='121' db_id='' name='Intranet' data='50' maintainable='1'/>
+	<z:row lst_id='3571' entry_id='3' lang_id='121' db_id='' name='amtsintern' data='50' maintainable='1'/>
+	<z:row lst_id='3571' entry_id='4' lang_id='121' db_id='' name='nicht freigegeben' data='50' maintainable='1'/>
+	<z:row lst_id='4300' entry_id='1' lang_id='121' db_id='' name='Frau' data='50' maintainable='1'/>
+	<z:row lst_id='4300' entry_id='2' lang_id='121' db_id='' name='Herr' data='50' maintainable='1'/>
+	<z:row lst_id='4305' entry_id='1' lang_id='121' db_id='' name='Dr.' data='50' maintainable='1'/>
+	<z:row lst_id='4305' entry_id='2' lang_id='121' db_id='' name='Prof.' data='50' maintainable='1'/>
+	<z:row lst_id='4305' entry_id='3' lang_id='121' db_id='' name='Prof. Dr.' data='50' maintainable='1'/>
+	<z:row lst_id='4430' entry_id='1' lang_id='121' db_id='' name='Telefon' data='50' maintainable='1'/>
+	<z:row lst_id='4430' entry_id='2' lang_id='121' db_id='' name='Fax' data='50' maintainable='1'/>
+	<z:row lst_id='4430' entry_id='3' lang_id='121' db_id='' name='Email' data='50' maintainable='1'/>
+	<z:row lst_id='4430' entry_id='4' lang_id='121' db_id='' name='URL' data='50' maintainable='1'/>
+	<z:row lst_id='4430' entry_id='5' lang_id='121' db_id='' name='X.400' data='50' maintainable='1'/>
+	<z:row lst_id='4430' entry_id='6' lang_id='121' db_id='' name='Telex' data='50' maintainable='1'/>
+	<z:row lst_id='5000' entry_id='1' lang_id='121' db_id='0' name='Administrator' data='50' maintainable='1'/>
+	<z:row lst_id='5000' entry_id='2' lang_id='121' db_id='1' name='Standardnutzer' data='50' maintainable='1'/>
+	<z:row lst_id='1100' entry_id='13' lang_id='121' db_id='' name='Großenhainer Pflege' data='120' maintainable='1'/>
+	<z:row lst_id='1100' entry_id='14' lang_id='121' db_id='' name='Westlausitzer Hügel- und Bergland' data='120'
+		 maintainable='1'/>
+	<z:row lst_id='1100' entry_id='15' lang_id='121' db_id='' name='Hallesches Lößhügelland' data='120' maintainable='1'/>
+	<z:row lst_id='1100' entry_id='16' lang_id='121' db_id='' name='Oberlausitzer Gefilde' data='120' maintainable='1'/>
+	<z:row lst_id='1100' entry_id='17' lang_id='121' db_id='' name='Östliche Oberlausitz' data='120' maintainable='1'/>
+	<z:row lst_id='1100' entry_id='18' lang_id='121' db_id='' name='Mittelsächsisches Lößhügelland' data='120'
+		 maintainable='1'/>
+	<z:row lst_id='1100' entry_id='19' lang_id='121' db_id='' name='Weißenfelser Lößhügelland' data='120' maintainable='1'/>
+	<z:row lst_id='1100' entry_id='20' lang_id='121' db_id='' name='Dresdner Elbtalweitung' data='120' maintainable='1'/>
+	<z:row lst_id='1100' entry_id='21' lang_id='121' db_id='' name='Mulde-Lößhügelland' data='120' maintainable='1'/>
+	<z:row lst_id='1100' entry_id='22' lang_id='121' db_id='' name='Oberlausitzer Bergland' data='120' maintainable='1'/>
+	<z:row lst_id='1100' entry_id='23' lang_id='121' db_id='' name='Altenburg-Zeitzer Lößhügelland' data='120'
+		 maintainable='1'/>
+	<z:row lst_id='1100' entry_id='24' lang_id='121' db_id='' name='Sächsische Schweiz' data='120' maintainable='1'/>
+	<z:row lst_id='1100' entry_id='25' lang_id='121' db_id='' name='Osterzgebirge' data='120' maintainable='1'/>
+	<z:row lst_id='1100' entry_id='26' lang_id='121' db_id='' name='Erzgebirgsbecken' data='120' maintainable='1'/>
+	<z:row lst_id='1100' entry_id='27' lang_id='121' db_id='' name='Zittauer Gebirge' data='120' maintainable='1'/>
+	<z:row lst_id='1100' entry_id='29' lang_id='121' db_id='' name='Mittelerzgebirge' data='120' maintainable='1'/>
+	<z:row lst_id='1100' entry_id='30' lang_id='121' db_id='' name='Vogtland' data='120' maintainable='1'/>
+	<z:row lst_id='1100' entry_id='31' lang_id='121' db_id='' name='Westerzgebirge' data='120' maintainable='1'/>
+	<z:row lst_id='1100' entry_id='32' lang_id='121' db_id='' name='Schwarze Elster und ihre Nebenflüsse' data='120'
+		 maintainable='1'/>
+	<z:row lst_id='1100' entry_id='33' lang_id='121' db_id='' name='Mulden und ihre Nebenflüsse' data='120' maintainable='1'/>
+	<z:row lst_id='1100' entry_id='34' lang_id='121' db_id='' name='Weiße Elster und ihre Nebenflüsse' data='120'
+		 maintainable='1'/>
+	<z:row lst_id='1100' entry_id='35' lang_id='121' db_id='' name='Spree und ihre Nebenflüsse' data='120' maintainable='1'/>
+	<z:row lst_id='1100' entry_id='36' lang_id='121' db_id='' name='Lausitzer Neiße und ihre Nebenflüsse' data='120'
+		 maintainable='1'/>
+	<z:row lst_id='1100' entry_id='37' lang_id='121' db_id='' name='Elbestrom' data='120' maintainable='1'/>
+	<z:row lst_id='1100' entry_id='38' lang_id='121' db_id='' name='Nebenflüsse der oberen Elbe' data='120' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='1' lang_id='121' db_id='' name='Atomgesetz (AtG) ---' data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='2' lang_id='121' db_id='' name='Baugesetzbuch (BauGB)' data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='3' lang_id='121' db_id='' name='Bürgerl. Gesetzbuch (BGB)' data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='5' lang_id='121' db_id='' name='Bundesberggesetz (BBergG)' data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='6' lang_id='121' db_id='' name='Bundes-Immissionsschutzgesetz (BImSchG)' data='50'
+		 maintainable='1'/>
+	<z:row lst_id='1350' entry_id='7' lang_id='121' db_id='' name='Bundesnaturschutzgesetz (BNatSchG)' data='50'
+		 maintainable='1'/>
+	<z:row lst_id='1350' entry_id='8' lang_id='121' db_id='' name='Bundeswaldgesetz (BWaldG)' data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='9' lang_id='121' db_id='' name='Chemikaliengesetz (ChemG)' data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='10' lang_id='121' db_id='' name='Flurbereinigungsgesetz (FlurbG)' data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='11' lang_id='121' db_id='' name='Gentechnikgesetz (GenTG)' data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='13' lang_id='121' db_id='' name='Kreislaufwirtschafts- u. Abfallgesetz (KrW-/AbfG)'
+		 data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='16' lang_id='121' db_id='' name='Landschaftsgesetz (LG)' data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='17' lang_id='121' db_id='' name='Pflanzenschutzgesetz (PflSchG)' data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='18' lang_id='121' db_id='' name='Raumordnungsgesetz (ROG)' data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='19' lang_id='121' db_id='' name='Tierschutzgesetz (TierSchG)' data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='20' lang_id='121' db_id='' name='Umwelthaftungsgesetz (UmweltHG)' data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='21' lang_id='121' db_id='' name='Umweltinformationsgesetz (UIG)' data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='22' lang_id='121' db_id='' name='Verwaltungsverfahrensgesetz (VwVfG)' data='50'
+		 maintainable='1'/>
+	<z:row lst_id='1350' entry_id='23' lang_id='121' db_id='' name='Bundeswasserstraßengesetz (WaStrG)' data='50'
+		 maintainable='1'/>
+	<z:row lst_id='1350' entry_id='24' lang_id='121' db_id='' name='Wasserhaushaltsgesetz (WHG)' data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='27' lang_id='121' db_id='' name='Umweltstatistikgesetz (UStatG)' data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='28' lang_id='121' db_id='' name='Trinkwasserverordnung (TrinkwV)' data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='29' lang_id='121' db_id='' name='TA Siedlungsabfall' data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='30' lang_id='121' db_id='' name='TA Abfall' data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='45' lang_id='121' db_id='' name='Umweltverträglichkeitsprüfungsgesetz (UVPG)'
+		 data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='52' lang_id='121' db_id='' name='Abfallklärschlammverordnung (AbfKlärV)' data='50'
+		 maintainable='1'/>
+	<z:row lst_id='1350' entry_id='53' lang_id='121' db_id='' name='Bundes-Immissionsschutzverordnung (BImSchV)'
+		 data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='58' lang_id='121' db_id='' name='Atomsicherheitsgewährleistungsverordnung (VOAS)'
+		 data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='59' lang_id='121' db_id='' name='Strahlenschutzvorsorgegesetz (StrVG)' data='50'
+		 maintainable='1'/>
+	<z:row lst_id='1350' entry_id='64' lang_id='121' db_id='' name='Änderungs-Richtlinie 2001/18/EG zur Richtlinie 90/220/EG (GVO-Freisetzung)'
+		 data='0' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='66' lang_id='121' db_id='' name='FCKW-Halon-Verbots-Verordnung (FCKWHalonVerbV)'
+		 data='0' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='86' lang_id='121' db_id='' name='Verordnung (EWG) Nr.793/93 (Altstoffverordnung)'
+		 data='0' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='88' lang_id='121' db_id='' name='Verordnung ü. d. Festsetzung d. Biosphärenreservates OLHTL'
+		 data='0' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='90' lang_id='121' db_id='' name='Bundesartenschutzgesetz (BArtSchG)' data='0'
+		 maintainable='1'/>
+	<z:row lst_id='1350' entry_id='92' lang_id='121' db_id='' name='Bioabfallverordnung (BioAbfV)' data='0' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='97' lang_id='121' db_id='' name='EG-Veordnung Nr. 2037/2000 (Ozonschichtabbauende Stoffe)'
+		 data='0' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='101' lang_id='121' db_id='' name='Flora-Fauna-Habitat-Richtlinie (FFH-Richtlinie)'
+		 data='0' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='102' lang_id='121' db_id='' name='Gefahrstoffverordnung (GefStoffV)' data='0'
+		 maintainable='1'/>
+	<z:row lst_id='1350' entry_id='105' lang_id='121' db_id='' name='Bundes-Jagdgesetz (BJagdG)' data='0' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='107' lang_id='121' db_id='' name='Lagerstättengesetz (LagerstG)' data='0' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='111' lang_id='121' db_id='' name='Nachweisverordnung (NachwV)' data='0' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='112' lang_id='121' db_id='' name='Nationalparkverordnung Sächsische Schweiz (NPV)'
+		 data='0' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='115' lang_id='121' db_id='' name='Sächsisches Landesplanungsgesetz (SächLPlG)'
+		 data='0' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='116' lang_id='121' db_id='' name='Sächsisches Abfallwirtschafts- u. Bodenschutzgesetz (SächsABG)'
+		 data='0' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='117' lang_id='121' db_id='' name='Sächsische Bauordnung (SächsBO)' data='0'
+		 maintainable='1'/>
+	<z:row lst_id='1350' entry_id='118' lang_id='121' db_id='' name='Sächsisches Fischereigesetz (SächsFischG)'
+		 data='0' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='119' lang_id='121' db_id='' name='Sächsisches Abwasserabgabengesetz (SAbwaG)'
+		 data='0' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='120' lang_id='121' db_id='' name='Sächsisches Naturschutzgesetz (SächsNatSchG)'
+		 data='0' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='122' lang_id='121' db_id='' name='Vogelschutzrichtlinie (SPA)' data='0' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='123' lang_id='121' db_id='' name='TA Lärm' data='0' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='124' lang_id='121' db_id='' name='TA Luft' data='0' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='131' lang_id='121' db_id='' name='Wasserzuständigkeitsverordnung (WasserZuVO)'
+		 data='0' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='188' lang_id='121' db_id='' name='Energieeinsparverordnung (EnEV)' data='50'
+		 maintainable='1'/>
+	<z:row lst_id='1350' entry_id='191' lang_id='121' db_id='' name='Sächsische Schutz- und Ausgleichsverordnung'
+		 data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='192' lang_id='121' db_id='' name='Saatgutverkehrsgesetz' data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='193' lang_id='121' db_id='' name='Tierzuchtgesetz' data='50' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='194' lang_id='121' db_id='' name='Sächsisches Umweltinformationsgesetz (SächsUIG)'
+		 data='50' maintainable='1'/>
+	<z:row lst_id='1100' entry_id='39' lang_id='121' db_id='' name='Test' data='120' maintainable='1'/>
+	<z:row lst_id='1350' entry_id='195' lang_id='121' db_id='' name='22. und 33. BImSchV' data='0'/>
+	<z:row lst_id='1350' entry_id='196' lang_id='121' db_id='' name='Abfallverzeichnisordnung (AVV)' data='0'/>
+	<z:row lst_id='1350' entry_id='197' lang_id='121' db_id='' name='Anbaumaterialverordnung' data='0'/>
+	<z:row lst_id='1350' entry_id='198' lang_id='121' db_id='' name='Berufsbildungsförderrichtlinie RL 61/2004 vom 21.'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='199' lang_id='121' db_id='' name='Berufsbildungsförderungsrichtlinie' data='0'/>
+	<z:row lst_id='1350' entry_id='200' lang_id='121' db_id='' name='Berufsbildungsförderungsrichtlinie von 01. April '
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='201' lang_id='121' db_id='' name='Berufsbildungsgesetz (BBiG) vom 23.03.05' data='0'/>
+	<z:row lst_id='1350' entry_id='202' lang_id='121' db_id='' name='BImSchG' data='0'/>
+	<z:row lst_id='1350' entry_id='203' lang_id='121' db_id='' name='BREF' data='0'/>
+	<z:row lst_id='1350' entry_id='204' lang_id='121' db_id='' name='Bundes.Immissionsschutzgesetz (BImSchG)' data='0'/>
+	<z:row lst_id='1350' entry_id='205' lang_id='121' db_id='' name='Bundes-Bodenschutz- und Altlastenverordnung (BBod'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='206' lang_id='121' db_id='' name='Bundes-Immissionsschutzverordnungen  (BImSchV)'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='207' lang_id='121' db_id='' name='Dienstanweisung des SMUL Cross Compliance'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='208' lang_id='121' db_id='' name='Direktzahlungen-Verpflichtungsgesetz (DirektZahlV'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='209' lang_id='121' db_id='' name='Düngemittelgesetz (DüG)' data='0'/>
+	<z:row lst_id='1350' entry_id='210' lang_id='121' db_id='' name='Düngemittelverordnung (DüngeMV)' data='0'/>
+	<z:row lst_id='1350' entry_id='211' lang_id='121' db_id='' name='Düngeverordnung (DüV)' data='0'/>
+	<z:row lst_id='1350' entry_id='212' lang_id='121' db_id='' name='Zuständigkeitsverordnung Landwirtschaft/Forsten ('
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='213' lang_id='121' db_id='' name='VO über Pflanzenschutzmittel und Pflanzenschutzge'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='214' lang_id='121' db_id='' name='VO über die gesetzlichen Handelsklassen für Speis'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='215' lang_id='121' db_id='' name='VO (EWG) Nr. 1907/90 über bestimmte Vermarktungsn'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='216' lang_id='121' db_id='' name='VO (EWG) Nr. 1906/90 über Vermarktungsnormen für '
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='217' lang_id='121' db_id='' name='VO (EWG) Nr. 1538/91 zur VO (EWG) Nr. 1906/90 übe'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='218' lang_id='121' db_id='' name='VO (EG) Nr. 999/2001 mit Vorschriften zur Verhütu'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='219' lang_id='121' db_id='' name='VO (EG) Nr. 882/2004 über amtliche Kontrollen zur'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='220' lang_id='121' db_id='' name='VO (EG) Nr. 796/2004 (Durchführungsbestimmungen z'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='221' lang_id='121' db_id='' name='VO (EG) Nr. 2200/1996 über die gemeinsame Marktor'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='222' lang_id='121' db_id='' name='VO (EG) Nr. 2092/1991 über den ökologischen Landb'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='223' lang_id='121' db_id='' name='VO (EG) Nr. 1830/2003  über die Rückverfolgbarkei'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='224' lang_id='121' db_id='' name='VO (EG) Nr. 183/2005 Futtermittelhygieneverordnun'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='225' lang_id='121' db_id='' name='VO (EG) Nr. 1829/2003 über genetisch veränderte L'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='226' lang_id='121' db_id='' name='VO (EG) Nr. 1782/2003 mit gemeinsamen Regeln für '
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='227' lang_id='121' db_id='' name='VO (EG) Nr. 1782/2003 des Rates mit gemeinsamen R'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='228' lang_id='121' db_id='' name='VO (EG) Nr. 1782/2003 (Cross Compliance Rechtsgru'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='229' lang_id='121' db_id='' name='VO (EG) Nr. 178/2002 zur Festlegung der allgemein'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='230' lang_id='121' db_id='' name='VO (EG) Nr. 1148/2001 über Kontrollen zur Einhalt'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='231' lang_id='121' db_id='' name='VO (EG) Nr. 103/2004 Interventionsregelungen für '
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='232' lang_id='121' db_id='' name='Vieh- und Fleischgesetz' data='0'/>
+	<z:row lst_id='1350' entry_id='233' lang_id='121' db_id='' name='Verordnung über den ökologischen Landbau 2092/91'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='234' lang_id='121' db_id='' name='Verordnung (EG) Nr. 850/2004 (POPs-Verordnung)'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='235' lang_id='121' db_id='' name='untergesetzliches Regelwerk zum KrW-/AbfG'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='236' lang_id='121' db_id='' name='Tierschutz-Nutztierhaltungsverordnung (TierSchNut'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='237' lang_id='121' db_id='' name='Störfallverordnung (12. BImSchV)' data='0'/>
+	<z:row lst_id='1350' entry_id='238' lang_id='121' db_id='' name='Schadstoff-Höchstmengenverordnung' data='0'/>
+	<z:row lst_id='1350' entry_id='239' lang_id='121' db_id='' name='Sächsisches Wassergesetz (SächsWG) § 57'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='240' lang_id='121' db_id='' name='Sächsisches Umweltinformationsgesetzt  (SächsUIG)'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='241' lang_id='121' db_id='' name='Sächsisches Fischereigesetz und Durchführungsvero'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='242' lang_id='121' db_id='' name='Sächsisches Fischereigesetz (SächsFischG) und Dur'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='243' lang_id='121' db_id='' name='Sächsisches Fischereigesetz (SächsFischG) und 4. '
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='244' lang_id='121' db_id='' name='Sächsisches Abfallwirtschafts- und Bodenschutzges'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='245' lang_id='121' db_id='' name='Sächsische Wasserrahmenrichtlinien Verordnung (Sä'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='246' lang_id='121' db_id='' name='Sächsische Tierzuchtdurchführungsverordnung (Tier'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='247' lang_id='121' db_id='' name='Sächsische Schutz- und Ausgleichsverordnung (Säch'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='248' lang_id='121' db_id='' name='Sächsische Schutz- und Ausgleichsverordnung  (Säc'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='249' lang_id='121' db_id='' name='Sächsische Kommunalabwasserverordnung (SächsKomAb'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='250' lang_id='121' db_id='' name='Sächsische Förderrichtlinie Gewässergüte vom 18.1'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='251' lang_id='121' db_id='' name='Sächs. ImSchZuVO' data='0'/>
+	<z:row lst_id='1350' entry_id='252' lang_id='121' db_id='' name='Saatgutverordnung (SaatgutV)' data='0'/>
+	<z:row lst_id='1350' entry_id='253' lang_id='121' db_id='' name='Saatgutverkehrsgesetz (SaatVerkG)' data='0'/>
+	<z:row lst_id='1350' entry_id='254' lang_id='121' db_id='' name='Saatgutverkehrsgesetz (SaatG)' data='0'/>
+	<z:row lst_id='1350' entry_id='255' lang_id='121' db_id='' name='Rückstandshöchstmengenverordnung' data='0'/>
+	<z:row lst_id='1350' entry_id='256' lang_id='121' db_id='' name='Richlinie 2003/4/EG' data='0'/>
+	<z:row lst_id='1350' entry_id='257' lang_id='121' db_id='' name='Pflanzenschutz-Sachkundeverordnung vom 28. Juli 1'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='258' lang_id='121' db_id='' name='Pflanzenschutzmittelanwendungsverordnung' data='0'/>
+	<z:row lst_id='1350' entry_id='259' lang_id='121' db_id='' name='Pflanzenschutzgesetz (PflSchG) BGBl. I Nr. 28 vom'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='260' lang_id='121' db_id='' name='Pflanzenschutz- Anwendungsverordnung vom 10.Novem'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='261' lang_id='121' db_id='' name='Pflanzenbeschauverordnung' data='0'/>
+	<z:row lst_id='1350' entry_id='262' lang_id='121' db_id='' name='Öko- Landbaugesetz vom 10. Juli 2002 (BGBl. I Nr.'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='263' lang_id='121' db_id='' name='Mykotoxin-Höchstmengenverordnung' data='0'/>
+	<z:row lst_id='1350' entry_id='264' lang_id='121' db_id='' name='Mineralölsteuergesetz' data='0'/>
+	<z:row lst_id='1350' entry_id='265' lang_id='121' db_id='' name='Milchgarantiemengenverordnung (MGV)' data='0'/>
+	<z:row lst_id='1350' entry_id='266' lang_id='121' db_id='' name='Marktordnungswaren- Melde -VO' data='0'/>
+	<z:row lst_id='1350' entry_id='267' lang_id='121' db_id='' name='Lösemittelhaltige Farben- und Lack-Verordnung'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='268' lang_id='121' db_id='' name='Legehennenbetriebsregistergesetz' data='0'/>
+	<z:row lst_id='1350' entry_id='269' lang_id='121' db_id='' name='Lebensmittel- und Futtermittelgesetzbuch (LFGB) B'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='270' lang_id='121' db_id='' name='Landwirtschaftsanpassungsgesetz' data='0'/>
+	<z:row lst_id='1350' entry_id='271' lang_id='121' db_id='' name='IVU Richtlinie' data='0'/>
+	<z:row lst_id='1350' entry_id='272' lang_id='121' db_id='' name='Invekos-Verordnung EU-Verordnung (EWG) Nr. 3508/9'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='273' lang_id='121' db_id='' name='Invekos-Verordnung EU-Verordnung (EWG) Nr. 3508/9'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='274' lang_id='121' db_id='' name='Invekos-Verordnung EU-Verordnung (EWG) Nr. 3508/9'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='275' lang_id='121' db_id='' name='ImSchZuVO' data='0'/>
+	<z:row lst_id='1350' entry_id='276' lang_id='121' db_id='' name='Handelsklassengesetz BGBl. I 1968, Seite 1303'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='277' lang_id='121' db_id='' name='Gesetz zur Umsetzung der Reform der Gemeinsamen A'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='278' lang_id='121' db_id='' name='Gesetz zur Ordnung des Wasserhaushaltes (Wasserha'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='279' lang_id='121' db_id='' name='Geruchsimmissionsrichtlinie (GIRL)' data='0'/>
+	<z:row lst_id='1350' entry_id='280' lang_id='121' db_id='' name='Futtermittelverordnung v. 16.12.03' data='0'/>
+	<z:row lst_id='1350' entry_id='281' lang_id='121' db_id='' name='Futtermittelverordnung (FuMiV)' data='0'/>
+	<z:row lst_id='1350' entry_id='282' lang_id='121' db_id='' name='Futtermittelverordnung' data='0'/>
+	<z:row lst_id='1350' entry_id='283' lang_id='121' db_id='' name='Futtermittelgesetz' data='0'/>
+	<z:row lst_id='1350' entry_id='284' lang_id='121' db_id='' name='EU-Wasserrahmenrichtlinie (WRRL) Anhang V)'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='285' lang_id='121' db_id='' name='EU-Wasserrahmenrichtlinie (WRRL) Anhang V'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='286' lang_id='121' db_id='' name='EU-Verordnung (EG) 1320/2006 zur Entwicklung des '
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='287' lang_id='121' db_id='' name='EU-Richtlinie des Rates 91/414/EWG Inverkehrbring'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='288' lang_id='121' db_id='' name='EU Richtlinien und Verordnungen' data='0'/>
+	<z:row lst_id='1350' entry_id='289' lang_id='121' db_id='' name='EG-Richtlinie Kommunalabwasser 91/271/EWG'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='290' lang_id='121' db_id='' name='Düngeverordnung' data='0'/>
+	<z:row lst_id='1350' entry_id='291' lang_id='121' db_id='' name='Düngeverodnung' data='0'/>
+	<z:row lst_id='1350' entry_id='292' lang_id='121' db_id='' name='Düngemittelverordnung (DüV)' data='0'/>
+	<z:row lst_id='1350' entry_id='293' lang_id='121' db_id='' name='Düngemittelverordnung' data='0'/>
+	<z:row lst_id='1350' entry_id='294' lang_id='121' db_id='' name='Bundes-Immissionsschutzverordnungen (BImSchV)'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='295' lang_id='121' db_id='' name='Bundes-Immissionsschutzgesetz' data='0'/>
+	<z:row lst_id='1350' entry_id='296' lang_id='121' db_id='' name='Bundes-Immissionschutzgesetz (BImSchG)' data='0'/>
+	<z:row lst_id='1350' entry_id='297' lang_id='121' db_id='' name='BImschG' data='0'/>
+	<z:row lst_id='1350' entry_id='298' lang_id='121' db_id='' name='Berufsbildungsförderrichtlinie RL 61/2004 vom 21.'
+		 data='0'/>
+	<z:row lst_id='1350' entry_id='299' lang_id='121' db_id='' name='Berufsbildungsförderrichtlinie RL 61/2004 vom 21.07.04'
+		 data='0' maintainable='1'/>
+</rs:data>
+</xml>

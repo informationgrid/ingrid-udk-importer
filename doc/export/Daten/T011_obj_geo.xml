@@ -1,0 +1,961 @@
+<xml xmlns:s='uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882'
+	xmlns:dt='uuid:C2F41010-65B3-11d1-A29F-00AA00C14882'
+	xmlns:rs='urn:schemas-microsoft-com:rowset'
+	xmlns:z='#RowsetSchema'>
+<s:Schema id='RowsetSchema'>
+	<s:ElementType name='row' content='eltOnly' rs:updatable='true'>
+		<s:AttributeType name='obj_id' rs:number='1' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='T011_obj_geo'
+			 rs:basecolumn='obj_id' rs:keycolumn='true'>
+			<s:datatype dt:type='string' dt:maxLength='40' rs:maybenull='false'/>
+		</s:AttributeType>
+		<s:AttributeType name='method' rs:number='2' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T011_obj_geo' rs:basecolumn='method'>
+			<s:datatype dt:type='string' dt:maxLength='1073741823' rs:long='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='rec_exact' rs:number='3' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T011_obj_geo' rs:basecolumn='rec_exact'>
+			<s:datatype dt:type='float' dt:maxLength='8' rs:precision='15' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='rec_grade' rs:number='4' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T011_obj_geo' rs:basecolumn='rec_grade'>
+			<s:datatype dt:type='float' dt:maxLength='8' rs:precision='15' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='special_base' rs:number='5' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T011_obj_geo' rs:basecolumn='special_base'>
+			<s:datatype dt:type='string' dt:maxLength='1073741823' rs:long='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='data_base' rs:number='6' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T011_obj_geo' rs:basecolumn='data_base'>
+			<s:datatype dt:type='string' dt:maxLength='1073741823' rs:long='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='hierarchy_level' rs:number='7' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T011_obj_geo' rs:basecolumn='hierarchy_level'>
+			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='vector_topology_level' rs:number='8' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T011_obj_geo' rs:basecolumn='vector_topology_level'>
+			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='coord' rs:number='9' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T011_obj_geo' rs:basecolumn='coord'>
+			<s:datatype dt:type='string' dt:maxLength='120'/>
+		</s:AttributeType>
+		<s:AttributeType name='referencesystem_id' rs:number='10' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T011_obj_geo' rs:basecolumn='referencesystem_id'>
+			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='pos_accuracy_vertical' rs:number='11' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T011_obj_geo' rs:basecolumn='pos_accuracy_vertical'>
+			<s:datatype dt:type='float' dt:maxLength='8' rs:precision='15' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='keyc_incl_w_dataset' rs:number='12' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T011_obj_geo' rs:basecolumn='keyc_incl_w_dataset'>
+			<s:datatype dt:type='i2' dt:maxLength='2' rs:precision='5' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='mod_type' rs:number='13' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T011_obj_geo' rs:basecolumn='mod_type'>
+			<s:datatype dt:type='string' dt:maxLength='1'/>
+		</s:AttributeType>
+		<s:extends type='rs:rowbase'/>
+	</s:ElementType>
+</s:Schema>
+<rs:data>
+	<z:row obj_id='008158BC-CDAA-41B4-B88C-D0E44C84A669' rec_grade='0' special_base='Zuarbeit für das Kartenwerk Landesmeßnetz des LfUG'
+		 data_base='Daten der UBG' hierarchy_level='5' coord='Gauß-Krüger
+' referencesystem_id='-1' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='00AC01F7-B799-4799-8EE5-78D295ED4EC9' rec_grade='0' special_base='Historische Hochwasserereignisse, Vermessungen, Gewässerinstandhaltungsmaßnahmen'
+		 hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='00C0075F-3CC1-44A5-B720-42682A694B10' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='I'/>
+	<z:row obj_id='0133E35A-A5DA-4BB6-AB89-832AE82E48F7' method='Datenqualität: Qualität der TK 10
+ ...' rec_grade='0'
+		 hierarchy_level='5' coord='Gauß-Krüger' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='BE6819D4-AED8-4607-B777-73A87A4B202F' method='Die fachlichen Grundlagen wurden digitalisiert und inhaltlich validiert. Die Verschlüsselung erfolgte im Wesentlichen auf der Grundlage der Bodenkundlichen Kartieranleitung (KA4), 4. Auflage, Hannover 1994.
+Nach digitaler Verschneidung der Flächen aus MMK und WBK zur BKkonz erfolgte die Digitalisierung der Wald-, Wasser- und Ortsflächen auf der Basis der zur Zeit der Digitalisierung aktuellen Topographie (1995-2005) im Blattschnitt 1:25.000 (TK25 Herausgeber: Landesvermessungsamt Sachsen) mit gleichzeitigem inhaltlichen Blattrandabgleich.
+'
+		 rec_grade='100' special_base='Konturen der landwirtschaftlichen Standortregionaltypen mit dazugehörigen Einzelinformationen pro Kartiereinheit in den Dokumentationsblättern A.
+Konturen der forstlichen Standortgruppen mit dazugehörigen forstwirtschaftlichen Standortdaten
+'
+		 data_base='WBK:  Waldbodenkarte, abgeleitet aus der Forstlichen Standortkarte (FSK) im M 1:10 000. Zur Bearbeitung genutzter Stand:  1980-1990. Nicht erfasst wurden Forstflächen, die nicht den staatlichen Forstwirtschaftsbetrieben unterstanden (Stadt-, Kirchenwald, Flächen unter Militärforstverwaltung etc.)
+Inhalt: Lokalbodenform, kombiniert mit Feuchte- und Nähkraftstufe und, wenn vorhanden, mit der Hanglage
+MMK: Mittelmaßstäbige Landwirtschaftliche Standortkarten im M 1:25 000. Bearbeitet wurden Kopien der Autorenoriginale der MMK100 (Herausgeber: Akademie der Landwirtschaftswissenschaften der DDR, Forschungszentrum für Bodenfruchtbarkeit Müncheberg, Bereich Bodenkunde Eberswalde).
+Inhalt:  Bodenformengesellschaften, kombiniert mit landwirtschaftlichen Standortdaten
+'
+		 hierarchy_level='6' vector_topology_level='6' coord='' referencesystem_id='31494' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='675C2774-0C3A-4E60-A569-2D3756E660A2' hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='D'/>
+	<z:row obj_id='BF4D89FE-E1C7-4318-AB4F-F2F4780D0A20' data_base='Punktkatatster von Landschaftselementen' hierarchy_level='5'
+		 coord='xxx' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='D'/>
+	<z:row obj_id='66AA30C3-FD43-47B3-8D2D-8C7DA5075500' method='Vom Sächsischen Landesvermessungsamt (LVSN) wurden schwarz-weiße
+digitale, georeferenzierte Luftbilder (Digitale Orthofotos) bereitgestellt, auf deren 
+Grundlage durch externe geospezifische Fachfirmen mittels Bildschirmdigitalisierung die natürlichen landwirtschaftlichen Außengrenzen der Feldblöcke erstellt wurden. Zusätzlich sind zur Unterstützung
+der Digitalisierung alle weiteren verfügbaren Informationen verwendet worden. Die
+Nachprüfung der von diesen externen Firmen digitalisierten Feldblöcke und die
+ggf. erforderliche Feldblockkorrektur erfolgt in Sachsen durch die Staatlichen
+Ämter für Landwirtschaft (AfL).
+Jeder Feldblock erhält eine eindeutige Bezeichnung, den Flächenidentifikator
+(FLIK), der als bundesweit einheitlicher Kennzeichnungsschlüssel für die neuen
+Referenzflächen dient. Dieser FLIK wird bei der Feldblockerstellung zentral vergeben.'
+		 special_base=' ' data_base=' ' hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='D'/>
+	<z:row obj_id='C45F2BB7-A501-4C4F-8119-AF9F5E62518F' hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='D'/>
+	<z:row obj_id='2D76E375-5F1D-4068-8CD6-F0A8C6930D30' rec_grade='100' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='U'/>
+	<z:row obj_id='EA8460CE-459B-4156-83C4-6AA7C000E0E9' rec_grade='100' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='D'/>
+	<z:row obj_id='A3E9078D-0A96-416A-94B0-757372531A5D' method='Vom Sächsischen Landesvermessungsamt (LVSN) wurden farbige digitale, georeferenzierte Luftbilder (Digitale Orthofotos) bereitgestellt, auf deren  Grundlage durch externe geospezifische Fachfirmen mittels Bildschirmdigitalisierung die natürlichen landwirtschaftlichen Außengrenzen der Feldblöcke erstellt wurden. Zusätzlich sind zur Unterstützung der Digitalisierung alle weiteren verfügbaren Informationen verwendet worden. Die Nachprüfung der von diesen externen Firmen digitalisierten Feldblöcke und die ggf. erforderliche Feldblockkorrektur erfolgt im Freistaat Sachsen durch die Staatlichen Ämter für Landwirtschaft (AfL). Jeder Feldblock erhält eine eindeutige Bezeichnung, den Flächenidentifikator (FLIK), der als bundesweit einheitlicher Kennzeichnungsschlüssel für die neuen Referenzflächen dient. Dieser FLIK wird bei der Feldblockerstellung zentral vergeben.'
+		 special_base=' ' data_base=' ' hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='006DB1DF-8BE5-4D44-BEF6-444BDB19B8A2' data_base='Punktkataster von Landschaftselementen' hierarchy_level='5'
+		 coord=' ' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='D'/>
+	<z:row obj_id='2AEEB6FE-4310-4DEC-A0EA-4128B0848A14' hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='D'/>
+	<z:row obj_id='039E7AE2-A518-4FB4-9EF1-BD3750D5E21B' rec_grade='0' special_base='Endbericht zum Forschungs- und Entwicklungsvorhaben &#x22;Naturräume und Naturraumpotentiale 
+des Freistaates Sachsen im Maßstab 1:50 000 als Grundlage für die Landesentwicklungs- und Regionalplanung. Forschungsnehmer war die Sächsische Akademie der Wissenschaften zu Leipzig, Arbeitsstelle Naturhaushalt und Gebietscharakter Dresden.'
+		 data_base='TK50 (Maßstab 1:50 000)' hierarchy_level='5' coord='Gauß-Krüger Koordinatensystem auf der Grundlage des Besselspheroid'
+		 referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='06CE1C37-5443-49E2-8C02-D2A8A5728F65' method='Ableitung durch: ggf. durch wandeln geographische in geodätische Koordinaten (Projektkoordinaten von ARC/INFO)'
+		 rec_grade='0' data_base='Quelle: LVA
+Ableitung aus: Blatteckenkoordinaten bzw. geographische Koordinaten' hierarchy_level='5'
+		 keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='073B7DAC-05DD-45A3-B12A-3AA1A7CD1245' rec_grade='0' hierarchy_level='5' coord='Gauß-Krüger
+'
+		 referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='099F3996-B433-4A1A-A707-1C1E8C095189' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='0AB6DC4D-04E6-4513-B4E0-36D3E967DB3B' rec_grade='0' data_base='Zuarbeit des StUFA Bautzen für die Erstellung des Regionalplanes
+
+
+
+Zuarbeit des FB Wasser zur Regionalplanung
+'
+		 hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='0DB47A37-60CF-4837-A31C-04164E00ED6B' rec_exact='20' rec_grade='100' hierarchy_level='5' coord=''
+		 referencesystem_id='31468' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='0E5F4B6C-7997-4F41-A3B3-891025393DB3' method='Datenqualität: 1 : 300 000 ...' rec_grade='0'
+		 hierarchy_level='5' coord='Bessel-Ellipsoid; Gauß-Krüger-Koordinatensystem
+3°-Meridianstreifen, Rauenberg-Datum RD83'
+		 referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='0F0021CA-F804-493C-AA0A-6C0CE67BF4A5' method='Datenqualität: 1:25 000 ...' rec_grade='100' hierarchy_level='6'
+		 keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='109E8037-4432-4749-BC14-A9D35580D5F5' rec_exact='20' rec_grade='100' special_base='Fachinformationssystem FIS- Rohstoffe'
+		 hierarchy_level='6' coord='' referencesystem_id='31494' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='115A63D2-F788-4750-9820-0CA79BDBA8A1' rec_grade='0' special_base='Waldeinteilung forstbetriebsweise (forsteinrichtungstechnische, forstorganisatorische, administrative, topographische u.a. Objekte)'
+		 data_base='Grundmaßstab ist vermessungstechnische Grundlage, TK10 im Waldaußenbereich vergrößert' hierarchy_level='5'
+		 coord='Bessel-Ellipsoid; Gauß-Krüger-Koordinatensystem
+3°-Meridianstreifen, Rauenberg-Datum RD83' referencesystem_id='-1'
+		 keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='12785706-525D-4CDC-80EF-A1961D32A85F' rec_grade='0' data_base='Datenbank zu abwasserspezifischen Daten'
+		 hierarchy_level='5' coord='Gauß-Krüger' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='13A42FF5-CBA4-11D5-9350-0048543011FC' method='Datenqualität: 1 : 50.000 ...' rec_grade='0' special_base='Diplomarbeit Dagmar Ebert'
+		 hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='13A43001-CBA4-11D5-9350-0048543011FC' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='13A43002-CBA4-11D5-9350-0048543011FC' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='13A43003-CBA4-11D5-9350-0048543011FC' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='13A43004-CBA4-11D5-9350-0048543011FC' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='13A43005-CBA4-11D5-9350-0048543011FC' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='13A43006-CBA4-11D5-9350-0048543011FC' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='13A43011-CBA4-11D5-9350-0048543011FC' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='13A43012-CBA4-11D5-9350-0048543011FC' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='13A43013-CBA4-11D5-9350-0048543011FC' rec_grade='0' special_base='' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='13A43014-CBA4-11D5-9350-0048543011FC' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='13A43015-CBA4-11D5-9350-0048543011FC' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='13A43016-CBA4-11D5-9350-0048543011FC' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='13A43018-CBA4-11D5-9350-0048543011FC' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='13A43019-CBA4-11D5-9350-0048543011FC' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='13A4301A-CBA4-11D5-9350-0048543011FC' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='13F533F0-ED17-4235-9860-31D03431BB9A' method='Datenqualität: Qualität der TK 10 ...' rec_grade='0'
+		 hierarchy_level='5' coord='Gauß-Krüger' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='18E0E415-FA8C-4C0B-A127-3585AED4AFB3' method='Datenqualität: 1 : 200 000 ...' rec_grade='0'
+		 special_base='Wasserlaufverzeichnis' hierarchy_level='5' coord='' referencesystem_id='31468' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='1A0D667F-56E7-4EA7-9893-248F1658E0BF' rec_grade='0' special_base='Zuarbeit für das Kartenwerk Landesmeßnetz des LfUG'
+		 data_base='Daten der UBG' hierarchy_level='5' coord='Gauß-Krüger
+' referencesystem_id='-1' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='1B1FB189-1652-4F17-8A08-A301E12A6A02' rec_grade='0' hierarchy_level='5' coord='Gauß-Krüger'
+		 referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='07A83D12-B245-4AAD-A5E4-F51A547FD09C' method='Vom Sächsischen Landesvermessungsamt (LVSN) wurden farbige digitale, georeferenzierte Luftbilder (Digitale Orthofotos) bereitgestellt, auf deren  Grundlage durch externe geospezifische Fachfirmen mittels Bildschirmdigitalisierung die natürlichen landwirtschaftlichen Außengrenzen der Feldblöcke erstellt wurden. Zusätzlich sind zur Unterstützung der Digitalisierung alle weiteren verfügbaren Informationen verwendet worden. Die Nachprüfung der von diesen externen Firmen digitalisierten Feldblöcke und die ggf. erforderliche Feldblockkorrektur erfolgt im Freistaat Sachsen durch die Staatlichen Ämter für Landwirtschaft (AfL). Jeder Feldblock erhält eine eindeutige Bezeichnung, den Flächenidentifikator (FLIK), der als bundesweit einheitlicher Kennzeichnungsschlüssel für die neuen Referenzflächen dient. Dieser FLIK wird bei der Feldblockerstellung zentral vergeben.'
+		 special_base=' ' data_base=' ' hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='1E344FD6-A988-48A1-BF52-60EBDF4F3952' method='Datenqualität: 1:25 000 ...' rec_grade='100' hierarchy_level='6'
+		 keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='54352EFB-8EBE-4DBE-9CAA-599C73EC7E83' data_base='Uminterpretierte Bohrungsdaten' hierarchy_level='6'
+		 keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='1FDBC15B-26FD-4A55-9547-E81ECDA351A9' method='Datenqualität: 1:50 000 ...' rec_grade='100' hierarchy_level='6'
+		 keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='1FDED3B7-57AF-41E1-A225-69820861CA4A' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='201C0BA4-E5AB-11D6-A459-005004F9360E' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='U'/>
+	<z:row obj_id='202C0B69-60DD-47C8-8402-0D402FE60E5A' rec_exact='20' rec_grade='100' hierarchy_level='6' coord=''
+		 referencesystem_id='31468' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='21A13F64-4D13-47B9-A439-129E753E2B53' method='Passgenauigkeit: &#x22;Wird begrenzt&#x22; von den Linien der Gemeindegrenzen. ...'
+		 rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='21A710A8-6C6B-4523-8517-DA8B0D5EE906' method='Methodische Auswertungen nach Sächsischem Bodenbewertungsinstrument. Ableitung von natürlichen Bodenteilfunktionen.
+(s.a. http: \\www.lfug.smul.sachsen.de)
+Lagegenauigkeit: Randbedingungen der BKkonz ...
+Datenqualität: 1:25.000 ...'
+		 rec_grade='100' special_base='Bodenkonzeptkarte des Freistaates Sachsen, Stand 04/2006' data_base='Bodensystematisch abgeleitete Leitprofile der Generallegende.'
+		 hierarchy_level='5' coord='Gauss-Krüger' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='22874C91-415C-434B-8258-DA7A649D32A7' rec_grade='0' special_base='Waldbrandschutzinformationen (z.B. Waldfläche koloriert, Nadelholzreinbestände bis 40 J. (A), Feuerwachtürme mit Richtkreis, LKW-befahrbare Wege, Wasserentnahmestellen)'
+		 data_base='Forstamtskarte; TK 25 im Waldaußenbereich' hierarchy_level='5' coord='Bessel-Ellipsoid; Gauß-Krüger-Koordinatensystem
+3°-Meridianstreifen, Rauenberg-Datum RD83, UTM-Projektion'
+		 referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='2393849F-1978-4D20-8255-223ED67F82C8' method='Datenqualität: 1:400 000 ...' rec_grade='100'
+		 special_base='Die Auswahl der Aufschlüsse stützt sich auf das Buch &#x22;Zeugnisse der Erdgeschichte Sachsens&#x22;/hrsg. von H.PRESCHER, Leipzig 1987.'
+		 hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='25051DD9-9D61-4698-A2D6-94B54880650E' method='Lagegenauigkeit: 1:100 000 ...
+Datenqualität: 1:100 000 ...'
+		 rec_grade='0' special_base='Wasserspiegellagen aus den Hochwasserschutzkonzepten 
+ATKIS-Daten' data_base='Die Karten wurden auf Datengrundlagen folgender Behörden erstellt:
+Landestalsperrenverwaltung Sachsen
+Sächsisches Landesamt für Umwelt und Geologie'
+		 hierarchy_level='5' coord='Gauß-Krüger-Koordinaten, 4. Meridianstreifen' referencesystem_id='-1' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='253BC58F-CD08-44E7-AD5B-9F9225305D6A' rec_grade='0' data_base='Zuarbeit des StUFA Pauen für die Regionalplanung
+
+
+
+Zuarbeit des FB Wasser zur Regionalplanung
+'
+		 hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='25ACF908-9BC5-478B-8AF4-F2EF75EF0026' rec_grade='0' data_base='Daten des LVermA' hierarchy_level='5'
+		 coord='Gauß-Krüger, 12°/15°-Streifen' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='26D6D4C8-EA0E-41BA-BB9D-36B25F0113E3' rec_grade='0' hierarchy_level='5' coord='Gauß-Krüger
+'
+		 referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='F02ED400-070A-4F6C-9AAD-8D6F83829D3A' hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='252F89BB-8DD6-4CC3-9E26-44EB73CCE25B' hierarchy_level='5' coord='' referencesystem_id='31468'
+		 keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='2A3D7BFB-C677-4ACD-A58A-F87E1DA04236' rec_grade='100' hierarchy_level='6' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='2AABD03E-C754-4AE5-A44C-E9CAC8B450EC' method='Herstellungsprozess 1: 25.000 - 1:200.000 ...'
+		 rec_grade='0' special_base='Dokumentation der festgesetzten Überschwemmungsgebiete im Freistaat Sachsen mit Aufnahme der Flächen in ein Kartenwerk'
+		 data_base='Datenerfassung, -verarbeitung und -bereitstellung von folgenden Rechtsinhabern: 
+Sächsisches Landesamtes für Umwelt und Geologie,
+Landestalsperrenverwaltung Sachsen, 
+Umweltfachbereiche der Regierungspräsidien Chemnitz, Leipzig und Dresden, 
+Landeshauptstadt Dresden / Umweltamt, 
+
+
+
+
+'
+		 hierarchy_level='5' coord='Gauss-Krüger-Koordinaten
+4. Meridianstreifen' referencesystem_id='-1' keyc_incl_w_dataset='0'
+		 mod_type='U'/>
+	<z:row obj_id='2C4F433B-966B-4517-A35C-83A87F042A2A' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='2D6037C5-873E-4CD6-B537-E3A701CFEFD0' method='Datenqualität: 1:400.000 ...' rec_grade='0' special_base='Für die Überarbeitung standen Ergebnisse der forstlichen Standortkartierung und landwirtschaftliche, bodengeologische, quartärgeologische und bodengeographische Kartierungen zur Verfügung.'
+		 hierarchy_level='5' coord='Gauss-Krüger-Koordinatensystem
+4. Meridianstreifen' referencesystem_id='-1' keyc_incl_w_dataset='0'
+		 mod_type='U'/>
+	<z:row obj_id='2E18E9EE-5609-410A-A4BB-70ED6192DB05' rec_grade='0' special_base='Schuzzonenbegutachtungen' hierarchy_level='5'
+		 keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='3028D9B9-E3AF-4B5B-8CDC-EE698596E7B7' method='Lagegenauigkeit: 250 m ...
+Datenqualität: 10 000 - 50 000 ...'
+		 rec_grade='0' hierarchy_level='5' coord='Gauß Krüger (Bessel)' referencesystem_id='-1' keyc_incl_w_dataset='0'
+		 mod_type='U'/>
+	<z:row obj_id='3061FF94-1727-4DD8-B4B5-7E0859A20203' rec_grade='0' data_base='Quelle: LVA' hierarchy_level='5'
+		 keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='32F91A90-19E1-4F4D-84A3-6F79D33CCA01' method='Datenqualität: 1 : 25.000 ...' rec_grade='0' data_base='Sachdaten: aus dem Sächsischen Altlastenkataster (SALKA)
+Geometriedaten:   topographische Karte 1 : 25.000 (Landesvermessungsamt)'
+		 hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='34481B33-2FE2-4CA6-B454-63199FB57CBD' method='Datenqualität: 1:25 000 ...' rec_grade='100' hierarchy_level='6'
+		 keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='34B813EE-3519-4B47-98E8-F1C5F3EEEB85' method='Lagegenauigkeit: flurstücksgenau 1:5 000 ...'
+		 rec_grade='0' hierarchy_level='5' coord='Gauß-Krüger' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='3509C95D-1B94-4022-AE7C-1B61DC0D7B87' method='Datenqualität: +/- 1m ...' rec_grade='0' hierarchy_level='5'
+		 coord='Gauß-Krüger' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='35787B93-E71F-11D6-A45B-005004F9360E' rec_grade='0' special_base=' ' data_base='Flächendeckend, Senkrechtaufnahmen lückenhaft (Streifen), nicht georefernziert.
+3200 Bildblöcke s/w'
+		 hierarchy_level='5' coord=' ' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='35787B95-E71F-11D6-A45B-005004F9360E' rec_grade='0' special_base=' ' data_base='Keine' hierarchy_level='5'
+		 coord=' ' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='35787B97-E71F-11D6-A45B-005004F9360E' rec_grade='0' special_base=' ' data_base='Auch andere Datenträger möglich; Kosten komplett bis zum Orthobild'
+		 hierarchy_level='5' coord=' ' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='35787B99-E71F-11D6-A45B-005004F9360E' rec_grade='0' special_base=' ' data_base='Bearbeitung StUFA L+C gesichert; Orthofotos höchstens für Teilbereiche'
+		 hierarchy_level='5' coord=' ' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='35787B9B-E71F-11D6-A45B-005004F9360E' rec_grade='0' special_base=' ' data_base='Unkomprimierte Scans (85 GB) im Datentausch gegen Nachbefliegung; Herstellung von Orthofotos durch   LfUG beauftragt'
+		 hierarchy_level='5' coord=' ' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='35787B9D-E71F-11D6-A45B-005004F9360E' rec_grade='0' special_base='Ergebnisse von Testflügen (Radar,IR)'
+		 data_base='Ergebnisse von Testflügen (Radar, IR)' hierarchy_level='5' coord=' ' referencesystem_id='-1' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='35787B9F-E71F-11D6-A45B-005004F9360E' rec_grade='0' special_base=' ' data_base='Multispektral-Scanner'
+		 hierarchy_level='5' coord=' ' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='35787BA1-E71F-11D6-A45B-005004F9360E' rec_grade='0' special_base=' ' data_base='Erwerb aller kostenlos erhältlichen Daten; Format satellitenabhängig'
+		 hierarchy_level='5' coord=' ' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='35787BA3-E71F-11D6-A45B-005004F9360E' rec_grade='0' special_base=' ' data_base='Einzige Höchststandbefliegung eines Nebenflusses der Elbe; Nur tw. senkrecht'
+		 hierarchy_level='5' coord=' ' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='35787BA5-E71F-11D6-A45B-005004F9360E' rec_grade='0' special_base=' ' data_base='Abgleich der WSD-Bilder noch erforderlich'
+		 hierarchy_level='5' coord=' ' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='35787BA7-E71F-11D6-A45B-005004F9360E' rec_grade='0' special_base=' ' data_base='Abgleich der WSD-Bilder noch erforderlich'
+		 hierarchy_level='5' coord=' ' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='35787BA9-E71F-11D6-A45B-005004F9360E' rec_grade='0' special_base=' ' data_base='Abgleich der Nachbefliegung des LfUG noch erforderlich'
+		 hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='359027F4-590C-438C-BEB1-355474A09633' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='U'/>
+	<z:row obj_id='37D5B2D9-86DC-4DFA-AF4D-769D256F7019' method='Lagegenauigkeit: ca. 50 m ...
+Datenqualität: 1:25.000 bis 1:500.000 ...'
+		 rec_grade='0' hierarchy_level='5' coord='Gauss-Krüger, Bessel 12° bzw. 15° Streifen' referencesystem_id='-1'
+		 keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='38EB627B-25EC-4BCF-A6E8-2D2368CDED1A' method=' ' rec_grade='100' data_base='Primärquelle der Daten: Aufgabenträger
+Erfassung der Daten in den Regierungspräsidien/Umweltfachbereichen (ehem. StUFÄ)
+Datenzusammenführung/Datenaufbereitung: Sächsisches Landesamt für Umwelt und Geologie'
+		 hierarchy_level='5' coord='Transverse Mercator, GCS Bessel 1841, 4. Meridianstreifen (Gauß-Krüger-Koordinaten)'
+		 referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='3912829F-87B2-439E-B88F-A1D9D999D5FC' method='Satellitenbildklassifikation, geostatistische Verarbeitung
+Lagegenauigkeit: &#x3e;90% ...
+Datenqualität: beliebig ...'
+		 rec_grade='100' special_base='Erfassung der Flächeninanspruchnahme durch die aktuelle Siedlungsausdehnung zur Darstellung des Bodenverbrauches. Dargestellt werden die Siedlungstypen &#x22;innerorts&#x22; und &#x22;außerorts&#x22;.'
+		 data_base='Satellitenbilddaten des IRS-1C: 
+PAN-Daten Bodenauflösung 5m*5m,
+LISS-Daten Bodenauflösung 23m*23m'
+		 hierarchy_level='5' coord='Gauss-Krüger
+4. Meridianstreifen' referencesystem_id='-1' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='3948D394-183A-4B89-BB91-A40DFA90E1C5' method='Datenqualität: 1:300 000 ...' rec_grade='0' hierarchy_level='5'
+		 coord='Bessel-Ellipsoid; Gauß-Krüger-Koordinatensystem
+3°-Meridianstreifen, Rauenberg-Datum RD83' referencesystem_id='-1'
+		 keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='7B1B57FB-50A7-4DB0-A5DF-CE09E4D1B3F4' method='Vom Sächsischen Landesvermessungsamt (LVSN) wurden farbige digitale, georeferenzierte Luftbilder (Digitale Orthofotos) bereitgestellt, auf deren  Grundlage durch externe geospezifische Fachfirmen mittels Bildschirmdigitalisierung die natürlichen landwirtschaftlichen Außengrenzen der Feldblöcke erstellt wurden. Zusätzlich sind zur Unterstützung der Digitalisierung alle weiteren verfügbaren Informationen verwendet worden. Die Nachprüfung der von diesen externen Firmen digitalisierten Feldblöcke und die ggf. erforderliche Feldblockkorrektur erfolgt im Freistaat Sachsen durch die Staatlichen Ämter für Landwirtschaft (AfL). Jeder Feldblock erhält eine eindeutige Bezeichnung, den Flächenidentifikator (FLIK), der als bundesweit einheitlicher Kennzeichnungsschlüssel für die neuen Referenzflächen dient. Dieser FLIK wird bei der Feldblockerstellung zentral vergeben.'
+		 special_base=' ' data_base=' ' hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='3B09A7E4-C556-4EC3-8767-95232D84BDD5' method='Lagegenauigkeit: ca. 50 m ...
+Datenqualität: 1:25.000 bis 1:500.000 ...'
+		 rec_grade='0' hierarchy_level='5' coord='Gauss-Krüger, Bessel 12° bzw. 15° Streifen' referencesystem_id='-1'
+		 keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='3BA4C5DD-510E-4F79-8CF8-641E0259AD41' method=' ' rec_grade='100' data_base='Primärdatenbereitstellung durch Aufgabenträger der Abwasserbeseitigung
+Erfassung der Daten in den Regierungspräsidien/Umweltfachbereichen (ehem. StUFÄ)
+Datenzusammenführung/Datenaufbereitung: Sächsisches Landesamt für Umwelt und Geologie'
+		 hierarchy_level='5' coord='Transverse Mercator, GCS Bessel 1841, 4. Meridianstreifen (Gauß-Krüger-Koordinaten)'
+		 referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='3C29C7A4-3E79-449E-8325-64ED5DC451B1' method='Lagegenauigkeit: ca. 50m ...
+Datenqualität: 1:25.000 bis 1:200.000 ...'
+		 rec_grade='0' hierarchy_level='5' coord='Gauss-Krüger, Bessel 12° bzw. 15° Streifen' referencesystem_id='-1'
+		 keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='806F46BB-A115-4F3B-B576-81FE8E218015' method='Vom Sächsischen Landesvermessungsamt (LVSN) wurden farbige digitale, georeferenzierte Luftbilder (Digitale Orthofotos) bereitgestellt, auf deren  Grundlage durch externe geospezifische Fachfirmen mittels Bildschirmdigitalisierung die natürlichen landwirtschaftlichen Außengrenzen der Feldblöcke erstellt wurden. Zusätzlich sind zur Unterstützung der Digitalisierung alle weiteren verfügbaren Informationen verwendet worden. Die Nachprüfung der von diesen externen Firmen digitalisierten Feldblöcke und die ggf. erforderliche Feldblockkorrektur erfolgt im Freistaat Sachsen durch die Staatlichen Ämter für Landwirtschaft (AfL). Jeder Feldblock erhält eine eindeutige Bezeichnung, den Flächenidentifikator (FLIK), der als bundesweit einheitlicher Kennzeichnungsschlüssel für die neuen Referenzflächen dient. Dieser FLIK wird bei der Feldblockerstellung zentral vergeben.'
+		 special_base=' ' data_base=' ' hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='3ED28B94-7A73-4F13-84AF-F3244E9BCB4E' rec_grade='0' special_base='Waldeinteilung der Forsteinrichtung, ausgewählte Objektarten
+
+'
+		 data_base='Forstgrundkarte; TK25 im Waldaußenbereich' hierarchy_level='5' coord='Bessel-Ellipsoid; Gauß-Krüger-Koordinatensystem
+3°-Meridianstreifen, Rauenberg-Datum RD83'
+		 referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='3F361792-924F-4562-BFDF-EEF1BF0A35C2' method='Datenqualität: 1:50 000 ...' rec_grade='100' hierarchy_level='5'
+		 keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='3F524A2F-A6C8-4B13-BE01-D49FF98E13BF' rec_grade='0' data_base='Daten des LVermA' hierarchy_level='5'
+		 coord='Gauß-Krüger, 12°/15°-Streifen' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='3FA37888-D3C2-490D-AF28-A286D47F5FEB' method='Datenqualität: 1:200 000 ...' rec_grade='100'
+		 hierarchy_level='6' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='40A484B1-7131-453A-9CA5-EAD9D7D045A0' method='Lagegenauigkeit: ca. 50 - 100 m ...
+Datenqualität: 1:25.000 bis 1:500.000 ...'
+		 rec_grade='0' hierarchy_level='5' coord='Gauss-Krüger, Bessel 12° bzw. 15° Streifen' referencesystem_id='-1'
+		 keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='51A1B81F-36B6-4A84-82EA-8D6D7320309D' method='Vom Sächsischen Landesvermessungsamt (LVSN) wurden farbige digitale, georeferenzierte Luftbilder (Digitale Orthofotos) bereitgestellt, auf deren  Grundlage durch externe geospezifische Fachfirmen mittels Bildschirmdigitalisierung die natürlichen landwirtschaftlichen Außengrenzen der Feldblöcke erstellt wurden. Zusätzlich sind zur Unterstützung der Digitalisierung alle weiteren verfügbaren Informationen verwendet worden. Die Nachprüfung der von diesen externen Firmen digitalisierten Feldblöcke und die ggf. erforderliche Feldblockkorrektur erfolgt im Freistaat Sachsen durch die Staatlichen Ämter für Landwirtschaft (AfL). Jeder Feldblock erhält eine eindeutige Bezeichnung, den Flächenidentifikator (FLIK), der als bundesweit einheitlicher Kennzeichnungsschlüssel für die neuen Referenzflächen dient. Dieser FLIK wird bei der Feldblockerstellung zentral vergeben.'
+		 special_base=' ' data_base=' ' hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='41248D47-E0E1-451B-A33A-03223FABCA61' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='4136345C-01A4-4B9D-96EE-E69264E1FB2F' method='Datenqualität: 1 : 400 000 ...' rec_grade='100'
+		 hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='ACAC53AA-0310-4C09-85C7-626873DD2A73' hierarchy_level='5' coord='' referencesystem_id='31468'
+		 keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='450C131F-7731-4673-98F5-6943F5529C42' method='Datenqualität: 1 : 400 000 ...' rec_grade='100'
+		 hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='45260FE4-33D0-4232-AEDF-1EA31C727A0A' method='Datenqualität: Qualität der TK 10 ...' rec_grade='0'
+		 hierarchy_level='5' coord='Gauß-Krüger' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='4AF3646C-FF10-4CB7-8275-E24160D494D1' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='I'/>
+	<z:row obj_id='4B657895-AFFF-49AA-952A-05F23D5328AB' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='4C24ABFD-D5BF-4E82-B5F5-64BF53025198' method='Datenqualität: 1: 10.000 ...' rec_grade='0' data_base='Sachdaten: aus dem Sächsischen Altlastenkataster (SALKA)
+Geometriedaten:  topographische Karte 1 : 10.000 (Landesvermessungsamt)'
+		 hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='4D1601B6-1141-4792-AD80-72C9A72FA418' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='479E8A86-3A60-4F83-B8B3-8817F01F18DD' method='Vom Sächsischen Landesvermessungsamt (LVSN) wurden farbige digitale, georeferenzierte Luftbilder (Digitale Orthofotos) bereitgestellt, auf deren  Grundlage durch externe geospezifische Fachfirmen mittels Bildschirmdigitalisierung die natürlichen landwirtschaftlichen Außengrenzen der Feldblöcke erstellt wurden. Zusätzlich sind zur Unterstützung der Digitalisierung alle weiteren verfügbaren Informationen verwendet worden. Die Nachprüfung der von diesen externen Firmen digitalisierten Feldblöcke und die ggf. erforderliche Feldblockkorrektur erfolgt im Freistaat Sachsen durch die Staatlichen Ämter für Landwirtschaft (AfL). Jeder Feldblock erhält eine eindeutige Bezeichnung, den Flächenidentifikator (FLIK), der als bundesweit einheitlicher Kennzeichnungsschlüssel für die neuen Referenzflächen dient. Dieser FLIK wird bei der Feldblockerstellung zentral vergeben.'
+		 special_base=' ' data_base=' ' hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='4FA30354-50C3-4DA2-91B0-B667FA17183F' method='Datenqualität: 1:200 000 ...' rec_grade='100'
+		 hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='526FD503-D059-4649-83AC-78C507CE6E07' method='Datenqualität: Datenqualität der TK 10 ...' rec_grade='0'
+		 hierarchy_level='5' coord='Gauß-Krüger' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='535641F1-5862-4FC3-BB42-9C74102B3ECD' rec_grade='0' hierarchy_level='5' coord='Gauß-Krüger'
+		 referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='5373BC55-30BE-40D6-911D-17105BA0DFA4' rec_grade='0' special_base='Forstorganisatorische Gliederung'
+		 data_base='ausgewählte Objektarten der Forstgrundkarte' hierarchy_level='5' coord='Bessel-Ellipsoid; Gauß-Krüger-Koordinatensystem
+3°-Meridianstreifen, Rauenberg-Datum RD83'
+		 referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='54043773-AA7A-4E39-81E8-28E30C3D5DB8' method='im Projekt &#x22;Herstellung von Luftbildkarten&#x22;,  Im Rahmen der Forsteinrichtung, nach Bedarf'
+		 rec_grade='0' special_base='Forstgrundkarte (Abteilungsnetz)' data_base='Blattschnitte der Einzelkarten (Katenrand) mirt Kartenblattnummer'
+		 hierarchy_level='5' coord='Bessel-Ellipsoid; Gauß-Krüger-Koordinatensystem
+3°-Meridianstreifen, Rauenberg-Datum RD83'
+		 referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='558C3234-ADA2-4B15-AE79-5042BF56A56F' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='58035569-0154-48C1-8C4C-AACC933065D9' rec_grade='0' special_base='Forstgrundkarte, S/W-Orthophoto (panchromatisch oder Infrarot) oder CIR-Orthophoto
+für Variante: Flurstücke:  Katasterkarte
+'
+		 data_base='Forstgrundkarte, s/w-Orthofoto oder CIR-Orthophoto
+Variante: mit Flurstücksinformationen
+' hierarchy_level='5'
+		 coord='Bessel-Ellipsoid; Gauß-Krüger-Koordinatensystem
+3°-Meridianstreifen, Rauenberg-Datum RD83' referencesystem_id='-1'
+		 keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='5920CACF-FEDB-4849-8926-9EAE8EAE4D1B' method='Lagegenauigkeit: 1:10 000 ...
+Datenqualität: 1:10 000 ...'
+		 rec_grade='0' special_base='Forstliches Blankett, TK10 im Waldaußenbereich
+bisher: Revierkarte' data_base='Forstliches Blankett; TK 10 im Waldaußenbereich, Forstliche Standortsdaten, Höhenlinien
+'
+		 hierarchy_level='5' coord='Bessel-Ellipsoid; Gauß-Krüger-Koordinatensystem
+3°-Meridianstreifen, Rauenberg-Datum RD83'
+		 referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='59A18301-4530-4C45-9C9C-8630AAFC9B5F' method='Datenqualität: 1 : 25.000  (teilweise 1:10.000 oder flurstücksgenau (ALK))'
+		 rec_grade='100' special_base=' ' data_base='Die Karte wurde auf Datengrundlagen folgender Behörden erstellt: 
+- Regierungspräsidien/Umweltfachbereiche, 
+- Landratsämter/Untere Wasserbehörden, 
+- Landestalsperrenverwaltung Sachsen
+- Sächsisches Landesamt für Umwelt und Geologie.
+Datenzusammenführung/Datenaufbereitung: Sächsisches Landesamt für Umwelt und Geologie'
+		 hierarchy_level='5' coord='Transverse Mercator, GCS Bessel 1841, 4. Meridianstreifen (Gauß-Krüger-Koordinaten)'
+		 referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='5A69EC96-4F33-4D81-9472-0C90CBF78E65' method='Datenqualität: Datenqualität der TK 10 ...' rec_grade='0'
+		 hierarchy_level='5' coord='Gauß-Krüger' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='5AEC2F3E-CE55-11D3-8BF6-00105A493192' rec_grade='0' special_base='Bodenübersichtskarte 1:200.000, Bodenmessnetze Sachsen, Bodendauerbeobachtungsflächen
+'
+		 data_base='Datenerhebung, Auswertung, Visualisierung, flächenhafte Interpolation
+
+' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='U'/>
+	<z:row obj_id='5AEC2F95-CE55-11D3-8BF6-00105A493192' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='U'/>
+	<z:row obj_id='5AEC317B-CE55-11D3-8BF6-00105A493192' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='D'/>
+	<z:row obj_id='5BAB2FA1-82C2-49E2-9C95-837CD0051C2C' method='Lagegenauigkeit: 50 m ...
+Datenqualität: nicht anwendbar, Sachdaten ...'
+		 rec_grade='0' hierarchy_level='5' coord='Gauß-Krüger, 12°/15°-Streifen' referencesystem_id='-1' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='5D886D6A-8674-467E-A204-439F5C3008AB' method='Datenqualität: 1:300 000 ...' rec_grade='0' hierarchy_level='5'
+		 coord='Bessel-Ellipsoid; Gauß-Krüger-Koordinatensystem
+3°-Meridianstreifen, Rauenberg-Datum RD83' referencesystem_id='-1'
+		 keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='5E9FA043-6494-420E-B5E3-9AF8F96F8849' method='Ableitung durch: georefernzieren und teilweise Verschneiden'
+		 rec_grade='0' data_base='Quelle: LVA
+Ableitung aus: ungeoreferenzierte Bilder des LVA' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='I'/>
+	<z:row obj_id='5F3BA581-99A8-484B-8AEA-FE28D0596A51' rec_grade='0' hierarchy_level='5' coord='Gauß-Krüger'
+		 referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='5F4F55F0-9ECC-46EE-8DC0-51891F104C5F' rec_grade='0' data_base='Daten des LVermA' hierarchy_level='5'
+		 coord='Gauß-Krüger, 12°/15°-Streifen' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='5FFE38E4-440E-47A0-A26C-720E73EBB029' rec_grade='0' special_base='Forstgrundkarte; Satellitenbild'
+		 data_base='Forstgrundkarte oder Forstliches Blankett oder Forstamtskarte; Satellitenbild' hierarchy_level='5'
+		 coord='Bessel-Ellipsoid; Gauß-Krüger-Koordinatensystem
+3°-Meridianstreifen, Rauenberg-Datum RD83' referencesystem_id='-1'
+		 keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='60369DDA-1EAF-4004-B96F-2F08B2296C27' rec_grade='0' special_base='FOLGENDE DATEN SIND ENTHALEN 
+Nationalpark &#x22;Sächsische Schweiz&#x22;, Naturparke &#x22;Erzgebirge / Vogtland&#x22; sowie &#x22;Dübener Heide&#x22;, 
+Biosphärenreservat &#x22;Oberlausitzer Heide- und Teichlandschaft&#x22;, Naturschutzgebiete, Landschaftsschutzgebiete.'
+		 hierarchy_level='5' coord='Gauß-Krüger Koordinatensystem auf der Grundlage des Besselspheroid' referencesystem_id='-1'
+		 keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='64321074-B692-4589-A96D-99859D564BED' method='Lagegenauigkeit: ca.20m ...
+Datenqualität: 1:10.000 bis 1:200.000 ...'
+		 rec_grade='0' hierarchy_level='5' coord='Gauss-Krüger, Bessel 12° bzw. 15° Streifen' referencesystem_id='-1'
+		 keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='6721C8F6-5881-4B16-9346-2E5AECC80DB3' method='Datenqualität: +/- 1m ...' rec_grade='0' hierarchy_level='5'
+		 coord='Gauß-Krüger' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='69A2799D-7707-46DD-982C-8E81C76CCDAC' rec_grade='0' special_base='Ingenieurgeologische Karte Blatt Zittau'
+		 data_base='Kartenart: topographisch' hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='6A3AC573-0B12-4F41-BC4D-2AD6C360F0E0' method='Die Aufbereitung der Satellitendaten erfolgte durch das Institut für
+Kartographie der Technischen Universität Dresden.
+Lagegenauigkeit: 30 m ...'
+		 rec_grade='0' hierarchy_level='5' coord='Gauß-Krüger, 12°/15°-Streifen' referencesystem_id='-1' keyc_incl_w_dataset='0'
+		 mod_type='U'/>
+	<z:row obj_id='6AAC3A4F-9363-47C8-BB6D-405B3503CA6E' method='Datenqualität: 1:200 000 ...' rec_grade='0' special_base='Wasserlaufverzeichnis
+Pegelverzeichnis'
+		 hierarchy_level='5' coord='Gauß-Krüger' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='6F7B85C1-7294-4751-9DB4-50FC523A203B' method='Datenqualität: 1:10 000 ...' rec_grade='0' data_base='Sachdaten: aus dem Sächsischen Altlastenkataster (SALKA)
+Geometriedaten:  topographische Karte 1:10 000 (Landesvermessungsamt)'
+		 hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='730F0CB0-3BDF-4556-93A0-C65DB1C488F5' method='Datenqualität: +/- 1m ...' rec_grade='0' hierarchy_level='5'
+		 coord='Gauß-Krüger' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='7377CDA3-4C97-41E3-87D6-68670DE1B9EC' rec_grade='0' data_base='Datenbank zu abwasserspezifischen Daten'
+		 hierarchy_level='5' coord='Gauß-Krüger' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='74CA2DBA-42E5-4FC2-9875-9C29B89538F6' method='Erfassung im Rahmen der selektiven Waldbiotopkartierung '
+		 rec_grade='0' special_base='flächige, linien- und punktförmige Waldbiotope, charakterisiert nach Leitbiotoptypen, Biotopnummer und Schutzstatus nach §26 SächsNatSchG, Informationen zu Naturschutzgebieten'
+		 data_base='Revierkarte; TK 10 im Waldaußenbereich' hierarchy_level='5' coord='Bessel-Ellipsoid; Gauß-Krüger-Koordinatensystem
+3°-Meridianstreifen, Rauenberg-Datum RD83'
+		 referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='77EC7C22-EEDB-40DD-A308-1226492371BF' method=' ' rec_grade='100' data_base='Die Karte wurde auf der Datengrundlage folgender Behörden erstellt:
+- Aufgabenträger der öffentlichen Wasserversorgung,
+- Regierungspräsidien/Umweltfachbereiche.
+Datenzusammenführung/Datenaufbereitung: Sächsisches Landesamt für Umwelt und Geologie.'
+		 hierarchy_level='5' coord='Transverse Mercator, GCS Bessel 1841, 4. Meridianstreifen (Gauß-Krüger-Koordinaten)'
+		 referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='799FE816-8D0E-4325-B777-086B331D1677' method='Lagegenauigkeit: ca. 50 m ...
+Datenqualität: 1:25.000 bis 1:200.000 ...'
+		 rec_grade='0' hierarchy_level='5' coord='Gauss-Krüger Bessel, 12 ° bzw. 15° Streifen' referencesystem_id='-1'
+		 keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='7ADF0E94-BEBC-422B-AD58-A2B34556CF02' method='Ableitung durch: Schnittstellenprogramm EDBS - Flächendatenbank'
+		 rec_grade='0' data_base='Quelle: LVA Sachsen
+Ableitung aus: ATKIS DLM25' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='U'/>
+	<z:row obj_id='7B5EB4B3-B6C2-4C2F-9BC2-803459B86555' method='Datenqualität: 1:10 000 ...' rec_grade='0' special_base='Forstliches Blankett, TK10 im Waldaußenbereich
+Walddatenbank (WIS)
+'
+		 data_base='' hierarchy_level='5' coord='Bessel-Ellipsoid; Gauß-Krüger-Koordinatensystem
+3°-Meridianstreifen, Rauenberg-Datum RD83'
+		 referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='7D48643E-2C0F-47CA-A3B5-17603DAE963E' method='gegenwärtig: analoge Karten
+zukünftig: digitale Kalkungs-Vollzugskarten
+
+Datenqualität: Forstamts-Übersichtskarten: 1:25 000
+Arbeitskarten: 1:10 000
+ ...'
+		 rec_grade='0' special_base='SächsWaldG
+LEUBE, F. (2000): Leitfaden Forstliche Bodenschutzkalkung in Sachsen. Schriftenreihe der Sächsischen Landesanstalt für Forsten, Heft 21, Graupa
+
+'
+		 data_base='Bodenschutzkalkungs-Flächen' hierarchy_level='5' coord='Bessel-Ellipsoid; Gauß-Krüger-Koordinatensystem
+3°-Meridianstreifen, Rauenberg-Datum RD83'
+		 referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='7D80F150-AECC-48E7-AB35-3160575294AC' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='U'/>
+	<z:row obj_id='81544483-EE4C-4357-98C3-E2850B9B1BF5' rec_grade='0' hierarchy_level='5' coord='Gauß-Krüger'
+		 referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='81757FE4-EA47-43DF-8D7D-FC3FB8AE31B7' method='Lagegenauigkeit: ca. 50 m ...
+Datenqualität: 1:25.000 bis 1:200.000 ...'
+		 rec_grade='0' hierarchy_level='5' coord='Gauss-Krüger, Bessel 12° bzw. 15° Streifen' referencesystem_id='-1'
+		 keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='81C88432-CEAA-4D1D-B664-C1EF71473A0F' rec_grade='0' data_base='Quelle: LVA' hierarchy_level='5'
+		 keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='86BD799F-71C8-4B9F-A07A-ABD058F98EBA' method='Datenqualität: 1:100 000 ...' rec_grade='100'
+		 hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='881C01C9-4ED7-4E7C-8027-1A9190B12B23' method='Lagegenauigkeit: gemeindekonkret ...' rec_grade='0'
+		 hierarchy_level='5' coord='Gauß-Krüger' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='89F0FD48-EE79-4D85-92D0-C3F398C9876B' rec_grade='0' hierarchy_level='5' coord='Gauß-Krüger
+'
+		 referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='8C54F803-81DC-4ACF-BAD6-A1FA67C3C16B' rec_grade='0' data_base='Daten des LVermA' hierarchy_level='5'
+		 coord='Gauß-Krüger, 12°/15°-Streifen' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='8DE39CC1-2219-48E5-AF1A-C5AAAC3348BF' method='Datenqualität: 1:50 000 ...' rec_grade='100' hierarchy_level='5'
+		 keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='8EDC8632-7F1C-4E52-9E2E-E2C8BDE8DCBC' method='Datenqualität: Qualität der TK 10 ...' rec_grade='0'
+		 hierarchy_level='5' coord='Gauß_Krüger' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='8F659499-8158-4D3F-A47E-2AB4CC032995' method='Datenqualität: 1:100 000 ...' rec_grade='100'
+		 hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='902D1B1E-0234-48A1-9BED-8FBC3587781A' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='I'/>
+	<z:row obj_id='CF48ABAE-11AC-44EF-828B-8485655746EA' method='Vom Sächsischen Landesvermessungsamt (LVSN) wurden farbige digitale, georeferenzierte Luftbilder (Digitale Orthofotos) bereitgestellt, auf deren  Grundlage durch externe geospezifische Fachfirmen mittels Bildschirmdigitalisierung die natürlichen landwirtschaftlichen Außengrenzen der Feldblöcke erstellt wurden. Zusätzlich sind zur Unterstützung der Digitalisierung alle weiteren verfügbaren Informationen verwendet worden. Die Nachprüfung der von diesen externen Firmen digitalisierten Feldblöcke und die ggf. erforderliche Feldblockkorrektur erfolgt im Freistaat Sachsen durch die Staatlichen Ämter für Landwirtschaft (AfL). Jeder Feldblock erhält eine eindeutige Bezeichnung, den Flächenidentifikator (FLIK), der als bundesweit einheitlicher Kennzeichnungsschlüssel für die neuen Referenzflächen dient. Dieser FLIK wird bei der Feldblockerstellung zentral vergeben.'
+		 special_base=' ' data_base=' ' hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='917890BF-4055-4F3C-8A18-5A78BD2B92C8' method='Datenqualität: 1:25 000 ...' rec_grade='100' hierarchy_level='5'
+		 keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='91ADBC5E-AD7D-4482-ACC0-3431616ECAE9' method='Datenqualität: 1 : 400 000 ...' rec_grade='100'
+		 hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='9434DB28-0106-464F-AD60-E071D4E97E03' method='Passgenauigkeit: Verweis auf überlagertes bzw. überlagerndes Flöz. ...'
+		 rec_exact='20' rec_grade='100' hierarchy_level='6' coord='' referencesystem_id='31468' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='9538E740-D8E8-4217-90D9-7A13330E36D5' method='Datenqualität: 1:200 000 ...' rec_grade='100'
+		 hierarchy_level='6' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='967888C7-5806-408B-9FF9-4CA5B8D8D833' method='Lagegenauigkeit: Naturfarbdarstellung mit 20 m Bodenauflösung
+Infrarotdarstellung mit 20 m Bodenauflösung
+Naturfarbdarstellung mit 5 m Bodenauflösung
+Infrarotdarstellung mit 5 m Bodenauflösung
+Grauwertdarstellung mit 5 m Bodenauflösung ...
+Datenqualität: je nach Auflösung 1 : 25 000 bis 1 : 200 000 ...'
+		 rec_grade='0' hierarchy_level='5' coord='Gauß-Krüger, 12°/15°-Streifen' referencesystem_id='-1' keyc_incl_w_dataset='0'
+		 mod_type='U'/>
+	<z:row obj_id='98D50139-F7EB-4603-8F69-FD40AA2C5231' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='9A41D50E-B443-4E09-8AEE-B0B2F1C0FD40' method='Datenqualität: 1:400 000 ...' rec_grade='100'
+		 hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='9A743FE3-0A6D-4EAD-AF44-10FF5C276244' rec_grade='0' data_base='Daten des LVermA' hierarchy_level='5'
+		 coord='Gauß-Krüger, 12°/15°-Streifen' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='9B9661FD-B3B7-49D7-A440-E97A44872E14' method='Die fachlichen Grundlagen wurden digitalisiert und inhaltlich validiert. Die Verschlüsselung erfolgte im Wesentlichen auf der Grundlage der Bodenkundlichen Kartieranleitung (KA4), 4. Auflage, Hannover 1994.
+Nach digitaler Verschneidung der Flächen aus MMK und WBK zur BKkonz erfolgte die Digitalisierung der Wald-, Wasser- und Ortsflächen auf der Basis der zur Zeit der Digitalisierung aktuellen Topographie (1995-2005) im Blattschnitt 1:25.000 (TK25 Herausgeber: Landesvermessungsamt Sachsen).'
+		 rec_grade='100' special_base='Konturen der landwirtschaftlichen Standortregionaltypen mit dazugehörigen Einzelinformationen pro Kartiereinheit in den Dokumentationsblättern A.
+Konturen der forstlichen Standortgruppen mit dazugehörigen forstwirtschaftlichen Standortdaten.'
+		 data_base='WBK:  Waldbodenkarte, abgeleitet aus der Forstlichen Standortkarte (FSK) im M 1:10 000. Zur Bearbeitung genutzter Stand:  1980-1990. 
+Inhalt: Lokalbodenform, kombiniert mit Feuchte- und Nähkraftstufe und, wenn vorhanden, mit der Hanglage)
+MMK: Mittelmaßstäbige Landwirtschaftliche Standortkarten im M 1:25 000. Bearbeitet wurden Kopien der Autorenoriginale der MMK100 (Herausgeber: Akademie der Landwirtschaftswissenschaften der DDR, Forschungszentrum für Bodenfruchtbarkeit Müncheberg, Bereich Bodenkunde Eberswalde).
+Inhalt:  Bodenformengesellschaften, kombiniert mit landwirtschaftlichen Standortdaten.
+'
+		 hierarchy_level='6' vector_topology_level='6' coord='' referencesystem_id='31468' keyc_incl_w_dataset='0' mod_type='D'/>
+	<z:row obj_id='9C5B1699-E556-4ADF-B58A-163690182CC4' method='Lagegenauigkeit: Bei der Umsetzung der 50.000er Karte zur 300.000er wurde die Anzahl der
+Kartiereinheiten durch Zusammenfassungen von 162 auf 68 reduziert; ...
+Datenqualität: aggregiert auf Maßstab 1:300 000 ...'
+		 rec_grade='0' special_base='Die Daten wurden im Rahmen des Forschungs- und Entwicklungsvorhabes &#x22;Erstellung einer Karte der Potentiellen Natürlichen Vegetation Sachsens im Maßstab 1 : 50 000&#x22; im Auftrag des Sächsischen Landesamtes für Umwelt und Geologie erhoben und im Rahmen des Forschungs- und Entwicklungsvorhabens &#x22;Karte der Potentiellen Natürlichen Vegetation Deutschlands 1 : 500 000, Projekt Sachsen&#x22;  im Auftrag des Bundesamtes für Naturschutz weiter vertieft. Der Maßstab 1 : 300 000 wurde auf der Grundlage der PNV 50 flächenhaft aggregiert. Die PNV_300 stellt die Weitereinwicklung der &#x22;Vegetationslandschaften Sachsens auf standörtlich-vegetationskundlicher Grundlage&#x22; (Schmidt et al. 1997) dar und löst diese ab.  Auftragnehmer war die Technische Universität Dresden,  Institut für Allgemeine Ökologie und Umweltschutz und Institut für Botanik. '
+		 hierarchy_level='5' coord='Gauß-Krüger Koordinatensystem auf der Grundlage des Besselspheroid' referencesystem_id='-1'
+		 keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='9D8E5B24-E5AD-11D6-A459-005004F9360E' rec_grade='0' special_base=' ' data_base='Einzelbilder; Scannen evtl. über LA für Archäologie'
+		 hierarchy_level='5' coord=' ' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='9D93B82D-0EF7-409A-A1BE-64F6C0D48940' rec_grade='0' hierarchy_level='5' coord='Bessel-Ellipsoid; Gauß-Krüger-Koordinatensystem
+3°-Meridianstreifen, Rauenberg-Datum RD83'
+		 referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='9E48DAFB-8BD4-11D5-9350-0048543011FC' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='9E48DB31-8BD4-11D5-9350-0048543011FC' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='9F5AB253-51AD-4F69-8035-55469FE2F5E6' method='Datenqualität: 1:400 000 ...' rec_grade='100'
+		 hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='9FB18283-6E78-4B35-B214-928E9B3BC665' rec_grade='0' hierarchy_level='6' keyc_incl_w_dataset='0'
+		 mod_type='D'/>
+	<z:row obj_id='A0B69ECA-779A-11D6-9350-0048543011FC' method='' rec_grade='0' special_base='' data_base='Digitalisierung auf Grundlage abgegriffener Koordinaten aus TK25
+'
+		 hierarchy_level='5' coord='Gauß-Krüger-Koordinaten, 4. und 5. Meridianstreifen' referencesystem_id='-1' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='A0B69ECB-779A-11D6-9350-0048543011FC' method='AutoCAD-Pläne (z.B. Absperrbauwerke, Grundablässe, Entnahmeanlagen, Dämme, Deiche usw.)'
+		 rec_grade='0' data_base='Vermessung' hierarchy_level='5' coord='z.T. georeferenziert auf Gauß-Krüger-Koordinatensystem'
+		 referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='D'/>
+	<z:row obj_id='A0B69ECC-779A-11D6-9350-0048543011FC' method='' rec_grade='0' special_base='Digitalisierung auf Grundlage abgegriffener Koordinaten aus TK25'
+		 data_base='' hierarchy_level='5' coord='Gauß-Krüger-Koordinaten, 4. und 5. Meridianstreifen
+' referencesystem_id='-1'
+		 keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='A0B69ECD-779A-11D6-9350-0048543011FC' method='Digitalisierung, Vermessung
+' rec_grade='0' special_base='TK10, DLM, digitale Flurkarten, Vermessung, Befliegung'
+		 data_base='' hierarchy_level='5' coord='Gauß-Krüger-Koordinatensystem, 4. und 5. Meridianstreifen
+' referencesystem_id='-1'
+		 keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='A0B69ECE-779A-11D6-9350-0048543011FC' method='Trinkwasserschutzzonen SZ I, II, III
+' rec_grade='0'
+		 special_base='TK 25 und Flurkarten des Landesvermessungsamtes
+' data_base='' hierarchy_level='5' coord='Gauß-Krüger-Koordinatensystem, 4. Meridianstreifen'
+		 referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='A0B69ECF-779A-11D6-9350-0048543011FC' method='Digitalisierung, Vektorisierung' rec_grade='0'
+		 special_base='Vermessung, analoge Katasterkarten, ALK, ALB' data_base='Vermessung, analoge Katasterkarten, ALK, ALB'
+		 hierarchy_level='5' coord='Gauß-Krüger-Koordinatensystem, 4. und 5. Meridianstreifen' referencesystem_id='-1'
+		 keyc_incl_w_dataset='0' mod_type='D'/>
+	<z:row obj_id='A1C98677-2CDD-4DD8-975D-DBF12E4B431B' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='A2539DCC-F9EA-4ED6-A9DD-00CE34F5CD16' method='Lagegenauigkeit: 10m ...
+Datenqualität: 1:10.000 bis 1:200.000 ...'
+		 rec_grade='0' hierarchy_level='5' coord='Gauss-Krüger, Bessel 12° bzw. 15° Streifen' referencesystem_id='-1'
+		 keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='A5A6F3A7-2555-41F0-A482-D8A2EC70A394' rec_grade='0' hierarchy_level='5' coord='Gauß-Krüger'
+		 referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='A5E5958F-AF14-4AF6-AC8C-9FB2B80012E3' rec_grade='0' hierarchy_level='5' coord='GK' referencesystem_id='-1'
+		 keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='A7148ED5-E0C0-4BAB-838A-908959139C42' method='Lagegenauigkeit: 1 Pixel = 0,42m ...' rec_grade='0'
+		 data_base='Daten des LVermA' hierarchy_level='5' coord='Gauß-Krüger, 12°/15°-Streifen' referencesystem_id='-1'
+		 keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='A901881A-3A4F-46D3-842C-A787D30AD65A' method='Lagegenauigkeit: 50 m ...' rec_grade='0' hierarchy_level='5'
+		 coord='Gauß-Krüger, 12°/15°-Streifen' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='A94D2A1F-4775-4ADE-AC02-6B89D258FE54' rec_grade='0' hierarchy_level='5' coord='Gauß-Krüger'
+		 referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='A9FB6E54-4335-42B0-A1C7-F8153EA85C28' method='Datenqualität: 1:400 000 ...' rec_grade='100'
+		 hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='A9FC48FE-96D4-4FF1-BD61-3AC24C6886B3' method='Lagegenauigkeit: gemeindekonkret ...' rec_grade='0'
+		 hierarchy_level='5' coord='Gauß-Krüger' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='ADAAA46C-CD35-11D5-9350-0048543011FC' rec_grade='0' special_base='Katrin Kettner, Technische Universität Dresden'
+		 hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='B1314F78-CDB6-4FB8-8208-D44843FFB5A4' rec_grade='0' data_base='Kartenart: topographisch' hierarchy_level='5'
+		 keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='B2058CFD-FA12-4E19-94C7-D4AF63BE0FF5' method='Lagegenauigkeit: 50 m ...
+Datenqualität: nicht anwendbar (Sachdaten) ...'
+		 rec_grade='0' hierarchy_level='5' coord='Gauß-Krüger, 12°/15°-Streifen' referencesystem_id='-1' keyc_incl_w_dataset='0'
+		 mod_type='U'/>
+	<z:row obj_id='B3DD14FE-5D45-45DA-81F3-5928D51AA552' method='Datenqualität: 1:25 000 bis 1 : 200 000 ...' rec_grade='0'
+		 special_base='Wasserlaufverzeichnis
+Pegelverzeichnis
+' data_base='Zuarbeiten zum Wasserlaufverzeichnis erfolgte durch die StUFÄ'
+		 hierarchy_level='5' coord='Gauß-Krüger, 12°/15°-Streifen, 4. Meridianstreifen' referencesystem_id='-1' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='B7DD7C86-8E70-43B2-A9BF-ACE6E43C401E' method='Datenqualität: 1 : 50 000 ...' rec_grade='100'
+		 special_base='Topographische Karte 1 : 50 000 (N)' hierarchy_level='6' coord='Gauß-Krüger-Koordinaten bezogen auf Bessel-Ellipsoid;
+UTM-Koordinaten bezogen auf ETRS 89 (hellgrau)'
+		 referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='B83A1F6C-7F38-4913-9360-43D185FEA53B' method='teilweise digital' rec_grade='0' special_base='Arbeitsmaterialien'
+		 hierarchy_level='5' coord='Gauß-Krüger' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='B8901B0B-AEBA-4AD1-9398-02F46579F133' rec_grade='0' data_base='Topographische Karte 1:100 000'
+		 hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='B9D55077-C397-483D-8836-FCA4C31DAE6F' method='Lagegenauigkeit: 50 m ...
+Datenqualität: 1 : 25.000 bis 1 : 1.000.000 ...'
+		 rec_grade='0' hierarchy_level='5' coord='Gauß-Krüger, 12°/15°-Streifen' referencesystem_id='-1' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='BB48DEF6-C9B0-42CA-9717-8AD3D284E6F1' method='Datenqualität: +/- 1m ...' rec_grade='0' hierarchy_level='5'
+		 coord='Gauß-Krüger' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='BC544CE5-8B53-440A-A438-D35907D0823C' method='Lagegenauigkeit: Bedingt durch den Maßstab der Vorlage und der angewandten Methode in der vorgenannten Quelle ist von einer generell unscharfen Abgrenzung der Naturregionen auszugehen - die Grenzlinien sind als Grenzräume aufzufassen! ...'
+		 rec_grade='0' special_base='Quelle: Bernhardt, A. et al.: Naturräume der sächsischen Bezirke. - In: Sächsische Heimatblätter. Sonderdruck aus den Heften 4/5. Hrsg.: Kulturbund der DDR, Dresden 1986. 84 S., mit Übersichtskarte 1 : 750.000
+Übernahme in Mannsfeld, K. &#x26; H. Richter: Naturräume in Sachsen. Forschungen zur deutschen Landeskunde, Bd.238. Trier 1995'
+		 hierarchy_level='5' coord='Gauß-Krüger Koordinatensystem auf der Grundlage des Besselspheroid
+' referencesystem_id='-1'
+		 keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='BF0675C1-9178-48A7-A493-4F2806C33421' method='Datenqualität: 1:50 000 ...' rec_grade='100' hierarchy_level='6'
+		 keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='C043AB10-9026-4748-A263-1808453CF7EF' rec_grade='0' data_base='Quelle: Digitalisierung oder Ableitung aus Höhenmodellen'
+		 hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='C0ADFC80-1707-434C-B605-982172CD4642' method='Datenrecherche und Zusammenstellung.
+Lagegenauigkeit: Lagegenauigkeit +- 100m ...'
+		 rec_grade='100' special_base='Veröffentlichte und unveröffentlichte Karten und Berichte.' data_base='Datenquelle siehe Erläuterungsheft.'
+		 hierarchy_level='5' coord='Gauß-Krüger' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='C16CC693-1074-4F39-911E-CEFEB12779DA' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='C412A608-748A-4A08-B271-528C099B2F60' method='View in ORACLE-DB stellt Punktdaten für ArcIMS-Projekt zur Verfügung;
+ArcIMS-Anwendung
+Lagegenauigkeit: entspricht Genauigkeit der Aufschlusskoordinaten (GK mit 2 Dezimalstellen) ...
+Datenqualität: stufenlos 1:1 bis 1:400000 ...'
+		 rec_grade='100' special_base='Bohraktenarchiv des LfUG (Freiberg)' data_base='Zentrale Aufschlussdatenbank Sachsens'
+		 hierarchy_level='5' coord=' ' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='C4CA8665-F20B-431C-9896-415BDDCA4A04' rec_grade='0' data_base='Quelle: Zumeist von topogr. Karte digitalisiert oder aus Rasterdaten errechnet.'
+		 hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='C53435E9-FBD6-4B11-8502-64FCA60AA3A7' method='Lagegenauigkeit: 25 ha ...
+Datenqualität: 1:100 000 ...'
+		 rec_grade='0' data_base='Quelle: CORINE Landcover
+Ableitung aus: Landsat TM, TK100, Luftbilder  70, STABIS'
+		 hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='D'/>
+	<z:row obj_id='C9D9E2A5-FAC5-4588-A50A-5C19D0224053' method='Datenqualität: 1:300 000 ...' rec_grade='0' special_base='Forstorganisatorische Gliederung'
+		 hierarchy_level='5' coord='Bessel-Ellipsoid; Gauß-Krüger-Koordinatensystem
+3°-Meridianstreifen, Rauenberg-Datum RD83'
+		 referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='CA20F165-80A5-4DDC-BAC0-3FB5195B221B' method='seit 2003 für die nach dem neuen Forsteinrichtungsverfahren bearbeiteten Forstbetriebe'
+		 rec_grade='0' special_base='Forstliches Blankett mit Waldeigentumsarten' hierarchy_level='5' coord='Bessel-Ellipsoid; Gauß-Krüger-Koordinatensystem
+3°-Meridianstreifen, Rauenberg-Datum RD83'
+		 referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='CD299707-A7E7-4100-BB89-EF2D6561F1AE' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='CD77A4A6-BA8E-4277-9824-F243977FCCA8' method='Lagegenauigkeit: 50 m ...
+Datenqualität: nicht anwendbar, Sachdaten ...'
+		 rec_grade='0' hierarchy_level='5' coord='Gauß-Krüger, 12°/15°-Streifen' referencesystem_id='-1' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='CD7ADD51-BA80-44D9-B01D-F8CE01A22D88' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='CF0FED12-9164-4B1C-9ABC-EE6C701877CA' method='Datenqualität: 1:100.000 - 1:200.000 ...' rec_grade='0'
+		 special_base='Darstellung im Landschaftsprogramm Sachsen 2003' data_base='Auwertung der Bodenübersichtskarte des Freistaates Sachsen 1: 200.000  (BÜK 200)'
+		 hierarchy_level='5' coord='Gauss-Krüger-Koordinatensystem
+4. Meridianstreifen' referencesystem_id='-1' keyc_incl_w_dataset='0'
+		 mod_type='U'/>
+	<z:row obj_id='D05626E1-BC1E-43FB-8BD2-03B04A9DAD80' method='Datenqualität: 1:500 000 ...' rec_grade='100'
+		 hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='D0AC01BC-54B2-4D4D-855F-D7EFDAB2683F' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='U'/>
+	<z:row obj_id='D173C375-C52E-40B1-8B58-6D2A44BDAF3B' method='Color-Infrarot' rec_grade='0' special_base='Luftbildbefliegung'
+		 hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='D21E209F-2788-43A1-A876-40087CEDCA1E' method='Lagegenauigkeit: 1 : 50.000 ...' rec_grade='100'
+		 special_base='Bestandsaufnahme nach WRRL; Vorgaben der EU und der LAWA; abgestimmtes Vorgehen in den Flussgebietseinheiten Elbe und Oder'
+		 data_base='Die Karte wurde auf Datengrundlagen folgender Behörden erstellt: 
+Staatliche Umweltfachämter Bautzen, Chemnitz, Leipzig, Plauen, Radebeul 
+Sächsische Landesanstalt für Landwirtschaft 
+Landestalsperrenverwaltung Sachsen 
+Sächsisches Landesamt für Umwelt und Geologie'
+		 hierarchy_level='5' coord='Gauß-Krüger-Koordinaten, 4. Meridianstreifen' referencesystem_id='-1' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='D29D8A9C-C641-47BF-925E-5461D5E11335' method='Lagegenauigkeit: flurstücksgenau 1:5 000 ...'
+		 rec_grade='0' hierarchy_level='5' coord='Gauß-Krüger' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='7C6B533A-BA84-4E66-A3C1-CECE6A42561E' method='Vom Sächsischen Landesvermessungsamt (LVSN) wurden farbige digitale, georeferenzierte Luftbilder (Digitale Orthofotos) bereitgestellt, auf deren  Grundlage durch externe geospezifische Fachfirmen mittels Bildschirmdigitalisierung die natürlichen landwirtschaftlichen Außengrenzen der Feldblöcke erstellt wurden. Zusätzlich sind zur Unterstützung der Digitalisierung alle weiteren verfügbaren Informationen verwendet worden. Die Nachprüfung der von diesen externen Firmen digitalisierten Feldblöcke und die ggf. erforderliche Feldblockkorrektur erfolgt im Freistaat Sachsen durch die Staatlichen Ämter für Landwirtschaft (AfL). Jeder Feldblock erhält eine eindeutige Bezeichnung, den Flächenidentifikator (FLIK), der als bundesweit einheitlicher Kennzeichnungsschlüssel für die neuen Referenzflächen dient. Dieser FLIK wird bei der Feldblockerstellung zentral vergeben.'
+		 special_base=' ' data_base=' ' hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='D39EC43D-1D1C-4113-80CB-9FAD366E9AE7' method='Lagegenauigkeit: Bedingt durch den Maßstab der Vorlage und der angewandten Methode in der vorgenannten Quelle ist von einer generell unscharfen Abgrenzung der Naturräume auszugehen - die Grenzlinien sind als Grenzräume aufzufassen! ...'
+		 rec_grade='0' special_base='Quelle: Bernhardt, A. et al.: Naturräume der sächsischen Bezirke. - In: Sächsische Heimatblätter. Sonderdruck aus den Heften 4/5. Hrsg.: Kulturbund der DDR, Dresden 1986. 84 S., mit Übersichtskarte 1 : 750.000
+Übernahme (geringfügig geändert) in Mannsfeld, K. &#x26; H. Richter: Naturräume in Sachsen. Forschungen zur deutschen Landeskunde, Bd.238. Trier 1995'
+		 hierarchy_level='5' coord='Gauß-Krüger Koordinatensystem auf der Grundlage des Besselspheroid' referencesystem_id='-1'
+		 keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='D5B16FF0-9A6A-4ED3-9C6C-51F2DC599773' method='Datenqualität: 1:400 000 ...' rec_grade='100'
+		 hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='D7429382-8CA0-4F3D-8EF2-B6B70F11629A' rec_grade='0' special_base='4. BImSchV' hierarchy_level='5'
+		 keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='D7DEA272-B0C1-4BAC-AB83-59EF523BD5B4' method='Datenqualität: Raster 1 x 1 km ...' rec_grade='100'
+		 hierarchy_level='5' coord='Gauß-Krüger' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='D'/>
+	<z:row obj_id='DADFA8B6-0ACF-467D-A779-6FA809BF4A48' method='Datenqualität: 1:25 000 ...' rec_grade='0' special_base='Verwaltungsjagdbezirke'
+		 hierarchy_level='5' coord='Bessel-Ellipsoid; Gauß-Krüger-Koordinatensystem
+3°-Meridianstreifen, Rauenberg-Datum RD83'
+		 referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='DD52FAD1-D5A1-49B9-8139-B4ED730E5FCE' method='Lagegenauigkeit: z.T. flurstücksbezogen (1:5 000) ...
+Datenqualität: Handcolorierung der TK 25 ...'
+		 rec_grade='0' data_base='aktuell bekannte  Überschwemmungsgebiete' hierarchy_level='5' coord='Gauß-Krüger'
+		 referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='DD68ABAD-884D-456D-B28F-9762BA31AA1F' rec_grade='0' data_base='Daten des LVermA' hierarchy_level='5'
+		 coord='Gauß-Krüger, 12°/15°-Streifen' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='DDA047F7-8FCE-4507-AF82-00373FBD7E08' rec_grade='0' data_base='Quelle: unterschiedlich' hierarchy_level='5'
+		 keyc_incl_w_dataset='0' mod_type='I'/>
+	<z:row obj_id='DE00FC44-C1E3-447D-A4B5-E2165F842CC9' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='DEA4685E-76B0-496C-82B0-16E00E9C948C' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='DF8E7DB0-B6AB-4B9C-8608-35D379932B40' method='Datenqualität: 1:400 000 ...' rec_grade='100'
+		 hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='E1AAD3E0-83D9-4A0F-8287-DF6607AE6344' rec_grade='0' data_base='Topographische Karte 1:100 000'
+		 hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='E37DBDD3-2E00-4A2E-A73D-04EDA7927D03' method='Laufendhaltungskonzept' rec_grade='0' special_base='Waldfunktionenkartierung; Waldflächen mit gesetzlich vorgegebenen und mit besonderen Schutz- und Erholungsfunktionen'
+		 data_base='TK 25 (N) 
+' hierarchy_level='5' coord='Bessel-Ellipsoid; Gauß-Krüger-Koordinatensystem
+3°-Meridianstreifen, Rauenberg-Datum RD83'
+		 referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='E4759883-32C1-4B2E-BF67-655AFB40AE7F' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='D'/>
+	<z:row obj_id='E5278A99-926D-445A-AF94-671733C0E35E' method='Datenqualität: Handcolorierung der TK 25 ...'
+		 rec_grade='0' special_base='aktuell bekannte und vor 1989 festgesetze Überschwemmungsgebiete' data_base='Handführung'
+		 hierarchy_level='5' coord='Gauß-Krüger' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='E54347AF-7CC8-49EA-B0A3-701F11597C5D' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='D'/>
+	<z:row obj_id='E5DCAF0F-D172-47FD-9DAF-AE075CEEB8D6' method='Datenqualität: 1:300 000 ...' rec_grade='0' hierarchy_level='5'
+		 coord='Bessel-Ellipsoid; Gauß-Krüger-Koordinatensystem
+3°-Meridianstreifen, Rauenberg-Datum RD83' referencesystem_id='-1'
+		 keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='E783FDF6-B472-4AA5-87FB-84451669D76B' method='Erfassungsvorschriften: Verbreitung von Kipp-Substrate innerhalb der Tagebau- / Kippengrenzen
+Erfassungskriterien: Flächen &#x3c; 0.25 ha werden nicht dargestellt
+Lagegenauigkeit: 10m ...
+Datenqualität: 5 000 - 50 000 ...'
+		 rec_grade='0' special_base='Kartierung und Darstellung der aktuellsten, an der Oberfläche befindlichen Kippsubstrate '
+		 data_base='Quelle: bodengeologische Kippgutachten / Kartierungsberichte
+Ableitung aus: Lageplänen unterschiedlicher Maßstäbe
+'
+		 hierarchy_level='5' coord='Gauß-Krüger-Koordinatensystem' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='E9C4CAD7-AF16-4E0E-888B-AD85DB51672A' method=' ' rec_grade='100' data_base='- Primärdaten: Aufgabenträger der öffentlichen Wasserversorgung
+- Erfassung Regierungspräsidien/Umweltfachbereiche
+- Datenzusammenführung/Datenaufbereitung: Sächsisches Landesamt für Umwelt und Geologie'
+		 hierarchy_level='5' coord='Transverse Mercator, GCS Bessel 1841, 4. Meridianstreifen (Gauß-Krüger-Koordinaten)'
+		 referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='EA2D4227-4A49-4FAB-B90F-8F0926A22F88' rec_grade='0' data_base='Zuarbeit des StUFA Pauen für die Regionalplanung
+
+
+
+Zuarbeit des FB Wasser zur Regionalplanung
+'
+		 hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='EA87EDEB-CA03-41A8-A6DD-C91FF4903192' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='ED3303F6-35CA-4562-871A-544012AB4BCF' method='Ableitung durch: Zuordnung der Sachdaten
+Passgenauigkeit: Gemeindegrenzen des Landesvermessungsamtes von 1993 (logisch verknüpft über Gemeindeschlüssel) ...'
+		 rec_grade='0' data_base='Quelle: Gemeindedatei des Datenspeichers Boden der DDR (GEMDAT)
+Ableitung aus: Gemeindegrenzen Sachsens 1993'
+		 hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='EEE7F243-870B-4053-BBA8-5B46D2FDE99F' method='Lagegenauigkeit: 50m ...
+Datenqualität: 1:25 000 ...'
+		 rec_grade='0' hierarchy_level='5' coord='Gauß-Krüger, 12°/15°-Streifen' referencesystem_id='-1' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='EF66CC20-0F74-4839-86BF-60076CD9DE30' rec_grade='0' data_base='Kartenart: thematisch' hierarchy_level='5'
+		 keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='EF933831-0F31-4A8F-8512-EE9466EF5862' rec_grade='0' special_base='im Rahmen des Planfeststellungsverfahrens'
+		 hierarchy_level='5' coord='Gauß-Krüger' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='F06D019C-393C-45A1-8B4B-F2953FC3DD4C' method='Passgenauigkeit: Linien stoßen an Seen/Talsperren                   (OA 1.1.1.3.1) ...'
+		 rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='F10A1B63-A18A-49B3-8650-61A09C59828F' method='Lagegenauigkeit: +/- 5 m ...' rec_grade='100' special_base='Digitale Daten der vorgeschlagenen Gebiete von gemeinschaftlicher Bedeutung (pSCI) gem. FFH-Richtlinie (92/43/EWG) des Freistaates Sachsen (Stand 09/2003) sowie SPA -Vogelschutzgebiete Freistaat Sachsen (Special Protection Areas) (Stand 12/1999).'
+		 hierarchy_level='5' coord='Gauß-Krüger Koordinatensystem auf der Grundlage des Besselspheroid' referencesystem_id='-1'
+		 keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='F1EF1CE9-A468-4D1A-B2CC-A9E3FFCE342D' rec_grade='0' special_base='Forstgrundkarte' data_base='Forstgrundkarte; TK10 im Waldaußenbereich'
+		 hierarchy_level='5' coord='Bessel-Ellipsoid; Gauß-Krüger-Koordinatensystem
+3°-Meridianstreifen, Rauenberg-Datum RD83'
+		 referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='F3DFA0B9-B71B-4DFD-A82D-80A72C5F9B37' method='Lagegenauigkeit: ca. 50 m ...
+Datenqualität: &#x3c;1:25.000 ...'
+		 rec_grade='0' hierarchy_level='5' coord='Gauss-Krüger Bessel, 12 ° bzw. 15° Streifen' referencesystem_id='-1'
+		 keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='F4096857-FE7F-43F1-ABCC-08AF0CC776BD' rec_grade='0' data_base='Daten des LVermA' hierarchy_level='5'
+		 coord='Gauß-Krüger, 12°/15°-Streifen' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='F5390405-3483-47E6-A510-2AA500F75194' method='Datenqualität: 1:300 000 ...' rec_grade='0' special_base='Digitales Höhenmodell (DHM)'
+		 hierarchy_level='5' coord='Bessel-Ellipsoid; Gauß-Krüger-Koordinatensystem
+3°-Meridianstreifen, Rauenberg-Datum RD83'
+		 referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='F5789BD1-16E6-4D24-ABE9-3020FCC57376' method='Datenqualität: 1:100 000 ...' rec_grade='100'
+		 hierarchy_level='6' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='F67F8969-EA33-4EDB-8182-6CE0FDE013B2' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='F7704F73-F18B-4074-90B1-ACBF91337763' method='Lagegenauigkeit: 50 m ...
+Datenqualität: 1 : 25.000 bis 1 : 200 000 ...'
+		 rec_grade='0' special_base='Wasserlaufverzeichnis
+Pegelverzeichnis' hierarchy_level='5' coord='Gauß-Krüger, 12°/15°-Streifen
+4. Meridianstreifen'
+		 referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='F923A659-61B1-4B26-9D99-7B4EFD91E077' method='Punkthafte Datenerhebung/Kartierung, Ableitung der Flächendaten, Erstellung von Karten/Digitalisierung der Konturen.'
+		 rec_grade='60' special_base='Bodenkundliche Landesaufnahme im Rahmen der Erfassung der Böden im Freistaat Sachsen seit 1992'
+		 data_base='Bodenkundliche Landesaufnahme im M. 1:25 000
+Profilaufnahme im Gelände nach Formblatt und Datenerfassung mit Erfassungsprogramm UBODEN
+'
+		 hierarchy_level='5' vector_topology_level='1' coord='Gauss-Krüger-Koordinaten' referencesystem_id='-1' keyc_incl_w_dataset='0'
+		 mod_type='U'/>
+	<z:row obj_id='86120AF2-EA08-4985-B5D7-047F0B78F9B5' hierarchy_level='5' coord='' referencesystem_id='31468'
+		 keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='FE35A047-D425-4FD0-AA99-26F659C12012' method=' ' rec_grade='100' data_base='Erfassung der Daten im Sächsischen Landesamt für Umwelt und Geologie unter Einbeziehung der Landratsämter.'
+		 hierarchy_level='5' coord='Transverse Mercator, GCS Bessel 1841, 4. Meridianstreifen (Gauß-Krüger-Koordinaten)'
+		 referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='9EDCF948-E75C-4774-9CEC-4EB70F08CECD' hierarchy_level='6' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='0C1FC9C1-F28A-463A-8C60-B6096714CDFC' rec_grade='100' data_base='Die Karte wurde auf der Datengrundlage folgender Behörden erstellt:
+- Regierungspräsidien/Umweltfachbereiche.
+Datenzusammenführung/Datenaufbereitung: Sächsisches Landesamt für Umwelt und Geologie.
+'
+		 hierarchy_level='5' coord='' referencesystem_id='31468' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='CA2045FA-CE7A-494A-86FD-6D0597749607' rec_grade='100' data_base='Die Karte wurde auf der Datengrundlage folgender Behörden erstellt:
+- Aufgabenträger der öffentlichen Wasserversorgung,
+- Regierungspräsidien/Umweltfachbereiche.
+Datenzusammenführung/Datenaufbereitung: Sächsisches Landesamt für Umwelt und Geologie.'
+		 hierarchy_level='5' coord='Transverse Mercator, GCS Bessel 1841, 4. Meridianstreifen (Gauß-Krüger-Koordinaten)'
+		 referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='6932B088-1296-4A35-9350-2C211CF6276E' rec_grade='100' data_base='Gewässerdurchgängigkeitsprogramm
+Wehrdatenbank der LfL'
+		 hierarchy_level='5' coord='Transverse Mercator, GCS Bessel 1841, 4. Meridianstreifen (Gauß-Krüger-Koordinaten)'
+		 referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='45C214A4-596F-4E47-A23B-2A049D5AB1C7' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='U'/>
+	<z:row obj_id='19F11E43-2DEF-4697-B9A8-ED2C606D151B' rec_grade='100' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='U'/>
+	<z:row obj_id='D076F0AC-D56C-466A-A6AE-9797129BE928' method='Manual on methodologies an criteria für Modelling and Mapping Critcal Loads &#x26; Levels and Air Pollution Effects, Risks and Trends 2004  http://www. oekodate.com/icpmapping/html/manual,html  Lagegenauigkeit: 1: 200 000 ... Datenqualität: 1: 200 000 ...'
+		 rec_grade='100' data_base='- CIR Biotoptypen- und Landnutzungskartierung - selektive Biotopkartierung der § 26-Biotope und der sonstigen naturschutzfachlich bedeutenden Biotoptypen - selektive Waldbiotopkartierung - BÜK 200-Polygon-Cover+ ausgewählte UBODEN-Datenfelder für jedes Polygon - DWD-Daten der Stationen Sachsens - Sickerwasserraten zu den Poygonen der BÜK 200 für Sachsen - Karte der potentiellen natürlichen Vegetation'
+		 hierarchy_level='5' coord='Gauß-Krüger-Koordinatensystem, 4. Meridianstreifen, Besselellipsoid ' referencesystem_id='-1'
+		 keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='FC3A0853-D930-49E8-BB18-2A94060B6FA2' method='Lagegenauigkeit: ca. 50m ... ' rec_grade='100'
+		 hierarchy_level='5' coord='Gauss-Krüger-Koordinaten 4. Meridian' referencesystem_id='-1' keyc_incl_w_dataset='0'
+		 mod_type='U'/>
+	<z:row obj_id='1956420D-44D6-4F24-9A30-AD723D7E12ED' method='Lagegenauigkeit: 500 m ...' rec_grade='100' data_base='digitale Straßennetz DDS 2000, Datenbank der TU DD'
+		 hierarchy_level='6' coord='Gauß-Krüger-Koordinaten 4. Meridian' referencesystem_id='-1' keyc_incl_w_dataset='0'
+		 mod_type='D'/>
+	<z:row obj_id='B9AAD4AE-F21A-4FE3-9388-BE0653404569' method='Datenqualität: 1 : 10 000  (teilweise 1 : 50 000)'
+		 rec_grade='90' special_base='Wasserspiegellagen aus den Hochwasserschutzkonzepten
+Berücksichtigung von Geschiebe- und Treibgutablagerungen'
+		 data_base='Digitales Geländemodell
+Terrestrische Vermessung
+Hydrologische Gutachten
+Ortsbegehungen
+Wasserspiegellagenberechnung
+Landesvermessungsamt'
+		 hierarchy_level='5' coord='Gauss-Krüger Koordinaten 4. / 5. Meridianstreifen' referencesystem_id='-1' keyc_incl_w_dataset='0'
+		 mod_type='U'/>
+	<z:row obj_id='E1FFCFFC-B00C-4B7C-8738-EE685B08E142' method='Datenqualität: 1 : 10 000  (teilweise 1 : 50 000)'
+		 rec_grade='100' special_base='Wasserspiegellagen aus den Hochwasserschutzkonzepten' data_base='Digitales Geländemodell Terrestrische Vermessung Hydrologische Gutachten Ortsbegehungen Wasserspiegellagenberechnung Landesvermessungsamt'
+		 hierarchy_level='5' coord='Gauss-Krüger Koordinaten 4. / 5. Meridianstreifen' referencesystem_id='-1' keyc_incl_w_dataset='0'
+		 mod_type='U'/>
+	<z:row obj_id='CE9718D4-C232-48DD-9096-C5C34A71A28C' method='Datenqualität: 1:10.000 - 1:1.000.000 ...' rec_grade='0'
+		 special_base='Dokumentation des Hochwasserereignisses August 2002 in Sachsen mit Aufnahme der überschwemmten Flächen in einem Kartenwerk.'
+		 data_base='Datenerfassung, -verarbeitung und -bereitstellung von folgenden Rechtsinhabern:  Sächsisches Landesamtes für Umwelt und Geologie, Landestalsperrenverwaltung Sachsen,  Umweltfachbereiche der Regierungspräsidien Chemnitz, Leipzig und Dresden,  Landeshauptstadt Dresden / Umweltamt,  Stadtverwaltung Chemnitz / Umweltamt,  Stadtverwaltung Zwickau / Umweltamt,  Stadtverwaltung Olbernhau, Stadtverwaltung Meißen. '
+		 hierarchy_level='5' coord='Gauss-Krüger-Koordinaten 4. Meridianstreifen' referencesystem_id='-1' keyc_incl_w_dataset='0'
+		 mod_type='U'/>
+	<z:row obj_id='E2340A15-18B6-4A79-90C0-8D8154B0AF47' hierarchy_level='6' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='287BA588-F218-481F-8903-7A0F8D0BA5CC' method='Vom Sächsischen Landesvermessungsamt (LVSN) wurden farbige digitale, georeferenzierte Luftbilder (Digitale Orthofotos) bereitgestellt, auf deren  Grundlage durch externe geospezifische Fachfirmen mittels Bildschirmdigitalisierung die natürlichen landwirtschaftlichen Außengrenzen der Feldblöcke erstellt wurden. Zusätzlich sind zur Unterstützung der Digitalisierung alle weiteren verfügbaren Informationen verwendet worden. Die Nachprüfung der von diesen externen Firmen digitalisierten Feldblöcke und die ggf. erforderliche Feldblockkorrektur erfolgt im Freistaat Sachsen durch die Staatlichen Ämter für Landwirtschaft (AfL). Jeder Feldblock erhält eine eindeutige Bezeichnung, den Flächenidentifikator (FLIK), der als bundesweit einheitlicher Kennzeichnungsschlüssel für die neuen Referenzflächen dient. Dieser FLIK wird bei der Feldblockerstellung zentral vergeben.'
+		 special_base=' ' data_base=' ' hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='11D3BC49-F029-40C4-9FF1-88E68DA5B898' hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='63863502-136A-4184-AE2D-6BD71BE52B2F' rec_grade='0' special_base='Landesentwicklungsplan Fachplanungen, kommunale Planungen eigene Erhebungen'
+		 hierarchy_level='5' coord='Gauß-Krüger' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='27F03286-BE79-4637-AFD2-C66ADC5CFF00' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='AC04181A-C983-4907-8705-26D9217FDE2B' rec_grade='100' special_base='Verfahren der Übersichtskartierung nach LAWA (LÄNDERARBEITSGEMEINSCHAFT WASSER) (Hrsg.) (2002): Gewässerstrukturkartierung in der Bundesrepublik Deutschland - Übersichtsverfahren-. Berlin).'
+		 data_base='Kartierergebnisse im Auftrag des Sächsischen Landesamtes für Umwelt und Geologie
+Verwendung von Karten, Luftbildern, Literatur sowie wasserwirtschaftlicher Daten; Begehung i.d.R. zur Validierung'
+		 hierarchy_level='5' coord='Transverse Mercator, GCS Bessel 1841, 4. Meridianstreifen' referencesystem_id='-1'
+		 keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='7B0E9503-DB1F-4E6A-BBDE-C544E82A38BE' special_base='Parameter: Schwermetalle und Arsen
+Ergänzende Angaben: Ober- und Unterboden, bodenkundliche Parameter'
+		 hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='91F21079-BA48-4BE1-B6DC-D96D605ADBCC' hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='3F8006B4-9762-4838-9645-58E7E2C41378' rec_grade='40' special_base='Geologische Karten 1:25 000, die im Rahmen der geologischen Landesaufnahme von Sachsen Ende des 19. /Anfang bis Mitte des 20. Jahrhundert entstanden.'
+		 hierarchy_level='6' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='41DB05FA-A648-4927-9354-69BB399F10FE' rec_grade='100' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='U'/>
+	<z:row obj_id='E9A549E2-6C21-4AB9-B269-1AD0D179D6FC' method='Lagegenauigkeit: Lagegenauigkeit +- 25 m  ... Datenqualität: 1:50 000 ...'
+		 rec_grade='100' hierarchy_level='6' coord='Gauß-Krüger' referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='1AFF64BE-D13A-407B-AD7A-8263DDACF91D' rec_grade='0' hierarchy_level='5' coord='Gauß-Krüger'
+		 referencesystem_id='-1' keyc_incl_w_dataset='0' mod_type='N'/>
+	<z:row obj_id='8ECF157C-A389-4795-BD1D-45F2825A27FE' rec_grade='0' hierarchy_level='5' keyc_incl_w_dataset='0'
+		 mod_type='N'/>
+	<z:row obj_id='C186C38B-1D15-414F-A8F5-1B6E0E94A756' method='Vom Sächsischen Landesvermessungsamt (LVSN) wurden farbige digitale, georeferenzierte Luftbilder (Digitale Orthofotos) bereitgestellt, auf deren  Grundlage durch externe geospezifische Fachfirmen mittels Bildschirmdigitalisierung die natürlichen landwirtschaftlichen Außengrenzen der Feldblöcke erstellt wurden. Zusätzlich sind zur Unterstützung der Digitalisierung alle weiteren verfügbaren Informationen verwendet worden. Die Nachprüfung der von diesen externen Firmen digitalisierten Feldblöcke und die ggf. erforderliche Feldblockkorrektur erfolgt im Freistaat Sachsen durch die Staatlichen Ämter für Landwirtschaft (AfL). Jeder Feldblock erhält eine eindeutige Bezeichnung, den Flächenidentifikator (FLIK), der als bundesweit einheitlicher Kennzeichnungsschlüssel für die neuen Referenzflächen dient. Dieser FLIK wird bei der Feldblockerstellung zentral vergeben.'
+		 special_base=' ' data_base=' ' hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='U'/>
+	<z:row obj_id='EF535044-EF11-4BD3-94CA-FA414F2FFA22' method='Vom Sächsischen Landesvermessungsamt (LVSN) wurden farbige digitale, georeferenzierte Luftbilder (Digitale Orthofotos) bereitgestellt, auf deren  Grundlage durch externe geospezifische Fachfirmen mittels Bildschirmdigitalisierung die natürlichen landwirtschaftlichen Außengrenzen der Feldblöcke erstellt wurden. Zusätzlich sind zur Unterstützung der Digitalisierung alle weiteren verfügbaren Informationen verwendet worden. Die Nachprüfung der von diesen externen Firmen digitalisierten Feldblöcke und die ggf. erforderliche Feldblockkorrektur erfolgt im Freistaat Sachsen durch die Staatlichen Ämter für Landwirtschaft (AfL). Jeder Feldblock erhält eine eindeutige Bezeichnung, den Flächenidentifikator (FLIK), der als bundesweit einheitlicher Kennzeichnungsschlüssel für die neuen Referenzflächen dient. Dieser FLIK wird bei der Feldblockerstellung zentral vergeben.'
+		 special_base=' ' data_base=' ' hierarchy_level='5' keyc_incl_w_dataset='0' mod_type='U'/>
+</rs:data>
+</xml>

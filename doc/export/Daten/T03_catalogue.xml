@@ -1,0 +1,55 @@
+<xml xmlns:s='uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882'
+	xmlns:dt='uuid:C2F41010-65B3-11d1-A29F-00AA00C14882'
+	xmlns:rs='urn:schemas-microsoft-com:rowset'
+	xmlns:z='#RowsetSchema'>
+<s:Schema id='RowsetSchema'>
+	<s:ElementType name='row' content='eltOnly' rs:updatable='true'>
+		<s:AttributeType name='cat_id' rs:number='1' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='T03_catalogue'
+			 rs:basecolumn='cat_id' rs:keycolumn='true'>
+			<s:datatype dt:type='string' dt:maxLength='40' rs:maybenull='false'/>
+		</s:AttributeType>
+		<s:AttributeType name='country' rs:number='2' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T03_catalogue' rs:basecolumn='country'>
+			<s:datatype dt:type='string' dt:maxLength='3'/>
+		</s:AttributeType>
+		<s:AttributeType name='state' rs:number='3' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T03_catalogue' rs:basecolumn='state'>
+			<s:datatype dt:type='string' dt:maxLength='3'/>
+		</s:AttributeType>
+		<s:AttributeType name='catalogue' rs:number='4' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T03_catalogue' rs:basecolumn='catalogue'>
+			<s:datatype dt:type='string' dt:maxLength='60'/>
+		</s:AttributeType>
+		<s:AttributeType name='default_flag' rs:number='5' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T03_catalogue' rs:basecolumn='default_flag'>
+			<s:datatype dt:type='i2' dt:maxLength='2' rs:precision='5' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='create_id' rs:number='6' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T03_catalogue' rs:basecolumn='create_id'>
+			<s:datatype dt:type='string' dt:maxLength='40'/>
+		</s:AttributeType>
+		<s:AttributeType name='create_time' rs:number='7' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T03_catalogue' rs:basecolumn='create_time'>
+			<s:datatype dt:type='string' dt:maxLength='14'/>
+		</s:AttributeType>
+		<s:AttributeType name='mod_id' rs:number='8' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T03_catalogue' rs:basecolumn='mod_id'>
+			<s:datatype dt:type='string' dt:maxLength='40'/>
+		</s:AttributeType>
+		<s:AttributeType name='mod_time' rs:number='9' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T03_catalogue' rs:basecolumn='mod_time'>
+			<s:datatype dt:type='string' dt:maxLength='14'/>
+		</s:AttributeType>
+		<s:AttributeType name='mod_type' rs:number='10' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='T03_catalogue'
+			 rs:basecolumn='mod_type'>
+			<s:datatype dt:type='string' dt:maxLength='1' rs:maybenull='false'/>
+		</s:AttributeType>
+		<s:extends type='rs:rowbase'/>
+	</s:ElementType>
+</s:Schema>
+<rs:data>
+	<z:row cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' country='D' state='SN' catalogue='UDK-Sachsen' default_flag='1'
+		 create_id='A853E0E2-E6AF-11D2-9A86-080000507261' create_time='19970127181951' mod_id='A853E0E2-E6AF-11D2-9A86-080000507261'
+		 mod_time='19970127181951' mod_type='N'/>
+</rs:data>
+</xml>

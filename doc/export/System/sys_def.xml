@@ -1,0 +1,33 @@
+<xml xmlns:s='uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882'
+	xmlns:dt='uuid:C2F41010-65B3-11d1-A29F-00AA00C14882'
+	xmlns:rs='urn:schemas-microsoft-com:rowset'
+	xmlns:z='#RowsetSchema'>
+<s:Schema id='RowsetSchema'>
+	<s:ElementType name='row' content='eltOnly' rs:updatable='true'>
+		<s:AttributeType name='entry' rs:number='1' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='sys_def'
+			 rs:basecolumn='entry' rs:keycolumn='true'>
+			<s:datatype dt:type='string' dt:maxLength='50' rs:maybenull='false'/>
+		</s:AttributeType>
+		<s:AttributeType name='value' rs:number='2' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='sys_def' rs:basecolumn='value'>
+			<s:datatype dt:type='string' dt:maxLength='255'/>
+		</s:AttributeType>
+		<s:extends type='rs:rowbase'/>
+	</s:ElementType>
+</s:Schema>
+<rs:data>
+	<z:row entry='createdb' value='01.11.2002 14:00:00'/>
+	<z:row entry='mapkit_state' value='germany'/>
+	<z:row entry='mapkit_distance' value='250'/>
+	<z:row entry='mapkit_h1' value='6096399'/>
+	<z:row entry='mapkit_h2' value='5225563'/>
+	<z:row entry='mapkit_r1' value='2467464'/>
+	<z:row entry='mapkit_r2' value='5472462'/>
+	<z:row entry='mapkit_objects' value='5'/>
+	<z:row entry='mapkit_objtime' value='all'/>
+	<z:row entry='database' value='MS-SQL-SERVER'/>
+	<z:row entry='version' value='5.0.0.0'/>
+	<z:row entry='title' value=''/>
+	<z:row entry='db_id' value='Z#E9EAB278-012F-4C2A-B0F4-8B68CA60310C'/>
+</rs:data>
+</xml>

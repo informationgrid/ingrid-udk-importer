@@ -1,0 +1,508 @@
+<xml xmlns:s='uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882'
+	xmlns:dt='uuid:C2F41010-65B3-11d1-A29F-00AA00C14882'
+	xmlns:rs='urn:schemas-microsoft-com:rowset'
+	xmlns:z='#RowsetSchema'>
+<s:Schema id='RowsetSchema'>
+	<s:ElementType name='row' content='eltOnly' rs:updatable='true'>
+		<s:AttributeType name='obj_id' rs:number='1' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='T011_obj_data'
+			 rs:basecolumn='obj_id' rs:keycolumn='true'>
+			<s:datatype dt:type='string' dt:maxLength='40' rs:maybenull='false'/>
+		</s:AttributeType>
+		<s:AttributeType name='base' rs:number='2' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T011_obj_data' rs:basecolumn='base'>
+			<s:datatype dt:type='string' dt:maxLength='255'/>
+		</s:AttributeType>
+		<s:AttributeType name='description' rs:number='3' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T011_obj_data' rs:basecolumn='description'>
+			<s:datatype dt:type='string' dt:maxLength='1073741823' rs:long='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='mod_type' rs:number='4' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T011_obj_data' rs:basecolumn='mod_type'>
+			<s:datatype dt:type='string' dt:maxLength='1'/>
+		</s:AttributeType>
+		<s:extends type='rs:rowbase'/>
+	</s:ElementType>
+</s:Schema>
+<rs:data>
+	<z:row obj_id='A0B69ECB-779A-11D6-9350-0048543011FC' mod_type='D'/>
+	<z:row obj_id='DB3E2D89-F22D-4D3C-9566-7EA590F47F96' base='XXX' description='XXX' mod_type='D'/>
+	<z:row obj_id='84A516B8-0C64-4A36-862C-AE31F41F21B4' base='' description='Gewässerdaten, Betreiberdaten, Anlagendaten, ökologische Daten'
+		 mod_type='U'/>
+	<z:row obj_id='EB0C78EE-B25C-465A-B403-2F450E92D224' base='Standortfaktoren: Boden, Klima und Höhenlage ' description='VG 1 bis VG 10 = Vergleichsgebiet 1 bis 10
+'
+		 mod_type='D'/>
+	<z:row obj_id='E1C31EF4-81CE-4CFD-8207-EC0E0A8DCA6C' base='i.d.R. analoge Planungs- und Projektierungsunterlagen, mit Karten und Profilschnitten sowie Stellungsnahmen zu den Maßnahmen '
+		 mod_type='D'/>
+	<z:row obj_id='222C5FE7-E25B-48DB-B134-63A64B786459' mod_type='D'/>
+	<z:row obj_id='71393514-8897-4FC9-AD11-33DF1E1E1528' mod_type='D'/>
+	<z:row obj_id='C4AFA2F7-F499-4ECA-B4BA-B2079164E1C0' mod_type='D'/>
+	<z:row obj_id='3AC4D1C3-DD9F-4791-A366-5AC431C9E534' description='Anteile der Ackerflächen Sachsens an unterschiedlichen Versorgungsstufen (A-E) für pflanzenverfügbare Nährstoffe nach VDLUFA Schema.'
+		 mod_type='U'/>
+	<z:row obj_id='56ACD934-2E65-44C5-BACE-BC9411195CC5' mod_type='D'/>
+	<z:row obj_id='40003D81-3276-4B24-BCF9-193800567DE3' mod_type='D'/>
+	<z:row obj_id='7C61138B-F77E-4B40-8BF6-58F8D506E597' base='Bulk-Sampler von 314 cm² Auffangfläche 1 m über dem Boden'
+		 mod_type='U'/>
+	<z:row obj_id='1C6E3D75-81BB-4D4F-94AB-70DC0E8A31AE' base='Standortfaktoren: Boden, Klima und Höhenlage ' description='VG 1 bis VG 10 = Vergleichsgebiet 1 bis 10 '
+		 mod_type='D'/>
+	<z:row obj_id='C679CBED-656F-43E0-A17C-786DCABCA96F' base='Standortfaktoren: Boden, Klima und Höhenlage ' description='VG 1 bis VG 10 = Vergleichsgebiet 1 bis 10 '
+		 mod_type='D'/>
+	<z:row obj_id='C4F007E1-00D4-4B9A-8846-8AFDD1149F6D' base='Anschriftenverzeicnis über öffentliche und private Stellen, die über Unterlagen des sog. Meliorationskatasters (i.d.R. analoge Planungs- und Projektierungsunterlagen, mit Karten und Profilschnitten sowie Stellungsnahmen zu den Maßnahmen) verfügen.'
+		 mod_type='U'/>
+	<z:row obj_id='A10A8D32-8412-47BE-B374-724D42CB1B62' base='Datengrundlage Deutscher Wetterdienst, Czech Hydrometeorological Institute, Institut für Hydrologie und Meteorologie der TU Dresden'
+		 mod_type='U'/>
+	<z:row obj_id='8D6BB63D-AE37-4A15-8FC1-7EBCB30A7B5C' mod_type='U'/>
+	<z:row obj_id='5AEC26C1-CE55-11D3-8BF6-00105A493192' description='Beschreibung:  Datenerfassung nach Erfassungsvorschriften des FIS Boden'
+		 mod_type='N'/>
+	<z:row obj_id='5AEC2718-CE55-11D3-8BF6-00105A493192' description='Beschreibung:  Datenerfassung nach Erfassungsvorschriften des FIS Boden'
+		 mod_type='N'/>
+	<z:row obj_id='5AEC276F-CE55-11D3-8BF6-00105A493192' description='Beschreibung:  Datenerfassung nach Erfassungsvorschriften des FIS Boden'
+		 mod_type='N'/>
+	<z:row obj_id='5AEC27C6-CE55-11D3-8BF6-00105A493192' description=' ' mod_type='N'/>
+	<z:row obj_id='5AEC2874-CE55-11D3-8BF6-00105A493192' mod_type='N'/>
+	<z:row obj_id='5AEC2916-CE55-11D3-8BF6-00105A493192' mod_type='N'/>
+	<z:row obj_id='5AEC296D-CE55-11D3-8BF6-00105A493192' mod_type='N'/>
+	<z:row obj_id='34F94DB0-FCD7-40C9-A79A-672C1EC75774' base='' mod_type='U'/>
+	<z:row obj_id='5AEC35FD-CE55-11D3-8BF6-00105A493192' mod_type='N'/>
+	<z:row obj_id='5AEC3654-CE55-11D3-8BF6-00105A493192' mod_type='U'/>
+	<z:row obj_id='5AEC36FE-CE55-11D3-8BF6-00105A493192' mod_type='N'/>
+	<z:row obj_id='78992812-E8A0-47CB-AF43-399229740451' mod_type='U'/>
+	<z:row obj_id='3E11132C-151A-455B-9684-AB030B0F310F' mod_type='U'/>
+	<z:row obj_id='6CA6CF9B-CE57-11D3-8BF6-00105A493192' mod_type='D'/>
+	<z:row obj_id='6CA6CFF6-CE57-11D3-8BF6-00105A493192' mod_type='D'/>
+	<z:row obj_id='6CA6D051-CE57-11D3-8BF6-00105A493192' mod_type='D'/>
+	<z:row obj_id='6CC9795E-7F12-4DC0-B3F3-32D70AE2E9A5' mod_type='U'/>
+	<z:row obj_id='29FE57A7-B311-43C6-8B7C-E5ED7736E96C' mod_type='U'/>
+	<z:row obj_id='368CF868-4CA6-4465-9CDE-881EA969155E' mod_type='U'/>
+	<z:row obj_id='C6169C41-D3FF-47A7-82C2-CA9C4802EBF0' base='' mod_type='U'/>
+	<z:row obj_id='5AEC281D-CE55-11D3-8BF6-00105A493192' mod_type='N'/>
+	<z:row obj_id='5AEC28CB-CE55-11D3-8BF6-00105A493192' mod_type='N'/>
+	<z:row obj_id='5AEC36A7-CE55-11D3-8BF6-00105A493192' mod_type='U'/>
+	<z:row obj_id='6CA6CF40-CE57-11D3-8BF6-00105A493192' base='' mod_type='U'/>
+	<z:row obj_id='EAE629AE-CB12-11D5-9350-0048543011FC' base='' description='' mod_type='N'/>
+	<z:row obj_id='EAE629AF-CB12-11D5-9350-0048543011FC' base='' description='' mod_type='N'/>
+	<z:row obj_id='13A4300A-CBA4-11D5-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='8F590A28-E7E2-11D5-9350-0048543011FC' base='' description='PC-Standardsoftware MS-ACCESS, Betriebssystem Windows XP'
+		 mod_type='U'/>
+	<z:row obj_id='8F590A41-E7E2-11D5-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='1B430799-E954-11D5-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B91E-0122-11D6-9350-0048543011FC' description='Informationen zum Programm WinArt:
+Über komfortable Bildschirmmasken wird die Eingabe realisiert. In verschiedenen Fel-dern stehen
+Eingabehilfen (Referenzlisten) und Prüfungen zur Verfügung, so z. B. für die Editierung des Artnamens. 
+Um genaue Ortsangaben zu gewährleisten, wurden im Programm gescannte Karten integriert, über die die
+Gauß-Krüger-Koordinaten des Fundpunktes ermittelt werden können. 
+Über ein gesondertes Such- und Indexmenü sind schnelle Suchfunktionen implementiert. Damit lassen sich die Daten in vielfältiger Form sortiert anzeigen. Für komplexe Suchaufgaben in der Datenbank steht der Menüpunkt &#x22;Komplexe Suche&#x22; zur Verfügung. Hier kann man Abfragen, die sich gleichzeitig auf fast alle Datenbankfelder in frei wählbarer Kombination erstrecken, realisieren. Weiterhin ist es möglich, über die gescannten Karten sich ein Suchrechteck zu definieren, um beliebige Arten, die sich innerhalb dieses Rechteckes befinden, zu selektieren. In das Programm wurde das Modul ReportPro integriert, welches eine komfortable Gestaltung von Berichten /Ausdrucken ermöglicht.'
+		 mod_type='N'/>
+	<z:row obj_id='4AD9A975-0A6D-11D6-9350-0048543011FC' mod_type='U'/>
+	<z:row obj_id='4AD9A980-0A6D-11D6-9350-0048543011FC' base='Dokumentation (Stammdaten), tägliche Datenerfassung an den Stauanlagen (Bewegungsdaten)'
+		 description='' mod_type='N'/>
+	<z:row obj_id='E2AB01B6-0A8E-11D6-9350-0048543011FC' base='' description='' mod_type='U'/>
+	<z:row obj_id='F1EF262E-E558-4649-9FE6-D1F4DAA5EB96' mod_type='U'/>
+	<z:row obj_id='F26345E5-203D-40E1-8993-0B959471C1FA' mod_type='D'/>
+	<z:row obj_id='932E555B-151C-45F4-82A7-382987BFE4CE' mod_type='D'/>
+	<z:row obj_id='F3D144CD-CE51-11D3-8BF6-00105A493192' mod_type='U'/>
+	<z:row obj_id='F3D14524-CE51-11D3-8BF6-00105A493192' mod_type='N'/>
+	<z:row obj_id='F3D145BE-CE51-11D3-8BF6-00105A493192' mod_type='U'/>
+	<z:row obj_id='F3D14658-CE51-11D3-8BF6-00105A493192' mod_type='N'/>
+	<z:row obj_id='F3D14790-CE51-11D3-8BF6-00105A493192' mod_type='N'/>
+	<z:row obj_id='F3D14871-CE51-11D3-8BF6-00105A493192' mod_type='D'/>
+	<z:row obj_id='F3D148C0-CE51-11D3-8BF6-00105A493192' mod_type='U'/>
+	<z:row obj_id='F3D149AD-CE51-11D3-8BF6-00105A493192' mod_type='N'/>
+	<z:row obj_id='F3D15014-CE51-11D3-8BF6-00105A493192' base='Schwellwertmeldungen über Niederschlagshöhe (W15/W25) in mm'
+		 mod_type='N'/>
+	<z:row obj_id='F3D1506B-CE51-11D3-8BF6-00105A493192' mod_type='N'/>
+	<z:row obj_id='F3D15343-CE51-11D3-8BF6-00105A493192' mod_type='N'/>
+	<z:row obj_id='F3D1539E-CE51-11D3-8BF6-00105A493192' mod_type='N'/>
+	<z:row obj_id='F3D15FB1-CE51-11D3-8BF6-00105A493192' description='Ortsdosisleistungen unter Bezug auf Gauss-Krüger-Koordinaten (Hoch- und Rechtswert).'
+		 mod_type='N'/>
+	<z:row obj_id='9E48DAFC-8BD4-11D5-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='9E48DB24-8BD4-11D5-9350-0048543011FC' base='' description='' mod_type='N'/>
+	<z:row obj_id='9E48DB2A-8BD4-11D5-9350-0048543011FC' base='an 2 Stellen des Olbasees jeweils in Tiefen von 1m, 5m und am Seegrund'
+		 description='' mod_type='N'/>
+	<z:row obj_id='9E48DB2D-8BD4-11D5-9350-0048543011FC' base='Probenahme in den Morgenstunden mit Vor-Ort-Messung Temperatur inkl.  Dokumentation Wasserbeschaffenheit , Fischverhalten etc.'
+		 description='' mod_type='N'/>
+	<z:row obj_id='C30785C6-8C9A-11D5-9350-0048543011FC' base='die Probenahme erfolgt als wöchentliche Sammelprobe aus Hellmann`schen Regenmessern'
+		 description='' mod_type='N'/>
+	<z:row obj_id='76FD36A9-8CAB-11D5-9350-0048543011FC' description='Teichdatenbank' mod_type='N'/>
+	<z:row obj_id='97DDE3A6-C6D6-11D5-9350-0048543011FC' base='Erfassungsbogen für §26-Biotope der Nationalparkverwaltung Sächsische Schweiz'
+		 mod_type='N'/>
+	<z:row obj_id='97DDE3A8-C6D6-11D5-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='97DDE3AA-C6D6-11D5-9350-0048543011FC' base='Eigentümerdatei, Katasterdatei' mod_type='N'/>
+	<z:row obj_id='97DDE3AD-C6D6-11D5-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='F6E4F8C9-C9F1-11D5-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='EAE629AA-CB12-11D5-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='EAE629AB-CB12-11D5-9350-0048543011FC' base='' description='' mod_type='N'/>
+	<z:row obj_id='EAE629AC-CB12-11D5-9350-0048543011FC' base='' description='' mod_type='N'/>
+	<z:row obj_id='EAE629AD-CB12-11D5-9350-0048543011FC' base='' description='' mod_type='N'/>
+	<z:row obj_id='13A43007-CBA4-11D5-9350-0048543011FC' base='- dBase III-Datenbanken, eingebunden in GIS unter Einbeziehung eines DGM auf Basis einer   Laserscanning-Gebietsbefliegung.- Probenflächen repräsenteren jeweils 2 ha Nationalparkfläche'
+		 mod_type='N'/>
+	<z:row obj_id='73F88440-9CDD-4DA7-A123-1D124FDC0F66' base='Kartierung ' description=' ' mod_type='U'/>
+	<z:row obj_id='D7F80B0E-B7DB-40C0-869F-F279374B07F5' mod_type='N'/>
+	<z:row obj_id='9B78DF8F-A820-4962-A378-3A15A5D0ECE6' mod_type='U'/>
+	<z:row obj_id='34872E65-A37A-4D7A-8010-040FFC4164E4' mod_type='U'/>
+	<z:row obj_id='877B8AAC-E185-4BF5-9A8B-AF873BFD8021' mod_type='U'/>
+	<z:row obj_id='52234316-3A3F-4883-AAEC-44E201E0E143' mod_type='U'/>
+	<z:row obj_id='240F27B3-049C-4299-85E5-7A999A99F21E' mod_type='U'/>
+	<z:row obj_id='0913676B-EE58-483C-B8FF-251F7A99A296' mod_type='N'/>
+	<z:row obj_id='4E130275-C3E8-46FC-87AB-1C0E864EA809' mod_type='N'/>
+	<z:row obj_id='BA5565A6-49D0-4F8E-A9A1-2CD0D0B8AF2C' mod_type='N'/>
+	<z:row obj_id='4204A8CD-A4F2-4488-A363-54F07AF89397' mod_type='N'/>
+	<z:row obj_id='401175BC-4FF4-4753-A99D-2E6880AC2F12' mod_type='N'/>
+	<z:row obj_id='78D7AA54-5488-4E49-859E-A06CD87E62B3' mod_type='N'/>
+	<z:row obj_id='621D96BE-266F-4547-8601-FB3A7C0AFC9F' mod_type='N'/>
+	<z:row obj_id='4BA824F6-C1E3-49CC-9D98-7806204D7D39' mod_type='N'/>
+	<z:row obj_id='7734BE34-0990-49BB-8A8E-0EEB902F2B54' mod_type='U'/>
+	<z:row obj_id='286B6E8C-65AF-4E62-9D56-562F332F253A' mod_type='U'/>
+	<z:row obj_id='AA468F4A-4F5E-4F7F-B98B-CA7099304B83' base='Erfassungsprogramm UHYDRO. ' mod_type='U'/>
+	<z:row obj_id='FAFBFC25-2A45-4A01-8F16-42C9E96797C6' mod_type='N'/>
+	<z:row obj_id='F7E5646B-305E-42F3-9E7F-87DAD9BC17E0' mod_type='N'/>
+	<z:row obj_id='AEDB6884-905A-4DEA-9352-668B99F67009' mod_type='N'/>
+	<z:row obj_id='E223CF80-21D9-4DED-A69D-F077784879B3' mod_type='D'/>
+	<z:row obj_id='C271B4C3-1E55-4439-9823-3A5AB05B0FC7' base='Meldungen der Unteren Jagdbehörden bzw. der Sächsischen Forstämter'
+		 mod_type='N'/>
+	<z:row obj_id='8A847828-BFC4-48C4-8593-10E6CCAF48D4' description='Anzahl und Flächenanteile der Jagdbezirke
+Anzahl der Jagdscheininhaber
+'
+		 mod_type='N'/>
+	<z:row obj_id='D6CA14F6-B484-4075-841F-308F3DE85A83' base='Vom SMUL per Verordnung abgegrenzte Schalenwildgebiete.'
+		 mod_type='N'/>
+	<z:row obj_id='75B473BC-F380-4870-8CAB-A3CF59CD0C36' base='Die Daten sind das Ergebnis aus den forstlichen Standortskartierungen seit den 1950-er Jahren und den dabei gewachsenen Erkenntnissen und Entwicklungen der standortskundlichen Methodik.
+'
+		 description='Die Methodik ist in den jeweils gültigen Standortserkundungs-Anweisungen (SEA) beschrieben. Die begleitenden Vegetationserhebungen der Standortskartierung bei der Aufnahme von Bodenprofilen entsprechen dem System von Braun-Blanquet (1928).'
+		 mod_type='N'/>
+	<z:row obj_id='17FDAFB8-580D-46D3-845C-AD303464F801' base='Update des Methodehandbuches regelmäßig unter: &#x3c;www.icp-forests.org&#x3e;'
+		 description='BML, BUNDESMINISTERIUM FÜR ERNÄHRUNG, LANDWIRTSCHAFT UND FORSTEN (1990): Bundesweite Bodenzustandserhebung im Wald (BZE) - Arbeitsanleitung, Bonn
+PCC, PROGRAMME CO-ORDINATING CENTRE (1998): Manual on Methods and Criteria for Harmonized 
+Sampling, Assessment, Monitoring and Analysis of the Effects of Air Pollution on Forests/ Programme Co-ordinating Centre (PCC). 4th Edition, Losebl.-Ausg. - Hamburg: 1998
+RABEN, G., ANDREAE, H., KARST, H., SYMOSSEK, F., LEUBE, F. (2000): Bodenzustandserhebung (BZE) in den sächsischen Wäldern (1992 - 1997). Schriftenreihe der Sächsischen Landesanstalt für Forsten, Heft 18, Graupa.
+'
+		 mod_type='N'/>
+	<z:row obj_id='8A28385A-B115-433D-B504-961C80049F1F' base='BMVEL, Bundesministerium für Verbraucherschutz, Ernährung und Landwirtschaft (Hrsg.) (2003): Wasserhaushalt von Waldökosystemen: Level II Ad hoc AG &#x22;Wasserhaushalt&#x22; der Bund-Länder-Arbeitsgruppe Level II.
+'
+		 description='PCC, PROGRAMME CO-ORDINATING CENTRE (1998): Manual on Methods and Criteria for Harmonized 
+Sampling, Assessment, Monitoring and Analysis of the Effects of Air Pollution on Forests  / Programme Co-ordinating Centre (PCC). 4th Edition, Losebl.-Ausg. - Hamburg: 1998
+BMVEL, Bundesministerium für Verbraucherschutz, Ernährung und Landwirtschaft (Hrsg.) (1999): Dauerbeobachtungsflächen zur forstlichen Umweltkontrolle (Level II) - Workshop zur wissenschftlichen Diskussion der Auswertungskonzepte sowie Symposium - Ergebnisse.
+BMVEL, Bundesministerium für Verbraucherschutz, Ernährung und Landwirtschaft (Hrsg.) (2000): Kennwerte zur Charakterisierung des ökochemischen Bodenzustandes und des Gefährdungspotentials durch Bodenversauerung und Stickstoffsättigung an Level II-Waldökosystem-Dauerbeobachtungsflächen. 
+BMVEL, Bundesministerium für Verbraucherschutz, Ernährung und Landwirtschaft (Hrsg.) (2000): Critical Loads für Waldökosysteme - Methoden und Ergebnisse für Standorte des Level II-Programms. Arbeitskreis B der Bund-Länder-Arbeitsgruppe Level II.
+BMVEL, Bundesministerium für Verbraucherschutz, Ernährung und Landwirtschaft (Hrsg.) (2001): Luftqualität und atmosphärische Stoffeinträge an Level II-Dauerbeobachtungsflächen in Deutschland. Arbeitskreis B der Bund-Länder-Arbeitsgruppe Level II.
+BMVEL, Bundesministerium für Verbraucherschutz, Ernährung und Landwirtschaft (Hrsg.) (2001): Dauerbeobachtung der Waldvegetation im Level II-Programm: Methoden und Auswertung. Arbeitskreis F &#x22;Waldvegetation&#x22; der Bund-Länder-Arbeitsgruppe Level II.
+BMVEL, Bundesministerium für Verbraucherschutz, Ernährung und Landwirtschaft (Hrsg.) (2001): Dauerbeobachtungsflächen Waldschäden im Level II-Programm - Methoden und Ergebnisse der Kronenansprache seit 1983. Arbeitskreis &#x22;Krone&#x22; der Bund-Länder-Arbeitsgruppe Level II.
+'
+		 mod_type='N'/>
+	<z:row obj_id='87275CC8-3C32-4827-A413-2E29F9B3D8D9' base='Update des Methodehandbuches regelmäßig unter: &#x3c;www.icp-forests.org&#x3e;'
+		 description='BML, BUNDESMINISTERIUM FÜR ERNÄHRUNG, LANDWIRTSCHAFT UND FORSTEN (1990): Bundesweite Bodenzustandserhebung im Wald (BZE) - Arbeitsanleitung, Bonn
+PCC, PROGRAMME CO-ORDINATING CENTRE (1998): Manual on Methods and Criteria for Harmonized 
+Sampling, Assessment, Monitoring and Analysis of the Effects of Air Pollution on Forests  / Programme Co-ordinating Centre (PCC). 4th Edition, Losebl.-Ausg. - Hamburg: 1998
+RABEN, G., ANDREAE, H., KARST, H., SYMOSSEK, F., LEUBE, F. (2000): Bodenzustandserhebung (BZE) in den sächsischen Wäldern (1992 - 1997). Schriftenreihe der Sächsischen Landesanstalt für Forsten, Heft 18, Graupa.
+'
+		 mod_type='N'/>
+	<z:row obj_id='7655B013-D52A-481D-8C86-30F613370B1B' base='Update des Methodenhandbuches regelmäßig unter: &#x3c;www.icp-forests.org&#x3e;'
+		 description='Update des Methodehandbuches regelmäßig unter: &#x3c;www.icp-forests.org&#x3e;
+PCC, PROGRAMME CO-ORDINATING CENTRE (1998): Manual on Methods and Criteria for Harmonized 
+Sampling, Assessment, Monitoring and Analysis of the Effects of Air Pollution on Forests/ Programme Co-ordinating Centre (PCC). 4th Edition, Loseblatt- Ausg. - Hamburg: 1998
+'
+		 mod_type='N'/>
+	<z:row obj_id='9C8E5AC3-E6DC-43FA-8829-0186B5572DD3' description='ECO wurde seit 1993 von J. Hoppe und A. Schulze in der Abteilung Umweltkontrolle der Niedersächsischen Forstlichen Versuchsanstalt Göttingen entwickelt und ist dort seit 1996 im Einsatz. Seit 2001 wird ECO überdies an der LÖBF in Nordrhein-Westfalen und am Landesforstpräsidium in Sachsen eingesetzt. Die bayerischen und thüringischen Forstverwaltungen sind der Kooperation  ebenfalls beigetreten. 
+Literatur:
+Schulze, A.; Evers, J.; Hoppe, J.; Rumpf, S.; Meiwes, K.J. 1999. Zur Anwendung des Nachhaltigkeitsprinzips im forstlichen Datenmanagement. Forstarchiv 70, 28-36.
+Schulze, A.; Meiwes, K.J. 2000. Erfahrungsbericht zum Einsatz eines Datenbanksystems im Level II-Programm. Bericht an die EU (Projekt-Nr. 98.60.DL.016.0), 59 S. Niedersächsische Forstliche Versuchsanstalt.
+Schulze, A.; Stüber, V.; Meiwes, K.J.; Hövelmann, T.; Wachter, H. 2000. Datenbanklösung zur Verwaltung von Profildaten der forstlichen Standortskartierung. Forst u. Holz 55, 110-113.
+Schulze, A. 2002. Das Datenbanksystem &#x27;ECO&#x27; am Beispiel der Verwaltung standortskundlicher Erhebungen. Workshop &#x27;Umweltdatenbanken 2002&#x27; des AK Umweltdatenbanken der Fachgruppe 4.6.1 &#x27;Informatik im Umweltschutz&#x27; der Ges. f. Informatik. Ilmenau 13.-14.6.2002.
+Schulze, A. 2002. Erfahrungen bei der prototypischen Implementierung des Datenbanksystems ECO an der LAF (SN) und der LÖBF (NW). Tagungsband der 4. Arbeitssitzung des AK IT der forstl. Landes-, Versuchs- und Forschungsanstalten, 8./9.11.2001, Karsdorf. Materialien der LWF, 6, 33-35.
+
+In Zukunft könnten möglicherweise weitere Untersuchungsbereiche des Forstlichen Umweltmoni-torings in die Datenbank integriert werden (Waldzustandserhebung, Vegetationserhebungen). Ebenso wie die meteorologischen Daten werden diese zur Zeit in separaten Datenbanken gehalten.
+
+
+
+
+'
+		 mod_type='N'/>
+	<z:row obj_id='47A16330-3E79-414E-9C4E-87533B1C9F87' base='Update des Methodenhandbuches regelmäßig unter: &#x3c; http://www.oekodata.com &#x3e;'
+		 description='BECKER, R. (1999): Critical Load-PROFILE 4.2 - Handbuch
+NAGEL, H.-D. und GREGOR, H.-D. (Hrsg. 1999): Ökologische Belastungsgrenzen - Critical Loads &#x26; Levels. Ein internationales Konzept für die Luftreinhaltepolitik. Springer Verlag.
+
+UBA (1996): Manual on methodologies and criteria for mapping Critical Levels &#x26; Loads and geographical areas where they are exceeded. UBA-Texte 71/96
+
+Sächsisches Ministerium für Umwelt und Landwirtschaft (SMUL) (1999 - 2003): Waldzustandsberichte 1999 - 2003, Dresden
+'
+		 mod_type='N'/>
+	<z:row obj_id='AB88FBBA-A652-4510-BF86-445C68E7A4BF' base='Accessbasierte Datenbank für die gemeinsame Verwaltung von Vegetations- und Standortsdaten. Jeder Aufnahmeort existiert nur einmal und kann mehrfach mit unterschiedlichen Methoden unter-sucht und charakterisiert werden.'
+		 description='Begleitende Vegetationserhebungen der Standortskartierung bei der Aufnahme von Bodenprofilen. Erfassung der Gefäßpflanzen, Moose und Flechten getrennt nach soziologischen Schichten (b1, b2, s, k, m) unter Anwendung der Abundanzskala von Braun-Blanquet (1928), zumeist einmal pro Aufnahme und Profil. In wenigen Fällen wurden Frühjahrsaspekte bei Laubwaldflächen mit erfasst. Aufnahmefläche unterschiedlich, aber für Bodenvegetation und Strauchschicht (&#x3c;5m) zumeist quadratisch 400 m² um die Profilgrube. Bei detaillierter Aufnahme der Moos- und Flechtenkartierung erfolgt eine Substraterfassung. Die Baumschicht wird in Kreisform auf einer Flächengröße von 1000 m² kartiert.
+
+
+
+CONRAD, S.; BAUMANN, M.; STETZKA, K. M.; ANDREAE, H.; RABEN, G. (2002): Vegetationskundliche Untersuchungen auf forstlichen Dauerbeobachtungsflächen (Level I und II der Europäischen Union) in Sachsen. Schriftenreihe der Sächsischen Landesanstalt für Forsten, Heft 25, Graupa. 
+
+CONRAD, S. (2001): Dokumentation des Aufnahmeverfahrens der Ökologischen Waldzustandskontrolle der DDR von 1986-1990 und Auswertung deren sächsischer Vegetationsaufnahmen mittels Access-Datenbank. Unveröff. Bakkalaureusarbeit, TU-Dresden, Fachrichtung Forstwiss., 58 S
+
+RABEN, G., ANDREAE, H., KARST, H., SYMOSSEK, F., LEUBE, F. (2000): Bodenzustandserhebung (BZE) in den sächsischen Wäldern (1992 - 1997). Schriftenreihe der Sächsischen Landesanstalt für Forsten, Heft 18, Graupa.
+
+'
+		 mod_type='N'/>
+	<z:row obj_id='CCF0CF54-3753-4EB9-B09E-8CE065FDC7E6' base='' description='PCC, PROGRAMME CO-ORDINATING CENTRE (1998): Manual on Methods and Criteria for Harmonized 
+Sampling, Assessment, Monitoring and Analysis of the Effects of Air Pollution on Forests  / Programme Co-ordinating Centre (PCC). 4th Edition, Losebl.-Ausg. - Hamburg: 1998
+'
+		 mod_type='N'/>
+	<z:row obj_id='408DCEA0-71EF-40D0-A121-CC42919B2202' mod_type='D'/>
+	<z:row obj_id='755D0871-DB27-441A-B25C-64BC0D1B9860' mod_type='D'/>
+	<z:row obj_id='F8102F68-B4D9-4B94-AA18-189E8A74F831' mod_type='D'/>
+	<z:row obj_id='1848108B-D268-4B12-95D8-870E6E0A51ED' mod_type='D'/>
+	<z:row obj_id='B0BB3FE4-3F55-4EB8-B4B8-E38130E8691A' mod_type='D'/>
+	<z:row obj_id='526A966C-927B-489F-9914-9ED97275E5BD' mod_type='D'/>
+	<z:row obj_id='D5797981-EE12-4919-BC3C-90ACA45EFF66' base='Kontinuierliche Messreihen als Grundlage zur Erfassung des Stoffeintrages und des Stoffaustrages (= Stoffbilanzierung)
+Ableitung der Gesamtdeposition, Gesamtbilanzierung von Stoffeintrag und -austrag
+'
+		 description='PCC, PROGRAMME CO-ORDINATING CENTRE (1998): Manual on Methods and Criteria for Harmonized 
+Sampling, Assessment, Monitoring and Analysis of the Effects of Air Pollution on Forests  / Programme Co-ordinating Centre (PCC). 4th Edition, Losebl.-Ausg. - Hamburg: 1998
+
+SCHERZER, J (2001): Modellierung des Wasserhaushalts der Level II-Standorte des Bundeslandes Sachsen für den Zeitraum 1997 - 2000. Abschlussbericht zum Werkvertrag. Landesforstpräsidium Sachsen
+
+'
+		 mod_type='N'/>
+	<z:row obj_id='A9888F7E-8889-4F0B-8E29-6F6AE34181F3' description='PCC, PROGRAMME CO-ORDINATING CENTRE (1998): Manual on Methods and Criteria for Harmonized 
+Sampling, Assessment, Monitoring and Analysis of the Effects of Air Pollution on Forests  / Programme Co-ordinating Centre (PCC). 4th Edition, Losebl.-Ausg. - Hamburg: 1998
+'
+		 mod_type='N'/>
+	<z:row obj_id='75730AC4-9E53-4FBC-A93D-78A0AA92833C' base='
+Update des Methodenhandbuches regelmäßig unter: &#x3c; http://www.oekodata.com &#x3e;
+' description='BECKER, R. (1999): Critical Load-PROFILE 4.2 - Handbuch: http://www.oekodata.com
+
+NAGEL, H.-D. und GREGOR, H.-D. (Hrsg. 1999): Ökologische Belastungsgrenzen - Critical Loads &#x26; Levels. Ein internationales Konzept für die Luftreinhaltepolitik. Springer Verlag.
+
+UBA (1996): Manual on methodologies and criteria for mapping Critical Levels &#x26; Loads and geographical areas where they are exceeded. UBA-Texte 71/96
+
+Sächsisches Ministerium für Umwelt und Landwirtschaft (SMUL) (1999 - 2003): Waldzustandsberichte 1999 - 2003, Dresden
+
+'
+		 mod_type='N'/>
+	<z:row obj_id='FBB8AFA2-5B08-4BE2-919A-57EDBC98862D' base='Update des Methodehandbuches regelmäßig unter: &#x3c;www.icp-forests.org&#x3e;'
+		 description='Es gibt 3 unterschiedliche Erhebungsebenen auf den Level II - Flächen: Eine Gesamterhebung und zwei Stichprobenverfahren (VDBF, EBDF).
+Die Gesamterhebung aller Gefäßpflanzen, Moose und Flechten auf  der 2500 m² großen Fläche des Level II - Plots wird alle 5 Jahre vorgenommen (Ersterhebung 1998). 
+Im Stichprobenverfahren VDBF werden 25 Parzellen à 4 m² innerhalb und, wo möglich, auch 25 Parzellen à 4 m² außerhalb der Zäunung ausgeschieden und jährlich zum gleichen Zeitpunkt alle Gefäßpflanzen, Moose und Flechten aufgenommen.
+Im Stichprobenverfahren EBDF wurde bisher an 6 Bäumen 1998 nach VDI 3799/1 (VDI 1995) der Bewuchs mit Lecanora conizaeoides, einer epiphytischen Flechte, bonitiert.
+Erfassung der Gefäßpflanzen, Moose und Flechten erfolgt getrennt nach soziologischen Schichten (b1, b2, s, k, m) unter Anwendung der Abundanzskala von Braun-Blanquet (1928) (Gesamterhebung) und Londo (1971) (Einzelparzellen). 
+
+PCC, PROGRAMME CO-ORDINATING CENTRE (1998): Manual on Methods and Criteria for Harmonized 
+Sampling, Assessment, Monitoring and Analysis of the Effects of Air Pollution on Forests  / Programme Co-ordinating Centre (PCC). 4th Edition, Losebl.-Ausg. - Hamburg: 1998
+BMVEL, Bundesministerium für Verbraucherschutz, Ernährung und Landwirtschaft (Hrsg.) (2001): Dauerbeobachtung der Waldvegetation im Level II-Programm: Methoden und Auswertung. Arbeitskreis F &#x22;Waldvegetation&#x22; der Bund-Länder-Arbeitsgruppe Level II.
+CONRAD, S.; BAUMANN, M.; STETZKA, K. M.; ANDREAE, H.; RABEN, G. (2002): Vegetationskundliche Untersuchungen auf forstlichen Dauerbeobachtungsflächen (Level I und II der Europäischen Union) in Sachsen. Schriftenreihe der Sächsischen Landesanstalt für Forsten, Heft 25, Graupa. 
+CONRAD, S. (2001): Dokumentation des Aufnahmeverfahrens der Ökologischen Waldzustandskontrolle der DDR von 1986-1990 und Auswertung deren sächsischer Vegetationsaufnahmen mittels Access-Datenbank. Unveröff. Bakkalaureusarbeit, TU-Dresden, Fachrichtung Forstwiss., 58 S
+'
+		 mod_type='N'/>
+	<z:row obj_id='86A0BAF2-206F-4BBF-8BBA-EB1451D6652A' base='Update des Methodehandbuches regelmäßig unter: &#x3c;www.icp-forests.org&#x3e;'
+		 description='PCC, PROGRAMME CO-ORDINATING CENTRE (1998): Manual on Methods and Criteria for Harmonized 
+Sampling, Assessment, Monitoring and Analysis of the Effects of Air Pollution on Forests  / Programme Co-ordinating Centre (PCC). 4th Edition, Losebl.-Ausg. - Hamburg: 1998
+
+RÖHLE, H. (2003): Wachstumskundliche Untersuchungen für die Level-II-Flächen. Abschlussbericht zum Werkvertrag, Graupa 2003.
+
+'
+		 mod_type='N'/>
+	<z:row obj_id='A3840095-1A3C-4C7E-8366-FF18B2A43DC8' base='Abfrage der einzelnen Forstämter zum Kalkungsvollzug und landesweite Verdichtung der Daten'
+		 description='' mod_type='N'/>
+	<z:row obj_id='D04CE079-DB9A-4129-9342-616636A3A0C6' base='Forstschutzkontrollbuch (FSKB)' mod_type='N'/>
+	<z:row obj_id='B05F1743-809F-4CFE-9033-27F38274220A' mod_type='N'/>
+	<z:row obj_id='2B35DA57-9AC7-46FC-B2CB-60419EA9BE3D' mod_type='N'/>
+	<z:row obj_id='CF7C7EAB-B74C-4272-BFCE-4D6AB498908C' mod_type='N'/>
+	<z:row obj_id='43164966-98CE-4185-8230-F84DA75C1165' mod_type='N'/>
+	<z:row obj_id='BBCDCCA0-E6D2-48BD-8E78-CD14A6D60B7E' base='Standortskartierung' description='Die Forstlichen Wuchsgebiete und -bezirke sind auf einer Karte 1:300 000 dargestellt und in der Monographie :&#x22;Forstliche Wuchsgebiete und Wuchsbezirke im Freistaat Sachsen&#x22; (Schriftenreihe der Sächsischen Landesanstalt für Forsten Heft 8/96) beschrieben.'
+		 mod_type='N'/>
+	<z:row obj_id='00B2028C-89C6-4C4F-9E5D-948DB8B4383F' base='Update des Methodenhandbuches regelmäßig unter: &#x3c;www.icp-forests.org&#x3e;'
+		 description='PCC, PROGRAMME CO-ORDINATING CENTRE (1998): Manual on Methods and Criteria for Harmonized 
+Sampling, Assessment, Monitoring and Analysis of the Effects of Air Pollution on Forests  / Programme Co-ordinating Centre (PCC). 4th Edition, Losebl.-Ausg. - Hamburg: 1998
+'
+		 mod_type='N'/>
+	<z:row obj_id='6AE742E7-05E9-407F-9E7E-934382A15D21' base='Update des Methodehandbuches regelmäßig unter: &#x3c;www.icp-forests.org&#x3e;'
+		 description='BML, BUNDESMINISTERIUM FÜR ERNÄHRUNG, LANDWIRTSCHAFT UND FORSTEN (1990): Bundesweite Bodenzustandserhebung im Wald (BZE) - Arbeitsanleitung, Bonn
+PCC, PROGRAMME CO-ORDINATING CENTRE (1998): Manual on Methods and Criteria for Harmonized 
+Sampling, Assessment, Monitoring and Analysis of the Effects of Air Pollution on Forests  / Programme Co-ordinating Centre (PCC). 4th Edition, Losebl.-Ausg. - Hamburg: 1998
+RABEN, G., ANDREAE, H., KARST, H., SYMOSSEK, F., LEUBE, F. (2000): Bodenzustandserhebung (BZE) in den sächsischen Wäldern (1992 - 1997). Schriftenreihe der Sächsischen Landesanstalt für Forsten, Heft 18, Graupa.
+'
+		 mod_type='N'/>
+	<z:row obj_id='7E17F0C1-D22C-4ED9-B201-CF44B725FD10' mod_type='U'/>
+	<z:row obj_id='4FC8F4E1-55BE-444F-B38A-E325CF40C85C' mod_type='N'/>
+	<z:row obj_id='6E0FCAAA-251B-444E-8E05-AE100066FFDA' base='Die Waldklimastationen sind als autonom und automatisch arbeitende Messsysteme ausgelegt (Vernetzung einzelner Messmodule). Datenübermittlung an das LFP  per GSM Datenfunk; automatische Integration in Datenbank mit dem vorläufigen Status &#x22;ungeprüft&#x22;.'
+		 description='' mod_type='N'/>
+	<z:row obj_id='A8EDE365-D430-4755-8E5E-80201DD3C6A4' base='Einzelbaum- und bestandesbezogene Kenndaten aus Versuchsflächennetz für die Baumarten Fichte, Kiefer, Eiche und Buche, Trennung nach Z-Baum, Füll- und ausscheidendem Bestand.
+Die Aufnahme der einzelnen Merkmale ist von Fläche zu Fläche unterschiedlich.
+'
+		 description='DATAPOOL als Datenbank
+Datenerhebung durch Messung auf den Versuchsflächen des Landesforstpräsidiums/ Referat Waldbau
+CAD - System auf Basis von Microstation 8.0 und Programmaufsatz mit dem Arbeitstitel &#x22;Visualisierungstool Waldbau&#x22;
+' mod_type='N'/>
+	<z:row obj_id='54510D63-E7C2-4FEF-85CD-C673E03FDA5D' base='Insgesamt werden pro Messung 32 Umwelt- und Gaswechselparameter registriert. Räumlich und zeitlich passende Werte der Bodensaugspannungsbedingungen im Hauptwurzelraum (i.d.R. in 30 cm Tiefe) werden dem Parametersatz der Messung zugeordnet.'
+		 description='Auf Intensivmessflächen der Waldumbauversuche des LFP (i.d.R. Waldumbauversuche mit mikroklimatischen Bestandesmessstationen) werden stichprobenartig ökophysiologische Gaswechselmessungen an Baumarten der Verjüngungsschicht (Waldumbau - Baumarten)
+und ausgewählter (flächendeckender) Arten der Bodenvegetation vorgenommen. 
+Je nach Versuchsfläche werden 1 bis 3 Arten der Bodenvegetation und 3 bis 6 Baumarten
+(i.d.R. Zielbaumarten des Waldumbaus) in die Messungen einbezogen.
+'
+		 mod_type='N'/>
+	<z:row obj_id='E792FAF5-F858-418C-83F3-FACA3D6CD7C3' base='Ergebnisse der Vegetationsaufnahmen und der Aufnahmen der Naturverjüngung auf den Versuchsflächen des LFP. Aufnahmen erfolgen nach der Arbeitsanleitung für Vegetationsaufnahmen des LFP.
+'
+		 description='Datenerfassung in der Datenbank erfolgt getrennt nach Forstämtern, Revieren und Versuchsflächen, bzw. Parzellen.'
+		 mod_type='N'/>
+	<z:row obj_id='4E9C4630-A34A-4D85-84EC-71D30B9A46F6' base='Standortskatierung' description='Die Makroklimaformen sind im Forstlichen Standorts-Kartenwerk dargestellt und in den Erläuterungsbänden sowie Legenden-Heften zu den Forstlichen Standortskarten beschrieben.
+Die Forstlichen Klimastufen sind auf einer Karte 1:300.000 dargestellt und in der Monographie :&#x22;Forstliche Wuchsgebiete und Wuchsbezirke im Freistaat Sachsen&#x22; (Schriftenreihe der Sächsischen Landesanstalt für Forsten Heft 8/96) tabellarisch beschrieben.
+
+Eine Überarbeitung der Klimabereiche mit Werten aktueller klimatischer Reihen steht noch aus.
+
+'
+		 mod_type='N'/>
+	<z:row obj_id='C5F0DA15-03C9-4B2B-A042-3EB0AC2C3B68' mod_type='N'/>
+	<z:row obj_id='C36ECB8D-7000-4541-9E16-BEB5BBDA1CB7' mod_type='N'/>
+	<z:row obj_id='2AB58899-7A20-4F90-BCFA-03A11BA35968' base='Wasserstands- und Durchflussmessungen' mod_type='N'/>
+	<z:row obj_id='C0A6C708-0BEC-485D-A49D-C7EAA43D0D4A' mod_type='N'/>
+	<z:row obj_id='8E1A0E30-3ED9-4152-93B4-88B98C15E70C' base='
+' mod_type='N'/>
+	<z:row obj_id='C40765FB-F771-4D97-94AF-49FC5FE22C40' base='
+' description='Angaben über die Größe der oberirdischen Einzugsgebiete in km², Länge der Flussabschnitte in km, Gebietskennzahlen (LAWA-Richtlinie) und Gewässerordnung, Lage der Pegel und wasserwirtschaftlichen Bauwerke (z. B. Wehre, Talsperren, Speicher, Rückhaltebecken) im Flußabschnitt'
+		 mod_type='N'/>
+	<z:row obj_id='13A4301E-CBA4-11D5-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='13A4301F-CBA4-11D5-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='5AEC2A1B-CE55-11D3-8BF6-00105A493192' mod_type='N'/>
+	<z:row obj_id='CB285E4F-7223-47A6-9247-B301506D4837' mod_type='N'/>
+	<z:row obj_id='473EFA37-F65E-4F93-AF51-2A05C2A647CC' mod_type='N'/>
+	<z:row obj_id='C03F5586-2C9B-434C-ABA5-DCB0D719418D' mod_type='N'/>
+	<z:row obj_id='A3870B28-D886-4553-803F-A8295E5158D1' mod_type='U'/>
+	<z:row obj_id='5993FB4A-433D-429F-8F1B-6A05326CBA2B' base='' description='Stoffbezogene Fragen zur Umwelt, zum Arbeitsschutz und zur Gefahrenabwehr
+Herkunft der Daten
+Stoffdaten des Umweltbundesamtes (UBA)
+Stoffdaten des Bundesamtes für Risdikobewertung (BfR)
+Gefahrgutdaten des Bundesanstalt für Materialforschung und -prüfung (BAM)
+Stoffdaten des Informationssystems gefährliche/umweltrelevante Stoffe aus Nordrheinj-Westfalen
+Stoffdaten des Brandweerinformationszentrums gefährliche Stoffe, Geel, Belgien (BIG)
+Feuerwehrspezifische Stoffdaten
+Daten aus der europäischen Altstoffdatenbank (IUCLID)
+Stoffdaten der Umweltbehörde Hamburg (RESY)
+Stoffbezogene Daten aus rechtlichen Regelungen
+Stoffbezogene Fachliteratur
+
+
+'
+		 mod_type='U'/>
+	<z:row obj_id='4428BD45-DBC2-440F-8F34-653827312920' mod_type='D'/>
+	<z:row obj_id='DF8728DC-BEBB-44F9-817F-1260F211AACF' base='32 Messstellen davon 29 Mehrkomponentenmessstellen'
+		 mod_type='D'/>
+	<z:row obj_id='00D11149-1AC5-4543-9DF1-AA794395A7AA' mod_type='D'/>
+	<z:row obj_id='4BB14DE0-7A94-4282-B62D-C76D3C5B52FF' mod_type='N'/>
+	<z:row obj_id='57518D1A-F7D2-4BEA-9CBD-E9FBDA6CC41F' mod_type='N'/>
+	<z:row obj_id='D2FC7D7C-6B56-4644-B81E-58FA66F8850E' base='Datenherkunft aus Genehmigungsplanungen (von Vorhabensträgern), Jahresübersichten zum Deponieverhalten  (von Landkreisen und kreisfreien Städten), aus Jahresabfallbilanzen (von Betreibern), Erfassung erfolgt datenbankgestützt  (access).'
+		 description='insgesamt sind im Amtsbereich des StUFA Chemnitz derzeit 3 Siedlungsabfalldeponien in Betrieb (Stand 02/2003)'
+		 mod_type='N'/>
+	<z:row obj_id='D18F2D37-942E-4142-BA22-CDFD750E0196' base='Datenherkunft aus Erkundungen nach SALM sowie Feststellungs- und Handlungsbedarfsprotokollen der Firmen GLU, ARTEC und M&#x26;S'
+		 description='insgesamt sind im Amtsbereich des StUFA Chemnitz derzeit 312 Altdeponien in der Betriebs- und Nachsorgephase (Stand 02/2003)xxx'
+		 mod_type='N'/>
+	<z:row obj_id='23E40415-362D-443A-9C8B-B44614C8ED4B' mod_type='N'/>
+	<z:row obj_id='911B7391-E3E8-451F-990C-4A886C1F4005' mod_type='N'/>
+	<z:row obj_id='6146CBAB-ABA1-4D6A-AD5C-8250B0ECD29B' mod_type='N'/>
+	<z:row obj_id='C79604CE-6139-49CB-8126-633B9038ED0C' mod_type='N'/>
+	<z:row obj_id='069861E2-3689-4F8C-AD9B-2DCB82164235' mod_type='N'/>
+	<z:row obj_id='9E37A347-EC75-4807-A891-5CDC1E1D85EA' base='Verweis auf SII - Modul voraussichtlich Ende 2000'
+		 description='gefährliche Stoffe lt. Anhängen der Störfallverordnung (12. BImSchV vom 02.05.2000)' mod_type='N'/>
+	<z:row obj_id='408A281B-513F-4B4A-9573-C5890E73E33C' mod_type='N'/>
+	<z:row obj_id='8BD2F17D-9643-4E97-95CC-50D739CA81DC' description='Datenerfassung für Schutzgebiete: Access-Datenbank
+Zuständigkeit für die Dokumentation liegt beim LfUG. Nähere Informationen sind dementsprechend dort abzufragen.'
+		 mod_type='N'/>
+	<z:row obj_id='4DD91AE3-9784-449A-8528-175A2926F214' mod_type='N'/>
+	<z:row obj_id='CB8153C2-3684-48A2-B662-F53EF81F3D00' mod_type='N'/>
+	<z:row obj_id='1C49D07E-4124-4559-BEA1-EC8CF60948CE' mod_type='N'/>
+	<z:row obj_id='37D22168-BBC5-4625-9A21-59CC4242859B' mod_type='N'/>
+	<z:row obj_id='6ADFA934-0945-4C3B-BBA3-62763A056C75' description='gefährliche Stoffe lt. Anhängen der Störfallverordnung (12. BImSchV )
+'
+		 mod_type='N'/>
+	<z:row obj_id='E47190AF-114D-4AA6-AE41-4BFE1A3735CB' base='Access-Datenbank
+' mod_type='N'/>
+	<z:row obj_id='F3579F99-094B-453D-B505-A80060DC46B7' base='Access Datenbank' mod_type='N'/>
+	<z:row obj_id='3E2F95AA-5C13-4CED-8C9F-BD7EC846969B' base='Datenherkunft aus Genehmigungsplanungen (von Vorhabensträgern), Jahresübersichten zum Deponieverhalten  (von Landkreisen und kreisfreien Städten), aus Jahresabfallbilanzen (von Betreibern), Erfassung erfolgt datenbankgestützt  (access).'
+		 description='insgesamt sind im Amtsbereich des StUFAPlauen derzeit 3 Siedlungsabfalldeponien in Betrieb (Stand 12/2000)'
+		 mod_type='N'/>
+	<z:row obj_id='651916FA-CAA8-4179-B5E8-CC0F67AE2DFC' base='Datenherkunft aus Genehmigungsplanungen (von Vorhabensträgern), Jahresübersichten zum Deponieverhalten  (von Landkreisen und kreisfreien Städten), aus Jahresabfallbilanzen (von Betreibern), Erfassung erfolgt datenbankgestützt  (Access).'
+		 description='insgesamt sind im Amtsbereich des StUFA Radebeul derzeit 4 Siedlungsabfalldeponien in Betrieb (Stand 11/2001)'
+		 mod_type='N'/>
+	<z:row obj_id='28CA4D2D-B50C-490C-9E4E-CD2E979352B6' mod_type='N'/>
+	<z:row obj_id='ABB612E2-B301-426B-8B46-05A916C8C887' mod_type='N'/>
+	<z:row obj_id='DEE5278F-8DED-498C-9125-A528019E3093' mod_type='N'/>
+	<z:row obj_id='67E2482F-20B9-418D-9120-677BB58F5DDF' mod_type='N'/>
+	<z:row obj_id='807EF14D-49A1-4F30-9ED2-DC08F79722B4' description='gefährliche Stoffe lt. Anhängen der Störfallverordnung (12. BImSchV vom 02.05.2000)'
+		 mod_type='N'/>
+	<z:row obj_id='7C56953D-EA01-4A03-B87E-927621C7E02C' base='Access-Datenbank
+' mod_type='N'/>
+	<z:row obj_id='5756A737-3D53-47A8-B3D7-C4CABA28F4AF' base='Access Datenbank' mod_type='N'/>
+	<z:row obj_id='3AF5109B-4D84-436D-9216-67A9375F070C' base='Datenherkunft aus Genehmigungsplanungen (von Vorhabensträgern), Jahresübersichten zum Deponieverhalten  (Zweckverband &#x22;RAVON&#x22;), aus Jahresabfallbilanzen (von Betreibern), Erfassung erfolgt datenbankgestützt  (Access).'
+		 description='insgesamt sind im Amtsbereich des StUFA Bautzen derzeit 4 Siedlungsabfalldeponien in Betrieb (Stand 12/2000)'
+		 mod_type='N'/>
+	<z:row obj_id='243E909D-5F49-47D6-877D-A500F24E1591' mod_type='N'/>
+	<z:row obj_id='3D2847B7-82EF-45CD-AB92-EA4EE2C6071D' mod_type='N'/>
+	<z:row obj_id='D0E4F5CA-B334-4895-89F0-1B517A670E1B' mod_type='N'/>
+	<z:row obj_id='523E2ABB-8ABD-4BBB-AD81-F80A1842707F' mod_type='N'/>
+	<z:row obj_id='0BB46D37-05CE-4F2E-B941-59A588590D0A' base='Verweis auf SII - Modul voraussichtlich Ende 2000'
+		 description='gefährliche Stoffe lt. Anhängen der Störfallverordnung (12. BImSchV vom 02.05.2000)' mod_type='N'/>
+	<z:row obj_id='F0189C0D-C95C-4562-8A79-1E0431A7FC25' mod_type='N'/>
+	<z:row obj_id='512478BC-0B8D-4CB5-AC2A-1BD247E1632E' base='landesweite selektive Biotopkartierung Teil 1 und 2'
+		 description='Tabellen und Geometriedaten' mod_type='N'/>
+	<z:row obj_id='E06CC5D0-FD5E-4654-80AC-EF7BD44B22DA' description='fachliche Grundlage: Würdigung
+Datenerfasung für Schutzgebiete Access-Datenbank
+'
+		 mod_type='N'/>
+	<z:row obj_id='9AFE81A1-AD57-457A-9B3C-E07E4F4397DD' mod_type='N'/>
+	<z:row obj_id='4FB8DBD9-5094-40F4-91D7-C7FBB59E103C' mod_type='N'/>
+	<z:row obj_id='F4093285-F462-4E6B-9069-E3C966F2622D' base='Datenherkunft aus Genehmigungsplanungen (von Vorhabensträgern), Jahresübersichten zum Deponieverhalten (von Landkreisen und kreisfreien Städten), aus Jahresabfallbilanzen (von Betreibern), Erfassung erfolgt datenbankgestützt  (Access).'
+		 description='insgesamt sind im Amtsbereich des RPL Leipzig derzeit 7 Siedlungsabfalldeponien in Betrieb (Stand 11/2000)'
+		 mod_type='N'/>
+	<z:row obj_id='3C871B82-436C-4546-BE6A-1CE5CC49C3F6' mod_type='N'/>
+	<z:row obj_id='54609148-6764-47E1-A95C-81BD2FAE9449' mod_type='N'/>
+	<z:row obj_id='6701A2E3-4BAD-4F4D-976D-37EA2E8A2403' mod_type='N'/>
+	<z:row obj_id='807086BF-CD60-4475-A18F-876E4A932306' mod_type='N'/>
+	<z:row obj_id='01B598CD-A2AA-4FDF-B045-EABD90DE571B' base='Verweis auf SII - Modul des LfUG 18.12.2000' description='gefährliche Stoffe lt. Anhängen der Störfallverordnung (12. BImSchV vom 02.05.2000)'
+		 mod_type='N'/>
+	<z:row obj_id='FB0ED051-558D-41D7-AC6E-38035887CC76' base='Access-Datenbank für die Dokumentation
+' mod_type='N'/>
+	<z:row obj_id='C942F942-320D-4140-BEA8-BA10DAC5D15D' mod_type='D'/>
+	<z:row obj_id='35CEC514-8951-4BA3-9C5B-32A2B8AD5639' base='' mod_type='D'/>
+	<z:row obj_id='5E4A71E7-072C-46A5-974B-8FB524445E8D' mod_type='D'/>
+	<z:row obj_id='BACB7194-5494-41F2-B2AF-03A1022669E7' mod_type='N'/>
+	<z:row obj_id='13A43020-CBA4-11D5-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='C7E058B5-762D-4E7F-A17E-CA452FD73F47' mod_type='U'/>
+	<z:row obj_id='2F61ADD7-B1D4-40EC-B3C5-5CC0D9A1D65E' mod_type='D'/>
+	<z:row obj_id='B23ADF71-63B4-42A0-97C9-AF1109C2A170' mod_type='D'/>
+	<z:row obj_id='F6063A1C-1D1B-464A-A62A-D306C91434AC' mod_type='N'/>
+	<z:row obj_id='8C073B8D-A61A-4A9D-9D26-8794B7711405' mod_type='N'/>
+	<z:row obj_id='2FF6B7C6-1FFF-4E1A-A905-FCE27B6105AF' mod_type='N'/>
+	<z:row obj_id='21FC2597-43D1-41D4-9D00-84DE41B358F7' mod_type='U'/>
+	<z:row obj_id='09F1771B-901C-41A0-96DA-35ECB7339A36' mod_type='N'/>
+	<z:row obj_id='E6829749-396A-479D-988D-48B15B224184' mod_type='N'/>
+	<z:row obj_id='86C6881A-FF72-47F9-A147-4E5A9E408252' mod_type='N'/>
+	<z:row obj_id='B792AD5F-ACA1-462B-8E2C-B3F7F9D3DA44' base='' mod_type='N'/>
+	<z:row obj_id='9385B020-EEDE-4FBF-AB33-010993227487' mod_type='N'/>
+	<z:row obj_id='6C649FAC-4625-4830-8212-478F185AE4D0' mod_type='N'/>
+	<z:row obj_id='1432ED8A-EC64-44F3-80AD-6AA3E281A8D4' mod_type='N'/>
+	<z:row obj_id='6B28967C-AF06-4352-AF4B-D0FACEC24F0A' base='Datengrundlage Deutscher Wetterdienst, Czech Hydrometeorological Institute, Institut für Hydrologie und Meteorologie der TU Dresden'
+		 mod_type='D'/>
+	<z:row obj_id='5FC27EFA-CE71-472B-B7C5-BAB4196FF4F4' mod_type='U'/>
+	<z:row obj_id='09537C7A-351E-4168-86E9-AFA3C8FBA650' mod_type='N'/>
+	<z:row obj_id='313D408A-20E5-49F0-96F9-6B7D47726015' base='Datenbereitsstellung durch die Zentrale Radebeul-Wahnsdorf: online '
+		 description='Die Standortbedingungen am Ort der Probenahme werden als Standortcharakteristik im Intranet des SMUL bereitgestellt. '
+		 mod_type='D'/>
+	<z:row obj_id='6CA6D18A-CE57-11D3-8BF6-00105A493192' base='Die Grundwasserstandsmessungen erfolgen durch ehrenamtliche Beobachter oder mittels Datensammler (Datenlogger) und Datenfernübertragung. Die Grundwasserbeprobung wird durch zertifizierte Probenehmer durchgeführt.'
+		 description='Folgende Grundwassermessnetze werden mit verschiedener Messhäufigkeit betrieben:
+1.    Messnetze Grundwasserstand:
+1.1  Grundmessnetz (rd. 950 Messstellen)
+1.2  Sondermessnetze (rd. 600 Messstellen)
+1.3  Sondermessnetz &#x22;Hochwasser im Grundwasser&#x22; (rd. 100 Messstellen; neu)
+2.    Messnetze Grundwasserbeschaffenheit (in Überarbeitung gemäß WRRL):
+2.1  &#x22;Überblicksweise Überwachung&#x22; (rd. 140 Messstellen)
+2.2  &#x22;Operative Überwachung von diffusen Quellen&#x22; (rd. 120 Messstellen)
+2.3  &#x22;Operative Überwachung von Punktquellen&#x22; (rd. 70 Messstellen)
+2.4  &#x22;Messnetze zu Ermittlungszwecken&#x22; (rd. 270 Messstellen; temporär)'
+		 mod_type='U'/>
+	<z:row obj_id='6CA6D0B5-CE57-11D3-8BF6-00105A493192' base='Wägbare Lysimeter und begleitende Untersuchungen'
+		 description='Messung von Klimadaten, Niederschlag, Sickerwasser und Änderung der Bodenwasservorräte; Ermittlung der realen Verdunstung; Analyse der Inhaltsstoffe von Niederschlag und Sickerwasser; Erfassung und Auswertung der Bodenuntersuchungen, der Bewirtschaftungsmethoden, Ernteerträge, Pflanzenentzüge und der phänologischen Beobachtungen; 
+
+Ergänzend werden im Einzugsgebiet der Parthe verdichtende Wasserhaushalts- und Beschaffenheitsdaten (Sondermessnetz &#x22;Parthe&#x22;) erfasst, die als Grundlage für Einzugsgebietsmodellierungen dienen. Bestandteil dieses Sondermessnetzes sind sowohl Niederschlags- als auch Grund- und Oberflächenwassermessstellen.'
+		 mod_type='U'/>
+	<z:row obj_id='F388499F-61B7-4D72-BE5B-78396F03860A' base='Wasserstandsmessungen: Lattenpegel sowie kontinuierliche Datensammlung (Datenlogger) mit DFÜ per Telefonfestnetz, Mobilfunknetz oder Richtfunk; Durchflussermittlung mittels Messflügel, ADCP, Radar oder Tracer.'
+		 description='Folgende Oberflächenwassermessnetze werden kontinuierlich betrieben:1. Basismessnetz für den Hochwassermeldedienst und die Erfassung der Variabilität des Wasserdargebotes (rd. 190 Pegeln)
+2. Kontroll- und Steuermessnetz mit territorial und zeitlich begrenzten Messaufgaben (rd. 50 Messstellen) 3. Sondermessnetze mit derzeit 18 Pegeln.'
+		 mod_type='U'/>
+	<z:row obj_id='6CA6D143-CE57-11D3-8BF6-00105A493192' base='Kontinuierlich registrierende Regenmesser (Pluvio) mit Datenfernübertragung.'
+		 mod_type='U'/>
+</rs:data>
+</xml>

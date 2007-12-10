@@ -1,0 +1,54 @@
+<xml xmlns:s='uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882'
+	xmlns:dt='uuid:C2F41010-65B3-11d1-A29F-00AA00C14882'
+	xmlns:rs='urn:schemas-microsoft-com:rowset'
+	xmlns:z='#RowsetSchema'>
+<s:Schema id='RowsetSchema'>
+	<s:ElementType name='row' content='eltOnly' rs:updatable='true'>
+		<s:AttributeType name='advise_from_id' rs:number='1' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='sys_adv_adv'
+			 rs:basecolumn='advise_from_id' rs:keycolumn='true'>
+			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true' rs:maybenull='false'/>
+		</s:AttributeType>
+		<s:AttributeType name='advise_to_id' rs:number='2' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='sys_adv_adv'
+			 rs:basecolumn='advise_to_id' rs:keycolumn='true'>
+			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true' rs:maybenull='false'/>
+		</s:AttributeType>
+		<s:extends type='rs:rowbase'/>
+	</s:ElementType>
+</s:Schema>
+<rs:data>
+	<z:row advise_from_id='1' advise_to_id='2'/>
+	<z:row advise_from_id='1' advise_to_id='3'/>
+	<z:row advise_from_id='1' advise_to_id='4'/>
+	<z:row advise_from_id='1' advise_to_id='70'/>
+	<z:row advise_from_id='2' advise_to_id='5'/>
+	<z:row advise_from_id='2' advise_to_id='8'/>
+	<z:row advise_from_id='2' advise_to_id='9'/>
+	<z:row advise_from_id='3' advise_to_id='14'/>
+	<z:row advise_from_id='3' advise_to_id='15'/>
+	<z:row advise_from_id='3' advise_to_id='50'/>
+	<z:row advise_from_id='4' advise_to_id='22'/>
+	<z:row advise_from_id='4' advise_to_id='23'/>
+	<z:row advise_from_id='5' advise_to_id='6'/>
+	<z:row advise_from_id='5' advise_to_id='7'/>
+	<z:row advise_from_id='5' advise_to_id='40'/>
+	<z:row advise_from_id='8' advise_to_id='10'/>
+	<z:row advise_from_id='8' advise_to_id='11'/>
+	<z:row advise_from_id='9' advise_to_id='12'/>
+	<z:row advise_from_id='9' advise_to_id='13'/>
+	<z:row advise_from_id='14' advise_to_id='16'/>
+	<z:row advise_from_id='14' advise_to_id='17'/>
+	<z:row advise_from_id='14' advise_to_id='18'/>
+	<z:row advise_from_id='15' advise_to_id='19'/>
+	<z:row advise_from_id='15' advise_to_id='20'/>
+	<z:row advise_from_id='15' advise_to_id='21'/>
+	<z:row advise_from_id='22' advise_to_id='24'/>
+	<z:row advise_from_id='22' advise_to_id='25'/>
+	<z:row advise_from_id='22' advise_to_id='26'/>
+	<z:row advise_from_id='23' advise_to_id='27'/>
+	<z:row advise_from_id='23' advise_to_id='28'/>
+	<z:row advise_from_id='23' advise_to_id='29'/>
+	<z:row advise_from_id='50' advise_to_id='51'/>
+	<z:row advise_from_id='50' advise_to_id='52'/>
+	<z:row advise_from_id='50' advise_to_id='53'/>
+</rs:data>
+</xml>

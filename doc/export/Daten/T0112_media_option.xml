@@ -1,0 +1,340 @@
+<xml xmlns:s='uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882'
+	xmlns:dt='uuid:C2F41010-65B3-11d1-A29F-00AA00C14882'
+	xmlns:rs='urn:schemas-microsoft-com:rowset'
+	xmlns:z='#RowsetSchema'>
+<s:Schema id='RowsetSchema'>
+	<s:ElementType name='row' content='eltOnly' rs:updatable='true'>
+		<s:AttributeType name='obj_id' rs:number='1' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='T0112_media_option'
+			 rs:basecolumn='obj_id' rs:keycolumn='true'>
+			<s:datatype dt:type='string' dt:maxLength='40' rs:maybenull='false'/>
+		</s:AttributeType>
+		<s:AttributeType name='line' rs:number='2' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='T0112_media_option'
+			 rs:basecolumn='line' rs:keycolumn='true'>
+			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true' rs:maybenull='false'/>
+		</s:AttributeType>
+		<s:AttributeType name='medium_name' rs:number='3' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T0112_media_option' rs:basecolumn='medium_name'>
+			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='medium_note' rs:number='4' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T0112_media_option' rs:basecolumn='medium_note'>
+			<s:datatype dt:type='string' dt:maxLength='255'/>
+		</s:AttributeType>
+		<s:AttributeType name='transfer_size' rs:number='5' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T0112_media_option' rs:basecolumn='transfer_size'>
+			<s:datatype dt:type='float' dt:maxLength='8' rs:precision='15' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='mod_type' rs:number='6' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T0112_media_option' rs:basecolumn='mod_type'>
+			<s:datatype dt:type='string' dt:maxLength='1'/>
+		</s:AttributeType>
+		<s:extends type='rs:rowbase'/>
+	</s:ElementType>
+</s:Schema>
+<rs:data>
+	<z:row obj_id='00AC01F7-B799-4799-8EE5-78D295ED4EC9' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='01B598CD-A2AA-4FDF-B045-EABD90DE571B' line='3' medium_name='4' mod_type='N'/>
+	<z:row obj_id='F3D145BE-CE51-11D3-8BF6-00105A493192' line='1' medium_name='18' medium_note='-' transfer_size='0'
+		 mod_type='D'/>
+	<z:row obj_id='ABA63E53-C443-405E-8180-DD491D9C8026' line='1' medium_name='18' medium_note='0' transfer_size='0'
+		 mod_type='I'/>
+	<z:row obj_id='039E7AE2-A518-4FB4-9EF1-BD3750D5E21B' line='1' medium_name='1' mod_type='N'/>
+	<z:row obj_id='91ADBC5E-AD7D-4482-ACC0-3431616ECAE9' line='1' medium_name='18' medium_note='0' transfer_size='0'
+		 mod_type='I'/>
+	<z:row obj_id='0E5F4B6C-7997-4F41-A3B3-891025393DB3' line='1' medium_name='1' mod_type='N'/>
+	<z:row obj_id='115A63D2-F788-4750-9820-0CA79BDBA8A1' line='1' medium_name='1' mod_type='N'/>
+	<z:row obj_id='2393849F-1978-4D20-8255-223ED67F82C8' line='1' medium_name='18' medium_note='0' transfer_size='0'
+		 mod_type='I'/>
+	<z:row obj_id='BE6819D4-AED8-4607-B777-73A87A4B202F' line='1' medium_name='15' medium_note='http://www.umwelt.sachsen.de/de/wu/umwelt/lfug/lfug-internet/boden_14598.html'
+		 transfer_size='20' mod_type='I'/>
+	<z:row obj_id='1566FB67-C161-4A8B-A62A-9FE207525A5B' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='1566FB67-C161-4A8B-A62A-9FE207525A5B' line='2' medium_name='1' mod_type='N'/>
+	<z:row obj_id='162004B7-DF07-4B06-9F17-0D826D6409FC' line='1' medium_name='1' mod_type='N'/>
+	<z:row obj_id='8D6BB63D-AE37-4A15-8FC1-7EBCB30A7B5C' line='1' medium_name='18' mod_type='I'/>
+	<z:row obj_id='1848108B-D268-4B12-95D8-870E6E0A51ED' line='1' medium_name='18' mod_type='D'/>
+	<z:row obj_id='1848108B-D268-4B12-95D8-870E6E0A51ED' line='2' medium_name='4' mod_type='D'/>
+	<z:row obj_id='18E0E415-FA8C-4C0B-A127-3585AED4AFB3' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='8D6BB63D-AE37-4A15-8FC1-7EBCB30A7B5C' line='2' medium_name='4' mod_type='I'/>
+	<z:row obj_id='F1EF262E-E558-4649-9FE6-D1F4DAA5EB96' line='1' medium_name='4' mod_type='I'/>
+	<z:row obj_id='201C0BA4-E5AB-11D6-A459-005004F9360E' line='1' medium_name='11' mod_type='N'/>
+	<z:row obj_id='21A710A8-6C6B-4523-8517-DA8B0D5EE906' line='2' medium_name='15' mod_type='N'/>
+	<z:row obj_id='21A710A8-6C6B-4523-8517-DA8B0D5EE906' line='1' medium_name='1' mod_type='N'/>
+	<z:row obj_id='22874C91-415C-434B-8258-DA7A649D32A7' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='23E40415-362D-443A-9C8B-B44614C8ED4B' line='1' medium_name='1' mod_type='N'/>
+	<z:row obj_id='34F94DB0-FCD7-40C9-A79A-672C1EC75774' line='1' medium_name='18' mod_type='I'/>
+	<z:row obj_id='243FA0FA-C55A-461B-AED4-480A3860D830' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='25051DD9-9D61-4698-A2D6-94B54880650E' line='1' medium_name='15' mod_type='N'/>
+	<z:row obj_id='34F94DB0-FCD7-40C9-A79A-672C1EC75774' line='2' medium_name='4' mod_type='I'/>
+	<z:row obj_id='78992812-E8A0-47CB-AF43-399229740451' line='1' medium_name='18' mod_type='I'/>
+	<z:row obj_id='2AABD03E-C754-4AE5-A44C-E9CAC8B450EC' line='1' medium_name='15' mod_type='N'/>
+	<z:row obj_id='2AB58899-7A20-4F90-BCFA-03A11BA35968' line='1' medium_name='15' mod_type='N'/>
+	<z:row obj_id='2AB58899-7A20-4F90-BCFA-03A11BA35968' line='2' medium_name='18' mod_type='N'/>
+	<z:row obj_id='2AB58899-7A20-4F90-BCFA-03A11BA35968' line='3' medium_name='15' mod_type='N'/>
+	<z:row obj_id='78992812-E8A0-47CB-AF43-399229740451' line='2' medium_name='4' mod_type='I'/>
+	<z:row obj_id='2D6037C5-873E-4CD6-B537-E3A701CFEFD0' line='1' medium_name='15' mod_type='N'/>
+	<z:row obj_id='3E11132C-151A-455B-9684-AB030B0F310F' line='1' medium_name='1' mod_type='I'/>
+	<z:row obj_id='2F4A3177-8A80-4D71-9CAD-04EA64F4EFF3' line='1' medium_name='1' mod_type='N'/>
+	<z:row obj_id='2F61ADD7-B1D4-40EC-B3C5-5CC0D9A1D65E' line='1' medium_name='4' mod_type='D'/>
+	<z:row obj_id='3E11132C-151A-455B-9684-AB030B0F310F' line='2' medium_name='18' mod_type='I'/>
+	<z:row obj_id='32880234-E5B1-4066-B337-39A4E2B1D729' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='34872E65-A37A-4D7A-8010-040FFC4164E4' line='1' medium_name='1' mod_type='N'/>
+	<z:row obj_id='35787B93-E71F-11D6-A45B-005004F9360E' line='1' medium_name='11' mod_type='N'/>
+	<z:row obj_id='35787B95-E71F-11D6-A45B-005004F9360E' line='1' medium_name='11' mod_type='N'/>
+	<z:row obj_id='35787B95-E71F-11D6-A45B-005004F9360E' line='2' medium_name='1' mod_type='N'/>
+	<z:row obj_id='35787B97-E71F-11D6-A45B-005004F9360E' line='1' medium_name='11' mod_type='N'/>
+	<z:row obj_id='35787B99-E71F-11D6-A45B-005004F9360E' line='1' medium_name='11' mod_type='N'/>
+	<z:row obj_id='35787B9B-E71F-11D6-A45B-005004F9360E' line='1' medium_name='11' mod_type='N'/>
+	<z:row obj_id='35787B9D-E71F-11D6-A45B-005004F9360E' line='1' medium_name='11' mod_type='N'/>
+	<z:row obj_id='35787B9F-E71F-11D6-A45B-005004F9360E' line='1' medium_name='11' mod_type='N'/>
+	<z:row obj_id='35787BA1-E71F-11D6-A45B-005004F9360E' line='1' medium_name='11' mod_type='N'/>
+	<z:row obj_id='35787BA3-E71F-11D6-A45B-005004F9360E' line='1' medium_name='11' mod_type='N'/>
+	<z:row obj_id='35787BA5-E71F-11D6-A45B-005004F9360E' line='1' medium_name='11' mod_type='N'/>
+	<z:row obj_id='35787BA7-E71F-11D6-A45B-005004F9360E' line='1' medium_name='11' mod_type='N'/>
+	<z:row obj_id='35787BA9-E71F-11D6-A45B-005004F9360E' line='1' medium_name='11' mod_type='N'/>
+	<z:row obj_id='35989419-CDEE-11D5-9350-0048543011FC' line='1' medium_name='1' mod_type='N'/>
+	<z:row obj_id='35CEC514-8951-4BA3-9C5B-32A2B8AD5639' line='1' medium_name='18' mod_type='D'/>
+	<z:row obj_id='35CEC514-8951-4BA3-9C5B-32A2B8AD5639' line='2' medium_name='4' mod_type='D'/>
+	<z:row obj_id='6CC9795E-7F12-4DC0-B3F3-32D70AE2E9A5' line='1' medium_name='18' mod_type='I'/>
+	<z:row obj_id='6CC9795E-7F12-4DC0-B3F3-32D70AE2E9A5' line='2' medium_name='4' mod_type='I'/>
+	<z:row obj_id='29FE57A7-B311-43C6-8B7C-E5ED7736E96C' line='1' medium_name='18' mod_type='I'/>
+	<z:row obj_id='29FE57A7-B311-43C6-8B7C-E5ED7736E96C' line='2' medium_name='4' mod_type='I'/>
+	<z:row obj_id='368CF868-4CA6-4465-9CDE-881EA969155E' line='1' medium_name='18' mod_type='I'/>
+	<z:row obj_id='368CF868-4CA6-4465-9CDE-881EA969155E' line='2' medium_name='4' mod_type='I'/>
+	<z:row obj_id='26466B8C-20C2-4676-B8A5-3AC3E84953FE' line='1' medium_name='18' mod_type='I'/>
+	<z:row obj_id='26466B8C-20C2-4676-B8A5-3AC3E84953FE' line='2' medium_name='4' mod_type='I'/>
+	<z:row obj_id='4DEC2C0E-9C40-42F4-9D18-791F7D72EF11' line='1' medium_name='18' mod_type='I'/>
+	<z:row obj_id='3912829F-87B2-439E-B88F-A1D9D999D5FC' line='1' medium_name='1' mod_type='N'/>
+	<z:row obj_id='3912829F-87B2-439E-B88F-A1D9D999D5FC' line='2' medium_name='11' mod_type='N'/>
+	<z:row obj_id='3912829F-87B2-439E-B88F-A1D9D999D5FC' line='3' medium_name='1' mod_type='N'/>
+	<z:row obj_id='3912829F-87B2-439E-B88F-A1D9D999D5FC' line='4' medium_name='1' mod_type='N'/>
+	<z:row obj_id='3948D394-183A-4B89-BB91-A40DFA90E1C5' line='1' medium_name='1' mod_type='N'/>
+	<z:row obj_id='252F89BB-8DD6-4CC3-9E26-44EB73CCE25B' line='1' medium_name='18' mod_type='I'/>
+	<z:row obj_id='ACAC53AA-0310-4C09-85C7-626873DD2A73' line='1' medium_name='18' mod_type='I'/>
+	<z:row obj_id='3ED28B94-7A73-4F13-84AF-F3244E9BCB4E' line='1' medium_name='1' mod_type='N'/>
+	<z:row obj_id='3F0888F4-5E4B-45BF-9D36-C17FF86C7956' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='47A16330-3E79-414E-9C4E-87533B1C9F87' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='47A16330-3E79-414E-9C4E-87533B1C9F87' line='2' medium_name='15' mod_type='N'/>
+	<z:row obj_id='491556E7-A748-43A3-B034-43827FFD5A9F' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='4AD9A975-0A6D-11D6-9350-0048543011FC' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='4AD9A975-0A6D-11D6-9350-0048543011FC' line='2' medium_name='1' mod_type='N'/>
+	<z:row obj_id='4AD9A975-0A6D-11D6-9350-0048543011FC' line='3' medium_name='4' mod_type='N'/>
+	<z:row obj_id='4AD9A975-0A6D-11D6-9350-0048543011FC' line='4' medium_name='1' mod_type='N'/>
+	<z:row obj_id='4AD9A975-0A6D-11D6-9350-0048543011FC' line='5' medium_name='4' mod_type='N'/>
+	<z:row obj_id='4AD9A975-0A6D-11D6-9350-0048543011FC' line='6' medium_name='18' mod_type='N'/>
+	<z:row obj_id='4B3F7FAA-7EC1-48CE-B8A8-9889A57C1D03' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='4BB14DE0-7A94-4282-B62D-C76D3C5B52FF' line='1' medium_name='1' mod_type='N'/>
+	<z:row obj_id='4C4BC3F8-5D62-470B-B795-6CBFFEBB6267' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='4E9C4630-A34A-4D85-84EC-71D30B9A46F6' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='526A966C-927B-489F-9914-9ED97275E5BD' line='1' medium_name='18' mod_type='D'/>
+	<z:row obj_id='526A966C-927B-489F-9914-9ED97275E5BD' line='2' medium_name='4' mod_type='D'/>
+	<z:row obj_id='5373BC55-30BE-40D6-911D-17105BA0DFA4' line='1' medium_name='1' mod_type='N'/>
+	<z:row obj_id='54043773-AA7A-4E39-81E8-28E30C3D5DB8' line='1' medium_name='1' mod_type='N'/>
+	<z:row obj_id='558C3234-ADA2-4B15-AE79-5042BF56A56F' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='57D72ABA-BF34-4DE7-A293-2B092D5B4505' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='58035569-0154-48C1-8C4C-AACC933065D9' line='1' medium_name='1' mod_type='N'/>
+	<z:row obj_id='5920CACF-FEDB-4849-8926-9EAE8EAE4D1B' line='1' medium_name='1' mod_type='N'/>
+	<z:row obj_id='5993FB4A-433D-429F-8F1B-6A05326CBA2B' line='1' medium_name='15' mod_type='N'/>
+	<z:row obj_id='5993FB4A-433D-429F-8F1B-6A05326CBA2B' line='2' medium_name='1' mod_type='N'/>
+	<z:row obj_id='59A18301-4530-4C45-9C9C-8630AAFC9B5F' line='1' medium_name='15' mod_type='N'/>
+	<z:row obj_id='5D886D6A-8674-467E-A204-439F5C3008AB' line='1' medium_name='1' mod_type='N'/>
+	<z:row obj_id='5E4A71E7-072C-46A5-974B-8FB524445E8D' line='1' medium_name='1' mod_type='D'/>
+	<z:row obj_id='5E4A71E7-072C-46A5-974B-8FB524445E8D' line='2' medium_name='18' mod_type='D'/>
+	<z:row obj_id='5E94850F-F0BB-45DA-857B-1EFBA44D8AFB' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='5EE20676-D848-4BFE-91CC-CF3B21FEB752' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='5FFE38E4-440E-47A0-A26C-720E73EBB029' line='1' medium_name='1' mod_type='N'/>
+	<z:row obj_id='60369DDA-1EAF-4004-B96F-2F08B2296C27' line='1' medium_name='15' mod_type='N'/>
+	<z:row obj_id='6AAC3A4F-9363-47C8-BB6D-405B3503CA6E' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='74389D26-C5BA-4A10-B4AF-7F03F2BD375F' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='74CA2DBA-42E5-4FC2-9875-9C29B89538F6' line='1' medium_name='1' mod_type='N'/>
+	<z:row obj_id='75730AC4-9E53-4FBC-A93D-78A0AA92833C' line='1' medium_name='15' mod_type='N'/>
+	<z:row obj_id='75730AC4-9E53-4FBC-A93D-78A0AA92833C' line='2' medium_name='18' mod_type='N'/>
+	<z:row obj_id='917890BF-4055-4F3C-8A18-5A78BD2B92C8' line='1' medium_name='18' medium_note='0' transfer_size='0'
+		 mod_type='I'/>
+	<z:row obj_id='7655B013-D52A-481D-8C86-30F613370B1B' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='7655B013-D52A-481D-8C86-30F613370B1B' line='2' medium_name='15' mod_type='N'/>
+	<z:row obj_id='7734BE34-0990-49BB-8A8E-0EEB902F2B54' line='1' medium_name='1' mod_type='N'/>
+	<z:row obj_id='3F361792-924F-4562-BFDF-EEF1BF0A35C2' line='1' medium_name='18' medium_note='0' transfer_size='0'
+		 mod_type='I'/>
+	<z:row obj_id='7A73014C-F39A-4251-9283-5741788BCA18' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='8DE39CC1-2219-48E5-AF1A-C5AAAC3348BF' line='1' medium_name='18' medium_note='0' transfer_size='0'
+		 mod_type='I'/>
+	<z:row obj_id='7B5EB4B3-B6C2-4C2F-9BC2-803459B86555' line='1' medium_name='1' mod_type='N'/>
+	<z:row obj_id='4136345C-01A4-4B9D-96EE-E69264E1FB2F' line='1' medium_name='18' medium_note='0' transfer_size='0'
+		 mod_type='I'/>
+	<z:row obj_id='D0EE0467-B4E5-42BF-B3E4-FFC2C52D5D62' line='1' medium_name='18' mod_type='I'/>
+	<z:row obj_id='7F67C28C-28A9-4B38-9E34-781665507160' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='7F85C86D-3394-4407-B2BB-284C242B3C8A' line='1' medium_name='15' mod_type='N'/>
+	<z:row obj_id='81757FE4-EA47-43DF-8D7D-FC3FB8AE31B7' line='1' medium_name='15' mod_type='N'/>
+	<z:row obj_id='81757FE4-EA47-43DF-8D7D-FC3FB8AE31B7' line='2' medium_name='1' mod_type='N'/>
+	<z:row obj_id='8AFA4C05-4250-4DF8-98E2-926C5D6616D0' line='1' medium_name='15' mod_type='N'/>
+	<z:row obj_id='8AFA4C05-4250-4DF8-98E2-926C5D6616D0' line='2' medium_name='18' mod_type='N'/>
+	<z:row obj_id='8E1A0E30-3ED9-4152-93B4-88B98C15E70C' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='911B7391-E3E8-451F-990C-4A886C1F4005' line='1' medium_name='1' mod_type='N'/>
+	<z:row obj_id='92736965-BD14-46B9-B535-32C094DB7EE4' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='93571AF1-7D80-428A-9DD0-03EE2F4230E5' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='9D8E5B24-E5AD-11D6-A459-005004F9360E' line='1' medium_name='11' mod_type='N'/>
+	<z:row obj_id='9E37A347-EC75-4807-A891-5CDC1E1D85EA' line='3' medium_name='4' mod_type='N'/>
+	<z:row obj_id='A3870B28-D886-4553-803F-A8295E5158D1' line='1' medium_name='1' mod_type='N'/>
+	<z:row obj_id='A4775D93-A638-4063-98F7-D6507B5C97C4' line='1' medium_name='15' mod_type='N'/>
+	<z:row obj_id='A4775D93-A638-4063-98F7-D6507B5C97C4' line='2' medium_name='1' mod_type='N'/>
+	<z:row obj_id='A5E5958F-AF14-4AF6-AC8C-9FB2B80012E3' line='1' medium_name='1' mod_type='N'/>
+	<z:row obj_id='A8894770-008A-4DAC-A148-271AAE34E21F' line='1' medium_name='1' mod_type='N'/>
+	<z:row obj_id='AA468F4A-4F5E-4F7F-B98B-CA7099304B83' line='1' medium_name='900009' mod_type='N'/>
+	<z:row obj_id='AA468F4A-4F5E-4F7F-B98B-CA7099304B83' line='2' medium_name='1' mod_type='N'/>
+	<z:row obj_id='AB88FBBA-A652-4510-BF86-445C68E7A4BF' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='AB88FBBA-A652-4510-BF86-445C68E7A4BF' line='2' medium_name='15' mod_type='N'/>
+	<z:row obj_id='B02994D4-770C-40F3-B80B-A0A242F667CD' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='B0BB3FE4-3F55-4EB8-B4B8-E38130E8691A' line='1' medium_name='18' mod_type='D'/>
+	<z:row obj_id='B0BB3FE4-3F55-4EB8-B4B8-E38130E8691A' line='2' medium_name='4' mod_type='D'/>
+	<z:row obj_id='B23ADF71-63B4-42A0-97C9-AF1109C2A170' line='1' medium_name='18' mod_type='D'/>
+	<z:row obj_id='B23ADF71-63B4-42A0-97C9-AF1109C2A170' line='2' medium_name='4' mod_type='D'/>
+	<z:row obj_id='B3DD14FE-5D45-45DA-81F3-5928D51AA552' line='1' medium_name='15' mod_type='N'/>
+	<z:row obj_id='B7DD7C86-8E70-43B2-A9BF-ACE6E43C401E' line='1' medium_name='1' mod_type='N'/>
+	<z:row obj_id='B7DD7C86-8E70-43B2-A9BF-ACE6E43C401E' line='2' medium_name='18' mod_type='N'/>
+	<z:row obj_id='B9D55077-C397-483D-8836-FCA4C31DAE6F' line='1' medium_name='15' mod_type='N'/>
+	<z:row obj_id='BBCDCCA0-E6D2-48BD-8E78-CD14A6D60B7E' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='BC544CE5-8B53-440A-A438-D35907D0823C' line='1' medium_name='1' mod_type='N'/>
+	<z:row obj_id='C0ADFC80-1707-434C-B605-982172CD4642' line='1' medium_name='1' medium_note='-' transfer_size='21'
+		 mod_type='N'/>
+	<z:row obj_id='C36ECB8D-7000-4541-9E16-BEB5BBDA1CB7' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='C36ECB8D-7000-4541-9E16-BEB5BBDA1CB7' line='2' medium_name='15' mod_type='N'/>
+	<z:row obj_id='C39B0923-EA66-441C-A1E0-B9ADE7583A43' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='C412A608-748A-4A08-B271-528C099B2F60' line='1' medium_name='15' mod_type='N'/>
+	<z:row obj_id='C4A87FC9-0CA2-4250-B737-CE90E75636C2' line='2' medium_name='15' mod_type='N'/>
+	<z:row obj_id='C5F0DA15-03C9-4B2B-A042-3EB0AC2C3B68' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='C942F942-320D-4140-BEA8-BA10DAC5D15D' line='1' medium_name='18' mod_type='D'/>
+	<z:row obj_id='C942F942-320D-4140-BEA8-BA10DAC5D15D' line='2' medium_name='4' mod_type='D'/>
+	<z:row obj_id='CA20F165-80A5-4DDC-BAC0-3FB5195B221B' line='1' medium_name='1' mod_type='N'/>
+	<z:row obj_id='CAADD963-DCE7-44C7-8487-89094644EB17' line='1' medium_name='1' mod_type='N'/>
+	<z:row obj_id='CB285E4F-7223-47A6-9247-B301506D4837' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='CF0FED12-9164-4B1C-9ABC-EE6C701877CA' line='1' medium_name='1' mod_type='N'/>
+	<z:row obj_id='D075B8EE-0122-11D6-9350-0048543011FC' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='D075B904-0122-11D6-9350-0048543011FC' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='D075B905-0122-11D6-9350-0048543011FC' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='D075B906-0122-11D6-9350-0048543011FC' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='D075B907-0122-11D6-9350-0048543011FC' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='D075B908-0122-11D6-9350-0048543011FC' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='D075B90B-0122-11D6-9350-0048543011FC' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='D075B90D-0122-11D6-9350-0048543011FC' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='D075B90E-0122-11D6-9350-0048543011FC' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='D075B90F-0122-11D6-9350-0048543011FC' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='D075B910-0122-11D6-9350-0048543011FC' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='D075B911-0122-11D6-9350-0048543011FC' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='D075B912-0122-11D6-9350-0048543011FC' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='D075B913-0122-11D6-9350-0048543011FC' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='D075B914-0122-11D6-9350-0048543011FC' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='D075B915-0122-11D6-9350-0048543011FC' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='D075B916-0122-11D6-9350-0048543011FC' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='D075B917-0122-11D6-9350-0048543011FC' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='D075B918-0122-11D6-9350-0048543011FC' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='D075B919-0122-11D6-9350-0048543011FC' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='D21E209F-2788-43A1-A876-40087CEDCA1E' line='1' medium_name='15' mod_type='N'/>
+	<z:row obj_id='D39EC43D-1D1C-4113-80CB-9FAD366E9AE7' line='1' medium_name='1' mod_type='N'/>
+	<z:row obj_id='D39EC43D-1D1C-4113-80CB-9FAD366E9AE7' line='2' medium_name='900009' mod_type='N'/>
+	<z:row obj_id='D41937C3-7C9E-46AB-9E9B-84D4DDB00A91' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='D6285876-BA02-4FC8-8DB8-BF7BBEE992FF' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='D9AFC06B-D177-4745-9BFD-27C10FABA362' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='DADFA8B6-0ACF-467D-A779-6FA809BF4A48' line='1' medium_name='1' mod_type='N'/>
+	<z:row obj_id='DD52FAD1-D5A1-49B9-8139-B4ED730E5FCE' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='DDEC9F23-3B9D-4C4C-BD79-B230348FE8E3' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='DF8669B7-79BC-416A-92F4-08D332D05493' line='1' medium_name='18' mod_type='D'/>
+	<z:row obj_id='DF8669B7-79BC-416A-92F4-08D332D05493' line='2' medium_name='4' mod_type='D'/>
+	<z:row obj_id='F3D145BE-CE51-11D3-8BF6-00105A493192' line='2' medium_name='18' medium_note='.' transfer_size='0'
+		 mod_type='D'/>
+	<z:row obj_id='E37DBDD3-2E00-4A2E-A73D-04EDA7927D03' line='1' medium_name='1' mod_type='N'/>
+	<z:row obj_id='B1E2B08C-2444-41E6-9899-3B53523412DB' line='1' medium_name='15' medium_note='.' transfer_size='11.4'
+		 mod_type='I'/>
+	<z:row obj_id='E5278A99-926D-445A-AF94-671733C0E35E' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='1C587160-ECE1-461F-89D2-829CE929C654' line='1' medium_name='18' mod_type='I'/>
+	<z:row obj_id='E94B90FA-117A-4EF5-BDF4-29C2166CFAD3' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='E99CE642-0DE5-480D-BD34-ED9ACABE1BF6' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='EC4BEC7C-F7C6-4BCF-97D5-E8A84C13A98B' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='ECE5F5DC-AD4E-45AF-8DC2-2140BCE7916C' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='F1EF1CE9-A468-4D1A-B2CC-A9E3FFCE342D' line='1' medium_name='1' mod_type='N'/>
+	<z:row obj_id='F5390405-3483-47E6-A510-2AA500F75194' line='1' medium_name='1' mod_type='N'/>
+	<z:row obj_id='F7704F73-F18B-4074-90B1-ACBF91337763' line='1' medium_name='15' mod_type='N'/>
+	<z:row obj_id='FB61E1F5-8641-4A0F-AECD-3ED2DE5284AB' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='FDCF17F7-1F17-4A77-BBD4-67388358DCB6' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='3BA4C5DD-510E-4F79-8CF8-641E0259AD41' line='1' medium_name='15' medium_note='GIS-Server des LfUG'
+		 transfer_size='0.13900000000000001' mod_type='U'/>
+	<z:row obj_id='D7CA9A10-53FE-4A87-8554-BF61FE615F2F' line='3' medium_name='15' mod_type='N'/>
+	<z:row obj_id='D7CA9A10-53FE-4A87-8554-BF61FE615F2F' line='4' medium_name='18' mod_type='N'/>
+	<z:row obj_id='38EB627B-25EC-4BCF-A6E8-2D2368CDED1A' line='1' medium_name='15' medium_note='GIS-Server LfUG'
+		 transfer_size='0.30299999999999999' mod_type='U'/>
+	<z:row obj_id='FE35A047-D425-4FD0-AA99-26F659C12012' line='1' medium_name='15' medium_note='GIS-Server des LfUG'
+		 transfer_size='5.1999999999999998E-2' mod_type='U'/>
+	<z:row obj_id='E9C4CAD7-AF16-4E0E-888B-AD85DB51672A' line='1' medium_name='15' medium_note='GIS-Server des LfUG'
+		 transfer_size='0.28399999999999997' mod_type='U'/>
+	<z:row obj_id='D076F0AC-D56C-466A-A6AE-9797129BE928' line='1' medium_name='1' mod_type='N'/>
+	<z:row obj_id='FC3A0853-D930-49E8-BB18-2A94060B6FA2' line='1' medium_name='1' medium_note='' transfer_size='700'
+		 mod_type='N'/>
+	<z:row obj_id='6932B088-1296-4A35-9350-2C211CF6276E' line='1' medium_name='15' medium_note='GIS-Server des LfUG'
+		 transfer_size='0.745' mod_type='N'/>
+	<z:row obj_id='29C0BEFC-8870-4F3B-B6E8-22B6416F9754' line='1' medium_name='-1' medium_note='-' transfer_size='1'
+		 mod_type='N'/>
+	<z:row obj_id='DF018273-19F1-4FB0-8D33-89046F007695' line='1' medium_name='-1' medium_note='-' transfer_size='2.3999999999999999'
+		 mod_type='N'/>
+	<z:row obj_id='CE9718D4-C232-48DD-9096-C5C34A71A28C' line='1' medium_name='15' mod_type='N'/>
+	<z:row obj_id='A9FB6E54-4335-42B0-A1C7-F8153EA85C28' line='1' medium_name='15' medium_note='' transfer_size='2'
+		 mod_type='N'/>
+	<z:row obj_id='4FA30354-50C3-4DA2-91B0-B667FA17183F' line='1' medium_name='15' medium_note='Internet' transfer_size='4.7999999999999998'
+		 mod_type='N'/>
+	<z:row obj_id='9F5AB253-51AD-4F69-8035-55469FE2F5E6' line='1' medium_name='15' medium_note='Internet' transfer_size='2.3999999999999999'
+		 mod_type='N'/>
+	<z:row obj_id='D5B16FF0-9A6A-4ED3-9C6C-51F2DC599773' line='1' medium_name='15' medium_note='Internet' transfer_size='3.8999999999999999'
+		 mod_type='N'/>
+	<z:row obj_id='E9A549E2-6C21-4AB9-B269-1AD0D179D6FC' line='5' medium_name='15' medium_note='Internet' transfer_size='6.0999999999999996'
+		 mod_type='N'/>
+	<z:row obj_id='3F8006B4-9762-4838-9645-58E7E2C41378' line='1' medium_name='15' medium_note='Internet' transfer_size='1.2'
+		 mod_type='N'/>
+	<z:row obj_id='2B7E6C8B-B49A-4ED2-AD30-EEA898BC7B72' line='1' medium_name='15' medium_note='Internet' transfer_size='11.4'
+		 mod_type='N'/>
+	<z:row obj_id='D334B656-46EF-4CA5-91EF-7F93C55D48FB' line='1' medium_name='15' medium_note='http://www.lfug.smul.sachsen.de/de/wu/umwelt/lfug/lfug-internet/wasser_361.html'
+		 transfer_size='3.1000000000000001' mod_type='N'/>
+	<z:row obj_id='406C2B7F-F5F2-437F-AF43-A36FE2D3AC22' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='A83EB520-43AF-4797-87D5-F7884C150C4F' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='75DA5B70-FDC5-470A-A571-811B7C707875' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='74D89563-03BA-424A-95D9-F7F8571AFD5C' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='811FEFAC-1DBF-485B-9C24-373F3A1A8536' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='AEDD090F-02C2-428E-BA15-3D6D74FB616F' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='944E2E4A-E1DF-43AA-9EF6-2EA60C2E077D' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='C9F0205F-CE7B-4034-A379-ED380E8C6EC5' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='05EA6F8D-6566-4151-99F2-EE4E84DAF2D4' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='4736D8AA-ECFB-44C8-8F0F-4586D9D3EE92' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='DC6EC169-BA10-4D31-87C4-9D48FF9058F7' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='F3F2E730-1CC9-44CB-93AD-7B84A8C627F6' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='496E8510-7D19-4E2F-975A-945B7CEEB7AF' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='11AF0429-0057-4D10-9656-09BFF605D418' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='851B288B-B78B-4485-A824-3E0DA8D9EFB4' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='6C1ED1FE-D266-4229-B562-4FC9608D4FD8' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='B253FE4D-1C8C-4EA1-B1CA-1B1FB6166668' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='6416A980-5291-406C-884B-73F0A99F4DF3' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='2FC2E7C3-2DE7-49A0-B50C-4C9CAED52A2F' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='3F1A5728-FFDC-4A45-9A68-B937BE7AC303' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='BA351498-C420-4536-A746-3D27E95CBF85' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='468DE6D8-B732-472E-B17F-9AF3EC37227E' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='A7ACBD55-06F1-42BC-85FD-101A3E4B8FB5' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='145D3EDF-B422-4C9C-A060-845E61FCE732' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='346EDD97-0720-45EC-ACC5-325B04D2FB9B' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='E18EB243-D4C5-4EF9-82E6-6C8751B90E5D' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='FCFAB5EB-DC0B-4FE1-BE12-725EFCD440DB' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='8B7A185F-E63C-4DBC-ACEC-E462639AA882' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='2537CC62-8EFD-43C5-AF60-2383340712B9' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='DE2DC76B-C0E4-46F7-B150-DAE60101E35B' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='0F98EB9F-FFF2-4A89-A00A-43DB8007DC6A' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='C7B82C86-959B-4F18-878E-0FE983F25C44' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='AA1B6AB4-7CFE-4474-B350-44D5A796D40B' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='44CCAFCE-9812-4251-8A94-9BB1652B5942' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='4CBEB2C5-31A3-4627-80B5-AC3CC76C979A' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='DDA5762C-0C18-4EDA-9801-89D3D1EC03EA' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='5244EACE-D14F-40AC-A188-48534A11A6F8' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='BA245AFB-FE3C-40B4-91B9-B62A23E2BDFC' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='27F03286-BE79-4637-AFD2-C66ADC5CFF00' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='1AFF64BE-D13A-407B-AD7A-8263DDACF91D' line='1' medium_name='18' mod_type='N'/>
+	<z:row obj_id='AC04181A-C983-4907-8705-26D9217FDE2B' line='1' medium_name='15' medium_note='GIS-Server des LfUG'
+		 transfer_size='3' mod_type='N'/>
+	<z:row obj_id='F00FD47F-07FE-468D-8AD4-115CA0955A56' line='1' medium_name='18' mod_type='I'/>
+	<z:row obj_id='A0FA0564-51F1-42BA-ABDA-C942AA5070B6' line='1' medium_name='18' mod_type='I'/>
+	<z:row obj_id='86120AF2-EA08-4985-B5D7-047F0B78F9B5' line='1' medium_name='18' mod_type='I'/>
+</rs:data>
+</xml>

@@ -1,0 +1,64 @@
+<xml xmlns:s='uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882'
+	xmlns:dt='uuid:C2F41010-65B3-11d1-A29F-00AA00C14882'
+	xmlns:rs='urn:schemas-microsoft-com:rowset'
+	xmlns:z='#RowsetSchema'>
+<s:Schema id='RowsetSchema'>
+	<s:ElementType name='row' content='eltOnly' rs:updatable='true'>
+		<s:AttributeType name='attr_id' rs:number='1' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='T08_attrtyp'
+			 rs:basecolumn='attr_id' rs:keycolumn='true'>
+			<s:datatype dt:type='string' dt:maxLength='40' rs:maybenull='false'/>
+		</s:AttributeType>
+		<s:AttributeType name='line' rs:number='2' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T08_attrtyp' rs:basecolumn='line'>
+			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='cat_id' rs:number='3' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T08_attrtyp' rs:basecolumn='cat_id'>
+			<s:datatype dt:type='string' dt:maxLength='40'/>
+		</s:AttributeType>
+		<s:AttributeType name='attr_name' rs:number='4' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T08_attrtyp' rs:basecolumn='attr_name'>
+			<s:datatype dt:type='string' dt:maxLength='50'/>
+		</s:AttributeType>
+		<s:AttributeType name='xpos' rs:number='5' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T08_attrtyp' rs:basecolumn='xpos'>
+			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='ypos' rs:number='6' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T08_attrtyp' rs:basecolumn='ypos'>
+			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='length' rs:number='7' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T08_attrtyp' rs:basecolumn='length'>
+			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='class' rs:number='8' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T08_attrtyp' rs:basecolumn='class'>
+			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='typ' rs:number='9' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T08_attrtyp' rs:basecolumn='typ'>
+			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='mod_type' rs:number='10' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='T08_attrtyp'
+			 rs:basecolumn='mod_type'>
+			<s:datatype dt:type='string' dt:maxLength='1' rs:maybenull='false'/>
+		</s:AttributeType>
+		<s:extends type='rs:rowbase'/>
+	</s:ElementType>
+</s:Schema>
+<rs:data>
+	<z:row attr_id='B927CEE3-0EF9-480B-989B-082DA06CF130' line='1' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261'
+		 attr_name='Datensatz/Datenserie' xpos='1' ypos='0' length='40' class='6' typ='3' mod_type='D'/>
+	<z:row attr_id='3D6FF764-9DF1-4E90-B152-CD4631EFC019' line='2' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261'
+		 attr_name='Erfassungsgrad' xpos='2' ypos='0' length='10' class='6' typ='2' mod_type='D'/>
+	<z:row attr_id='9F81A6B3-94D7-44B7-BDA5-7031B8D59B7D' line='3' cat_id='' attr_name='Verweis zum Dienst' xpos='3'
+		 ypos='0' length='40' class='6' typ='2' mod_type='U'/>
+	<z:row attr_id='6BF03CAC-8D38-4741-A4E0-30D29F0147EA' line='4' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261'
+		 attr_name='Erstellungsmaßstab' xpos='3' ypos='0' length='40' class='6' typ='2' mod_type='D'/>
+	<z:row attr_id='D8DDCF41-6C3D-47F7-A82F-4AF1E64E70E6' line='5' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261'
+		 attr_name='Dienste' xpos='4' ypos='0' length='40' class='6' typ='2' mod_type='D'/>
+	<z:row attr_id='F371C5CD-D2EC-46C5-B070-EF02380FF3CF' line='1' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261'
+		 attr_name='Messnetz' xpos='1' ypos='0' length='10' class='0' typ='1' mod_type='D'/>
+</rs:data>
+</xml>

@@ -1,0 +1,122 @@
+<xml xmlns:s='uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882'
+	xmlns:dt='uuid:C2F41010-65B3-11d1-A29F-00AA00C14882'
+	xmlns:rs='urn:schemas-microsoft-com:rowset'
+	xmlns:z='#RowsetSchema'>
+<s:Schema id='RowsetSchema'>
+	<s:ElementType name='row' content='eltOnly' rs:updatable='true'>
+		<s:AttributeType name='obj_id' rs:number='1' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='T011_obj_serv'
+			 rs:basecolumn='obj_id' rs:keycolumn='true'>
+			<s:datatype dt:type='string' dt:maxLength='40' rs:maybenull='false'/>
+		</s:AttributeType>
+		<s:AttributeType name='type' rs:number='2' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T011_obj_serv' rs:basecolumn='type'>
+			<s:datatype dt:type='string' dt:maxLength='255'/>
+		</s:AttributeType>
+		<s:AttributeType name='history' rs:number='3' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T011_obj_serv' rs:basecolumn='history'>
+			<s:datatype dt:type='string' dt:maxLength='1073741823' rs:long='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='environment' rs:number='4' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T011_obj_serv' rs:basecolumn='environment'>
+			<s:datatype dt:type='string' dt:maxLength='1073741823' rs:long='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='base' rs:number='5' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T011_obj_serv' rs:basecolumn='base'>
+			<s:datatype dt:type='string' dt:maxLength='255'/>
+		</s:AttributeType>
+		<s:AttributeType name='description' rs:number='6' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T011_obj_serv' rs:basecolumn='description'>
+			<s:datatype dt:type='string' dt:maxLength='1073741823' rs:long='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='mod_type' rs:number='7' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
+			 rs:basetable='T011_obj_serv' rs:basecolumn='mod_type'>
+			<s:datatype dt:type='string' dt:maxLength='1'/>
+		</s:AttributeType>
+		<s:extends type='rs:rowbase'/>
+	</s:ElementType>
+</s:Schema>
+<rs:data>
+	<z:row obj_id='A4775D93-A638-4063-98F7-D6507B5C97C4' type='Fachinformationssystem' mod_type='U'/>
+	<z:row obj_id='B82B0A07-116F-45A0-B601-5EBD422E838B' type='Fachinformationssystem' environment=' ' mod_type='D'/>
+	<z:row obj_id='E1C31EF4-81CE-4CFD-8207-EC0E0A8DCA6C' type='XXX' mod_type='D'/>
+	<z:row obj_id='5AEC2E06-CE55-11D3-8BF6-00105A493192' type='Berechnungsverfahren, gültig bis 2000' mod_type='N'/>
+	<z:row obj_id='9E48DAF5-8BD4-11D5-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='A0B69EC8-779A-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='13A43022-CBA4-11D5-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='7B52B0E9-EE0D-11D5-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='8F590A2F-E7E2-11D5-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B8EF-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B8F0-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B8F2-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='D075B8F3-0122-11D6-9350-0048543011FC' mod_type='N'/>
+	<z:row obj_id='6B7100AE-F0BC-4B3E-B36C-9E92B7820718' type='Fachinformationssystem' mod_type='U'/>
+	<z:row obj_id='C4AFA2F7-F499-4ECA-B4BA-B2079164E1C0' type='Fachinformationssystem' history='Entwicklung edv-gestützer Entscheidungshilfen im Rahmen des Forschungsprojektes &#x22;Prognose agrarischer Schadorganismen&#x22; (1994-1997)'
+		 base='Wetterdaten' mod_type='U'/>
+	<z:row obj_id='5AEC2A62-CE55-11D3-8BF6-00105A493192' type='Modell /MeMaS /Access' mod_type='N'/>
+	<z:row obj_id='4A0B8476-AD33-409E-B74F-A2FD03CA209A' type='Fachinformationssystem' environment=' ' base='' mod_type='D'/>
+	<z:row obj_id='BF4D89FE-E1C7-4318-AB4F-F2F4780D0A20' type='' mod_type='D'/>
+	<z:row obj_id='35F44042-65F6-45F8-9C9D-C1FD8DA39B52' type='Fachinformationssystem' environment=' ' base='InVeKoS-Förderdaten'
+		 mod_type='D'/>
+	<z:row obj_id='A31539B1-0843-4EF8-BB2D-87D2790F9B96' type='' mod_type='D'/>
+	<z:row obj_id='BD2A4BF3-D05A-40CB-9314-D7821B5F01DC' type='Ausbreitungsmodell-Rechnung' description='Ausbreitungsrechenverfahren nach TA Luft'
+		 mod_type='U'/>
+	<z:row obj_id='BDC31500-91EC-4C78-8998-42DDA475B937' type='Fachinformationssystem' environment=' ' mod_type='U'/>
+	<z:row obj_id='4AEC7C73-27E0-4892-9042-52893E5CA8DC' type='Fachinformationssystem' environment=' ' base='' mod_type='U'/>
+	<z:row obj_id='5AEC2DB7-CE55-11D3-8BF6-00105A493192' type='Modell E3D /ArcGIS
+' mod_type='N'/>
+	<z:row obj_id='02FD3ECB-C4AC-4658-8657-0C6AAA15D39B' type='Fachinformationssystem' environment=' ' base='' mod_type='U'/>
+	<z:row obj_id='EDD923CE-1238-4718-895C-89C9DB9E2850' type='Fachinformationssystem' environment=' ' base='' mod_type='U'/>
+	<z:row obj_id='C4E31A1E-00B9-4A13-838D-810C6DB4FAA4' type='Fachinformationssystem' environment=' ' base='' mod_type='U'/>
+	<z:row obj_id='3F855540-8685-4D9E-A751-46C4582F4CB6' type='Fachinformationssystem' environment=' ' base='' mod_type='U'/>
+	<z:row obj_id='C4A87FC9-0CA2-4250-B737-CE90E75636C2' type='Verwaltungsverfahren' environment=' Hersteller:Juris GmbH'
+		 description='Online-Datenbank' mod_type='N'/>
+	<z:row obj_id='6C818197-FCA6-4C54-8374-D7D9B124A24D' type='Fachinformationssystem' environment=' ' base='' mod_type='U'/>
+	<z:row obj_id='F2F987A4-AAB4-46A5-ACC5-1D3530DCB61E' type='Fachinformationssystem' environment=' ' base='' mod_type='U'/>
+	<z:row obj_id='0ECD2A32-4219-42EC-9EDF-15C791A4C51C' type='Fachinformationssystem' environment=' ' base='' mod_type='U'/>
+	<z:row obj_id='2F4A3177-8A80-4D71-9CAD-04EA64F4EFF3' type='Verwaltungsverfahren' environment='Oracle-Datenbank
+Version 8.0 Release 01.04'
+		 description='Datenträger: CD' mod_type='N'/>
+	<z:row obj_id='548129FB-621F-4AE5-8C78-CF8F4C5C5C7F' type='Fachinformationssystem' environment=' ' base='' mod_type='U'/>
+	<z:row obj_id='356E2838-74B3-4A53-B123-B58877488E02' type='Fachinformationssystem' history='aus Einzeldatenbanken entstanden, im Aufbau begriffen'
+		 environment='' base='Einzeldatenbanken des forstlichen Umweltmonitorings und der Standortserkundung, verbunden mit der digitalen Standortskarte'
+		 description='' mod_type='N'/>
+	<z:row obj_id='C78FD86B-8295-4BB1-A473-3E125602D984' type='Fachinformationssystem' history='Aufbau begonnen ab 1994 - Weiterentwicklung und Erweiterung als laufender Prozess'
+		 environment='SQL Datenbankserver, 
+Microstation CAD System, 
+Verschiedene Spezialprogramme unter Win 2000/XP, 
+Schnittstellen zum FGIS System des LFP
+'
+		 base='siehe einzelne Datenbankprojekte' description='Komplex aus mehreren (vernetzten) Datenbankprojekten und Expertensystemen (siehe Beschreibung)'
+		 mod_type='N'/>
+	<z:row obj_id='F026DFD8-E469-4AE7-82E7-0634A9B8CD4C' type='-' mod_type='N'/>
+	<z:row obj_id='73FADB67-5E49-4170-B171-582B0CF64C8D' type='-' mod_type='N'/>
+	<z:row obj_id='F909C032-0B3C-41D6-BFAE-42CE452EDF49' type='
+' mod_type='U'/>
+	<z:row obj_id='5AEC2633-CE55-11D3-8BF6-00105A493192' type='Fachinformationssystem' environment='Oracle 8i; Access 2003; ArcGIS 9.0'
+		 mod_type='N'/>
+	<z:row obj_id='E9E06E38-053A-45EE-A425-D3380A393CD6' type='-' mod_type='N'/>
+	<z:row obj_id='CAADD963-DCE7-44C7-8487-89094644EB17' type='.' mod_type='U'/>
+	<z:row obj_id='CE34C67F-AA0C-429C-92AD-0BC16D803C69' type='Berechnungsverfahren' mod_type='N'/>
+	<z:row obj_id='03E2D339-C545-4D5F-877C-75DA0866CC68' type='Berechnungsverfahren' mod_type='N'/>
+	<z:row obj_id='14CCE51E-5254-418B-8204-D43040516D86' type='Fachinformationssystem' environment=' ' base='' mod_type='U'/>
+	<z:row obj_id='A8894770-008A-4DAC-A148-271AAE34E21F' type='Fachanwendung' environment='GIS ArcView
+Pogrammiersprache Fortran'
+		 description='z.Z. in Testphase
+Flutungszentrale der LMBV' mod_type='N'/>
+	<z:row obj_id='D3C825B3-07EF-4DFB-81AD-0CEBCC3700E3' type='Fachanwendung' environment='Basis GIS ArcView
+Programmiersprache Fortran'
+		 description='Datennutzer: LMBV, LfUG, StUFAB, LUA Brandenburg, Senatsverwaltung Berlin' mod_type='N'/>
+	<z:row obj_id='DAAAF451-AF64-4D73-B389-C693B567E9EE' type='Internet' base='Sauerstoffgehalt und -sättigung, Temperatur, pH-Wert, Leitfähigkeit, Nitrat- und Ammoniumstickstoff, Trübung, SAK, Gesamtchlorophyll, Biotest, AOV'
+		 description='Parameterumfang der einzelnen Stationen unterschiedlich ' mod_type='U'/>
+	<z:row obj_id='240F27B3-049C-4299-85E5-7A999A99F21E' type='XXXX' mod_type='D'/>
+	<z:row obj_id='07F4F072-2527-4B92-89F5-223EB6621511' type='Fachinformationssystem' environment=' ' base='' mod_type='D'/>
+	<z:row obj_id='71393514-8897-4FC9-AD11-33DF1E1E1528' type='xxx' mod_type='D'/>
+	<z:row obj_id='222C5FE7-E25B-48DB-B134-63A64B786459' type='Fachinformationssystem' history='seit wann ??' base='- Phytosanitäre Erhebungen, visuelle Bestandesbonituren (Schaderregerüberwachung) 
+- Nutzung einfacher Warndienstgeräte (Gelbschalen, Pheromonfallen) 
+- Labordiagnostische Untersuchungen 
+- Agrarmeteorologisches Messnetz und Nutzung von auf We'
+		 mod_type='U'/>
+	<z:row obj_id='0E3CE039-1BA4-4961-A676-7D1C28097A86' type='Fachinformationssystem' mod_type='U'/>
+	<z:row obj_id='1D88F944-D6D3-420F-8B80-3EF300E46E24' type='Fachinformationssystem' environment=' ' base='' mod_type='U'/>
+</rs:data>
+</xml>
