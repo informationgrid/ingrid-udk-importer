@@ -157,6 +157,11 @@ public class ImportDescriptorHelper {
 		if (udkDbVersion != null) {
 			descr.setUdkDbVersion(udkDbVersion);
 		}
+		
+		if (descr.getFiles() == null || descr.getFiles().isEmpty()) {
+			log.error("No import files specified.");
+			throw new IllegalArgumentException("No import files specified.");
+		}
 		return descr;
 	}
 

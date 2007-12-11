@@ -4,6 +4,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import de.ingrid.importer.udk.provider.InMemoryDataProvider;
+import de.ingrid.importer.udk.strategy.IDCDefaultStrategy;
+import de.ingrid.importer.udk.strategy.IDCStrategy;
 
 /**
  * Hello world!
@@ -26,18 +28,10 @@ public class Importer {
 		}
 		
 		InMemoryDataProvider data = new InMemoryDataProvider(descr);
-        
-        /* build input structure
-		 * 
-		 * - read all data into hashmap/list constructs
-		 * 
-		 * choose strategy
-		 * 
-		 * - dependend on cmd arguments
-		 * - call strategy with input data
-		 * 
-		 */
-		  
 		
+		IDCStrategy strategy = new IDCDefaultStrategy();
+		strategy.setImportDescriptor(descr);
+		strategy.setDataProvider(data);
+		strategy.execute();
 	}
 }

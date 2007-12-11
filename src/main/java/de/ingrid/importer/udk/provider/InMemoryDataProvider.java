@@ -26,7 +26,7 @@ import de.ingrid.importer.udk.ImportDescriptor;
  * @author Administrator
  * 
  */
-public class InMemoryDataProvider {
+public class InMemoryDataProvider implements DataProvider {
 
 	private static Log log = LogFactory.getLog(InMemoryDataProvider.class);
 	
