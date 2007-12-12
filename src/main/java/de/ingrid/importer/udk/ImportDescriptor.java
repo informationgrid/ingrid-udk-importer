@@ -7,37 +7,37 @@ import java.util.ArrayList;
 
 /**
  * @author joachim
- *
+ * 
  */
 public class ImportDescriptor {
 
-    /** * Database parameter: DB Url */
-    private String dbURL = "";
-    
-    /** * Database parameter: JDBC driver class */
-    private String dbDriver = "";
-    
-    /** * Database parameter: DB user name */
-    private String dbUser = "";
-    
-    /** * Database parameter: DB user password */
-    private String dbPass = "";
-    
-    /** * Database Name: Oracle / MySQL / MSSQL */
-    private String dbName = "";
+	/** * Database parameter: DB Url */
+	private String dbURL = "";
 
-    /** * Datenbankschema/-Katalog */
-    private String dbSchema = "";
-    
-    private String configurationFile = "conf/descriptor.properties";
-    
-    private String udkDbVersion = null; 
+	/** * Database parameter: JDBC driver class */
+	private String dbDriver = "";
 
-    /**
-     * ArrayList to store import files
-     * 
-     */
-    private ArrayList <String>files = new ArrayList<String>();
+	/** * Database parameter: DB user name */
+	private String dbUser = "";
+
+	/** * Database parameter: DB user password */
+	private String dbPass = "";
+
+	/** * Database Name: Oracle / MySQL / MSSQL */
+	private String dbName = "";
+
+	/** * Datenbankschema/-Katalog */
+	private String dbSchema = "";
+
+	private String configurationFile = "conf/descriptor.properties";
+
+	private String udkDbVersion = null;
+
+	/**
+	 * ArrayList to store import files
+	 * 
+	 */
+	private ArrayList<String> files = new ArrayList<String>();
 
 	/**
 	 * @return the dbDriver
@@ -47,7 +47,8 @@ public class ImportDescriptor {
 	}
 
 	/**
-	 * @param dbDriver the dbDriver to set
+	 * @param dbDriver
+	 *            the dbDriver to set
 	 */
 	public void setDbDriver(String dbDriver) {
 		this.dbDriver = dbDriver;
@@ -61,7 +62,8 @@ public class ImportDescriptor {
 	}
 
 	/**
-	 * @param dbName the dbName to set
+	 * @param dbName
+	 *            the dbName to set
 	 */
 	public void setDbName(String dbName) {
 		this.dbName = dbName;
@@ -75,7 +77,8 @@ public class ImportDescriptor {
 	}
 
 	/**
-	 * @param dbPass the dbPass to set
+	 * @param dbPass
+	 *            the dbPass to set
 	 */
 	public void setDbPass(String dbPass) {
 		this.dbPass = dbPass;
@@ -89,7 +92,8 @@ public class ImportDescriptor {
 	}
 
 	/**
-	 * @param dbSchema the dbSchema to set
+	 * @param dbSchema
+	 *            the dbSchema to set
 	 */
 	public void setDbSchema(String dbSchema) {
 		this.dbSchema = dbSchema;
@@ -103,7 +107,8 @@ public class ImportDescriptor {
 	}
 
 	/**
-	 * @param dbURL the dbURL to set
+	 * @param dbURL
+	 *            the dbURL to set
 	 */
 	public void setDbURL(String dbURL) {
 		this.dbURL = dbURL;
@@ -117,7 +122,8 @@ public class ImportDescriptor {
 	}
 
 	/**
-	 * @param dbUser the dbUser to set
+	 * @param dbUser
+	 *            the dbUser to set
 	 */
 	public void setDbUser(String dbUser) {
 		this.dbUser = dbUser;
@@ -131,7 +137,8 @@ public class ImportDescriptor {
 	}
 
 	/**
-	 * @param files the files to set
+	 * @param files
+	 *            the files to set
 	 */
 	public void setFiles(ArrayList<String> files) {
 		this.files = files;
@@ -145,7 +152,8 @@ public class ImportDescriptor {
 	}
 
 	/**
-	 * @param configurationFile the configurationFile to set
+	 * @param configurationFile
+	 *            the configurationFile to set
 	 */
 	public void setConfigurationFile(String configurationFile) {
 		this.configurationFile = configurationFile;
@@ -159,11 +167,11 @@ public class ImportDescriptor {
 	}
 
 	/**
-	 * @param udkDbVersion the udkDbVersion to set
+	 * @param udkDbVersion
+	 *            the udkDbVersion to set
 	 */
 	public void setUdkDbVersion(String udkDbVersion) {
 		this.udkDbVersion = udkDbVersion;
 	}
 
-	
 }

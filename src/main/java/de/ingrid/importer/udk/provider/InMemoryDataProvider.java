@@ -29,8 +29,10 @@ import de.ingrid.importer.udk.ImportDescriptor;
 public class InMemoryDataProvider implements DataProvider {
 
 	private static Log log = LogFactory.getLog(InMemoryDataProvider.class);
-	
+
 	private HashMap<String, Entity> entities = new HashMap<String, Entity>();
+
+	private long id = 0;
 
 	public InMemoryDataProvider(ImportDescriptor desciptor) {
 		getEntities(desciptor);
@@ -39,7 +41,7 @@ public class InMemoryDataProvider implements DataProvider {
 	public Iterator<String> getEntityIterator() {
 		return entities.keySet().iterator();
 	}
-	
+
 	public HashMap<String, String> findRow(String entityName, String rowName, String rowValue) {
 		Entity e = entities.get(entityName);
 		for (HashMap<String, String> row : e.getRows()) {
@@ -49,16 +51,15 @@ public class InMemoryDataProvider implements DataProvider {
 		}
 		return null;
 	}
-	
+
 	public Iterator<HashMap<String, String>> getRowIterator(String entityName) {
 		Entity e = entities.get(entityName);
 		return e.getRows().iterator();
 	}
-	
 
 	private class Entity {
 		private String name;
-		
+
 		private List<HashMap<String, String>> rows = new ArrayList<HashMap<String, String>>();
 
 		/**
@@ -127,6 +128,7 @@ public class InMemoryDataProvider implements DataProvider {
 				for (int j = 0; j < nm.getLength(); j++) {
 					row.put(nm.item(j).getNodeName(), nm.item(j).getNodeValue());
 				}
+				row.put("primary_key", String.valueOf(++id));
 				rows.add(row);
 			}
 		} catch (TransformerException e) {
@@ -147,5 +149,9 @@ public class InMemoryDataProvider implements DataProvider {
 			log.error("Can't read target table from XML file!");
 		}
 		return tTable;
+	}
+
+	public long getId() {
+		return id;
 	}
 }
