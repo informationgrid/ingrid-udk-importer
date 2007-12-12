@@ -18,10 +18,12 @@ import de.ingrid.importer.udk.provider.DataProvider;
  * @author Administrator
  * 
  */
-public class IDCDefaultStrategy implements IDCStrategy {
+public class IDCStrategy1_0_2 implements IDCStrategy {
 
 	private DataProvider dataProvider = null;
+
 	private ImportDescriptor importDescriptor = null;
+
 	private JDBCConnectionProxy jdbc = null;
 
 	private static Log log = LogFactory.getLog(JDBCConnectionProxy.class);
@@ -54,6 +56,9 @@ public class IDCDefaultStrategy implements IDCStrategy {
 			for (Iterator<HashMap<String, String>> i = dataProvider.getRowIterator("T02_address"); i.hasNext();) {
 				HashMap<String, String> row = i.next();
 
+				sqlStr = "DELETE FROM t02_address";
+				jdbc.executeUpdate(sqlStr);
+
 				sqlStr = "INSERT INTO t02_address (id, version, adr_uuid, org_adr_id, cat_id, "
 						+ "root, adr_type, institution, lastname, firstname, address, title, "
 						+ "street, postcode, postbox, postbox_pc, city, country_code, job, "
@@ -63,7 +68,7 @@ public class IDCDefaultStrategy implements IDCStrategy {
 						"0, " + // version
 						"'" + row.get("adr_id") + "', " + // adr_uuid
 						"'" + row.get("org_adr_id") + "', " + // org_adr_id
-						dataProvider.findRow("T03_catalogue", "cat_id", row.get("cat_id")).get("primary_key") + ", " + // cat_id
+						IDCStrategyHelper.getFK(dataProvider, "T03_catalogue", "cat_id", row.get("cat_id")) + ", " + // cat_id
 						row.get("root") + ", " + // root
 						row.get("typ") + ", " + // adr_type
 						"'" + row.get("institution") + "', " + // institution
@@ -76,25 +81,54 @@ public class IDCDefaultStrategy implements IDCStrategy {
 						"'" + row.get("postbox") + "', " + // postbox
 						"'" + row.get("postbox_pc") + "', " + // postbox_pc
 						"'" + row.get("city") + "', " + // city
-						"'" + transCountryCode(row.get("state_id")) + "', " + // country_code
+						"'" + IDCStrategyHelper.transCountryCode(row.get("state_id")) + "', " + // country_code
 						"'" + row.get("job") + "', " + // job
 						"'" + row.get("descr") + "', " + // descr
-						"'00000000000000000', " + // lastexport_time
-						"'00000000000000', " + // expiry_time
+						"'', " + // lastexport_time
+						"'', " + // expiry_time
 						"'V', " + // work_state
 						"0 , " + // work_version
 						"0 , " + // mark_deleted
-						"'" + row.get("create_time") + "', " + // create_time
-						"'" + row.get("mod_time") + "', " + // mod_time
-						dataProvider.findRow("T02_address", "adr_id", row.get("mod_id")).get("primary_key") + ", " + // mod_id
-						dataProvider.findRow("T02_address", "adr_id", row.get("mod_id")).get("primary_key") + // responsible_id
+						"'" + IDCStrategyHelper.transDateTime(row.get("create_time")) + "', " + // create_time
+						"'" + IDCStrategyHelper.transDateTime(row.get("mod_time")) + "', " + // mod_time
+						IDCStrategyHelper.getFK(dataProvider, "T02_address", "adr_id", row.get("mod_id")) + ", " + // mod_id
+						IDCStrategyHelper.getFK(dataProvider, "T02_address", "adr_id", row.get("mod_id")) + // responsible_id
 						")";
 				jdbc.executeUpdate(sqlStr);
 
 			}
+
+			// import all catalog data
+			for (Iterator<HashMap<String, String>> i = dataProvider.getRowIterator("T03_catalogue"); i.hasNext();) {
+				HashMap<String, String> row = i.next();
+
+				sqlStr = "DELETE FROM t03_catalogue";
+				jdbc.executeUpdate(sqlStr);
+
+				sqlStr = "INSERT INTO t03_catalogue (id, cat_uuid, cat_name, country_code, "
+						+ "workflow_control, expiry_duration, create_time, mod_id, mod_time) VALUES " + "("
+						+ row.get("primary_key") + ", " + // id
+						"'" + row.get("cat_id") + "', " + // cat_uuid
+						"'" + row.get("catalogue") + "', " + // cat_name
+						"'" + IDCStrategyHelper.transCountryCode(row.get("country")) + "', " + // country_code
+						"'N', " + // workflow_control
+						"0, " + // expiry_duration
+						"'" + IDCStrategyHelper.transDateTime(row.get("create_time")) + "', " + // create_time
+						IDCStrategyHelper.getFK(dataProvider, "T02_address", "adr_id", row.get("mod_id")) + ", " + // mod_id
+						"'" + IDCStrategyHelper.transDateTime(row.get("mod_time")) + "'" + // mod_time
+						")";
+				jdbc.executeUpdate(sqlStr);
+			}
+
+			sqlStr = "DELETE FROM hibernate_unique_key";
+			jdbc.executeUpdate(sqlStr);
+
+			sqlStr = "INSERT INTO hibernate_unique_key (next_hi) VALUES (" + dataProvider.getId() + ")";
+			jdbc.executeUpdate(sqlStr);
+
 			jdbc.commit();
 		} catch (Exception e) {
-			log.error("Error executing SQL!", e);
+			log.error("Error executing SQL: " + sqlStr, e);
 			if (jdbc != null) {
 				try {
 					jdbc.rollback();
@@ -118,32 +152,8 @@ public class IDCDefaultStrategy implements IDCStrategy {
 		 * i.hasNext(); ) { HashMap<String,String> row = i.next(); sqlStr =
 		 * "INSERT INTO t03_catalogue (id, cat_uuid, cat_name, country_code,
 		 * workflow_control, expiry_duration, create_time, mod_id, mod_time) " +
-		 * "VALUES (" + row.get("primary_key") +", '" + row.get("cat_id")+ "')";
-		 *  }
+		 * "VALUES (" + row.get("primary_key") +", '" + row.get("cat_id")+ "')"; }
 		 */
-	}
-
-	private String trunc(String s, int len) {
-
-		if (s == null) {
-			return "";
-		} else if (s.length() <= len) {
-			return s;
-		} else {
-			return s.substring(0, len - 1);
-		}
-	}
-
-	private String transCountryCode(String code) {
-		if (code == null) {
-			return "";
-		}
-		if (code.equalsIgnoreCase("D")) {
-			return "de";
-		} else {
-			log.warn("Cannot translate country code '" + code + "'");
-			return "";
-		}
 	}
 
 }

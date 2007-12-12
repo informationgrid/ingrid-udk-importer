@@ -79,7 +79,7 @@ public class ImportDescriptorHelper {
 		ImportDescriptor descr = new ImportDescriptor();
 		String dbUser = null;
 		String dbPasswd = null;
-		String udkDbVersion = null;
+		String idcVersion = null;
 
 		for (int i = 0; i < args.length; i++) {
 			if (args[i].equalsIgnoreCase("-u")) {
@@ -105,7 +105,7 @@ public class ImportDescriptorHelper {
 					log.error("Missing argument for parameter '-c'.");
 					throw new IllegalArgumentException("Missing argument for parameter '-c'.");
 				}
-				udkDbVersion = args[++i];
+				idcVersion = args[++i];
 			} else {
 				File f = new File(args[i]);
 				if (f.isDirectory()) {
@@ -146,7 +146,7 @@ public class ImportDescriptorHelper {
 		descr.setDbSchema(configuration.getString("db.schema", ""));
 		descr.setDbUser(configuration.getString("db.user", ""));
 		descr.setDbPass(configuration.getString("db.password", ""));
-		descr.setUdkDbVersion(configuration.getString("udk.db.version", ""));
+		descr.setIdcVersion(configuration.getString("idc.version", ""));
 
 		if (dbUser != null) {
 			descr.setDbUser(dbUser);
@@ -154,8 +154,8 @@ public class ImportDescriptorHelper {
 		if (dbPasswd != null) {
 			descr.setDbPass(dbPasswd);
 		}
-		if (udkDbVersion != null) {
-			descr.setUdkDbVersion(udkDbVersion);
+		if (idcVersion != null) {
+			descr.setIdcVersion(idcVersion);
 		}
 
 		if (descr.getFiles() == null || descr.getFiles().isEmpty()) {

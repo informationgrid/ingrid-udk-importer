@@ -31,7 +31,7 @@ public class ImportDescriptor {
 
 	private String configurationFile = "conf/descriptor.properties";
 
-	private String udkDbVersion = null;
+	private String idcVersion = null;
 
 	/**
 	 * ArrayList to store import files
@@ -160,18 +160,18 @@ public class ImportDescriptor {
 	}
 
 	/**
-	 * @return the udkDbVersion
+	 * @return the idcVersion
 	 */
-	public String getUdkDbVersion() {
-		return udkDbVersion;
+	public String getIdcVersion() {
+		return idcVersion;
 	}
 
 	/**
-	 * @param udkDbVersion
-	 *            the udkDbVersion to set
+	 * @param idcVersion
+	 *            the idcVersion to set
 	 */
-	public void setUdkDbVersion(String udkDbVersion) {
-		this.udkDbVersion = udkDbVersion;
+	public void setIdcVersion(String udkDbVersion) {
+		this.idcVersion = udkDbVersion;
 	}
 
 }

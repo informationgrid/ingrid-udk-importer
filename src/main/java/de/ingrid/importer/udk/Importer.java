@@ -5,8 +5,8 @@ import org.apache.commons.logging.LogFactory;
 
 import de.ingrid.importer.udk.jdbc.JDBCConnectionProxy;
 import de.ingrid.importer.udk.provider.InMemoryDataProvider;
-import de.ingrid.importer.udk.strategy.IDCDefaultStrategy;
 import de.ingrid.importer.udk.strategy.IDCStrategy;
+import de.ingrid.importer.udk.strategy.IDCStrategyFactory;
 
 /**
  * Hello world!
@@ -21,24 +21,31 @@ public class Importer {
 
 	public static void main(String[] args) {
 
-		ImportDescriptor descr = null;
+		ImportDescriptor descriptor = null;
 		try {
-			descr = ImportDescriptorHelper.getDescriptor(args);
+			descriptor = ImportDescriptorHelper.getDescriptor(args);
 		} catch (IllegalArgumentException e) {
 			return;
 		}
 
-		InMemoryDataProvider data = new InMemoryDataProvider(descr);
+		InMemoryDataProvider data = new InMemoryDataProvider(descriptor);
 
 		JDBCConnectionProxy jdbc = null;
 		try {
-			jdbc = new JDBCConnectionProxy(descr);
+			jdbc = new JDBCConnectionProxy(descriptor);
 		} catch (Exception e) {
 			log.error(e.getMessage());
 		}
 
-		IDCStrategy strategy = new IDCDefaultStrategy();
-		strategy.setImportDescriptor(descr);
+		IDCStrategyFactory idcStrategyFactory = new IDCStrategyFactory();
+
+		IDCStrategy strategy = null;
+		try {
+			strategy = idcStrategyFactory.getIdcStrategy(descriptor.getIdcVersion());
+		} catch (Exception e) {
+			log.error(e.getMessage());
+		}
+		strategy.setImportDescriptor(descriptor);
 		strategy.setDataProvider(data);
 		strategy.setJDBCConnectionProxy(jdbc);
 
