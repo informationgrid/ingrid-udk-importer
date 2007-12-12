@@ -68,7 +68,7 @@ public class IDCStrategy1_0_2 implements IDCStrategy {
 						"0, " + // version
 						"'" + row.get("adr_id") + "', " + // adr_uuid
 						"'" + row.get("org_adr_id") + "', " + // org_adr_id
-						IDCStrategyHelper.getFK(dataProvider, "T03_catalogue", "cat_id", row.get("cat_id")) + ", " + // cat_id
+						IDCStrategyHelper.getPK(dataProvider, "T03_catalogue", "cat_id", row.get("cat_id")) + ", " + // cat_id
 						row.get("root") + ", " + // root
 						row.get("typ") + ", " + // adr_type
 						"'" + row.get("institution") + "', " + // institution
@@ -91,8 +91,8 @@ public class IDCStrategy1_0_2 implements IDCStrategy {
 						"0 , " + // mark_deleted
 						"'" + IDCStrategyHelper.transDateTime(row.get("create_time")) + "', " + // create_time
 						"'" + IDCStrategyHelper.transDateTime(row.get("mod_time")) + "', " + // mod_time
-						IDCStrategyHelper.getFK(dataProvider, "T02_address", "adr_id", row.get("mod_id")) + ", " + // mod_id
-						IDCStrategyHelper.getFK(dataProvider, "T02_address", "adr_id", row.get("mod_id")) + // responsible_id
+						IDCStrategyHelper.getPK(dataProvider, "T02_address", "adr_id", row.get("mod_id")) + ", " + // mod_id
+						IDCStrategyHelper.getPK(dataProvider, "T02_address", "adr_id", row.get("mod_id")) + // responsible_id
 						")";
 				jdbc.executeUpdate(sqlStr);
 
@@ -114,7 +114,7 @@ public class IDCStrategy1_0_2 implements IDCStrategy {
 						"'N', " + // workflow_control
 						"0, " + // expiry_duration
 						"'" + IDCStrategyHelper.transDateTime(row.get("create_time")) + "', " + // create_time
-						IDCStrategyHelper.getFK(dataProvider, "T02_address", "adr_id", row.get("mod_id")) + ", " + // mod_id
+						IDCStrategyHelper.getPK(dataProvider, "T02_address", "adr_id", row.get("mod_id")) + ", " + // mod_id
 						"'" + IDCStrategyHelper.transDateTime(row.get("mod_time")) + "'" + // mod_time
 						")";
 				jdbc.executeUpdate(sqlStr);

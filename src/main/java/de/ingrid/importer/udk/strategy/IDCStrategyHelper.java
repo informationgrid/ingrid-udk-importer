@@ -59,12 +59,12 @@ public class IDCStrategyHelper {
 		}
 	}
 
-	public static String getFK(DataProvider dataProvider, String entity, String field, String value) {
+	public static String getPK(DataProvider dataProvider, String entity, String field, String value) {
 		HashMap<String, String> row = dataProvider.findRow(entity, field, value);
 		if (row != null && row.get("primary_key") != null) {
 			return row.get("primary_key");
 		} else {
-			log.warn("Cannot not find FK for '" + entity + "." + field + "='" + value + "'.");
+			log.warn("Cannot not find row for " + entity + "." + field + "='" + value + "'.");
 			return "null";
 		}
 	}
