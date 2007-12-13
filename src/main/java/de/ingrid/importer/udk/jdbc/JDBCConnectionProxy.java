@@ -5,6 +5,7 @@ package de.ingrid.importer.udk.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -92,6 +93,10 @@ public class JDBCConnectionProxy {
 	public ResultSet executeQuery(String sql) throws SQLException {
 		Statement statement = fConnection.createStatement();
 		return statement.executeQuery(sql);
+	}
+	
+	public PreparedStatement prepareStatement(String sql) throws SQLException {
+		return fConnection.prepareStatement(sql);
 	}
 
 }

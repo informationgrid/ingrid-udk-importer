@@ -38,13 +38,9 @@ public class InMemoryDataProvider implements DataProvider {
 		getEntities(desciptor);
 	}
 
-	public Iterator<String> getEntityIterator() {
-		return entities.keySet().iterator();
-	}
-
-	public HashMap<String, String> findRow(String entityName, String rowName, String rowValue) {
+	public Row findRow(String entityName, String rowName, String rowValue) {
 		Entity e = entities.get(entityName);
-		for (HashMap<String, String> row : e.getRows()) {
+		for (Row row : e.getRows()) {
 			if (row.get(rowName).equals(rowValue)) {
 				return row;
 			}
@@ -52,45 +48,9 @@ public class InMemoryDataProvider implements DataProvider {
 		return null;
 	}
 
-	public Iterator<HashMap<String, String>> getRowIterator(String entityName) {
+	public Iterator<Row> getRowIterator(String entityName) {
 		Entity e = entities.get(entityName);
 		return e.getRows().iterator();
-	}
-
-	private class Entity {
-		private String name;
-
-		private List<HashMap<String, String>> rows = new ArrayList<HashMap<String, String>>();
-
-		/**
-		 * @return the name
-		 */
-		public String getName() {
-			return name;
-		}
-
-		/**
-		 * @param name
-		 *            the name to set
-		 */
-		public void setName(String name) {
-			this.name = name;
-		}
-
-		/**
-		 * @return the rows
-		 */
-		public List<HashMap<String, String>> getRows() {
-			return rows;
-		}
-
-		/**
-		 * @param rows
-		 *            the rows to set
-		 */
-		public void setRows(List<HashMap<String, String>> rows) {
-			this.rows = rows;
-		}
 	}
 
 	private void getEntities(ImportDescriptor descriptor) {
@@ -103,7 +63,7 @@ public class InMemoryDataProvider implements DataProvider {
 			try {
 				db = dbf.newDocumentBuilder();
 				dom = db.parse(new File(fileName));
-				Entity entity = this.new Entity();
+				Entity entity = new Entity();
 				String entityName = readTargetTable(dom);
 				entity.setName(entityName);
 				entities.put(entityName, entity);
@@ -114,15 +74,15 @@ public class InMemoryDataProvider implements DataProvider {
 		}
 	}
 
-	private List<HashMap<String, String>> readRows(Document dom) {
-		List<HashMap<String, String>> rows = new ArrayList<HashMap<String, String>>();
+	private List<Row> readRows(Document dom) {
+		List<Row> rows = new ArrayList<Row>();
 
 		try {
 			String xpath = "//data/row";
 			NodeList nl = org.apache.xpath.XPathAPI.selectNodeList(dom, xpath);
 
 			for (int i = 0; i < nl.getLength(); i++) {
-				HashMap<String, String> row = new HashMap<String, String>();
+				Row row = new Row();
 
 				NamedNodeMap nm = ((Element) nl.item(i)).getAttributes();
 				for (int j = 0; j < nm.getLength(); j++) {

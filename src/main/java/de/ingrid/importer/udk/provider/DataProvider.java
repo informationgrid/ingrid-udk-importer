@@ -3,7 +3,6 @@
  */
 package de.ingrid.importer.udk.provider;
 
-import java.util.HashMap;
 import java.util.Iterator;
 
 /**
@@ -12,11 +11,9 @@ import java.util.Iterator;
  */
 public interface DataProvider {
 
-	public Iterator<String> getEntityIterator();
+	public Row findRow(String entityName, String rowName, String rowValue);
 
-	public HashMap<String, String> findRow(String entityName, String rowName, String rowValue);
-
-	public Iterator<HashMap<String, String>> getRowIterator(String entityName);
+	public Iterator<Row> getRowIterator(String entityName);
 
 	public long getId();
 }

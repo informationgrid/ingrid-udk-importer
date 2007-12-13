@@ -3,15 +3,14 @@
  */
 package de.ingrid.importer.udk.strategy;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.HashMap;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import de.ingrid.importer.udk.jdbc.JDBCConnectionProxy;
 import de.ingrid.importer.udk.provider.DataProvider;
+import de.ingrid.importer.udk.provider.Row;
 
 /**
  * @author joachim
@@ -37,10 +36,10 @@ public class IDCStrategyHelper {
 			} else {
 				dst = src.substring(0, 16);
 			}
-			try {
-				sdf.parse(dst);
+
+			if (dst.matches("[0-9][0-9][0-9][0-9][0-1][0-9][0-3][0-9][0-2][0-9][0-5][0-9][0-5][0-9][0-9][0-9][0-9]")) {
 				return dst;
-			} catch (ParseException e) {
+			} else {
 				log.warn("Cannot convert to date '" + src + "'");
 			}
 		}
@@ -59,13 +58,19 @@ public class IDCStrategyHelper {
 		}
 	}
 
-	public static String getPK(DataProvider dataProvider, String entity, String field, String value) {
-		HashMap<String, String> row = dataProvider.findRow(entity, field, value);
+	public static int getPK(DataProvider dataProvider, String entity, String field, String value) {
+		Row row = dataProvider.findRow(entity, field, value);
 		if (row != null && row.get("primary_key") != null) {
-			return row.get("primary_key");
+			try {
+				return Integer.parseInt(row.get("primary_key"));
+			} catch (NumberFormatException e) {
+				log.warn("Cannot parse primary key '" + row.get("primary_key") + "' for " + entity + "." + field + "='"
+						+ value + "' to a number.");
+				return 0;
+			}
 		} else {
 			log.warn("Cannot not find row for " + entity + "." + field + "='" + value + "'.");
-			return "null";
+			return 0;
 		}
 	}
 
