@@ -12,7 +12,7 @@ import org.apache.commons.logging.LogFactory;
  * @author Administrator
  * 
  */
-public class IDCStrategy1_0_2 extends IDCDefaultStrategy {
+public class IDCStrategy1_0_2 extends IDCStrategyDefault {
 
 	private static Log log = LogFactory.getLog(IDCStrategy1_0_2.class);
 

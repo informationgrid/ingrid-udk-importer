@@ -19,7 +19,7 @@ import de.ingrid.importer.udk.provider.Row;
  * @author Administrator
  * 
  */
-public abstract class IDCDefaultStrategy implements IDCStrategy {
+public abstract class IDCStrategyDefault implements IDCStrategy {
 
 	protected DataProvider dataProvider = null;
 
@@ -31,7 +31,7 @@ public abstract class IDCDefaultStrategy implements IDCStrategy {
 
 	String pSqlStr = null;
 
-	private static Log log = LogFactory.getLog(IDCDefaultStrategy.class);
+	private static Log log = LogFactory.getLog(IDCStrategyDefault.class);
 	
 	
 	public void setDataProvider(DataProvider data) {
