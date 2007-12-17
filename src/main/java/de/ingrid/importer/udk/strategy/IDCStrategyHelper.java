@@ -53,7 +53,7 @@ public class IDCStrategyHelper {
 		if (code.equalsIgnoreCase("D")) {
 			return "de";
 		} else {
-			log.warn("Cannot translate country code '" + code + "'");
+			log.info("Cannot translate country code '" + code + "'");
 			return "";
 		}
 	}
@@ -64,12 +64,12 @@ public class IDCStrategyHelper {
 			try {
 				return Integer.parseInt(row.get("primary_key"));
 			} catch (NumberFormatException e) {
-				log.warn("Cannot parse primary key '" + row.get("primary_key") + "' for " + entity + "." + field + "='"
+				log.info("Cannot parse primary key '" + row.get("primary_key") + "' for " + entity + "." + field + "='"
 						+ value + "' to a number.");
 				return 0;
 			}
 		} else {
-			log.warn("Cannot not find row for " + entity + "." + field + "='" + value + "'.");
+			log.info("Cannot not find row for " + entity + "." + field + "='" + value + "'.");
 			return 0;
 		}
 	}

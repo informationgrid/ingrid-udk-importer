@@ -27,11 +27,13 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault {
 
 			jdbc.setAutoCommit(false);
 
-			this.processT02Address();
-			this.processT03Catalogue();
-			this.processT01Object();
+			processT02Address();
+			processT03Catalogue();
+			processT01Object();
+			processT012ObjObj();
+			processT012ObjAdr();
 			
-			this.setHiLoGenerator();
+			setHiLoGenerator();
 
 			jdbc.commit();
 		} catch (Exception e) {

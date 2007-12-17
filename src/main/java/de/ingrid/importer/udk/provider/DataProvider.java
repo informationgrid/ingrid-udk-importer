@@ -16,4 +16,6 @@ public interface DataProvider {
 	public Iterator<Row> getRowIterator(String entityName);
 
 	public long getId();
+
+	public void setId(long id);
 }
