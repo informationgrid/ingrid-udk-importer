@@ -41,7 +41,7 @@ public class InMemoryDataProvider implements DataProvider {
 	public Row findRow(String entityName, String rowName, String rowValue) {
 		Entity e = entities.get(entityName);
 		for (Row row : e.getRows()) {
-			if (row.get(rowName).equals(rowValue)) {
+			if (row.get(rowName) != null && row.get(rowName).equals(rowValue)) {
 				return row;
 			}
 		}
@@ -118,4 +118,5 @@ public class InMemoryDataProvider implements DataProvider {
 	public void setId(long id) {
 		this.id = id;
 	}
+
 }

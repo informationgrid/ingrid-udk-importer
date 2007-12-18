@@ -3,6 +3,7 @@
  */
 package de.ingrid.importer.udk.strategy;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import org.apache.commons.logging.Log;
@@ -22,6 +23,8 @@ public class IDCStrategyHelper {
 
 	private static SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
 
+	private static SimpleDateFormat df = new SimpleDateFormat("yyyy");
+
 	private static String pad = "00000000000000000";
 
 	static {
@@ -31,16 +34,26 @@ public class IDCStrategyHelper {
 	public static String transDateTime(String src) {
 		if (src != null && src.length() > 0) {
 			String dst = "";
-			if (src.length() <= 17) {
-				dst = src.concat(pad.substring(src.length()));
+			if (src.matches("[0-3][0-9]\\.[0-1][0-9]\\.[0-9][0-9][0-9][0-9]")) {
+				df.applyPattern("dd.MM.yyyy");
+				try {
+					return sdf.format(df.parse(src));
+				} catch (ParseException e) {
+					log.error("Invalid date format: " + dst, e);
+				}
 			} else {
-				dst = src.substring(0, 16);
-			}
+				if (src.length() <= 17) {
+					dst = src.concat(pad.substring(src.length()));
+				} else {
+					dst = src.substring(0, 16);
+				}
 
-			if (dst.matches("[0-9][0-9][0-9][0-9][0-1][0-9][0-3][0-9][0-2][0-9][0-5][0-9][0-5][0-9][0-9][0-9][0-9]")) {
-				return dst;
-			} else {
-				log.warn("Cannot convert to date '" + src + "'");
+				if (dst
+						.matches("[0-9][0-9][0-9][0-9][0-1][0-9][0-3][0-9][0-2][0-9][0-5][0-9][0-5][0-9][0-9][0-9][0-9]")) {
+					return dst;
+				} else {
+					log.warn("Cannot convert to date '" + src + "'");
+				}
 			}
 		}
 		return "";
@@ -74,13 +87,15 @@ public class IDCStrategyHelper {
 		}
 	}
 
-	public static String getEntityFieldValue(DataProvider dataProvider, String entity, String fieldWhere, String valueWhere, String field) {
+	public static String getEntityFieldValue(DataProvider dataProvider, String entity, String fieldWhere,
+			String valueWhere, String field) {
 		Row row = dataProvider.findRow(entity, fieldWhere, valueWhere);
 		if (row != null && row.get(field) != null) {
 			if (row.containsKey(field)) {
 				return row.get(field);
 			} else {
-				log.info("Cannot not find key '" + field + "' in row for " + entity + "." + fieldWhere + "='" + valueWhere + "'.");
+				log.info("Cannot not find key '" + field + "' in row for " + entity + "." + fieldWhere + "='"
+						+ valueWhere + "'.");
 				return "";
 			}
 		} else {
@@ -88,6 +103,5 @@ public class IDCStrategyHelper {
 			return "";
 		}
 	}
-	
-	
+
 }

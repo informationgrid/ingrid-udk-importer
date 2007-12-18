@@ -28,11 +28,24 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault {
 			jdbc.setAutoCommit(false);
 
 			processT02Address();
+			processT022AdrAdr();
 			processT03Catalogue();
 			processT01Object();
 			processT012ObjObj();
 			processT012ObjAdr();
-			processT04Searchterm();
+			// processT04Search();
+			processT011ObjProject();
+			processT011ObjLiteratur();
+			processT011ObjData();
+			processT011ObjDataParam();
+			processT011ObjGeo();
+			processT011ObjGeoVector();
+			processT011ObjGeoSymc();
+			processT011ObjGeoTopicCat();
+			processT011ObjGeoSupplInfo();
+			processT011ObjGeoSpatialRep();
+			processT011ObjGeoScale();
+			processT011ObjGeoKeyc();
 			
 			setHiLoGenerator();
 

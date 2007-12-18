@@ -125,7 +125,7 @@ public class ImportDescriptorHelper {
 					}
 				} else if (f.isFile()) {
 					// read file
-					descr.getFiles().add(f.getName());
+					descr.getFiles().add(f.getAbsolutePath());
 				}
 			}
 		}
