@@ -32,6 +32,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault {
 			processT01Object();
 			processT012ObjObj();
 			processT012ObjAdr();
+			processT04Searchterm();
 			
 			setHiLoGenerator();
 

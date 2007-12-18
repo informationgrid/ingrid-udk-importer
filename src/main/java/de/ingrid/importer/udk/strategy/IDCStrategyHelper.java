@@ -74,4 +74,20 @@ public class IDCStrategyHelper {
 		}
 	}
 
+	public static String getEntityFieldValue(DataProvider dataProvider, String entity, String fieldWhere, String valueWhere, String field) {
+		Row row = dataProvider.findRow(entity, fieldWhere, valueWhere);
+		if (row != null && row.get(field) != null) {
+			if (row.containsKey(field)) {
+				return row.get(field);
+			} else {
+				log.info("Cannot not find key '" + field + "' in row for " + entity + "." + fieldWhere + "='" + valueWhere + "'.");
+				return "";
+			}
+		} else {
+			log.info("Cannot not find row for " + entity + "." + fieldWhere + "='" + valueWhere + "'.");
+			return "";
+		}
+	}
+	
+	
 }

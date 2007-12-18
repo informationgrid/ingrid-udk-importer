@@ -6,6 +6,7 @@ package de.ingrid.importer.udk.strategy;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 
 import org.apache.commons.logging.Log;
@@ -83,14 +84,16 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		for (Iterator<Row> i = dataProvider.getRowIterator("T01_object"); i.hasNext();) {
 			Row row = i.next();
 			if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
-				
+
 				if (IDCStrategyHelper.getPK(dataProvider, "T03_catalogue", "cat_id", row.get("cat_id")) == 0) {
-					log.warn("Invalid entry in T01_object found: cat_id ('" + row.get("cat_id") + "') not found in T03_catalogue.");
+					log.warn("Invalid entry in T01_object found: cat_id ('" + row.get("cat_id")
+							+ "') not found in T03_catalogue.");
 				}
 				if (IDCStrategyHelper.getPK(dataProvider, "T02_address", "adr_id", row.get("mod_id")) == 0) {
-					log.warn("Invalid entry in T01_object found: mod_id ('" + row.get("mod_id") + "') not found in T02_address.");
+					log.warn("Invalid entry in T01_object found: mod_id ('" + row.get("mod_id")
+							+ "') not found in T02_address.");
 				}
-				
+
 				int cnt = 1;
 				p.setInt(cnt++, row.getInt("primary_key")); // id
 				p.setString(cnt++, row.get("obj_id")); // obj_uuid
@@ -163,10 +166,12 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			Row row = i.next();
 			if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
 				if (IDCStrategyHelper.getPK(dataProvider, "T03_catalogue", "cat_id", row.get("cat_id")) == 0) {
-					log.warn("Invalid entry in T02_address found: cat_id ('" + row.get("cat_id") + "') not found in T03_catalogue.");
+					log.warn("Invalid entry in T02_address found: cat_id ('" + row.get("cat_id")
+							+ "') not found in T03_catalogue.");
 				}
 				if (IDCStrategyHelper.getPK(dataProvider, "T02_address", "adr_id", row.get("mod_id")) == 0) {
-					log.warn("Invalid entry in T02_address found: mod_id ('" + row.get("mod_id") + "') not found in T02_address.");
+					log.warn("Invalid entry in T02_address found: mod_id ('" + row.get("mod_id")
+							+ "') not found in T02_address.");
 				}
 				int cnt = 1;
 				p.setInt(cnt++, row.getInt("primary_key")); // id
@@ -225,7 +230,8 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			Row row = i.next();
 			if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
 				if (IDCStrategyHelper.getPK(dataProvider, "T02_address", "adr_id", row.get("mod_id")) == 0) {
-					log.warn("Invalid entry in T03_catalogue found: mod_id ('" + row.get("mod_id") + "') not found in T02_address.");
+					log.warn("Invalid entry in T03_catalogue found: mod_id ('" + row.get("mod_id")
+							+ "') not found in T02_address.");
 				}
 				int cnt = 1;
 				p.setInt(cnt++, row.getInt("primary_key")); // id
@@ -323,20 +329,27 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		}
 	}
 
-	protected void processT04Serachterm() throws Exception {
+	protected void processT04Searchterm() throws Exception {
 
 		String pSqlStrSearchtermObj = "INSERT INTO searchterm_obj (id, obj_id, line, searchterm_id) VALUES ( ?, ?, ?, ?);";
 		String pSqlStrSearchtermAdr = "INSERT INTO searchterm_adr (id, adr_id, line, searchterm_id) VALUES ( ?, ?, ?, ?);";
-		String pSqlStrSearchtermValue = "INSERT INTO searchterm_value (id, type, term, sns_hist_id) VALUES ( ?, ?, ?, ?);";
+		String pSqlStrSearchtermValue = "INSERT INTO searchterm_value (id, type, term, searchterm_sns_id) VALUES ( ?, ?, ?, ?);";
+		String pSqlStrSearchtermSns = "INSERT INTO searchterm_sns (id, sns_id, expired_at) VALUES ( ?, ?, ?);";
 
 		PreparedStatement pSearchtermObj = jdbc.prepareStatement(pSqlStrSearchtermObj);
 		PreparedStatement pSearchtermAdr = jdbc.prepareStatement(pSqlStrSearchtermAdr);
 		PreparedStatement pSearchtermValue = jdbc.prepareStatement(pSqlStrSearchtermValue);
+		PreparedStatement pSearchtermSns = jdbc.prepareStatement(pSqlStrSearchtermSns);
 
-		ArrayList searchTermValues = new ArrayList();
-		
-		
-		sqlStr = "DELETE FROM t012_obj_obj";
+		HashMap<String, Long> searchTermValues = new HashMap<String, Long>();
+
+		sqlStr = "DELETE FROM searchterm_sns";
+		jdbc.executeUpdate(sqlStr);
+		sqlStr = "DELETE FROM searchterm_value";
+		jdbc.executeUpdate(sqlStr);
+		sqlStr = "DELETE FROM searchterm_adr";
+		jdbc.executeUpdate(sqlStr);
+		sqlStr = "DELETE FROM searchterm_obj";
 		jdbc.executeUpdate(sqlStr);
 
 		// import all catalog data
@@ -344,36 +357,231 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			Row row = i.next();
 			if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
 				int cnt = 1;
+				// free searchterm object
 				if (row.getInt("type") == 1) {
-					dataProvider.setId(dataProvider.getId() + 1);
-					pSearchtermValue.setLong(cnt++, dataProvider.getId()); // id
-					pSearchtermValue.setString(cnt++, "F"); // 1 = F, 2 = T, 3 = F, 4 = T
-					pSearchtermValue.setString(cnt++, row.get("searchterm")); // term
-					pSearchtermValue.setInt(cnt++, 0); // sns_hist_id
-					try {
-						pSearchtermValue.executeUpdate();
-					} catch (Exception e) {
-						log.error("Error executing SQL: " + pSearchtermValue.toString(), e);
-						throw e;
+					// check for invalid record
+					if (IDCStrategyHelper.getPK(dataProvider, "T01_object", "obj_id", row.get("obj_id")) == 0) {
+						log.warn("Invalid entry in T04_search found: obj_id ('" + row.get("obj_id")
+								+ "') not found in T01_object. Skip import of record.");
+					} else {
+						long pSearchtermValueId;
+						// if the term has been stored already, refere to the
+						// already stored id
+						if (searchTermValues.containsKey(row.get("searchterm").concat("_F"))) {
+							pSearchtermValueId = ((Long) searchTermValues.get(row.get("searchterm").concat("_F"))).longValue();
+						} else {
+							// store the search term
+							dataProvider.setId(dataProvider.getId() + 1);
+							pSearchtermValue.setLong(cnt++, dataProvider.getId()); // id
+							pSearchtermValue.setString(cnt++, "F"); // 1 = F, 2
+																	// = T, 3 =
+																	// F, 4 = T
+							pSearchtermValue.setString(cnt++, row.get("searchterm")); // term
+							pSearchtermValue.setInt(cnt++, 0); // searchterm_sns_id
+							try {
+								pSearchtermValue.executeUpdate();
+							} catch (Exception e) {
+								log.error("Error executing SQL: " + pSearchtermValue.toString(), e);
+								throw e;
+							}
+							searchTermValues.put(row.get("searchterm").concat("_F"), new Long(dataProvider.getId()));
+							pSearchtermValueId = dataProvider.getId();
+						}
+
+						// store the object -> searchterm relation
+						cnt = 1;
+						dataProvider.setId(dataProvider.getId() + 1);
+						pSearchtermObj.setLong(cnt++, dataProvider.getId()); // id
+						pSearchtermObj.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "T01_object", "obj_id", row
+								.get("obj_id"))); // obj_id
+						pSearchtermObj.setString(cnt++, row.get("line")); // term
+						pSearchtermObj.setLong(cnt++, pSearchtermValueId); // searchterm_id
+						try {
+							pSearchtermObj.executeUpdate();
+						} catch (Exception e) {
+							log.error("Error executing SQL: " + pSearchtermObj.toString(), e);
+							throw e;
+						}
 					}
-					
-					// pSearchtermObj.
-					
-				
-					
-					
-					
+					// thesaurus searchterm object
 				} else if (row.getInt("type") == 2) {
-					
+					// check for invalid record
+					if (IDCStrategyHelper.getPK(dataProvider, "T01_object", "obj_id", row.get("obj_id")) == 0) {
+						log.warn("Invalid entry in T04_search found: obj_id ('" + row.get("obj_id")
+								+ "') not found in T01_object. Skip import of record.");
+					} else if (IDCStrategyHelper.getEntityFieldValue(dataProvider, "thesorigid", "th_desc_no", row.get("th_desc_no"), "th_orig_desc_no").length() == 0) {
+						log.warn("Invalid entry in T04_search found: th_desc_no ('" + row.get("th_desc_no")
+								+ "') not found in thesorigid. Skip import of record.");
+					} else {
+						long pSearchtermValueId;
+						// if the term has been stored already, refere to the
+						// already stored id
+						if (searchTermValues.containsKey(row.get("searchterm").concat("_T"))) {
+							pSearchtermValueId = ((Long) searchTermValues.get(row.get("searchterm").concat("_T"))).longValue();
+						} else {
+							
+							// this is a thesaurus term: store the sns id in table searchterm_sns
+							cnt = 1;
+							dataProvider.setId(dataProvider.getId() + 1);
+							pSearchtermSns.setLong(cnt++, dataProvider.getId()); // id
+							pSearchtermSns.setString(cnt++, "uba_thes_".concat(IDCStrategyHelper.getEntityFieldValue(dataProvider, "thesorigid", "th_desc_no", row.get("th_desc_no"), "th_orig_desc_no"))); // sns_id
+							pSearchtermSns.setNull(cnt++, java.sql.Types.VARCHAR);
+							try {
+								pSearchtermSns.executeUpdate();
+							} catch (Exception e) {
+								log.error("Error executing SQL: " + pSearchtermSns.toString(), e);
+								throw e;
+							}
+							long pSearchtermSnsId = dataProvider.getId();
+							
+							// store the search term
+							cnt = 1;
+							dataProvider.setId(dataProvider.getId() + 1);
+							pSearchtermValue.setLong(cnt++, dataProvider.getId()); // id
+							pSearchtermValue.setString(cnt++, "T"); // 1 = F, 2
+																	// = T, 3 =
+																	// F, 4 = T
+							pSearchtermValue.setString(cnt++, row.get("searchterm")); // term
+							pSearchtermValue.setLong(cnt++, pSearchtermSnsId); // searchterm_sns_id
+							try {
+								pSearchtermValue.executeUpdate();
+							} catch (Exception e) {
+								log.error("Error executing SQL: " + pSearchtermValue.toString(), e);
+								throw e;
+							}
+							searchTermValues.put(row.get("searchterm").concat("_T"), new Long(dataProvider.getId()));
+							pSearchtermValueId = dataProvider.getId();
+						}
+
+						// store the object -> searchterm relation
+						cnt = 1;
+						dataProvider.setId(dataProvider.getId() + 1);
+						pSearchtermObj.setLong(cnt++, dataProvider.getId()); // id
+						pSearchtermObj.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "T01_object", "obj_id", row
+								.get("obj_id"))); // obj_id
+						pSearchtermObj.setString(cnt++, row.get("line")); // term
+						pSearchtermObj.setLong(cnt++, pSearchtermValueId); // searchterm_id
+						try {
+							pSearchtermObj.executeUpdate();
+						} catch (Exception e) {
+							log.error("Error executing SQL: " + pSearchtermObj.toString(), e);
+							throw e;
+						}
+					}
 				} else if (row.getInt("type") == 3) {
-					
+					// check for invalid record
+					if (IDCStrategyHelper.getPK(dataProvider, "T02_address", "adr_id", row.get("obj_id")) == 0) {
+						log.warn("Invalid entry in T04_search found: obj_id ('" + row.get("obj_id")
+								+ "') not found in T02_address. Skip import of record.");
+					} else {
+						long pSearchtermValueId;
+						// if the term has been stored already, refere to the
+						// already stored id
+						if (searchTermValues.containsKey(row.get("searchterm").concat("_F"))) {
+							pSearchtermValueId = ((Long) searchTermValues.get(row.get("searchterm").concat("_F"))).longValue();
+						} else {
+							// store the search term
+							dataProvider.setId(dataProvider.getId() + 1);
+							pSearchtermValue.setLong(cnt++, dataProvider.getId()); // id
+							pSearchtermValue.setString(cnt++, "F"); // 1 = F, 2
+																	// = T, 3 =
+																	// F, 4 = T
+							pSearchtermValue.setString(cnt++, row.get("searchterm")); // term
+							pSearchtermValue.setInt(cnt++, 0); // searchterm_sns_id
+							try {
+								pSearchtermValue.executeUpdate();
+							} catch (Exception e) {
+								log.error("Error executing SQL: " + pSearchtermValue.toString(), e);
+								throw e;
+							}
+							searchTermValues.put(row.get("searchterm").concat("_F"), new Long(dataProvider.getId()));
+							pSearchtermValueId = dataProvider.getId();
+						}
+
+						// store the address -> searchterm relation
+						cnt = 1;
+						dataProvider.setId(dataProvider.getId() + 1);
+						pSearchtermAdr.setLong(cnt++, dataProvider.getId()); // id
+						pSearchtermAdr.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "T02_address", "adr_id", row
+								.get("obj_id"))); // obj_id
+						pSearchtermAdr.setString(cnt++, row.get("line")); // term
+						pSearchtermAdr.setLong(cnt++, pSearchtermValueId); // searchterm_id
+						try {
+							pSearchtermAdr.executeUpdate();
+						} catch (Exception e) {
+							log.error("Error executing SQL: " + pSearchtermAdr.toString(), e);
+							throw e;
+						}
+					}
 				} else if (row.getInt("type") == 4) {
-					
+					// check for invalid record
+					if (IDCStrategyHelper.getPK(dataProvider, "T02_address", "adr_id", row.get("obj_id")) == 0) {
+						log.warn("Invalid entry in T04_search found: obj_id ('" + row.get("obj_id")
+								+ "') not found in T02_address. Skip import of record.");
+					} else if (IDCStrategyHelper.getEntityFieldValue(dataProvider, "thesorigid", "th_desc_no", row.get("th_desc_no"), "th_orig_desc_no").length() == 0) {
+						log.warn("Invalid entry in T04_search found: th_desc_no ('" + row.get("th_desc_no")
+								+ "') not found in thesorigid. Skip import of record.");
+					} else {
+						long pSearchtermValueId;
+						// if the term has been stored already, refere to the
+						// already stored id
+						if (searchTermValues.containsKey(row.get("searchterm").concat("_T"))) {
+							pSearchtermValueId = ((Long) searchTermValues.get(row.get("searchterm").concat("_T"))).longValue();
+						} else {
+							
+							// this is a thesaurus term: store the sns id in table searchterm_sns
+							cnt = 1;
+							dataProvider.setId(dataProvider.getId() + 1);
+							pSearchtermSns.setLong(cnt++, dataProvider.getId()); // id
+							pSearchtermSns.setString(cnt++, "uba_thes_".concat(IDCStrategyHelper.getEntityFieldValue(dataProvider, "thesorigid", "th_desc_no", row.get("th_desc_no"), "th_orig_desc_no"))); // sns_id
+							pSearchtermSns.setNull(cnt++, java.sql.Types.VARCHAR);
+							try {
+								pSearchtermSns.executeUpdate();
+							} catch (Exception e) {
+								log.error("Error executing SQL: " + pSearchtermSns.toString(), e);
+								throw e;
+							}
+							long pSearchtermSnsId = dataProvider.getId();
+							
+							// store the search term
+							cnt = 1;
+							dataProvider.setId(dataProvider.getId() + 1);
+							pSearchtermValue.setLong(cnt++, dataProvider.getId()); // id
+							pSearchtermValue.setString(cnt++, "T"); // 1 = F, 2
+																	// = T, 3 =
+																	// F, 4 = T
+							pSearchtermValue.setString(cnt++, row.get("searchterm")); // term
+							pSearchtermValue.setLong(cnt++, pSearchtermSnsId); // searchterm_sns_id
+							try {
+								pSearchtermValue.executeUpdate();
+							} catch (Exception e) {
+								log.error("Error executing SQL: " + pSearchtermValue.toString(), e);
+								throw e;
+							}
+							searchTermValues.put(row.get("searchterm").concat("_T"), new Long(dataProvider.getId()));
+							pSearchtermValueId = dataProvider.getId();
+						}
+
+						// store the object -> searchterm relation
+						cnt = 1;
+						dataProvider.setId(dataProvider.getId() + 1);
+						pSearchtermAdr.setLong(cnt++, dataProvider.getId()); // id
+						pSearchtermAdr.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "T02_address", "adr_id", row
+								.get("obj_id"))); // obj_id
+						pSearchtermAdr.setString(cnt++, row.get("line")); // term
+						pSearchtermAdr.setLong(cnt++, pSearchtermValueId); // searchterm_id
+						try {
+							pSearchtermAdr.executeUpdate();
+						} catch (Exception e) {
+							log.error("Error executing SQL: " + pSearchtermAdr.toString(), e);
+							throw e;
+						}
+					}
 				}
 			}
 		}
 	}
-	
+
 	protected void setHiLoGenerator() throws SQLException {
 		sqlStr = "DELETE FROM hibernate_unique_key";
 		jdbc.executeUpdate(sqlStr);
