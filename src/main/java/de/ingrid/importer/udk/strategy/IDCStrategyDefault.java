@@ -91,7 +91,11 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				}
 				if (IDCStrategyHelper.getPK(dataProvider, "T02_address", "adr_id", row.get("mod_id")) == 0) {
 					log.warn("Invalid entry in T01_object found: mod_id ('" + row.get("mod_id")
-							+ "') not found in imported data of T02_address.");
+							+ "') not found in imported data of T02_address. Trying to use create_id instead.");
+					if (IDCStrategyHelper.getPK(dataProvider, "T02_address", "adr_id", row.get("create_id")) == 0) {
+						log.warn("Invalid entry in T01_object found: create_id ('" + row.get("create_id")
+								+ "') not found in imported data of T02_address.");
+					}
 				}
 
 				int cnt = 1;
@@ -136,8 +140,12 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setString(cnt++, "N"); // mark_deleted,
 				p.setString(cnt++, IDCStrategyHelper.transDateTime(row.get("create_time"))); // create_time,
 				p.setString(cnt++, IDCStrategyHelper.transDateTime(row.get("mod_time"))); // mod_time,
-				p.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "T02_address", "adr_id", row.get("mod_id"))); // mod_id,
-				p.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "T02_address", "adr_id", row.get("mod_id"))); // responsible_id
+				int modId = IDCStrategyHelper.getPK(dataProvider, "T02_address", "adr_id", row.get("mod_id"));
+				if (modId == 0) {
+					modId = IDCStrategyHelper.getPK(dataProvider, "T02_address", "adr_id", row.get("create_id"));
+				}
+				p.setInt(cnt++, modId); // mod_id,
+				p.setInt(cnt++, modId); // responsible_id
 				try {
 					p.executeUpdate();
 				} catch (Exception e) {
@@ -177,7 +185,11 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				}
 				if (IDCStrategyHelper.getPK(dataProvider, "T02_address", "adr_id", row.get("mod_id")) == 0) {
 					log.warn("Invalid entry in T02_address found: mod_id ('" + row.get("mod_id")
-							+ "') not found in imported data of T02_address.");
+							+ "') not found in imported data of T02_address. Trying to use create_id instead.");
+					if (IDCStrategyHelper.getPK(dataProvider, "T02_address", "adr_id", row.get("create_id")) == 0) {
+						log.warn("Invalid entry in T02_address found: create_id ('" + row.get("create_id")
+								+ "') not found in imported data of T02_address.");
+					}
 				}
 				int cnt = 1;
 				p.setInt(cnt++, row.getInt("primary_key")); // id
@@ -206,8 +218,12 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setString(cnt++, "N"); // mark_deleted
 				p.setString(cnt++, IDCStrategyHelper.transDateTime(row.get("create_time"))); // create_time
 				p.setString(cnt++, IDCStrategyHelper.transDateTime(row.get("mod_time"))); // mod_time
-				p.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "T02_address", "adr_id", row.get("mod_id"))); // mod_id
-				p.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "T02_address", "adr_id", row.get("mod_id"))); // responsible_id
+				int modId = IDCStrategyHelper.getPK(dataProvider, "T02_address", "adr_id", row.get("mod_id"));
+				if (modId == 0) {
+					modId = IDCStrategyHelper.getPK(dataProvider, "T02_address", "adr_id", row.get("create_id"));
+				}
+				p.setInt(cnt++, modId); // mod_id,
+				p.setInt(cnt++, modId); // responsible_id
 
 				try {
 					p.executeUpdate();
@@ -242,7 +258,12 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
 				if (IDCStrategyHelper.getPK(dataProvider, "T02_address", "adr_id", row.get("mod_id")) == 0) {
 					log.warn("Invalid entry in T03_catalogue found: mod_id ('" + row.get("mod_id")
-							+ "') not found in T02_address.");
+							+ "') not found in T02_address. Trying to use create_id instead.");
+					if (IDCStrategyHelper.getPK(dataProvider, "T02_address", "adr_id", row.get("create_id")) == 0) {
+						log.warn("Invalid entry in T03_catalogue found: create_id ('" + row.get("create_id")
+								+ "') not found in imported data of T02_address.");
+					}
+					
 				}
 				int cnt = 1;
 				p.setInt(cnt++, row.getInt("primary_key")); // id
@@ -252,7 +273,11 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setString(cnt++, "N"); // workflow_control
 				p.setInt(cnt++, 0); // expiry_duration
 				p.setString(cnt++, IDCStrategyHelper.transDateTime(row.get("create_time"))); // create_time
-				p.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "T02_address", "adr_id", row.get("mod_id"))); // mod_id
+				int modId = IDCStrategyHelper.getPK(dataProvider, "T02_address", "adr_id", row.get("mod_id"));
+				if (modId == 0) {
+					modId = IDCStrategyHelper.getPK(dataProvider, "T02_address", "adr_id", row.get("create_id"));
+				}
+				p.setInt(cnt++, modId); // mod_id
 				p.setString(cnt++, IDCStrategyHelper.transDateTime(row.get("mod_time"))); // mod_time
 				try {
 					p.executeUpdate();
