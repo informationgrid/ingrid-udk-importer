@@ -33,7 +33,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault {
 			processT01Object();
 			processT012ObjObj();
 			processT012ObjAdr();
-			// processT04Search();
+			processT04Search();
 			processT011ObjProject();
 			processT011ObjLiteratur();
 			processT011ObjData();

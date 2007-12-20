@@ -307,11 +307,11 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 		for (Iterator<Row> i = dataProvider.getRowIterator("T012_obj_obj"); i.hasNext();) {
 			Row row = i.next();
-			if (IDCStrategyHelper.getPK(dataProvider, "T01_object", "obj_id", row.get("object_from_uuid")) == 0) {
-				log.warn("Invalid entry in T012_obj_obj found: object_from_uuid ('" + row.get("object_from_uuid")
+			if (IDCStrategyHelper.getPK(dataProvider, "T01_object", "obj_id", row.get("object_from_id")) == 0) {
+				log.warn("Invalid entry in T012_obj_obj found: object_from_id ('" + row.get("object_from_id")
 						+ "') not found in imported data of T01_object. Skip record.");
-			} else if (IDCStrategyHelper.getPK(dataProvider, "T01_object", "obj_id", row.get("object_to_uuid")) == 0) {
-				log.warn("Invalid entry in T012_obj_obj found: object_to_uuid ('" + row.get("object_to_uuid")
+			} else if (IDCStrategyHelper.getPK(dataProvider, "T01_object", "obj_id", row.get("object_to_id")) == 0) {
+				log.warn("Invalid entry in T012_obj_obj found: object_to_id ('" + row.get("object_to_id")
 						+ "') not found in imported data of T01_object. Skip record.");
 			} else if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
 				int cnt = 1;
