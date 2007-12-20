@@ -12,6 +12,10 @@ import java.util.Iterator;
 public interface DataProvider {
 
 	public Row findRow(String entityName, String rowName, String rowValue);
+
+	public Row findRow(String entityName, String[] rowName, String[] rowValue);
+	
+	public Row findRowStartsWith(String entityName, String rowName, String rowValue);
 	
 	public Iterator<Row> getRowIterator(String entityName);
 

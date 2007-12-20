@@ -77,16 +77,26 @@ public class IDCStrategyHelper {
 			try {
 				return Integer.parseInt(row.get("primary_key"));
 			} catch (NumberFormatException e) {
-				log.info("Cannot parse primary key '" + row.get("primary_key") + "' for " + entity + "." + field + "='"
-						+ value + "' to a number.");
 				return 0;
 			}
 		} else {
-			log.info("Cannot not find row for " + entity + "." + field + "='" + value + "'.");
 			return 0;
 		}
 	}
 
+	public static int getPK(DataProvider dataProvider, String entity, String[] fields, String[] values) {
+		Row row = dataProvider.findRow(entity, fields, values);
+		if (row != null && row.get("primary_key") != null) {
+			try {
+				return Integer.parseInt(row.get("primary_key"));
+			} catch (NumberFormatException e) {
+				return 0;
+			}
+		} else {
+			return 0;
+		}
+	}
+	
 	public static String getEntityFieldValue(DataProvider dataProvider, String entity, String fieldWhere,
 			String valueWhere, String field) {
 		Row row = dataProvider.findRow(entity, fieldWhere, valueWhere);
@@ -104,4 +114,44 @@ public class IDCStrategyHelper {
 		}
 	}
 
+	public static double getEntityFieldValueAsDouble(DataProvider dataProvider, String entity, String fieldWhere,
+			String valueWhere, String field) {
+		Row row = dataProvider.findRow(entity, fieldWhere, valueWhere);
+		if (row != null && row.get(field) != null) {
+			if (row.containsKey(field)) {
+				try {
+					return Double.parseDouble(row.get(field));
+				} catch (NumberFormatException e) {
+					log.info("Cannot convert to double: " + row.get(field));
+					return 0;
+				}
+			} else {
+				log.info("Cannot not find key '" + field + "' in row for " + entity + "." + fieldWhere + "='"
+						+ valueWhere + "'.");
+				return 0;
+			}
+		} else {
+			log.info("Cannot not find row for " + entity + "." + fieldWhere + "='" + valueWhere + "'.");
+			return 0;
+		}
+	}
+	
+	public static String getEntityFieldValueStartsWith(DataProvider dataProvider, String entity, String fieldWhere,
+			String valueWhere, String field) {
+		Row row = dataProvider.findRowStartsWith(entity, fieldWhere, valueWhere);
+		if (row != null && row.get(field) != null) {
+			if (row.containsKey(field)) {
+				return row.get(field);
+			} else {
+				log.info("Cannot not find key '" + field + "' in row for " + entity + "." + fieldWhere + "='"
+						+ valueWhere + "*'.");
+				return "";
+			}
+		} else {
+			log.info("Cannot not find row for " + entity + "." + fieldWhere + "='" + valueWhere + "*'.");
+			return "";
+		}
+	}
+	
+	
 }

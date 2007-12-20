@@ -33,8 +33,10 @@ public class JDBCConnectionProxy {
 	}
 
 	private void connectToDB() throws Exception {
-		log.info("Connecting to database...");
 		try {
+			if (log.isDebugEnabled()) {
+				log.debug("Connecting to database...");
+			}
 
 			if (descriptor.getDbDriver().indexOf("oracle") != -1) {
 				dbLogic = new OracleLogic();
@@ -55,6 +57,10 @@ public class JDBCConnectionProxy {
 			if (dbLogic != null) {
 				dbLogic.setSchema(fConnection, dbSchema);
 			}
+			if (log.isDebugEnabled()) {
+				log.debug("Connecting to database... success.");
+			}
+			
 
 		} catch (SQLException e) {
 			log.error("Can't connect to database! Please check your connection parameters.");

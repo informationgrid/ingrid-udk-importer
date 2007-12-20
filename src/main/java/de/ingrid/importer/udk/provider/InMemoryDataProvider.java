@@ -48,9 +48,48 @@ public class InMemoryDataProvider implements DataProvider {
 		return null;
 	}
 
+	public Row findRowStartsWith(String entityName, String rowName, String rowValue) {
+		Entity e = entities.get(entityName);
+		for (Row row : e.getRows()) {
+			if (row.get(rowName) != null && row.get(rowName).startsWith(rowValue)) {
+				return row;
+			}
+		}
+		return null;
+	}
+	
+	
+	public Row findRow(String entityName, String[] rowName, String[] rowValue) {
+		if (rowName.length != rowValue.length) {
+			log.error("Error finding row! Parameter arrays for rowName and rowValue are not equal.");
+			return null;
+		}
+		
+		Entity e = entities.get(entityName);
+		for (Row row : e.getRows()) {
+			int cnt = 0;
+			for(int i=0; i<rowName.length; i++) {
+				if (row.get(rowName[i]) != null && row.get(rowName[i]).equals(rowValue[i])) {
+					cnt++;
+				}
+			}
+			if (cnt == rowName.length) {
+				return row;
+			}
+			
+		}
+		return null;
+	}
+	
+	
 	public Iterator<Row> getRowIterator(String entityName) {
 		Entity e = entities.get(entityName);
-		return e.getRows().iterator();
+		if (e == null) {
+			// return empty iterator
+			return new ArrayList<Row>().iterator();
+		} else {
+			return e.getRows().iterator();
+		}
 	}
 
 	private void getEntities(ImportDescriptor descriptor) {
@@ -86,7 +125,7 @@ public class InMemoryDataProvider implements DataProvider {
 
 				NamedNodeMap nm = ((Element) nl.item(i)).getAttributes();
 				for (int j = 0; j < nm.getLength(); j++) {
-					row.put(nm.item(j).getNodeName(), nm.item(j).getNodeValue());
+					row.put(nm.item(j).getNodeName().toLowerCase(), nm.item(j).getNodeValue());
 				}
 				row.put("primary_key", String.valueOf(++id));
 				rows.add(row);
@@ -102,7 +141,7 @@ public class InMemoryDataProvider implements DataProvider {
 		try {
 			String xpath = "//Schema/ElementType/AttributeType";
 			NodeList nl = org.apache.xpath.XPathAPI.selectNodeList(dom, xpath);
-			tTable = ((Element) nl.item(0)).getAttribute("rs:basetable");
+			tTable = ((Element) nl.item(0)).getAttribute("rs:basetable").toLowerCase();
 			log.debug("Reading target table name: '" + tTable + "'");
 
 		} catch (TransformerException e) {

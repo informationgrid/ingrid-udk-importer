@@ -27,10 +27,10 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault {
 
 			jdbc.setAutoCommit(false);
 
-			processT02Address();
-			processT022AdrAdr();
 			processT03Catalogue();
 			processT01Object();
+			processT02Address();
+			processT022AdrAdr();
 			processT012ObjObj();
 			processT012ObjAdr();
 			processT04Search();
@@ -46,6 +46,22 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault {
 			processT011ObjGeoSpatialRep();
 			processT011ObjGeoScale();
 			processT011ObjGeoKeyc();
+			
+			processT011ObjServ();
+			processT011ObjServVersion();
+			processT011ObjServOperation();
+			processT011ObjServOpPlatform();
+			processT011ObjServOpPara();
+			processT011ObjServOpDepends();
+			processT011ObjServOpConnpoint();
+			processT015Legist();
+			processT0113DatasetReference();
+			processT0110AvailFormat();
+			processT0112MediaOption();
+			processT017UrlRef();
+			
+			processT011Township();
+			processT019Coordinates();
 			
 			setHiLoGenerator();
 
