@@ -4,71 +4,89 @@
 	xmlns:z='#RowsetSchema'>
 <s:Schema id='RowsetSchema'>
 	<s:ElementType name='row' content='eltOnly' rs:updatable='true'>
-		<s:AttributeType name='inst_id' rs:number='1' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='sys_akt_def'
-			 rs:basecolumn='inst_id' rs:keycolumn='true'>
-			<s:datatype dt:type='string' dt:maxLength='50' rs:maybenull='false'/>
+		<s:AttributeType name='INST_ID' rs:number='1' rs:writeunknown='true' rs:basetable='SYS_AKT_DEF' rs:basecolumn='INST_ID'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='50' rs:maybenull='false'/>
 		</s:AttributeType>
-		<s:AttributeType name='inst_name' rs:number='2' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='sys_akt_def' rs:basecolumn='inst_name'>
-			<s:datatype dt:type='string' dt:maxLength='120'/>
+		<s:AttributeType name='INST_NAME' rs:number='2' rs:nullable='true' rs:writeunknown='true' rs:basetable='SYS_AKT_DEF'
+			 rs:basecolumn='INST_NAME'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='120'/>
 		</s:AttributeType>
-		<s:AttributeType name='bemerk' rs:number='3' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='sys_akt_def' rs:basecolumn='bemerk'>
-			<s:datatype dt:type='string' dt:maxLength='120'/>
+		<s:AttributeType name='BEMERK' rs:number='3' rs:nullable='true' rs:writeunknown='true' rs:basetable='SYS_AKT_DEF'
+			 rs:basecolumn='BEMERK'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='120'/>
 		</s:AttributeType>
-		<s:AttributeType name='status' rs:number='4' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='sys_akt_def' rs:basecolumn='status'>
-			<s:datatype dt:type='string' dt:maxLength='2'/>
+		<s:AttributeType name='STATUS' rs:number='4' rs:nullable='true' rs:writeunknown='true' rs:basetable='SYS_AKT_DEF'
+			 rs:basecolumn='STATUS'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='2'/>
 		</s:AttributeType>
-		<s:AttributeType name='last_nr' rs:number='5' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='sys_akt_def' rs:basecolumn='last_nr'>
-			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true'/>
+		<s:AttributeType name='LAST_NR' rs:number='5' rs:nullable='true' rs:writeunknown='true' rs:basetable='SYS_AKT_DEF'
+			 rs:basecolumn='LAST_NR'>
+			<s:datatype dt:type='number' rs:dbtype='numeric' dt:maxLength='19' rs:scale='0' rs:precision='9' rs:fixedlength='true'/>
 		</s:AttributeType>
-		<s:AttributeType name='aktuell' rs:number='6' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='sys_akt_def' rs:basecolumn='aktuell'>
-			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true'/>
+		<s:AttributeType name='AKTUELL' rs:number='6' rs:nullable='true' rs:writeunknown='true' rs:basetable='SYS_AKT_DEF'
+			 rs:basecolumn='AKTUELL'>
+			<s:datatype dt:type='number' rs:dbtype='numeric' dt:maxLength='19' rs:scale='0' rs:precision='9' rs:fixedlength='true'/>
 		</s:AttributeType>
-		<s:AttributeType name='ff_nr' rs:number='7' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='sys_akt_def' rs:basecolumn='ff_nr'>
-			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true'/>
+		<s:AttributeType name='FF_NR' rs:number='7' rs:nullable='true' rs:writeunknown='true' rs:basetable='SYS_AKT_DEF'
+			 rs:basecolumn='FF_NR'>
+			<s:datatype dt:type='number' rs:dbtype='numeric' dt:maxLength='19' rs:scale='0' rs:precision='9' rs:fixedlength='true'/>
 		</s:AttributeType>
-		<s:AttributeType name='mf_nr' rs:number='8' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='sys_akt_def' rs:basecolumn='mf_nr'>
-			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true'/>
+		<s:AttributeType name='MF_NR' rs:number='8' rs:nullable='true' rs:writeunknown='true' rs:basetable='SYS_AKT_DEF'
+			 rs:basecolumn='MF_NR'>
+			<s:datatype dt:type='number' rs:dbtype='numeric' dt:maxLength='19' rs:scale='0' rs:precision='9' rs:fixedlength='true'/>
 		</s:AttributeType>
-		<s:AttributeType name='vt_nr' rs:number='9' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='sys_akt_def' rs:basecolumn='vt_nr'>
-			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true'/>
+		<s:AttributeType name='VT_NR' rs:number='9' rs:nullable='true' rs:writeunknown='true' rs:basetable='SYS_AKT_DEF'
+			 rs:basecolumn='VT_NR'>
+			<s:datatype dt:type='number' rs:dbtype='numeric' dt:maxLength='19' rs:scale='0' rs:precision='9' rs:fixedlength='true'/>
 		</s:AttributeType>
-		<s:AttributeType name='ak_nr' rs:number='10' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='sys_akt_def' rs:basecolumn='ak_nr'>
-			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true'/>
+		<s:AttributeType name='AK_NR' rs:number='10' rs:nullable='true' rs:writeunknown='true' rs:basetable='SYS_AKT_DEF'
+			 rs:basecolumn='AK_NR'>
+			<s:datatype dt:type='number' rs:dbtype='numeric' dt:maxLength='19' rs:scale='0' rs:precision='9' rs:fixedlength='true'/>
 		</s:AttributeType>
-		<s:AttributeType name='data' rs:number='11' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='sys_akt_def' rs:basecolumn='data'>
-			<s:datatype dt:type='string' dt:maxLength='40'/>
+		<s:AttributeType name='DATA' rs:number='11' rs:nullable='true' rs:writeunknown='true' rs:basetable='SYS_AKT_DEF'
+			 rs:basecolumn='DATA'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='40'/>
 		</s:AttributeType>
-		<s:AttributeType name='date_rec' rs:number='12' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='sys_akt_def' rs:basecolumn='date_rec'>
-			<s:datatype dt:type='string' dt:maxLength='14'/>
+		<s:AttributeType name='DATE_REC' rs:number='12' rs:nullable='true' rs:writeunknown='true' rs:basetable='SYS_AKT_DEF'
+			 rs:basecolumn='DATE_REC'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='14'/>
 		</s:AttributeType>
-		<s:AttributeType name='date_send' rs:number='13' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='sys_akt_def' rs:basecolumn='date_send'>
-			<s:datatype dt:type='string' dt:maxLength='14'/>
+		<s:AttributeType name='DATE_SEND' rs:number='13' rs:nullable='true' rs:writeunknown='true' rs:basetable='SYS_AKT_DEF'
+			 rs:basecolumn='DATE_SEND'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='14'/>
+		</s:AttributeType>
+		<s:AttributeType name='ROWID' rs:number='14' rs:nullable='true' rs:rowid='true' rs:basetable='SYS_AKT_DEF'
+			 rs:basecolumn='ROWID' rs:keycolumn='true' rs:hidden='true' rs:autoincrement='true'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='18' rs:fixedlength='true'/>
 		</s:AttributeType>
 		<s:extends type='rs:rowbase'/>
 	</s:ElementType>
 </s:Schema>
 <rs:data>
-	<z:row inst_id='Z#F8035309-53FD-44A7-AAA3-26CE59A0954F' inst_name='HOME' bemerk='Angben über die eigene Instanz'
-		 status='A' last_nr='0' aktuell='0' ff_nr='0' mf_nr='0' vt_nr='3' ak_nr='0' data='' date_rec='' date_send='20060509144253'/>
-	<z:row inst_id='I#87A8CB06-CBFE-49DB-A394-D78F62E2B9F4' inst_name='KUG' bemerk='Export für Bereitstellung im V-UDK'
-		 status='A' last_nr='0' aktuell='0' ff_nr='0' mf_nr='0' vt_nr='0' ak_nr='0' data='' date_rec='' date_send='20050519083344'/>
-	<z:row inst_id='Z#E9EAB278-012F-4C2A-B0F4-8B68CA60310C' inst_name='HOME' bemerk='Angben über die eigene Instanz'
-		 status='A' last_nr='0' aktuell='0' ff_nr='0' mf_nr='0' vt_nr='0' ak_nr='0' data='' date_rec='' date_send=''/>
-	<z:row inst_id='I#CD6B5DE5-0DEA-46EA-AF77-CA67435CC7CF' inst_name='LfUG' bemerk='26.04.2007' status='A' last_nr='0'
-		 aktuell='0' ff_nr='0' mf_nr='0' vt_nr='0' ak_nr='0' data='' date_rec='' date_send='20070426114633'/>
-	<z:row inst_id='I#499E33BA-6891-45AA-B73B-1DD7186DDB1B' inst_name='HARTSCH' bemerk='' status='A' last_nr='0'
-		 aktuell='0' ff_nr='0' mf_nr='0' vt_nr='0' ak_nr='0' data='' date_rec='' date_send='20060509155356'/>
+	<z:row INST_ID='Z#F8624E08-0688-11D6-A106-000476120219' INST_NAME='HOME' BEMERK='Angben über die eigene Instanz'
+		 STATUS='A' LAST_NR='0' AKTUELL='0' FF_NR='0' MF_NR='0' VT_NR='0' AK_NR='0' ROWID='AAAHZwAABAAAMZKAAA'/>
+	<z:row INST_ID='I#203E0C4F-31C1-11D6-9800-000476105676' INST_NAME='BEZREG-H' BEMERK='Bezirksregierung Hannover'
+		 STATUS='A' LAST_NR='0' AKTUELL='0' FF_NR='0' MF_NR='0' VT_NR='0' AK_NR='1' DATE_REC='20020606114332' DATE_SEND='20020307124857'
+		 ROWID='AAAHZwAABAAAMZKAAB'/>
+	<z:row INST_ID='I#991D571B-08D0-11D6-88E0-0060084A6015' INST_NAME='Test_Instanz' STATUS='D' LAST_NR='0' AKTUELL='0'
+		 FF_NR='0' MF_NR='0' VT_NR='0' AK_NR='0' DATE_SEND='20020114102722' ROWID='AAAHZwAABAAAMZKAAC'/>
+	<z:row INST_ID='I#45DC52F6-0BD9-11D6-97D3-000476105676' INST_NAME='Region Hannover' STATUS='D' LAST_NR='0' AKTUELL='0'
+		 FF_NR='0' MF_NR='0' VT_NR='0' AK_NR='0' DATE_SEND='20020118073248' ROWID='AAAHZwAABAAAMZKAAD'/>
+	<z:row INST_ID='I#D3DE5E42-16D7-11D6-97DD-000476105676' INST_NAME='Region Hannover' STATUS='D' LAST_NR='0' AKTUELL='0'
+		 FF_NR='0' MF_NR='0' VT_NR='0' AK_NR='0' DATE_SEND='20020201072116' ROWID='AAAHZwAABAAAMZKAAE'/>
+	<z:row INST_ID='I#D3DE5E43-16D7-11D6-97DD-000476105676' INST_NAME='Region Hannover' STATUS='A' LAST_NR='0' AKTUELL='0'
+		 FF_NR='0' MF_NR='0' VT_NR='0' AK_NR='0' DATE_SEND='20020201072330' ROWID='AAAHZwAABAAAMZKAAF'/>
+	<z:row INST_ID='I#B708016D-2069-11D6-97E8-000476105676' INST_NAME='Landkreis Schaumburg' STATUS='A' LAST_NR='0'
+		 AKTUELL='0' FF_NR='0' MF_NR='0' VT_NR='0' AK_NR='0' DATE_SEND='20020213111402' ROWID='AAAHZwAABAAAMZKAAG'/>
+	<z:row INST_ID='I#B708016E-2069-11D6-97E8-000476105676' INST_NAME='NLSTB' BEMERK='Niedersächsisches Landesamt für Straßenbau'
+		 STATUS='A' LAST_NR='0' AKTUELL='0' FF_NR='0' MF_NR='0' VT_NR='0' AK_NR='0' DATE_SEND='20020213112136' ROWID='AAAHZwAABAAAMZKAAH'/>
+	<z:row INST_ID='I#DDA6725F-2AB1-11D6-97F8-000476105676' INST_NAME='LGN' STATUS='A' LAST_NR='0' AKTUELL='0' FF_NR='0'
+		 MF_NR='0' VT_NR='0' AK_NR='2' DATE_REC='20020919151628' DATE_SEND='20020226131257' ROWID='AAAHZwAABAAAMZKAAI'/>
+	<z:row INST_ID='I#F9E4D2C9-A54D-11D6-9855-000476105676' INST_NAME='TLGN' STATUS='A' LAST_NR='0' AKTUELL='0'
+		 FF_NR='0' MF_NR='0' VT_NR='0' AK_NR='0' DATE_SEND='20020801145650' ROWID='AAAHZwAABAAAMZKAAJ'/>
+	<z:row INST_ID='I#D1C9EBA9-B5C5-11D6-9867-000476105676' INST_NAME='NLÖ' BEMERK='Niedersächsisches Landesamt für Ökologie'
+		 STATUS='A' LAST_NR='0' AKTUELL='0' FF_NR='0' MF_NR='0' VT_NR='0' AK_NR='0' DATE_SEND='20020822135458' ROWID='AAAHZwAABAAAMZKAAK'/>
+	<z:row INST_ID='I#4D66AC67-BA94-11D6-BCAE-000476120219' INST_NAME='NLfB' BEMERK='Niedersächsisches Landesamt für Bodenforschung'
+		 STATUS='A' LAST_NR='0' AKTUELL='0' FF_NR='0' MF_NR='0' VT_NR='0' AK_NR='0' DATE_SEND='20020828164327' ROWID='AAAHZwAABAAAMZKAAL'/>
 </rs:data>
 </xml>

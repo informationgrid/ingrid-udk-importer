@@ -4,189 +4,100 @@
 	xmlns:z='#RowsetSchema'>
 <s:Schema id='RowsetSchema'>
 	<s:ElementType name='row' content='eltOnly' rs:updatable='true'>
-		<s:AttributeType name='user_id' rs:number='1' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='T05_user'
-			 rs:basecolumn='user_id' rs:keycolumn='true'>
-			<s:datatype dt:type='string' dt:maxLength='40' rs:maybenull='false'/>
+		<s:AttributeType name='USER_ID' rs:number='1' rs:writeunknown='true' rs:basetable='T05_USER' rs:basecolumn='USER_ID'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='40' rs:maybenull='false'/>
 		</s:AttributeType>
-		<s:AttributeType name='cat_id' rs:number='2' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='T05_user' rs:basecolumn='cat_id'>
-			<s:datatype dt:type='string' dt:maxLength='40'/>
+		<s:AttributeType name='CAT_ID' rs:number='2' rs:nullable='true' rs:writeunknown='true' rs:basetable='T05_USER'
+			 rs:basecolumn='CAT_ID'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='40'/>
 		</s:AttributeType>
-		<s:AttributeType name='user_name' rs:number='3' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='T05_user' rs:basecolumn='user_name'>
-			<s:datatype dt:type='string' dt:maxLength='40'/>
+		<s:AttributeType name='USER_NAME' rs:number='3' rs:nullable='true' rs:writeunknown='true' rs:basetable='T05_USER'
+			 rs:basecolumn='USER_NAME'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='40'/>
 		</s:AttributeType>
-		<s:AttributeType name='password' rs:number='4' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='T05_user' rs:basecolumn='password'>
-			<s:datatype dt:type='string' dt:maxLength='40'/>
+		<s:AttributeType name='PASSWORD' rs:number='4' rs:nullable='true' rs:writeunknown='true' rs:basetable='T05_USER'
+			 rs:basecolumn='PASSWORD'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='40'/>
 		</s:AttributeType>
-		<s:AttributeType name='group_flag' rs:number='5' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='T05_user' rs:basecolumn='group_flag'>
-			<s:datatype dt:type='i2' dt:maxLength='2' rs:precision='5' rs:fixedlength='true'/>
+		<s:AttributeType name='GROUP_FLAG' rs:number='5' rs:nullable='true' rs:writeunknown='true' rs:basetable='T05_USER'
+			 rs:basecolumn='GROUP_FLAG'>
+			<s:datatype dt:type='number' rs:dbtype='numeric' dt:maxLength='19' rs:scale='0' rs:precision='3' rs:fixedlength='true'/>
 		</s:AttributeType>
-		<s:AttributeType name='address_id' rs:number='6' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='T05_user' rs:basecolumn='address_id'>
-			<s:datatype dt:type='string' dt:maxLength='40'/>
+		<s:AttributeType name='ADDRESS_ID' rs:number='6' rs:nullable='true' rs:writeunknown='true' rs:basetable='T05_USER'
+			 rs:basecolumn='ADDRESS_ID'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='40'/>
 		</s:AttributeType>
-		<s:AttributeType name='link_to' rs:number='7' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='T05_user' rs:basecolumn='link_to'>
-			<s:datatype dt:type='i2' dt:maxLength='2' rs:precision='5' rs:fixedlength='true'/>
+		<s:AttributeType name='LINK_TO' rs:number='7' rs:nullable='true' rs:writeunknown='true' rs:basetable='T05_USER'
+			 rs:basecolumn='LINK_TO'>
+			<s:datatype dt:type='number' rs:dbtype='numeric' dt:maxLength='19' rs:scale='0' rs:precision='3' rs:fixedlength='true'/>
 		</s:AttributeType>
-		<s:AttributeType name='create_id' rs:number='8' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='T05_user' rs:basecolumn='create_id'>
-			<s:datatype dt:type='string' dt:maxLength='40'/>
+		<s:AttributeType name='CREATE_ID' rs:number='8' rs:nullable='true' rs:writeunknown='true' rs:basetable='T05_USER'
+			 rs:basecolumn='CREATE_ID'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='40'/>
 		</s:AttributeType>
-		<s:AttributeType name='create_time' rs:number='9' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='T05_user' rs:basecolumn='create_time'>
-			<s:datatype dt:type='string' dt:maxLength='14'/>
+		<s:AttributeType name='CREATE_TIME' rs:number='9' rs:nullable='true' rs:writeunknown='true' rs:basetable='T05_USER'
+			 rs:basecolumn='CREATE_TIME'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='14'/>
 		</s:AttributeType>
-		<s:AttributeType name='mod_id' rs:number='10' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='T05_user' rs:basecolumn='mod_id'>
-			<s:datatype dt:type='string' dt:maxLength='40'/>
+		<s:AttributeType name='MOD_ID' rs:number='10' rs:nullable='true' rs:writeunknown='true' rs:basetable='T05_USER'
+			 rs:basecolumn='MOD_ID'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='40'/>
 		</s:AttributeType>
-		<s:AttributeType name='mod_time' rs:number='11' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='T05_user' rs:basecolumn='mod_time'>
-			<s:datatype dt:type='string' dt:maxLength='14'/>
+		<s:AttributeType name='MOD_TIME' rs:number='11' rs:nullable='true' rs:writeunknown='true' rs:basetable='T05_USER'
+			 rs:basecolumn='MOD_TIME'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='14'/>
 		</s:AttributeType>
-		<s:AttributeType name='mod_type' rs:number='12' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='T05_user'
-			 rs:basecolumn='mod_type'>
-			<s:datatype dt:type='string' dt:maxLength='1' rs:maybenull='false'/>
+		<s:AttributeType name='MOD_TYPE' rs:number='12' rs:nullable='true' rs:writeunknown='true' rs:basetable='T05_USER'
+			 rs:basecolumn='MOD_TYPE'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='1'/>
+		</s:AttributeType>
+		<s:AttributeType name='ROWID' rs:number='13' rs:nullable='true' rs:rowid='true' rs:basetable='T05_USER' rs:basecolumn='ROWID'
+			 rs:keycolumn='true' rs:hidden='true' rs:autoincrement='true'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='18' rs:fixedlength='true'/>
 		</s:AttributeType>
 		<s:extends type='rs:rowbase'/>
 	</s:ElementType>
 </s:Schema>
 <rs:data>
-	<z:row user_id='4F4D1281-1788-4B1F-9FA0-2B2D4A5FCC48' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='FP1'
-		 password='E[gnI[' group_flag='1' address_id='A8ED7D04-6C90-40B1-AF7D-F03C6926C2E1' link_to='0' create_id='D25BCB87-CF59-4759-8768-638348F22DDD'
-		 create_time='20040930142931' mod_id='D25BCB87-CF59-4759-8768-638348F22DDD' mod_time='20040930142931' mod_type='I'/>
-	<z:row user_id='A1795696-C5E2-4CDD-B48A-BE3FF5A21EE6' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='JS1'
-		 password='JGfgMN' group_flag='1' address_id='DC364311-6C34-4C4C-80AA-58B893648128' create_id='D25BCB87-CF59-4759-8768-638348F22DDD'
-		 create_time='20050512143449' mod_id='DC364311-6C34-4C4C-80AA-58B893648128' mod_time='20050609155550' mod_type='U'/>
-	<z:row user_id='7CBBFA3B-FE78-424C-AC9D-E3BAA5BCBD65' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='BRV'
-		 password='E[gnI[' group_flag='1' address_id='A853DFF4-E6AF-11D2-9A86-080000507261' create_id='D25BCB87-CF59-4759-8768-638348F22DDD'
-		 create_time='20040121154219' mod_id='12D6D27B-8698-440F-BB5F-25E9A4064F7B' mod_time='20051102161803' mod_type='U'/>
-	<z:row user_id='79FB2779-A4B2-4CB4-92C4-26512344A58F' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='LTV'
-		 password='CRghZ_' group_flag='1' address_id='A853E024-E6AF-11D2-9A86-080000507261' link_to='1' create_id='12D6D27B-8698-440F-BB5F-25E9A4064F7B'
-		 create_time='20060522131557' mod_id='A853E024-E6AF-11D2-9A86-080000507261' mod_time='20060523121354' mod_type='U'/>
-	<z:row user_id='0D5BE2AE-6F19-4BF0-A39D-FE2B26823FBC' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='SMUL_ABT5_AT'
-		 password='E[gnI[' group_flag='1' address_id='7DC4A348-E180-11D5-9350-0048543011FC' create_id='D25BCB87-CF59-4759-8768-638348F22DDD'
-		 create_time='20030502123646' mod_id='D25BCB87-CF59-4759-8768-638348F22DDD' mod_time='20030502123646' mod_type='I'/>
-	<z:row user_id='92C52E31-BB69-462E-8022-CA8C5759A6F2' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='SMUL_ABT5_BGC'
-		 password='E[gnI[' group_flag='1' address_id='7DC4A349-E180-11D5-9350-0048543011FC' link_to='1' create_id='D25BCB87-CF59-4759-8768-638348F22DDD'
-		 create_time='20030502123740' mod_id='D25BCB87-CF59-4759-8768-638348F22DDD' mod_time='20030502123740' mod_type='I'/>
-	<z:row user_id='DF8880F1-8CF2-44CB-8096-9AFE18AC2D5A' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='SBS'
-		 password='E[gnI[' group_flag='1' address_id='A853E009-E6AF-11D2-9A86-080000507261' create_id='D25BCB87-CF59-4759-8768-638348F22DDD'
-		 create_time='20030505091947' mod_id='424C29DA-4008-425F-A302-2F0A80DC78E5' mod_time='20070928081845' mod_type='U'/>
-	<z:row user_id='52A023E9-5AEE-4BCC-A6EB-07F44EBD3A85' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='EW1'
-		 password=';OXVIU' group_flag='0' address_id='424C29DA-4008-425F-A302-2F0A80DC78E5' link_to='1' create_id='12D6D27B-8698-440F-BB5F-25E9A4064F7B'
-		 create_time='20050105110823' mod_id='424C29DA-4008-425F-A302-2F0A80DC78E5' mod_time='20071126131555' mod_type='U'/>
-	<z:row user_id='93538A05-3A57-468A-8114-2317758991C7' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='CB1'
-		 password='E[gnI[' group_flag='1' address_id='B0EB682B-B474-4783-8B2C-C9E54172401D' link_to='0' create_id='D25BCB87-CF59-4759-8768-638348F22DDD'
-		 create_time='20050504131516' mod_id='12D6D27B-8698-440F-BB5F-25E9A4064F7B' mod_time='20061211113944' mod_type='U'/>
-	<z:row user_id='260EA23D-BA28-11D4-8123-00902788234C' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='STUFAL'
-		 password='JZhZEU' group_flag='1' address_id='FFC02325-3E9A-49B2-9D23-87AC36CF00F6' link_to='0' create_id='0B00A165-DD5F-11D3-8C02-00105A493192'
-		 create_time='20001114135245' mod_id='12D6D27B-8698-440F-BB5F-25E9A4064F7B' mod_time='20070910151848' mod_type='U'/>
-	<z:row user_id='35C2C095-E171-11D4-8146-00902788234C' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='STUFAR'
-		 password='JZhZE[' group_flag='1' address_id='5E324A89-8F1C-4B6D-8E1C-3E5FAF9B3815' link_to='1' create_id='A853E00A-E6AF-11D2-9A86-080000507261'
-		 create_time='20010103132236' mod_id='12D6D27B-8698-440F-BB5F-25E9A4064F7B' mod_time='20070906151220' mod_type='U'/>
-	<z:row user_id='7C154D52-C5F5-11D4-812B-00902788234C' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='STUFAC'
-		 password='JZhZEL' group_flag='1' address_id='56F01F12-EB3E-448F-B8E9-3C124A78FF08' link_to='0' create_id='A853E00A-E6AF-11D2-9A86-080000507261'
-		 create_time='20001129134943' mod_id='12D6D27B-8698-440F-BB5F-25E9A4064F7B' mod_time='20070906151034' mod_type='U'/>
-	<z:row user_id='A853E588-E6AF-11D2-9A86-080000507261' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='ROOT'
-		 password='XYXWVNa@' group_flag='0' address_id='0B00A165-DD5F-11D3-8C02-00105A493192' link_to='1' create_id='0B00A165-DD5F-11D3-8C02-00105A493192'
-		 create_time='19970515151125' mod_id='A853E00A-E6AF-11D2-9A86-080000507261' mod_time='20011207113634' mod_type='U'/>
-	<z:row user_id='8B949933-9AC9-423A-B9B8-6A714FC39DBD' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='AD1'
-		 password='8TZYPRX ' group_flag='1' address_id='C0213CD2-6DBF-4B06-BB0C-3603BC58B065' create_id='12D6D27B-8698-440F-BB5F-25E9A4064F7B'
-		 create_time='20060706112410' mod_id='424C29DA-4008-425F-A302-2F0A80DC78E5' mod_time='20071107133633' mod_type='U'/>
-	<z:row user_id='A853E599-E6AF-11D2-9A86-080000507261' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='UDKZKA'
-		 password='XYXWVNa@' group_flag='0' address_id='0B00A165-DD5F-11D3-8C02-00105A493192' link_to='1' create_id='0B00A165-DD5F-11D3-8C02-00105A493192'
-		 create_time='19970516105413' mod_id='D25BCB87-CF59-4759-8768-638348F22DDD' mod_time='20020208101812' mod_type='U'/>
-	<z:row user_id='A982E2FE-A42A-11D4-8113-00902788234C' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='RPDUFBB'
-		 password='E[gnI[' group_flag='1' address_id='771FA5B7-C7D9-457B-B959-85DC9421130F' link_to='1' create_id='12D6D27B-8698-440F-BB5F-25E9A4064F7B'
-		 create_time='20001017144602' mod_id='12D6D27B-8698-440F-BB5F-25E9A4064F7B' mod_time='20060323085421' mod_type='U'/>
-	<z:row user_id='FC19D53A-10E4-4126-90BC-2D7F068D5A61' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='RD1'
-		 password='E[gnI[' group_flag='1' address_id='429E6654-D5F3-4575-B863-A0BD789B2B58' link_to='0' create_id='D25BCB87-CF59-4759-8768-638348F22DDD'
-		 create_time='20050512144320' mod_id='12D6D27B-8698-440F-BB5F-25E9A4064F7B' mod_time='20060921114013' mod_type='U'/>
-	<z:row user_id='D447BE7D-C5DD-11D4-812B-00902788234C' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='STUFAP'
-		 password='&#x27;RTiIW' group_flag='1' address_id='CE8AC84D-E655-4C0B-AC2A-6D8E85764893' link_to='0' create_id='A853E00A-E6AF-11D2-9A86-080000507261'
-		 create_time='20001129110546' mod_id='12D6D27B-8698-440F-BB5F-25E9A4064F7B' mod_time='20070906151142' mod_type='U'/>
-	<z:row user_id='84E592C9-3386-46D3-8FEB-EF7DF13DCB76' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='UDKADM'
-		 password='XYXWVNa@' group_flag='0' address_id='D25BCB87-CF59-4759-8768-638348F22DDD' link_to='1' create_id='0B00A165-DD5F-11D3-8C02-00105A493192'
-		 create_time='20010502144153' mod_id='A853E00A-E6AF-11D2-9A86-080000507261' mod_time='20020821144055' mod_type='U'/>
-	<z:row user_id='1653F618-6187-4CE7-806E-32505CDF16B9' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='PV1'
-		 password='E]fWQJ' group_flag='1' address_id='0B00A170-DD5F-11D3-8C02-00105A493192' link_to='0' create_id='D25BCB87-CF59-4759-8768-638348F22DDD'
-		 create_time='20050511101145' mod_id='12D6D27B-8698-440F-BB5F-25E9A4064F7B' mod_time='20061211113702' mod_type='U'/>
-	<z:row user_id='6CE60D9D-9D3D-494C-88D6-892907E87064' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='BA1'
-		 password='8HgYMUb-[&#x26;' group_flag='1' address_id='B4D34638-33F8-45DD-B3D5-4413FCFC57F7' link_to='0' create_id='D25BCB87-CF59-4759-8768-638348F22DDD'
-		 create_time='20011115132251' mod_id='12D6D27B-8698-440F-BB5F-25E9A4064F7B' mod_time='20060921113856' mod_type='U'/>
-	<z:row user_id='0926A3A8-79DB-41E4-BEE3-0AE65B7A9D61' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='TM1'
-		 password='D[X`PN_' group_flag='1' address_id='88687ACE-63A2-4B2D-A965-AED4723BA6B5' link_to='0' create_id='D25BCB87-CF59-4759-8768-638348F22DDD'
-		 create_time='20011115132608' mod_id='D25BCB87-CF59-4759-8768-638348F22DDD' mod_time='20040311100156' mod_type='U'/>
-	<z:row user_id='B0FCE59F-C36C-43EA-8724-A0487E81E4B6' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='RK4'
-		 password='K_gcEUO ' group_flag='1' address_id='4D6D81AB-CF14-433F-8145-37D40D384711' link_to='0' create_id='D25BCB87-CF59-4759-8768-638348F22DDD'
-		 create_time='20011115132716' mod_id='12D6D27B-8698-440F-BB5F-25E9A4064F7B' mod_time='20060921114021' mod_type='U'/>
-	<z:row user_id='997909D1-82C6-4AAF-9AC1-7598F4154B76' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='NPV'
-		 password='E[gnI[' group_flag='1' address_id='A853E027-E6AF-11D2-9A86-080000507261' create_id='12D6D27B-8698-440F-BB5F-25E9A4064F7B'
-		 create_time='20060608095129' mod_id='12D6D27B-8698-440F-BB5F-25E9A4064F7B' mod_time='20060608095129' mod_type='I'/>
-	<z:row user_id='69916C74-76B7-4CCA-9E93-1AF714BBF00B' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='RB2'
-		 password='?GagM' group_flag='1' address_id='01758298-5E76-4719-B5FF-F1D940241108' link_to='0' create_id='D25BCB87-CF59-4759-8768-638348F22DDD'
-		 create_time='20011115133003' mod_id='01758298-5E76-4719-B5FF-F1D940241108' mod_time='20050701072323' mod_type='U'/>
-	<z:row user_id='F1F2CDF0-6587-4B72-A44F-12606EA5DF2E' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='UM2'
-		 password='E[gnI[' group_flag='1' address_id='F0086E46-D53D-45B4-AB0B-839467534A0F' link_to='0' create_id='12D6D27B-8698-440F-BB5F-25E9A4064F7B'
-		 create_time='20070821112227' mod_id='424C29DA-4008-425F-A302-2F0A80DC78E5' mod_time='20071126131227' mod_type='U'/>
-	<z:row user_id='1F48AB54-E8B5-11D5-8BF5-00508BA16A08' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='HL1'
-		 password='E[gnI[' group_flag='1' address_id='9CE24436-44B6-43AA-9C34-C56ED60BA150' link_to='0' create_id='D25BCB87-CF59-4759-8768-638348F22DDD'
-		 create_time='20011204134950' mod_id='12D6D27B-8698-440F-BB5F-25E9A4064F7B' mod_time='20061211113646' mod_type='U'/>
-	<z:row user_id='DFAFD57C-3EA6-415E-8F3D-CDBE61ACFD18' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='TB1'
-		 password='8HgYMUb-[*' group_flag='1' address_id='168C641D-5341-4EAF-A4E9-04743AB2951D' link_to='0' create_id='D25BCB87-CF59-4759-8768-638348F22DDD'
-		 create_time='20020122100734' mod_id='12D6D27B-8698-440F-BB5F-25E9A4064F7B' mod_time='20061211113757' mod_type='U'/>
-	<z:row user_id='FB0DD7BE-F1A3-4E3D-B479-3B8A33E135BE' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='BW2'
-		 password='E[gnI[' group_flag='1' address_id='E07DBDB7-0FDE-4B09-94C7-587446C3F115' create_id='D25BCB87-CF59-4759-8768-638348F22DDD'
-		 create_time='20050512144855' mod_id='12D6D27B-8698-440F-BB5F-25E9A4064F7B' mod_time='20051104101122' mod_type='U'/>
-	<z:row user_id='0F84562D-9900-4A50-B872-CBC0421E4253' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='RB5'
-		 password='KKWX]VV$n' group_flag='1' address_id='B04E2AD7-1887-495D-9E92-6F876B269839' link_to='0' create_id='D25BCB87-CF59-4759-8768-638348F22DDD'
-		 create_time='20050712081550' mod_id='B04E2AD7-1887-495D-9E92-6F876B269839' mod_time='20050713070910' mod_type='U'/>
-	<z:row user_id='DB1068EC-446F-4C92-B653-3ABDDBE63D11' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='RPSB'
-		 password='E[gnI[' group_flag='1' address_id='23B0C970-5CC4-4B35-B46E-481E09634E41' create_id='12D6D27B-8698-440F-BB5F-25E9A4064F7B'
-		 create_time='20050817161140' mod_id='12D6D27B-8698-440F-BB5F-25E9A4064F7B' mod_time='20060406160948' mod_type='U'/>
-	<z:row user_id='BAC575CF-7611-4E0F-BBE5-711E273E4DA7' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='RPSR'
-		 password='E[gnI[' group_flag='1' address_id='FF9AE9D4-C730-402C-B730-F9BD36949A05' link_to='1' create_id='12D6D27B-8698-440F-BB5F-25E9A4064F7B'
-		 create_time='20050913103719' mod_id='12D6D27B-8698-440F-BB5F-25E9A4064F7B' mod_time='20060404113809' mod_type='U'/>
-	<z:row user_id='3716D261-B591-4229-9A80-D56A1351AA50' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='AM2'
-		 password='E[gnI[' group_flag='1' address_id='02E19D65-BC2F-48B5-B8CC-C5AD90DDB967' link_to='0' create_id='12D6D27B-8698-440F-BB5F-25E9A4064F7B'
-		 create_time='20050927155310' mod_id='12D6D27B-8698-440F-BB5F-25E9A4064F7B' mod_time='20060921113844' mod_type='U'/>
-	<z:row user_id='AFB01240-D198-4FB6-B282-C2459605608C' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='HARTSCH2'
-		 password='E[gnI[' group_flag='1' address_id='A853E03D-E6AF-11D2-9A86-080000507261' link_to='1' create_id='12D6D27B-8698-440F-BB5F-25E9A4064F7B'
-		 create_time='20070116155920' mod_id='424C29DA-4008-425F-A302-2F0A80DC78E5' mod_time='20071009105453' mod_type='U'/>
-	<z:row user_id='3F9CD5DA-15B2-457D-8FFA-068161B01D87' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='HARTSCH1'
-		 password='E[gnI[' group_flag='1' address_id='A853E00A-E6AF-11D2-9A86-080000507261' create_id='12D6D27B-8698-440F-BB5F-25E9A4064F7B'
-		 create_time='20070906143515' mod_id='12D6D27B-8698-440F-BB5F-25E9A4064F7B' mod_time='20070906143515' mod_type='I'/>
-	<z:row user_id='69CFA632-8E95-47DC-93FC-462D41BDB4B2' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='RPVSWS'
-		 password='E[gnI[' group_flag='1' address_id='E43D987B-4AB4-43CE-83F2-6564114D184C' create_id='12D6D27B-8698-440F-BB5F-25E9A4064F7B'
-		 create_time='20060403130627' mod_id='12D6D27B-8698-440F-BB5F-25E9A4064F7B' mod_time='20070130144847' mod_type='U'/>
-	<z:row user_id='4DD761C8-9DD5-40E2-8383-B05829530DD1' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='LFL'
-		 password='E[gnI[' group_flag='1' address_id='A853E00B-E6AF-11D2-9A86-080000507261' link_to='1' create_id='12D6D27B-8698-440F-BB5F-25E9A4064F7B'
-		 create_time='20070207111707' mod_id='12D6D27B-8698-440F-BB5F-25E9A4064F7B' mod_time='20070207111707' mod_type='I'/>
-	<z:row user_id='5858F8E5-329C-40DC-9117-6C55470C81D9' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='RPCLW'
-		 password='E[gnI[' group_flag='1' address_id='61771250-E3FD-4175-973E-2DFBA6CB5497' create_id='12D6D27B-8698-440F-BB5F-25E9A4064F7B'
-		 create_time='20070221140627' mod_id='12D6D27B-8698-440F-BB5F-25E9A4064F7B' mod_time='20070221141814' mod_type='U'/>
-	<z:row user_id='31605730-9F3A-482A-9A07-BFD969C6D349' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='RPVWS'
-		 password='E[gnI[' group_flag='1' address_id='278465DA-A6C1-4931-8299-9ECAB9F5A278' link_to='1' create_id='12D6D27B-8698-440F-BB5F-25E9A4064F7B'
-		 create_time='20070906151753' mod_id='12D6D27B-8698-440F-BB5F-25E9A4064F7B' mod_time='20070906151753' mod_type='I'/>
-	<z:row user_id='70C451B5-601A-4CCA-9F76-3CA9B2594D69' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='BG1'
-		 password='E[gnI[' group_flag='1' address_id='F97617CC-A490-4E8C-81BF-E02CE8C37947' link_to='0' create_id='424C29DA-4008-425F-A302-2F0A80DC78E5'
-		 create_time='20071114140227' mod_id='424C29DA-4008-425F-A302-2F0A80DC78E5' mod_time='20071126125817' mod_type='U'/>
-	<z:row user_id='8EDE49ED-7D3E-4004-8784-9D20F03D6217' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='UBG'
-		 password='E[gnI[' group_flag='1' address_id='A853E03D-E6AF-11D2-9A86-080000507261' link_to='1' create_id='424C29DA-4008-425F-A302-2F0A80DC78E5'
-		 create_time='20071203142949' mod_id='424C29DA-4008-425F-A302-2F0A80DC78E5' mod_time='20071203142949' mod_type='I'/>
-	<z:row user_id='FB628EE3-0610-4FB9-BD90-7190F4347BAE' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='KR1'
-		 password='E[gnI[' group_flag='1' address_id='36074386-8B65-43F3-A3BE-C5EC436A4E1E' link_to='1' create_id='12D6D27B-8698-440F-BB5F-25E9A4064F7B'
-		 create_time='20070430104748' mod_id='12D6D27B-8698-440F-BB5F-25E9A4064F7B' mod_time='20070430104748' mod_type='I'/>
-	<z:row user_id='7F3949B9-A40D-445E-BEA9-A2CD74A858A8' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='RPVCE'
-		 password='E[gnI[' group_flag='1' address_id='F2D6D90E-FDCB-4810-BA72-0B40BF84EE98' create_id='12D6D27B-8698-440F-BB5F-25E9A4064F7B'
-		 create_time='20070906151637' mod_id='424C29DA-4008-425F-A302-2F0A80DC78E5' mod_time='20071130131452' mod_type='U'/>
-	<z:row user_id='AD9EA3E1-A078-4A12-82D3-CFC0A1BB920C' cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' user_name='SH1'
-		 password='E[gnI[' group_flag='1' address_id='459D98E8-604E-417B-8FD5-C56ACE1FF556' link_to='0' create_id='424C29DA-4008-425F-A302-2F0A80DC78E5'
-		 create_time='20071016090215' mod_id='424C29DA-4008-425F-A302-2F0A80DC78E5' mod_time='20071126131148' mod_type='U'/>
+	<z:row USER_ID='386651B6-B449-11D2-9A86-080000507261' CAT_ID='38664477-B449-11D2-9A86-080000507261' USER_NAME='ROOT'
+		 PASSWORD=':NTbKN' GROUP_FLAG='0' ADDRESS_ID='3866459C-B449-11D2-9A86-080000507261' LINK_TO='0' CREATE_ID='386644B9-B449-11D2-9A86-080000507261'
+		 CREATE_TIME='19941101000000' MOD_ID='F888CB65-75BA-11D5-9A91-0060084A480F' MOD_TIME='20060324132947' MOD_TYPE='U'
+		 ROWID='AAAHdJAABAAANpSAAA'/>
+	<z:row USER_ID='BD353165-D854-11D2-B4CE-0000F4AEBAC2' CAT_ID='38664477-B449-11D2-9A86-080000507261' USER_NAME='VKV'
+		 PASSWORD='QQThfMV7]' GROUP_FLAG='0' ADDRESS_ID='58D9E33C-FBC4-11D2-A35B-0060084A480F' LINK_TO='1' CREATE_ID='386644B9-B449-11D2-9A86-080000507261'
+		 CREATE_TIME='19990312094159' MOD_ID='3866459C-B449-11D2-9A86-080000507261' MOD_TIME='20020221135645' MOD_TYPE='U'
+		 ROWID='AAAHdJAABAAANpSAAB'/>
+	<z:row USER_ID='BD353167-D854-11D2-B4CE-0000F4AEBAC2' CAT_ID='38664477-B449-11D2-9A86-080000507261' USER_NAME='NLFB'
+		 PASSWORD=':NTbKN' GROUP_FLAG='0' ADDRESS_ID='F888CB65-75BA-11D5-9A91-0060084A480F' LINK_TO='1' CREATE_ID='386644B9-B449-11D2-9A86-080000507261'
+		 CREATE_TIME='19990312094414' MOD_ID='3866459C-B449-11D2-9A86-080000507261' MOD_TIME='20010711074814' MOD_TYPE='U'
+		 ROWID='AAAHdJAABAAANpSAAC'/>
+	<z:row USER_ID='D9DE0465-E536-11D3-98FB-0060084A480F' CAT_ID='38664477-B449-11D2-9A86-080000507261' USER_NAME='BEZREG-H'
+		 PASSWORD=':NTbKN' GROUP_FLAG='0' ADDRESS_ID='3B35059A-25E0-11D6-97DC-000476159F75' LINK_TO='1' CREATE_ID='386644B9-B449-11D2-9A86-080000507261'
+		 CREATE_TIME='20000217134206' MOD_ID='3866459C-B449-11D2-9A86-080000507261' MOD_TIME='20020221153821' MOD_TYPE='U'
+		 ROWID='AAAHdJAABAAANpSAAD'/>
+	<z:row USER_ID='6CF70A89-114E-11D5-9A29-0060084A480F' CAT_ID='38664477-B449-11D2-9A86-080000507261' USER_NAME='NLSTB'
+		 PASSWORD=':NTbKN' GROUP_FLAG='0' ADDRESS_ID='53F72B29-0EEC-11D5-9A26-0060084A480F' LINK_TO='1' CREATE_ID='3866459C-B449-11D2-9A86-080000507261'
+		 CREATE_TIME='20010305110855' MOD_ID='58D9E33C-FBC4-11D2-A35B-0060084A480F' MOD_TIME='20020205161031' MOD_TYPE='U'
+		 ROWID='AAAHdJAABAAANpSAAE'/>
+	<z:row USER_ID='F471E535-2903-11D5-9A47-0060084A480F' CAT_ID='38664477-B449-11D2-9A86-080000507261' USER_NAME='NLÖ'
+		 PASSWORD=':NTbKN' GROUP_FLAG='0' ADDRESS_ID='386644BD-B449-11D2-9A86-080000507261' LINK_TO='1' CREATE_ID='3866459C-B449-11D2-9A86-080000507261'
+		 CREATE_TIME='20010404161103' MOD_ID='3866459C-B449-11D2-9A86-080000507261' MOD_TIME='20020221140624' MOD_TYPE='U'
+		 ROWID='AAAHdJAABAAANpSAAF'/>
+	<z:row USER_ID='AEB3A286-299A-11D5-9A48-0060084A480F' CAT_ID='38664477-B449-11D2-9A86-080000507261' USER_NAME='MU'
+		 PASSWORD=':NTbKN' GROUP_FLAG='0' ADDRESS_ID='38664599-B449-11D2-9A86-080000507261' LINK_TO='1' CREATE_ID='3866459C-B449-11D2-9A86-080000507261'
+		 CREATE_TIME='20010405102117' MOD_ID='3866459C-B449-11D2-9A86-080000507261' MOD_TIME='20020221140027' MOD_TYPE='U'
+		 ROWID='AAAHdJAABAAANpSAAG'/>
+	<z:row USER_ID='FAEFC663-0B53-11D6-97D2-000476105676' CAT_ID='38664477-B449-11D2-9A86-080000507261' USER_NAME='REGHAN'
+		 PASSWORD=':NTbKN' GROUP_FLAG='0' ADDRESS_ID='FAEFC65F-0B53-11D6-97D2-000476105676' LINK_TO='1' CREATE_ID='3866459C-B449-11D2-9A86-080000507261'
+		 CREATE_TIME='20020117152313' MOD_ID='3866459C-B449-11D2-9A86-080000507261' MOD_TIME='20020118072630' MOD_TYPE='U'
+		 ROWID='AAAHdJAABAAANpSAAH'/>
+	<z:row USER_ID='361A7C73-1A4A-11D6-97E0-000476105676' CAT_ID='38664477-B449-11D2-9A86-080000507261' USER_NAME='LK-SCHAUMBURG'
+		 PASSWORD=':NTbKN' GROUP_FLAG='0' ADDRESS_ID='361A7C6D-1A4A-11D6-97E0-000476105676' LINK_TO='1' CREATE_ID='3866459C-B449-11D2-9A86-080000507261'
+		 CREATE_TIME='20020205161914' MOD_ID='3866459C-B449-11D2-9A86-080000507261' MOD_TIME='20020205161914' MOD_TYPE='I'
+		 ROWID='AAAHdJAABAAANpSAAI'/>
+	<z:row USER_ID='3962FE04-26CD-11D6-97E0-000476159F75' CAT_ID='38664477-B449-11D2-9A86-080000507261' USER_NAME='LGN'
+		 PASSWORD='QQThfMV7]' GROUP_FLAG='0' ADDRESS_ID='58D9E33C-FBC4-11D2-A35B-0060084A480F' CREATE_ID='3866459C-B449-11D2-9A86-080000507261'
+		 CREATE_TIME='20020221145059' MOD_ID='3866459C-B449-11D2-9A86-080000507261' MOD_TIME='20020221154725' MOD_TYPE='U'
+		 ROWID='AAAHdJAABAAANpSAAJ'/>
 </rs:data>
 </xml>

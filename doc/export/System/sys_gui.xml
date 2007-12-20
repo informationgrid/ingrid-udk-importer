@@ -4,91 +4,95 @@
 	xmlns:z='#RowsetSchema'>
 <s:Schema id='RowsetSchema'>
 	<s:ElementType name='row' content='eltOnly' rs:updatable='true'>
-		<s:AttributeType name='gui_id' rs:number='1' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='sys_gui'
-			 rs:basecolumn='gui_id' rs:keycolumn='true'>
-			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true' rs:maybenull='false'/>
+		<s:AttributeType name='GUI_ID' rs:number='1' rs:writeunknown='true' rs:basetable='SYS_GUI' rs:basecolumn='GUI_ID'>
+			<s:datatype dt:type='number' rs:dbtype='numeric' dt:maxLength='19' rs:scale='0' rs:precision='9' rs:fixedlength='true'
+			 rs:maybenull='false'/>
 		</s:AttributeType>
-		<s:AttributeType name='class_id' rs:number='2' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='sys_gui'
-			 rs:basecolumn='class_id' rs:keycolumn='true'>
-			<s:datatype dt:type='i2' dt:maxLength='2' rs:precision='5' rs:fixedlength='true' rs:maybenull='false'/>
+		<s:AttributeType name='CLASS_ID' rs:number='2' rs:writeunknown='true' rs:basetable='SYS_GUI' rs:basecolumn='CLASS_ID'>
+			<s:datatype dt:type='number' rs:dbtype='numeric' dt:maxLength='19' rs:scale='0' rs:precision='5' rs:fixedlength='true'
+			 rs:maybenull='false'/>
 		</s:AttributeType>
-		<s:AttributeType name='name' rs:number='3' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='sys_gui' rs:basecolumn='name'>
-			<s:datatype dt:type='string' dt:maxLength='255'/>
+		<s:AttributeType name='NAME' rs:number='3' rs:nullable='true' rs:writeunknown='true' rs:basetable='SYS_GUI'
+			 rs:basecolumn='NAME'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='255'/>
 		</s:AttributeType>
-		<s:AttributeType name='help' rs:number='4' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='sys_gui' rs:basecolumn='help'>
-			<s:datatype dt:type='string' dt:maxLength='1073741823' rs:long='true'/>
+		<s:AttributeType name='HELP' rs:number='4' rs:nullable='true' rs:writeunknown='true' rs:basetable='SYS_GUI'
+			 rs:basecolumn='HELP'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='2000'/>
 		</s:AttributeType>
-		<s:AttributeType name='bsp' rs:number='5' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='sys_gui' rs:basecolumn='bsp'>
-			<s:datatype dt:type='string' dt:maxLength='1073741823' rs:long='true'/>
+		<s:AttributeType name='BSP' rs:number='5' rs:nullable='true' rs:writeunknown='true' rs:basetable='SYS_GUI'
+			 rs:basecolumn='BSP'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='2000'/>
 		</s:AttributeType>
-		<s:AttributeType name='link_to' rs:number='6' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='sys_gui' rs:basecolumn='link_to'>
-			<s:datatype dt:type='i2' dt:maxLength='2' rs:precision='5' rs:fixedlength='true'/>
+		<s:AttributeType name='LINK_TO' rs:number='6' rs:nullable='true' rs:writeunknown='true' rs:basetable='SYS_GUI'
+			 rs:basecolumn='LINK_TO'>
+			<s:datatype dt:type='number' rs:dbtype='numeric' dt:maxLength='19' rs:scale='0' rs:precision='3' rs:fixedlength='true'/>
 		</s:AttributeType>
-		<s:AttributeType name='typ' rs:number='7' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='sys_gui' rs:basecolumn='typ'>
-			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true'/>
+		<s:AttributeType name='TYP' rs:number='7' rs:nullable='true' rs:writeunknown='true' rs:basetable='SYS_GUI'
+			 rs:basecolumn='TYP'>
+			<s:datatype dt:type='number' rs:dbtype='numeric' dt:maxLength='19' rs:scale='0' rs:precision='9' rs:fixedlength='true'/>
 		</s:AttributeType>
-		<s:AttributeType name='freename' rs:number='8' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='sys_gui' rs:basecolumn='freename'>
-			<s:datatype dt:type='string' dt:maxLength='255'/>
+		<s:AttributeType name='FREENAME' rs:number='8' rs:nullable='true' rs:writeunknown='true' rs:basetable='SYS_GUI'
+			 rs:basecolumn='FREENAME'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='255'/>
 		</s:AttributeType>
-		<s:AttributeType name='visible_flag' rs:number='9' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='sys_gui' rs:basecolumn='visible_flag'>
-			<s:datatype dt:type='i2' dt:maxLength='2' rs:precision='5' rs:fixedlength='true'/>
+		<s:AttributeType name='VISIBLE_FLAG' rs:number='9' rs:nullable='true' rs:writeunknown='true' rs:basetable='SYS_GUI'
+			 rs:basecolumn='VISIBLE_FLAG'>
+			<s:datatype dt:type='number' rs:dbtype='numeric' dt:maxLength='19' rs:scale='0' rs:precision='5' rs:fixedlength='true'/>
 		</s:AttributeType>
-		<s:AttributeType name='edit_mode' rs:number='10' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='sys_gui' rs:basecolumn='edit_mode'>
-			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true'/>
+		<s:AttributeType name='EDIT_MODE' rs:number='10' rs:nullable='true' rs:writeunknown='true' rs:basetable='SYS_GUI'
+			 rs:basecolumn='EDIT_MODE'>
+			<s:datatype dt:type='number' rs:dbtype='numeric' dt:maxLength='19' rs:scale='0' rs:precision='5' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='ROWID' rs:number='11' rs:nullable='true' rs:rowid='true' rs:basetable='SYS_GUI' rs:basecolumn='ROWID'
+			 rs:keycolumn='true' rs:hidden='true' rs:autoincrement='true'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='18' rs:fixedlength='true'/>
 		</s:AttributeType>
 		<s:extends type='rs:rowbase'/>
 	</s:ElementType>
 </s:Schema>
 <rs:data>
-	<z:row gui_id='1000' class_id='-1' name='Adressen' help='Eintrag von Adreßverweisen zu Personen oder Institutionen, die weitergehende Informationen zum aktuellen UDK-Objekt geben können. Es werden automatisch die Adreßverweise des zuletzt ausgefüllten UDK-Objekts übernommen. Wird erstmalig ein UDK-Objekt angelegt, so wird automatisch die erste Zeile (Auskunft) mit einem Verweis auf die Adresse des eingebenden Nutzers ausgefüllt. 
+	<z:row GUI_ID='1000' CLASS_ID='-1' NAME='Adressen' HELP='Eintrag von Adreßverweisen zu Personen oder Institutionen, die weitergehende Informationen zum aktuellen UDK-Objekt geben können. Es werden automatisch die Adreßverweise des zuletzt ausgefüllten UDK-Objekts übernommen. Wird erstmalig ein UDK-Objekt angelegt, so wird automatisch die erste Zeile (Auskunft) mit einem Verweis auf die Adresse des eingebenden Nutzers ausgefüllt. 
 Bei Bedarf können diese Verweise verändert werden. In der ersten Spalte wird jeweils die Art des Verweises eingetragen ( Auskunft, Datenhalter, etc.). In der zweiten Spalte wird der Verweis selbst angelegt. Als Auswahlmöglichkeit stehen alle in der Adreßverwaltung des aktuellen Kataloges bereits eingetragenen Mitarbeiter zur Verfügung. Alternativ zum Eintrag über die Auswahlliste kann der Eintrag über den UDK-Explorer erfolgen, der über die Schaltfläche an der rechten Seite des Feldes geöffnet wird. Die Auswahl über den UDK-Explorer ermöglicht auch den Verweis auf eine Institution oder eine Einheit.
 Der Eintrag in der ersten Zeile (Auskunft) ist obligatorisch.'
-		 bsp='Auskunft / Robbe, Antje
-Datenhalter / Dr. Seehund, Siegfried' link_to='0' typ='0' freename='' visible_flag='2'
-		 edit_mode='0'/>
-	<z:row gui_id='1010' class_id='0' name='Beschreibung' help='Fachliche Beschreibung der Organisationseinheit/Fachaufgabe. 
+		 BSP='Auskunft / Robbe, Antje
+Datenhalter / Dr. Seehund, Siegfried' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0'
+		 ROWID='AAAHZ4AABAAAMaKAAA'/>
+	<z:row GUI_ID='1010' CLASS_ID='0' NAME='Beschreibung' HELP='Fachliche Beschreibung der Organisationseinheit/Fachaufgabe. 
 Im Falle einer Organisationseinheit sind die wesentlichen Zuständigkeitsbereiche/Fachaufgaben aufzuführen und ggf. kurz zu erläutern. Hierbei sollten die umweltbezogenen Fachaufgaben der Organisationseinheit im Vordergrund stehen.
 Ist das UDK-Objekt zur Beschreibung einer einzelnen Fachaufgabe angelegt worden, so ist diese Fachaufgabe näher zu erläutern (rechtliche Grundlage, organisatorische Rahmenbedingungen, Zielsetzung, ggf. Überschneidungen mit anderen Fachaufgaben).
 Auf Verständlichkeit für fachfremde Dritte ist zu achten. 
 Das Feld Beschreibungen muß ausgefüllt werden, damit das UDK-Objekt abgespeichert werden kann.'
-		 link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='1010' class_id='1' name='Beschreibung' help='Fachliche Inhaltsangabe der Geo-Information/Karte. 
+		 LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaKAAB'/>
+	<z:row GUI_ID='1010' CLASS_ID='1' NAME='Beschreibung' HELP='Fachliche Inhaltsangabe der Geo-Information/Karte. 
 Hier soll in knapper Form beschrieben werden, um welche Art von Geo-Information es sich handelt:
 - GIS-Daten, analoge Karte, Kartenwerk/Atlas
 - topographische Karte, politische Karte, fachbezogene Karte, etc.
 Ferner sollten die Hauptinhalte der dargestellten Sachinformationen genannt werden (z.B.: Pegelmeßstellen, Kohlekraftwerke).
 Auf Verständlichkeit für fachfremde Dritte ist zu achten. Für Detailinformationen (Maßstäbe, etc.) stehen gesonderte Eingabefelder zur Verfügung.
 Das Feld Beschreibungen muß ausgefüllt werden, damit das UDK-Objekt abgespeichert werden kann.'
-		 link_to='0' typ='0' freename='@' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='1010' class_id='2' name='Beschreibung' help='Inhaltsangabe zum Dokument / Bericht / Literatur. 
+		 LINK_TO='0' TYP='0' FREENAME='@' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaKAAC'/>
+	<z:row GUI_ID='1010' CLASS_ID='2' NAME='Beschreibung' HELP='Inhaltsangabe zum Dokument / Bericht / Literatur. 
 Es ist eine kurze, aber aussagekräfte Inhaltsangabe (Abstract) einzugeben. Diese Inhaltsangabe kann z.B. den Ausgangspunkt einer Untersuchung, eventuelle methodische Vorgehensweisen sowie die Hauptergebnisse enthalten.
 Auf Verständlichkeit für fachfremde Dritte ist zu achten. Für Detailinformationen (Autor, Erscheinungsjahr, etc.) stehen gesonderte Eingabefelder zur Verfügung.
 Das Feld Beschreibungen muß ausgefüllt werden, damit das UDK-Objekt abgespeichert werden kann.'
-		 bsp='' link_to='0' typ='0' freename='@' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='1010' class_id='3' name='Beschreibung' help='Fachliche Inhaltsangabe des Dienstes / der Anwendung / des Informationssystems.
+		 LINK_TO='0' TYP='0' FREENAME='@' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaKAAD'/>
+	<z:row GUI_ID='1010' CLASS_ID='3' NAME='Beschreibung' HELP='Fachliche Inhaltsangabe des Dienstes / der Anwendung / des Informationssystems.
 Hier sollen in knapper Form die Art des Dienstes / der Anwendung / des Informationssystems sowie die fachlichen Informationsgehalte beschrieben werden. Auf Verständlichkeit für fachfremde Dritte ist zu achten. DV-technische Einzelheiten sollten auf zentrale, kennzeichnende Aspekte beschränkt werden.
 Das Feld Beschreibungen muß ausgefüllt werden, damit das UDK-Objekt abgespeichert werden kann.'
-		 link_to='0' typ='0' freename='@' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='1010' class_id='4' name='Beschreibung' help='Fachliche Inhaltsangabe des Vorhabens / Projektes / Programms. 
+		 LINK_TO='0' TYP='0' FREENAME='@' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaKAAE'/>
+	<z:row GUI_ID='1010' CLASS_ID='4' NAME='Beschreibung' HELP='Fachliche Inhaltsangabe des Vorhabens / Projektes / Programms. 
 Hier sollen in knapper Form die Ziesetzungen und wichtigsten Rahmenbedingungen des Vorhabens / Projektes / Programms beschrieben werden. 
 Auf Verständlichkeit für fachfremde Dritte ist zu achten. Für Detailinformationen (Name des Projektleiters, Projektbeteiligte, etc.) stehen gesonderte Eingabefelder zur Verfügung.
 Das Feld Beschreibungen muß ausgefüllt werden, damit das UDK-Objekt abgespeichert werden kann.'
-		 link_to='0' typ='0' freename='@' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='1010' class_id='5' name='Beschreibung' help='Fachliche Beschreibung der Datensammlung / Datenbank.
+		 LINK_TO='0' TYP='0' FREENAME='@' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaKAAF'/>
+	<z:row GUI_ID='1010' CLASS_ID='5' NAME='Beschreibung' HELP='Fachliche Beschreibung der Datensammlung / Datenbank.
 Hier sollen in knapper Form die Hauptinhalte Datensammlung / Datenbank beschrieben werden. Hierbei sollte sich auf Parametergruppen beschränkt werden (z.B. Schwermetalle). Detaillierte Parameter können in einem gesonderten Feld eingetragen werden (siehe Fachbezug).
 Ferner sind ggf. die organisatorischen Rahmenbedingungen der Datensammlung / Datenbank von Interesse (Historie, Pflege, Nutzerkreis, Kooperationen). 
 Auf Verständlichkeit für fachfremde Dritte ist zu achten.
 Das Feld Beschreibungen muß ausgefüllt werden, damit das UDK-Objekt abgespeichert werden kann.'
-		 link_to='0' typ='0' freename='@' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='1020' class_id='-1' name='Objektklasse' help='Zuordnung des UDK-Objekts zu einer passenden Informationskategorie.  
+		 LINK_TO='0' TYP='0' FREENAME='@' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaKAAG'/>
+	<z:row GUI_ID='1020' CLASS_ID='-1' NAME='Objektklasse' HELP='Zuordnung des UDK-Objekts zu einer passenden Informationskategorie.  
 Im UDK sind die verschiedenen Arten von Informationen in Informationskategorien eingeteilt (sog. Objektklassen). Die Objektklassen unterscheiden sich durch unterschiedliche Beschreibungsfelder in der Registerkarte Fachbezug. Es muß eine der folgenden Objektklasse ausgewählt werden:
 - Datensammlung/Datenbank: analoge oder digitale Sammlung von Daten. Beispiele: Meßdaten, statistische Erhebungen, Modelldaten, Daten zu Anlagen
 - Dienst/Anwendung/Informationssystem: zentrale Auskunftssysteme, welche in der Regel auf eine oder mehrere Datenbanken zugreifen und diese zugänglich machen. 
@@ -98,310 +102,313 @@ Im UDK sind die verschiedenen Arten von Informationen in Informationskategorien 
 - Vorhaben/Projekt/Programm: Forschungs- und Entwicklungsvorhaben, Projekte unter Beteiligung 
 anderer Institutionen oder privater Unternehmen, Schutzprogramme; von besonderem Interesse sind 
 Vorhaben/Projekte/Programme, in denen umweltrelevante Datenbestände entstehen.'
-		 link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='1100' class_id='-1' name='Staat/Region/Naturraum' help='Bezeichnung eines Gebietes ohne verwaltungspolitische Bedeutung.
+		 LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaKAAH'/>
+	<z:row GUI_ID='1100' CLASS_ID='-1' NAME='Staat/Region/Naturraum' HELP='Bezeichnung eines Gebietes ohne verwaltungspolitische Bedeutung.
 In der ersten Spalte können neben fachlich begründeten Gebietseinheiten, wie Naturraumeinheiten oder Grundwasserlandschaften, auch traditionelle oder touristische Namen von Regionen eingetragen werden, die keiner administrativen Einheit zuzuordnen sind.
 In den weiteren Spalten können die Koordinatenpaare des kleinsten umschließenden Rechtecks (Bounding-Box) eingetragen werden. Als Koordinatensystem wird Gauß-Krüger (Bessel 3 Grad) verwendet.
 Der Eintrag der Koordinaten kann über das Aufziehen eines Rechtecks in der entsprechenden Karte (Schaltfläche am rechten unteren Rand des Feldes) oder durch direkte Eingabe der Koordinaten erfolgen. 
 Für den direkten Eintrag ist zu beachten, daß sich die Koordinatenpaare aufeinanderfolgend auf den südwestlichen (Rechts1 / Hoch1) und nordöstlichen (Rechts2 / Hoch2) Eckpunkt des betreffenden Rechtecks beziehen.
 Die Maßeinheit beträgt Meter, so daß Rechts- und Hochwert mit 7 Stellen vor dem Komma angegeben werden müssen.'
-		 bsp='Lüneburger Heide' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='1110' class_id='-1' name='Administrative Einheit' help='Angabe der räumlichen Zuordnung in Form der verwaltungspolitischen Einheit, auf die sich die beschriebenen Daten beziehen. 
+		 BSP='Lüneburger Heide' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaLAAA'/>
+	<z:row GUI_ID='1110' CLASS_ID='-1' NAME='Administrative Einheit' HELP='Angabe der räumlichen Zuordnung in Form der verwaltungspolitischen Einheit, auf die sich die beschriebenen Daten beziehen. 
 Zur administrativen Einheit gehört das Bundesland, der Regierungsbezirk, der Landkreis (D) bzw. der Bezirk (A) und die Gemeinde. Die Eingabe erfolgt über ein gesondertes Eingabefenster, das mit der Schaltfläche am rechten unteren Rand des Feldes geöffnet wird. Die Auswahl der administrativen Einheiten sollte bis zu derjenigen Ebene erfolgen, für die eine räumliche Zuordnung noch sinnvoll ist.
 In den weiteren Spalten werden automatisch die  Koordinatenpaare des kleinsten umschließenden Rechtecks (Bounding-Box) eingetragen. Als Koordinatensystem wird Gauß-Krüger (Bessel 3 Grad) verwendet.'
-		 bsp='Gemeinde Emstek (Kreis LK Cloppenburg)
-Regierungsbezirk Weser-Ems' link_to='0' typ='0' freename='' visible_flag='2'
-		 edit_mode='0'/>
-	<z:row gui_id='1120' class_id='-1' name='Bounding-Box: Rechts1,Hoch1,Rechts2,Hoch2' bsp='Steinhuder Meer
+		 BSP='Gemeinde Emstek (Kreis LK Cloppenburg)
+Regierungsbezirk Weser-Ems' LINK_TO='0' TYP='0' VISIBLE_FLAG='2'
+		 EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaLAAB'/>
+	<z:row GUI_ID='1120' CLASS_ID='-1' NAME='Bounding-Box: Rechts1,Hoch1,Rechts2,Hoch2' BSP='Steinhuder Meer
 Rechts 1 = 3518872
 Hoch 1 = 5812436
 Rechts 2 = 3527280
 Hoch 2 = 5818297'
-		 link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='1130' class_id='-1' name='Minimum' help='Angabe der Werte für die Höhe über einem Nullpunkt (siehe Pegel) eingegeben. Ist eine vertikale Ausdehnung vorhanden, so kann für das Maximum ein grösserer Wert eingegeben werden. Sollte dies nicht der Fall sein, so ist die Eingabe eines Minimus ausreichend, dieser Wert wird dann automatisch ebenso für den maximalen übernommen.'
-		 bsp='Minimum 100, Maximum 110' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='1140' class_id='-1' name='Erläuterung' help='Zusätzliche Angaben zum Raumbezug.' bsp='Die Koordinaten für die Fachliche Gebietseinheit sind ungefähre Angaben.'
-		 link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='1200' class_id='-1' name='von' help='Anfang der Zeitspanne bzw. Angabe eines Zeitpunktes.
+		 LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaLAAC'/>
+	<z:row GUI_ID='1130' CLASS_ID='-1' NAME='Minimum' HELP='Angabe der Werte für die Höhe über einem Nullpunkt (siehe Pegel) eingegeben. Ist eine vertikale Ausdehnung vorhanden, so kann für das Maximum ein grösserer Wert eingegeben werden. Sollte dies nicht der Fall sein, so ist die Eingabe eines Minimus ausreichend, dieser Wert wird dann automatisch ebenso für den maximalen übernommen.'
+		 BSP='Minimum 100, Maximum 110' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaLAAD'/>
+	<z:row GUI_ID='1140' CLASS_ID='-1' NAME='Erläuterung' HELP='Zusätzliche Angaben zum Raumbezug.' BSP='Die Koordinaten für die Fachliche Gebietseinheit sind ungefähre Angaben.'
+		 LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaLAAE'/>
+	<z:row GUI_ID='1200' CLASS_ID='-1' NAME='von' HELP='Anfang der Zeitspanne bzw. Angabe eines Zeitpunktes.
 Im ersten Feld muß mit Hilfe der Auswahlliste eingetragen werden, ob es sich bei den folgenden Daten um einen abgeschlossenen Zeitraum, eine noch nicht beendete Zeitspanne oder einen Zeitpunkt handelt (von, seit, am). Mit dem Pfeil an der rechten Feldseite öffnet sich die Auswahlliste. Bei der Angabe des Datums handelt es sich um das Anfangsdatum, z.B. der Dauer einer Datenerhebung, der Laufzeit eines Projektes, der Gültigkeit des Objektes oder um das Datum des konkreten Zeitpunktes. Die Zeitspanne ist im Feld  bis  durch Eingabe des Enddatums zu begrenzen. Sofern kein genaues Datum angegeben werden kann bzw. diese Angabe nicht sinnvoll ist, so kann auch der Monat mit Jahreszahl bzw. nur die Jahreszahl eingegeben werden.'
-		 bsp='10.11.1995' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='1210' class_id='-1' name='bis' help='Ende der  Zeitspanne.
+		 BSP='10.11.1995' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaLAAF'/>
+	<z:row GUI_ID='1210' CLASS_ID='-1' NAME='bis' HELP='Ende der  Zeitspanne.
 Das Datum ist nur bei Angabe des Datums  von  einzutragen. Es handelt sich hierbei um das Enddatum z.B. der Dauer einer Datenerhebung, der Laufzeit eines Projektes, der Gültigkeit des Objektes. Sofern kein genaues Datum angegeben werden kann bzw. diese Angabe nicht sinnvoll ist, so kann auch der Monat mit Jahreszahl bzw. nur die Jahreszahl eingegeben werden.'
-		 bsp='11.11.1997' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='1220' class_id='-1' name='Status' help='Stand der Ausführung des Projektes, der Messung etc.
+		 BSP='11.11.1997' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaLAAG'/>
+	<z:row GUI_ID='1220' CLASS_ID='-1' NAME='Status' HELP='Stand der Ausführung des Projektes, der Messung etc.
 Der UDK nimmt alle bekannten Umweltdaten auf, diese können sich in unterschiedlichen Stadien ihrer  Lebenszeit  befinden, d.h. Projekte, Programme oder Messungen können in konkreter Planung sein, derzeit durchgeführt werden oder schon abgeschlossen sein.'
-		 bsp='abgeschlossen' link_to='0' typ='0' freename='' visible_flag='1' edit_mode='1'/>
-	<z:row gui_id='1230' class_id='-1' name='Intervall' help='Angabe des zeitlichen Abstands (Frequenz) der Datenerhebung.
+		 BSP='abgeschlossen' LINK_TO='0' TYP='0' VISIBLE_FLAG='1' EDIT_MODE='1' ROWID='AAAHZ4AABAAAMaLAAH'/>
+	<z:row GUI_ID='1230' CLASS_ID='-1' NAME='Intervall' HELP='Angabe des zeitlichen Abstands (Frequenz) der Datenerhebung.
 Erfolgt die Datenerhebung kontinuierlich oder periodisch (siehe Feld  Periodizität), so soll diese Angabe hier präzisiert werden. Es stehen Felder für den freien Eintrag einer Ziffer und eine Auswahlliste zur Verfügung, die zeitliche Intervalle vorgibt. Der Eintrag von  10  und  Tage  bedeutet: Die beschriebenen Daten werden bzw. wurden alle 10 Tage erhoben.'
-		 link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='1240' class_id='-1' name='Periodizität' help='Angabe des Zeitzyklus der Datenerhebung. Der Eintrag muß aus der Auswahlliste erfolgen, die über den Pfeil am Ende des Feldes geöffnet wird.
+		 LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaLAAI'/>
+	<z:row GUI_ID='1240' CLASS_ID='-1' NAME='Periodizität' HELP='Angabe des Zeitzyklus der Datenerhebung. Der Eintrag muß aus der Auswahlliste erfolgen, die über den Pfeil am Ende des Feldes geöffnet wird.
 
 Wichtig: Der Eintrag &#x22;unbekannt&#x22; sollte ausschließlich im Rahmen der Altdatenübernahme verwendet werden und im Zuge der Datenpflege durch sinnvolle Einträge ersetzt werden. Er stellt eine nicht ISO-konforme Erweiterung der Auswahlliste dar.'
-		 bsp='täglich' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='1250' class_id='-1' name='Erläuterung' help='Zusätzliche Angaben zum Zeitbezug.
+		 BSP='täglich' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaLAAJ'/>
+	<z:row GUI_ID='1250' CLASS_ID='-1' NAME='Erläuterung' HELP='Zusätzliche Angaben zum Zeitbezug.
 Hier können z.B. die Angaben der Periodizität eingeschränkt, weitere Zeitangaben gemacht oder Unregelmäßigkeiten erklärt werden. Im Zusammenhang mit dem Eintrag im Feld  Periodizität  können hier Abstände, Perioden und Intervalle eingetragen werden, die sich nicht aus dem Zusammenhang der anderen Felder des Zeitbezuges erklären, z.B. Jahreszeiten, Dekaden, Tageszeiten.'
-		 bsp='Die Messungen erfolgten nur tagsüber.' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='1310' class_id='-1' name='Medienoption' help='Angabe, auf welchen Medien die Daten zur Verfügung gestellt werden können.
+		 BSP='Die Messungen erfolgten nur tagsüber.' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaLAAK'/>
+	<z:row GUI_ID='1310' CLASS_ID='-1' NAME='Medienoption' HELP='Angabe, auf welchen Medien die Daten zur Verfügung gestellt werden können.
 Hier können elektronische Datenträger als auch Medien in Papierform angegeben werden, auf denen die im UDK-Objekt beschriebenen Daten dem Nutzer zur Verfügung stehen. Es können mehrere Medien eingetragen werden. 
 Medium: Angabe der Medien, auf denen der Datensatz bereit gestellt werden kann (ISO-Auswahlliste)
 Datenvolumen: Umfang des Datenvolumens in MB (Fließkommazahl)
 Speicherort: Ort der Datenspeicherung im Intranet/Internet, Angabe als Verweis'
-		 bsp='Medium: CD-ROM
+		 BSP='Medium: CD-ROM
 Datenvolumen: 700 MB
 Speicherort: Explorer Z:/Bereich_51/Metainformation/20040423_Hilfetexte.doc'
-		 link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='1320' class_id='-1' name='Datenformat' help='Angabe des Formats der Daten in DV-technischer Hinsicht, in welchem diese verfügbar sind. Das Format wird durch 4 unterschiedliche Eingaben spezifiziert. Wenn die erste Spalte befüllt wird, müssen auch die anderen Eintragungen gemacht werden. Name: Angabe des Formatnames, wie z.B. &#x22;Date&#x22; Version: Version der verfügbaren Daten (z.B. &#x22;Version 8&#x22; oder &#x22;Version vom 8.11.2001&#x22;) Kompressionstechnik: Kompression, in welcher die Daten geliefert werden (z.B. &#x22;WinZip&#x22;, &#x22;keine&#x22;) Bildpunkttiefe: BitsPerSample.'
-		 bsp='Formatkürzel: tif
+		 LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaLAAL'/>
+	<z:row GUI_ID='1320' CLASS_ID='-1' NAME='Datenformat' HELP='Angabe des Formats der Daten in DV-technischer Hinsicht, in welchem diese verfügbar sind. Das Format wird durch 4 unterschiedliche Eingaben spezifiziert. Wenn die erste Spalte befüllt wird, müssen auch die anderen Eintragungen gemacht werden. Name: Angabe des Formatnames, wie z.B. &#x22;Date&#x22; Version: Version der verfügbaren Daten (z.B. &#x22;Version 8&#x22; oder &#x22;Version vom 8.11.2001&#x22;) Kompressionstechnik: Kompression, in welcher die Daten geliefert werden (z.B. &#x22;WinZip&#x22;, &#x22;keine&#x22;) Bildpunkttiefe: BitsPerSample.'
+		 BSP='Formatkürzel: tif
 Version: 6.0 
 Kompression: LZW 
-Bildpunkttiefe: 8 Bit' link_to='0' typ='0' freename=''
-		 visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='1330' class_id='-1' name='Nutzungsanmerkung' help='Es können Angaben zur Zugänglichkeit und Nutzung der im UDK-Objekt beschriebenen Daten z.B. bzgl. Datenschutz, Copyright etc. eingetragen werden.'
-		 bsp='Die herausgegebenen Daten, Landkarten, Luftbilder und Broschüren sind gesetzlich geschützt.' link_to='0'
-		 typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='1350' class_id='-1' name='Rechtliche Grundlage' help='Angabe der rechtlichen Grundlage, die die Erhebung der beschriebenen Daten veranlaßt hat. Hier können Kürzel von Gesetzen, Erlassen, Verordnungen usw. eingetragen werden, in denen z. B. die Methode oder die Form der Erhebung der im UDK-Objekt beschriebenen Daten festgelegt oder beschrieben wird. Es ist bei Bedarf der Eintrag mehrerer Angaben möglich.'
-		 bsp='Niedersächsisches Naturschutzgesetz' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='1360' class_id='-1' name='Erläuterung' help='Angabe, warum die Daten erhoben werden.' bsp='Topographische Karten werden erstellt für den Nachweis des Landesgebietes.'
-		 link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='1370' class_id='-1' name='Kriterium für SGML-Export' help='Eintrag eines Selektionskriteriums zur Steuerung des Teilexports der UDK-Daten. 
+Bildpunkttiefe: 8 Bit' LINK_TO='0' TYP='0' VISIBLE_FLAG='2'
+		 EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaLAAM'/>
+	<z:row GUI_ID='1330' CLASS_ID='-1' NAME='Nutzungsanmerkung' HELP='Es können Angaben zur Zugänglichkeit und Nutzung der im UDK-Objekt beschriebenen Daten z.B. bzgl. Datenschutz, Copyright etc. eingetragen werden.'
+		 BSP='Die herausgegebenen Daten, Landkarten, Luftbilder und Broschüren sind gesetzlich geschützt.' LINK_TO='0'
+		 TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaLAAN'/>
+	<z:row GUI_ID='1350' CLASS_ID='-1' NAME='Rechtliche Grundlage' HELP='Angabe der rechtlichen Grundlage, die die Erhebung der beschriebenen Daten veranlaßt hat. Hier können Kürzel von Gesetzen, Erlassen, Verordnungen usw. eingetragen werden, in denen z. B. die Methode oder die Form der Erhebung der im UDK-Objekt beschriebenen Daten festgelegt oder beschrieben wird. Es ist bei Bedarf der Eintrag mehrerer Angaben möglich.'
+		 BSP='Niedersächsisches Naturschutzgesetz' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaMAAA'/>
+	<z:row GUI_ID='1360' CLASS_ID='-1' NAME='Erläuterung' HELP='Angabe, warum die Daten erhoben werden.' BSP='Topographische Karten werden erstellt für den Nachweis des Landesgebietes.'
+		 LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaMAAB'/>
+	<z:row GUI_ID='1370' CLASS_ID='-1' NAME='Kriterium für SGML-Export' HELP='Eintrag eines Selektionskriteriums zur Steuerung des Teilexports der UDK-Daten. 
 Um eine Teilmenge von UDK-Objekten exportieren zu können, die nicht über eine Abfrage oder einen Teilbaum selektiert werden können, kann in diesem Feld ein diese Teilmenge identifizierendes Schlagwort eingegeben werden. In der Exportfunktion kann dann eines der Schlagworte aus diesem Feld angegeben werden und alle UDK-Objekte exportiert werden, für die in diesem Feld das entsprechende Schlagwort vergeben wurde. 
 Die Eingabe mehrerer Schlagworte ist möglich. Die Schlagworte können frei eingegeben werden. Zur Verhinderung von Schreibfehlern sollte jedoch der Eintrag aus der Auswahlliste vorgezogen werden.'
-		 bsp='CDS' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='1400' class_id='-1' name='Umweltklassifikation' help='Die Verschlagwortung mit den Begriffen der Umweltbereiche soll dazu dienen, eine Zuordnung der UDK-Objekte zu grob eingeteilten Umweltthemen herzustellen. Diese Themen sind in der Auswahlliste enthalten. Es können mehrere Einträge vorgenommen werden.'
-		 bsp='Abfall' link_to='0' typ='0' freename='' visible_flag='1' edit_mode='0'/>
-	<z:row gui_id='1410' class_id='-1' name='Freie Suchbegriffe' help='Eingabe von Schlagworten, über die das UDK-Objekt bei einer Schlagwortsuche möglichst schnell zu finden ist und die nicht im Thesaurus vorhanden sind. 
+		 BSP='CDS' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaMAAC'/>
+	<z:row GUI_ID='1400' CLASS_ID='-1' NAME='Umweltklassifikation' HELP='Die Verschlagwortung mit den Begriffen der Umweltbereiche soll dazu dienen, eine Zuordnung der UDK-Objekte zu grob eingeteilten Umweltthemen herzustellen. Diese Themen sind in der Auswahlliste enthalten. Es können mehrere Einträge vorgenommen werden.'
+		 BSP='Abfall' LINK_TO='0' TYP='0' VISIBLE_FLAG='1' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaMAAD'/>
+	<z:row GUI_ID='1410' CLASS_ID='-1' NAME='Freie Suchbegriffe' HELP='Eingabe von Schlagworten, über die das UDK-Objekt bei einer Schlagwortsuche möglichst schnell zu finden ist und die nicht im Thesaurus vorhanden sind. 
 Hier sollen prägnante Begriffe und Termini, die in engem Zusammenhang mit dem Objekt stehen und die nicht im Thesaurus vorhanden sind, eingetragen werden. Dies können spezielle Fachgebiete, (Meß-)Methoden, Bestandteile o.ä. sein.
 Die Freien Suchbegriffe sind ergänzend zu den Thesaurus-Suchbegriffen anzugeben. Wenn Sie hier einen Thesaurusbegriff eingeben, so wird automatisch vorgeschlagen, diesen in das Feld für die Thesaurusbegriffe zu übernehmen. Wird ein Synonym zu einem Thesaurusbegriff eingegeben, so wird die zusätzliche automatische Übernahme des zugehörigen Thesaurusbegriffs vorgeschlagen.'
-		 bsp='Bestandsaufnahme
+		 BSP='Bestandsaufnahme
 Rasterkarte
-Nachtfalter' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='1420' class_id='-1' name='Thesaurus-Suchbegriffe' help='Eingabe von mindestens drei Schlagworten (Pflicht), die im Thesaurus verzeichnet sind.
+Nachtfalter' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaMAAE'/>
+	<z:row GUI_ID='1420' CLASS_ID='-1' NAME='Thesaurus-Suchbegriffe' HELP='Eingabe von mindestens drei Schlagworten (Pflicht), die im Thesaurus verzeichnet sind.
 Die Verschlagwortung dient dem themenbezogenen Wiederauffinden (Retrieval) der UDK-Objekte über den Thesaurus-Navigator. Dazu müssen Schlagworte aus dem Thesaurus ausgewählt werden, die das UDK-Objekt so genau wie möglich, aber auch so allgemein wie nötig beschreiben. So sollte mindestens ein Schlagwort in der Thesaurushierarchie einen relativ allgemeinen Aspekt des UDK-Objektes beschreiben und mindestens ein Schlagwort das UDK-Objekt so speziell wie möglich beschreiben. 
 Die Auswahl kann über eine direkte Eingabe oder über einen gesonderten Dialog erfolgen, der mit der Schaltfläche an der rechten Seite des Feldes aufgerufen wird (Thesaurus-Navigator). Die direkte Eingabe wird über eine alphabetisch sortierte Auswahlliste unterstützt. Diese enthält auch Synonyme, die auf die zugehörigen Thesaurusbegriffe verweisen (Kennzeichnung mit --&#x3e;). Bei der Auswahl eines Synonyms wird automatisch der zugehörige Thesaurusbegriff übernommen (ggf. mehrere).'
-		 bsp='Naturschutz
+		 BSP='Naturschutz
 Schmetterling
 Kartierung
-Artenschutz' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='1500' class_id='-1' name='Verweis zu' help='Der UDK bietet die Möglichkeit, Verweise von einem UDK-Objekt zu einem anderen UDK-Objekt, zu einer WWW-Adresse (URL) oder zu einem OLE-Objekt (WinWord, Excel, usw.) zu erstellen. 
+Artenschutz' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0'
+		 ROWID='AAAHZ4AABAAAMaMAAF'/>
+	<z:row GUI_ID='1500' CLASS_ID='-1' NAME='Verweis zu' HELP='Der UDK bietet die Möglichkeit, Verweise von einem UDK-Objekt zu einem anderen UDK-Objekt, zu einer WWW-Adresse (URL) oder zu einem OLE-Objekt (WinWord, Excel, usw.) zu erstellen. 
 In dieser Tabelle werden alle Verweise zusammenfassend aufgeführt, welche im aktuellen UDK-Objekt angelegt wurden. Über die Schaltfläche an der rechten Seite des Feldes öffnet sich ein Dialog, mit dem weitere Einzelheiten zu den Verweisen eingesehen und editiert werden können. Es ist ferner möglich, weitere Verweise über diesen Dialog hinzuzufügen.'
-		 link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='1510' class_id='-1' name='Verweis von' help='In dieser Tabelle werden alle Verweise von denjenigen UDK-Objekten aufgeführt, welche auf das aktuelle UDK-Objekt verweisen. Das Editieren oder Hinzufügen ist nicht möglich. Sollen die Verweise geändert oder ergänzt werden, so muß zu dem entsprechenden UDK-Objekt gewechselt werden.'
-		 link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='2000' class_id='-1' name='Feldname / Bezeichnung der Verweisbeziehung' help='Angabe des fachlichen Bezuges, der zwischen dem aktuellen UDK-Objekt und dem Verweisobjekt (anderes UDK-Objekt, URL, OLE-Objekt) besteht. 
+		 LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaMAAG'/>
+	<z:row GUI_ID='1510' CLASS_ID='-1' NAME='Verweis von' HELP='In dieser Tabelle werden alle Verweise von denjenigen UDK-Objekten aufgeführt, welche auf das aktuelle UDK-Objekt verweisen. Das Editieren oder Hinzufügen ist nicht möglich. Sollen die Verweise geändert oder ergänzt werden, so muß zu dem entsprechenden UDK-Objekt gewechselt werden.'
+		 LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaMAAH'/>
+	<z:row GUI_ID='2000' CLASS_ID='-1' NAME='Feldname / Bezeichnung der Verweisbeziehung' HELP='Angabe des fachlichen Bezuges, der zwischen dem aktuellen UDK-Objekt und dem Verweisobjekt (anderes UDK-Objekt, URL, OLE-Objekt) besteht. 
 Die Beziehung des erstellten Verweises soll hier kurz und prägnant beschrieben werden (z. B. Datensammlung zum Gutachten, Literaturhinweis zur Datenerhebung). Über den Pfeil an der rechten Seite des Feldes kann aus einer Auswahlliste eine schon benutzte Beschreibung übernommen werden. 
 Dieses Feld ist nur editierbar, wenn der Dialog in der Registerkarte &#x22;Verweise&#x22; geöffnet wurde. Einzutragen ist ein sprechender Name für den Verweis. Wurde der Dialog von einem Feld in einer anderen Registerkarte geöffnet, so wird automatisch der betreffende Feldname eingetragen und angezeigt (z.B. technische Dokumentation).'
-		 bsp='Literaturhinweis zum V-Modell' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='2100' class_id='-1' name='Objektname' help='Objektname des UDK-Objekts, auf das verwiesen werden soll.
+		 BSP='Literaturhinweis zum V-Modell' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaMAAI'/>
+	<z:row GUI_ID='2100' CLASS_ID='-1' NAME='Objektname' HELP='Objektname des UDK-Objekts, auf das verwiesen werden soll.
 Der Verweis auf ein UDK-Objekt kann unabhängig von Strukturbaum und Hierarchie aus fachlichen Gründen gebildet werden. Die Eingabe erfolgt über eine Auswahl im UDK-Explorer, der über die Schaltfläche am rechten Feldrand geöffnet werden kann.'
-		 link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='2110' class_id='-1' name='Erläuterung' help='Anmerkungen zu dem erstellten Verweis.
+		 LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaMAAJ'/>
+	<z:row GUI_ID='2110' CLASS_ID='-1' NAME='Erläuterung' HELP='Anmerkungen zu dem erstellten Verweis.
 Hier können weitergehende Informationen zu dem UDK-Objekt eingegeben werden, auf das verwiesen wird. Es können auch Erläuterungen zu der Beziehung zwischen den beschriebenen Daten des aktuellen UDK-Objektes und den Daten des Verweis-Objektes gegeben werden.'
-		 bsp='Das UDK-Objekt, auf das verwiesen wird, enthält weiterführende Literaturhinweise zum aktuellen UDK-Objekt.'
-		 link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='2200' class_id='-1' name='WWW-Adresse (URL)' help='Angabe einer WWW-Adresse (World-Wide-Web-Adresse)
+		 BSP='Das UDK-Objekt, auf das verwiesen wird, enthält weiterführende Literaturhinweise zum aktuellen UDK-Objekt.'
+		 LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaMAAK'/>
+	<z:row GUI_ID='2200' CLASS_ID='-1' NAME='WWW-Adresse (URL)' HELP='Angabe einer WWW-Adresse (World-Wide-Web-Adresse)
 Hier sollen Adressen eingegeben werden, bei denen im Internet Daten bzw. eine Anwendung zu finden sind, die mit den beschriebenen Daten in fachlichem Zusammenhang stehen oder bei der man die beschriebenen Daten im Internet ansehen kann.'
-		 bsp='http://www.landesbehörde.bundesland.de/ozondaten.html' link_to='0' typ='0' freename='' visible_flag='2'
-		 edit_mode='0'/>
-	<z:row gui_id='2210' class_id='-1' name='Bezeichnung des Verweises' help='Eintrag einer aussagekräftigen Bezeichnung für den Verweis. Beispielsweise kann der sprechende Name der Webseite eingetragen werden.'
-		 bsp='Technische Dokumentation zum Luftüberwachungssystem Niedersachsen (LÜN)' link_to='0' typ='0' freename=''
-		 visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='2220' class_id='-1' name='Datenvolumen' help='Angabe über die Menge der Daten, die sich hinter der URL verbergen.
+		 BSP='http://www.landesbehörde.bundesland.de/ozondaten.html' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0'
+		 ROWID='AAAHZ4AABAAAMaMAAL'/>
+	<z:row GUI_ID='2210' CLASS_ID='-1' NAME='Bezeichnung des Verweises' HELP='Eintrag einer aussagekräftigen Bezeichnung für den Verweis. Beispielsweise kann der sprechende Name der Webseite eingetragen werden.'
+		 BSP='Technische Dokumentation zum Luftüberwachungssystem Niedersachsen (LÜN)' LINK_TO='0' TYP='0' VISIBLE_FLAG='2'
+		 EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaMAAM'/>
+	<z:row GUI_ID='2220' CLASS_ID='-1' NAME='Datenvolumen' HELP='Angabe über die Menge der Daten, die sich hinter der URL verbergen.
 Hier soll eine Angabe über die ungefähre Menge der Daten erfolgen, die bei Aufruf der URL zu übertragen sind. Der Eintrag soll in MB oder KB erfolgen.'
-		 bsp='120 MB' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='2230' class_id='-1' name='Icon_Text' help='Text, der bei entsprechender Browser-Einstellung anstelle eines die Anwendung bzw. die Daten repräsentierenden Icons dargestellt wird.'
-		 bsp='NUMIS' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='2240' class_id='-1' name='Datentyp' help='Angabe des MIME-Types.
+		 BSP='120 MB' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaMAAN'/>
+	<z:row GUI_ID='2230' CLASS_ID='-1' NAME='Icon_Text' HELP='Text, der bei entsprechender Browser-Einstellung anstelle eines die Anwendung bzw. die Daten repräsentierenden Icons dargestellt wird.'
+		 BSP='NUMIS' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaMAAO'/>
+	<z:row GUI_ID='2240' CLASS_ID='-1' NAME='Datentyp' HELP='Angabe des MIME-Types.
 Hier muß für jeden Verweis auf eine URL eingetragen werden, ob der Verweis auf Text (HTML), Text (ASCII) oder z. B. Grafik (GIF) zeigt. An der rechten Seite des Feldes kann eine Auswahlliste geöffnet werden, in der die als MIME-Type definierten Datentypen zur Auswahl bereitstehen. Der Eintrag des Datentypen gibt u.a. einen Hinweis auf die benötigte Software.'
-		 bsp='Text (ASCII)' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='2250' class_id='-1' name='Icon_URL' help='Angabe einer URL, die ein Icon vorhält, das die verwiesenen Daten repräsentiert.
+		 BSP='Text (ASCII)' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaNAAA'/>
+	<z:row GUI_ID='2250' CLASS_ID='-1' NAME='Icon_URL' HELP='Angabe einer URL, die ein Icon vorhält, das die verwiesenen Daten repräsentiert.
 Einer Anwendung oder Daten wird häufig ein signifikantes Icon zugeordnet. In diesem Feld soll die Internet-Adresse angegeben werden, wo dieses Icon zu finden ist.'
-		 bsp='http://www.landesbehörde.bundesland.de/flagge.gif' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='2251' class_id='-1' name='URL-Typ' help='Bei URL-Verweisen für ein Objekt wird unterschieden ob diese URL für das Internet oder für das Intranet gilt.'
-		 bsp='' link_to='0' typ='0' freename='@' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='2260' class_id='-1' name='Erläuterung' help='Anmerkungen zu dem erstellten Verweis.
+		 BSP='http://www.landesbehörde.bundesland.de/flagge.gif' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaNAAB'/>
+	<z:row GUI_ID='2251' CLASS_ID='-1' NAME='URL-Typ' HELP='Bei URL-Verweisen für ein Objekt wird unterschieden ob diese URL für das Internet oder für das Intranet gilt.'
+		 LINK_TO='0' TYP='0' FREENAME='@' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaNAAC'/>
+	<z:row GUI_ID='2260' CLASS_ID='-1' NAME='Erläuterung' HELP='Anmerkungen zu dem erstellten Verweis.
 Hier können weitergehende Informationen zu der URL eingegeben werden, auf die verwiesen wird. Es können auch Erläuterungen zu der Beziehung zwischen den beschriebenen Daten des aktuellen UDK-Objektes und den Daten des Verweis-Objektes gegeben werden.'
-		 bsp='Es werden Java-Applets geladen' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='2300' class_id='-1' name='Bezeichnung des Verweises' help='Eintrag einer aussagekräftigen Bezeichnung für den Verweis. Wird beispielsweise ein Textdokument als OLE-Objekt eingebunden, so kann der Titel dieses Dokumentes eingetragen werden.'
-		 bsp='Technische Dokumentation zum Lüftüberwachungssystem Niedersachsen (LÜN)' link_to='0' typ='0' freename=''
-		 visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='2310' class_id='-1' name='OLE-Objekt' help='Verweis auf ein beliebiges OLE-Objekt. 
+		 BSP='Es werden Java-Applets geladen' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaNAAD'/>
+	<z:row GUI_ID='2300' CLASS_ID='-1' NAME='Bezeichnung des Verweises' HELP='Eintrag einer aussagekräftigen Bezeichnung für den Verweis. Wird beispielsweise ein Textdokument als OLE-Objekt eingebunden, so kann der Titel dieses Dokumentes eingetragen werden.'
+		 BSP='Technische Dokumentation zum Lüftüberwachungssystem Niedersachsen (LÜN)' LINK_TO='0' TYP='0' VISIBLE_FLAG='2'
+		 EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaNAAE'/>
+	<z:row GUI_ID='2310' CLASS_ID='-1' NAME='OLE-Objekt' HELP='Verweis auf ein beliebiges OLE-Objekt. 
 Hier kann auf eine Datei in einer anderen Anwendung verwiesen werden. Diese Dateien können dann vom UDK-Objekt aus direkt geöffnet werden. Dazu muß in diesem Feld das Laufwerk, das Verzeichnis und der Name dieser Datei eingetragen werden. Die Angaben werden mit Hilfe eines dem Datei-Manager bzw. Explorer ähnlichen Auswahldialoges eingetragen. Der Auswahldialog wird über die Schaltfläche an der rechten Seite des Feldes geöffnet. 
 Es ist zu beachten, daß die OLE-Objekte im Rahmen des Aktualisierungszyklus nicht weitergegeben werden (um die zu übertragenen Datenmengen in einem akzeptablen Rahmen zu halten). Die OLE-Objekte stehen daher nur für den eigenen Gebrauch bzw. im lokalen LAN zur Verfügung.
 Falls eine Weitergabe der OLE-Objekte jedoch explizit gewünscht ist, muß diese außerhalb des UDK erfolgen. Wenden Sie sich hierzu ggf. an den zuständigen UDK-Administrator.'
-		 bsp='c:\texte\umwelt.doc' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='2320' class_id='-1' name='Datensatzidentifikation' help='Angabe eines spezifischen Datensatzes innerhalb der Anwendung, die über eine OLE-Schnittstelle aufgerufen werden soll.
+		 BSP='c:\texte\umwelt.doc' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaNAAF'/>
+	<z:row GUI_ID='2320' CLASS_ID='-1' NAME='Datensatzidentifikation' HELP='Angabe eines spezifischen Datensatzes innerhalb der Anwendung, die über eine OLE-Schnittstelle aufgerufen werden soll.
 Wird eine Datenbank-Anwendung aufgerufen, so wird hier die Identifikation des zuständigen Datensatzes angegeben (Tabelle, Datensatznummer, Wert des eindeutigen Primärschlüssels), dessen Daten dieses UDK-Objekt beschreibt. Nach Aufruf der Anwendung wird der Wert der Datensatzidentifikation an die Anwendung übergeben und der automatische Aufruf des Datensatzes veranlaßt.'
-		 link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='2330' class_id='-1' name='Erläuterung' help='Anmerkungen zu dem erstellten Verweis.
+		 LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaNAAG'/>
+	<z:row GUI_ID='2330' CLASS_ID='-1' NAME='Erläuterung' HELP='Anmerkungen zu dem erstellten Verweis.
 Hier können weitergehende Informationen zu dem OLE-Objekt eingegeben werden, auf das verwiesen wird. Es können auch Erläuterungen zu der Beziehung zwischen den beschriebenen Daten des aktuellen UDK-Objektes und den Daten des Verweis-Objektes gegeben werden.'
-		 bsp='Die im Zeitschriftenartikel verwendeten Daten sind auf dem Stand vom Februar 1996.' link_to='0' typ='0'
-		 freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='2350' class_id='0' name='OLE-Objekt' link_to='0' typ='0' freename='' visible_flag='1' edit_mode='0'/>
-	<z:row gui_id='3000' class_id='0' name='Objektname' help='Angabe einer kurzen, prägnanten Bezeichnung der beschriebenen Organisationseinheit oder Fachaufgabe.'
-		 link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='3000' class_id='1' name='Objektname' help='Angabe einer kurzen, prägnanten Bezeichnung der beschriebenen Karte oder Geo-Information.
+		 BSP='Die im Zeitschriftenartikel verwendeten Daten sind auf dem Stand vom Februar 1996.' LINK_TO='0' TYP='0'
+		 VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaNAAH'/>
+	<z:row GUI_ID='2350' CLASS_ID='0' NAME='OLE-Objekt' LINK_TO='0' TYP='0' VISIBLE_FLAG='1' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaNAAI'/>
+	<z:row GUI_ID='3000' CLASS_ID='0' NAME='Objektname' HELP='Angabe einer kurzen, prägnanten Bezeichnung der beschriebenen Organisationseinheit oder Fachaufgabe.'
+		 LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaNAAJ'/>
+	<z:row GUI_ID='3000' CLASS_ID='1' NAME='Objektname' HELP='Angabe einer kurzen, prägnanten Bezeichnung der beschriebenen Karte oder Geo-Information.
 Der Objektname kann z.B. identisch mit dem Namen der Karte oder der Geo-Information sein, sofern dieser ausreichend kurz und aussagekräftig ist. Soweit ein gängiges Kürzel vorhanden ist, ist dieses Kürzel mit anzugeben.
 Der Eintrag in dieses Feld ist obligatorisch.'
-		 bsp='Biotoptypenkarte' link_to='0' typ='0' freename='@' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='3000' class_id='2' name='Objektname' help='Angabe einer kurzen prägnanten Bezeichnung des beschriebenen Dokumentes / Berichtes / der beschriebenen Literatur. 
+		 BSP='Biotoptypenkarte' LINK_TO='0' TYP='0' FREENAME='@' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaNAAK'/>
+	<z:row GUI_ID='3000' CLASS_ID='2' NAME='Objektname' HELP='Angabe einer kurzen prägnanten Bezeichnung des beschriebenen Dokumentes / Berichtes / der beschriebenen Literatur. 
 Der Objektname kann z.B. identisch mit dem Titel des Dokumentes / des Berichtes / der Literatur sein, sofern dieser ausreichend kurz und aussagekräftig ist. Soweit ein gängiges Kürzel vorhanden ist, ist dieses Kürzel mit anzugeben.
 Der Eintrag in dieses Feld ist obligatorisch.'
-		 bsp='Schwermetallbelastung des Bodens im Umkreis von Deponien vor 1950.' link_to='0' typ='0' freename='@' visible_flag='2'
-		 edit_mode='0'/>
-	<z:row gui_id='3000' class_id='3' name='Objektname' help='Angabe einer kurzen prägnanten Bezeichnung des beschriebenen Dienstes / der beschriebenen Anwendung / des beschriebenen Informationssystems. 
+		 BSP='Schwermetallbelastung des Bodens im Umkreis von Deponien vor 1950.' LINK_TO='0' TYP='0' FREENAME='@' VISIBLE_FLAG='2'
+		 EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaNAAL'/>
+	<z:row GUI_ID='3000' CLASS_ID='3' NAME='Objektname' HELP='Angabe einer kurzen prägnanten Bezeichnung des beschriebenen Dienstes / der beschriebenen Anwendung / des beschriebenen Informationssystems. 
 Der Objektname kann z.B. identisch mit dem Namen des Dienstes /der Anwendung /des Informationssystems sein, sofern dieser ausreichend kurz und aussagekräftig ist. Soweit ein gängiges Kürzel vorhanden ist, ist dieses Kürzel mit anzugeben.
 Der Eintrag in dieses Feld ist obligatorisch.'
-		 bsp='Emissions-Fernüberwachung EFÜ' link_to='0' typ='0' freename='@' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='3000' class_id='4' name='Objektname' help='Angabe einer kurzen prägnanten Bezeichnung des beschriebenen Vorhabens / Projekts / Programms. 
+		 BSP='Emissions-Fernüberwachung EFÜ' LINK_TO='0' TYP='0' FREENAME='@' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaNAAM'/>
+	<z:row GUI_ID='3000' CLASS_ID='4' NAME='Objektname' HELP='Angabe einer kurzen prägnanten Bezeichnung des beschriebenen Vorhabens / Projekts / Programms. 
 Der Objektname kann z.B. identisch mit dem Titel des Vorhabens / Projekts / Programms sein, sofern dieser ausreichend kurz und aussagekräftig ist. Soweit ein gängiges Kürzel vorhanden ist, ist dieses Kürzel mit anzugeben.
 Der Eintrag in dieses Feld ist obligatorisch.'
-		 bsp='Moorschutzprogramm' link_to='0' typ='0' freename='@' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='3000' class_id='5' name='Objektname' help='Angabe einer kurzen prägnanten Bezeichnung der beschriebenen Datensammlung / Datenbank.
+		 BSP='Moorschutzprogramm' LINK_TO='0' TYP='0' FREENAME='@' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaNAAN'/>
+	<z:row GUI_ID='3000' CLASS_ID='5' NAME='Objektname' HELP='Angabe einer kurzen prägnanten Bezeichnung der beschriebenen Datensammlung / Datenbank.
 Der Objektname kann z.B. identisch mit dem Namen der Datenbank bzw. der Datensammlung sein, sofern dieser ausreichend kurz und aussagekräftig ist. Soweit ein gängiges Kürzel vorhanden ist, ist dieses Kürzel mit anzugeben.
 Der Eintrag in dieses Feld ist obligatorisch.'
-		 bsp='Anionenkonzentration in Abwasser' link_to='0' typ='0' freename='@' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='3100' class_id='5' name='Methode / Datengrundlage' help='Angabe der verwendeten Methoden und der Datenherkunft.
+		 BSP='Anionenkonzentration in Abwasser' LINK_TO='0' TYP='0' FREENAME='@' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaNAAO'/>
+	<z:row GUI_ID='3100' CLASS_ID='5' NAME='Methode / Datengrundlage' HELP='Angabe der verwendeten Methoden und der Datenherkunft.
 Hier sollen die angewandten Methoden der Datengewinnung (z.B. Meßmethode, Erhebungsmethode) benannt und beschrieben werden. Außerdem können Angaben z. B. zu Qualität oder Umfang der Datengrundlage eingetragen werden. Der Eintrag kann direkt erfolgen, wenn die Registerkarte  A  gewählt wurde, oder als Verweis über die Registerkarte mit dem Pfeil. Der Verweiserstellungsdialog öffnet sich über den Pfeil rechts neben dem Feld.'
-		 bsp='Ionenchromatographie nach DIN 38405-D20 (Sept. 91)' link_to='1' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='3110' class_id='5' name='Inhalte der Datensammlung' help='Angabe der wichtigsten Parameter der Datenbank bzw. der Datensammlung.
+		 BSP='Ionenchromatographie nach DIN 38405-D20 (Sept. 91)' LINK_TO='1' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaNAAP'/>
+	<z:row GUI_ID='3110' CLASS_ID='5' NAME='Inhalte der Datensammlung' HELP='Angabe der wichtigsten Parameter der Datenbank bzw. der Datensammlung.
 Um einen qualifizierten Einblick in die beschriebene Datensammlung bzw. Datenbank zu bekommen, sollen hier die aussagekräftigen Parameter der vorgehaltenen Daten genannt werden. In der linken Spalte werden diese Parameter eingetragen. Beispiele für Parameter: im Falle von Meßdaten werden die wichtigsten Meßparameter (z.B. NOx, SO2, Windgeschwindigkeit, pH-Wert), im Falle von statistischen Erhebungen werden die Erhebungsgößen (z.B. Wasserverbrauch pro Kopf, Bevölkerungsdichte), im Falle von Modelldaten werden die Modellparameter (z.B. Meeresspiegel, CO2-Gehalt der Luft, Welttemperatur) angegeben
 In der rechten Spalte können pro Parameter ergänzende Angaben gemacht werden. Beispielsweise kommen Angaben zur Maßeinheit, Genauigkeit, Nachweisgrenze, Probematrix oder parameterspezifische Angaben zur Meßmethode in Frage.'
-		 bsp='Blei / in Trinkwasser, Nachweisgrenze: 10 ppb
-Cadmium / in Schlacke, Nachweisgrenze: 3 ppm' link_to='0'
-		 typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='3120' class_id='5' name='Erläuterung' help='zusätzliche Angaben zur Datensammlung bzw. zur Datenbank'
-		 bsp='Die angegebenen Inhalte der Datenbank stellen nur eine Auswahl aller gemessenen Parameter dar (insgesamt ca. 300).'
-		 link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='3200' class_id='3' name='Systemumgebung' help='Angaben zum Betriebssystem und der Software, ggf. auch Hardware, die zur Implementierung des Dienstes eingesetzt wird.'
-		 bsp='UMN Mapserver 4.0.2 auf Linux 2.6.0
+		 BSP='Blei / in Trinkwasser, Nachweisgrenze: 10 ppb
+Cadmium / in Schlacke, Nachweisgrenze: 3 ppm' LINK_TO='0'
+		 TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaOAAA'/>
+	<z:row GUI_ID='3120' CLASS_ID='5' NAME='Erläuterung' HELP='zusätzliche Angaben zur Datensammlung bzw. zur Datenbank'
+		 BSP='Die angegebenen Inhalte der Datenbank stellen nur eine Auswahl aller gemessenen Parameter dar (insgesamt ca. 300).'
+		 LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaOAAB'/>
+	<z:row GUI_ID='3200' CLASS_ID='3' NAME='Systemumgebung' HELP='Angaben zum Betriebssystem und der Software, ggf. auch Hardware, die zur Implementierung des Dienstes eingesetzt wird.'
+		 BSP='UMN Mapserver 4.0.2 auf Linux 2.6.0
 
 Für Echtzeit- und near-online-GPS-Anwendungen: Korrekturdatenempfänger
 Für postprocessing-Anwendungen:GPS-Auswertesoftware'
-		 link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='3210' class_id='3' name='Basisdaten' help='Herkunft und Art der zugrundeliegenden Daten.
+		 LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaOAAC'/>
+	<z:row GUI_ID='3210' CLASS_ID='3' NAME='Basisdaten' HELP='Herkunft und Art der zugrundeliegenden Daten.
 
 Bei einem OGC Web Service können  Verweise auf ein oder mehrere UDK Objekte eingefügt werden, die mit dem Dienst eng verknüpft (&#x22;tightly coupled&#x22;) sind. Im Allgemeinen sind dies die Datensätze, auf die der Dienst aufgesetzt ist. Bitte verwenden Sie hierzu möglichst einen &#x22;Verweis zu Dienst&#x22;, der in dem die Basisdaten beschreibenden UDK-Objekt eingetragen wird (Klasse Geoinformation/Karte).
 
 Allgemein sollen die Herkunft oder die Ausgangsdaten der Daten beschrieben werden, die in dem Dienst / der Anwendung bzw. dem Informationssystem benutzt, gespeichert, angezeigt oder weiterverarbeitet werden.
 
 Zusätzlich kann die Art der Daten (z. B. digital, automatisch ermittelt oder aus Umfrageergebnissen, Primärdaten, fehlerbereinigte Daten) angegeben werden.Der Eintrag kann hier direkt über die Auswahl der Registerkarte &#x22;Text&#x22; erfolgen oder es können Verweise eingetragen werden, indem die Registerkarte mit dem Pfeil aktiviert wird. Über die Schaltfläche rechts neben der Tabelle wird der Dialog zur Erstellung eines Verweises geöffnet.'
-		 bsp='Meßdaten von Emissionen in bestimmten Betrieben
+		 BSP='Meßdaten von Emissionen in bestimmten Betrieben
 bzw.
 Einfügen eines Verweises auf den &#x22;tightly coupled&#x22; OGC Web-Dienst'
-		 link_to='1' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='3220' class_id='3' name='Servicetyp' help='Name bzw. Bezeichnung des Dienstes. 
+		 LINK_TO='1' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaOAAD'/>
+	<z:row GUI_ID='3220' CLASS_ID='3' NAME='Servicetyp' HELP='Name bzw. Bezeichnung des Dienstes. 
 
 Wichtig: Bitte verwenden Sie für die Bezeichnung eines OGC-Dienstes die auf www.udk-gein.de/doku/ogc.shtml veröffentlichten Codelisten.'
-		 bsp='Positionierungsdienst  SAPOS®
+		 BSP='Positionierungsdienst  SAPOS®
 WMS
-WFS' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='3230' class_id='3' name='Version des Service' help='Angaben zu Version der dem Dienst zugrundeliegenden Spezifikation. 
+WFS' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaOAAE'/>
+	<z:row GUI_ID='3230' CLASS_ID='3' NAME='Version des Service' HELP='Angaben zu Version der dem Dienst zugrundeliegenden Spezifikation. 
 
 Bitte alle Versionen eingetragen die vom Dienst unterstützt werden.'
-		 bsp='1.1.1
-2.0' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='3240' class_id='3' name='Historie' help='OGC Web Service: Angaben zur Implementierungsgeschichte des Dienstes.
+		 BSP='1.1.1
+2.0' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaOAAF'/>
+	<z:row GUI_ID='3240' CLASS_ID='3' NAME='Historie' HELP='OGC Web Service: Angaben zur Implementierungsgeschichte des Dienstes.
 
 Bei anderen Systemen Angabe zur Entwicklungsgeschichte. Hier können Vorläufer und Folgedienste bzw. -anwendungen oder -systeme genannt werden. Ebenso sind Angaben zu initierenden Forschungsvorhaben oder -programmen von Interesse.'
-		 bsp='11.12.03: Installation des UMN Mapserver 3.0 auf Linux 
+		 BSP='11.12.03: Installation des UMN Mapserver 3.0 auf Linux 
 2.2.005.04.04: Upgrade Linux 2.2.0 auf Linux 2.6.0
 
 Modellversuch beim Gewerbeaufsichtsamt Osnabrück 1991; Einführung 1993'
-		 link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='3250' class_id='3' name='Erläuterung' help='OGC Web Services: Beschreibung der Basisdaten.
+		 LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaOAAG'/>
+	<z:row GUI_ID='3250' CLASS_ID='3' NAME='Erläuterung' HELP='OGC Web Services: Beschreibung der Basisdaten.
 
 Allgemein: Zusätzliche Anmerkungen zu dem beschriebenen Dienst, der Anwendung oder dem Informationssystem.
 Hier können weitergehende Angaben z. B. technischer Art gemacht werden, die zum Verständnis des Dienstes, der Anwendung, des Informationssystems notwendig sind.'
-		 bsp='Der Datensatz ist eine Shape-Datei, die alle Grundwassermessstellen in Hessen mit Lage und Kennung beinhaltet.'
-		 link_to='0' typ='0' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='3300' class_id='2' name='Erscheinungsjahr' help='Angabe der Jahreszahl der Publikation der Literatur.
+		 BSP='Der Datensatz ist eine Shape-Datei, die alle Grundwassermessstellen in Hessen mit Lage und Kennung beinhaltet.'
+		 LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaOAAH'/>
+	<z:row GUI_ID='3300' CLASS_ID='2' NAME='Erscheinungsjahr' HELP='Angabe der Jahreszahl der Publikation der Literatur.
 Das Erscheinungsjahr ist vor allem für regelmäßig erscheinende Literatur wie z.B. jährliche Tagungsbände äußerst wichtig zur Identifikation. Das Erscheinungsjahr kann sich von den entsprechenden Angaben im Zeitbezug des UDK-Objektes unterscheiden, die sich auf den Inhalt der Literatur beziehen und nicht auf die Literatur selbst.'
-		 bsp='1996' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='3310' class_id='2' name='Erscheinungsort' help='Angabe des Publikationsortes der Literatur. 
+		 BSP='1996' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaOAAI'/>
+	<z:row GUI_ID='3310' CLASS_ID='2' NAME='Erscheinungsort' HELP='Angabe des Publikationsortes der Literatur. 
 Diese Angabe bezieht sich auf die Literatur und nicht auf die Inhalte der Literatur. Die räumliche Zuordnung der Inhalte der Literatur erfolgt in den Angaben zum Raumbezug des aktuellen UDK-Objektes.'
-		 bsp='Hamburg' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='3320' class_id='2' name='Seiten' help='Angabe der Anzahl der Seiten der Literatur. 
+		 BSP='Hamburg' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaOAAJ'/>
+	<z:row GUI_ID='3320' CLASS_ID='2' NAME='Seiten' HELP='Angabe der Anzahl der Seiten der Literatur. 
 Hier ist die Anzahl der Seiten anzugeben, wenn es sich um ein Buch handelt. Bei einem Artikel, der in einer Zeitschrift erschienen ist, sollen die Seitenzahlen des Artikelanfangs und des Endes eingegeben werden.'
-		 bsp='345
-256-268' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='3330' class_id='2' name='Band, Heft' help='Angabe der Zählung des betreffenden Bandes einer Reihe.
+		 BSP='345
+256-268' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaOAAK'/>
+	<z:row GUI_ID='3330' CLASS_ID='2' NAME='Band, Heft' HELP='Angabe der Zählung des betreffenden Bandes einer Reihe.
 Zeitschriften und Sammelwerke bzw. Reihen haben eine durchgängige Zählung seit ihrem Erscheinen oder pro Jahr. Hier ist die Zählung des Bandes anzugeben, in dem der Artikel bzw. der Bericht erschienen ist.'
-		 bsp='Band IV' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='3340' class_id='2' name='Erschienen in' help='Angabe des Sammelwerkes, in dem ein Aufsatz erschienen ist.
+		 BSP='Band IV' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaOAAL'/>
+	<z:row GUI_ID='3340' CLASS_ID='2' NAME='Erschienen in' HELP='Angabe des Sammelwerkes, in dem ein Aufsatz erschienen ist.
 Aufsätze und andere nicht selbständige Literatur sind häufig als Teil einer Zeitschrift oder eines Buches erschienen oder als gedruckte Version eines Vortrages im Rahmen einer Tagung. Hier ist der Titel der Zeitschrift bzw. des Sammelwerkes (Tagungsband (Proceedings), Jahresberichte etc.) anzugeben, in der bzw. in dem die beschriebene Literatur erschienen ist. Unter diesem Titel kann ein Artikel beim Herausgeber bezogen werden.'
-		 bsp='Jahresberichte zur Abfallwirtschaft' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='3345' class_id='2' name='Basisdaten' help='Verweis auf zugrundeliegende Daten. 
+		 BSP='Jahresberichte zur Abfallwirtschaft' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaOAAM'/>
+	<z:row GUI_ID='3345' CLASS_ID='2' NAME='Basisdaten' HELP='Verweis auf zugrundeliegende Daten. 
 Hier sollen Verweise zu UDK-Objekten gelegt werden, die Auskunft über Herkunft und Art der zugrundeliegenden Daten geben. Der Eintrag kann hier direkt über die Auswahl der Registerkarte  A  erfolgen oder es kann ein Verweis eingetragen werden, indem die Registerkarte mit dem Pfeil aktiviert wird. Über die Schaltfläche rechts neben der Tabelle wird der Dialog zur Erstellung eines Verweises geöffnet.'
-		 bsp='Deponieüberwachung Berlin-Tegel, Statistikauswertungen seit 1974' link_to='1' typ='0' freename='' visible_flag='2'
-		 edit_mode='0'/>
-	<z:row gui_id='3350' class_id='2' name='Herausgeber' help='Angabe des Herausgebers.
+		 BSP='Deponieüberwachung Berlin-Tegel, Statistikauswertungen seit 1974' LINK_TO='1' TYP='0' VISIBLE_FLAG='2'
+		 EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaOAAN'/>
+	<z:row GUI_ID='3350' CLASS_ID='2' NAME='Herausgeber' HELP='Angabe des Herausgebers.
 Der Herausgeber ist z. B. die Institution, in der ein Autor arbeitet und in deren Auftrag er geschrieben hat. Es kann auch ein Verlag, ein Verein oder eine andere Körperschaft sein, der/die Beiträge zu einem Thema sammelt und als Buch erscheinen läßt bzw. Bücher zu einem Thema als Reihe herausgibt.'
-		 bsp='Umweltbundesamt' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='3355' class_id='2' name='Autor/Verfasser' help='Angabe des Autors bzw. des Verfassers der Literatur.
+		 BSP='Umweltbundesamt' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaOAAO'/>
+	<z:row GUI_ID='3355' CLASS_ID='2' NAME='Autor/Verfasser' HELP='Angabe des Autors bzw. des Verfassers der Literatur.
 Der Eintrag mehrerer Personen ist durch Semikolon zu trennen.'
-		 bsp='Angelika Müller; Hans Meier' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='3360' class_id='2' name='Standort' help='Angabe des Aufbewahrungsortes und evtl. Bezugsort der Literatur, für den Fall, daß ein Bezug auf üblichem Wege (Handel, Bibliotheken) nicht möglich ist. 
+		 BSP='Angelika Müller; Hans Meier' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaOAAP'/>
+	<z:row GUI_ID='3360' CLASS_ID='2' NAME='Standort' HELP='Angabe des Aufbewahrungsortes und evtl. Bezugsort der Literatur, für den Fall, daß ein Bezug auf üblichem Wege (Handel, Bibliotheken) nicht möglich ist. 
 Der Eintrag kann direkt über die Auswahl der Registerkarte  A  erfolgen oder es können Adreßverweise eingetragen werden, indem die Registerkarte mit dem Pfeil aktiviert wird. Über eine Auswahlliste stehen alle in der Adreßverwaltung des aktuellen Kataloges bereits eingetragenen Mitarbeiter zur Verfügung.
 Alternativ zum Eintrag über die Auswahlliste kann der Eintrag über den UDK-Explorer erfolgen, der über die Schaltfläche an der rechten Seite des Feldes geöffnet wird. Die Auswahl über den UDK-Explorer ermöglicht auch den Verweis auf eine Institution oder eine Einheit.'
-		 bsp='Bibliothek Umweltbundesamt' link_to='1' typ='1' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='3365' class_id='2' name='ISBN-Nr.' help='Angabe der 10-stelligen Identifikationsnummer der Literatur.'
-		 bsp='3-456-7889-X' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='3370' class_id='2' name='Verlag' help='Angabe des Verlages, in dem die Literatur erschienen ist.'
-		 bsp='econ' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='3375' class_id='2' name='Erläuterung' help='Zusätzliche Anmerkungen zur beschriebenen Literatur.'
-		 bsp='Der Artikel beruht auf der Diplomarbeit des Autors aus dem Jahr 1995 an der Universität' link_to='0' typ='0'
-		 freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='3380' class_id='2' name='Weitere bibliographische Angaben' help='Hier können bibliographische Angaben gemacht werden, für die kein Feld explizit vorgesehen ist. Dies können z.B. Angaben zu Abbildungen oder zum Format sein. Wichtig ist auch ein Hinweis, wenn dem Dokument eine Diskette oder eine CD-ROM beiliegt bzw. es identisch auf CD-ROM erschienen ist.'
-		 bsp='Das Kartenwerk ist im DIN A3-Format erschienen.' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='3385' class_id='2' name='Dokumenttyp' help='Angabe der Art des Dokumentes.
+		 BSP='Bibliothek Umweltbundesamt' LINK_TO='1' TYP='1' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaPAAA'/>
+	<z:row GUI_ID='3365' CLASS_ID='2' NAME='ISBN-Nr.' HELP='Angabe der 10-stelligen Identifikationsnummer der Literatur.'
+		 BSP='3-456-7889-X' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaPAAB'/>
+	<z:row GUI_ID='3370' CLASS_ID='2' NAME='Verlag' HELP='Angabe des Verlages, in dem die Literatur erschienen ist.'
+		 BSP='econ' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaPAAC'/>
+	<z:row GUI_ID='3375' CLASS_ID='2' NAME='Erläuterung' HELP='Zusätzliche Anmerkungen zur beschriebenen Literatur.'
+		 BSP='Der Artikel beruht auf der Diplomarbeit des Autors aus dem Jahr 1995 an der Universität' LINK_TO='0' TYP='0'
+		 VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaPAAD'/>
+	<z:row GUI_ID='3380' CLASS_ID='2' NAME='Weitere bibliographische Angaben' HELP='Hier können bibliographische Angaben gemacht werden, für die kein Feld explizit vorgesehen ist. Dies können z.B. Angaben zu Abbildungen oder zum Format sein. Wichtig ist auch ein Hinweis, wenn dem Dokument eine Diskette oder eine CD-ROM beiliegt bzw. es identisch auf CD-ROM erschienen ist.'
+		 BSP='Das Kartenwerk ist im DIN A3-Format erschienen.' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaPAAE'/>
+	<z:row GUI_ID='3385' CLASS_ID='2' NAME='Dokumenttyp' HELP='Angabe der Art des Dokumentes.
 Es ist eine Kurzcharakteristik über die Art der Literatur anzugeben. Der Eintrag kann direkt erfolgen oder mit Hilfe einer Auswahlliste, die über den Pfeil am rechten Ende des Feldes geöffnet werden kann.'
-		 bsp='Zeitschriftenartikel' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='3400' class_id='4' name='Projektleiter' help='Angabe des Projektleiters.
+		 BSP='Zeitschriftenartikel' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaPAAF'/>
+	<z:row GUI_ID='3400' CLASS_ID='4' NAME='Projektleiter' HELP='Angabe des Projektleiters.
 Der Eintrag kann direkt über die Auswahl der Registerkarte  A  erfolgen oder es können Adreßverweise eingetragen werden, indem die Registerkarte mit dem Pfeil aktiviert wird. Über eine Auswahlliste stehen alle in der Adreßverwaltung des aktuellen Kataloges bereits eingetragenen Mitarbeiter zur Verfügung.
 Alternativ zum Eintrag über die Auswahlliste kann der Eintrag über den UDK-Explorer erfolgen, der über die Schaltfläche an der rechten Seite des Feldes geöffnet wird. Die Auswahl über den UDK-Explorer ermöglicht auch den Verweis auf eine Institution oder eine Einheit.'
-		 bsp='Dr. Antje Robbe' link_to='1' typ='1' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='3410' class_id='4' name='Beteiligte' help='Angabe von Personen oder Institutionen, die am Projekt bzw. am Programm oder Vorhaben beteiligt sind. 
+		 BSP='Dr. Antje Robbe' LINK_TO='1' TYP='1' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaPAAG'/>
+	<z:row GUI_ID='3410' CLASS_ID='4' NAME='Beteiligte' HELP='Angabe von Personen oder Institutionen, die am Projekt bzw. am Programm oder Vorhaben beteiligt sind. 
 Der Eintrag soll Hinweise auf wichtige Institutionen oder Personen geben, die beteiligt waren bzw. sind und über die evtl. weitere genauere Informationen zu erfahren sind. 
 Der Eintrag kann direkt über die Auswahl der Registerkarte  A  erfolgen oder es können Adreßverweise eingetragen werden, indem die Registerkarte mit dem Pfeil aktiviert wird. Über eine Auswahlliste stehen alle in der Adreßverwaltung des aktuellen Kataloges bereits eingetragenen Mitarbeiter zur Verfügung.
 Alternativ zum Eintrag über die Auswahlliste kann der Eintrag über den UDK-Explorer erfolgen, der über die Schaltfläche an der rechten Seite des Feldes geöffnet wird. Die Auswahl über den UDK-Explorer ermöglicht auch den Verweis auf eine Institution oder eine Einheit.'
-		 bsp='BfN, BMU' link_to='1' typ='1' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='3420' class_id='4' name='Erläuterungen' help='Weitere Angaben zum Projekt bzw. Programm oder Vorhaben.
+		 BSP='BfN, BMU' LINK_TO='1' TYP='1' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaPAAH'/>
+	<z:row GUI_ID='3420' CLASS_ID='4' NAME='Erläuterungen' HELP='Weitere Angaben zum Projekt bzw. Programm oder Vorhaben.
 Hier können zusätzliche wichtige Angaben eingetragen werden, z.B. Finanzierung, Förderkennzeichen, Bearbeitungsstatus.'
-		 bsp='Finanzierung über BMU, EU' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='3500' class_id='1' name='Raumbezugssystem' help='Angabe der Bezugssysteme (Lage, Höhe, Schwere), die der Erarbeitung des zu beschreibenden Datenbestandes oder der fertigen Karte zugrunde gelegt wurden.
+		 BSP='Finanzierung über BMU, EU' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaPAAI'/>
+	<z:row GUI_ID='3500' CLASS_ID='1' NAME='Raumbezugssystem' HELP='Angabe der Bezugssysteme (Lage, Höhe, Schwere), die der Erarbeitung des zu beschreibenden Datenbestandes oder der fertigen Karte zugrunde gelegt wurden.
 Die Angaben können sich gegenüber der Bounding Box unterscheiden. Hier werden die dem Datenobjekt zugrunde liegenden Parameter angegeben.'
-		 bsp='EPSG:4326 / WGS 84 / geographisch' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='3515' class_id='1' name='Herstellungsprozess' help='Angabe der Methode, die zur Erstellung des Datenobjektes geführt hat.
+		 BSP='EPSG:4326 / WGS 84 / geographisch' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaPAAJ'/>
+	<z:row GUI_ID='3515' CLASS_ID='1' NAME='Herstellungsprozess' HELP='Angabe der Methode, die zur Erstellung des Datenobjektes geführt hat.
 Der Eintrag kann in Textform erfolgen, indem die Registerkarte mit dem  A  ausgewählt wird. Außerdem kann durch Auswahl der Registerkarte mit dem Pfeil ein Verweis erstellt werden.'
-		 bsp='Feldkartierung' link_to='1' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='3520' class_id='1' name='Fachliche Grundlage' help='Angabe der Dokumente, die Grundlage der fachlichen Inhalte der Karte oder Datensammlung sind. 
+		 BSP='Feldkartierung' LINK_TO='1' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaPAAK'/>
+	<z:row GUI_ID='3520' CLASS_ID='1' NAME='Fachliche Grundlage' HELP='Angabe der Dokumente, die Grundlage der fachlichen Inhalte der Karte oder Datensammlung sind. 
 Außerdem können Regeln für die Erfassung (Geo-Information) bzw. Darstellung (Karte) angegeben werden. Dieses Dokument kann eine Erläuterung der gesetzlichen Grundlagen darstellen, jedoch auch selbständigen Charakters sein. Der Eintrag kann in Textform erfolgen, indem die Karteikarte mit dem  A  ausgewählt wird. Außerdem kann durch Auswahl der Registerkarte mit dem Pfeil ein Verweis zu einem anderen UDK-Objekt im aktuellen Katalog erstellt werden.'
-		 bsp='Zeichenvorschrift' link_to='1' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='3525' class_id='1' name='Erstellungsmaßstab' help='Angabe des Erstellungsmaßstabes, der sich auf die erstellte Karte und/oder Digitalisiergrundlage bei Geodaten bezieht. 
+		 BSP='Zeichenvorschrift' LINK_TO='1' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaPAAL'/>
+	<z:row GUI_ID='3525' CLASS_ID='1' NAME='Erstellungsmaßstab' HELP='Angabe des Erstellungsmaßstabes, der sich auf die erstellte Karte und/oder Digitalisiergrundlage bei Geodaten bezieht. 
 Maßstab: Maßstab der Karte, z.B 1:12 
 Bodenauflösung: Einheit geteilt durch Auflösung multipliziert mit dem Maßstab (Angabe in Meter, Fließkommazahl)
 Scanauflösung: Auflösung z.B. einer eingescannten Karte, z.B. 120dpi (Angabe in dpi, Integerzahl)'
-		 bsp='Bodenauflösung: Auflösungseinheit in Linien/cm; Einheit: z.B. 1 cm geteilt durch 400 Linien multipliziert mit dem Maßstab 1:25.000 ergibt 62,5 cm als Bodenauflösung'
-		 link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='3530' class_id='1' name='Lagegenauigkeit' help='Angabe über die Genauigkeit z.B. in einer Karte'
-		 bsp='0,5 m' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='3535' class_id='1' name='Schlüsselkatalog' help='An dieser Stelle besteht die Möglichkeit, den Daten zugrundeliegende Klassifizierungsschlüssel zu benennen. Dabei ist die Eingabe mehrerer Kataloge mit zugehörigem Datum (Pflichteintrag) und Version (Optional) möglich.'
-		 bsp='Biotoptypenschlüssel, Datum 01.01.1998, Version 1.1' link_to='1' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='3555' class_id='1' name='Symbolkatalog' help='Für die Präsentation genormter Objekte und Sachverhalte können für die Nutzer der Daten zur Herstellung von Karten abgestimmte Symbole vorgegeben werden. Die Angabe eines oder mehrerer analoger oder digitaler Symbolpaletten mit zugehörigem Datum (Pflichteintrag) und Version (Optional) ist hier möglich.'
-		 bsp='Planzeichenverordnung, Datum 01.01.1998, Version 1.0' link_to='1' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='3565' class_id='1' name='Erfassungsgrad' help='Eingabe einer Prozentangabe zum Stand der Erfassung des Datenobjektes.
+		 BSP='Bodenauflösung: Auflösungseinheit in Linien/cm; Einheit: z.B. 1 cm geteilt durch 400 Linien multipliziert mit dem Maßstab 1:25.000 ergibt 62,5 cm als Bodenauflösung'
+		 LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaPAAM'/>
+	<z:row GUI_ID='3530' CLASS_ID='1' NAME='Lagegenauigkeit' HELP='Angabe über die Genauigkeit z.B. in einer Karte'
+		 BSP='0,5 m' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaPAAN'/>
+	<z:row GUI_ID='3535' CLASS_ID='1' NAME='Schlüsselkatalog' HELP='An dieser Stelle besteht die Möglichkeit, den Daten zugrundeliegende Klassifizierungsschlüssel zu benennen. Dabei ist die Eingabe mehrerer Kataloge mit zugehörigem Datum (Pflichteintrag) und Version (Optional) möglich.'
+		 BSP='Biotoptypenschlüssel, Datum 01.01.1998, Version 1.1' LINK_TO='1' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0'
+		 ROWID='AAAHZ4AABAAAMaPAAO'/>
+	<z:row GUI_ID='3555' CLASS_ID='1' NAME='Symbolkatalog' HELP='Für die Präsentation genormter Objekte und Sachverhalte können für die Nutzer der Daten zur Herstellung von Karten abgestimmte Symbole vorgegeben werden. Die Angabe eines oder mehrerer analoger oder digitaler Symbolpaletten mit zugehörigem Datum (Pflichteintrag) und Version (Optional) ist hier möglich.'
+		 BSP='Planzeichenverordnung, Datum 01.01.1998, Version 1.0' LINK_TO='1' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0'
+		 ROWID='AAAHZ4AABAAAMaPAAP'/>
+	<z:row GUI_ID='3565' CLASS_ID='1' NAME='Erfassungsgrad' HELP='Eingabe einer Prozentangabe zum Stand der Erfassung des Datenobjektes.
 Diese kann sich auf die Anzahl der Kartenblätter aber auch auf den Erfassungsgrad einer Gesamtkarte beziehen.'
-		 bsp='55' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='3570' class_id='1' name='Datengrundlage' help='Angabe der Unterlagen (Luftbilder, Karten, Datensammlungen), die bei der Erstellung der Karte oder der Geo-Information (des digitalen Datenbestandes) Verwendung finden.
+		 BSP='55' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaPAAQ'/>
+	<z:row GUI_ID='3570' CLASS_ID='1' NAME='Datengrundlage' HELP='Angabe der Unterlagen (Luftbilder, Karten, Datensammlungen), die bei der Erstellung der Karte oder der Geo-Information (des digitalen Datenbestandes) Verwendung finden.
 Der Eintrag kann in Textform erfolgen, indem die Karteikarte mit dem  A  ausgewählt wird. Außerdem kann durch Auswahl der Registerkarte mit dem Pfeil ein Verweis zu einem anderen UDK-Objekt im aktuellen Katalog erstellt werden.'
-		 bsp='Kartieroriginale der Pflanzenerfassung' link_to='1' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='3571' class_id='-1' name='Veröffentlichung' help='Das Feld Veröffentlichung gibt an, welche Veröffentlichungsmöglichkeiten für das Objekt freigegeben sind. Die Liste der Möglichkeiten ist nach Freigabestufen hierarchisch geordnet. Wird einem Objekt eine niedrigere Freigabestufe zugeordnet (z.B. von Internet auf Intranet),  werden automatisch auch alle untergeordneten Objekte dieser Stufe zugeordnet. Soll einem Objekt eine höhere Freigabestufe zugeordnet werden als die des übergeordneten Objektes, wird die Zuordnung verweigert. Wird einem Objekt eine höhere Freigabestufe zugeordnet (z.B. von Amtsintern auf Intranet), kann dialoggesteuert auch allen untergeordneten Objekten die höhere Freigabestufe zugeordnet werden.
+		 BSP='Kartieroriginale der Pflanzenerfassung' LINK_TO='1' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaPAAR'/>
+	<z:row GUI_ID='3571' CLASS_ID='-1' NAME='Veröffentlichung' HELP='Das Feld Veröffentlichung gibt an, welche Veröffentlichungsmöglichkeiten für das Objekt freigegeben sind. Die Liste der Möglichkeiten ist nach Freigabestufen hierarchisch geordnet. Wird einem Objekt eine niedrigere Freigabestufe zugeordnet (z.B. von Internet auf Intranet),  werden automatisch auch alle untergeordneten Objekte dieser Stufe zugeordnet. Soll einem Objekt eine höhere Freigabestufe zugeordnet werden als die des übergeordneten Objektes, wird die Zuordnung verweigert. Wird einem Objekt eine höhere Freigabestufe zugeordnet (z.B. von Amtsintern auf Intranet), kann dialoggesteuert auch allen untergeordneten Objekten die höhere Freigabestufe zugeordnet werden.
 
 Die Freigabestufe wird beim Export bzw. beim Aktualisierungszyklus berücksichtigt.
 
 ACHTUNG:
 Wird ein Objekt nachträglich, nach dem es im Aktualisierungszyklus an alle Instanzen verteilt wurde, auf eine geringere Freigabestufe gesetzt, so wird es bei einem Export, der die neue Freigabestufe nicht berücksichtigt, nicht exportiert und daher bei den anderen Instanzen auch nicht gelöscht.'
-		 bsp='Die Einstellung haben folgende Bedeutung:
+		 BSP='Die Einstellung haben folgende Bedeutung:
 
 Internet:    Das Objekt darf überall veröffentlicht werden
 
@@ -410,267 +417,275 @@ Intranet:    Das Objekt darf im Intranet veröffentlicht werden, aber nicht im I
 Amtsintern:  Das Objekt darf nur in der erfassenden Instanz aber weder im Internet noch im Intranet veröffentlicht werden (Es wird im WWW-UDK in keinem Fall angezeigt)
 
 Nicht freigegeben: Das Objekt ist nur für den Erfasser sichtbar'
-		 link_to='0' typ='0' freename='@' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='4000' class_id='3' name='Name' help='Name einer Person (Pflichtfeld), für die eine freie Adresse eingetragen werden soll.
+		 LINK_TO='0' TYP='0' FREENAME='@' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaQAAA'/>
+	<z:row GUI_ID='4000' CLASS_ID='3' NAME='Name' HELP='Name einer Person (Pflichtfeld), für die eine freie Adresse eingetragen werden soll.
 Hinweis: Diese Maske dient dem Eintrag sog. freier Adressen von Personen. Hierunter werden Adressen verstanden, die nicht hierarchisch aufgebaut sind (Institution/Einheit/Person). Der Eintrag freier Adressen kann dann sinnvoll sein, wenn eine Person keiner Institution zuzuordnen ist oder wenn man die Adresse von nur einem Mitarbeiter einer Institution eintragen will.'
-		 bsp='vom Busche' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='4005' class_id='3' name='Vorname' help='Angabe des Vornamens der eingetragenen Person.
+		 BSP='vom Busche' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaQAAB'/>
+	<z:row GUI_ID='4005' CLASS_ID='3' NAME='Vorname' HELP='Angabe des Vornamens der eingetragenen Person.
 Um Verwechslungen von Trägern gleicher Nachnamen zu vermeiden, soll hier der Vorname der eingetragenen Person genannt werden. Auf Vollständigkeit der Vornamen wird dabei kein Wert gelegt.'
-		 bsp='Rosemarie' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='4010' class_id='3' name='Institution' help='Name der Institution, der die Person angehört.
+		 BSP='Rosemarie' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaQAAC'/>
+	<z:row GUI_ID='4010' CLASS_ID='3' NAME='Institution' HELP='Name der Institution, der die Person angehört.
 Falls die Dienst- oder Geschäftsadresse der Person angelegt werden soll, so ist hier der Name der Institution einzutragen, der die Person angehört. Evtl. kann in einer weiteren Zeile auch die betreffende Einheit (Abteilung, Referat, Dezernat, etc.) eingetragen werden.'
-		 bsp='Landesanstalt für Umweltschutz' link_to='0' typ='0' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='4015' class_id='3' name='Anrede' help='Angabe der Anrede für die eingetragene Person.
+		 BSP='Landesanstalt für Umweltschutz' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaQAAD'/>
+	<z:row GUI_ID='4015' CLASS_ID='3' NAME='Anrede' HELP='Angabe der Anrede für die eingetragene Person.
 Um eine korrekte Korrespondenz mit der eingetragenen Person zu ermöglichen, soll diese Angabe falsche Anreden der eingetragenen Person vermeiden. 
 Die Standardeinträge (Frau, Herr) sind in der Auswahlliste enthalten. Freie Einträge sind jedoch auch möglich (z.B. Mrs, Mr).'
-		 bsp='Frau' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='4020' class_id='3' name='Titel' help='Angabe des akademischen Titels der eingetragenen Person.
+		 BSP='Frau' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaQAAE'/>
+	<z:row GUI_ID='4020' CLASS_ID='3' NAME='Titel' HELP='Angabe des akademischen Titels der eingetragenen Person.
 Hier sollen die dem Namen vorangestellten akademischen Titel angegeben werden. Amtstitel (z.B. MinD, OAR) sollen aus Datenschutzgründen nicht eingetragen werden.'
-		 bsp='Prof. Dr.' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='4100' class_id='0' name='Institution' help='Name der Institution.
+		 BSP='Prof. Dr.' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaQAAF'/>
+	<z:row GUI_ID='4100' CLASS_ID='0' NAME='Institution' HELP='Name der Institution.
 Hier soll die vollständige, offizielle Bezeichnung der Institution eingetragen werden.
 Eine Institution ist eine offizielle, selbständige organisatorische Einheit. Dies kann z. B. eine Behörde, ein Amt oder eine Firma sein. Um die zuständigen Personen zu präzisieren, können der Institution Einheiten und Personen zugeordnet werden, die dann detaillierte Angaben zu der Einheit und der Person enthalten. Einer Institution kann auch eine Person direkt zugeordnet werden. Eine Institution kann auch alleine, ohne zugeordnete Personen oder Einheiten in den Adreßverweisen der Objekte eingetragen werden.'
-		 bsp='Landesanstalt für Umweltschutz' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='4200' class_id='1' name='Einheit' help='Name der Einheit.
+		 BSP='Landesanstalt für Umweltschutz' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaQAAG'/>
+	<z:row GUI_ID='4200' CLASS_ID='1' NAME='Einheit' HELP='Name der Einheit.
 Hier soll die vollständige, offizielle Bezeichnung der Einheit eingetragen werden.
 Eine Einheit stellt eine organisatorische Untergliederung einer übergeordneten Institution dar. Es ist möglich, eine Einheit unter einer anderen Einheit anzuordnen (z.B. Referat/Dezernat XY unter Abteilung Z).'
-		 bsp='Referat 606 (DV-Organisation, Umweltinformationssysteme)' link_to='0' typ='0' freename='' visible_flag='2'
-		 edit_mode='0'/>
-	<z:row gui_id='4210' class_id='-1' name='Institution/Übergeordnete Einheit(en)' help='Es werden die übergeordnete Institution und die übergeordneten Einheiten angezeigt.'
-		 link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='4300' class_id='2' name='Anrede' help='Angabe der Anrede für die eingetragene Person.
+		 BSP='Referat 606 (DV-Organisation, Umweltinformationssysteme)' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0'
+		 ROWID='AAAHZ4AABAAAMaQAAH'/>
+	<z:row GUI_ID='4210' CLASS_ID='-1' NAME='Institution/Übergeordnete Einheit(en)' HELP='Es werden die übergeordnete Institution und die übergeordneten Einheiten angezeigt.'
+		 LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaQAAI'/>
+	<z:row GUI_ID='4300' CLASS_ID='2' NAME='Anrede' HELP='Angabe der Anrede für die eingetragene Person.
 Um eine korrekte Korrespondenz mit der eingetragenen Person zu ermöglichen, soll diese Angabe falsche Anreden der eingetragenen Person vermeiden. 
 Die Standardeinträge (Frau, Herr) sind in der Auswahlliste enthalten. Freie Einträge sind jedoch auch möglich (z.B. Mrs, Mr).'
-		 bsp='Frau' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='4305' class_id='2' name='Titel' help='Angabe des akademischen Titels der eingetragenen Person.
+		 BSP='Frau' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaQAAJ'/>
+	<z:row GUI_ID='4305' CLASS_ID='2' NAME='Titel' HELP='Angabe des akademischen Titels der eingetragenen Person.
 Hier sollen die dem Namen vorangestellten akademischen Titel angegeben werden. Amtstitel (z.B. MinD, OAR) sollen aus Datenschutzgründen nicht eingetragen werden.'
-		 bsp='Prof. Dr.' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='4310' class_id='2' name='Vorname' help='Angabe des Vornamens der eingetragenen Person.
+		 BSP='Prof. Dr.' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaQAAK'/>
+	<z:row GUI_ID='4310' CLASS_ID='2' NAME='Vorname' HELP='Angabe des Vornamens der eingetragenen Person.
 Um Verwechslungen von Trägern gleicher Nachnamen zu vermeiden, soll hier der Vorname der eingetragenen Person genannt werden. Auf Vollständigkeit der Vornamen wird dabei kein Wert gelegt.'
-		 bsp='Rosemarie' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='4315' class_id='2' name='Name' help='Angabe des Nachnamens der eingetragenen Person.
+		 BSP='Rosemarie' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaQAAL'/>
+	<z:row GUI_ID='4315' CLASS_ID='2' NAME='Name' HELP='Angabe des Nachnamens der eingetragenen Person.
 Hier soll der vollständige Nachname einer Person eingetragen werden.'
-		 bsp='vom Busche' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='4400' class_id='0' name='Straße/Hausnummer' help='Angabe der Hausadresse.
+		 BSP='vom Busche' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaQAAM'/>
+	<z:row GUI_ID='4400' CLASS_ID='0' NAME='Straße/Hausnummer' HELP='Angabe der Hausadresse.
 Bei der Straße und Hausnummer der Institution sollte es sich um die Adresse der Zentrale bzw. des Hauptgebäudes handeln. Für die zuzuordnenden Einheiten und Personen können eigene Adressen eingetragen werden.
 Die Angabe der Hausadresse ist Pflicht, sofern kein Postfach angegeben wird.'
-		 bsp='Meyersgrund 14' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='4400' class_id='1' name='Straße/Hausnummer' help='Angabe der Hausadresse.
+		 BSP='Meyersgrund 14' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaQAAN'/>
+	<z:row GUI_ID='4400' CLASS_ID='1' NAME='Straße/Hausnummer' HELP='Angabe der Hausadresse.
 Bei der Straße und Hausnummer der Einheit sollte es sich um die Adresse des Dienstgebäudes dieser Einheit handeln. Für die zuzuordnenden Personen können eigene Adressen eingetragen werden.
 Die Angabe einer Hausadresse ist Pflicht, sofern kein Postfach angegeben wird.'
-		 bsp='Vogelfangtrift 15' link_to='0' typ='0' freename='@' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='4400' class_id='2' name='Straße/Hausnummer' help='Angabe der Hausadresse.
+		 BSP='Vogelfangtrift 15' LINK_TO='0' TYP='0' FREENAME='@' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaQAAO'/>
+	<z:row GUI_ID='4400' CLASS_ID='2' NAME='Straße/Hausnummer' HELP='Angabe der Hausadresse.
 Bei der Straße und Hausnummer der Person sollte es sich um die Hausadresse des Dienstgebäudes der Person handeln. 
 Die Angabe einer Hausadresse ist Pflicht, sofern kein Postfach angegeben wird.'
-		 bsp='Blocksberg 17' link_to='0' typ='0' freename='@' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='4400' class_id='3' name='Straße/Hausnummer' help='Angabe der Hausadresse.
+		 BSP='Blocksberg 17' LINK_TO='0' TYP='0' FREENAME='@' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaQAAP'/>
+	<z:row GUI_ID='4400' CLASS_ID='3' NAME='Straße/Hausnummer' HELP='Angabe der Hausadresse.
 Bei der Straße und Hausnummer der Person sollte es sich um die Hausadresse des Dienstgebäudes der Person handeln. Fehlt der Eintrag für die Institution, ist hier i.d.R. die Privatanschrift einzutragen.
 Die Angabe einer Hausadresse ist Pflicht, sofern kein Postfach angegeben wird.'
-		 bsp='Blocksberg 17' link_to='0' typ='0' freename='@' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='4405' class_id='0' name='Staat' help='Angabe des postalischen Staatenkürzels.
+		 BSP='Blocksberg 17' LINK_TO='0' TYP='0' FREENAME='@' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaQAAQ'/>
+	<z:row GUI_ID='4405' CLASS_ID='0' NAME='Staat' HELP='Angabe des postalischen Staatenkürzels.
 Das international gültige postalische Staatenkürzel ist katalogspezifisch voreingestellt. Es kann bei Bedarf jedoch durch einen freien Eintrag oder durch Auswahl eines anderen Kürzels aus der Auswahlliste überschrieben werden.'
-		 bsp='D' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='4410' class_id='-1' name='PLZ' help='Postleitzahl der Hausadresse (Straße/Hausnummer).
+		 BSP='D' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaQAAR'/>
+	<z:row GUI_ID='4410' CLASS_ID='-1' NAME='PLZ' HELP='Postleitzahl der Hausadresse (Straße/Hausnummer).
 Hier ist die Postleitzahl einzugeben, die sich auf die Hausadresse (Straße/Hausnummer) bezieht. Für die Postleitzahl zur Postdresse (Postfach) ist ein eigenes Feld vorgesehen.'
-		 bsp='30169' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='4415' class_id='0' name='Ort' help='Es ist der Ort anzugeben, wo sich die Zentrale bzw. das Hauptgebäude der Institution befindet. Für die zuzuordnenden Einheiten und Personen können eigene Adressen bzw. Ortsangaben eingetragen werden. Für den Fall, daß der Ort für Hausadresse (Straße/Hausnummer) und Postadresse (Postfach) verschieden ist, kann nur eine vollständige Adresse eingetragen werden (Haus- oder Postadresse).'
-		 bsp='Bruchsal' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='4415' class_id='1' name='Ort' help='Es ist der Ort anzugeben, wo sich das Dienstgebäude der Einheit befindet. Für die zuzuordnenden weiteren Einheiten und Personen können eigene Adressen bzw. Ortsangaben eingetragen werden. Für den Fall, daß der Ort für Hausadresse (Straße/Hausnummer) und Postadresse (Postfach) verschieden ist, kann nur eine vollständige Adresse eingetragen werden (Haus- oder Postadresse).'
-		 bsp='Wolgast' link_to='0' typ='0' freename='@' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='4415' class_id='2' name='Ort' help='Es ist der Ort anzugeben, wo sich das Dienstgebäude befindet, in dem die betreffende Person tätig ist. Für die zugeordnete Institution/Einheiten können eigene Adressen bzw. Ortsangaben eingetragen werden. Für den Fall, daß der Ort für Hausadresse (Straße/Hausnummer) und Postadresse (Postfach) verschieden ist, kann nur eine vollständige Adresse eingetragen werden (Haus- oder Postadresse).'
-		 bsp='Wolgast' link_to='0' typ='0' freename='@' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='4415' class_id='3' name='Ort' help='Es ist der Ort anzugeben, wo sich das Dienstgebäude befindet, in dem die betreffende Person tätig ist. Soll die Privatadresse der betreffenden Person angegeben werden, ist hier der Wohnort anzugeben.
+		 BSP='30169' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaRAAA'/>
+	<z:row GUI_ID='4415' CLASS_ID='0' NAME='Ort' HELP='Es ist der Ort anzugeben, wo sich die Zentrale bzw. das Hauptgebäude der Institution befindet. Für die zuzuordnenden Einheiten und Personen können eigene Adressen bzw. Ortsangaben eingetragen werden. Für den Fall, daß der Ort für Hausadresse (Straße/Hausnummer) und Postadresse (Postfach) verschieden ist, kann nur eine vollständige Adresse eingetragen werden (Haus- oder Postadresse).'
+		 BSP='Bruchsal' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaRAAB'/>
+	<z:row GUI_ID='4415' CLASS_ID='1' NAME='Ort' HELP='Es ist der Ort anzugeben, wo sich das Dienstgebäude der Einheit befindet. Für die zuzuordnenden weiteren Einheiten und Personen können eigene Adressen bzw. Ortsangaben eingetragen werden. Für den Fall, daß der Ort für Hausadresse (Straße/Hausnummer) und Postadresse (Postfach) verschieden ist, kann nur eine vollständige Adresse eingetragen werden (Haus- oder Postadresse).'
+		 BSP='Wolgast' LINK_TO='0' TYP='0' FREENAME='@' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaRAAC'/>
+	<z:row GUI_ID='4415' CLASS_ID='2' NAME='Ort' HELP='Es ist der Ort anzugeben, wo sich das Dienstgebäude befindet, in dem die betreffende Person tätig ist. Für die zugeordnete Institution/Einheiten können eigene Adressen bzw. Ortsangaben eingetragen werden. Für den Fall, daß der Ort für Hausadresse (Straße/Hausnummer) und Postadresse (Postfach) verschieden ist, kann nur eine vollständige Adresse eingetragen werden (Haus- oder Postadresse).'
+		 BSP='Wolgast' LINK_TO='0' TYP='0' FREENAME='@' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaRAAD'/>
+	<z:row GUI_ID='4415' CLASS_ID='3' NAME='Ort' HELP='Es ist der Ort anzugeben, wo sich das Dienstgebäude befindet, in dem die betreffende Person tätig ist. Soll die Privatadresse der betreffenden Person angegeben werden, ist hier der Wohnort anzugeben.
 Für den Fall, daß der Ort für Hausadresse (Straße/Hausnummer) und Postadresse (Postfach) verschieden ist, kann nur eine vollständige Adresse eingetragen werden (Haus- oder Postadresse).'
-		 bsp='Wolgast' link_to='0' typ='0' freename='@' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='4420' class_id='-1' name='Postfach' help='Angabe der Nummer des Postfaches.
+		 BSP='Wolgast' LINK_TO='0' TYP='0' FREENAME='@' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaRAAE'/>
+	<z:row GUI_ID='4420' CLASS_ID='-1' NAME='Postfach' HELP='Angabe der Nummer des Postfaches.
 In Ergänzung zur Hausadresse (Straße/Hausnummer) kann hier ein Postfach angegeben werden. Ist keine Hausadresse angegeben, so ist die Eingabe eines Postfaches zwingend notwendig, um die Adresse speichern zu können.
 Für den seltenen Fall, daß keine Hausadresse existiert und die Postleitzahl bereits die Nummer des Postfachs darstellt (also keine gesonderte Postfachnummer existiert), ist hier ein Leerzeichen einzutragen.'
-		 link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='4425' class_id='-1' name='PLZ (Postfach)' help='Postleitzahl des Postfaches.
+		 LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaRAAF'/>
+	<z:row GUI_ID='4425' CLASS_ID='-1' NAME='PLZ (Postfach)' HELP='Postleitzahl des Postfaches.
 Hier ist die Postleitzahl einzugeben, die sich auf das Postfach bezieht. Für die Postleitzahl zur Hausadresse (Straße/Hausnummer) ist ein eigenes Feld vorgesehen.'
-		 bsp='08977' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='4430' class_id='0' name='Kommunikations-Verbindung' help='Angabe von Telefonnummern, Faxnummer, E-Mail, URL-Adresse usw. 
+		 BSP='08977' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaRAAG'/>
+	<z:row GUI_ID='4430' CLASS_ID='0' NAME='Kommunikations-Verbindung' HELP='Angabe von Telefonnummern, Faxnummer, E-Mail, URL-Adresse usw. 
 In dieser Tabelle sollen alle Kommunikationsmittel (außer normaler Post) eingetragen werden, mit denen die Institution erreicht werden kann. Es können z. B. die Telefonnummer der Zentrale oder die E-Mail-Adresse der Abteilung für Pressemitteilungen oder Versand eingetragen werden. 
 In der linken Spalte der Tabelle wird die Kommunikationsart eingetragen. Die Bezeichnung kann direkt oder über eine Auswahlliste eingegeben werden. Hier sind die gängigsten Kommunikationsarten wie Telefon, Telefax, Telex oder E-Mail eingegeben. In der rechten Spalte wird die zugehörige Nummer für Telefon oder Fax bzw. Adresse für E-Mail-Kommunikation eingegeben. Wichtig: Es ist möglich mehrere Verbindungen für dasselbe Kommunikationsmittel einzutragen (z. B. mehrere Telefonnummern).'
-		 bsp='E-Mail : pressestelle@mu.niedersachsen.de' link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='4430' class_id='1' name='Kommunikations-Verbindung' help='Angabe von Telefonnummern, Faxnummer, E-Mail, URL-Adresse usw. 
+		 BSP='E-Mail : pressestelle@mu.niedersachsen.de' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaRAAH'/>
+	<z:row GUI_ID='4430' CLASS_ID='1' NAME='Kommunikations-Verbindung' HELP='Angabe von Telefonnummern, Faxnummer, E-Mail, URL-Adresse usw. 
 In dieser Tabelle sollen alle Kommunikationsmittel (außer Post) eingetragen werden, mit denen die Einheit erreicht werden kann. Es kann z. B. die Telefonnummer eines Abteilungsvorzimmers eingetragen werden. 
 In der linken Spalte der Tabelle wird die Kommunikationsart eingetragen. Die Bezeichnung kann direkt oder über eine Auswahlliste eingegeben werden. Hier sind die gängigsten Kommunikationsarten wie Telefon, Telefax, Telex oder E-Mail eingegeben. In der rechten Spalte wird die zugehörige Nummer für Telefon oder Fax bzw. Adresse für E-Mail-Kommunikation eingegeben. Wichtig: Es ist möglich mehrere Verbindungen für dasselbe Kommunikationsmittel einzutragen (z. B. mehrere Telefonnummern).'
-		 bsp='pressestelle@mu.niedersachsen.de' link_to='0' typ='0' freename='@' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='4430' class_id='2' name='Kommunikations-Verbindung' help='Angabe von Telefonnummern, Faxnummer, E-Mail, URL-Adresse usw. 
+		 BSP='pressestelle@mu.niedersachsen.de' LINK_TO='0' TYP='0' FREENAME='@' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaRAAI'/>
+	<z:row GUI_ID='4430' CLASS_ID='2' NAME='Kommunikations-Verbindung' HELP='Angabe von Telefonnummern, Faxnummer, E-Mail, URL-Adresse usw. 
 In dieser Tabelle sollen alle Kommunikationsmittel eingetragen werden, mit denen die eingetragene Person erreicht werden kann. Es können z. B. die persönliche Telefonnummer oder die persönliche E-Mail Adresse eingetragen werden. 
 In der linken Spalte der Tabelle wird die Kommunikationsart eingetragen. Die Bezeichnung kann direkt oder über eine Auswahlliste eingegeben werdent. Hier sind die gängigsten Kommunikationsarten wie Telefon, Telefax, Telex oder E-Mail eingegeben. In der rechten Spalte wird die zugehörige Nummer für Telefon oder Fax bzw. Adresse für E-Mail-Kommunikation eingegeben. Wichtig: Es ist möglich mehrere Verbindungen für dasselbe Kommunikationsmittel einzutragen (z. B. mehrere Telefonnummern).'
-		 bsp='antje.robbe@mu.niedersachsen.de' link_to='0' typ='0' freename='@' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='4430' class_id='3' name='Kommunikations-Verbindung' help='Angabe von Telefonnummern, Faxnummer, E-Mail, URL-Adresse usw. 
+		 BSP='antje.robbe@mu.niedersachsen.de' LINK_TO='0' TYP='0' FREENAME='@' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaRAAJ'/>
+	<z:row GUI_ID='4430' CLASS_ID='3' NAME='Kommunikations-Verbindung' HELP='Angabe von Telefonnummern, Faxnummer, E-Mail, URL-Adresse usw. 
 In dieser Tabelle sollen alle Kommunikationsmittel eingetragen werden, mit denen die eingetragene Person erreicht werden kann. Es können z. B. die persönliche Telefonnummer oder die persönliche E-Mail Adresse eingetragen werden. 
 In der linken Spalte der Tabelle wird die Kommunikationsart eingetragen. Die Bezeichnung kann direkt oder über eine Auswahlliste eingegeben werdent. Hier sind die gängigsten Kommunikationsarten wie Telefon, Telefax, Telex oder E-Mail eingegeben. In der rechten Spalte wird die zugehörige Nummer für Telefon oder Fax bzw. Adresse für E-Mail-Kommunikation eingegeben. Wichtig: Es ist möglich mehrere Verbindungen für dasselbe Kommunikationsmittel einzutragen (z. B. mehrere Telefonnummern).'
-		 bsp='antje.robbe@mu.niedersachsen.de' link_to='0' typ='0' freename='@' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='4435' class_id='0' name='Notizen' help='Weitere Angaben zur Institution.
+		 BSP='antje.robbe@mu.niedersachsen.de' LINK_TO='0' TYP='0' FREENAME='@' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaRAAK'/>
+	<z:row GUI_ID='4435' CLASS_ID='0' NAME='Notizen' HELP='Weitere Angaben zur Institution.
 Hier können für die Datenauskunft zusätzlich relevante Information eingegeben werden. Dies können z. B. Öffnungszeiten oder Beschreibungen des Anfahrtsweges sein.'
-		 bsp='Besucherverkehr: MO-FR 9-12 Uhr; DO 14-19 Uhr' link_to='0' typ='0' freename='' visible_flag='1' edit_mode='0'/>
-	<z:row gui_id='4435' class_id='1' name='Notizen' help='Weitere Angaben zur Einheit bzw. Abteilung.
+		 BSP='Besucherverkehr: MO-FR 9-12 Uhr; DO 14-19 Uhr' LINK_TO='0' TYP='0' VISIBLE_FLAG='1' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaRAAL'/>
+	<z:row GUI_ID='4435' CLASS_ID='1' NAME='Notizen' HELP='Weitere Angaben zur Einheit bzw. Abteilung.
 Hier können für die Datenauskunft zusätzlich relevante Information eingegeben werden. Dies können z. B. Öffnungszeiten oder Beschreibungen des Anfahrtsweges sein.'
-		 bsp='Besucherverkehr: MO-FR 9-12 Uhr; DO 14-19 Uhr' link_to='0' typ='0' freename='@' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='4435' class_id='2' name='Notizen' help='Weitere Angaben zur Personenadresse.
+		 BSP='Besucherverkehr: MO-FR 9-12 Uhr; DO 14-19 Uhr' LINK_TO='0' TYP='0' FREENAME='@' VISIBLE_FLAG='2' EDIT_MODE='0'
+		 ROWID='AAAHZ4AABAAAMaRAAM'/>
+	<z:row GUI_ID='4435' CLASS_ID='2' NAME='Notizen' HELP='Weitere Angaben zur Personenadresse.
 Hier können für die Datenauskunft zusätzlich relevante Information eingegeben werden. Dies können z. B. Öffnungszeiten oder Angaben zur zeitlichen Erreichbarkeit sein.'
-		 bsp='vormittags erreichbar' link_to='0' typ='0' freename='@' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='4435' class_id='3' name='Notizen' help='Weitere Angaben zur Personenadresse.
+		 BSP='vormittags erreichbar' LINK_TO='0' TYP='0' FREENAME='@' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaRAAN'/>
+	<z:row GUI_ID='4435' CLASS_ID='3' NAME='Notizen' HELP='Weitere Angaben zur Personenadresse.
 Hier können für die Datenauskunft zusätzlich relevante Information eingegeben werden. Dies können z. B. Öffnungszeiten oder Angaben zur zeitlichen Erreichbarkeit sein.'
-		 bsp='vormittags erreichbar' link_to='0' typ='0' freename='@' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='4440' class_id='0' name='Aufgaben' help='Angabe der Zuständigkeiten und Aufgaben einer Institution.
+		 BSP='vormittags erreichbar' LINK_TO='0' TYP='0' FREENAME='@' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaRAAO'/>
+	<z:row GUI_ID='4440' CLASS_ID='0' NAME='Aufgaben' HELP='Angabe der Zuständigkeiten und Aufgaben einer Institution.
 In knapper, aussagekräftiger Form sollen die Aufgaben und Zuständigkeiten der eingetragenen Institution dargestellt werden.'
-		 bsp='Erarbeitung von fachlichen Grundlagen für Entscheidungen der Bezirksregierungen im Bereich des Naturschutzes sowie Erstellung von Gutachten in besonderen Fällen gemäß NNatG'
-		 link_to='0' typ='0' freename='' visible_flag='1' edit_mode='0'/>
-	<z:row gui_id='4440' class_id='1' name='Aufgaben' help='Angabe der Zuständigkeiten und Aufgaben einer Einheit.
+		 BSP='Erarbeitung von fachlichen Grundlagen für Entscheidungen der Bezirksregierungen im Bereich des Naturschutzes sowie Erstellung von Gutachten in besonderen Fällen gemäß NNatG'
+		 LINK_TO='0' TYP='0' VISIBLE_FLAG='1' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaSAAA'/>
+	<z:row GUI_ID='4440' CLASS_ID='1' NAME='Aufgaben' HELP='Angabe der Zuständigkeiten und Aufgaben einer Einheit.
 In knapper, aussagekräftiger Form sollen die Aufgaben und Zuständigkeiten der eingetragenen Einheit bzw. Abteilung dargestellt werden.'
-		 bsp='Erarbeitung von fachlichen Grundlagen für Ausweisung von Naturschutzgebieten sowie 
+		 BSP='Erarbeitung von fachlichen Grundlagen für Ausweisung von Naturschutzgebieten sowie 
 Erstellung von Gutachten gemäß NNatG.'
-		 link_to='0' typ='0' freename='@' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='4440' class_id='2' name='Aufgaben' help='Angabe der Zuständigkeiten und Aufgaben einer Person.
+		 LINK_TO='0' TYP='0' FREENAME='@' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaSAAB'/>
+	<z:row GUI_ID='4440' CLASS_ID='2' NAME='Aufgaben' HELP='Angabe der Zuständigkeiten und Aufgaben einer Person.
 In knapper, aussagekräftiger Form sollen die Aufgaben und Zuständigkeiten der eingetragenen Person dargestellt werden.'
-		 bsp='Vorbereitung von Ausweisungen von Naturschutzgebieten; Erarbeitung von Abgrenzungen der Gebiete; Verordnungsentwurf'
-		 link_to='0' typ='0' freename='@' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='4440' class_id='3' name='Aufgaben' help='Angabe der Zuständigkeiten und Aufgaben einer Person.
+		 BSP='Vorbereitung von Ausweisungen von Naturschutzgebieten; Erarbeitung von Abgrenzungen der Gebiete; Verordnungsentwurf'
+		 LINK_TO='0' TYP='0' FREENAME='@' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaSAAC'/>
+	<z:row GUI_ID='4440' CLASS_ID='3' NAME='Aufgaben' HELP='Angabe der Zuständigkeiten und Aufgaben einer Person.
 In knapper, aussagekräftiger Form sollen die Aufgaben und Zuständigkeiten der eingetragenen Person dargestellt werden.'
-		 bsp='Vorbereitung von Ausweisungen von Naturschutzgebieten; Erarbeitung von Abgrenzungen der Gebiete; Verordnungsentwurf'
-		 link_to='0' typ='0' freename='@' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='4500' class_id='0' name='Freie Suchbegriffe' help='Eingabe von Schlagworten, über die die Institution bei einer Schlagwortsuche möglichst schnell zu finden ist und die nicht im Thesaurus vorhanden sind. 
+		 BSP='Vorbereitung von Ausweisungen von Naturschutzgebieten; Erarbeitung von Abgrenzungen der Gebiete; Verordnungsentwurf'
+		 LINK_TO='0' TYP='0' FREENAME='@' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaSAAD'/>
+	<z:row GUI_ID='4500' CLASS_ID='0' NAME='Freie Suchbegriffe' HELP='Eingabe von Schlagworten, über die die Institution bei einer Schlagwortsuche möglichst schnell zu finden ist und die nicht im Thesaurus vorhanden sind. 
 Hier sollen prägnante Begriffe und Termini, die in engem Zusammenhang mit dem Adresse stehen und die nicht im Thesaurus vorhanden sind, eingetragen werden. Dies können Fachgebiete, Zuständigkeiten o.ä. sein.
 Die Freien Suchbegriffe sind ergänzend zu den Thesaurus-Suchbegriffen anzugeben. Wenn Sie hier einen Thesaurusbegriff eingeben, so wird automatisch vorgeschlagen, diesen in das Feld für die Thesaurusbegriffe zu übernehmen. Wird ein Synonym zu einem Thesaurusbegriff eingegeben, so wird die zusätzliche automatische Übernahme des zugehörigen Thesaurusbegriffs vorgeschlagen.'
-		 bsp='Naturschutz
+		 BSP='Naturschutz
 Artenschutz
-Erfassung' link_to='0' typ='0' freename='' visible_flag='1' edit_mode='0'/>
-	<z:row gui_id='4500' class_id='1' name='Freie Suchbegriffe' help='Eingabe von Schlagworten, über die die Einheit bei einer Schlagwortsuche möglichst schnell zu finden ist und die nicht im Thesaurus vorhanden sind. 
+Erfassung' LINK_TO='0' TYP='0' VISIBLE_FLAG='1' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaSAAE'/>
+	<z:row GUI_ID='4500' CLASS_ID='1' NAME='Freie Suchbegriffe' HELP='Eingabe von Schlagworten, über die die Einheit bei einer Schlagwortsuche möglichst schnell zu finden ist und die nicht im Thesaurus vorhanden sind. 
 Hier sollen prägnante Begriffe und Termini, die in engem Zusammenhang mit dem Adresse stehen und die nicht im Thesaurus vorhanden sind, eingetragen werden. Dies können Fachgebiete, Zuständigkeiten o.ä. sein.
 Die Freien Suchbegriffe sind ergänzend zu den Thesaurus-Suchbegriffen anzugeben. Wenn Sie hier einen Thesaurusbegriff eingeben, so wird automatisch vorgeschlagen, diesen in das Feld für die Thesaurusbegriffe zu übernehmen. Wird ein Synonym zu einem Thesaurusbegriff eingegeben, so wird die zusätzliche automatische Übernahme des zugehörigen Thesaurusbegriffs vorgeschlagen.'
-		 bsp='Artenschutz
-Kartierung' link_to='0' typ='0' freename='@' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='4500' class_id='2' name='Freie Suchbegriffe' help='Eingabe von Schlagworten, über die die Person bei einer Schlagwortsuche möglichst schnell zu finden ist und die nicht im Thesaurus vorhanden sind. 
+		 BSP='Artenschutz
+Kartierung' LINK_TO='0' TYP='0' FREENAME='@' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaSAAF'/>
+	<z:row GUI_ID='4500' CLASS_ID='2' NAME='Freie Suchbegriffe' HELP='Eingabe von Schlagworten, über die die Person bei einer Schlagwortsuche möglichst schnell zu finden ist und die nicht im Thesaurus vorhanden sind. 
 Hier sollen prägnante Begriffe und Termini, die in engem Zusammenhang mit dem Adresse stehen und die nicht im Thesaurus vorhanden sind, eingetragen werden. Dies können Fachgebiete, Zuständigkeiten o.ä. sein.
 Die Freien Suchbegriffe sind ergänzend zu den Thesaurus-Suchbegriffen anzugeben. Wenn Sie hier einen Thesaurusbegriff eingeben, so wird automatisch vorgeschlagen, diesen in das Feld für die Thesaurusbegriffe zu übernehmen. Wird ein Synonym zu einem Thesaurusbegriff eingegeben, so wird die zusätzliche automatische Übernahme des zugehörigen Thesaurusbegriffs vorgeschlagen.'
-		 bsp='Falter
-Kartierung' link_to='0' typ='0' freename='@' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='4500' class_id='3' name='Freie Suchbegriffe' help='Eingabe von Schlagworten, über die die Person bei einer Schlagwortsuche möglichst schnell zu finden ist und die nicht im Thesaurus vorhanden sind. 
+		 BSP='Falter
+Kartierung' LINK_TO='0' TYP='0' FREENAME='@' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaSAAG'/>
+	<z:row GUI_ID='4500' CLASS_ID='3' NAME='Freie Suchbegriffe' HELP='Eingabe von Schlagworten, über die die Person bei einer Schlagwortsuche möglichst schnell zu finden ist und die nicht im Thesaurus vorhanden sind. 
 Hier sollen prägnante Begriffe und Termini, die in engem Zusammenhang mit dem Adresse stehen und die nicht im Thesaurus vorhanden sind, eingetragen werden. Dies können Fachgebiete, Zuständigkeiten o.ä. sein.
 Die Freien Suchbegriffe sind ergänzend zu den Thesaurus-Suchbegriffen anzugeben. Wenn Sie hier einen Thesaurusbegriff eingeben, so wird automatisch vorgeschlagen, diesen in das Feld für die Thesaurusbegriffe zu übernehmen. Wird ein Synonym zu einem Thesaurusbegriff eingegeben, so wird die zusätzliche automatische Übernahme des zugehörigen Thesaurusbegriffs vorgeschlagen.'
-		 bsp='Falter
-Kartierung' link_to='0' typ='0' freename='@' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='4510' class_id='0' name='Thesaurus-Suchbegriffe' help='Eingabe von möglichst mindestens drei Schlagworten, die im Thesaurus verzeichnet sind.
+		 BSP='Falter
+Kartierung' LINK_TO='0' TYP='0' FREENAME='@' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaSAAH'/>
+	<z:row GUI_ID='4510' CLASS_ID='0' NAME='Thesaurus-Suchbegriffe' HELP='Eingabe von möglichst mindestens drei Schlagworten, die im Thesaurus verzeichnet sind.
 Die Verschlagwortung dient dem themenbezogenen Wiederauffinden (Retrieval) der UDK-Adresse. Dazu müssen Schlagworte aus dem Thesaurus ausgewählt werden, die die UDK-Adresse so genau wie möglich, aber auch so allgemein wie nötig beschreiben. So sollte mindestens ein Schlagwort in der Thesaurushierarchie einen relativ allgemeinen Aspekt der UDK-Adresse beschreiben und mindestens ein Schlagwort die UDK-Adresse so speziell wie möglich beschreiben. 
 Die Auswahl kann über eine direkte Eingabe oder über einen gesonderten Dialog erfolgen, der mit der Schaltfläche an der rechten Seite des Feldes aufgerufen wird (Thesaurus-Navigator). Die direkte Eingabe wird über eine alphabetisch sortierte Auswahlliste unterstützt. Diese enthält auch Synonyme, die auf die zugehörigen Thesaurusbegriffe verweisen (Kennzeichnung mit --&#x3e;). Bei der Auswahl eines Synonyms wird automatisch der zugehörige Thesaurusbegriff übernommen (ggf. mehrere).'
-		 bsp='Naturschutz' link_to='0' typ='0' freename='' visible_flag='1' edit_mode='0'/>
-	<z:row gui_id='4510' class_id='1' name='Thesaurus-Suchbegriffe' help='Eingabe von möglichst mindestens drei Schlagworten, die im Thesaurus verzeichnet sind.
+		 BSP='Naturschutz' LINK_TO='0' TYP='0' VISIBLE_FLAG='1' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaSAAI'/>
+	<z:row GUI_ID='4510' CLASS_ID='1' NAME='Thesaurus-Suchbegriffe' HELP='Eingabe von möglichst mindestens drei Schlagworten, die im Thesaurus verzeichnet sind.
 Die Verschlagwortung dient dem themenbezogenen Wiederauffinden (Retrieval) der UDK-Adresse. Dazu müssen Schlagworte aus dem Thesaurus ausgewählt werden, die die UDK-Adresse so genau wie möglich, aber auch so allgemein wie nötig beschreiben. So sollte mindestens ein Schlagwort in der Thesaurushierarchie einen relativ allgemeinen Aspekt der UDK-Adresse beschreiben und mindestens ein Schlagwort die UDK-Adresse so speziell wie möglich beschreiben. 
 Die Auswahl kann über eine direkte Eingabe oder über einen gesonderten Dialog erfolgen, der mit der Schaltfläche an der rechten Seite des Feldes aufgerufen wird (Thesaurus-Navigator). Die direkte Eingabe wird über eine alphabetisch sortierte Auswahlliste unterstützt. Diese enthält auch Synonyme, die auf die zugehörigen Thesaurusbegriffe verweisen (Kennzeichnung mit --&#x3e;). Bei der Auswahl eines Synonyms wird automatisch der zugehörige Thesaurusbegriff übernommen (ggf. mehrere).'
-		 bsp='Naturschutz
+		 BSP='Naturschutz
 Schmetterling
 Kartierung
-Artenschutz' link_to='0' typ='0' freename='@' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='4510' class_id='2' name='Thesaurus-Suchbegriffe' help='Eingabe von möglichst mindestens drei Schlagworten, die im Thesaurus verzeichnet sind.
+Artenschutz' LINK_TO='0' TYP='0' FREENAME='@' VISIBLE_FLAG='2' EDIT_MODE='0'
+		 ROWID='AAAHZ4AABAAAMaSAAJ'/>
+	<z:row GUI_ID='4510' CLASS_ID='2' NAME='Thesaurus-Suchbegriffe' HELP='Eingabe von möglichst mindestens drei Schlagworten, die im Thesaurus verzeichnet sind.
 Die Verschlagwortung dient dem themenbezogenen Wiederauffinden (Retrieval) der UDK-Adresse. Dazu müssen Schlagworte aus dem Thesaurus ausgewählt werden, die die UDK-Adresse so genau wie möglich, aber auch so allgemein wie nötig beschreiben. So sollte mindestens ein Schlagwort in der Thesaurushierarchie einen relativ allgemeinen Aspekt der UDK-Adresse beschreiben und mindestens ein Schlagwort die UDK-Adresse so speziell wie möglich beschreiben. 
 Die Auswahl kann über eine direkte Eingabe oder über einen gesonderten Dialog erfolgen, der mit der Schaltfläche an der rechten Seite des Feldes aufgerufen wird (Thesaurus-Navigator). Die direkte Eingabe wird über eine alphabetisch sortierte Auswahlliste unterstützt. Diese enthält auch Synonyme, die auf die zugehörigen Thesaurusbegriffe verweisen (Kennzeichnung mit --&#x3e;). Bei der Auswahl eines Synonyms wird automatisch der zugehörige Thesaurusbegriff übernommen (ggf. mehrere).'
-		 bsp='Naturschutz
+		 BSP='Naturschutz
 Schmetterling
 Kartierung
-Artenschutz' link_to='0' typ='0' freename='@' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='4510' class_id='3' name='Thesaurus-Suchbegriffe' help='Eingabe von möglichst mindestens drei Schlagworten, die im Thesaurus verzeichnet sind.
+Artenschutz' LINK_TO='0' TYP='0' FREENAME='@' VISIBLE_FLAG='2' EDIT_MODE='0'
+		 ROWID='AAAHZ4AABAAAMaTAAA'/>
+	<z:row GUI_ID='4510' CLASS_ID='3' NAME='Thesaurus-Suchbegriffe' HELP='Eingabe von möglichst mindestens drei Schlagworten, die im Thesaurus verzeichnet sind.
 Die Verschlagwortung dient dem themenbezogenen Wiederauffinden (Retrieval) der UDK-Adresse. Dazu müssen Schlagworte aus dem Thesaurus ausgewählt werden, die die UDK-Adresse so genau wie möglich, aber auch so allgemein wie nötig beschreiben. So sollte mindestens ein Schlagwort in der Thesaurushierarchie einen relativ allgemeinen Aspekt der UDK-Adresse beschreiben und mindestens ein Schlagwort die UDK-Adresse so speziell wie möglich beschreiben. 
 Die Auswahl kann über eine direkte Eingabe oder über einen gesonderten Dialog erfolgen, der mit der Schaltfläche an der rechten Seite des Feldes aufgerufen wird (Thesaurus-Navigator). Die direkte Eingabe wird über eine alphabetisch sortierte Auswahlliste unterstützt. Diese enthält auch Synonyme, die auf die zugehörigen Thesaurusbegriffe verweisen (Kennzeichnung mit --&#x3e;). Bei der Auswahl eines Synonyms wird automatisch der zugehörige Thesaurusbegriff übernommen (ggf. mehrere).'
-		 bsp='Naturschutz
+		 BSP='Naturschutz
 Schmetterling
 Kartierung
-Artenschutz' link_to='0' typ='0' freename='@' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='4520' class_id='-1' name='Höhe' help='Angabe der Höhe über NN' bsp='100 m' link_to='0' typ='0'
-		 freename='@' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='4530' class_id='-1' name='Verweise von' help='In dieser Tabelle werden alle Verweise von denjenigen UDK-Objekten aufgeführt, welche auf die aktuelle UDK-Adresse verweisen. Das Editieren oder Hinzufügen ist nicht möglich. Sollen die Verweise geändert oder ergänzt werden, so muß zu dem entsprechenden UDK-Objekt gewechselt werden.'
-		 link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='5000' class_id='0' name='Kurzbezeichnung' help='Angabe einer Kurzbezeichnung für ein Objekt. (Wird insbes. von GeoMIS.Bund unterstützt)'
-		 bsp='DTK25 digitale topographische Karte
-GK25 - Grundkarte' link_to='0' typ='0' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='5020' class_id='-1' name='Maximum' help='Angabe der Werte für die Höhe über einem Nullpunkt (siehe Pegel) eingegeben. Ist eine vertikale Ausdehnung vorhanden, so kann für das Maximum ein grösserer Wert eingegeben werden. Sollte dies nicht der Fall sein, so ist die Eingabe eines Minimus ausreichend, dieser Wert wird dann automatisch ebenso für den maximalen übernommen.'
-		 bsp='Minimum 100, Maximum 110' link_to='0' typ='0' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='5021' class_id='-1' name='Maßeinheit' help='Angabe der Maßeinheit, in der die Höhe gemessen wird.'
-		 bsp='Meter' link_to='0' typ='0' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='5022' class_id='-1' name='Vertikal Datum' help='Angabe des Referenzpegels, zu dem die Höhe relativ gemessen wird. In Deutschland ist dies i.A. der Pegel Amsterdam.'
-		 bsp='Pegel Amsterdam' link_to='0' typ='0' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='5030' class_id='-1' name='Zeitbezug des Datensatzes' help='Angabe, wann der Datensatz erstellt, revidiert und/oder publiziert wurde.'
-		 bsp='11.11.2003 Erstellung' link_to='0' typ='0' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='5040' class_id='-1' name='Eignung/Nutzung' help='Angaben über die Verwendungsmöglichkeiten, die diese Daten in Verbindung mit weiteren Informationen erfüllen können.'
-		 bsp='Präsentation des Raumordnungsprogramms auf Basis der topografischen Kartenwerke' link_to='0' typ='0' visible_flag='2'/>
-	<z:row gui_id='5041' class_id='-1' name='Sprache des Metadatensatzes' help='Angabe der Sprache des Metadatensatzes.'
-		 bsp='Deutsch' link_to='0' typ='0' visible_flag='2'/>
-	<z:row gui_id='5042' class_id='-1' name='Sprache des Datensatzes' help='Angabe der Sprache des Datensatzes.'
-		 bsp='Deutsch' link_to='0' typ='0' visible_flag='2'/>
-	<z:row gui_id='5050' class_id='-1' name='Datenvolumen' help='Angabe über den Umfang des Datensatzes in MB (Fließkommazahl).'
-		 bsp='500.0' link_to='0' typ='0' visible_flag='2'/>
-	<z:row gui_id='5051' class_id='-1' name='Kosten' help='Es können Angaben zu den anfallenden Gebühren eingetragen werden.'
-		 bsp='Verwaltungsunabhängige Schutzgebühr 5 Euro' link_to='0' typ='0' visible_flag='2'/>
-	<z:row gui_id='5052' class_id='-1' name='Bestellinformation' help='Angabe von generellen Informationen wie Bedingungen oder Konditionen zur Bestellung.'
-		 bsp='Lieferzeit beträgt 3 Wochen' link_to='0' typ='0' visible_flag='2'/>
-	<z:row gui_id='5060' class_id='1' name='Themenkategorie' help='Angabe der Hauptthemen, welche die Metadaten beschreiben. Die Auswahl erfolgt über die vorgegene Liste'
-		 bsp='Umwelt' link_to='0' typ='0' visible_flag='2'/>
-	<z:row gui_id='5061' class_id='1' name='Datensatz/Datenserie' help='Bei den beschriebenen Daten der Klasse Geo-Information/Karte handelt es sich um einen einzelnen Datensatz mit bestimmtem räumlichen Bezug oder um eine Datenserie mit einheitlichem thematischen Bezug und mehreren Datensätzen mit unterschiedlichem räumlichen Bezug (z.B. Datenserie: DTK25)'
-		 bsp='Datensatz' link_to='0' typ='0' visible_flag='2'/>
-	<z:row gui_id='5062' class_id='1' name='Digitale Repräsentation' help='Angabe der Methode, räumliche Daten zu präsentieren. Die Auswahl erfolgt über die vorgegebene Liste.'
-		 bsp='Vektor' link_to='0' typ='0' visible_flag='2'/>
-	<z:row gui_id='5063' class_id='1' name='Topologieinfo' help='Angabe über die Komplexität der räumlichen Beziehung.'
-		 bsp='geometrisch' link_to='0' typ='0' visible_flag='2'/>
-	<z:row gui_id='5064' class_id='1' name='Geometrietyp' help='Angabe der geometrischen Objekte, zur Beschreibung der geometrischen Lage.'
-		 bsp='Oberfläche' link_to='0' typ='0' visible_flag='2'/>
-	<z:row gui_id='5065' class_id='1' name='Elementanzahl' help='Angaben der Anzahl der Punkt- oder Vektortypelemente.'
-		 bsp='3' link_to='0' typ='0' visible_flag='2'/>
-	<z:row gui_id='5066' class_id='1' name='Verweis zu Dienst' help='Georeferenzierte Daten, die Basisdaten eines OGC Web-Dienstes sind, können über dieses Feld einen Verweis auf einen beschriebenen OGC Web-Dienst erhalten. Diese Geodaten sind in der Regel eng mit dem Dienst verknüpft (&#x22;tightly coupled&#x22;) und über den verknüpften OGC Web Service direkt erreichbar.'
-		 link_to='1' typ='0' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='5069' class_id='1' name='Höhengenauigkeit' help='Angabe über die Genauigkeit der Höhe.z.B. in einem Geländemodell.'
-		 bsp='2' link_to='0' typ='0' visible_flag='2'/>
-	<z:row gui_id='5070' class_id='1' name='Sachdaten / Attributinformation' help='Angabe der mit der Geo-Information/Karte verbundenen Sachdaten. Bei Bedarf kann hier eine Auflistung der Attribute des Datenbestandes erfolgen. Die hauptsächliche Nutzung dieses Feldes ist für digitale Geo-Informationen vorgesehen.'
-		 bsp='Baumkartei' link_to='0' typ='0' visible_flag='2'/>
-	<z:row gui_id='5080' class_id='-1' name='Datensatzzeitbezug' help='Hier ist die Möglichkeit, maximal 3 Zeitbezüge des Datensatzes einzustellen: Die erste Erstellung, die letzte Revision und schliesslich die letzte Publikation.'
-		 bsp='12.12.1212 Erstellung' link_to='0' typ='0' visible_flag='2'/>
-	<z:row gui_id='5090' class_id='-1' name='Speicherort' help='Angabe des Speicherorts von Dateien im Internet/Intranet über Verweise.'
-		 bsp='Explorer Z:/Metainformation/UDK_Vorgaben_Dateneingabe.doc' link_to='0' typ='0' visible_flag='2'/>
-	<z:row gui_id='5201' class_id='3' name='Name der Operation' help='Name der von einem Dienst bereitgestellten Funktion/Operation.
+Artenschutz' LINK_TO='0' TYP='0' FREENAME='@' VISIBLE_FLAG='2' EDIT_MODE='0'
+		 ROWID='AAAHZ4AABAAAMaTAAB'/>
+	<z:row GUI_ID='4520' CLASS_ID='-1' NAME='Höhe' HELP='Angabe der Höhe über NN' BSP='100 m' LINK_TO='0' TYP='0'
+		 FREENAME='@' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaTAAC'/>
+	<z:row GUI_ID='4530' CLASS_ID='-1' NAME='Verweise von' HELP='In dieser Tabelle werden alle Verweise von denjenigen UDK-Objekten aufgeführt, welche auf die aktuelle UDK-Adresse verweisen. Das Editieren oder Hinzufügen ist nicht möglich. Sollen die Verweise geändert oder ergänzt werden, so muß zu dem entsprechenden UDK-Objekt gewechselt werden.'
+		 LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaTAAD'/>
+	<z:row GUI_ID='5000' CLASS_ID='0' NAME='Kurzbezeichnung' HELP='Angabe einer Kurzbezeichnung für ein Objekt. (Wird insbes. von GeoMIS.Bund unterstützt)'
+		 BSP='DTK25 digitale topographische Karte
+GK25 - Grundkarte' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0'
+		 ROWID='AAAHZ4AABAAAMaTAAE'/>
+	<z:row GUI_ID='5020' CLASS_ID='-1' NAME='Maximum' HELP='Angabe der Werte für die Höhe über einem Nullpunkt (siehe Pegel) eingegeben. Ist eine vertikale Ausdehnung vorhanden, so kann für das Maximum ein grösserer Wert eingegeben werden. Sollte dies nicht der Fall sein, so ist die Eingabe eines Minimus ausreichend, dieser Wert wird dann automatisch ebenso für den maximalen übernommen.'
+		 BSP='Minimum 100, Maximum 110' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaTAAF'/>
+	<z:row GUI_ID='5021' CLASS_ID='-1' NAME='Maßeinheit' HELP='Angabe der Maßeinheit, in der die Höhe gemessen wird.'
+		 BSP='Meter' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaTAAG'/>
+	<z:row GUI_ID='5022' CLASS_ID='-1' NAME='Vertikal Datum' HELP='Angabe des Referenzpegels, zu dem die Höhe relativ gemessen wird. In Deutschland ist dies i.A. der Pegel Amsterdam.'
+		 BSP='Pegel Amsterdam' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaTAAH'/>
+	<z:row GUI_ID='5030' CLASS_ID='-1' NAME='Zeitbezug des Datensatzes' HELP='Angabe, wann der Datensatz erstellt, revidiert und/oder publiziert wurde.'
+		 BSP='11.11.2003 Erstellung' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaTAAI'/>
+	<z:row GUI_ID='5040' CLASS_ID='-1' NAME='Eignung/Nutzung' HELP='Angaben über die Verwendungsmöglichkeiten, die diese Daten in Verbindung mit weiteren Informationen erfüllen können.'
+		 BSP='Präsentation des Raumordnungsprogramms auf Basis der topografischen Kartenwerke' LINK_TO='0' TYP='0' VISIBLE_FLAG='2'
+		 ROWID='AAAHZ4AABAAAMaTAAJ'/>
+	<z:row GUI_ID='5041' CLASS_ID='-1' NAME='Sprache des Metadatensatzes' HELP='Angabe der Sprache des Metadatensatzes.'
+		 BSP='Deutsch' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' ROWID='AAAHZ4AABAAAMaTAAK'/>
+	<z:row GUI_ID='5042' CLASS_ID='-1' NAME='Sprache des Datensatzes' HELP='Angabe der Sprache des Datensatzes.'
+		 BSP='Deutsch' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' ROWID='AAAHZ4AABAAAMaTAAL'/>
+	<z:row GUI_ID='5050' CLASS_ID='-1' NAME='Datenvolumen' HELP='Angabe über den Umfang des Datensatzes in MB (Fließkommazahl).'
+		 BSP='500.0' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' ROWID='AAAHZ4AABAAAMaTAAM'/>
+	<z:row GUI_ID='5051' CLASS_ID='-1' NAME='Kosten' HELP='Es können Angaben zu den anfallenden Gebühren eingetragen werden.'
+		 BSP='Verwaltungsunabhängige Schutzgebühr 5 Euro' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' ROWID='AAAHZ4AABAAAMaTAAN'/>
+	<z:row GUI_ID='5052' CLASS_ID='-1' NAME='Bestellinformation' HELP='Angabe von generellen Informationen wie Bedingungen oder Konditionen zur Bestellung.'
+		 BSP='Lieferzeit beträgt 3 Wochen' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' ROWID='AAAHZ4AABAAAMaTAAO'/>
+	<z:row GUI_ID='5060' CLASS_ID='1' NAME='Themenkategorie' HELP='Angabe der Hauptthemen, welche die Metadaten beschreiben. Die Auswahl erfolgt über die vorgegene Liste'
+		 BSP='Umwelt' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' ROWID='AAAHZ4AABAAAMaTAAP'/>
+	<z:row GUI_ID='5061' CLASS_ID='1' NAME='Datensatz/Datenserie' HELP='Bei den beschriebenen Daten der Klasse Geo-Information/Karte handelt es sich um einen einzelnen Datensatz mit bestimmtem räumlichen Bezug oder um eine Datenserie mit einheitlichem thematischen Bezug und mehreren Datensätzen mit unterschiedlichem räumlichen Bezug (z.B. Datenserie: DTK25)'
+		 BSP='Datensatz' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' ROWID='AAAHZ4AABAAAMaTAAQ'/>
+	<z:row GUI_ID='5062' CLASS_ID='1' NAME='Digitale Repräsentation' HELP='Angabe der Methode, räumliche Daten zu präsentieren. Die Auswahl erfolgt über die vorgegebene Liste.'
+		 BSP='Vektor' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' ROWID='AAAHZ4AABAAAMaTAAR'/>
+	<z:row GUI_ID='5063' CLASS_ID='1' NAME='Topologieinfo' HELP='Angabe über die Komplexität der räumlichen Beziehung.'
+		 BSP='geometrisch' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' ROWID='AAAHZ4AABAAAMaTAAS'/>
+	<z:row GUI_ID='5064' CLASS_ID='1' NAME='Geometrietyp' HELP='Angabe der geometrischen Objekte, zur Beschreibung der geometrischen Lage.'
+		 BSP='Oberfläche' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' ROWID='AAAHZ4AABAAAMaTAAT'/>
+	<z:row GUI_ID='5065' CLASS_ID='1' NAME='Elementanzahl' HELP='Angaben der Anzahl der Punkt- oder Vektortypelemente.'
+		 BSP='3' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' ROWID='AAAHZ4AABAAAMaTAAU'/>
+	<z:row GUI_ID='5066' CLASS_ID='1' NAME='Verweis zu Dienst' HELP='Georeferenzierte Daten, die Basisdaten eines OGC Web-Dienstes sind, können über dieses Feld einen Verweis auf einen beschriebenen OGC Web-Dienst erhalten. Diese Geodaten sind in der Regel eng mit dem Dienst verknüpft (&#x22;tightly coupled&#x22;) und über den verknüpften OGC Web Service direkt erreichbar.'
+		 LINK_TO='1' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaTAAV'/>
+	<z:row GUI_ID='5069' CLASS_ID='1' NAME='Höhengenauigkeit' HELP='Angabe über die Genauigkeit der Höhe.z.B. in einem Geländemodell.'
+		 BSP='2' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' ROWID='AAAHZ4AABAAAMaTAAW'/>
+	<z:row GUI_ID='5070' CLASS_ID='1' NAME='Sachdaten / Attributinformation' HELP='Angabe der mit der Geo-Information/Karte verbundenen Sachdaten. Bei Bedarf kann hier eine Auflistung der Attribute des Datenbestandes erfolgen. Die hauptsächliche Nutzung dieses Feldes ist für digitale Geo-Informationen vorgesehen.'
+		 BSP='Baumkartei' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' ROWID='AAAHZ4AABAAAMaTAAX'/>
+	<z:row GUI_ID='5080' CLASS_ID='-1' NAME='Datensatzzeitbezug' HELP='Hier ist die Möglichkeit, maximal 3 Zeitbezüge des Datensatzes einzustellen: Die erste Erstellung, die letzte Revision und schliesslich die letzte Publikation.'
+		 BSP='12.12.1212 Erstellung' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' ROWID='AAAHZ4AABAAAMaTAAY'/>
+	<z:row GUI_ID='5090' CLASS_ID='-1' NAME='Speicherort' HELP='Angabe des Speicherorts von Dateien im Internet/Intranet über Verweise.'
+		 BSP='Explorer Z:/Metainformation/UDK_Vorgaben_Dateneingabe.doc' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' ROWID='AAAHZ4AABAAAMaTAAZ'/>
+	<z:row GUI_ID='5201' CLASS_ID='3' NAME='Name der Operation' HELP='Name der von einem Dienst bereitgestellten Funktion/Operation.
 
 Hier muss ein eindeutiger Bezeichner für die beschriebene Operation eingegeben werden.'
-		 bsp='getMap
+		 BSP='getMap
 getCapabilities
-getFeatureInfo' link_to='0' typ='0' visible_flag='0'/>
-	<z:row gui_id='5202' class_id='3' name='Beschreibung' help='Textliche Beschreibung der Funktionalität der Operation.'
-		 bsp='Die getMap Operation des WMS gibt eine Raster-Repräsentation der in &#x22;Basisdaten&#x22; beschriebenen digitalen Karte zurück.'
-		 link_to='0' typ='0' visible_flag='0'/>
-	<z:row gui_id='5203' class_id='3' name='Unterstütze Plattformen' help='Angaben zur Art der Plattform bzw. Schnittstelle über die der Dienst angesprochen werden kann. 
+getFeatureInfo' LINK_TO='0' TYP='0' VISIBLE_FLAG='0' ROWID='AAAHZ4AABAAAMaTAAa'/>
+	<z:row GUI_ID='5202' CLASS_ID='3' NAME='Beschreibung' HELP='Textliche Beschreibung der Funktionalität der Operation.'
+		 BSP='Die getMap Operation des WMS gibt eine Raster-Repräsentation der in &#x22;Basisdaten&#x22; beschriebenen digitalen Karte zurück.'
+		 LINK_TO='0' TYP='0' VISIBLE_FLAG='0' ROWID='AAAHZ4AABAAAMaTAAb'/>
+	<z:row GUI_ID='5203' CLASS_ID='3' NAME='Unterstütze Plattformen' HELP='Angaben zur Art der Plattform bzw. Schnittstelle über die der Dienst angesprochen werden kann. 
 
 Wichtig: Bitte verwenden Sie bei einem OGC-Dienst die auf www.udk-gein.de/doku/ogc.shtml veröffentlichten Codelisten.'
-		 bsp='Java
+		 BSP='Java
 SQL
 HTTPGet
-HTTPSoap' link_to='0' typ='0' visible_flag='0'/>
-	<z:row gui_id='5204' class_id='3' name='Aufruf' help='Eindeutiger Funktionsname über den die Operation aufgerufen werden kann.
+HTTPSoap' LINK_TO='0' TYP='0' VISIBLE_FLAG='0' ROWID='AAAHZ4AABAAAMaTAAc'/>
+	<z:row GUI_ID='5204' CLASS_ID='3' NAME='Aufruf' HELP='Eindeutiger Funktionsname über den die Operation aufgerufen werden kann.
 
 Bei OGC Web-Diensten sind die jeweiligen spezifizierten REQUEST-Aufrufe zu verwenden.'
-		 bsp='getMap
+		 BSP='getMap
 getCapabilities
-getFeatureInfo' link_to='0' typ='0' visible_flag='0'/>
-	<z:row gui_id='5205' class_id='3' name='Parameter' help='Mögliche Parameter, die bei einem Aufruf der Operation übergeben werden können.
+getFeatureInfo' LINK_TO='0' TYP='0' VISIBLE_FLAG='0' ROWID='AAAHZ4AABAAAMaUAAA'/>
+	<z:row GUI_ID='5205' CLASS_ID='3' NAME='Parameter' HELP='Mögliche Parameter, die bei einem Aufruf der Operation übergeben werden können.
 
 - Name/Bezeichner des Parameters.
 - Richtung des Datenflusses, der durch diesen Parameter erzeugt wird.
 - Textliche Beschreibung des Parameters.
 - Ist Optional: Angabe, ob der Parameter optional ist oder nicht.
 - Angabe, ob eine Mehrfacheingabe des Parameters möglich bzw. notwendig ist.'
-		 bsp='Name: WIDTH
+		 BSP='Name: WIDTH
 Richtung: Eingabe
 Beschreibung: &#x22;Der Parameter WIDTH definiert die Breite des vom WMS erzeugten Kartenbildes&#x22;
 Ist Optional: Ja
 Mehrfacheingabe: Nein'
-		 link_to='0' typ='0' visible_flag='0'/>
-	<z:row gui_id='5206' class_id='3' name='Zugriffsadresse' help='Eindeutige URL über die die Operation aufgerufen werden kann.'
-		 bsp='http://my.host.com/cgi-bin/mapserv?map=mywms.map&#x26;' link_to='0' typ='0' visible_flag='0'/>
-	<z:row gui_id='5207' class_id='3' name='Abhängigkeiten' help='Die Namen der Operationen, die vor dem Ausführen der aktuellen Operation ausgeführt werden müssen wenn die Operation als Teil einer Service Chain genutzt werden soll.'
-		 bsp='Für die &#x22;getMap&#x22; Operation: &#x22;getCapabilities&#x22;' link_to='0' typ='0' visible_flag='0'/>
-	<z:row gui_id='6000' class_id='-1' name='Weitere-Schaltfläche' help='Über diese Schaltfläche gelangt man in den Dialog für die freien Attribute'
-		 link_to='0' typ='0' freename='' visible_flag='2' edit_mode='0'/>
-	<z:row gui_id='6001' class_id='-1' name='Zeichensatz des Metadatensatzes' link_to='0' typ='0' visible_flag='2'/>
-	<z:row gui_id='6002' class_id='-1' name='Zeichensatz des Datensatzes' link_to='0' typ='0' visible_flag='2'/>
+		 LINK_TO='0' TYP='0' VISIBLE_FLAG='0' ROWID='AAAHZ4AABAAAMaUAAB'/>
+	<z:row GUI_ID='5206' CLASS_ID='3' NAME='Zugriffsadresse' HELP='Eindeutige URL über die die Operation aufgerufen werden kann.'
+		 BSP='http://my.host.com/cgi-bin/mapserv?map=mywms.map&#x26;' LINK_TO='0' TYP='0' VISIBLE_FLAG='0' ROWID='AAAHZ4AABAAAMaUAAC'/>
+	<z:row GUI_ID='5207' CLASS_ID='3' NAME='Abhängigkeiten' HELP='Die Namen der Operationen, die vor dem Ausführen der aktuellen Operation ausgeführt werden müssen wenn die Operation als Teil einer Service Chain genutzt werden soll.'
+		 BSP='Für die &#x22;getMap&#x22; Operation: &#x22;getCapabilities&#x22;' LINK_TO='0' TYP='0' VISIBLE_FLAG='0'
+		 ROWID='AAAHZ4AABAAAMaUAAD'/>
+	<z:row GUI_ID='6000' CLASS_ID='-1' NAME='Weitere-Schaltfläche' HELP='Über diese Schaltfläche gelangt man in den Dialog für die freien Attribute'
+		 LINK_TO='0' TYP='0' VISIBLE_FLAG='2' EDIT_MODE='0' ROWID='AAAHZ4AABAAAMaUAAE'/>
+	<z:row GUI_ID='6001' CLASS_ID='-1' NAME='Zeichensatz des Metadatensatzes' LINK_TO='0' TYP='0' VISIBLE_FLAG='2'
+		 ROWID='AAAHZ4AABAAAMaUAAF'/>
+	<z:row GUI_ID='6002' CLASS_ID='-1' NAME='Zeichensatz des Datensatzes' LINK_TO='0' TYP='0' VISIBLE_FLAG='2' ROWID='AAAHZ4AABAAAMaUAAG'/>
 </rs:data>
 </xml>

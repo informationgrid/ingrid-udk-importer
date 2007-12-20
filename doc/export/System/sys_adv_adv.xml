@@ -4,51 +4,55 @@
 	xmlns:z='#RowsetSchema'>
 <s:Schema id='RowsetSchema'>
 	<s:ElementType name='row' content='eltOnly' rs:updatable='true'>
-		<s:AttributeType name='advise_from_id' rs:number='1' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='sys_adv_adv'
-			 rs:basecolumn='advise_from_id' rs:keycolumn='true'>
-			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true' rs:maybenull='false'/>
+		<s:AttributeType name='ADVISE_FROM_ID' rs:number='1' rs:writeunknown='true' rs:basetable='SYS_ADV_ADV' rs:basecolumn='ADVISE_FROM_ID'>
+			<s:datatype dt:type='number' rs:dbtype='numeric' dt:maxLength='19' rs:scale='0' rs:precision='9' rs:fixedlength='true'
+			 rs:maybenull='false'/>
 		</s:AttributeType>
-		<s:AttributeType name='advise_to_id' rs:number='2' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='sys_adv_adv'
-			 rs:basecolumn='advise_to_id' rs:keycolumn='true'>
-			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true' rs:maybenull='false'/>
+		<s:AttributeType name='ADVISE_TO_ID' rs:number='2' rs:writeunknown='true' rs:basetable='SYS_ADV_ADV' rs:basecolumn='ADVISE_TO_ID'>
+			<s:datatype dt:type='number' rs:dbtype='numeric' dt:maxLength='19' rs:scale='0' rs:precision='9' rs:fixedlength='true'
+			 rs:maybenull='false'/>
+		</s:AttributeType>
+		<s:AttributeType name='ROWID' rs:number='3' rs:nullable='true' rs:rowid='true' rs:basetable='SYS_ADV_ADV' rs:basecolumn='ROWID'
+			 rs:keycolumn='true' rs:hidden='true' rs:autoincrement='true'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='18' rs:fixedlength='true'/>
 		</s:AttributeType>
 		<s:extends type='rs:rowbase'/>
 	</s:ElementType>
 </s:Schema>
 <rs:data>
-	<z:row advise_from_id='1' advise_to_id='2'/>
-	<z:row advise_from_id='1' advise_to_id='3'/>
-	<z:row advise_from_id='1' advise_to_id='4'/>
-	<z:row advise_from_id='1' advise_to_id='70'/>
-	<z:row advise_from_id='2' advise_to_id='5'/>
-	<z:row advise_from_id='2' advise_to_id='8'/>
-	<z:row advise_from_id='2' advise_to_id='9'/>
-	<z:row advise_from_id='3' advise_to_id='14'/>
-	<z:row advise_from_id='3' advise_to_id='15'/>
-	<z:row advise_from_id='3' advise_to_id='50'/>
-	<z:row advise_from_id='4' advise_to_id='22'/>
-	<z:row advise_from_id='4' advise_to_id='23'/>
-	<z:row advise_from_id='5' advise_to_id='6'/>
-	<z:row advise_from_id='5' advise_to_id='7'/>
-	<z:row advise_from_id='5' advise_to_id='40'/>
-	<z:row advise_from_id='8' advise_to_id='10'/>
-	<z:row advise_from_id='8' advise_to_id='11'/>
-	<z:row advise_from_id='9' advise_to_id='12'/>
-	<z:row advise_from_id='9' advise_to_id='13'/>
-	<z:row advise_from_id='14' advise_to_id='16'/>
-	<z:row advise_from_id='14' advise_to_id='17'/>
-	<z:row advise_from_id='14' advise_to_id='18'/>
-	<z:row advise_from_id='15' advise_to_id='19'/>
-	<z:row advise_from_id='15' advise_to_id='20'/>
-	<z:row advise_from_id='15' advise_to_id='21'/>
-	<z:row advise_from_id='22' advise_to_id='24'/>
-	<z:row advise_from_id='22' advise_to_id='25'/>
-	<z:row advise_from_id='22' advise_to_id='26'/>
-	<z:row advise_from_id='23' advise_to_id='27'/>
-	<z:row advise_from_id='23' advise_to_id='28'/>
-	<z:row advise_from_id='23' advise_to_id='29'/>
-	<z:row advise_from_id='50' advise_to_id='51'/>
-	<z:row advise_from_id='50' advise_to_id='52'/>
-	<z:row advise_from_id='50' advise_to_id='53'/>
+	<z:row ADVISE_FROM_ID='1' ADVISE_TO_ID='2' ROWID='AAAHZmAABAAAMV6AAA'/>
+	<z:row ADVISE_FROM_ID='1' ADVISE_TO_ID='3' ROWID='AAAHZmAABAAAMV6AAB'/>
+	<z:row ADVISE_FROM_ID='1' ADVISE_TO_ID='4' ROWID='AAAHZmAABAAAMV6AAC'/>
+	<z:row ADVISE_FROM_ID='1' ADVISE_TO_ID='70' ROWID='AAAHZmAABAAAMV6AAD'/>
+	<z:row ADVISE_FROM_ID='2' ADVISE_TO_ID='5' ROWID='AAAHZmAABAAAMV6AAE'/>
+	<z:row ADVISE_FROM_ID='2' ADVISE_TO_ID='8' ROWID='AAAHZmAABAAAMV6AAF'/>
+	<z:row ADVISE_FROM_ID='2' ADVISE_TO_ID='9' ROWID='AAAHZmAABAAAMV6AAG'/>
+	<z:row ADVISE_FROM_ID='3' ADVISE_TO_ID='14' ROWID='AAAHZmAABAAAMV6AAH'/>
+	<z:row ADVISE_FROM_ID='3' ADVISE_TO_ID='15' ROWID='AAAHZmAABAAAMV6AAI'/>
+	<z:row ADVISE_FROM_ID='3' ADVISE_TO_ID='50' ROWID='AAAHZmAABAAAMV6AAJ'/>
+	<z:row ADVISE_FROM_ID='4' ADVISE_TO_ID='22' ROWID='AAAHZmAABAAAMV6AAK'/>
+	<z:row ADVISE_FROM_ID='4' ADVISE_TO_ID='23' ROWID='AAAHZmAABAAAMV6AAL'/>
+	<z:row ADVISE_FROM_ID='5' ADVISE_TO_ID='6' ROWID='AAAHZmAABAAAMV6AAM'/>
+	<z:row ADVISE_FROM_ID='5' ADVISE_TO_ID='7' ROWID='AAAHZmAABAAAMV6AAN'/>
+	<z:row ADVISE_FROM_ID='5' ADVISE_TO_ID='40' ROWID='AAAHZmAABAAAMV6AAO'/>
+	<z:row ADVISE_FROM_ID='8' ADVISE_TO_ID='10' ROWID='AAAHZmAABAAAMV6AAP'/>
+	<z:row ADVISE_FROM_ID='8' ADVISE_TO_ID='11' ROWID='AAAHZmAABAAAMV6AAQ'/>
+	<z:row ADVISE_FROM_ID='9' ADVISE_TO_ID='12' ROWID='AAAHZmAABAAAMV6AAR'/>
+	<z:row ADVISE_FROM_ID='9' ADVISE_TO_ID='13' ROWID='AAAHZmAABAAAMV6AAS'/>
+	<z:row ADVISE_FROM_ID='14' ADVISE_TO_ID='16' ROWID='AAAHZmAABAAAMV6AAT'/>
+	<z:row ADVISE_FROM_ID='14' ADVISE_TO_ID='17' ROWID='AAAHZmAABAAAMV6AAU'/>
+	<z:row ADVISE_FROM_ID='14' ADVISE_TO_ID='18' ROWID='AAAHZmAABAAAMV6AAV'/>
+	<z:row ADVISE_FROM_ID='15' ADVISE_TO_ID='19' ROWID='AAAHZmAABAAAMV6AAW'/>
+	<z:row ADVISE_FROM_ID='15' ADVISE_TO_ID='20' ROWID='AAAHZmAABAAAMV6AAX'/>
+	<z:row ADVISE_FROM_ID='15' ADVISE_TO_ID='21' ROWID='AAAHZmAABAAAMV6AAY'/>
+	<z:row ADVISE_FROM_ID='22' ADVISE_TO_ID='24' ROWID='AAAHZmAABAAAMV6AAZ'/>
+	<z:row ADVISE_FROM_ID='22' ADVISE_TO_ID='25' ROWID='AAAHZmAABAAAMV6AAa'/>
+	<z:row ADVISE_FROM_ID='22' ADVISE_TO_ID='26' ROWID='AAAHZmAABAAAMV6AAb'/>
+	<z:row ADVISE_FROM_ID='23' ADVISE_TO_ID='27' ROWID='AAAHZmAABAAAMV6AAc'/>
+	<z:row ADVISE_FROM_ID='23' ADVISE_TO_ID='28' ROWID='AAAHZmAABAAAMV6AAd'/>
+	<z:row ADVISE_FROM_ID='23' ADVISE_TO_ID='29' ROWID='AAAHZmAABAAAMV6AAe'/>
+	<z:row ADVISE_FROM_ID='50' ADVISE_TO_ID='51' ROWID='AAAHZmAABAAAMV6AAf'/>
+	<z:row ADVISE_FROM_ID='50' ADVISE_TO_ID='52' ROWID='AAAHZmAABAAAMV6AAg'/>
+	<z:row ADVISE_FROM_ID='50' ADVISE_TO_ID='53' ROWID='AAAHZmAABAAAMV6AAh'/>
 </rs:data>
 </xml>

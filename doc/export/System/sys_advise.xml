@@ -4,36 +4,41 @@
 	xmlns:z='#RowsetSchema'>
 <s:Schema id='RowsetSchema'>
 	<s:ElementType name='row' content='eltOnly' rs:updatable='true'>
-		<s:AttributeType name='advise_id' rs:number='1' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='sys_advise'
-			 rs:basecolumn='advise_id' rs:keycolumn='true'>
-			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true' rs:maybenull='false'/>
+		<s:AttributeType name='ADVISE_ID' rs:number='1' rs:writeunknown='true' rs:basetable='SYS_ADVISE' rs:basecolumn='ADVISE_ID'>
+			<s:datatype dt:type='number' rs:dbtype='numeric' dt:maxLength='19' rs:scale='0' rs:precision='9' rs:fixedlength='true'
+			 rs:maybenull='false'/>
 		</s:AttributeType>
-		<s:AttributeType name='advise_text' rs:number='2' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='sys_advise' rs:basecolumn='advise_text'>
-			<s:datatype dt:type='string' dt:maxLength='1073741823' rs:long='true'/>
+		<s:AttributeType name='ADVISE_TEXT' rs:number='2' rs:nullable='true' rs:writeunknown='true' rs:basetable='SYS_ADVISE'
+			 rs:basecolumn='ADVISE_TEXT'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='4000'/>
 		</s:AttributeType>
-		<s:AttributeType name='advise_line' rs:number='3' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='sys_advise' rs:basecolumn='advise_line'>
-			<s:datatype dt:type='string' dt:maxLength='255'/>
+		<s:AttributeType name='ADVISE_LINE' rs:number='3' rs:nullable='true' rs:writeunknown='true' rs:basetable='SYS_ADVISE'
+			 rs:basecolumn='ADVISE_LINE'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='255'/>
+		</s:AttributeType>
+		<s:AttributeType name='ROWID' rs:number='4' rs:nullable='true' rs:rowid='true' rs:basetable='SYS_ADVISE' rs:basecolumn='ROWID'
+			 rs:keycolumn='true' rs:hidden='true' rs:autoincrement='true'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='18' rs:fixedlength='true'/>
 		</s:AttributeType>
 		<s:extends type='rs:rowbase'/>
 	</s:ElementType>
 </s:Schema>
 <rs:data>
-	<z:row advise_id='1' advise_text='Dieser Ratgeber soll Ihnen einen Schnelleinstieg in den UDK ermöglichen. Sie können den Ratgeber geöffnet lassen und gleichzeitig die Anweisungen im Ratgeber befolgen (d.h. weitere Funktionen des UDK aufrufen). 
+	<z:row ADVISE_ID='1' ADVISE_TEXT='Dieser Ratgeber soll Ihnen einen Schnelleinstieg in den UDK ermöglichen. Sie können den Ratgeber geöffnet lassen und gleichzeitig die Anweisungen im Ratgeber befolgen (d.h. weitere Funktionen des UDK aufrufen). 
 Weitergehende Informationen zu den einzelnen Masken stehen Ihnen im Menü &#x22;Hilfe&#x22; zur Verfügung. Dort können Sie den Ratgeber auch jederzeit erneut aufrufen.
 
 Was wollen Sie tun?'
-		 advise_line=''/>
-	<z:row advise_id='2' advise_text='Der UDK bietet eine Auswahl von Funktionen zur Recherche in den UDK-Objekten bzw. UDK-Adressen:'
-		 advise_line='Recherchieren im UDK'/>
-	<z:row advise_id='3' advise_text='Eingabe und Pflege von UDK-Objekten und UDK-Adressen
+		 ROWID='AAAHZkAABAAAMVqAAA'/>
+	<z:row ADVISE_ID='2' ADVISE_TEXT='Der UDK bietet eine Auswahl von Funktionen zur Recherche in den UDK-Objekten bzw. UDK-Adressen:'
+		 ADVISE_LINE='Recherchieren im UDK' ROWID='AAAHZkAABAAAMVqAAB'/>
+	<z:row ADVISE_ID='3' ADVISE_TEXT='Eingabe und Pflege von UDK-Objekten und UDK-Adressen
 
 
 Die Beschreibung von Umweltdaten erfolgt im UDK durch die Eingabe von Metadaten in sogenannten UDK-Objekten. Die nötigen Adreßinformationen (z.B. von Auskunftspersonen) werden in Form von UDK-Adressen gesondert eingetragen und gepflegt. An geeigneter Stelle wird dann von einem UDK-Objekt auf eine UDK-Adresse verwiesen. Dadurch wird gewährleistet, daß eine Adresse nur einmal eingetragen und gepflegt werden muß.'
-		 advise_line='UDK-Objekte und UDK-Adressen eingeben oder pflegen (nur im Eingabemodus!)'/>
-	<z:row advise_id='4' advise_text='Administration des UDK' advise_line='Den UDK administrieren (nur im Eingabemodus!)'/>
-	<z:row advise_id='5' advise_text='Recherche über den UDK-Explorer
+		 ADVISE_LINE='UDK-Objekte und UDK-Adressen eingeben oder pflegen (nur im Eingabemodus!)' ROWID='AAAHZkAABAAAMVqAAC'/>
+	<z:row ADVISE_ID='4' ADVISE_TEXT='Administration des UDK' ADVISE_LINE='Den UDK administrieren (nur im Eingabemodus!)'
+		 ROWID='AAAHZkAABAAAMVqAAD'/>
+	<z:row ADVISE_ID='5' ADVISE_TEXT='Recherche über den UDK-Explorer
 
 
 Der UDK-Explorer, der dem Dateiexplorer von Windows 95 bzw. NT nachempfunden wurde, ermöglicht die Navigation im Strukturbaum der UDK-Objekte bzw. UDK-Adressen. Eine komfortable Suchmaschine wurde integriert (Allgemeine Suche und Expertensuche). 
@@ -41,8 +46,8 @@ Der UDK-Explorer, der dem Dateiexplorer von Windows 95 bzw. NT nachempfunden wur
 Öffnen Sie das Dokumentenfenster UDK-Explorer über die Funktionsbereichsleiste auf der linken Seite des Hauptfensters oder öffnen Sie das Menü &#x22;Ansicht&#x22; und rufen Sie den Befehl &#x22;UDK-Explorer&#x22; auf.
 
 Ihnen stehen nun folgende Möglichkeiten zur Verfügung:'
-		 advise_line='Recherche über den UDK-Explorer'/>
-	<z:row advise_id='6' advise_text='Die allgemeine Suche
+		 ADVISE_LINE='Recherche über den UDK-Explorer' ROWID='AAAHZkAABAAAMVqAAE'/>
+	<z:row ADVISE_ID='6' ADVISE_TEXT='Die allgemeine Suche
 
 
 Die allgemeine Suche bietet eine einfache und bequeme Möglichkeit, UDK-Objekte und UDK-Adressen durch die Eingabe von Suchbegriffen oder durch räumliche bzw. zeitliche Einschränkungen zu finden. Sie ist in den UDK-Explorer integriert. Führen Sie folgende Schritte durch, um über die allgemeine Suche zu suchen:
@@ -60,8 +65,8 @@ Die allgemeine Suche bietet eine einfache und bequeme Möglichkeit, UDK-Objekte 
 6. Klicken Sie auf die Schaltfläche Suche starten, wodurch der Suchvorgang gestartet wird. Der UDK-Explorer wechselt automatisch in den Ergebnismodus, wodurch von dem Strukturbaumfenster in die Ergebnisliste geschaltet wird. 
 
 7. Wenn Sie die Sucheinstellungen zurücksetzen möchten, klicken Sie auf die Schaltfläche Zurücksetzen.'
-		 advise_line='Die allgemeine Suche'/>
-	<z:row advise_id='7' advise_text='Die Suche im Expertenmodus
+		 ADVISE_LINE='Die allgemeine Suche' ROWID='AAAHZkAABAAAMVqAAF'/>
+	<z:row ADVISE_ID='7' ADVISE_TEXT='Die Suche im Expertenmodus
 
 
 Der Expertenmodus bietet die Möglichkeit, gezielt in den einzelnen Feldern des UDK zu suchen. Die Suchabfragen zu den einzelnen Feldern können über die logischen Operatoren UND und ODER kombiniert werden. Es ist möglich, die Suchabfragen abzuspeichern, um sie später wiederverwenden zu können. Um über den Expertenmodus zu suchen, führen Sie die folgenden Schritte aus:
@@ -85,20 +90,20 @@ Der Expertenmodus bietet die Möglichkeit, gezielt in den einzelnen Feldern des 
 9. Wenn Sie die Suchabfrage speichern wollen, klicken Sie auf die Schaltfläche &#x22;Suche speichern&#x22;.
 
 10.  Starten Sie die Suche, indem Sie auf die Schaltfläche &#x22;Suche&#x22; starten klicken. Dadurch wird der Dialog geschlossen und automatisch in das Dokumentenfenster UDK-Explorer verzweigt, wo die Ergebnisliste erscheint.'
-		 advise_line='Die Suche im Expertenmodus'/>
-	<z:row advise_id='8' advise_text='Recherche über den Thesaurus-Navigator
+		 ADVISE_LINE='Die Suche im Expertenmodus' ROWID='AAAHZkAABAAAMVqAAG'/>
+	<z:row ADVISE_ID='8' ADVISE_TEXT='Recherche über den Thesaurus-Navigator
 
 Der UDK bietet die Möglichkeit, UDK-Objekte anhand einer polyhierarchischen Liste von Schlagworten des Thesaurus zu identifizieren. 
 Aktivieren Sie den Thesaurus-Navigator, indem Sie auf das entsprechende Symbol  in der verti-kalen Symbolleiste klicken oder indem Sie im Menü Ansicht den Befehl Thesaurus-Navigator aufrufen. Der Einstieg in die Recherche kann über die Hierarchie der systematischen Liste oder über eine alphabetische Liste erfolgen:'
-		 advise_line='Recherche über den Thesaurus-Navigator'/>
-	<z:row advise_id='9' advise_text='Geographische Suche
+		 ADVISE_LINE='Recherche über den Thesaurus-Navigator' ROWID='AAAHZkAABAAAMVqAAH'/>
+	<z:row ADVISE_ID='9' ADVISE_TEXT='Geographische Suche
 
 
 Die geographische Suche bietet die Möglichkeit, nach UDK-Objekten anhand einer Karte zu suchen. Aktivieren Sie die Geographische Suche, indem Sie das Symbol   in der vertikalen Symbolleiste anklicken oder indem Sie im Menü Ansicht den Befehl Geographische Suche aufrufen. 
 
 Sie können entweder über die Auswahl beliebiger administrativer Einheiten (Kreise, Gemeinden, etc.) oder über die Angabe einer rechteckigen Fläche das zu durchsuchende Gebiet festlegen:'
-		 advise_line='Geographische Suche'/>
-	<z:row advise_id='10' advise_text='Suche über die &#x22;Systematische Liste&#x22;
+		 ADVISE_LINE='Geographische Suche' ROWID='AAAHZkAABAAAMVqAAI'/>
+	<z:row ADVISE_ID='10' ADVISE_TEXT='Suche über die &#x22;Systematische Liste&#x22;
 
 
 1. Das Fenster Systematische Liste wird aktiviert, indem man oben links die Schaltfläche &#x22;Systematische Liste&#x22;  anklickt. 
@@ -108,8 +113,8 @@ Sie können entweder über die Auswahl beliebiger administrativer Einheiten (Kre
 3. Thesaurusbegriffe, mit denen UDK-Objekte verschlagwortet wurden, werden mit einem entsprechenden  Symbol   gekennzeichnet. Wird ein in dieser Weise gekennzeichneter Be-griff in der Thesaurusstruktur eingestellt, werden im Fenster &#x22;Suchergebnis&#x22; alle mit diesem Deskriptor verschlagworteten UDK-Objekte angezeigt. Möchten Sie, daß sich die Suchergebnisliste nicht immer neu aufbaut, sondern daß sie sich bei der Auswahl von mehreren Thesaurusbegriffen erweitert, klicken Sie auf die Schaltfläche mit dem Kreuz oberhalb des Fensters &#x22;Suchergebnis&#x22;. 
 
 4. Klicken Sie auf ein UDK-Objekt des Suchergebnisses, erhalten Sie im Informationsfenster (rechts unten) Grobinformationen zum betreffenden UDK-Objekt. Um sich die Details des entsprechende UDK-Objektes in der Objektverwaltung anzeigen zu lassen, klicken Sie auf die Schaltfläche &#x22;Öffnen&#x22; (auch über die rechte Maustaste erreichbar).'
-		 advise_line='Suche über die &#x22;Systematische Liste&#x22;'/>
-	<z:row advise_id='11' advise_text='Suche über die &#x22;Alphabetische Liste&#x22;
+		 ADVISE_LINE='Suche über die &#x22;Systematische Liste&#x22;' ROWID='AAAHZkAABAAAMVrAAA'/>
+	<z:row ADVISE_ID='11' ADVISE_TEXT='Suche über die &#x22;Alphabetische Liste&#x22;
 
 
 1. Das Fenster Alphabetische Liste aktivieren Sie, indem Sie oben links im Thesaurus-Navigator die Schaltfläche &#x22;Alphabetische Liste&#x22;  anklicken. 
@@ -121,8 +126,8 @@ Sie können entweder über die Auswahl beliebiger administrativer Einheiten (Kre
 4. Die entsprechend verschlagworteten UDK-Objekte werden im Suchergebnisfenster angezeigt. Die zum UDK-Objekt gehörigen Grobinformationen werden im Informationsfenster (rechts unten) angezeigt.
 
 5. Möchten Sie sich einen aus der alphabetischen Liste ausgewählten Begriff in der systematischen Liste anzeigen lassen, klicken Sie einfach auf die zugehörige Schaltfläche &#x22;Systematische Liste&#x22; (links oben).'
-		 advise_line='Suche über die &#x22;Alphabetische Liste&#x22;'/>
-	<z:row advise_id='12' advise_text='Suche nach UDK-Objekten über administrative Einheiten
+		 ADVISE_LINE='Suche über die &#x22;Alphabetische Liste&#x22;' ROWID='AAAHZkAABAAAMVrAAB'/>
+	<z:row ADVISE_ID='12' ADVISE_TEXT='Suche nach UDK-Objekten über administrative Einheiten
 
 
 1. Wählen Sie den Modus &#x22;Zoom in administrative Einheit&#x22;, indem Sie in der Werkzeugleiste am linken Rand der Geographischen Suche auf die entsprechende Schaltfläche  klicken. Durch einen Klick auf eine Einheit im Kartenausschnitt zoomen sie zur gewünschten administrativen Hierarchieebene.
@@ -134,8 +139,8 @@ Sie können entweder über die Auswahl beliebiger administrativer Einheiten (Kre
 4. Selektieren Sie das gewünschte UDK-Objekt (einfacher Klick mit der linken Maustaste). Im Informationsfenster (rechts unten) werden Grobinformationen zum ausgewählten Objekt angezeigt.
 
 5. Um detaillierte Informationen zu einem ausgewählten UDK-Objekt zu erhalten bzw. dieses zu bearbeiten, führen Sie einen Doppelklick auf das Objekt aus. Die Objektverwaltung wird gestartet.'
-		 advise_line='Suche nach UDK-Objekten über administrative Einheiten'/>
-	<z:row advise_id='13' advise_text='Suche nach UDK-Objekten über die Auswahl eines Rechtecks
+		 ADVISE_LINE='Suche nach UDK-Objekten über administrative Einheiten' ROWID='AAAHZkAABAAAMVrAAC'/>
+	<z:row ADVISE_ID='13' ADVISE_TEXT='Suche nach UDK-Objekten über die Auswahl eines Rechtecks
 
 
 1. Zunächst können Sie sich einen vergrößerten Kartenausschnitt einstellen. Wählen Sie hierzu den Modus &#x22;Kartenausschnitt zoomen&#x22;, indem Sie in der Werkzeugleiste am linken Rand der Geographischen Suche auf die entsprechende Schaltfläche klicken. Klicken Sie in die Karte und spannen Sie bei festgehaltener linker Maustaste ein Rechteck auf. Der Kartenausschnitt wird auf den von Ihnen gewählten Bereich eingestellt.
@@ -147,14 +152,15 @@ Sie können entweder über die Auswahl beliebiger administrativer Einheiten (Kre
 4. Selektieren Sie das gewünschte UDK-Objekt (einfacher Klick mit der rechten Maustaste). Im Informationsfenster werden Grobinformationen zum ausgewählten Objekt angezeigt.
 
 5. Um detaillierte Informationen zu einem ausgewählten UDK-Objekt zu erhalten bzw. dieses zu bearbeiten, führen Sie einen Doppelklick auf das Objekt aus. Die Objektverwaltung wird gestartet.'
-		 advise_line='Suche nach UDK-Objekten über die Auswahl eines Rechtecks'/>
-	<z:row advise_id='14' advise_text='Eingabe und Pflege von UDK-Objekten' advise_line='Eingabe und Pflege von UDK-Objekten'/>
-	<z:row advise_id='15' advise_text='Eingabe und Pflege von UDK-Adressen
+		 ADVISE_LINE='Suche nach UDK-Objekten über die Auswahl eines Rechtecks' ROWID='AAAHZkAABAAAMVrAAD'/>
+	<z:row ADVISE_ID='14' ADVISE_TEXT='Eingabe und Pflege von UDK-Objekten' ADVISE_LINE='Eingabe und Pflege von UDK-Objekten'
+		 ROWID='AAAHZkAABAAAMVrAAE'/>
+	<z:row ADVISE_ID='15' ADVISE_TEXT='Eingabe und Pflege von UDK-Adressen
 
 
 Sie können eine UDK-Adresse nur dann anlegen, ändern oder löschen, wenn Sie die entsprechende Berechtigung dazu haben.'
-		 advise_line='Eingabe und Pflege von UDK-Adressen'/>
-	<z:row advise_id='16' advise_text='Anlegen eines neuen UDK-Objektes
+		 ADVISE_LINE='Eingabe und Pflege von UDK-Adressen' ROWID='AAAHZkAABAAAMVrAAF'/>
+	<z:row ADVISE_ID='16' ADVISE_TEXT='Anlegen eines neuen UDK-Objektes
 
 
 1. Aktivieren Sie zunächst den UDK-Explorer, indem Sie das entsprechende Symbol  in der vertikalen Symbolleiste anklicken oder indem Sie im Menü &#x22;Ansicht&#x22; den Befehl &#x22;UDK-Explorer&#x22; aufrufen. 
@@ -185,8 +191,8 @@ Zum Anlegen von Verweisen:
 3. Füllen Sie die entsprechenden Felder aus. Verweise auf UDK-Objekte können über eine Schaltfläche eingegeben werden, die in den UDK-Explorer wechselt. Verweise auf OLE-Objekte können über eine Schaltfläche einge-geben werden, die eine Dateidialogbox öffnet, über die ein Verweis auf eine Datei einer anderen Anwendung (Word, Excel etc.) erstellt werden kann. 
 
 4. Klicken Sie auf die Schaltfläche &#x22;Übernehmen&#x22;. Der eingetragene Verweis wird in die Objektverwaltung übernommen. Sind alle angelegten Verweise übernommen, schließen Sie den Dialog über die Schaltfläche &#x22;Schließen&#x22;.'
-		 advise_line='Anlegen eines neuen UDK-Objektes'/>
-	<z:row advise_id='17' advise_text='Ändern eines existierenden UDK-Objektes
+		 ADVISE_LINE='Anlegen eines neuen UDK-Objektes' ROWID='AAAHZkAABAAAMVsAAA'/>
+	<z:row ADVISE_ID='17' ADVISE_TEXT='Ändern eines existierenden UDK-Objektes
 
 
 1. Aktivieren Sie zunächst den UDK-Explorer, indem Sie das entsprechende Symbol  in der vertikalen Symbolleiste anklicken oder indem Sie im Menü &#x22;Ansicht&#x22; den Befehl &#x22;UDK-Explorer&#x22; aufrufen. 
@@ -200,8 +206,8 @@ Zum Anlegen von Verweisen:
 5. Möchten Sie einen existierenden Verweis löschen, öffnen Sie über die entsprechende Schaltfläche den Dialog &#x22;Verweise editieren&#x22;. Wählen Sie den Verweis, den Sie löschen möchten, in der Verweisliste aus. Klicken Sie die Schaltfläche &#x22;Löschen&#x22; an. Bestätigen Sie, daß Sie wirklich diesen Verweis löschen möchten. Schließen Sie den Dialog über die Schaltfläche &#x22;Schließen&#x22;.
 
 6. Speichern Sie den Datensatz ab, indem Sie auf die Schaltfläche &#x22;Speichern&#x22; in der Werkzeugleiste oder im Menü &#x22;Datensätze&#x22; auf den Befehl &#x22;Speichern&#x22; klicken. Wenn Sie den Vorgang abbrechen möchten, klicken Sie in der Werkzeugleiste auf die Schaltfläche &#x22;Verwerfen&#x22; oder alternativ im Menü auf &#x22;Datensätze&#x22; und den Befehl &#x22;Verwerfen&#x22;.'
-		 advise_line='Ändern eines existierenden UDK-Objektes'/>
-	<z:row advise_id='18' advise_text='Löschen eines UDK-Objektes
+		 ADVISE_LINE='Ändern eines existierenden UDK-Objektes' ROWID='AAAHZkAABAAAMVsAAB'/>
+	<z:row ADVISE_ID='18' ADVISE_TEXT='Löschen eines UDK-Objektes
 
 
 1. Aktivieren Sie zunächst den UDK-Explorer, indem Sie das entsprechende Symbol  in der vertikalen Symbolleiste anklicken oder indem Sie im Menü &#x22;Ansicht&#x22; den Befehl &#x22;UDK-Explorer&#x22; aufrufen. 
@@ -211,8 +217,8 @@ Zum Anlegen von Verweisen:
 3. Löschen Sie den Datensatz, indem Sie auf die Schaltfläche &#x22;Löschen&#x22; in der Werkzeugleiste klicken oder im Menü Datensätze auf den Befehl Löschen klicken.
 
 4. Bestätigen Sie die Frage, ob das Objekt wirklich gelöscht werden soll.'
-		 advise_line='Löschen eines UDK-Objektes'/>
-	<z:row advise_id='19' advise_text='Anlegen einer neuen UDK-Adresse
+		 ADVISE_LINE='Löschen eines UDK-Objektes' ROWID='AAAHZkAABAAAMVsAAC'/>
+	<z:row ADVISE_ID='19' ADVISE_TEXT='Anlegen einer neuen UDK-Adresse
 
 
 1. Aktivieren Sie zunächst den UDK-Explorer, indem Sie das entsprechende Symbol  in der vertikalen Symbolleiste anklicken oder indem Sie im Menü &#x22;Ansicht&#x22; den Befehl &#x22;UDK-Explorer&#x22; aufrufen. 
@@ -228,8 +234,8 @@ Zum Anlegen von Verweisen:
 6. Füllen Sie so viele Eingabefelder wie möglich aus und beachten Sie hierbei die feldbezogenen Eingabehilfen, die im Informationsfenster auf der rechten Seite zu sehen sind. Über die &#x3c;TAB&#x3e;-Taste können Sie den Cursor in das nächste Feld bewegen. Die Felder mit blau hinterlegten Feldbezeichnungen sind Pflichteingabefelder. Um die Eingabe für den Benutzer zu vereinfachen, werden die Felder zu den postalischen Angaben von der übergeordneten UDK-Adresse übernommen.
 
 7. Speichern Sie den Datensatz ab, indem Sie auf die Schaltfläche &#x22;Speichern&#x22; in der Werkzeugleiste oder im Menü &#x22;Datensätze&#x22; auf den Befehl  &#x22;Speichern&#x22; klicken. Wenn Sie den Vorgang abbrechen möchten, klicken Sie in der Werkzeugleiste auf die Schaltfläche &#x22;Verwerfen&#x22; oder alternativ im Menü &#x22;Datensätze&#x22; auf den Befehl &#x22;Verwerfen&#x22;.'
-		 advise_line='Anlegen einer neuen UDK-Adresse'/>
-	<z:row advise_id='20' advise_text='Ändern einer existierenden UDK-Adresse
+		 ADVISE_LINE='Anlegen einer neuen UDK-Adresse' ROWID='AAAHZkAABAAAMVtAAA'/>
+	<z:row ADVISE_ID='20' ADVISE_TEXT='Ändern einer existierenden UDK-Adresse
 
 
 1. Aktivieren Sie zunächst den UDK-Explorer, indem Sie das entsprechende Symbol  in der vertikalen Symbolleiste anklicken oder indem Sie im Menü &#x22;Ansicht&#x22; den Befehl &#x22;UDK-Explorer&#x22; aufrufen. 
@@ -241,8 +247,8 @@ Zum Anlegen von Verweisen:
 4. Ändern Sie die Einträge in den gewünschten Feldern des Dokumentenfensters.
 
 5. Speichern Sie den Datensatz ab, indem Sie auf die Schaltfläche &#x22;Speichern&#x22; in der Werkzeugleiste oder im Menü &#x22;Datensätze&#x22; auf den Befehl &#x22;Speichern&#x22; klicken. Wenn Sie den Vorgang abbrechen möchten, klicken Sie in der Werkzeugleiste auf die Schaltfläche &#x22;Verwerfen&#x22; oder alternativ im Menü &#x22;Datensätze&#x22; auf den Befehl &#x22;Verwerfen&#x22;.'
-		 advise_line='Ändern einer existierenden UDK-Adresse'/>
-	<z:row advise_id='21' advise_text='Löschen einer UDK-Adresse
+		 ADVISE_LINE='Ändern einer existierenden UDK-Adresse' ROWID='AAAHZkAABAAAMVtAAB'/>
+	<z:row ADVISE_ID='21' ADVISE_TEXT='Löschen einer UDK-Adresse
 
 
 Eine UDK-Adresse kann nur gelöscht werden, wenn kein UDK-Objekt und kein UDK-Benutzer mehr auf diese verweist.
@@ -254,22 +260,22 @@ Zum Löschen einer UDK-Adresse gehen Sie wie folgt vor:
 2. Markieren Sie die UDK-Adresse, die Sie löschen möchten. 
 
 3. Löschen Sie den Datensatz, indem Sie auf die Schaltfläche &#x22;Löschen&#x22; in der Werkzeugleiste klicken oder im Menü &#x22;Datensätze&#x22; den Befehl &#x22;Löschen&#x22; aufrufen.'
-		 advise_line='Löschen einer UDK-Adresse'/>
-	<z:row advise_id='22' advise_text='Eingabe und Pflege von UDK-Katalogen
+		 ADVISE_LINE='Löschen einer UDK-Adresse' ROWID='AAAHZkAABAAAMVtAAC'/>
+	<z:row ADVISE_ID='22' ADVISE_TEXT='Eingabe und Pflege von UDK-Katalogen
 
 
 Sie können einen UDK-Katalog nur dann anlegen, ändern oder löschen, wenn Sie UDK-Administrator sind.
 Aktivieren Sie die Katalogverwaltung, indem Sie das entsprechende Symbol  in der vertikalen Symbolleiste anklicken oder indem Sie im Menü &#x22;Ansicht&#x22; den Befehl &#x22;Katalogverwaltung&#x22; aufrufen. 
 Den Eintrag für den aktuellen Katalog kann jeder UDK-Benutzer temporär für die aktuelle Sitzung ändern.'
-		 advise_line='Eingabe und Pflege von UDK-Katalogen'/>
-	<z:row advise_id='23' advise_text='Eingabe und Pflege eines Benutzereintrages
+		 ADVISE_LINE='Eingabe und Pflege von UDK-Katalogen' ROWID='AAAHZkAABAAAMVtAAD'/>
+	<z:row ADVISE_ID='23' ADVISE_TEXT='Eingabe und Pflege eines Benutzereintrages
 
 
 Sie können einen UDK-Benutzereintrag nur dann anlegen, ändern oder löschen, wenn Sie Administrator sind.
 
 Aktivieren Sie die Benutzerverwaltung, indem Sie das entsprechende Symbol  in der vertikalen Symbolleiste anklicken oder indem Sie im Menü &#x22;Ansicht&#x22; den Befehl &#x22;Benutzerverwaltung&#x22; aufrufen.'
-		 advise_line='Eingabe und Pflege eines Benutzereintrages'/>
-	<z:row advise_id='24' advise_text='Anlegen eines neuen UDK-Kataloges
+		 ADVISE_LINE='Eingabe und Pflege eines Benutzereintrages' ROWID='AAAHZkAABAAAMVtAAE'/>
+	<z:row ADVISE_ID='24' ADVISE_TEXT='Anlegen eines neuen UDK-Kataloges
 
 
 1. Nach Öffnen der Katalogverwaltung klicken Sie auf die Schaltfläche &#x22;Neuer Datensatz&#x22; in der Werkzeugleiste. Sämtliche Eingabefelder - bis auf den Eintrag zur Auswahl des aktuellen Katalogs - werden geleert, so daß neue Einträge erfolgen können.
@@ -277,8 +283,8 @@ Aktivieren Sie die Benutzerverwaltung, indem Sie das entsprechende Symbol  in de
 2. Füllen Sie nun die Eingabefelder aus. Durch Betätigen der &#x3c;TAB&#x3e;-Taste können Sie den Cursor in das nächste Feld bewegen.
 
 3. Klicken Sie in der Werkzeugleiste auf die Schaltfläche &#x22;Speichern&#x22; oder im Menü &#x22;Datensatz&#x22; auf den Befehl &#x22;Datensatz speichern&#x22;. Der Datensatz wird gespeichert.'
-		 advise_line='Anlegen eines neuen UDK-Kataloges'/>
-	<z:row advise_id='25' advise_text='Ändern der Eintragungen für einen existierenden UDK-Katalog
+		 ADVISE_LINE='Anlegen eines neuen UDK-Kataloges' ROWID='AAAHZkAABAAAMVtAAF'/>
+	<z:row ADVISE_ID='25' ADVISE_TEXT='Ändern der Eintragungen für einen existierenden UDK-Katalog
 
 
 1. Stellen Sie im Dokumentenfenster &#x22;Katalogverwaltung&#x22; über die Auswahlliste in der Werkzeugleiste oder durch Blättern den gewünschten Datensatz ein.
@@ -286,8 +292,8 @@ Aktivieren Sie die Benutzerverwaltung, indem Sie das entsprechende Symbol  in de
 2. Ändern Sie die Einträge in den gewünschten Feldern.
 
 3. Speichern Sie den Datensatz ab, indem Sie auf die Schaltfläche &#x22;Speichern&#x22; in der Werkzeugleiste klicken oder über das Menü &#x22;Datensatz&#x22; den Befehl &#x22;Datensatz speichern&#x22; auswählen.'
-		 advise_line='Ändern der Eintragungen für einen existierenden UDK-Katalog'/>
-	<z:row advise_id='26' advise_text='Löschen eines UDK-Kataloges
+		 ADVISE_LINE='Ändern der Eintragungen für einen existierenden UDK-Katalog' ROWID='AAAHZkAABAAAMVtAAG'/>
+	<z:row ADVISE_ID='26' ADVISE_TEXT='Löschen eines UDK-Kataloges
 
 
 1. Stellen Sie im Dokumentenfenster &#x22;Katalogverwaltung&#x22; über die Auswahlliste in der Werkzeugleiste oder durch Blättern den gewünschten Datensatz ein.
@@ -295,8 +301,8 @@ Aktivieren Sie die Benutzerverwaltung, indem Sie das entsprechende Symbol  in de
 2. Klicken Sie in der Werkzeugleiste auf die Schaaltfläche &#x22;Löschen&#x22; oder öffnen Sie das Menü &#x22;Datensatz&#x22; und klicken Sie auf den Befehl &#x22;Datensatz löschen&#x22;. 
 
 3. Eine Löschabfrage erscheint. Bestätigen Sie mit der &#x22;Return&#x22;-Taste  bzw. klicken Sie auf &#x22;OK&#x22;, wenn Sie den Datensatz wirklich löschen wollen.'
-		 advise_line='Löschen eines UDK-Kataloges'/>
-	<z:row advise_id='27' advise_text='Anlegen eines neuen UDK-Benutzers
+		 ADVISE_LINE='Löschen eines UDK-Kataloges' ROWID='AAAHZkAABAAAMVtAAH'/>
+	<z:row ADVISE_ID='27' ADVISE_TEXT='Anlegen eines neuen UDK-Benutzers
 
 
 1. Nach Öffnen der Benutzerverwaltung klicken Sie auf die Schaltfläche &#x22;Neuer Datensatz&#x22; in der Werkzeugleiste. Sämtliche Eingabefelder - bis auf die Einträge für Benutzertyp und Standardkatalog - werden geleert, so daß neue Einträge erfolgen können.
@@ -308,8 +314,8 @@ Aktivieren Sie die Benutzerverwaltung, indem Sie das entsprechende Symbol  in de
 4. Entscheiden Sie als Administrator, ob für den Standardbenutzer die Weitergabe der Schreibrechte an andere Benutzer erlaubt ist oder nicht.
 
 5. Klicken Sie in der Werkzeugleiste auf die Schaltfläche &#x22;Speichern&#x22; oder im Menü &#x22;Datensatz&#x22; auf den Befehl &#x22;Datensatz speichern&#x22;. Der Datensatz wird gespeichert.'
-		 advise_line='Anlegen eines neuen UDK-Benutzers'/>
-	<z:row advise_id='28' advise_text='Ändern der Eintragungen für einen existierenden UDK-Benutzer
+		 ADVISE_LINE='Anlegen eines neuen UDK-Benutzers' ROWID='AAAHZkAABAAAMVuAAA'/>
+	<z:row ADVISE_ID='28' ADVISE_TEXT='Ändern der Eintragungen für einen existierenden UDK-Benutzer
 
 
 1. Stellen Sie im Dokumentenfenster &#x22;Benutzerverwaltung&#x22; über die Auswahlliste in der Werzeugleiste oder durch Blättern den gewünschten Datensatz ein.
@@ -317,8 +323,8 @@ Aktivieren Sie die Benutzerverwaltung, indem Sie das entsprechende Symbol  in de
 2. Ändern Sie die Einträge in den gewünschten Feldern.
 
 3. Speichern Sie den Datensatz ab, indem Sie auf die Schaltfläche &#x22;Speichern&#x22; in der Werkzeugleiste klicken oder über das Menü &#x22;Datensatz&#x22; Befehl &#x22;Datensatz speichern&#x22; auswählen.'
-		 advise_line='Ändern der Eintragungen für einen existierenden UDK-Benutzer'/>
-	<z:row advise_id='29' advise_text='Löschen eines UDK-Benutzereintrages
+		 ADVISE_LINE='Ändern der Eintragungen für einen existierenden UDK-Benutzer' ROWID='AAAHZkAABAAAMVuAAB'/>
+	<z:row ADVISE_ID='29' ADVISE_TEXT='Löschen eines UDK-Benutzereintrages
 
 
 1. Stellen Sie im Dokumentenfenster &#x22;Benutzerverwaltung&#x22; über die Auswahlliste in der Werzeugleiste oder durch Blättern den gewünschten Datensatz ein.
@@ -326,8 +332,8 @@ Aktivieren Sie die Benutzerverwaltung, indem Sie das entsprechende Symbol  in de
 2. Klicken Sie in der Werzeugleiste auf die Schaltfläche &#x22;Löschen&#x22; oder öffnen Sie das Menü &#x22;Datensatz&#x22; und klicken Sie auf den Befehl &#x22;Datensatz löschen&#x22;. 
 
 3. Es folgt eine Löschbestätigungsabfrage. Bestätigen Sie mit der &#x22;Return&#x22;-Taste  bzw. Klicken Sie auf &#x22;OK&#x22;, wenn Sie den Datensatz wirklich löschen wollen.'
-		 advise_line='Löschen eines UDK-Benutzereintrages'/>
-	<z:row advise_id='30' advise_text='Anlegen eines Verweises
+		 ADVISE_LINE='Löschen eines UDK-Benutzereintrages' ROWID='AAAHZkAABAAAMVuAAC'/>
+	<z:row ADVISE_ID='30' ADVISE_TEXT='Anlegen eines Verweises
 
 
 1. Öffnen Sie das Dokumentenfenster UDK-Objekt über die Funktionsbereichsleiste auf der linken Seite des Hauptfensters (vierte Schaltfläche) oder über das Menü &#x22;Ansicht&#x22; und rufen Sie den Befehl &#x22;UDK-Objekte&#x22; auf.
@@ -347,8 +353,8 @@ Aktivieren Sie die Benutzerverwaltung, indem Sie das entsprechende Symbol  in de
 8. Klicken Sie die Schaltfläche &#x22;Übernehmen&#x22; an. Der eingetragene Verweis wird in die Objektverwaltung übernommen. 
 
 9. Schließen Sie den Dialog über die Schaltfläche &#x22;Schließen&#x22;.'
-		 advise_line='Anlegen eines Verweises'/>
-	<z:row advise_id='31' advise_text='Löschen eines Verweises
+		 ADVISE_LINE='Anlegen eines Verweises' ROWID='AAAHZkAABAAAMVuAAD'/>
+	<z:row ADVISE_ID='31' ADVISE_TEXT='Löschen eines Verweises
 
 
 1. Öffnen Sie das Dokumentenfenster UDK-Objekt über die Funktionsbereichsleiste auf der linken Seite des Hauptfensters (vierte Schaltfläche) oder über das Menü &#x22;Ansicht&#x22; und rufen Sie den Befehl &#x22;UDK-Objekte&#x22; auf.
@@ -366,8 +372,8 @@ Aktivieren Sie die Benutzerverwaltung, indem Sie das entsprechende Symbol  in de
 7. Bestätigen Sie, daß Sie wirklich diesen Verweis löschen möchten. 
 
 8. Schließen Sie den Dialog über die Schaltfläche &#x22;Schließen&#x22;.'
-		 advise_line='Löschen eines Verweises'/>
-	<z:row advise_id='40' advise_text='Navigation im Strukturbaum
+		 ADVISE_LINE='Löschen eines Verweises' ROWID='AAAHZkAABAAAMVuAAE'/>
+	<z:row ADVISE_ID='40' ADVISE_TEXT='Navigation im Strukturbaum
 
 
 1. Achten Sie darauf, daß der Button  über dem linken oberen Fenster aktiviert ist. Das Fenster unter dem Button zeigt die Struktur an. Über Anklicken des Symbols + lassen sich die Unterbäume öffnen.
@@ -377,8 +383,8 @@ Aktivieren Sie die Benutzerverwaltung, indem Sie das entsprechende Symbol  in de
 3. Im Informationsfenster (rechte Seite) erhalten Sie automatisch Grobinformationen über ein im linken Fenster markiertes UDK-Objekt bzw. über eine markierte UDK-Adresse. 
 
 4. Interessieren Sie sich für weitergehende Informationen, klicken Sie auf die Schaltfläche Öffnen (auch über die rechte Maustaste erreichbar). Es öffnet sich die Objekt- bzw. Adreßverwaltung.'
-		 advise_line='Navigation im Strukturbaum'/>
-	<z:row advise_id='41' advise_text='Anlegen von Verweisen
+		 ADVISE_LINE='Navigation im Strukturbaum' ROWID='AAAHZkAABAAAMVuAAF'/>
+	<z:row ADVISE_ID='41' ADVISE_TEXT='Anlegen von Verweisen
 
 
 1. Öffnen Sie über die entsprechende Schaltfläche den Dialog &#x22;Verweise editieren&#x22; (diese Schaltfläche finden Sie sowohl bei den betreffenden Feldern als auch auf der Registerkarte Verweise, wo Sie alle Verweise des aktuellen UDK-Objekts zentral editieren können).
@@ -388,14 +394,14 @@ Aktivieren Sie die Benutzerverwaltung, indem Sie das entsprechende Symbol  in de
 3. Füllen Sie die entsprechenden Felder aus. Verweise auf UDK-Objekte können über eine Schaltfläche eingegeben werden, die in den UDK-Explorer wechselt. Verweise auf OLE-Objekte können über eine Schaltfläche einge-geben werden, die eine Dateidialogbox öffnet, über die ein Verweis auf eine Datei einer anderen Anwendung (Word, Excel etc.) erstellt werden kann. 
 
 4. Klicken Sie auf die Schaltfläche &#x22;Übernehmen&#x22;. Der eingetragene Verweis wird in die Objektverwaltung übernommen. Sind alle angelegten Verweise übernommen, schließen Sie den Dialog über die Schaltfläche &#x22;Schließen&#x22;.'
-		 advise_line='Anlegen von Verweisen'/>
-	<z:row advise_id='50' advise_text='Weitergabe und Einlesen von Metadaten (Aktualisierungszyklus)
+		 ADVISE_LINE='Anlegen von Verweisen' ROWID='AAAHZkAABAAAMVuAAG'/>
+	<z:row ADVISE_ID='50' ADVISE_TEXT='Weitergabe und Einlesen von Metadaten (Aktualisierungszyklus)
 
 
 Im Rahmen eines Aktualisierungszyklus geben die untersten Instanzen ihre Metadaten an die darüberliegenden Instanzen weiter (&#x22;Fortführen&#x22;). Diese lesen die Metadaten ein (&#x22;Aktualisieren&#x22;) und geben sie zusammen mit ihren eigenen wiederum an die darüberliegenden Instanzen weiter. Dies erfolgt solange, bis der Zentralkatalogadministrator erreicht ist, der den gesamten, aktualisierten Datenbestand an alle Instanzen wieder verteilt (&#x22;Verteilen&#x22;). Mit Einlesen dieses Datenbestands durch die Instanzen (&#x22;Mitführen&#x22;) ist der Aktualisierungszyklus abgeschlossen. 
 Die Funktionen zum Durchführen des Aktualisierungszyklus stehen nur den UDK-Administratoren zur Verfügung. Die Funktion &#x22;Verteilen&#x22; steht nur dem Zentralkatalogadministrator zur Verfügung.'
-		 advise_line='Weitergabe und Einlesen von Metadaten (Aktualisierungszyklus)'/>
-	<z:row advise_id='51' advise_text='Weitergabe der eingegebenen Metadaten an eine übergeordnete Instanz (Fortführen)
+		 ADVISE_LINE='Weitergabe und Einlesen von Metadaten (Aktualisierungszyklus)' ROWID='AAAHZkAABAAAMVvAAA'/>
+	<z:row ADVISE_ID='51' ADVISE_TEXT='Weitergabe der eingegebenen Metadaten an eine übergeordnete Instanz (Fortführen)
 
 
 Zur Weitergabe der eingegebenen Metadaten an eine übergeordnete UDK-Instanz gehen Sie wie folgt vor:
@@ -407,8 +413,8 @@ Zur Weitergabe der eingegebenen Metadaten an eine übergeordnete UDK-Instanz geh
 3. Es werden nun die UDK-Objekte und UDK-Adressen, welche seit dem letzten Ausführen dieser Funktion neu angelegt, verändert oder als gelöscht gekennzeichnet wurden, in das Verzeichnis Exp_Imp\Akt_Aus exportiert.
 
 4. Schicken Sie die Dateien aus dem Verzeichnis Exp_Imp\Akt_Aus per Email (oder per Diskette) an Ihre übergeordnete UDK-Instanz.'
-		 advise_line='Weitergabe der eingegebenen Metadaten an eine übergeordnete Instanz (Fortführen)'/>
-	<z:row advise_id='52' advise_text='Einlesen von Metadaten einer nachgeordneten Instanz (Aktualisieren)
+		 ADVISE_LINE='Weitergabe der eingegebenen Metadaten an eine übergeordnete Instanz (Fortführen)' ROWID='AAAHZkAABAAAMVvAAB'/>
+	<z:row ADVISE_ID='52' ADVISE_TEXT='Einlesen von Metadaten einer nachgeordneten Instanz (Aktualisieren)
 
 
 Zum Einlesen von Metadaten einer nachgeordneten UDK-Instanz gehen Sie wie folgt vor:
@@ -420,8 +426,8 @@ Zum Einlesen von Metadaten einer nachgeordneten UDK-Instanz gehen Sie wie folgt 
 3. Wählen Sie die Option Aktualisieren und klicken Sie auf die Schaltfläche Importieren.
 
 4. Es werden alle UDK-Objekte und Adressen des Standardkataloges eingelesen, die von einer nachgeordneten UDK-Instanz neu angelegt oder geändert wurden.'
-		 advise_line='Einlesen von Metadaten einer nachgeordneten Instanz (Aktualisieren)'/>
-	<z:row advise_id='53' advise_text='Einlesen der vom Zentralkatalogadministrator verteilten Metadaten (Mitführen)
+		 ADVISE_LINE='Einlesen von Metadaten einer nachgeordneten Instanz (Aktualisieren)' ROWID='AAAHZkAABAAAMVvAAC'/>
+	<z:row ADVISE_ID='53' ADVISE_TEXT='Einlesen der vom Zentralkatalogadministrator verteilten Metadaten (Mitführen)
 
 
 Zum Einlesen der vom Zentralkatalogadministrator verteilten Metadaten gehen Sie wie folgt vor:
@@ -433,8 +439,8 @@ Zum Einlesen der vom Zentralkatalogadministrator verteilten Metadaten gehen Sie 
 3. Wählen Sie die Option &#x22;Mitführen&#x22; und klicken Sie auf die Schaltfläche &#x22;Importieren&#x22;.
 
 4. Es werden alle UDK-Objekte und Adressen des Standardkataloges eingelesen, die von allen UDK-Instanzen neu angelegt oder geändert wurden.'
-		 advise_line='Einlesen der vom Zentralkatalogadministrator verteilten Metadaten (Mitführen)'/>
-	<z:row advise_id='70' advise_text='Der Umweltdatenkatalog (UDK) ist ein Metainformationssystem zur Erfassung von Datenbeständen in den öffentlichen Umweltverwaltungen. Die Metadaten sollen Auskunft darüber geben, &#x22;wer&#x22; über &#x22;welche&#x22; umweltbezogenen Daten &#x22;in welchem&#x22; Format verfügt. Hierbei kann es sich sowohl um digitale als auch um analoge Datenbestände handeln. Ferner soll recherchiert werden können, wer für welche Fachaufgaben zuständig ist und welche umweltbezogenen Vorhaben oder Projekte durchgeführt werden. 
+		 ADVISE_LINE='Einlesen der vom Zentralkatalogadministrator verteilten Metadaten (Mitführen)' ROWID='AAAHZkAABAAAMVvAAD'/>
+	<z:row ADVISE_ID='70' ADVISE_TEXT='Der Umweltdatenkatalog (UDK) ist ein Metainformationssystem zur Erfassung von Datenbeständen in den öffentlichen Umweltverwaltungen. Die Metadaten sollen Auskunft darüber geben, &#x22;wer&#x22; über &#x22;welche&#x22; umweltbezogenen Daten &#x22;in welchem&#x22; Format verfügt. Hierbei kann es sich sowohl um digitale als auch um analoge Datenbestände handeln. Ferner soll recherchiert werden können, wer für welche Fachaufgaben zuständig ist und welche umweltbezogenen Vorhaben oder Projekte durchgeführt werden. 
 
 Die Metadaten werden in sogenannten UDK-Objekten erfaßt und in einer Datenbank abgelegt. Die Angaben in einem UDK-Objekt beziehen sich auf die Identifizierung des Objektes (Objektname, allgemeine Beschreibung, Verschlagwortung, etc.) sowie auf den Fach-, Raum- und Zeitbezug der zu beschreibenden Daten. Je nachdem, welche Art von Datenbestand zu beschreiben ist (z.B. Datensammlung oder Karte), stehen unterschiedliche Typen von UDK-Objekten zur Verfügung (sogenannte Objektklassen). Die UDK-Objekte können in einem Strukturbaum hierarchisch angeordnet werden. 
 
@@ -445,6 +451,6 @@ UDK-Objekte und UDK-Adressen werden als UDK-Kataloge zusammengefaßt. In Deutsch
 Der UDK ermöglicht die dezentrale Erfassung der Metadaten. Dies bedeutet, daß diejenigen Stellen, die die zu beschreibenden Daten vorhalten, auch die Metadaten eingeben bzw. pflegen (UDK-Instanzen). Die dezentral erfaßten Daten werden im Rahmen eines Aktualisierungszyklus an eine zentrale Stelle (Zentralkatalogadministrator) geschickt, zusammengeführt und anschließend wieder nach unten verteilt. Hierdurch ist gewährleistet, daß in regelmäßigen Abständen alle UDK-Instanzen über denselben Datenbestand verfügen.
 
 Schließlich verfügt der UDK über eine Benutzerverwaltung, mit deren Hilfe die Ver-gabe von Schreibrechten geregelt wird.'
-		 advise_line='Das Konzept des UDK kennenlernen'/>
+		 ADVISE_LINE='Das Konzept des UDK kennenlernen' ROWID='AAAHZkAABAAAMVvAAE'/>
 </rs:data>
 </xml>

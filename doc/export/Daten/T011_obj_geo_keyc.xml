@@ -4,39 +4,83 @@
 	xmlns:z='#RowsetSchema'>
 <s:Schema id='RowsetSchema'>
 	<s:ElementType name='row' content='eltOnly' rs:updatable='true'>
-		<s:AttributeType name='obj_id' rs:number='1' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='T011_obj_geo_keyc'
-			 rs:basecolumn='obj_id' rs:keycolumn='true'>
-			<s:datatype dt:type='string' dt:maxLength='40' rs:maybenull='false'/>
+		<s:AttributeType name='OBJ_ID' rs:number='1' rs:writeunknown='true' rs:basetable='T011_OBJ_GEO_KEYC' rs:basecolumn='OBJ_ID'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='40' rs:maybenull='false'/>
 		</s:AttributeType>
-		<s:AttributeType name='line' rs:number='2' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='T011_obj_geo_keyc'
-			 rs:basecolumn='line' rs:keycolumn='true'>
-			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true' rs:maybenull='false'/>
+		<s:AttributeType name='LINE' rs:number='2' rs:writeunknown='true' rs:basetable='T011_OBJ_GEO_KEYC' rs:basecolumn='LINE'>
+			<s:datatype dt:type='number' rs:dbtype='numeric' dt:maxLength='19' rs:scale='0' rs:precision='9' rs:fixedlength='true'
+			 rs:maybenull='false'/>
 		</s:AttributeType>
-		<s:AttributeType name='subject_cat' rs:number='3' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='T011_obj_geo_keyc' rs:basecolumn='subject_cat'>
-			<s:datatype dt:type='string' dt:maxLength='80'/>
+		<s:AttributeType name='SUBJECT_CAT' rs:number='3' rs:nullable='true' rs:writeunknown='true' rs:basetable='T011_OBJ_GEO_KEYC'
+			 rs:basecolumn='SUBJECT_CAT'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='80'/>
 		</s:AttributeType>
-		<s:AttributeType name='key_date' rs:number='4' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='T011_obj_geo_keyc' rs:basecolumn='key_date'>
-			<s:datatype dt:type='string' dt:maxLength='14'/>
+		<s:AttributeType name='KEY_DATE' rs:number='4' rs:nullable='true' rs:writeunknown='true' rs:basetable='T011_OBJ_GEO_KEYC'
+			 rs:basecolumn='KEY_DATE'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='14'/>
 		</s:AttributeType>
-		<s:AttributeType name='edition' rs:number='5' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='T011_obj_geo_keyc' rs:basecolumn='edition'>
-			<s:datatype dt:type='string' dt:maxLength='80'/>
+		<s:AttributeType name='EDITION' rs:number='5' rs:nullable='true' rs:writeunknown='true' rs:basetable='T011_OBJ_GEO_KEYC'
+			 rs:basecolumn='EDITION'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='80'/>
 		</s:AttributeType>
-		<s:AttributeType name='mod_type' rs:number='6' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='T011_obj_geo_keyc' rs:basecolumn='mod_type'>
-			<s:datatype dt:type='string' dt:maxLength='1'/>
+		<s:AttributeType name='MOD_TYPE' rs:number='6' rs:nullable='true' rs:writeunknown='true' rs:basetable='T011_OBJ_GEO_KEYC'
+			 rs:basecolumn='MOD_TYPE'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='1'/>
+		</s:AttributeType>
+		<s:AttributeType name='ROWID' rs:number='7' rs:nullable='true' rs:rowid='true' rs:basetable='T011_OBJ_GEO_KEYC'
+			 rs:basecolumn='ROWID' rs:keycolumn='true' rs:hidden='true' rs:autoincrement='true'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='18' rs:fixedlength='true'/>
 		</s:AttributeType>
 		<s:extends type='rs:rowbase'/>
 	</s:ElementType>
 </s:Schema>
 <rs:data>
-	<z:row obj_id='9B9661FD-B3B7-49D7-A440-E97A44872E14' line='1' subject_cat='KA4' key_date='31.12.1994' edition='4'
-		 mod_type='D'/>
-	<z:row obj_id='F923A659-61B1-4B26-9D99-7B4EFD91E077' line='1' subject_cat='KA4, KA5' key_date='01.01.2006' edition='2006'
-		 mod_type='I'/>
-	<z:row obj_id='BE6819D4-AED8-4607-B777-73A87A4B202F' line='1' subject_cat='KA4' key_date='31.12.1994' edition='4'
-		 mod_type='I'/>
+	<z:row OBJ_ID='38664BED-B449-11D2-9A86-080000507261' LINE='1' SUBJECT_CAT='Objektartenkatalog' KEY_DATE='01.01.1792'
+		 MOD_TYPE='U' ROWID='AAAHanAABAAAMiKAAA'/>
+	<z:row OBJ_ID='38664BEF-B449-11D2-9A86-080000507261' LINE='1' SUBJECT_CAT='ATKIS Objektartenkatalog' MOD_TYPE='N'
+		 ROWID='AAAHanAABAAAMiKAAB'/>
+	<z:row OBJ_ID='38664C29-B449-11D2-9A86-080000507261' LINE='1' SUBJECT_CAT='Drachenfels, O.v. &#x26; H. Mey (1991)'
+		 MOD_TYPE='N' ROWID='AAAHanAABAAAMiKAAC'/>
+	<z:row OBJ_ID='38664BEE-B449-11D2-9A86-080000507261' LINE='1' SUBJECT_CAT='ATKIS Objektartenkatalog' MOD_TYPE='N'
+		 ROWID='AAAHanAABAAAMiKAAD'/>
+	<z:row OBJ_ID='38664BF5-B449-11D2-9A86-080000507261' LINE='1' SUBJECT_CAT='ATKIS Objektartenkatalog' MOD_TYPE='N'
+		 ROWID='AAAHanAABAAAMiKAAE'/>
+	<z:row OBJ_ID='38664C3F-B449-11D2-9A86-080000507261' LINE='1' SUBJECT_CAT='von Drachenfels, O. (1994)' MOD_TYPE='N'
+		 ROWID='AAAHanAABAAAMiKAAF'/>
+	<z:row OBJ_ID='5E57C946-7037-11D3-BB32-1C7607C10000' LINE='1' SUBJECT_CAT='ATKIS Objektartenkatalog' MOD_TYPE='N'
+		 ROWID='AAAHanAABAAAMiKAAG'/>
+	<z:row OBJ_ID='76317843-70C8-11D3-BB32-1C7607C10000' LINE='1' SUBJECT_CAT='Drachenfels, O.v. &#x26; H. Mey (1991)'
+		 MOD_TYPE='N' ROWID='AAAHanAABAAAMiKAAH'/>
+	<z:row OBJ_ID='DC425D96-C6C7-11D4-8797-00600852CACF' LINE='1' SUBJECT_CAT='ATKIS®-Objektartenkatalog (ATKIS®-OK)'
+		 MOD_TYPE='N' ROWID='AAAHanAABAAAMiKAAI'/>
+	<z:row OBJ_ID='683597E7-FD95-11D4-87AF-00600852CACF' LINE='1' SUBJECT_CAT='TOPSY-Kennziffernkatalog für die Kennzeichnung der gemessenen Geländepunkte'
+		 MOD_TYPE='N' ROWID='AAAHanAABAAAMiKAAJ'/>
+	<z:row OBJ_ID='DC1A6AEA-5D9D-11D6-AEAC-0000F4B240F1' LINE='1' SUBJECT_CAT='Raumordnungskataster-Objektartenkatalog (ROK-OK)'
+		 MOD_TYPE='I' ROWID='AAAHanAABAAAMiKAAK'/>
+	<z:row OBJ_ID='DC1A6AFA-5D9D-11D6-AEAC-0000F4B240F1' LINE='1' SUBJECT_CAT='Raumordnungskataster-Objektartenkatalog (ROK-OK)'
+		 MOD_TYPE='I' ROWID='AAAHanAABAAAMiKAAL'/>
+	<z:row OBJ_ID='6F7EB549-6CA1-11D6-AEB1-0000F4B240F1' LINE='1' SUBJECT_CAT='Raumordnungskataster-Objektartenkatalog (ROK-OK)'
+		 MOD_TYPE='I' ROWID='AAAHanAABAAAMiKAAM'/>
+	<z:row OBJ_ID='6F7EB553-6CA1-11D6-AEB1-0000F4B240F1' LINE='1' SUBJECT_CAT='Raumordnungskataster-Objektartenkatalog (ROK-OK)'
+		 MOD_TYPE='I' ROWID='AAAHanAABAAAMiKAAN'/>
+	<z:row OBJ_ID='6F7EB55D-6CA1-11D6-AEB1-0000F4B240F1' LINE='1' SUBJECT_CAT='Raumordnungskataster-Objektartenkatalog (ROK-OK)'
+		 MOD_TYPE='I' ROWID='AAAHanAABAAAMiKAAO'/>
+	<z:row OBJ_ID='AC91125A-76B6-11D6-885F-0000F4ABB4D8' LINE='1' SUBJECT_CAT='Objektartenkatalog' MOD_TYPE='I'
+		 ROWID='AAAHanAABAAAMiKAAP'/>
+	<z:row OBJ_ID='92C1564F-2F17-11D5-982C-00D0B70EFC19' LINE='1' SUBJECT_CAT='v. Drachenfels &#x26; Mey (1985, 1990, 1991)'
+		 MOD_TYPE='I' ROWID='AAAHanAABAAAMiKAAQ'/>
+	<z:row OBJ_ID='1450E837-82B0-11D6-9828-000476159F75' LINE='1' MOD_TYPE='I' ROWID='AAAHanAABAAAMiKAAR'/>
+	<z:row OBJ_ID='1450E838-82B0-11D6-9828-000476159F75' LINE='1' MOD_TYPE='I' ROWID='AAAHanAABAAAMiKAAS'/>
+	<z:row OBJ_ID='1450E839-82B0-11D6-9828-000476159F75' LINE='1' MOD_TYPE='I' ROWID='AAAHanAABAAAMiKAAT'/>
+	<z:row OBJ_ID='1450E83A-82B0-11D6-9828-000476159F75' LINE='1' MOD_TYPE='I' ROWID='AAAHanAABAAAMiKAAU'/>
+	<z:row OBJ_ID='1450E83B-82B0-11D6-9828-000476159F75' LINE='1' MOD_TYPE='I' ROWID='AAAHanAABAAAMiKAAV'/>
+	<z:row OBJ_ID='1450E83C-82B0-11D6-9828-000476159F75' LINE='1' MOD_TYPE='I' ROWID='AAAHanAABAAAMiKAAW'/>
+	<z:row OBJ_ID='1450E83D-82B0-11D6-9828-000476159F75' LINE='1' MOD_TYPE='I' ROWID='AAAHanAABAAAMiKAAX'/>
+	<z:row OBJ_ID='0FD5DDA5-4B30-11D3-A45F-0060084A6015' LINE='1' SUBJECT_CAT='?' MOD_TYPE='I' ROWID='AAAHanAABAAAMiKAAY'/>
+	<z:row OBJ_ID='C869D72C-D58F-11D4-879F-00600852CACF' LINE='1' SUBJECT_CAT='?' MOD_TYPE='I' ROWID='AAAHanAABAAAMiKAAZ'/>
+	<z:row OBJ_ID='27A5661B-0B89-4C5E-85E2-95528B7A1453' LINE='1' SUBJECT_CAT='von Drachenfels 94' KEY_DATE='23.09.1994'
+		 EDITION='1' MOD_TYPE='U' ROWID='AAAHanAABAAAMiKAAa'/>
+	<z:row OBJ_ID='27A5661B-0B89-4C5E-85E2-95528B7A1453' LINE='2' SUBJECT_CAT='Kartierschlüssel' KEY_DATE='14.12.1999'
+		 EDITION='2.3' MOD_TYPE='U' ROWID='AAAHanAABAAAMiKAAb'/>
 </rs:data>
 </xml>

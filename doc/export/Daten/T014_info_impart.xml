@@ -1,0 +1,48 @@
+<xml xmlns:s='uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882'
+	xmlns:dt='uuid:C2F41010-65B3-11d1-A29F-00AA00C14882'
+	xmlns:rs='urn:schemas-microsoft-com:rowset'
+	xmlns:z='#RowsetSchema'>
+<s:Schema id='RowsetSchema'>
+	<s:ElementType name='row' content='eltOnly' rs:updatable='true'>
+		<s:AttributeType name='OBJ_ID' rs:number='1' rs:writeunknown='true' rs:basetable='T014_INFO_IMPART' rs:basecolumn='OBJ_ID'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='40' rs:maybenull='false'/>
+		</s:AttributeType>
+		<s:AttributeType name='LINE' rs:number='2' rs:writeunknown='true' rs:basetable='T014_INFO_IMPART' rs:basecolumn='LINE'>
+			<s:datatype dt:type='number' rs:dbtype='numeric' dt:maxLength='19' rs:scale='0' rs:precision='9' rs:fixedlength='true'
+			 rs:maybenull='false'/>
+		</s:AttributeType>
+		<s:AttributeType name='NAME' rs:number='3' rs:nullable='true' rs:writeunknown='true' rs:basetable='T014_INFO_IMPART'
+			 rs:basecolumn='NAME'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='80'/>
+		</s:AttributeType>
+		<s:AttributeType name='MOD_TYPE' rs:number='4' rs:nullable='true' rs:writeunknown='true' rs:basetable='T014_INFO_IMPART'
+			 rs:basecolumn='MOD_TYPE'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='1'/>
+		</s:AttributeType>
+		<s:AttributeType name='ROWID' rs:number='5' rs:nullable='true' rs:rowid='true' rs:basetable='T014_INFO_IMPART'
+			 rs:basecolumn='ROWID' rs:keycolumn='true' rs:hidden='true' rs:autoincrement='true'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='18' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:extends type='rs:rowbase'/>
+	</s:ElementType>
+</s:Schema>
+<rs:data>
+	<z:row OBJ_ID='271B740E-7ADC-410D-A947-D91E6F2913B8' LINE='1' NAME='TEST' MOD_TYPE='I' ROWID='AAAHbvAABAAAM26AAA'/>
+	<z:row OBJ_ID='271B740E-7ADC-410D-A947-D91E6F2913B8' LINE='2' NAME='CDS' MOD_TYPE='I' ROWID='AAAHbvAABAAAM26AAB'/>
+	<z:row OBJ_ID='393D9026-B1C6-4CD4-96D8-F064840F7AD4' LINE='1' NAME='CDS' MOD_TYPE='I' ROWID='AAAHbvAABAAAM26AAC'/>
+	<z:row OBJ_ID='6CF2886F-0124-4A4C-B76B-38CC1D3D0D85' LINE='1' NAME='CDS' MOD_TYPE='I' ROWID='AAAHbvAABAAAM26AAD'/>
+	<z:row OBJ_ID='095FA531-A0FC-4B4F-B2C7-AEB454787CB7' LINE='1' NAME='CDS' MOD_TYPE='I' ROWID='AAAHbvAABAAAM26AAE'/>
+	<z:row OBJ_ID='B8402522-04BE-4848-92A6-0A73F1DD46D1' LINE='1' NAME='CDS' MOD_TYPE='I' ROWID='AAAHbvAABAAAM26AAF'/>
+	<z:row OBJ_ID='27A5661B-0B89-4C5E-85E2-95528B7A1453' LINE='1' NAME='CDS' MOD_TYPE='I' ROWID='AAAHbvAABAAAM26AAG'/>
+	<z:row OBJ_ID='CFA845F7-070A-4C73-8FB3-97F0E19D5EB7' LINE='1' NAME='sonderzeichen' MOD_TYPE='I' ROWID='AAAHbvAABAAAM26AAH'/>
+	<z:row OBJ_ID='BE8BB20A-EFF2-46B5-A17F-CD69CF08AEE0' LINE='1' NAME='gistec' MOD_TYPE='I' ROWID='AAAHbvAABAAAM26AAI'/>
+	<z:row OBJ_ID='F3CECEA4-EB0F-46DB-B516-A6835C8FFCBA' LINE='1' NAME='gistec' MOD_TYPE='I' ROWID='AAAHbvAABAAAM26AAJ'/>
+	<z:row OBJ_ID='5FF9CBF3-1196-4B01-B855-A76ACBD0137C' LINE='1' NAME='gistec' MOD_TYPE='I' ROWID='AAAHbvAABAAAM26AAK'/>
+	<z:row OBJ_ID='64E9D658-E491-49E0-8459-A59D4DCB6C82' LINE='1' NAME='gistec' MOD_TYPE='I' ROWID='AAAHbvAABAAAM26AAL'/>
+	<z:row OBJ_ID='C510D4ED-208F-4135-B77F-73A8B8016A99' LINE='1' NAME='gistec' MOD_TYPE='I' ROWID='AAAHbvAABAAAM26AAM'/>
+	<z:row OBJ_ID='BD7EDFC4-473F-4BCF-8472-197ADEBBC5DE' LINE='1' NAME='gistec' MOD_TYPE='I' ROWID='AAAHbvAABAAAM26AAN'/>
+	<z:row OBJ_ID='CAEB9E03-2870-4771-ACCB-AB296B01D4B7' LINE='1' NAME='gistec' MOD_TYPE='I' ROWID='AAAHbvAABAAAM26AAO'/>
+	<z:row OBJ_ID='A3FC4646-95EA-460B-BEA9-D09B8D81299D' LINE='1' NAME='gistec' MOD_TYPE='I' ROWID='AAAHbvAABAAAM26AAP'/>
+	<z:row OBJ_ID='37D89A8E-3E4F-4907-A3FF-B01E3FE13B4C' LINE='1' NAME='CDS' MOD_TYPE='I' ROWID='AAAHbvAABAAAM26AAQ'/>
+</rs:data>
+</xml>

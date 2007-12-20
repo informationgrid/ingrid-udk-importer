@@ -1,0 +1,44 @@
+<xml xmlns:s='uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882'
+	xmlns:dt='uuid:C2F41010-65B3-11d1-A29F-00AA00C14882'
+	xmlns:rs='urn:schemas-microsoft-com:rowset'
+	xmlns:z='#RowsetSchema'>
+<s:Schema id='RowsetSchema'>
+	<s:ElementType name='row' content='eltOnly' rs:updatable='true'>
+		<s:AttributeType name='OBJ_ID' rs:number='1' rs:writeunknown='true' rs:basetable='T011_OBJ_SERV_VERSION' rs:basecolumn='OBJ_ID'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='40' rs:maybenull='false'/>
+		</s:AttributeType>
+		<s:AttributeType name='LINE' rs:number='2' rs:writeunknown='true' rs:basetable='T011_OBJ_SERV_VERSION' rs:basecolumn='LINE'>
+			<s:datatype dt:type='number' rs:dbtype='numeric' dt:maxLength='19' rs:scale='0' rs:precision='9' rs:fixedlength='true'
+			 rs:maybenull='false'/>
+		</s:AttributeType>
+		<s:AttributeType name='VERSION' rs:number='3' rs:nullable='true' rs:writeunknown='true' rs:basetable='T011_OBJ_SERV_VERSION'
+			 rs:basecolumn='VERSION'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='80'/>
+		</s:AttributeType>
+		<s:AttributeType name='MOD_TYPE' rs:number='4' rs:nullable='true' rs:writeunknown='true' rs:basetable='T011_OBJ_SERV_VERSION'
+			 rs:basecolumn='MOD_TYPE'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='1'/>
+		</s:AttributeType>
+		<s:AttributeType name='ROWID' rs:number='5' rs:nullable='true' rs:rowid='true' rs:basetable='T011_OBJ_SERV_VERSION'
+			 rs:basecolumn='ROWID' rs:keycolumn='true' rs:hidden='true' rs:autoincrement='true'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='18' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:extends type='rs:rowbase'/>
+	</s:ElementType>
+</s:Schema>
+<rs:data>
+	<z:row OBJ_ID='6CF2886F-0124-4A4C-B76B-38CC1D3D0D85' LINE='2' VERSION='1.4' MOD_TYPE='I' ROWID='AAAHbYAABAAAMpKAAA'/>
+	<z:row OBJ_ID='BE8BB20A-EFF2-46B5-A17F-CD69CF08AEE0' LINE='1' VERSION='1.0.0' MOD_TYPE='I' ROWID='AAAHbYAABAAAMpKAAB'/>
+	<z:row OBJ_ID='BE8BB20A-EFF2-46B5-A17F-CD69CF08AEE0' LINE='2' VERSION='1.1.0' MOD_TYPE='I' ROWID='AAAHbYAABAAAMpKAAC'/>
+	<z:row OBJ_ID='BE8BB20A-EFF2-46B5-A17F-CD69CF08AEE0' LINE='3' VERSION='1.1.1' MOD_TYPE='I' ROWID='AAAHbYAABAAAMpKAAD'/>
+	<z:row OBJ_ID='F3CECEA4-EB0F-46DB-B516-A6835C8FFCBA' LINE='1' VERSION='1.0.0' MOD_TYPE='I' ROWID='AAAHbYAABAAAMpKAAE'/>
+	<z:row OBJ_ID='F3CECEA4-EB0F-46DB-B516-A6835C8FFCBA' LINE='2' VERSION='1.1.0' MOD_TYPE='I' ROWID='AAAHbYAABAAAMpKAAF'/>
+	<z:row OBJ_ID='F3CECEA4-EB0F-46DB-B516-A6835C8FFCBA' LINE='3' VERSION='1.1.1' MOD_TYPE='I' ROWID='AAAHbYAABAAAMpKAAG'/>
+	<z:row OBJ_ID='5FF9CBF3-1196-4B01-B855-A76ACBD0137C' LINE='1' VERSION='1.0.0' MOD_TYPE='I' ROWID='AAAHbYAABAAAMpKAAH'/>
+	<z:row OBJ_ID='5FF9CBF3-1196-4B01-B855-A76ACBD0137C' LINE='2' VERSION='1.1.0' MOD_TYPE='I' ROWID='AAAHbYAABAAAMpKAAI'/>
+	<z:row OBJ_ID='5FF9CBF3-1196-4B01-B855-A76ACBD0137C' LINE='3' VERSION='1.1.1' MOD_TYPE='I' ROWID='AAAHbYAABAAAMpKAAJ'/>
+	<z:row OBJ_ID='A3FC4646-95EA-460B-BEA9-D09B8D81299D' LINE='1' VERSION='1.0.0' MOD_TYPE='I' ROWID='AAAHbYAABAAAMpKAAK'/>
+	<z:row OBJ_ID='A3FC4646-95EA-460B-BEA9-D09B8D81299D' LINE='2' VERSION='1.1.0' MOD_TYPE='I' ROWID='AAAHbYAABAAAMpKAAL'/>
+	<z:row OBJ_ID='A3FC4646-95EA-460B-BEA9-D09B8D81299D' LINE='3' VERSION='1.1.1' MOD_TYPE='I' ROWID='AAAHbYAABAAAMpKAAM'/>
+</rs:data>
+</xml>

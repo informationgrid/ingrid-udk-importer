@@ -4,61 +4,63 @@
 	xmlns:z='#RowsetSchema'>
 <s:Schema id='RowsetSchema'>
 	<s:ElementType name='row' content='eltOnly' rs:updatable='true'>
-		<s:AttributeType name='country_id' rs:number='1' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='T071_state'
-			 rs:basecolumn='country_id' rs:keycolumn='true'>
-			<s:datatype dt:type='string' dt:maxLength='3' rs:maybenull='false'/>
+		<s:AttributeType name='COUNTRY_ID' rs:number='1' rs:writeunknown='true' rs:basetable='T071_STATE' rs:basecolumn='COUNTRY_ID'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='3' rs:maybenull='false'/>
 		</s:AttributeType>
-		<s:AttributeType name='state_id' rs:number='2' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='T071_state'
-			 rs:basecolumn='state_id' rs:keycolumn='true'>
-			<s:datatype dt:type='string' dt:maxLength='2' rs:maybenull='false'/>
+		<s:AttributeType name='STATE_ID' rs:number='2' rs:writeunknown='true' rs:basetable='T071_STATE' rs:basecolumn='STATE_ID'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='2' rs:maybenull='false'/>
 		</s:AttributeType>
-		<s:AttributeType name='state' rs:number='3' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='T071_state' rs:basecolumn='state'>
-			<s:datatype dt:type='string' dt:maxLength='50'/>
+		<s:AttributeType name='STATE' rs:number='3' rs:nullable='true' rs:writeunknown='true' rs:basetable='T071_STATE'
+			 rs:basecolumn='STATE'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='50'/>
 		</s:AttributeType>
-		<s:AttributeType name='loc_town_no' rs:number='4' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='T071_state' rs:basecolumn='loc_town_no'>
-			<s:datatype dt:type='string' dt:maxLength='4'/>
+		<s:AttributeType name='LOC_TOWN_NO' rs:number='4' rs:nullable='true' rs:writeunknown='true' rs:basetable='T071_STATE'
+			 rs:basecolumn='LOC_TOWN_NO'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='4'/>
 		</s:AttributeType>
-		<s:AttributeType name='mod_time' rs:number='5' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='T071_state' rs:basecolumn='mod_time'>
-			<s:datatype dt:type='string' dt:maxLength='14'/>
+		<s:AttributeType name='MOD_TIME' rs:number='5' rs:nullable='true' rs:writeunknown='true' rs:basetable='T071_STATE'
+			 rs:basecolumn='MOD_TIME'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='14'/>
 		</s:AttributeType>
-		<s:AttributeType name='mod_type' rs:number='6' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='T071_state'
-			 rs:basecolumn='mod_type'>
-			<s:datatype dt:type='string' dt:maxLength='1' rs:maybenull='false'/>
+		<s:AttributeType name='MOD_TYPE' rs:number='6' rs:nullable='true' rs:writeunknown='true' rs:basetable='T071_STATE'
+			 rs:basecolumn='MOD_TYPE'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='1'/>
+		</s:AttributeType>
+		<s:AttributeType name='ROWID' rs:number='7' rs:nullable='true' rs:rowid='true' rs:basetable='T071_STATE' rs:basecolumn='ROWID'
+			 rs:keycolumn='true' rs:hidden='true' rs:autoincrement='true'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='18' rs:fixedlength='true'/>
 		</s:AttributeType>
 		<s:extends type='rs:rowbase'/>
 	</s:ElementType>
 </s:Schema>
 <rs:data>
-	<z:row country_id='A' state_id='B' state='Burgenland' loc_town_no='1' mod_type='N'/>
-	<z:row country_id='A' state_id='BU' state='alle Bundesländer' loc_town_no='0' mod_type='N'/>
-	<z:row country_id='A' state_id='K' state='Kärnten' loc_town_no='2' mod_type='N'/>
-	<z:row country_id='A' state_id='N' state='Niederösterreich' loc_town_no='3' mod_type='N'/>
-	<z:row country_id='A' state_id='O' state='Oberösterreich' loc_town_no='4' mod_type='N'/>
-	<z:row country_id='A' state_id='OE' state='Oberösterreich' loc_town_no='4' mod_type='N'/>
-	<z:row country_id='A' state_id='S' state='Salzburg' loc_town_no='5' mod_type='N'/>
-	<z:row country_id='A' state_id='ST' state='Steiermark' loc_town_no='6' mod_type='N'/>
-	<z:row country_id='A' state_id='T' state='Tirol' loc_town_no='7' mod_type='N'/>
-	<z:row country_id='A' state_id='V' state='Voralberg' loc_town_no='8' mod_type='N'/>
-	<z:row country_id='A' state_id='W' state='Wien' loc_town_no='9' mod_type='N'/>
-	<z:row country_id='D' state_id='BB' state='Brandenburg' loc_town_no='12' mod_type='N'/>
-	<z:row country_id='D' state_id='BE' state='Berlin' loc_town_no='11' mod_type='N'/>
-	<z:row country_id='D' state_id='BU' state='alle Bundesländer' loc_town_no='0' mod_type='N'/>
-	<z:row country_id='D' state_id='BW' state='Baden-Württemberg' loc_town_no='08' mod_type='N'/>
-	<z:row country_id='D' state_id='BY' state='Bayern' loc_town_no='09' mod_type='N'/>
-	<z:row country_id='D' state_id='HB' state='Bremen' loc_town_no='04' mod_type='N'/>
-	<z:row country_id='D' state_id='HE' state='Hessen' loc_town_no='06' mod_type='N'/>
-	<z:row country_id='D' state_id='HH' state='Hamburg' loc_town_no='02' mod_type='N'/>
-	<z:row country_id='D' state_id='MV' state='Mecklenburg-Vorpommern' loc_town_no='13' mod_type='N'/>
-	<z:row country_id='D' state_id='NI' state='Niedersachsen' loc_town_no='03' mod_type='N'/>
-	<z:row country_id='D' state_id='NW' state='Nordrhein-Westfalen' loc_town_no='05' mod_type='N'/>
-	<z:row country_id='D' state_id='RP' state='Rheinland-Pfalz' loc_town_no='07' mod_type='N'/>
-	<z:row country_id='D' state_id='SH' state='Schleswig-Holstein' loc_town_no='01' mod_type='N'/>
-	<z:row country_id='D' state_id='SL' state='Saarland' loc_town_no='10' mod_type='N'/>
-	<z:row country_id='D' state_id='SN' state='Sachsen' loc_town_no='14' mod_type='N'/>
-	<z:row country_id='D' state_id='ST' state='Sachsen-Anhalt' loc_town_no='15' mod_type='N'/>
-	<z:row country_id='D' state_id='TH' state='Thüringen' loc_town_no='16' mod_type='N'/>
+	<z:row COUNTRY_ID='A' STATE_ID='B' STATE='Burgenland' LOC_TOWN_NO='1' MOD_TYPE='N' ROWID='AAAHdOAABAAANp6AAA'/>
+	<z:row COUNTRY_ID='A' STATE_ID='BU' STATE='alle Bundesländer' LOC_TOWN_NO='0' MOD_TYPE='N' ROWID='AAAHdOAABAAANp6AAB'/>
+	<z:row COUNTRY_ID='A' STATE_ID='K' STATE='Kärnten' LOC_TOWN_NO='2' MOD_TYPE='N' ROWID='AAAHdOAABAAANp6AAC'/>
+	<z:row COUNTRY_ID='A' STATE_ID='N' STATE='Niederösterreich' LOC_TOWN_NO='3' MOD_TYPE='N' ROWID='AAAHdOAABAAANp6AAD'/>
+	<z:row COUNTRY_ID='A' STATE_ID='O' STATE='Oberösterreich' LOC_TOWN_NO='4' MOD_TYPE='N' ROWID='AAAHdOAABAAANp6AAE'/>
+	<z:row COUNTRY_ID='A' STATE_ID='OE' STATE='Oberösterreich' LOC_TOWN_NO='4' MOD_TYPE='N' ROWID='AAAHdOAABAAANp6AAF'/>
+	<z:row COUNTRY_ID='A' STATE_ID='S' STATE='Salzburg' LOC_TOWN_NO='5' MOD_TYPE='N' ROWID='AAAHdOAABAAANp6AAG'/>
+	<z:row COUNTRY_ID='A' STATE_ID='ST' STATE='Steiermark' LOC_TOWN_NO='6' MOD_TYPE='N' ROWID='AAAHdOAABAAANp6AAH'/>
+	<z:row COUNTRY_ID='A' STATE_ID='T' STATE='Tirol' LOC_TOWN_NO='7' MOD_TYPE='N' ROWID='AAAHdOAABAAANp6AAI'/>
+	<z:row COUNTRY_ID='A' STATE_ID='V' STATE='Voralberg' LOC_TOWN_NO='8' MOD_TYPE='N' ROWID='AAAHdOAABAAANp6AAJ'/>
+	<z:row COUNTRY_ID='A' STATE_ID='W' STATE='Wien' LOC_TOWN_NO='9' MOD_TYPE='N' ROWID='AAAHdOAABAAANp6AAK'/>
+	<z:row COUNTRY_ID='D' STATE_ID='BB' STATE='Brandenburg' LOC_TOWN_NO='12' MOD_TYPE='N' ROWID='AAAHdOAABAAANp6AAL'/>
+	<z:row COUNTRY_ID='D' STATE_ID='BE' STATE='Berlin' LOC_TOWN_NO='11' MOD_TYPE='N' ROWID='AAAHdOAABAAANp6AAM'/>
+	<z:row COUNTRY_ID='D' STATE_ID='BU' STATE='alle Bundesländer' LOC_TOWN_NO='0' MOD_TYPE='N' ROWID='AAAHdOAABAAANp6AAN'/>
+	<z:row COUNTRY_ID='D' STATE_ID='BW' STATE='Baden-Württemberg' LOC_TOWN_NO='08' MOD_TYPE='N' ROWID='AAAHdOAABAAANp6AAO'/>
+	<z:row COUNTRY_ID='D' STATE_ID='BY' STATE='Bayern' LOC_TOWN_NO='09' MOD_TYPE='N' ROWID='AAAHdOAABAAANp6AAP'/>
+	<z:row COUNTRY_ID='D' STATE_ID='HB' STATE='Bremen' LOC_TOWN_NO='04' MOD_TYPE='N' ROWID='AAAHdOAABAAANp6AAQ'/>
+	<z:row COUNTRY_ID='D' STATE_ID='HE' STATE='Hessen' LOC_TOWN_NO='06' MOD_TYPE='N' ROWID='AAAHdOAABAAANp6AAR'/>
+	<z:row COUNTRY_ID='D' STATE_ID='HH' STATE='Hamburg' LOC_TOWN_NO='02' MOD_TYPE='N' ROWID='AAAHdOAABAAANp6AAS'/>
+	<z:row COUNTRY_ID='D' STATE_ID='MV' STATE='Mecklenburg-Vorpommern' LOC_TOWN_NO='13' MOD_TYPE='N' ROWID='AAAHdOAABAAANp6AAT'/>
+	<z:row COUNTRY_ID='D' STATE_ID='NI' STATE='Niedersachsen' LOC_TOWN_NO='03' MOD_TYPE='N' ROWID='AAAHdOAABAAANp6AAU'/>
+	<z:row COUNTRY_ID='D' STATE_ID='NW' STATE='Nordrhein-Westfalen' LOC_TOWN_NO='05' MOD_TYPE='N' ROWID='AAAHdOAABAAANp6AAV'/>
+	<z:row COUNTRY_ID='D' STATE_ID='RP' STATE='Rheinland-Pfalz' LOC_TOWN_NO='07' MOD_TYPE='N' ROWID='AAAHdOAABAAANp6AAW'/>
+	<z:row COUNTRY_ID='D' STATE_ID='SH' STATE='Schleswig-Holstein' LOC_TOWN_NO='01' MOD_TYPE='N' ROWID='AAAHdOAABAAANp6AAX'/>
+	<z:row COUNTRY_ID='D' STATE_ID='SL' STATE='Saarland' LOC_TOWN_NO='10' MOD_TYPE='N' ROWID='AAAHdOAABAAANp6AAY'/>
+	<z:row COUNTRY_ID='D' STATE_ID='SN' STATE='Sachsen' LOC_TOWN_NO='14' MOD_TYPE='N' ROWID='AAAHdOAABAAANp6AAZ'/>
+	<z:row COUNTRY_ID='D' STATE_ID='ST' STATE='Sachsen-Anhalt' LOC_TOWN_NO='15' MOD_TYPE='N' ROWID='AAAHdOAABAAANp6AAa'/>
+	<z:row COUNTRY_ID='D' STATE_ID='TH' STATE='Thüringen' LOC_TOWN_NO='16' MOD_TYPE='N' ROWID='AAAHdOAABAAANp6AAb'/>
 </rs:data>
 </xml>

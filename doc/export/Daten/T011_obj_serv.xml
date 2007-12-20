@@ -4,119 +4,656 @@
 	xmlns:z='#RowsetSchema'>
 <s:Schema id='RowsetSchema'>
 	<s:ElementType name='row' content='eltOnly' rs:updatable='true'>
-		<s:AttributeType name='obj_id' rs:number='1' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='T011_obj_serv'
-			 rs:basecolumn='obj_id' rs:keycolumn='true'>
-			<s:datatype dt:type='string' dt:maxLength='40' rs:maybenull='false'/>
+		<s:AttributeType name='OBJ_ID' rs:number='1' rs:writeunknown='true' rs:basetable='T011_OBJ_SERV' rs:basecolumn='OBJ_ID'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='40' rs:maybenull='false'/>
 		</s:AttributeType>
-		<s:AttributeType name='type' rs:number='2' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='T011_obj_serv' rs:basecolumn='type'>
-			<s:datatype dt:type='string' dt:maxLength='255'/>
+		<s:AttributeType name='TYPE' rs:number='2' rs:nullable='true' rs:writeunknown='true' rs:basetable='T011_OBJ_SERV'
+			 rs:basecolumn='TYPE'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='255'/>
 		</s:AttributeType>
-		<s:AttributeType name='history' rs:number='3' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='T011_obj_serv' rs:basecolumn='history'>
-			<s:datatype dt:type='string' dt:maxLength='1073741823' rs:long='true'/>
+		<s:AttributeType name='HISTORY' rs:number='3' rs:nullable='true' rs:writeunknown='true' rs:basetable='T011_OBJ_SERV'
+			 rs:basecolumn='HISTORY'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='2000'/>
 		</s:AttributeType>
-		<s:AttributeType name='environment' rs:number='4' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='T011_obj_serv' rs:basecolumn='environment'>
-			<s:datatype dt:type='string' dt:maxLength='1073741823' rs:long='true'/>
+		<s:AttributeType name='ENVIRONMENT' rs:number='4' rs:nullable='true' rs:writeunknown='true' rs:basetable='T011_OBJ_SERV'
+			 rs:basecolumn='ENVIRONMENT'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='2000'/>
 		</s:AttributeType>
-		<s:AttributeType name='base' rs:number='5' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='T011_obj_serv' rs:basecolumn='base'>
-			<s:datatype dt:type='string' dt:maxLength='255'/>
+		<s:AttributeType name='BASE' rs:number='5' rs:nullable='true' rs:writeunknown='true' rs:basetable='T011_OBJ_SERV'
+			 rs:basecolumn='BASE'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='255'/>
 		</s:AttributeType>
-		<s:AttributeType name='description' rs:number='6' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='T011_obj_serv' rs:basecolumn='description'>
-			<s:datatype dt:type='string' dt:maxLength='1073741823' rs:long='true'/>
+		<s:AttributeType name='DESCRIPTION' rs:number='6' rs:nullable='true' rs:writeunknown='true' rs:basetable='T011_OBJ_SERV'
+			 rs:basecolumn='DESCRIPTION'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='2000'/>
 		</s:AttributeType>
-		<s:AttributeType name='mod_type' rs:number='7' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='T011_obj_serv' rs:basecolumn='mod_type'>
-			<s:datatype dt:type='string' dt:maxLength='1'/>
+		<s:AttributeType name='MOD_TYPE' rs:number='7' rs:nullable='true' rs:writeunknown='true' rs:basetable='T011_OBJ_SERV'
+			 rs:basecolumn='MOD_TYPE'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='1'/>
+		</s:AttributeType>
+		<s:AttributeType name='ROWID' rs:number='8' rs:nullable='true' rs:rowid='true' rs:basetable='T011_OBJ_SERV'
+			 rs:basecolumn='ROWID' rs:keycolumn='true' rs:hidden='true' rs:autoincrement='true'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='18' rs:fixedlength='true'/>
 		</s:AttributeType>
 		<s:extends type='rs:rowbase'/>
 	</s:ElementType>
 </s:Schema>
 <rs:data>
-	<z:row obj_id='A4775D93-A638-4063-98F7-D6507B5C97C4' type='Fachinformationssystem' mod_type='U'/>
-	<z:row obj_id='B82B0A07-116F-45A0-B601-5EBD422E838B' type='Fachinformationssystem' environment=' ' mod_type='D'/>
-	<z:row obj_id='E1C31EF4-81CE-4CFD-8207-EC0E0A8DCA6C' type='XXX' mod_type='D'/>
-	<z:row obj_id='5AEC2E06-CE55-11D3-8BF6-00105A493192' type='Berechnungsverfahren, gültig bis 2000' mod_type='N'/>
-	<z:row obj_id='9E48DAF5-8BD4-11D5-9350-0048543011FC' mod_type='N'/>
-	<z:row obj_id='A0B69EC8-779A-11D6-9350-0048543011FC' mod_type='N'/>
-	<z:row obj_id='13A43022-CBA4-11D5-9350-0048543011FC' mod_type='N'/>
-	<z:row obj_id='7B52B0E9-EE0D-11D5-9350-0048543011FC' mod_type='N'/>
-	<z:row obj_id='8F590A2F-E7E2-11D5-9350-0048543011FC' mod_type='N'/>
-	<z:row obj_id='D075B8EF-0122-11D6-9350-0048543011FC' mod_type='N'/>
-	<z:row obj_id='D075B8F0-0122-11D6-9350-0048543011FC' mod_type='N'/>
-	<z:row obj_id='D075B8F2-0122-11D6-9350-0048543011FC' mod_type='N'/>
-	<z:row obj_id='D075B8F3-0122-11D6-9350-0048543011FC' mod_type='N'/>
-	<z:row obj_id='6B7100AE-F0BC-4B3E-B36C-9E92B7820718' type='Fachinformationssystem' mod_type='U'/>
-	<z:row obj_id='C4AFA2F7-F499-4ECA-B4BA-B2079164E1C0' type='Fachinformationssystem' history='Entwicklung edv-gestützer Entscheidungshilfen im Rahmen des Forschungsprojektes &#x22;Prognose agrarischer Schadorganismen&#x22; (1994-1997)'
-		 base='Wetterdaten' mod_type='U'/>
-	<z:row obj_id='5AEC2A62-CE55-11D3-8BF6-00105A493192' type='Modell /MeMaS /Access' mod_type='N'/>
-	<z:row obj_id='4A0B8476-AD33-409E-B74F-A2FD03CA209A' type='Fachinformationssystem' environment=' ' base='' mod_type='D'/>
-	<z:row obj_id='BF4D89FE-E1C7-4318-AB4F-F2F4780D0A20' type='' mod_type='D'/>
-	<z:row obj_id='35F44042-65F6-45F8-9C9D-C1FD8DA39B52' type='Fachinformationssystem' environment=' ' base='InVeKoS-Förderdaten'
-		 mod_type='D'/>
-	<z:row obj_id='A31539B1-0843-4EF8-BB2D-87D2790F9B96' type='' mod_type='D'/>
-	<z:row obj_id='BD2A4BF3-D05A-40CB-9314-D7821B5F01DC' type='Ausbreitungsmodell-Rechnung' description='Ausbreitungsrechenverfahren nach TA Luft'
-		 mod_type='U'/>
-	<z:row obj_id='BDC31500-91EC-4C78-8998-42DDA475B937' type='Fachinformationssystem' environment=' ' mod_type='U'/>
-	<z:row obj_id='4AEC7C73-27E0-4892-9042-52893E5CA8DC' type='Fachinformationssystem' environment=' ' base='' mod_type='U'/>
-	<z:row obj_id='5AEC2DB7-CE55-11D3-8BF6-00105A493192' type='Modell E3D /ArcGIS
-' mod_type='N'/>
-	<z:row obj_id='02FD3ECB-C4AC-4658-8657-0C6AAA15D39B' type='Fachinformationssystem' environment=' ' base='' mod_type='U'/>
-	<z:row obj_id='EDD923CE-1238-4718-895C-89C9DB9E2850' type='Fachinformationssystem' environment=' ' base='' mod_type='U'/>
-	<z:row obj_id='C4E31A1E-00B9-4A13-838D-810C6DB4FAA4' type='Fachinformationssystem' environment=' ' base='' mod_type='U'/>
-	<z:row obj_id='3F855540-8685-4D9E-A751-46C4582F4CB6' type='Fachinformationssystem' environment=' ' base='' mod_type='U'/>
-	<z:row obj_id='C4A87FC9-0CA2-4250-B737-CE90E75636C2' type='Verwaltungsverfahren' environment=' Hersteller:Juris GmbH'
-		 description='Online-Datenbank' mod_type='N'/>
-	<z:row obj_id='6C818197-FCA6-4C54-8374-D7D9B124A24D' type='Fachinformationssystem' environment=' ' base='' mod_type='U'/>
-	<z:row obj_id='F2F987A4-AAB4-46A5-ACC5-1D3530DCB61E' type='Fachinformationssystem' environment=' ' base='' mod_type='U'/>
-	<z:row obj_id='0ECD2A32-4219-42EC-9EDF-15C791A4C51C' type='Fachinformationssystem' environment=' ' base='' mod_type='U'/>
-	<z:row obj_id='2F4A3177-8A80-4D71-9CAD-04EA64F4EFF3' type='Verwaltungsverfahren' environment='Oracle-Datenbank
-Version 8.0 Release 01.04'
-		 description='Datenträger: CD' mod_type='N'/>
-	<z:row obj_id='548129FB-621F-4AE5-8C78-CF8F4C5C5C7F' type='Fachinformationssystem' environment=' ' base='' mod_type='U'/>
-	<z:row obj_id='356E2838-74B3-4A53-B123-B58877488E02' type='Fachinformationssystem' history='aus Einzeldatenbanken entstanden, im Aufbau begriffen'
-		 environment='' base='Einzeldatenbanken des forstlichen Umweltmonitorings und der Standortserkundung, verbunden mit der digitalen Standortskarte'
-		 description='' mod_type='N'/>
-	<z:row obj_id='C78FD86B-8295-4BB1-A473-3E125602D984' type='Fachinformationssystem' history='Aufbau begonnen ab 1994 - Weiterentwicklung und Erweiterung als laufender Prozess'
-		 environment='SQL Datenbankserver, 
-Microstation CAD System, 
-Verschiedene Spezialprogramme unter Win 2000/XP, 
-Schnittstellen zum FGIS System des LFP
+	<z:row OBJ_ID='2F6C2734-5F76-11D3-A172-08002B9A1D1D' MOD_TYPE='N' ROWID='AAAHbBAABAAAMmKAAA'/>
+	<z:row OBJ_ID='2F6C2736-5F76-11D3-A172-08002B9A1D1D' MOD_TYPE='N' ROWID='AAAHbBAABAAAMmKAAB'/>
+	<z:row OBJ_ID='5CE671E8-5475-11D3-A172-08002B9A1D1D' MOD_TYPE='N' ROWID='AAAHbBAABAAAMmKAAC'/>
+	<z:row OBJ_ID='5CE671EC-5475-11D3-A172-08002B9A1D1D' MOD_TYPE='N' ROWID='AAAHbBAABAAAMmKAAD'/>
+	<z:row OBJ_ID='5CE671EE-5475-11D3-A172-08002B9A1D1D' MOD_TYPE='N' ROWID='AAAHbBAABAAAMmKAAE'/>
+	<z:row OBJ_ID='1FABC45B-509C-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmKAAF'/>
+	<z:row OBJ_ID='38664BEC-B449-11D2-9A86-080000507261' TYPE='Geographisches Informationssystem' MOD_TYPE='U' ROWID='AAAHbBAABAAAMmKAAG'/>
+	<z:row OBJ_ID='1FABC460-509C-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmKAAH'/>
+	<z:row OBJ_ID='1FABC43F-509C-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmKAAI'/>
+	<z:row OBJ_ID='1FABC44C-509C-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmKAAJ'/>
+	<z:row OBJ_ID='5904E936-6A69-11D3-AE03-00104B57C66D' TYPE='Positionierungsdienst mit SAPOS®-Decoder' ENVIRONMENT='Ihre Anmeldung in Niedersachsen richten Sie bitte per Brief, Telefax oder E-Mail unter Nennung
+der Art und des Umfanges Ihrer Arbeiten,  des gewünschten SAPOS®-Dienstes und
+der Höhe des gewünschten Zeitguthabens für die SAPOS®-Chipkarte an die LGN.'
+		 DESCRIPTION='Genauigkeit: 1 bis 3m' MOD_TYPE='U' ROWID='AAAHbBAABAAAMmKAAK'/>
+	<z:row OBJ_ID='D3200431-53B7-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmKAAL'/>
+	<z:row OBJ_ID='5904E937-6A69-11D3-AE03-00104B57C66D' TYPE='Positionierungsdienst' ENVIRONMENT='Ihre Anmeldung auf einer unserer SAPOS®-RS richten Sie bitte per Brief, Telefax oder E-Mail unter Nennung der gewünschten Referenzstation, der Art und des Umfanges Ihrer Arbeiten, des gewünschten Datenzeitraumes und des gewünschten SAPOS®-Dienstes an die LGN.  Sie können sich auch für GSM
+(Tel. Nutzung) registrieren lassen.S. Verweise'
+		 BASE='RINEX (Receiver Independent Exchange Format) - Daten 2.0 der RS werden dauerhaft gespeichert.' DESCRIPTION='Genauigkeit: &#x3c; 1cm'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmKAAM'/>
+	<z:row OBJ_ID='5904E938-6A69-11D3-AE03-00104B57C66D' TYPE='Positionierungsdienst' ENVIRONMENT='Ihre Anmeldung auf einer unserer SAPOS®-RS richten Sie bitte per Brief, Telefax oder E-Mail unter Nennung  der gewünschten Referenzstation, der Art und des Umfanges Ihrer Arbeiten,  des gewünschten Datenzeitraumes und des gewünschten SAPOS®-Dienstes an die LGN. Sie können sich auch für GSM
+(Tel. Nutzung) registrieren lassen.S. Verweise'
+		 BASE='RINEX (Receiver Independent Exchange Format) - Daten 2.0 der RS werden dauerhaft gespeichert.' DESCRIPTION='Genauigkeit: 1 cm
+
+
+
+
+
+
 '
-		 base='siehe einzelne Datenbankprojekte' description='Komplex aus mehreren (vernetzten) Datenbankprojekten und Expertensystemen (siehe Beschreibung)'
-		 mod_type='N'/>
-	<z:row obj_id='F026DFD8-E469-4AE7-82E7-0634A9B8CD4C' type='-' mod_type='N'/>
-	<z:row obj_id='73FADB67-5E49-4170-B171-582B0CF64C8D' type='-' mod_type='N'/>
-	<z:row obj_id='F909C032-0B3C-41D6-BFAE-42CE452EDF49' type='
-' mod_type='U'/>
-	<z:row obj_id='5AEC2633-CE55-11D3-8BF6-00105A493192' type='Fachinformationssystem' environment='Oracle 8i; Access 2003; ArcGIS 9.0'
-		 mod_type='N'/>
-	<z:row obj_id='E9E06E38-053A-45EE-A425-D3380A393CD6' type='-' mod_type='N'/>
-	<z:row obj_id='CAADD963-DCE7-44C7-8487-89094644EB17' type='.' mod_type='U'/>
-	<z:row obj_id='CE34C67F-AA0C-429C-92AD-0BC16D803C69' type='Berechnungsverfahren' mod_type='N'/>
-	<z:row obj_id='03E2D339-C545-4D5F-877C-75DA0866CC68' type='Berechnungsverfahren' mod_type='N'/>
-	<z:row obj_id='14CCE51E-5254-418B-8204-D43040516D86' type='Fachinformationssystem' environment=' ' base='' mod_type='U'/>
-	<z:row obj_id='A8894770-008A-4DAC-A148-271AAE34E21F' type='Fachanwendung' environment='GIS ArcView
-Pogrammiersprache Fortran'
-		 description='z.Z. in Testphase
-Flutungszentrale der LMBV' mod_type='N'/>
-	<z:row obj_id='D3C825B3-07EF-4DFB-81AD-0CEBCC3700E3' type='Fachanwendung' environment='Basis GIS ArcView
-Programmiersprache Fortran'
-		 description='Datennutzer: LMBV, LfUG, StUFAB, LUA Brandenburg, Senatsverwaltung Berlin' mod_type='N'/>
-	<z:row obj_id='DAAAF451-AF64-4D73-B389-C693B567E9EE' type='Internet' base='Sauerstoffgehalt und -sättigung, Temperatur, pH-Wert, Leitfähigkeit, Nitrat- und Ammoniumstickstoff, Trübung, SAK, Gesamtchlorophyll, Biotest, AOV'
-		 description='Parameterumfang der einzelnen Stationen unterschiedlich ' mod_type='U'/>
-	<z:row obj_id='240F27B3-049C-4299-85E5-7A999A99F21E' type='XXXX' mod_type='D'/>
-	<z:row obj_id='07F4F072-2527-4B92-89F5-223EB6621511' type='Fachinformationssystem' environment=' ' base='' mod_type='D'/>
-	<z:row obj_id='71393514-8897-4FC9-AD11-33DF1E1E1528' type='xxx' mod_type='D'/>
-	<z:row obj_id='222C5FE7-E25B-48DB-B134-63A64B786459' type='Fachinformationssystem' history='seit wann ??' base='- Phytosanitäre Erhebungen, visuelle Bestandesbonituren (Schaderregerüberwachung) 
-- Nutzung einfacher Warndienstgeräte (Gelbschalen, Pheromonfallen) 
-- Labordiagnostische Untersuchungen 
-- Agrarmeteorologisches Messnetz und Nutzung von auf We'
-		 mod_type='U'/>
-	<z:row obj_id='0E3CE039-1BA4-4961-A676-7D1C28097A86' type='Fachinformationssystem' mod_type='U'/>
-	<z:row obj_id='1D88F944-D6D3-420F-8B80-3EF300E46E24' type='Fachinformationssystem' environment=' ' base='' mod_type='U'/>
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmKAAN'/>
+	<z:row OBJ_ID='5904E939-6A69-11D3-AE03-00104B57C66D' TYPE='Positionierungsdienst mit SAPOS®-Decoder' ENVIRONMENT='Ihre Anmeldung in Niedersachsen richten Sie bitte per Brief, Telefax oder E-Mail unter Nennung
+der Art und des Umfanges Ihrer Arbeiten, des gewünschten SAPOS®-Dienstes und der Höhe des gewünschten Zeitguthabens für die SAPOS®-Chipkarte an die LGN. Sie können sich auch für GSM
+(Tel. Nutzung) registrieren lassen.S. Verweise'
+		 DESCRIPTION='Genauigkeit: 1 bis 5 cm' MOD_TYPE='U' ROWID='AAAHbBAABAAAMmKAAO'/>
+	<z:row OBJ_ID='D3200439-53B7-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmKAAP'/>
+	<z:row OBJ_ID='5CE671E3-5475-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmKAAQ'/>
+	<z:row OBJ_ID='2F6C271C-5F76-11D3-A172-08002B9A1D1D' MOD_TYPE='N' ROWID='AAAHbBAABAAAMmKAAR'/>
+	<z:row OBJ_ID='2F6C271E-5F76-11D3-A172-08002B9A1D1D' MOD_TYPE='N' ROWID='AAAHbBAABAAAMmKAAS'/>
+	<z:row OBJ_ID='2F6C2720-5F76-11D3-A172-08002B9A1D1D' MOD_TYPE='N' ROWID='AAAHbBAABAAAMmKAAT'/>
+	<z:row OBJ_ID='2F6C2722-5F76-11D3-A172-08002B9A1D1D' MOD_TYPE='N' ROWID='AAAHbBAABAAAMmKAAU'/>
+	<z:row OBJ_ID='2F6C2724-5F76-11D3-A172-08002B9A1D1D' MOD_TYPE='N' ROWID='AAAHbBAABAAAMmKAAV'/>
+	<z:row OBJ_ID='2F6C2726-5F76-11D3-A172-08002B9A1D1D' MOD_TYPE='N' ROWID='AAAHbBAABAAAMmKAAW'/>
+	<z:row OBJ_ID='2F6C2728-5F76-11D3-A172-08002B9A1D1D' MOD_TYPE='N' ROWID='AAAHbBAABAAAMmKAAX'/>
+	<z:row OBJ_ID='2F6C272A-5F76-11D3-A172-08002B9A1D1D' MOD_TYPE='N' ROWID='AAAHbBAABAAAMmKAAY'/>
+	<z:row OBJ_ID='2F6C272C-5F76-11D3-A172-08002B9A1D1D' MOD_TYPE='N' ROWID='AAAHbBAABAAAMmKAAZ'/>
+	<z:row OBJ_ID='2F6C272E-5F76-11D3-A172-08002B9A1D1D' MOD_TYPE='N' ROWID='AAAHbBAABAAAMmKAAa'/>
+	<z:row OBJ_ID='2F6C2730-5F76-11D3-A172-08002B9A1D1D' MOD_TYPE='N' ROWID='AAAHbBAABAAAMmKAAb'/>
+	<z:row OBJ_ID='2F6C2732-5F76-11D3-A172-08002B9A1D1D' MOD_TYPE='N' ROWID='AAAHbBAABAAAMmKAAc'/>
+	<z:row OBJ_ID='386646F4-B449-11D2-9A86-080000507261' TYPE='Abfallabgabesystem' BASE='Anwendungszweck: EDV-Anwendung zur Bearbeitung des Abfallabgabeverfahrens'
+		 DESCRIPTION='Per SQL-Abfrage Abruf der Daten über die Erzeuger innerhalb des zuständigen Regierungsbezirkes. Eine landesweite Abfrage ist nicht möglich. Es kann ein Abgleich der Abfallabgabedaten mit den Begleitscheindaten des Abfall- und Reststoffüberwachungssystems ARSYS erfolgen.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmKAAd'/>
+	<z:row OBJ_ID='386646F7-B449-11D2-9A86-080000507261' TYPE='Wasserbuch' MOD_TYPE='U' ROWID='AAAHbBAABAAAMmKAAe'/>
+	<z:row OBJ_ID='38664767-B449-11D2-9A86-080000507261' TYPE='Abfallabgabesystem' DESCRIPTION='Per SQL-Abfrage Abruf der Daten über die Erzeuger innerhalb des zuständigen Regierungsbezirkes. Eine landesweite Abfrage ist nicht möglich. Es kann ein Abgleich der Abfallabgabedaten mit den Begleitscheindaten des Abfall- und Reststoffüberwachungssystems ARSYS erfolgen.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmKAAf'/>
+	<z:row OBJ_ID='38664793-B449-11D2-9A86-080000507261' TYPE='Wasserbuch' MOD_TYPE='U' ROWID='AAAHbBAABAAAMmKAAg'/>
+	<z:row OBJ_ID='386647A3-B449-11D2-9A86-080000507261' TYPE='Wasserbuch' MOD_TYPE='U' ROWID='AAAHbBAABAAAMmKAAh'/>
+	<z:row OBJ_ID='38664873-B449-11D2-9A86-080000507261' TYPE='Abfallabgabesystem' DESCRIPTION='Per SQL-Abfrage Abruf der Daten über die Erzeuger innerhalb des zuständigen Regierungsbezirkes. Eine landesweite Abfrage ist nicht möglich. Es kann ein Abgleich der Abfallabgabedaten mit den Begleitscheindaten des Abfall- und Reststoffüberwachungssystems ARSYS erfolgen.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmKAAi'/>
+	<z:row OBJ_ID='38664875-B449-11D2-9A86-080000507261' TYPE='Wasserbuch' MOD_TYPE='U' ROWID='AAAHbBAABAAAMmKAAj'/>
+	<z:row OBJ_ID='386648B5-B449-11D2-9A86-080000507261' TYPE='Fachinformationssystem' MOD_TYPE='U' ROWID='AAAHbBAABAAAMmKAAk'/>
+	<z:row OBJ_ID='3866491D-B449-11D2-9A86-080000507261' TYPE='Abfallabgabesystem' DESCRIPTION='Per SQL-Abfrage Abruf der Daten über die Erzeuger innerhalb des zuständigen Regierungsbezirkes. Eine landesweite Abfrage ist nicht möglich. Es kann ein Abgleich der Abfallabgabedaten mit den Begleitscheindaten des Abfall- und Reststoffüberwachungssystems ARSYS erfolgen.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmKAAl'/>
+	<z:row OBJ_ID='38664939-B449-11D2-9A86-080000507261' TYPE='Wasserbuch' MOD_TYPE='U' ROWID='AAAHbBAABAAAMmKAAm'/>
+	<z:row OBJ_ID='38664974-B449-11D2-9A86-080000507261' TYPE='Wasserbuch' MOD_TYPE='U' ROWID='AAAHbBAABAAAMmKAAn'/>
+	<z:row OBJ_ID='38664986-B449-11D2-9A86-080000507261' MOD_TYPE='N' ROWID='AAAHbBAABAAAMmKAAo'/>
+	<z:row OBJ_ID='97EE09A6-F254-11D2-BB32-006097FE70B1' TYPE='Wasserbuch' MOD_TYPE='U' ROWID='AAAHbBAABAAAMmKAAp'/>
+	<z:row OBJ_ID='305C8A02-C739-11D2-A63A-444553540000' TYPE='Windows-Anwendung' DESCRIPTION='Meldungen der beteiligten Bundesländer über die bekanntgegebenen Stellen zur Ermittlung von Emissionen und Immissionen sowie von Stellen zur Überprüfung des ordnungsgemäßen Einbaus, der Funktion und für die Kalibrierung kontinuierlich arbeitender Messgeräte und die Bekanntgabe von Sachverständigen.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmLAAA'/>
+	<z:row OBJ_ID='EFFC1B2B-762C-11D3-AE0F-00104B57C66D' TYPE='Positionierungsdienst  SAPOS®' ENVIRONMENT='Für Echtzeit- und near-online-GPS-Anwendungen: Korrekturdatenempfänger
+Für postprocessing-Anwendungen: GPS-Auswerte-software'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmLAAB'/>
+	<z:row OBJ_ID='5CE671D9-5475-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmLAAC'/>
+	<z:row OBJ_ID='D3200437-53B7-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmLAAD'/>
+	<z:row OBJ_ID='D320042E-53B7-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmLAAE'/>
+	<z:row OBJ_ID='5CE671E0-5475-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmLAAF'/>
+	<z:row OBJ_ID='CDBE69AD-53B1-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmLAAG'/>
+	<z:row OBJ_ID='CDBE69A8-53B1-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmLAAH'/>
+	<z:row OBJ_ID='7FF735D3-53B4-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmLAAI'/>
+	<z:row OBJ_ID='7FF735D9-53B4-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmLAAJ'/>
+	<z:row OBJ_ID='7FF735D7-53B4-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmLAAK'/>
+	<z:row OBJ_ID='7FF735C4-53B4-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmLAAL'/>
+	<z:row OBJ_ID='D320042B-53B7-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmLAAM'/>
+	<z:row OBJ_ID='E8391BA2-E84D-11D3-9C14-00E02948B113' MOD_TYPE='N' ROWID='AAAHbBAABAAAMmLAAN'/>
+	<z:row OBJ_ID='D3200432-53B7-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmLAAO'/>
+	<z:row OBJ_ID='D320042F-53B7-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmLAAP'/>
+	<z:row OBJ_ID='D320042D-53B7-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmLAAQ'/>
+	<z:row OBJ_ID='D3200429-53B7-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmLAAR'/>
+	<z:row OBJ_ID='D3200427-53B7-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmLAAS'/>
+	<z:row OBJ_ID='D3200424-53B7-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmLAAT'/>
+	<z:row OBJ_ID='D3200423-53B7-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmLAAU'/>
+	<z:row OBJ_ID='D3200421-53B7-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmMAAA'/>
+	<z:row OBJ_ID='CDBE69AC-53B1-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmMAAB'/>
+	<z:row OBJ_ID='CDBE69AB-53B1-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmMAAC'/>
+	<z:row OBJ_ID='CDBE69AA-53B1-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmMAAD'/>
+	<z:row OBJ_ID='CDBE69A7-53B1-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmMAAE'/>
+	<z:row OBJ_ID='CDBE69A5-53B1-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmMAAF'/>
+	<z:row OBJ_ID='CDBE69A1-53B1-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmMAAG'/>
+	<z:row OBJ_ID='7FF735DB-53B4-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmMAAH'/>
+	<z:row OBJ_ID='7FF735D8-53B4-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmMAAI'/>
+	<z:row OBJ_ID='7FF735D5-53B4-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmMAAJ'/>
+	<z:row OBJ_ID='7FF735D2-53B4-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmMAAK'/>
+	<z:row OBJ_ID='7FF735D1-53B4-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmMAAL'/>
+	<z:row OBJ_ID='7FF735D0-53B4-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmMAAM'/>
+	<z:row OBJ_ID='7FF735CF-53B4-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmMAAN'/>
+	<z:row OBJ_ID='7FF735CD-53B4-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmMAAO'/>
+	<z:row OBJ_ID='7FF735CB-53B4-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmMAAP'/>
+	<z:row OBJ_ID='7FF735C7-53B4-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmMAAQ'/>
+	<z:row OBJ_ID='7FF735C6-53B4-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmMAAR'/>
+	<z:row OBJ_ID='7FF735C3-53B4-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmMAAS'/>
+	<z:row OBJ_ID='7FF735C2-53B4-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmMAAT'/>
+	<z:row OBJ_ID='5CE671E6-5475-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmNAAA'/>
+	<z:row OBJ_ID='5CE671E4-5475-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmNAAB'/>
+	<z:row OBJ_ID='5CE671E2-5475-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmNAAC'/>
+	<z:row OBJ_ID='5CE671E1-5475-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmNAAD'/>
+	<z:row OBJ_ID='5CE671DF-5475-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmNAAE'/>
+	<z:row OBJ_ID='5CE671DD-5475-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmNAAF'/>
+	<z:row OBJ_ID='5CE671DB-5475-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmNAAG'/>
+	<z:row OBJ_ID='5CE671D8-5475-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmNAAH'/>
+	<z:row OBJ_ID='5CE671D6-5475-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmNAAI'/>
+	<z:row OBJ_ID='1FABC45F-509C-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmNAAJ'/>
+	<z:row OBJ_ID='1FABC45D-509C-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmNAAK'/>
+	<z:row OBJ_ID='1FABC45C-509C-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmNAAL'/>
+	<z:row OBJ_ID='1FABC45A-509C-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmNAAM'/>
+	<z:row OBJ_ID='1FABC459-509C-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmNAAN'/>
+	<z:row OBJ_ID='1FABC458-509C-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmNAAO'/>
+	<z:row OBJ_ID='1FABC456-509C-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmNAAP'/>
+	<z:row OBJ_ID='1FABC453-509C-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmNAAQ'/>
+	<z:row OBJ_ID='1FABC452-509C-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmNAAR'/>
+	<z:row OBJ_ID='1FABC450-509C-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmNAAS'/>
+	<z:row OBJ_ID='1FABC44B-509C-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmNAAT'/>
+	<z:row OBJ_ID='1FABC449-509C-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmOAAA'/>
+	<z:row OBJ_ID='1FABC446-509C-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmOAAB'/>
+	<z:row OBJ_ID='1FABC445-509C-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmOAAC'/>
+	<z:row OBJ_ID='1FABC444-509C-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmOAAD'/>
+	<z:row OBJ_ID='1FABC443-509C-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmOAAE'/>
+	<z:row OBJ_ID='1FABC440-509C-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmOAAF'/>
+	<z:row OBJ_ID='D3200438-53B7-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmOAAG'/>
+	<z:row OBJ_ID='D3200435-53B7-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmOAAH'/>
+	<z:row OBJ_ID='D3200434-53B7-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmOAAI'/>
+	<z:row OBJ_ID='D3200433-53B7-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmOAAJ'/>
+	<z:row OBJ_ID='D3200430-53B7-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmOAAK'/>
+	<z:row OBJ_ID='D320042C-53B7-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmOAAL'/>
+	<z:row OBJ_ID='D3200428-53B7-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmOAAM'/>
+	<z:row OBJ_ID='D3200426-53B7-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmOAAN'/>
+	<z:row OBJ_ID='D3200425-53B7-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmOAAO'/>
+	<z:row OBJ_ID='D3200422-53B7-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmOAAP'/>
+	<z:row OBJ_ID='CDBE69A9-53B1-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmOAAQ'/>
+	<z:row OBJ_ID='CDBE69A6-53B1-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmOAAR'/>
+	<z:row OBJ_ID='CDBE69A2-53B1-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmOAAS'/>
+	<z:row OBJ_ID='7FF735DA-53B4-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmOAAT'/>
+	<z:row OBJ_ID='7FF735D6-53B4-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmPAAA'/>
+	<z:row OBJ_ID='7FF735D4-53B4-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmPAAB'/>
+	<z:row OBJ_ID='7FF735CE-53B4-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmPAAC'/>
+	<z:row OBJ_ID='7FF735CC-53B4-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmPAAD'/>
+	<z:row OBJ_ID='7FF735C9-53B4-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmPAAE'/>
+	<z:row OBJ_ID='7FF735C8-53B4-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmPAAF'/>
+	<z:row OBJ_ID='7FF735C5-53B4-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmPAAG'/>
+	<z:row OBJ_ID='5CE671E7-5475-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmPAAH'/>
+	<z:row OBJ_ID='5CE671E5-5475-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmPAAI'/>
+	<z:row OBJ_ID='5CE671DC-5475-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmPAAJ'/>
+	<z:row OBJ_ID='5CE671DA-5475-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmPAAK'/>
+	<z:row OBJ_ID='5CE671D5-5475-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmPAAL'/>
+	<z:row OBJ_ID='5CE671D2-5475-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmPAAM'/>
+	<z:row OBJ_ID='1FABC45E-509C-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmPAAN'/>
+	<z:row OBJ_ID='1FABC457-509C-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmPAAO'/>
+	<z:row OBJ_ID='1FABC455-509C-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmPAAP'/>
+	<z:row OBJ_ID='1FABC454-509C-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmPAAQ'/>
+	<z:row OBJ_ID='1FABC451-509C-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmPAAR'/>
+	<z:row OBJ_ID='1FABC44A-509C-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmPAAS'/>
+	<z:row OBJ_ID='1FABC448-509C-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmPAAT'/>
+	<z:row OBJ_ID='1FABC447-509C-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmQAAA'/>
+	<z:row OBJ_ID='1FABC442-509C-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmQAAB'/>
+	<z:row OBJ_ID='1FABC43E-509C-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmQAAC'/>
+	<z:row OBJ_ID='5CE671EA-5475-11D3-A172-08002B9A1D1D' MOD_TYPE='N' ROWID='AAAHbBAABAAAMmQAAD'/>
+	<z:row OBJ_ID='38664872-B449-11D2-9A86-080000507261' DESCRIPTION='An ARSYS beteiligte Stellen: Bezirksregierungen, Nieders. Landesamt f. Ökologie. Alle Daten sind landesweit verfügbar und abfragbar.'
+		 MOD_TYPE='N' ROWID='AAAHbBAABAAAMmQAAE'/>
+	<z:row OBJ_ID='75CD52C2-1835-11D3-BB32-006097FE70B1' TYPE='WWW-Anwendung' MOD_TYPE='U' ROWID='AAAHbBAABAAAMmQAAF'/>
+	<z:row OBJ_ID='386646F3-B449-11D2-9A86-080000507261' MOD_TYPE='N' ROWID='AAAHbBAABAAAMmQAAG'/>
+	<z:row OBJ_ID='38664721-B449-11D2-9A86-080000507261' TYPE='Wasserbuch' MOD_TYPE='U' ROWID='AAAHbBAABAAAMmQAAH'/>
+	<z:row OBJ_ID='38664766-B449-11D2-9A86-080000507261' DESCRIPTION='An ARSYS beteiligte Stellen: Bezirksregierungen, Nieders. Landesamt f. Ökologie Alle Daten sind landesweit verfügbar und abfragbar.'
+		 MOD_TYPE='N' ROWID='AAAHbBAABAAAMmQAAI'/>
+	<z:row OBJ_ID='38664782-B449-11D2-9A86-080000507261' MOD_TYPE='N' ROWID='AAAHbBAABAAAMmQAAJ'/>
+	<z:row OBJ_ID='386648E8-B449-11D2-9A86-080000507261' TYPE='Wasserbuch' MOD_TYPE='U' ROWID='AAAHbBAABAAAMmQAAK'/>
+	<z:row OBJ_ID='3866491C-B449-11D2-9A86-080000507261' DESCRIPTION='Beteiligte: Bezirksregierungen, Gewerbeaussichtsämter, Untere Abfallbehörden., Nds. Landesamt f. Ökologie, Nds. Ges. z. Endlagerung v. Sonderabfall - Zentrale Stelle (NGS-ZS)'
+		 MOD_TYPE='N' ROWID='AAAHbBAABAAAMmQAAL'/>
+	<z:row OBJ_ID='38664C66-B449-11D2-9A86-080000507261' TYPE='Geographisches Informationssystem' MOD_TYPE='U' ROWID='AAAHbBAABAAAMmQAAM'/>
+	<z:row OBJ_ID='9B683E2C-0EA1-11D3-BB32-006097FE70B1' MOD_TYPE='N' ROWID='AAAHbBAABAAAMmQAAN'/>
+	<z:row OBJ_ID='96E425CD-5C8F-11D4-BB32-0C0507C10000' MOD_TYPE='N' ROWID='AAAHbBAABAAAMmQAAO'/>
+	<z:row OBJ_ID='96E425CF-5C8F-11D4-BB32-0C0507C10000' DESCRIPTION='An ARSYS beteiligte Stellen: Bezirksregierungen, Nieders. Landesamt f. Ökologie'
+		 MOD_TYPE='N' ROWID='AAAHbBAABAAAMmQAAP'/>
+	<z:row OBJ_ID='96E425D0-5C8F-11D4-BB32-0C0507C10000' MOD_TYPE='N' ROWID='AAAHbBAABAAAMmQAAQ'/>
+	<z:row OBJ_ID='C2F9C0C9-19AC-11D3-AF48-0060084A4596' TYPE='Positionierungsdienst' ENVIRONMENT='Die unterschiedlichen SAPOS®-Dienste können bei den zuständigen Landesvermessungen in Anspruch genommen werden.'
+		 BASE='RINEX (Receiver Independent Exchange Format)
+RTCM (Radio Technical Commission for Marine service)' DESCRIPTION='Der Empfang ist kontinuierlich möglich und kann für unterschiedliche Genauigkeiten genutzt werden.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmQAAR'/>
+	<z:row OBJ_ID='015C0BE6-76F6-11D3-AE10-00104B57C66D' TYPE='Positionierungsdienst  SAPOS®' ENVIRONMENT='Für Echtzeit- und near-online-GPS-Anwendungen: Korrekturdatenempfänger
+Für postprocessing-Anwendungen: GPS-Auswerte-software'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmQAAS'/>
+	<z:row OBJ_ID='015C0BEA-76F6-11D3-AE10-00104B57C66D' TYPE='Positionierungsdienst  SAPOS®' ENVIRONMENT='Für Echtzeit- und near-online-GPS-Anwendungen: Korrekturdatenempfänger
+Für postprocessing-Anwendungen: GPS-Auswerte-software
+'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmQAAT'/>
+	<z:row OBJ_ID='B1AD16B6-77C0-11D3-AE11-00104B57C66D' TYPE='Positionierungsdienst  SAPOS®' ENVIRONMENT='Für Echtzeit- und near-online-GPS-Anwendungen: Korrekturdatenempfänger 
+Für postprocessing-Anwendungen: GPS-Auswerte-software
+'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmQAAU'/>
+	<z:row OBJ_ID='3A29513E-5091-11D3-AE6C-00104B57C66D' TYPE='Positionierungsdienst SAPOS®,' ENVIRONMENT='Für Echtzeit- und near-online-GPS-Anwendungen: Korrekturdatenempfänger
+Für postprocessing-Anwendungen: GPS-Auswerte-software'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmQAAV'/>
+	<z:row OBJ_ID='6C36EB85-70C3-11D3-AE0B-00104B57C66D' TYPE='Positionierungsdienst SAPOS®' ENVIRONMENT='Für Echtzeit- und near-online-GPS-Anwendungen:Korrekturdatenempfänger
+Für postprocessing-Anwendungen: GPS-Auswerte-software
+'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmQAAW'/>
+	<z:row OBJ_ID='2E9E8A26-7185-11D3-AE0C-00104B57C66D' TYPE='Positionierungsdienst SAPOS®' ENVIRONMENT='Für Echtzeit- und near-online-GPS-Anwendungen: Korrekturdatenempfänger
+Für postprocessing-Anwendungen: GPS-Auswerte-software
+'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmQAAX'/>
+	<z:row OBJ_ID='2E9E8A27-7185-11D3-AE0C-00104B57C66D' TYPE='Positionierungsdienst SAPOS®' ENVIRONMENT='Für Echtzeit- und near-online-GPS-Anwendungen: Korrekturdatenempfänger
+Für postprocessing-Anwendungen: GPS-Auswerte-software'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmQAAY'/>
+	<z:row OBJ_ID='2E9E8A28-7185-11D3-AE0C-00104B57C66D' TYPE='Positionierungsdienst SAPOS®' ENVIRONMENT='Für Echtzeit- und near-online-GPS-Anwendungen: Korrekturdatenempfänger
+Für postprocessing-Anwendungen: GPS-Auswerte-software
+'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmQAAZ'/>
+	<z:row OBJ_ID='3A295138-5091-11D3-AE6C-00104B57C66D' TYPE='Positionierungsdienst  SAPOS®' HISTORY='Ersatz für die ehemalige Station BS 0649,TU, Dach des Geodätischen Institutes, Gaußstr. 22, 38106 
+Braunschweig'
+		 ENVIRONMENT='Für Echtzeit- und near-online-GPS-Anwendungen: Korrekturdatenempfänger
+Für postprocessing-Anwendungen: GPS-Auswerte-software'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmQAAa'/>
+	<z:row OBJ_ID='3A295152-5091-11D3-AE6C-00104B57C66D' TYPE='Positionierungsdienst  SAPOS®' ENVIRONMENT='Für Echtzeit- und near-online-GPS-Anwendungen: Korrekturdatenempfänger
+Für postprocessing-Anwendungen: GPS-Auswerte-software
+'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmQAAb'/>
+	<z:row OBJ_ID='3A295125-5091-11D3-AE6C-00104B57C66D' TYPE='Positionierungsdienst  SAPOS®' ENVIRONMENT='Für Echtzeit- und near-online-GPS-Anwendungen: Korrekturdatenempfänger
+Für postprocessing-Anwendungen: GPS-Auswerte-software'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmQAAc'/>
+	<z:row OBJ_ID='2E9E8A29-7185-11D3-AE0C-00104B57C66D' TYPE='Positionierungsdienst SAPOS®' ENVIRONMENT='Für Echtzeit- und near-online-GPS-Anwendungen: Korrekturdatenempfänger
+Für postprocessing-Anwendungen: GPS-Auswerte-software
+'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmQAAd'/>
+	<z:row OBJ_ID='E6589C36-7561-11D3-AE0E-00104B57C66D' TYPE='Positionierungsdienst  SAPOS®' ENVIRONMENT='Für Echtzeit- und near-online-GPS-Anwendungen: Korrekturdatenempfänger
+Für postprocessing-Anwendungen: GPS-Auswerte-software
+'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmQAAe'/>
+	<z:row OBJ_ID='EFFC1B24-762C-11D3-AE0F-00104B57C66D' TYPE='Positionierungsdienst  SAPOS®' ENVIRONMENT='Für Echtzeit- und near-online-GPS-Anwendungen : Korrekturdatenempfänger
+Für postprocessing-Anwendungen: GPS-Auswerte-software
+'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmQAAf'/>
+	<z:row OBJ_ID='EFFC1B26-762C-11D3-AE0F-00104B57C66D' TYPE='Positionierungsdienst  SAPOS®' ENVIRONMENT='Für Echtzeit- und near-online-GPS-Anwendungen: Korrekturdatenempfänger 
+Für postprocessing-Anwendungen: GPS-Auswerte-software'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmQAAg'/>
+	<z:row OBJ_ID='EFFC1B29-762C-11D3-AE0F-00104B57C66D' TYPE='Positionierungsdienst  SAPOS®' HISTORY='Ersatz für die ehemalige RS Norderney 0644,   Dach des Nds. Landesamtes für Wasser- und Küstenschutz, Gorch-Fock-Weg 5, 26548 Norderney'
+		 ENVIRONMENT='Für Echtzeit- und near-online-GPS-Anwendungen: Korrekturdatenempfänger
+Für postprocessing- Anwendungen: GPS-Auswerte-software
+'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmQAAh'/>
+	<z:row OBJ_ID='EFFC1B2A-762C-11D3-AE0F-00104B57C66D' TYPE='Positionierungsdienst  SAPOS®' ENVIRONMENT='Für Echtzeit- und near-online-GPS-Anwendungen: Korrekturdatenempfänger
+Für postprocessing-Anwendungen: GPS-Auswerte-software'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmQAAi'/>
+	<z:row OBJ_ID='EFFC1B2C-762C-11D3-AE0F-00104B57C66D' TYPE='Positionierungsdienst  SAPOS®' ENVIRONMENT='Für Echtzeit- und near-online-GPS-Anwendungen: Korrekturdatenempfänger
+Für postprocessing-Anwendungen: GPS-Auswerte-software'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmQAAj'/>
+	<z:row OBJ_ID='EFFC1B2D-762C-11D3-AE0F-00104B57C66D' TYPE='Positionierungsdienst  SAPOS®' ENVIRONMENT='Für Echtzeit- und near-online-GPS-Anwendungen: Korrekturdatenempfänger
+Für postprocessing-Anwendungen: GPS-Auswerte-software'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmQAAk'/>
+	<z:row OBJ_ID='015C0BE5-76F6-11D3-AE10-00104B57C66D' TYPE='Positionierungsdienst  SAPOS®' ENVIRONMENT='Für Echtzeit- und near-online-GPS-Anwendungen: Korrekturdatenempfänger
+Für postprocessing-Anwendungen:GPS-Auswerte-software'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmQAAl'/>
+	<z:row OBJ_ID='015C0BE7-76F6-11D3-AE10-00104B57C66D' TYPE='Positionierungsdienst  SAPOS®' ENVIRONMENT='Für Echtzeit- und near-online-GPS-Anwendungen: Korrekturdatenempfänger
+Für postprocessing-Anwendungen: GPS-Auswerte-software
+'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmQAAm'/>
+	<z:row OBJ_ID='015C0BE8-76F6-11D3-AE10-00104B57C66D' TYPE='Positionierungsdienst  SAPOS®' ENVIRONMENT='Für Echtzeit- und near-online-GPS-Anwendungen: Korrekturdatenempfänger 
+Für postprocessing-Anwendungen: GPS-Auswerte-software
+'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmRAAA'/>
+	<z:row OBJ_ID='015C0BE9-76F6-11D3-AE10-00104B57C66D' TYPE='Positionierungsdienst  SAPOS®' ENVIRONMENT='Für Echtzeit- und near-online-GPS-Anwendungen: Korrekturdatenempfänger
+Für postprocessing- Anwendungen: GPS-Auswerte-software'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmRAAB'/>
+	<z:row OBJ_ID='015C0BEB-76F6-11D3-AE10-00104B57C66D' TYPE='Positionierungsdienst  SAPOS®' ENVIRONMENT='Für Echtzeit- und near-online-GPS-Anwendungen: Korrekturdatenempfänger
+Für postprocessing-Anwendungen: GPS-Auswerte-software
+'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmRAAC'/>
+	<z:row OBJ_ID='B1AD16B4-77C0-11D3-AE11-00104B57C66D' TYPE='Positionierungsdienst  SAPOS®' ENVIRONMENT='Für Echtzeit- und near-online-GPS-Anwendungen: Korrekturdatenempfänger
+Für postprocessing-Anwendungen: GPS-Auswerte-software
+'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmRAAD'/>
+	<z:row OBJ_ID='47236135-E224-11D4-AF34-00104B57C66D' TYPE='Positionierungsdienst SAPOS®' ENVIRONMENT='Für Echtzeit- und near-online-GPS-Anwendungen: Korrekturdatenempfänger
+Für postprocessing-Anwendungen: GPS-Auswerte-software'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmRAAE'/>
+	<z:row OBJ_ID='E3F9DD15-E2E5-11D4-AF35-00104B57C66D' TYPE='Positionierungsdienst SAPOS®' ENVIRONMENT='Für Echtzeit- und near-online-GPS-Anwendungen: Korrekturdatenempfänger
+Für postprocessing-Anwendungen: GPS-Auswerte-software
+'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmRAAF'/>
+	<z:row OBJ_ID='E3F9DD18-E2E5-11D4-AF35-00104B57C66D' TYPE='Positionierungsdienst SAPOS®' ENVIRONMENT='Für Echtzeit- und near-online-GPS-Anwendungen: Korrekturdatenempfänger
+Für postprocessing-Anwendungen: GPS-Auswerte-software
+'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmRAAG'/>
+	<z:row OBJ_ID='E3F9DD1A-E2E5-11D4-AF35-00104B57C66D' TYPE='Positionierungsdienst SAPOS®' ENVIRONMENT='Für Echtzeit- und near-online-GPS-Anwendungen: Korrekturdatenempfänger
+Für postprocessing-Anwendungen: GPS-Auswerte-software
+'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmRAAH'/>
+	<z:row OBJ_ID='E3F9DD1C-E2E5-11D4-AF35-00104B57C66D' TYPE='Positionierungsdienst SAPOS®' ENVIRONMENT='Für Echtzeit- und near-online-GPS-Anwendungen: Korrekturdatenempfänger
+Für postprocessing-Anwendungen: GPS-Auswerte-software
+'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmRAAI'/>
+	<z:row OBJ_ID='E3F9DD1E-E2E5-11D4-AF35-00104B57C66D' TYPE='Positionierungsdienst SAPOS®' ENVIRONMENT='Für Echtzeit- und near-online-GPS-Anwendungen: Korrekturdatenempfänger
+Für postprocessing-Anwendungen: GPS-Auswerte-software
+'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmRAAJ'/>
+	<z:row OBJ_ID='E3F9DD20-E2E5-11D4-AF35-00104B57C66D' TYPE='Positionierungsdienst SAPOS®' ENVIRONMENT='Für Echtzeit- und near-online-GPS-Anwendungen: Korrekturdatenempfänger
+Für postprocessing-Anwendungen: GPS-Auswerte-software
+'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmRAAK'/>
+	<z:row OBJ_ID='E3F9DD22-E2E5-11D4-AF35-00104B57C66D' TYPE='Positionierungsdienst SAPOS®' ENVIRONMENT='Für Echtzeit- und near-online-GPS-Anwendungen: Korrekturdatenempfänger
+Für postprocessing-Anwendungen: GPS-Auswerte-software
+'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmRAAL'/>
+	<z:row OBJ_ID='E3F9DD24-E2E5-11D4-AF35-00104B57C66D' TYPE='Positionierungsdienst SAPOS®' ENVIRONMENT='Für Echtzeit- und near-online-GPS-Anwendungen: Korrekturdatenempfänger
+Für postprocessing-Anwendungen: GPS-Auswerte-software
+'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmRAAM'/>
+	<z:row OBJ_ID='E3F9DD26-E2E5-11D4-AF35-00104B57C66D' TYPE='Positionierungsdienst SAPOS®' ENVIRONMENT='Für Echtzeit- und near-online-GPS-Anwendungen: Korrekturdatenempfänger
+Für postprocessing-Anwendungen: GPS-Auswerte-software
+'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmRAAN'/>
+	<z:row OBJ_ID='E3F9DD28-E2E5-11D4-AF35-00104B57C66D' TYPE='Positionierungsdienst SAPOS®' ENVIRONMENT='Für Echtzeit- und near-online-GPS-Anwendungen: Korrekturdatenempfänger
+Für postprocessing-Anwendungen: GPS-Auswerte-software
+'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmRAAO'/>
+	<z:row OBJ_ID='1E7007E4-EAC1-11D4-AF3C-00104B57C66D' TYPE='Positionierungsdienst SAPOS®' ENVIRONMENT='Für Echtzeit- und near-online-GPS-Anwendungen: Korrekturdatenempfänger
+Für postprocessing-Anwendungen: GPS-Auswerte-software
+'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmRAAP'/>
+	<z:row OBJ_ID='1E7007E7-EAC1-11D4-AF3C-00104B57C66D' ENVIRONMENT='Für Echtzeit- und near-oneline-GPS-Anwendungen: Korrekturdatenempfänger
+Für postprocessing-Anwendungen: GPS-Auswerte-software
+'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmRAAQ'/>
+	<z:row OBJ_ID='1FABC419-509C-11D3-A172-08002B9A1D1D' MOD_TYPE='N' ROWID='AAAHbBAABAAAMmRAAR'/>
+	<z:row OBJ_ID='1FABC420-509C-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmRAAS'/>
+	<z:row OBJ_ID='1FABC441-509C-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Methoden werden nach verfügbarer Datenlage und wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar unter Methoden Management System (MeMaS) im Niedersächsischen Bodeninformationssystem (NIBIS) auf MSWindows 9x und NT, ab Ende 2000 direkt im World Wide Web.'
+		 BASE='Rohdichte und Tongehalt' MOD_TYPE='U' ROWID='AAAHbBAABAAAMmRAAT'/>
+	<z:row OBJ_ID='7FF735DC-53B4-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmRAAU'/>
+	<z:row OBJ_ID='5CE671D4-5475-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmRAAV'/>
+	<z:row OBJ_ID='5CE671D3-5475-11D3-A172-08002B9A1D1D' TYPE='Fachinformationssystem' HISTORY='Die Methoden werden nach verfügbarer Datenlage, wissenschaftlichem Erkenntnisstand und Anforderungen der Anwender fortgeschrieben.'
+		 ENVIRONMENT='Verfügbar im Methoden Management System (MeMaS) des Niedersächsischen Bodeninformationssystems (NIBIS) auf MSWindows 9x und NT; ab 2001 direkt im World Wide Web.'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmRAAW'/>
+	<z:row OBJ_ID='C51F9D07-1856-11D5-8836-0060084A4596' TYPE='Metainformationssystem' MOD_TYPE='U' ROWID='AAAHbBAABAAAMmRAAX'/>
+	<z:row OBJ_ID='10E826FA-97BC-11D5-8895-0060084A4596' MOD_TYPE='U' ROWID='AAAHbBAABAAAMmRAAY'/>
+	<z:row OBJ_ID='E24ED15A-4517-11D5-9841-00D0B70EFC19' TYPE='Fachinformationssystem' MOD_TYPE='U' ROWID='AAAHbBAABAAAMmRAAZ'/>
+	<z:row OBJ_ID='AE238E0D-6A28-11D5-9863-00D0B70EFC19' MOD_TYPE='I' ROWID='AAAHbBAABAAAMmRAAa'/>
+	<z:row OBJ_ID='EFFC1B27-762C-11D3-AE0F-00104B57C66D' TYPE='Positionierungsdienst  SAPOS®' ENVIRONMENT='Für Echtzeit- und near-online-GPS-Anwendungen: Korrekturdatenempfänger
+Für postprocessing-Anwendungen: GPS-Auswerte-software'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmRAAb'/>
+	<z:row OBJ_ID='EFFC1B28-762C-11D3-AE0F-00104B57C66D' TYPE='Positionierungsdienst  SAPOS®' HISTORY='Ersatz für die ehemalige RS Meppen 0643. Dach des Katasteramtes, Obergerichtsstraße 18, 49716 Meppen'
+		 ENVIRONMENT='Für Echtzeit- und near-online-GPS-Anwendungen: Korrekturdatenempfänger 
+Für postprocessing-Anwendungen: GPS-Auswerte-software'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmRAAc'/>
+	<z:row OBJ_ID='6CF2886F-0124-4A4C-B76B-38CC1D3D0D85' TYPE='Servicetyp wwwtest 3
+zweite Zeile
+dritte Zeile
+vierte Zeile'
+		 HISTORY='Historie wwwtest 3
+zweite Zeile
+dritte Zeile
+vierte Zeile' ENVIRONMENT='Systemumgebung wwwtest 3
+zweite Zeile
+dritte Zeile
+vierte Zeile'
+		 BASE='Basisdaten  wwwtest 3
+zweite Zeile
+dritte Zeile
+vierte Zeile' DESCRIPTION='Fachbezug Erläuterung  wwwtest 3
+zweite Zeile
+dritte Zeile
+vierte Zeile'
+		 MOD_TYPE='U' ROWID='AAAHbBAABAAAMmRAAd'/>
+	<z:row OBJ_ID='BE8BB20A-EFF2-46B5-A17F-CD69CF08AEE0' TYPE='WMS' MOD_TYPE='I' ROWID='AAAHbBAABAAAMmRAAe'/>
+	<z:row OBJ_ID='F3CECEA4-EB0F-46DB-B516-A6835C8FFCBA' TYPE='WMS' MOD_TYPE='I' ROWID='AAAHbBAABAAAMmRAAf'/>
+	<z:row OBJ_ID='5FF9CBF3-1196-4B01-B855-A76ACBD0137C' TYPE='WMS' MOD_TYPE='I' ROWID='AAAHbBAABAAAMmRAAg'/>
+	<z:row OBJ_ID='A3FC4646-95EA-460B-BEA9-D09B8D81299D' TYPE='WMS' MOD_TYPE='I' ROWID='AAAHbBAABAAAMmRAAh'/>
+	<z:row OBJ_ID='37D89A8E-3E4F-4907-A3FF-B01E3FE13B4C' TYPE='Servicetyp, 1. ZeileServicetyp, 2. ZeileServicetyp, 3. Zeile'
+		 HISTORY='Historie, 1. Zeile
+Historie, 2. Zeile
+Historie, 3. Zeile' ENVIRONMENT='Systemumgebung, 1. Zeile
+Systemumgebung, 2. Zeile
+Systemumgebung, 3. Zeile'
+		 DESCRIPTION='Erläuterungen, 1. Zeile
+Erläuterungen, 2. Zeile
+Erläuterungen, 3. Zeile' MOD_TYPE='U' ROWID='AAAHbBAABAAAMmRAAi'/>
+	<z:row OBJ_ID='3892B136-D1F3-4E45-9E5F-E1CEF117AA74' TYPE='testservice' MOD_TYPE='U' ROWID='AAAHbBAABAAAMmRAAj'/>
+	<z:row OBJ_ID='C1D8BD22-CC8B-48BB-AB66-4FEFCA76FA0F' TYPE='servicetyp' MOD_TYPE='U' ROWID='AAAHbBAABAAAMmRAAk'/>
+	<z:row OBJ_ID='F765C7EE-542B-4E5C-AD48-01FA5CC1C814' TYPE='servicetyp' MOD_TYPE='U' ROWID='AAAHbBAABAAAMmRAAl'/>
 </rs:data>
 </xml>

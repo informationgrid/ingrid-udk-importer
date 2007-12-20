@@ -4,41 +4,36 @@
 	xmlns:z='#RowsetSchema'>
 <s:Schema id='RowsetSchema'>
 	<s:ElementType name='row' content='eltOnly' rs:updatable='true'>
-		<s:AttributeType name='obj_id' rs:number='1' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='T011_obj_geo_vector'
-			 rs:basecolumn='obj_id' rs:keycolumn='true'>
-			<s:datatype dt:type='string' dt:maxLength='40' rs:maybenull='false'/>
+		<s:AttributeType name='OBJ_ID' rs:number='1' rs:writeunknown='true' rs:basetable='T011_OBJ_GEO_VECTOR' rs:basecolumn='OBJ_ID'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='40' rs:maybenull='false'/>
 		</s:AttributeType>
-		<s:AttributeType name='line' rs:number='2' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='T011_obj_geo_vector'
-			 rs:basecolumn='line' rs:keycolumn='true'>
-			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true' rs:maybenull='false'/>
+		<s:AttributeType name='LINE' rs:number='2' rs:writeunknown='true' rs:basetable='T011_OBJ_GEO_VECTOR' rs:basecolumn='LINE'>
+			<s:datatype dt:type='number' rs:dbtype='numeric' dt:maxLength='19' rs:scale='0' rs:precision='9' rs:fixedlength='true'
+			 rs:maybenull='false'/>
 		</s:AttributeType>
-		<s:AttributeType name='geometric_object_type' rs:number='3' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='T011_obj_geo_vector' rs:basecolumn='geometric_object_type'>
-			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true'/>
+		<s:AttributeType name='GEOMETRIC_OBJECT_TYPE' rs:number='3' rs:nullable='true' rs:writeunknown='true' rs:basetable='T011_OBJ_GEO_VECTOR'
+			 rs:basecolumn='GEOMETRIC_OBJECT_TYPE'>
+			<s:datatype dt:type='number' rs:dbtype='numeric' dt:maxLength='19' rs:scale='0' rs:precision='9' rs:fixedlength='true'/>
 		</s:AttributeType>
-		<s:AttributeType name='geometric_object_count' rs:number='4' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='T011_obj_geo_vector' rs:basecolumn='geometric_object_count'>
-			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true'/>
+		<s:AttributeType name='GEOMETRIC_OBJECT_COUNT' rs:number='4' rs:nullable='true' rs:writeunknown='true' rs:basetable='T011_OBJ_GEO_VECTOR'
+			 rs:basecolumn='GEOMETRIC_OBJECT_COUNT'>
+			<s:datatype dt:type='number' rs:dbtype='numeric' dt:maxLength='19' rs:scale='0' rs:precision='9' rs:fixedlength='true'/>
 		</s:AttributeType>
-		<s:AttributeType name='mod_type' rs:number='5' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='T011_obj_geo_vector' rs:basecolumn='mod_type'>
-			<s:datatype dt:type='string' dt:maxLength='1'/>
+		<s:AttributeType name='MOD_TYPE' rs:number='5' rs:nullable='true' rs:writeunknown='true' rs:basetable='T011_OBJ_GEO_VECTOR'
+			 rs:basecolumn='MOD_TYPE'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='1'/>
+		</s:AttributeType>
+		<s:AttributeType name='ROWID' rs:number='6' rs:nullable='true' rs:rowid='true' rs:basetable='T011_OBJ_GEO_VECTOR'
+			 rs:basecolumn='ROWID' rs:keycolumn='true' rs:hidden='true' rs:autoincrement='true'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='18' rs:fixedlength='true'/>
 		</s:AttributeType>
 		<s:extends type='rs:rowbase'/>
 	</s:ElementType>
 </s:Schema>
 <rs:data>
-	<z:row obj_id='9B9661FD-B3B7-49D7-A440-E97A44872E14' line='1' geometric_object_type='3' geometric_object_count='0'
-		 mod_type='D'/>
-	<z:row obj_id='F923A659-61B1-4B26-9D99-7B4EFD91E077' line='1' geometric_object_type='6' geometric_object_count='20000'
-		 mod_type='U'/>
-	<z:row obj_id='9B9661FD-B3B7-49D7-A440-E97A44872E14' line='2' geometric_object_type='6' geometric_object_count='0'
-		 mod_type='D'/>
-	<z:row obj_id='9B9661FD-B3B7-49D7-A440-E97A44872E14' line='3' geometric_object_type='3' geometric_object_count='0'
-		 mod_type='D'/>
-	<z:row obj_id='9B9661FD-B3B7-49D7-A440-E97A44872E14' line='4' geometric_object_type='6' geometric_object_count='101000'
-		 mod_type='D'/>
-	<z:row obj_id='BE6819D4-AED8-4607-B777-73A87A4B202F' line='1' geometric_object_type='6' geometric_object_count='0'
-		 mod_type='I'/>
+	<z:row OBJ_ID='B8402522-04BE-4848-92A6-0A73F1DD46D1' LINE='1' GEOMETRIC_OBJECT_TYPE='-1' GEOMETRIC_OBJECT_COUNT='239'
+		 MOD_TYPE='I' ROWID='AAAHa5AABAAAMlKAAA'/>
+	<z:row OBJ_ID='27A5661B-0B89-4C5E-85E2-95528B7A1453' LINE='1' GEOMETRIC_OBJECT_TYPE='1' GEOMETRIC_OBJECT_COUNT='239'
+		 MOD_TYPE='U' ROWID='AAAHa5AABAAAMlKAAB'/>
 </rs:data>
 </xml>

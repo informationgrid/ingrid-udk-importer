@@ -1,0 +1,60 @@
+<xml xmlns:s='uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882'
+	xmlns:dt='uuid:C2F41010-65B3-11d1-A29F-00AA00C14882'
+	xmlns:rs='urn:schemas-microsoft-com:rowset'
+	xmlns:z='#RowsetSchema'>
+<s:Schema id='RowsetSchema'>
+	<s:ElementType name='row' content='eltOnly' rs:updatable='true'>
+		<s:AttributeType name='OBJ_ID' rs:number='1' rs:writeunknown='true' rs:basetable='T011_OBJ_SERV_OPERATION'
+			 rs:basecolumn='OBJ_ID'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='40' rs:maybenull='false'/>
+		</s:AttributeType>
+		<s:AttributeType name='LINE' rs:number='2' rs:writeunknown='true' rs:basetable='T011_OBJ_SERV_OPERATION' rs:basecolumn='LINE'>
+			<s:datatype dt:type='number' rs:dbtype='numeric' dt:maxLength='19' rs:scale='0' rs:precision='9' rs:fixedlength='true'
+			 rs:maybenull='false'/>
+		</s:AttributeType>
+		<s:AttributeType name='NAME' rs:number='3' rs:nullable='true' rs:writeunknown='true' rs:basetable='T011_OBJ_SERV_OPERATION'
+			 rs:basecolumn='NAME'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='120'/>
+		</s:AttributeType>
+		<s:AttributeType name='DESCR' rs:number='4' rs:nullable='true' rs:writeunknown='true' rs:basetable='T011_OBJ_SERV_OPERATION'
+			 rs:basecolumn='DESCR'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='2000'/>
+		</s:AttributeType>
+		<s:AttributeType name='INVOCATION_NAME' rs:number='5' rs:nullable='true' rs:writeunknown='true' rs:basetable='T011_OBJ_SERV_OPERATION'
+			 rs:basecolumn='INVOCATION_NAME'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='255'/>
+		</s:AttributeType>
+		<s:AttributeType name='MOD_TYPE' rs:number='6' rs:nullable='true' rs:writeunknown='true' rs:basetable='T011_OBJ_SERV_OPERATION'
+			 rs:basecolumn='MOD_TYPE'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='1'/>
+		</s:AttributeType>
+		<s:AttributeType name='ROWID' rs:number='7' rs:nullable='true' rs:rowid='true' rs:basetable='T011_OBJ_SERV_OPERATION'
+			 rs:basecolumn='ROWID' rs:keycolumn='true' rs:hidden='true' rs:autoincrement='true'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='18' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:extends type='rs:rowbase'/>
+	</s:ElementType>
+</s:Schema>
+<rs:data>
+	<z:row OBJ_ID='6CF2886F-0124-4A4C-B76B-38CC1D3D0D85' LINE='2' NAME='op1' DESCR='dge dsfge dsfgert ' INVOCATION_NAME='sdf sdfsd sdf sd'
+		 MOD_TYPE='D' ROWID='AAAHbEAABAAAMmqAAA'/>
+	<z:row OBJ_ID='38664C66-B449-11D2-9A86-080000507261' LINE='1' NAME='testoperation' DESCR='Beschreibung einer testooperation im Objekt GEOSUM - WWW-Angebot'
+		 MOD_TYPE='D' ROWID='AAAHbEAABAAAMmqAAB'/>
+	<z:row OBJ_ID='BE8BB20A-EFF2-46B5-A17F-CD69CF08AEE0' LINE='1' NAME='GetCapabilities' MOD_TYPE='I' ROWID='AAAHbEAABAAAMmqAAC'/>
+	<z:row OBJ_ID='BE8BB20A-EFF2-46B5-A17F-CD69CF08AEE0' LINE='2' NAME='GetMap' MOD_TYPE='I' ROWID='AAAHbEAABAAAMmqAAD'/>
+	<z:row OBJ_ID='BE8BB20A-EFF2-46B5-A17F-CD69CF08AEE0' LINE='3' NAME='GetFeatureInfo' MOD_TYPE='I' ROWID='AAAHbEAABAAAMmqAAE'/>
+	<z:row OBJ_ID='F3CECEA4-EB0F-46DB-B516-A6835C8FFCBA' LINE='1' NAME='GetCapabilities' MOD_TYPE='I' ROWID='AAAHbEAABAAAMmqAAF'/>
+	<z:row OBJ_ID='F3CECEA4-EB0F-46DB-B516-A6835C8FFCBA' LINE='2' NAME='GetMap' MOD_TYPE='I' ROWID='AAAHbEAABAAAMmqAAG'/>
+	<z:row OBJ_ID='F3CECEA4-EB0F-46DB-B516-A6835C8FFCBA' LINE='3' NAME='GetFeatureInfo' MOD_TYPE='I' ROWID='AAAHbEAABAAAMmqAAH'/>
+	<z:row OBJ_ID='5FF9CBF3-1196-4B01-B855-A76ACBD0137C' LINE='1' NAME='GetCapabilities' MOD_TYPE='I' ROWID='AAAHbEAABAAAMmqAAI'/>
+	<z:row OBJ_ID='5FF9CBF3-1196-4B01-B855-A76ACBD0137C' LINE='2' NAME='GetMap' MOD_TYPE='I' ROWID='AAAHbEAABAAAMmqAAJ'/>
+	<z:row OBJ_ID='5FF9CBF3-1196-4B01-B855-A76ACBD0137C' LINE='3' NAME='GetFeatureInfo' MOD_TYPE='I' ROWID='AAAHbEAABAAAMmqAAK'/>
+	<z:row OBJ_ID='A3FC4646-95EA-460B-BEA9-D09B8D81299D' LINE='1' NAME='GetCapabilities' MOD_TYPE='I' ROWID='AAAHbEAABAAAMmqAAL'/>
+	<z:row OBJ_ID='A3FC4646-95EA-460B-BEA9-D09B8D81299D' LINE='2' NAME='GetMap' MOD_TYPE='I' ROWID='AAAHbEAABAAAMmqAAM'/>
+	<z:row OBJ_ID='A3FC4646-95EA-460B-BEA9-D09B8D81299D' LINE='3' NAME='GetFeatureInfo' MOD_TYPE='I' ROWID='AAAHbEAABAAAMmqAAN'/>
+	<z:row OBJ_ID='C1D8BD22-CC8B-48BB-AB66-4FEFCA76FA0F' LINE='1' NAME='kop1' DESCR='kop1' MOD_TYPE='U' ROWID='AAAHbEAABAAAMmqAAO'/>
+	<z:row OBJ_ID='C1D8BD22-CC8B-48BB-AB66-4FEFCA76FA0F' LINE='2' NAME='kop2' DESCR='kop2' MOD_TYPE='U' ROWID='AAAHbEAABAAAMmqAAP'/>
+	<z:row OBJ_ID='F765C7EE-542B-4E5C-AD48-01FA5CC1C814' LINE='1' NAME='op1' DESCR='op1' MOD_TYPE='I' ROWID='AAAHbEAABAAAMmqAAQ'/>
+	<z:row OBJ_ID='F765C7EE-542B-4E5C-AD48-01FA5CC1C814' LINE='2' NAME='op2' DESCR='op2' MOD_TYPE='I' ROWID='AAAHbEAABAAAMmqAAR'/>
+</rs:data>
+</xml>

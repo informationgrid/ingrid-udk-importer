@@ -4,18 +4,22 @@
 	xmlns:z='#RowsetSchema'>
 <s:Schema id='RowsetSchema'>
 	<s:ElementType name='row' content='eltOnly' rs:updatable='true'>
-		<s:AttributeType name='option_id' rs:number='1' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='sys_option'
-			 rs:basecolumn='option_id' rs:keycolumn='true'>
-			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true' rs:maybenull='false'/>
+		<s:AttributeType name='OPTION_ID' rs:number='1' rs:writeunknown='true' rs:basetable='SYS_OPTION' rs:basecolumn='OPTION_ID'>
+			<s:datatype dt:type='number' rs:dbtype='numeric' dt:maxLength='19' rs:scale='0' rs:precision='5' rs:fixedlength='true'
+			 rs:maybenull='false'/>
 		</s:AttributeType>
-		<s:AttributeType name='entry' rs:number='2' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='sys_option' rs:basecolumn='entry'>
-			<s:datatype dt:type='string' dt:maxLength='40'/>
+		<s:AttributeType name='ENTRY' rs:number='2' rs:nullable='true' rs:writeunknown='true' rs:basetable='SYS_OPTION'
+			 rs:basecolumn='ENTRY'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='40'/>
+		</s:AttributeType>
+		<s:AttributeType name='ROWID' rs:number='3' rs:nullable='true' rs:rowid='true' rs:basetable='SYS_OPTION' rs:basecolumn='ROWID'
+			 rs:keycolumn='true' rs:hidden='true' rs:autoincrement='true'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='18' rs:fixedlength='true'/>
 		</s:AttributeType>
 		<s:extends type='rs:rowbase'/>
 	</s:ElementType>
 </s:Schema>
 <rs:data>
-	<z:row option_id='1' entry='Index'/>
+	<z:row OPTION_ID='1' ENTRY='Index' ROWID='AAAHaEAABAAAMbyAAA'/>
 </rs:data>
 </xml>

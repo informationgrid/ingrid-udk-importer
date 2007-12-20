@@ -4,31 +4,35 @@
 	xmlns:z='#RowsetSchema'>
 <s:Schema id='RowsetSchema'>
 	<s:ElementType name='row' content='eltOnly' rs:updatable='true'>
-		<s:AttributeType name='env_id' rs:number='1' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='T0111_st_env_class'
-			 rs:basecolumn='env_id' rs:keycolumn='true'>
-			<s:datatype dt:type='string' dt:maxLength='5' rs:maybenull='false'/>
+		<s:AttributeType name='ENV_ID' rs:number='1' rs:writeunknown='true' rs:basetable='T0111_ST_ENV_CLASS' rs:basecolumn='ENV_ID'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='5' rs:maybenull='false'/>
 		</s:AttributeType>
-		<s:AttributeType name='env_descr' rs:number='2' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='T0111_st_env_class' rs:basecolumn='env_descr'>
-			<s:datatype dt:type='string' dt:maxLength='255'/>
+		<s:AttributeType name='ENV_DESCR' rs:number='2' rs:nullable='true' rs:writeunknown='true' rs:basetable='T0111_ST_ENV_CLASS'
+			 rs:basecolumn='ENV_DESCR'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='255'/>
+		</s:AttributeType>
+		<s:AttributeType name='ROWID' rs:number='3' rs:nullable='true' rs:rowid='true' rs:basetable='T0111_ST_ENV_CLASS'
+			 rs:basecolumn='ROWID' rs:keycolumn='true' rs:hidden='true' rs:autoincrement='true'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='18' rs:fixedlength='true'/>
 		</s:AttributeType>
 		<s:extends type='rs:rowbase'/>
 	</s:ElementType>
 </s:Schema>
 <rs:data>
-	<z:row env_id='AB' env_descr='Abfall'/>
-	<z:row env_id='BO' env_descr='Boden'/>
-	<z:row env_id='CH' env_descr='Chemikalien/Schadstoffe'/>
-	<z:row env_id='EN' env_descr='Umweltaspekte von Energie und Rohstoffen'/>
-	<z:row env_id='GT' env_descr='Umweltaspekte gentechnisch veränderter Organismen und Viren'/>
-	<z:row env_id='LE' env_descr='Lärm/Erschütterung'/>
-	<z:row env_id='LF' env_descr='Umweltaspekte in Land- und Forstwirtschaft, Fischerei, Nahrungsmittel'/>
-	<z:row env_id='LU' env_descr='Luft'/>
-	<z:row env_id='NL' env_descr='Natur und Landschaft/ räumliche Aspekte von Landschaftsnutzung, Siedlungs- und Verkehrswesen, urbaner Umwelt'/>
-	<z:row env_id='SR' env_descr='Strahlung'/>
-	<z:row env_id='UA' env_descr='Allgemeine und übergreifende Umweltfragen'/>
-	<z:row env_id='UR' env_descr='Umweltrecht'/>
-	<z:row env_id='UW' env_descr='Umweltökonomie'/>
-	<z:row env_id='WA' env_descr='Wasser und Gewässer'/>
+	<z:row ENV_ID='AB' ENV_DESCR='Abfall' ROWID='AAAHaWAABAAAMeaAAA'/>
+	<z:row ENV_ID='BO' ENV_DESCR='Boden' ROWID='AAAHaWAABAAAMeaAAB'/>
+	<z:row ENV_ID='CH' ENV_DESCR='Chemikalien/Schadstoffe' ROWID='AAAHaWAABAAAMeaAAC'/>
+	<z:row ENV_ID='EN' ENV_DESCR='Umweltaspekte von Energie und Rohstoffen' ROWID='AAAHaWAABAAAMeaAAD'/>
+	<z:row ENV_ID='GT' ENV_DESCR='Umweltaspekte gentechnisch veränderter Organismen und Viren' ROWID='AAAHaWAABAAAMeaAAE'/>
+	<z:row ENV_ID='LE' ENV_DESCR='Lärm/Erschütterung' ROWID='AAAHaWAABAAAMeaAAF'/>
+	<z:row ENV_ID='LF' ENV_DESCR='Umweltaspekte in Land- und Forstwirtschaft, Fischerei, Nahrungsmittel' ROWID='AAAHaWAABAAAMeaAAG'/>
+	<z:row ENV_ID='LU' ENV_DESCR='Luft' ROWID='AAAHaWAABAAAMeaAAH'/>
+	<z:row ENV_ID='NL' ENV_DESCR='Natur und Landschaft/ räumliche Aspekte von Landschaftsnutzung, Siedlungs- und Verkehrswesen, urbaner Umwelt'
+		 ROWID='AAAHaWAABAAAMeaAAI'/>
+	<z:row ENV_ID='SR' ENV_DESCR='Strahlung' ROWID='AAAHaWAABAAAMeaAAJ'/>
+	<z:row ENV_ID='UA' ENV_DESCR='Allgemeine und übergreifende Umweltfragen' ROWID='AAAHaWAABAAAMeaAAK'/>
+	<z:row ENV_ID='UR' ENV_DESCR='Umweltrecht' ROWID='AAAHaWAABAAAMeaAAL'/>
+	<z:row ENV_ID='UW' ENV_DESCR='Umweltökonomie' ROWID='AAAHaWAABAAAMeaAAM'/>
+	<z:row ENV_ID='WA' ENV_DESCR='Wasser und Gewässer' ROWID='AAAHaWAABAAAMeaAAN'/>
 </rs:data>
 </xml>

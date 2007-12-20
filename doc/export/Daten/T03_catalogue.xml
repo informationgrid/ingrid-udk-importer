@@ -4,52 +4,52 @@
 	xmlns:z='#RowsetSchema'>
 <s:Schema id='RowsetSchema'>
 	<s:ElementType name='row' content='eltOnly' rs:updatable='true'>
-		<s:AttributeType name='cat_id' rs:number='1' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='T03_catalogue'
-			 rs:basecolumn='cat_id' rs:keycolumn='true'>
-			<s:datatype dt:type='string' dt:maxLength='40' rs:maybenull='false'/>
+		<s:AttributeType name='CAT_ID' rs:number='1' rs:writeunknown='true' rs:basetable='T03_CATALOGUE' rs:basecolumn='CAT_ID'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='40' rs:maybenull='false'/>
 		</s:AttributeType>
-		<s:AttributeType name='country' rs:number='2' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='T03_catalogue' rs:basecolumn='country'>
-			<s:datatype dt:type='string' dt:maxLength='3'/>
+		<s:AttributeType name='COUNTRY' rs:number='2' rs:writeunknown='true' rs:basetable='T03_CATALOGUE' rs:basecolumn='COUNTRY'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='3' rs:maybenull='false'/>
 		</s:AttributeType>
-		<s:AttributeType name='state' rs:number='3' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='T03_catalogue' rs:basecolumn='state'>
-			<s:datatype dt:type='string' dt:maxLength='3'/>
+		<s:AttributeType name='STATE' rs:number='3' rs:writeunknown='true' rs:basetable='T03_CATALOGUE' rs:basecolumn='STATE'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='3' rs:maybenull='false'/>
 		</s:AttributeType>
-		<s:AttributeType name='catalogue' rs:number='4' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='T03_catalogue' rs:basecolumn='catalogue'>
-			<s:datatype dt:type='string' dt:maxLength='60'/>
+		<s:AttributeType name='CATALOGUE' rs:number='4' rs:writeunknown='true' rs:basetable='T03_CATALOGUE' rs:basecolumn='CATALOGUE'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='60' rs:maybenull='false'/>
 		</s:AttributeType>
-		<s:AttributeType name='default_flag' rs:number='5' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='T03_catalogue' rs:basecolumn='default_flag'>
-			<s:datatype dt:type='i2' dt:maxLength='2' rs:precision='5' rs:fixedlength='true'/>
+		<s:AttributeType name='DEFAULT_FLAG' rs:number='5' rs:nullable='true' rs:writeunknown='true' rs:basetable='T03_CATALOGUE'
+			 rs:basecolumn='DEFAULT_FLAG'>
+			<s:datatype dt:type='number' rs:dbtype='numeric' dt:maxLength='19' rs:scale='0' rs:precision='3' rs:fixedlength='true'/>
 		</s:AttributeType>
-		<s:AttributeType name='create_id' rs:number='6' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='T03_catalogue' rs:basecolumn='create_id'>
-			<s:datatype dt:type='string' dt:maxLength='40'/>
+		<s:AttributeType name='CREATE_TIME' rs:number='6' rs:nullable='true' rs:writeunknown='true' rs:basetable='T03_CATALOGUE'
+			 rs:basecolumn='CREATE_TIME'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='14'/>
 		</s:AttributeType>
-		<s:AttributeType name='create_time' rs:number='7' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='T03_catalogue' rs:basecolumn='create_time'>
-			<s:datatype dt:type='string' dt:maxLength='14'/>
+		<s:AttributeType name='CREATE_ID' rs:number='7' rs:nullable='true' rs:writeunknown='true' rs:basetable='T03_CATALOGUE'
+			 rs:basecolumn='CREATE_ID'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='40'/>
 		</s:AttributeType>
-		<s:AttributeType name='mod_id' rs:number='8' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='T03_catalogue' rs:basecolumn='mod_id'>
-			<s:datatype dt:type='string' dt:maxLength='40'/>
+		<s:AttributeType name='MOD_ID' rs:number='8' rs:nullable='true' rs:writeunknown='true' rs:basetable='T03_CATALOGUE'
+			 rs:basecolumn='MOD_ID'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='40'/>
 		</s:AttributeType>
-		<s:AttributeType name='mod_time' rs:number='9' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='T03_catalogue' rs:basecolumn='mod_time'>
-			<s:datatype dt:type='string' dt:maxLength='14'/>
+		<s:AttributeType name='MOD_TIME' rs:number='9' rs:nullable='true' rs:writeunknown='true' rs:basetable='T03_CATALOGUE'
+			 rs:basecolumn='MOD_TIME'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='14'/>
 		</s:AttributeType>
-		<s:AttributeType name='mod_type' rs:number='10' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='T03_catalogue'
-			 rs:basecolumn='mod_type'>
-			<s:datatype dt:type='string' dt:maxLength='1' rs:maybenull='false'/>
+		<s:AttributeType name='MOD_TYPE' rs:number='10' rs:nullable='true' rs:writeunknown='true' rs:basetable='T03_CATALOGUE'
+			 rs:basecolumn='MOD_TYPE'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='1'/>
+		</s:AttributeType>
+		<s:AttributeType name='ROWID' rs:number='11' rs:nullable='true' rs:rowid='true' rs:basetable='T03_CATALOGUE'
+			 rs:basecolumn='ROWID' rs:keycolumn='true' rs:hidden='true' rs:autoincrement='true'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='18' rs:fixedlength='true'/>
 		</s:AttributeType>
 		<s:extends type='rs:rowbase'/>
 	</s:ElementType>
 </s:Schema>
 <rs:data>
-	<z:row cat_id='A853DFE4-E6AF-11D2-9A86-080000507261' country='D' state='SN' catalogue='UDK-Sachsen' default_flag='1'
-		 create_id='A853E0E2-E6AF-11D2-9A86-080000507261' create_time='19970127181951' mod_id='A853E0E2-E6AF-11D2-9A86-080000507261'
-		 mod_time='19970127181951' mod_type='N'/>
+	<z:row CAT_ID='38664477-B449-11D2-9A86-080000507261' COUNTRY='D' STATE='NI' CATALOGUE='Niedersachsen' DEFAULT_FLAG='1'
+		 CREATE_TIME='19971211145400' CREATE_ID='386644B9-B449-11D2-9A86-080000507261' MOD_ID='3866459C-B449-11D2-9A86-080000507261'
+		 MOD_TIME='20010302102334' MOD_TYPE='N' ROWID='AAAHc0AABAAANTaAAA'/>
 </rs:data>
 </xml>

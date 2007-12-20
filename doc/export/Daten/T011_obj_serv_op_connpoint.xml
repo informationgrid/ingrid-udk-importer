@@ -1,0 +1,48 @@
+<xml xmlns:s='uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882'
+	xmlns:dt='uuid:C2F41010-65B3-11d1-A29F-00AA00C14882'
+	xmlns:rs='urn:schemas-microsoft-com:rowset'
+	xmlns:z='#RowsetSchema'>
+<s:Schema id='RowsetSchema'>
+	<s:ElementType name='row' content='eltOnly' rs:updatable='true'>
+		<s:AttributeType name='OBJ_ID' rs:number='1' rs:writeunknown='true' rs:basetable='T011_OBJ_SERV_OP_CONNPOINT'
+			 rs:basecolumn='OBJ_ID'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='40' rs:maybenull='false'/>
+		</s:AttributeType>
+		<s:AttributeType name='LINE' rs:number='2' rs:writeunknown='true' rs:basetable='T011_OBJ_SERV_OP_CONNPOINT'
+			 rs:basecolumn='LINE'>
+			<s:datatype dt:type='number' rs:dbtype='numeric' dt:maxLength='19' rs:scale='0' rs:precision='9' rs:fixedlength='true'
+			 rs:maybenull='false'/>
+		</s:AttributeType>
+		<s:AttributeType name='CONN_LINE' rs:number='3' rs:writeunknown='true' rs:basetable='T011_OBJ_SERV_OP_CONNPOINT'
+			 rs:basecolumn='CONN_LINE'>
+			<s:datatype dt:type='number' rs:dbtype='numeric' dt:maxLength='19' rs:scale='0' rs:precision='9' rs:fixedlength='true'
+			 rs:maybenull='false'/>
+		</s:AttributeType>
+		<s:AttributeType name='CONNECT_POINT' rs:number='4' rs:nullable='true' rs:writeunknown='true' rs:basetable='T011_OBJ_SERV_OP_CONNPOINT'
+			 rs:basecolumn='CONNECT_POINT'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='255'/>
+		</s:AttributeType>
+		<s:AttributeType name='MOD_TYPE' rs:number='5' rs:nullable='true' rs:writeunknown='true' rs:basetable='T011_OBJ_SERV_OP_CONNPOINT'
+			 rs:basecolumn='MOD_TYPE'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='1'/>
+		</s:AttributeType>
+		<s:AttributeType name='ROWID' rs:number='6' rs:nullable='true' rs:rowid='true' rs:basetable='T011_OBJ_SERV_OP_CONNPOINT'
+			 rs:basecolumn='ROWID' rs:keycolumn='true' rs:hidden='true' rs:autoincrement='true'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='18' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:extends type='rs:rowbase'/>
+	</s:ElementType>
+</s:Schema>
+<rs:data>
+	<z:row OBJ_ID='38664C66-B449-11D2-9A86-080000507261' LINE='1' CONN_LINE='1' CONNECT_POINT='http://irgendwo'
+		 MOD_TYPE='D' ROWID='AAAHbIAABAAAMnKAAA'/>
+	<z:row OBJ_ID='C1D8BD22-CC8B-48BB-AB66-4FEFCA76FA0F' LINE='1' CONN_LINE='1' CONNECT_POINT='op1' MOD_TYPE='I'
+		 ROWID='AAAHbIAABAAAMnKAAB'/>
+	<z:row OBJ_ID='C1D8BD22-CC8B-48BB-AB66-4FEFCA76FA0F' LINE='2' CONN_LINE='1' CONNECT_POINT='op2' MOD_TYPE='I'
+		 ROWID='AAAHbIAABAAAMnKAAC'/>
+	<z:row OBJ_ID='F765C7EE-542B-4E5C-AD48-01FA5CC1C814' LINE='1' CONN_LINE='1' CONNECT_POINT='op1' MOD_TYPE='I'
+		 ROWID='AAAHbIAABAAAMnKAAD'/>
+	<z:row OBJ_ID='F765C7EE-542B-4E5C-AD48-01FA5CC1C814' LINE='2' CONN_LINE='1' CONNECT_POINT='op2' MOD_TYPE='I'
+		 ROWID='AAAHbIAABAAAMnKAAE'/>
+</rs:data>
+</xml>

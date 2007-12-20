@@ -4,31 +4,33 @@
 	xmlns:z='#RowsetSchema'>
 <s:Schema id='RowsetSchema'>
 	<s:ElementType name='row' content='eltOnly' rs:updatable='true'>
-		<s:AttributeType name='attr_id' rs:number='1' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='T08_attr'
-			 rs:basecolumn='attr_id' rs:keycolumn='true'>
-			<s:datatype dt:type='string' dt:maxLength='40' rs:maybenull='false'/>
+		<s:AttributeType name='ATTR_ID' rs:number='1' rs:writeunknown='true' rs:basetable='T08_ATTR' rs:basecolumn='ATTR_ID'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='40' rs:maybenull='false'/>
 		</s:AttributeType>
-		<s:AttributeType name='obj_id' rs:number='2' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='T08_attr'
-			 rs:basecolumn='obj_id' rs:keycolumn='true'>
-			<s:datatype dt:type='string' dt:maxLength='40' rs:maybenull='false'/>
+		<s:AttributeType name='OBJ_ID' rs:number='2' rs:writeunknown='true' rs:basetable='T08_ATTR' rs:basecolumn='OBJ_ID'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='40' rs:maybenull='false'/>
 		</s:AttributeType>
-		<s:AttributeType name='data' rs:number='3' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='T08_attr' rs:basecolumn='data'>
-			<s:datatype dt:type='string' dt:maxLength='255'/>
+		<s:AttributeType name='DATA' rs:number='3' rs:nullable='true' rs:writeunknown='true' rs:basetable='T08_ATTR'
+			 rs:basecolumn='DATA'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='255'/>
 		</s:AttributeType>
-		<s:AttributeType name='mod_type' rs:number='4' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='T08_attr'
-			 rs:basecolumn='mod_type'>
-			<s:datatype dt:type='string' dt:maxLength='1' rs:maybenull='false'/>
+		<s:AttributeType name='MOD_TYPE' rs:number='4' rs:nullable='true' rs:writeunknown='true' rs:basetable='T08_ATTR'
+			 rs:basecolumn='MOD_TYPE'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='1'/>
+		</s:AttributeType>
+		<s:AttributeType name='ROWID' rs:number='5' rs:nullable='true' rs:rowid='true' rs:basetable='T08_ATTR' rs:basecolumn='ROWID'
+			 rs:keycolumn='true' rs:hidden='true' rs:autoincrement='true'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='18' rs:fixedlength='true'/>
 		</s:AttributeType>
 		<s:extends type='rs:rowbase'/>
 	</s:ElementType>
 </s:Schema>
 <rs:data>
-	<z:row attr_id='3D6FF764-9DF1-4E90-B152-CD4631EFC019' obj_id='A27268C5-A7DC-4EC2-9FDE-8318097BD7FD' data='100 %'
-		 mod_type='D'/>
-	<z:row attr_id='6BF03CAC-8D38-4741-A4E0-30D29F0147EA' obj_id='A27268C5-A7DC-4EC2-9FDE-8318097BD7FD' data='1:25000'
-		 mod_type='D'/>
-	<z:row attr_id='B927CEE3-0EF9-480B-989B-082DA06CF130' obj_id='A27268C5-A7DC-4EC2-9FDE-8318097BD7FD' data='Datenserie'
-		 mod_type='D'/>
+	<z:row ATTR_ID='410CF0F9-5BF9-4557-B25D-EDD5BB2B7ED7' OBJ_ID='3892B136-D1F3-4E45-9E5F-E1CEF117AA74' DATA='Eintrag 1'
+		 MOD_TYPE='I' ROWID='AAAHdUAABAAANsqAAA'/>
+	<z:row ATTR_ID='53F247EA-DC84-44AB-8415-40BFDB5472FC' OBJ_ID='3892B136-D1F3-4E45-9E5F-E1CEF117AA74' DATA='testtext'
+		 MOD_TYPE='I' ROWID='AAAHdUAABAAANsqAAB'/>
+	<z:row ATTR_ID='53F247EA-DC84-44AB-8415-40BFDB5472FC' OBJ_ID='F765C7EE-542B-4E5C-AD48-01FA5CC1C814' DATA='test'
+		 MOD_TYPE='I' ROWID='AAAHdUAABAAANsqAAC'/>
 </rs:data>
 </xml>

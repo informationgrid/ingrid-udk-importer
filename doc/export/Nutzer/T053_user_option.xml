@@ -4,83 +4,36 @@
 	xmlns:z='#RowsetSchema'>
 <s:Schema id='RowsetSchema'>
 	<s:ElementType name='row' content='eltOnly' rs:updatable='true'>
-		<s:AttributeType name='user_id' rs:number='1' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='T053_user_option'
-			 rs:basecolumn='user_id' rs:keycolumn='true'>
-			<s:datatype dt:type='string' dt:maxLength='40' rs:maybenull='false'/>
+		<s:AttributeType name='USER_ID' rs:number='1' rs:writeunknown='true' rs:basetable='T053_USER_OPTION' rs:basecolumn='USER_ID'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='40' rs:maybenull='false'/>
 		</s:AttributeType>
-		<s:AttributeType name='option_id' rs:number='2' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='T053_user_option'
-			 rs:basecolumn='option_id' rs:keycolumn='true'>
-			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true' rs:maybenull='false'/>
+		<s:AttributeType name='OPTION_ID' rs:number='2' rs:writeunknown='true' rs:basetable='T053_USER_OPTION' rs:basecolumn='OPTION_ID'>
+			<s:datatype dt:type='number' rs:dbtype='numeric' dt:maxLength='19' rs:scale='0' rs:precision='5' rs:fixedlength='true'
+			 rs:maybenull='false'/>
 		</s:AttributeType>
-		<s:AttributeType name='entry' rs:number='3' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='T053_user_option' rs:basecolumn='entry'>
-			<s:datatype dt:type='string' dt:maxLength='40'/>
+		<s:AttributeType name='ENTRY' rs:number='3' rs:nullable='true' rs:writeunknown='true' rs:basetable='T053_USER_OPTION'
+			 rs:basecolumn='ENTRY'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='40'/>
 		</s:AttributeType>
-		<s:AttributeType name='mod_time' rs:number='4' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='T053_user_option' rs:basecolumn='mod_time'>
-			<s:datatype dt:type='string' dt:maxLength='14'/>
+		<s:AttributeType name='MOD_TIME' rs:number='4' rs:nullable='true' rs:writeunknown='true' rs:basetable='T053_USER_OPTION'
+			 rs:basecolumn='MOD_TIME'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='14'/>
+		</s:AttributeType>
+		<s:AttributeType name='ROWID' rs:number='5' rs:nullable='true' rs:rowid='true' rs:basetable='T053_USER_OPTION'
+			 rs:basecolumn='ROWID' rs:keycolumn='true' rs:hidden='true' rs:autoincrement='true'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='18' rs:fixedlength='true'/>
 		</s:AttributeType>
 		<s:extends type='rs:rowbase'/>
 	</s:ElementType>
 </s:Schema>
 <rs:data>
-	<z:row user_id='A853E588-E6AF-11D2-9A86-080000507261' option_id='1' entry='0' mod_time='20071206102003'/>
-	<z:row user_id='84E592C9-3386-46D3-8FEB-EF7DF13DCB76' option_id='1' entry='0' mod_time='20060529085214'/>
-	<z:row user_id='3C8D893B-EB7C-4EAB-B4C9-EA3EF88FD7E4' option_id='1' entry='1' mod_time='20030113160306'/>
-	<z:row user_id='8C938F98-0970-11D4-8C3B-00105A493192' option_id='1' entry='1' mod_time='20011108150311'/>
-	<z:row user_id='6CE60D9D-9D3D-494C-88D6-892907E87064' option_id='1' entry='0' mod_time='20070202103411'/>
-	<z:row user_id='0926A3A8-79DB-41E4-BEE3-0AE65B7A9D61' option_id='1' entry='0' mod_time='20071030083357'/>
-	<z:row user_id='69916C74-76B7-4CCA-9E93-1AF714BBF00B' option_id='1' entry='0' mod_time='20071108094655'/>
-	<z:row user_id='5C5793B3-E7CF-11D5-B630-00508BEE2D69' option_id='1' entry='0' mod_time='20070430100913'/>
-	<z:row user_id='5C5793B1-E7CF-11D5-B630-00508BEE2D69' option_id='1' entry='1' mod_time='20011203111816'/>
-	<z:row user_id='1F48AB54-E8B5-11D5-8BF5-00508BA16A08' option_id='1' entry='0' mod_time='20050921150432'/>
-	<z:row user_id='29056241-0794-4D34-9907-3013E8276166' option_id='1' entry='1' mod_time='20011204152416'/>
-	<z:row user_id='84C6E779-5BB8-11D4-8C7F-00105A493192' option_id='1' entry='1' mod_time='20011207113443'/>
-	<z:row user_id='DFAFD57C-3EA6-415E-8F3D-CDBE61ACFD18' option_id='1' entry='0' mod_time='20071203124844'/>
-	<z:row user_id='D1687562-6DF1-4EEB-A8C7-3177A9C0F2CF' option_id='1' entry='1' mod_time='20050204115547'/>
-	<z:row user_id='061178C8-B7CB-43C6-8613-343CFB0638CD' option_id='1' entry='1' mod_time='20020805162216'/>
-	<z:row user_id='35C2C095-E171-11D4-8146-00902788234C' option_id='1' entry='0' mod_time='20071127151937'/>
-	<z:row user_id='C30B7EF6-373D-4F69-AC58-B1A6E0B38C3F' option_id='1' entry='1' mod_time='20021219145003'/>
-	<z:row user_id='FA51500B-57FD-4E59-8422-38A9FA7AE3EF' option_id='1' entry='0' mod_time='20050606124807'/>
-	<z:row user_id='B0FCE59F-C36C-43EA-8724-A0487E81E4B6' option_id='1' entry='0' mod_time='20071123122248'/>
-	<z:row user_id='@@@@@' option_id='1' entry='0' mod_time='20071206115357'/>
-	<z:row user_id='E44D1064-FD34-11D6-A464-005004F9360E' option_id='1' entry='1' mod_time='20021205104014'/>
-	<z:row user_id='7C154D52-C5F5-11D4-812B-00902788234C' option_id='1' entry='0' mod_time='20070924100629'/>
-	<z:row user_id='D447BE7D-C5DD-11D4-812B-00902788234C' option_id='1' entry='0' mod_time='20071114103421'/>
-	<z:row user_id='37FD0022-9547-40D4-8C80-7297F4E8554F' option_id='1' entry='1' mod_time='20040317141022'/>
-	<z:row user_id='260EA23D-BA28-11D4-8123-00902788234C' option_id='1' entry='0' mod_time='20071008121355'/>
-	<z:row user_id='92C52E31-BB69-462E-8022-CA8C5759A6F2' option_id='1' entry='0' mod_time='20071107110124'/>
-	<z:row user_id='0D5BE2AE-6F19-4BF0-A39D-FE2B26823FBC' option_id='1' entry='0' mod_time='20070920140441'/>
-	<z:row user_id='DF8880F1-8CF2-44CB-8096-9AFE18AC2D5A' option_id='1' entry='0' mod_time='20070928142118'/>
-	<z:row user_id='7CBBFA3B-FE78-424C-AC9D-E3BAA5BCBD65' option_id='1' entry='0' mod_time='20060606121808'/>
-	<z:row user_id='4F4D1281-1788-4B1F-9FA0-2B2D4A5FCC48' option_id='1' entry='0' mod_time='20071204162902'/>
-	<z:row user_id='D876DAD7-FFFF-4121-9700-0722DC35F6EF' option_id='1' entry='1' mod_time='20040930153600'/>
-	<z:row user_id='52A023E9-5AEE-4BCC-A6EB-07F44EBD3A85' option_id='1' entry='0' mod_time='20071206131508'/>
-	<z:row user_id='1653F618-6187-4CE7-806E-32505CDF16B9' option_id='1' entry='0' mod_time='20060420150258'/>
-	<z:row user_id='FC19D53A-10E4-4126-90BC-2D7F068D5A61' option_id='1' entry='0' mod_time='20070821105613'/>
-	<z:row user_id='FB0DD7BE-F1A3-4E3D-B479-3B8A33E135BE' option_id='1' entry='0' mod_time='20061205113209'/>
-	<z:row user_id='DE7F63E8-2166-4088-8CEF-3E7556923554' option_id='1' entry='0' mod_time='20050921154611'/>
-	<z:row user_id='A1795696-C5E2-4CDD-B48A-BE3FF5A21EE6' option_id='1' entry='0' mod_time='20071206125450'/>
-	<z:row user_id='93538A05-3A57-468A-8114-2317758991C7' option_id='1' entry='0' mod_time='20060613085242'/>
-	<z:row user_id='0F84562D-9900-4A50-B872-CBC0421E4253' option_id='1' entry='0' mod_time='20070924092659'/>
-	<z:row user_id='DB1068EC-446F-4C92-B653-3ABDDBE63D11' option_id='1' entry='0' mod_time='20060419151636'/>
-	<z:row user_id='43332115-3AC9-40C9-95B0-25E98C9A5BE7' option_id='1' entry='0' mod_time='20050921153942'/>
-	<z:row user_id='3716D261-B591-4229-9A80-D56A1351AA50' option_id='1' entry='0' mod_time='20060222135551'/>
-	<z:row user_id='D13FA566-9E0B-46E6-8B4C-9EB3DED46E89' option_id='1' entry='0' mod_time='20051010114058'/>
-	<z:row user_id='F6EBD0CF-4E75-4159-BB04-E461CB05422E' option_id='1' entry='0' mod_time='20060217102355'/>
-	<z:row user_id='920B440F-FB49-43F1-9A01-B248674F27EA' option_id='1' entry='0' mod_time='20060224145128'/>
-	<z:row user_id='A982E2FE-A42A-11D4-8113-00902788234C' option_id='1' entry='0' mod_time='20060410114402'/>
-	<z:row user_id='69CFA632-8E95-47DC-93FC-462D41BDB4B2' option_id='1' entry='0' mod_time='20071130081751'/>
-	<z:row user_id='79FB2779-A4B2-4CB4-92C4-26512344A58F' option_id='1' entry='0' mod_time='20060523154437'/>
-	<z:row user_id='8B949933-9AC9-423A-B9B8-6A714FC39DBD' option_id='1' entry='0' mod_time='20071126134939'/>
-	<z:row user_id='5BA52125-6E97-4C37-B19A-DECD9CA4DF7E' option_id='1' entry='0' mod_time='20070216135808'/>
-	<z:row user_id='AFB01240-D198-4FB6-B282-C2459605608C' option_id='1' entry='0' mod_time='20071203105823'/>
-	<z:row user_id='5858F8E5-329C-40DC-9117-6C55470C81D9' option_id='1' entry='0' mod_time='20070227095159'/>
-	<z:row user_id='4DD761C8-9DD5-40E2-8383-B05829530DD1' option_id='1' entry='0' mod_time='20071130170514'/>
-	<z:row user_id='FB628EE3-0610-4FB9-BD90-7190F4347BAE' option_id='1' entry='0' mod_time='20071205092823'/>
-	<z:row user_id='3F9CD5DA-15B2-457D-8FFA-068161B01D87' option_id='1' entry='0' mod_time='20071113111930'/>
-	<z:row user_id='997909D1-82C6-4AAF-9AC1-7598F4154B76' option_id='1' entry='0' mod_time='20071101150224'/>
-	<z:row user_id='70C451B5-601A-4CCA-9F76-3CA9B2594D69' option_id='1' entry='0' mod_time='20071115080335'/>
-	<z:row user_id='8EDE49ED-7D3E-4004-8784-9D20F03D6217' option_id='1' entry='0' mod_time='20071205152902'/>
+	<z:row USER_ID='386651B6-B449-11D2-9A86-080000507261' OPTION_ID='1' ENTRY='0' MOD_TIME='20071220110032' ROWID='AAAHdHAABAAANpCAAA'/>
+	<z:row USER_ID='BD353165-D854-11D2-B4CE-0000F4AEBAC2' OPTION_ID='1' ENTRY='1' MOD_TIME='20020205093736' ROWID='AAAHdHAABAAANpCAAB'/>
+	<z:row USER_ID='FAEFC663-0B53-11D6-97D2-000476105676' OPTION_ID='1' ENTRY='1' MOD_TIME='20020118072719' ROWID='AAAHdHAABAAANpCAAC'/>
+	<z:row USER_ID='361A7C73-1A4A-11D6-97E0-000476105676' OPTION_ID='1' ENTRY='1' MOD_TIME='20020213111208' ROWID='AAAHdHAABAAANpCAAD'/>
+	<z:row USER_ID='3962FE04-26CD-11D6-97E0-000476159F75' OPTION_ID='1' ENTRY='1' MOD_TIME='20020221154511' ROWID='AAAHdHAABAAANpCAAE'/>
+	<z:row USER_ID='D9DE0465-E536-11D3-98FB-0060084A480F' OPTION_ID='1' ENTRY='1' MOD_TIME='20020327121433' ROWID='AAAHdHAABAAANpCAAF'/>
+	<z:row USER_ID='@@@@@' OPTION_ID='1' ENTRY='0' MOD_TIME='20021024183456' ROWID='AAAHdHAABAAANpCAAG'/>
+	<z:row USER_ID='BD353167-D854-11D2-B4CE-0000F4AEBAC2' OPTION_ID='1' ENTRY='0' MOD_TIME='20060327145125' ROWID='AAAHdHAABAAANpCAAH'/>
 </rs:data>
 </xml>

@@ -4,41 +4,45 @@
 	xmlns:z='#RowsetSchema'>
 <s:Schema id='RowsetSchema'>
 	<s:ElementType name='row' content='eltOnly' rs:updatable='true'>
-		<s:AttributeType name='codelist_id' rs:number='1' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='sys_codelist'
-			 rs:basecolumn='codelist_id' rs:keycolumn='true'>
-			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true' rs:maybenull='false'/>
+		<s:AttributeType name='CODELIST_ID' rs:number='1' rs:writeunknown='true' rs:basetable='SYS_CODELIST' rs:basecolumn='CODELIST_ID'>
+			<s:datatype dt:type='number' rs:dbtype='numeric' dt:maxLength='19' rs:scale='0' rs:precision='9' rs:fixedlength='true'
+			 rs:maybenull='false'/>
 		</s:AttributeType>
-		<s:AttributeType name='name' rs:number='2' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='sys_codelist' rs:basecolumn='name'>
-			<s:datatype dt:type='string' dt:maxLength='50'/>
+		<s:AttributeType name='NAME' rs:number='2' rs:nullable='true' rs:writeunknown='true' rs:basetable='SYS_CODELIST'
+			 rs:basecolumn='NAME'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='50'/>
 		</s:AttributeType>
-		<s:AttributeType name='default_enabled' rs:number='3' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='sys_codelist' rs:basecolumn='default_enabled'>
-			<s:datatype dt:type='i2' dt:maxLength='2' rs:precision='5' rs:fixedlength='true'/>
+		<s:AttributeType name='DEFAULT_ENABLED' rs:number='3' rs:nullable='true' rs:writeunknown='true' rs:basetable='SYS_CODELIST'
+			 rs:basecolumn='DEFAULT_ENABLED'>
+			<s:datatype dt:type='number' rs:dbtype='numeric' dt:maxLength='19' rs:scale='0' rs:precision='1' rs:fixedlength='true'/>
 		</s:AttributeType>
-		<s:AttributeType name='maintainable' rs:number='4' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='sys_codelist' rs:basecolumn='maintainable'>
-			<s:datatype dt:type='i2' dt:maxLength='2' rs:precision='5' rs:fixedlength='true'/>
+		<s:AttributeType name='MAINTAINABLE' rs:number='4' rs:nullable='true' rs:writeunknown='true' rs:basetable='SYS_CODELIST'
+			 rs:basecolumn='MAINTAINABLE'>
+			<s:datatype dt:type='number' rs:dbtype='numeric' dt:maxLength='19' rs:scale='0' rs:precision='1' rs:fixedlength='true'/>
+		</s:AttributeType>
+		<s:AttributeType name='ROWID' rs:number='5' rs:nullable='true' rs:rowid='true' rs:basetable='SYS_CODELIST'
+			 rs:basecolumn='ROWID' rs:keycolumn='true' rs:hidden='true' rs:autoincrement='true'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='18' rs:fixedlength='true'/>
 		</s:AttributeType>
 		<s:extends type='rs:rowbase'/>
 	</s:ElementType>
 </s:Schema>
 <rs:data>
-	<z:row codelist_id='100' name='Raumbezugssystem (EPSG)' default_enabled='1' maintainable='1'/>
-	<z:row codelist_id='101' name='Vertikales Datum' default_enabled='1' maintainable='1'/>
-	<z:row codelist_id='102' name='Höhe' default_enabled='1' maintainable='1'/>
-	<z:row codelist_id='502' name='Zeitbezug des Datensatzes (Typ)' default_enabled='1' maintainable='1'/>
-	<z:row codelist_id='505' name='Adresse' default_enabled='1' maintainable='1'/>
-	<z:row codelist_id='510' name='Zeichensatz' default_enabled='1' maintainable='1'/>
-	<z:row codelist_id='515' name='Vektorformat (Geometrie)' default_enabled='1' maintainable='1'/>
-	<z:row codelist_id='517' name='Schlüsselwort' default_enabled='1' maintainable='1'/>
-	<z:row codelist_id='518' name='Periodizität' default_enabled='1' maintainable='1'/>
-	<z:row codelist_id='520' name='Medium' default_enabled='1' maintainable='1'/>
-	<z:row codelist_id='523' name='Status' default_enabled='1' maintainable='1'/>
-	<z:row codelist_id='525' name='Datensatz/Datenserie' default_enabled='1' maintainable='1'/>
-	<z:row codelist_id='526' name='Digitale Repräsentation' default_enabled='1' maintainable='1'/>
-	<z:row codelist_id='527' name='Klassifikation' default_enabled='1' maintainable='1'/>
-	<z:row codelist_id='528' name='Vektorformat (Topologie)' default_enabled='1' maintainable='1'/>
-	<z:row codelist_id='99999999' name='Sprache' default_enabled='1' maintainable='0'/>
+	<z:row CODELIST_ID='100' NAME='Raumbezugssystem (EPSG)' DEFAULT_ENABLED='1' MAINTAINABLE='1' ROWID='AAAHZyAABAAAMZaAAA'/>
+	<z:row CODELIST_ID='101' NAME='Vertikales Datum' DEFAULT_ENABLED='1' MAINTAINABLE='1' ROWID='AAAHZyAABAAAMZaAAB'/>
+	<z:row CODELIST_ID='102' NAME='Höhe' DEFAULT_ENABLED='1' MAINTAINABLE='1' ROWID='AAAHZyAABAAAMZaAAC'/>
+	<z:row CODELIST_ID='502' NAME='Zeitbezug des Datensatzes (Typ)' DEFAULT_ENABLED='1' MAINTAINABLE='1' ROWID='AAAHZyAABAAAMZaAAD'/>
+	<z:row CODELIST_ID='505' NAME='Adresse' DEFAULT_ENABLED='1' MAINTAINABLE='1' ROWID='AAAHZyAABAAAMZaAAE'/>
+	<z:row CODELIST_ID='510' NAME='Zeichensatz' DEFAULT_ENABLED='1' MAINTAINABLE='1' ROWID='AAAHZyAABAAAMZaAAF'/>
+	<z:row CODELIST_ID='515' NAME='Vektorformat (Geometrie)' DEFAULT_ENABLED='1' MAINTAINABLE='1' ROWID='AAAHZyAABAAAMZaAAG'/>
+	<z:row CODELIST_ID='517' NAME='Schlüsselwort' DEFAULT_ENABLED='1' MAINTAINABLE='1' ROWID='AAAHZyAABAAAMZaAAH'/>
+	<z:row CODELIST_ID='518' NAME='Periodizität' DEFAULT_ENABLED='1' MAINTAINABLE='1' ROWID='AAAHZyAABAAAMZaAAI'/>
+	<z:row CODELIST_ID='520' NAME='Medium' DEFAULT_ENABLED='1' MAINTAINABLE='1' ROWID='AAAHZyAABAAAMZaAAJ'/>
+	<z:row CODELIST_ID='523' NAME='Status' DEFAULT_ENABLED='1' MAINTAINABLE='1' ROWID='AAAHZyAABAAAMZaAAK'/>
+	<z:row CODELIST_ID='525' NAME='Datensatz/Datenserie' DEFAULT_ENABLED='1' MAINTAINABLE='1' ROWID='AAAHZyAABAAAMZaAAL'/>
+	<z:row CODELIST_ID='526' NAME='Digitale Repräsentation' DEFAULT_ENABLED='1' MAINTAINABLE='1' ROWID='AAAHZyAABAAAMZaAAM'/>
+	<z:row CODELIST_ID='527' NAME='Klassifikation' DEFAULT_ENABLED='1' MAINTAINABLE='1' ROWID='AAAHZyAABAAAMZaAAN'/>
+	<z:row CODELIST_ID='528' NAME='Vektorformat (Topologie)' DEFAULT_ENABLED='1' MAINTAINABLE='1' ROWID='AAAHZyAABAAAMZaAAO'/>
+	<z:row CODELIST_ID='99999999' NAME='Sprache' DEFAULT_ENABLED='1' MAINTAINABLE='0' ROWID='AAAHZyAABAAAMZaAAP'/>
 </rs:data>
 </xml>

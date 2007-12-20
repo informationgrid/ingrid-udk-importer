@@ -4,45 +4,59 @@
 	xmlns:z='#RowsetSchema'>
 <s:Schema id='RowsetSchema'>
 	<s:ElementType name='row' content='eltOnly' rs:updatable='true'>
-		<s:AttributeType name='obj_id' rs:number='1' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='T011_obj_geo_symc'
-			 rs:basecolumn='obj_id' rs:keycolumn='true'>
-			<s:datatype dt:type='string' dt:maxLength='40' rs:maybenull='false'/>
+		<s:AttributeType name='OBJ_ID' rs:number='1' rs:writeunknown='true' rs:basetable='T011_OBJ_GEO_SYMC' rs:basecolumn='OBJ_ID'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='40' rs:maybenull='false'/>
 		</s:AttributeType>
-		<s:AttributeType name='line' rs:number='2' rs:writeunknown='true' rs:basecatalog='udk50' rs:basetable='T011_obj_geo_symc'
-			 rs:basecolumn='line' rs:keycolumn='true'>
-			<s:datatype dt:type='int' dt:maxLength='4' rs:precision='10' rs:fixedlength='true' rs:maybenull='false'/>
+		<s:AttributeType name='LINE' rs:number='2' rs:writeunknown='true' rs:basetable='T011_OBJ_GEO_SYMC' rs:basecolumn='LINE'>
+			<s:datatype dt:type='number' rs:dbtype='numeric' dt:maxLength='19' rs:scale='0' rs:precision='9' rs:fixedlength='true'
+			 rs:maybenull='false'/>
 		</s:AttributeType>
-		<s:AttributeType name='symbol_cat' rs:number='3' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='T011_obj_geo_symc' rs:basecolumn='symbol_cat'>
-			<s:datatype dt:type='string' dt:maxLength='80'/>
+		<s:AttributeType name='SYMBOL_CAT' rs:number='3' rs:nullable='true' rs:writeunknown='true' rs:basetable='T011_OBJ_GEO_SYMC'
+			 rs:basecolumn='SYMBOL_CAT'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='80'/>
 		</s:AttributeType>
-		<s:AttributeType name='symbol_date' rs:number='4' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='T011_obj_geo_symc' rs:basecolumn='symbol_date'>
-			<s:datatype dt:type='string' dt:maxLength='14'/>
+		<s:AttributeType name='SYMBOL_DATE' rs:number='4' rs:nullable='true' rs:writeunknown='true' rs:basetable='T011_OBJ_GEO_SYMC'
+			 rs:basecolumn='SYMBOL_DATE'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='14'/>
 		</s:AttributeType>
-		<s:AttributeType name='edition' rs:number='5' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='T011_obj_geo_symc' rs:basecolumn='edition'>
-			<s:datatype dt:type='string' dt:maxLength='80'/>
+		<s:AttributeType name='EDITION' rs:number='5' rs:nullable='true' rs:writeunknown='true' rs:basetable='T011_OBJ_GEO_SYMC'
+			 rs:basecolumn='EDITION'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='80'/>
 		</s:AttributeType>
-		<s:AttributeType name='mod_type' rs:number='6' rs:nullable='true' rs:writeunknown='true' rs:basecatalog='udk50'
-			 rs:basetable='T011_obj_geo_symc' rs:basecolumn='mod_type'>
-			<s:datatype dt:type='string' dt:maxLength='1'/>
+		<s:AttributeType name='MOD_TYPE' rs:number='6' rs:nullable='true' rs:writeunknown='true' rs:basetable='T011_OBJ_GEO_SYMC'
+			 rs:basecolumn='MOD_TYPE'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='1'/>
+		</s:AttributeType>
+		<s:AttributeType name='ROWID' rs:number='7' rs:nullable='true' rs:rowid='true' rs:basetable='T011_OBJ_GEO_SYMC'
+			 rs:basecolumn='ROWID' rs:keycolumn='true' rs:hidden='true' rs:autoincrement='true'>
+			<s:datatype dt:type='string' rs:dbtype='str' dt:maxLength='18' rs:fixedlength='true'/>
 		</s:AttributeType>
 		<s:extends type='rs:rowbase'/>
 	</s:ElementType>
 </s:Schema>
 <rs:data>
-	<z:row obj_id='9B9661FD-B3B7-49D7-A440-E97A44872E14' line='1' symbol_cat='Bodenkundliche Kartieranleitung (KA4)'
-		 symbol_date='31.12.1994' edition='4' mod_type='D'/>
-	<z:row obj_id='F923A659-61B1-4B26-9D99-7B4EFD91E077' line='1' symbol_cat='Bodenkundliche Kartieranleitung KA4, KA5'
-		 symbol_date='01.01.1994' edition='2006' mod_type='U'/>
-	<z:row obj_id='BE6819D4-AED8-4607-B777-73A87A4B202F' line='1' symbol_cat='Bodenkundliche Kartieranleitung (KA4)'
-		 symbol_date='31.12.1994' edition='4' mod_type='I'/>
-	<z:row obj_id='F923A659-61B1-4B26-9D99-7B4EFD91E077' line='2' symbol_cat='+sächs.Ergänzungen' symbol_date='01.01.2005'
-		 edition='2006' mod_type='I'/>
-	<z:row obj_id='ED3303F6-35CA-4562-871A-544012AB4BCF' line='1' symbol_cat='TGL' symbol_date='01.01.1990' edition='1'
-		 mod_type='I'/>
-	<z:row obj_id='F923A659-61B1-4B26-9D99-7B4EFD91E077' line='3' symbol_cat='Datenhomogenisierung nach KA5 2006/2007 geplant'
-		 symbol_date='01.01.2006' edition='' mod_type='I'/>
+	<z:row OBJ_ID='05438065-16C3-11D5-8834-0060084A4596' LINE='1' SYMBOL_CAT='ATKIS® - Signaturenkatalog 1:25000 (ATKIS-SK25)'
+		 MOD_TYPE='N' ROWID='AAAHayAABAAAMj6AAA'/>
+	<z:row OBJ_ID='05438065-16C3-11D5-8834-0060084A4596' LINE='2' SYMBOL_CAT='Musterblatt Topographische Karte 1:25000'
+		 MOD_TYPE='N' ROWID='AAAHayAABAAAMj6AAB'/>
+	<z:row OBJ_ID='C69C7B90-F811-11D4-87AD-00600852CACF' LINE='2' SYMBOL_CAT='ATKIS® - Signaturenkatalog 1:25000 (ATKIS® - SK25)'
+		 MOD_TYPE='N' ROWID='AAAHayAABAAAMj6AAC'/>
+	<z:row OBJ_ID='28FA1B66-60A1-11D5-879D-0060087D04B1' LINE='1' SYMBOL_CAT='ATKIS®-Signaturenkatalog 1:10000 (ATKIS-SK10)'
+		 MOD_TYPE='N' ROWID='AAAHayAABAAAMj6AAD'/>
+	<z:row OBJ_ID='D40743EB-1FC3-11D3-AF50-0060084A4596' LINE='1' SYMBOL_CAT='Musterblatt Topographische Karte 1:100 000'
+		 MOD_TYPE='N' ROWID='AAAHayAABAAAMj6AAE'/>
+	<z:row OBJ_ID='1450E837-82B0-11D6-9828-000476159F75' LINE='1' MOD_TYPE='I' ROWID='AAAHayAABAAAMj6AAF'/>
+	<z:row OBJ_ID='1450E838-82B0-11D6-9828-000476159F75' LINE='1' MOD_TYPE='I' ROWID='AAAHayAABAAAMj6AAG'/>
+	<z:row OBJ_ID='1450E839-82B0-11D6-9828-000476159F75' LINE='1' MOD_TYPE='I' ROWID='AAAHayAABAAAMj6AAH'/>
+	<z:row OBJ_ID='1450E83A-82B0-11D6-9828-000476159F75' LINE='1' MOD_TYPE='I' ROWID='AAAHayAABAAAMj6AAI'/>
+	<z:row OBJ_ID='1450E83B-82B0-11D6-9828-000476159F75' LINE='1' MOD_TYPE='I' ROWID='AAAHayAABAAAMj6AAJ'/>
+	<z:row OBJ_ID='1450E83C-82B0-11D6-9828-000476159F75' LINE='1' MOD_TYPE='I' ROWID='AAAHayAABAAAMj6AAK'/>
+	<z:row OBJ_ID='1450E83D-82B0-11D6-9828-000476159F75' LINE='1' MOD_TYPE='I' ROWID='AAAHayAABAAAMj6AAL'/>
+	<z:row OBJ_ID='0FD5DDA5-4B30-11D3-A45F-0060084A6015' LINE='1' SYMBOL_CAT='?' MOD_TYPE='I' ROWID='AAAHayAABAAAMj6AAM'/>
+	<z:row OBJ_ID='C869D72C-D58F-11D4-879F-00600852CACF' LINE='1' SYMBOL_CAT='?' MOD_TYPE='I' ROWID='AAAHayAABAAAMj6AAN'/>
+	<z:row OBJ_ID='27A5661B-0B89-4C5E-85E2-95528B7A1453' LINE='1' SYMBOL_CAT='Ganzflächige Biotopkartierung 94'
+		 SYMBOL_DATE='13.12.1994' EDITION='0.8' MOD_TYPE='U' ROWID='AAAHayAABAAAMj6AAO'/>
+	<z:row OBJ_ID='27A5661B-0B89-4C5E-85E2-95528B7A1453' LINE='2' SYMBOL_CAT='Symbolkatalog Test' SYMBOL_DATE='12.12.2000'
+		 EDITION='1.0' MOD_TYPE='U' ROWID='AAAHayAABAAAMj6AAP'/>
 </rs:data>
 </xml>
