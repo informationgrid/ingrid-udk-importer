@@ -622,7 +622,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			log.debug("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t011_obj_serv_version (id, obj_serv_id, line, version) VALUES ( ?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO t011_obj_serv_version (id, obj_serv_id, line, serv_version) VALUES ( ?, ?, ?, ?);";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -639,7 +639,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setInt(cnt++, row.getInt("primary_key")); // id
 				p.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t011_obj_serv", "obj_id", row.get("obj_id"))); // obj_id
 				p.setInt(cnt++, row.getInt("line")); // line
-				p.setString(cnt++, row.get("version")); // version
+				p.setString(cnt++, row.get("version")); // serv_version
 				try {
 					p.executeUpdate();
 				} catch (Exception e) {
@@ -1352,7 +1352,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			log.debug("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t0110_avail_format (id, obj_id, line, name, version, file_decompression_technique, specification) VALUES (?, ?, ?, ?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO t0110_avail_format (id, obj_id, line, name, ver, file_decompression_technique, specification) VALUES (?, ?, ?, ?, ?, ?, ?);";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -1370,7 +1370,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"))); // obj_id
 				p.setInt(cnt++, row.getInt("line")); // line
 				p.setString(cnt++, row.get("name")); // name
-				p.setString(cnt++, row.get("version")); // version
+				p.setString(cnt++, row.get("version")); // ver
 				p.setString(cnt++, row.get("file_decompression_technique")); // file_decompression_technique
 				p.setString(cnt++, row.get("specification")); // specification
 				try {
