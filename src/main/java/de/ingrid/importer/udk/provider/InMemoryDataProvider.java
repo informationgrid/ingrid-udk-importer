@@ -57,18 +57,17 @@ public class InMemoryDataProvider implements DataProvider {
 		}
 		return null;
 	}
-	
-	
+
 	public Row findRow(String entityName, String[] rowName, String[] rowValue) {
 		if (rowName.length != rowValue.length) {
 			log.error("Error finding row! Parameter arrays for rowName and rowValue are not equal.");
 			return null;
 		}
-		
+
 		Entity e = entities.get(entityName);
 		for (Row row : e.getRows()) {
 			int cnt = 0;
-			for(int i=0; i<rowName.length; i++) {
+			for (int i = 0; i < rowName.length; i++) {
 				if (row.get(rowName[i]) != null && row.get(rowName[i]).equals(rowValue[i])) {
 					cnt++;
 				}
@@ -76,12 +75,11 @@ public class InMemoryDataProvider implements DataProvider {
 			if (cnt == rowName.length) {
 				return row;
 			}
-			
+
 		}
 		return null;
 	}
-	
-	
+
 	public Iterator<Row> getRowIterator(String entityName) {
 		Entity e = entities.get(entityName);
 		if (e == null) {
@@ -96,9 +94,9 @@ public class InMemoryDataProvider implements DataProvider {
 
 		Document dom = null;
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+		DocumentBuilder db = null;
 
 		for (String fileName : descriptor.getFiles()) {
-			DocumentBuilder db;
 			try {
 				db = dbf.newDocumentBuilder();
 				dom = db.parse(new File(fileName));
@@ -107,10 +105,13 @@ public class InMemoryDataProvider implements DataProvider {
 				entity.setName(entityName);
 				entities.put(entityName, entity);
 				entity.setRows(readRows(dom));
+				dom = null;
+				db = null;
 			} catch (Exception e) {
 				log.error("Error parsing file '" + fileName + "'", e);
 			}
 		}
+
 	}
 
 	private List<Row> readRows(Document dom) {

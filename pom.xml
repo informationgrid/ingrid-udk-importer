@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>ingrid</groupId>
 	<artifactId>ingrid-udk-importer</artifactId>
@@ -12,12 +14,13 @@
 				<directory>src/main/resources</directory>
 				<excludes>
 					<exclude>conf/</exclude>
-					<exclude>*.xml</exclude>
-					<exclude>*.properties</exclude>
 				</excludes>
 			</resource>
 			<resource>
 				<directory>src/main/resources/conf</directory>
+				<excludes>
+					<exclude>descriptor.properties</exclude>
+				</excludes>
 			</resource>
 		</resources>
 		<plugins>
@@ -49,11 +52,14 @@
 				</executions>
 				<configuration>
 					<descriptorRefs>
-						<descriptorRef>jar-with-dependencies</descriptorRef>
+						<descriptorRef>
+							jar-with-dependencies
+						</descriptorRef>
 					</descriptorRefs>
 					<archive>
 						<manifest>
 							<mainClass>de.ingrid.importer.udk.Importer</mainClass>
+							<packageName>de.ingrid.importer.udk</packageName>
 						</manifest>
 					</archive>
 				</configuration>
@@ -87,6 +93,34 @@
 			<artifactId>commons-configuration</artifactId>
 			<version>1.3</version>
 			<exclusions>
+				<exclusion>
+					<groupId>jdom</groupId>
+            		<artifactId>jdom</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>ant</groupId>
+            		<artifactId>ant-optional</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>commons-beanutils</groupId>
+            		<artifactId>commons-beanutils</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>commons-digester</groupId>
+            		<artifactId>commons-digester</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>servlet-api</groupId>
+            		<artifactId>servlet-api</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>commons-jxpath</groupId>
+            		<artifactId>commons-jxpath</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>junit</groupId>
+            		<artifactId>junit</artifactId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 	</dependencies>

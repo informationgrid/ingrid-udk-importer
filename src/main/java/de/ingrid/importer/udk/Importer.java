@@ -21,14 +21,23 @@ public class Importer {
 
 	public static void main(String[] args) {
 
+		System.out.println("Starting import.");
 		ImportDescriptor descriptor = null;
 		try {
+			System.out.print("  reading input parameter...");
 			descriptor = ImportDescriptorHelper.getDescriptor(args);
+			System.out.println("done.");
 		} catch (IllegalArgumentException e) {
+			System.out.println("Error parsing input parameters.\n\nusage: java ingrid-udk-importer.jar [-u <user>] [-p <password>] [-v <idc version>] -c <config file> <file/directory> [file/directory]");
 			return;
 		}
 
+		System.out.print("  reading data...");
 		InMemoryDataProvider data = new InMemoryDataProvider(descriptor);
+		System.out.println(" done.");
+
+		// remove temp dir
+		ImportDescriptorHelper.removeTempDir();
 
 		JDBCConnectionProxy jdbc = null;
 		try {

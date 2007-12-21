@@ -47,6 +47,22 @@ public class ImportDescriptorHelper {
 			}
 		}
 	}
+	
+	private static boolean deleteDirectory(File path) {
+	    if( path.exists() ) {
+	      File[] files = path.listFiles();
+	      for(int i=0; i<files.length; i++) {
+	         if(files[i].isDirectory()) {
+	           deleteDirectory(files[i]);
+	         }
+	         else {
+	           files[i].delete();
+	         }
+	      }
+	    }
+	    return( path.delete() );
+	  }	
+	
 
 	private static List<String> extractZipFile(final File f, final String targetDir) {
 
@@ -74,6 +90,11 @@ public class ImportDescriptorHelper {
 			return null;
 		}
 	}
+	
+	public static void removeTempDir() {
+		deleteDirectory(new File(getTmpDir()));
+	}
+	
 
 	public static ImportDescriptor getDescriptor(String[] args) {
 		ImportDescriptor descr = new ImportDescriptor();
@@ -84,25 +105,25 @@ public class ImportDescriptorHelper {
 		for (int i = 0; i < args.length; i++) {
 			if (args[i].equalsIgnoreCase("-u")) {
 				if (args.length <= i + 1) {
-					log.error("Missing argument for parameter '-u'.");
+					System.out.println("Missing argument for parameter '-u'.");
 					throw new IllegalArgumentException("Missing argument for parameter '-u'.");
 				}
 				dbUser = args[++i];
 			} else if (args[i].equalsIgnoreCase("-p")) {
 				if (args.length <= i + 1) {
-					log.error("Missing argument for parameter '-p'.");
+					System.out.println("Missing argument for parameter '-p'.");
 					throw new IllegalArgumentException("Missing argument for parameter '-p'.");
 				}
 				dbPasswd = args[++i];
 			} else if (args[i].equalsIgnoreCase("-c")) {
 				if (args.length <= i + 1) {
-					log.error("Missing argument for parameter '-c'.");
+					System.out.println("Missing argument for parameter '-c'.");
 					throw new IllegalArgumentException("Missing argument for parameter '-c'.");
 				}
 				descr.setConfigurationFile(args[++i]);
 			} else if (args[i].equalsIgnoreCase("-v")) {
 				if (args.length <= i + 1) {
-					log.error("Missing argument for parameter '-c'.");
+					System.out.println("Missing argument for parameter '-c'.");
 					throw new IllegalArgumentException("Missing argument for parameter '-c'.");
 				}
 				idcVersion = args[++i];

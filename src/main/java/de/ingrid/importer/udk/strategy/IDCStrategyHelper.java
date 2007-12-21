@@ -52,7 +52,9 @@ public class IDCStrategyHelper {
 						.matches("[0-9][0-9][0-9][0-9][0-1][0-9][0-3][0-9][0-2][0-9][0-5][0-9][0-5][0-9][0-9][0-9][0-9]")) {
 					return dst;
 				} else {
-					log.warn("Cannot convert to date '" + src + "'");
+					if (log.isDebugEnabled()) {
+						log.debug("Cannot convert to date '" + src + "'");
+					}
 				}
 			}
 		}
@@ -66,7 +68,9 @@ public class IDCStrategyHelper {
 		if (code.equalsIgnoreCase("D")) {
 			return "de";
 		} else {
-			log.info("Cannot translate country code '" + code + "'");
+			if (log.isDebugEnabled()) {
+				log.debug("Cannot translate country code '" + code + "'");
+			}
 			return "";
 		}
 	}
@@ -96,7 +100,7 @@ public class IDCStrategyHelper {
 			return 0;
 		}
 	}
-	
+
 	public static String getEntityFieldValue(DataProvider dataProvider, String entity, String fieldWhere,
 			String valueWhere, String field) {
 		Row row = dataProvider.findRow(entity, fieldWhere, valueWhere);
@@ -104,12 +108,16 @@ public class IDCStrategyHelper {
 			if (row.containsKey(field)) {
 				return row.get(field);
 			} else {
-				log.info("Cannot not find key '" + field + "' in row for " + entity + "." + fieldWhere + "='"
-						+ valueWhere + "'.");
+				if (log.isDebugEnabled()) {
+					log.debug("Cannot not find key '" + field + "' in row for " + entity + "." + fieldWhere + "='"
+							+ valueWhere + "'.");
+				}
 				return "";
 			}
 		} else {
-			log.info("Cannot not find row for " + entity + "." + fieldWhere + "='" + valueWhere + "'.");
+			if (log.isDebugEnabled()) {
+				log.debug("Cannot not find row for " + entity + "." + fieldWhere + "='" + valueWhere + "'.");
+			}
 			return "";
 		}
 	}
@@ -122,20 +130,26 @@ public class IDCStrategyHelper {
 				try {
 					return Double.parseDouble(row.get(field));
 				} catch (NumberFormatException e) {
-					log.info("Cannot convert to double: " + row.get(field));
+					if (log.isDebugEnabled()) {
+						log.debug("Cannot convert to double: " + row.get(field));
+					}
 					return 0;
 				}
 			} else {
-				log.info("Cannot not find key '" + field + "' in row for " + entity + "." + fieldWhere + "='"
-						+ valueWhere + "'.");
+				if (log.isDebugEnabled()) {
+					log.debug("Cannot not find key '" + field + "' in row for " + entity + "." + fieldWhere + "='"
+							+ valueWhere + "'.");
+				}
 				return 0;
 			}
 		} else {
-			log.info("Cannot not find row for " + entity + "." + fieldWhere + "='" + valueWhere + "'.");
+			if (log.isDebugEnabled()) {
+				log.debug("Cannot not find row for " + entity + "." + fieldWhere + "='" + valueWhere + "'.");
+			}
 			return 0;
 		}
 	}
-	
+
 	public static String getEntityFieldValueStartsWith(DataProvider dataProvider, String entity, String fieldWhere,
 			String valueWhere, String field) {
 		Row row = dataProvider.findRowStartsWith(entity, fieldWhere, valueWhere);
@@ -143,15 +157,18 @@ public class IDCStrategyHelper {
 			if (row.containsKey(field)) {
 				return row.get(field);
 			} else {
-				log.info("Cannot not find key '" + field + "' in row for " + entity + "." + fieldWhere + "='"
-						+ valueWhere + "*'.");
+				if (log.isDebugEnabled()) {
+					log.debug("Cannot not find key '" + field + "' in row for " + entity + "." + fieldWhere + "='"
+							+ valueWhere + "*'.");
+				}
 				return "";
 			}
 		} else {
-			log.info("Cannot not find row for " + entity + "." + fieldWhere + "='" + valueWhere + "*'.");
+			if (log.isDebugEnabled()) {
+				log.debug("Cannot not find row for " + entity + "." + fieldWhere + "='" + valueWhere + "*'.");
+			}
 			return "";
 		}
 	}
-	
-	
+
 }
