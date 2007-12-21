@@ -315,6 +315,12 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 	protected void processT012ObjObj() throws Exception {
 
+		String entityName = "t012_obj_obj";
+		
+		if (log.isDebugEnabled()) {
+			log.debug("Importing " + entityName + "...");
+		}
+		
 		pSqlStr = "INSERT INTO t012_obj_obj (id, object_from_uuid, object_to_uuid, type, line, "
 				+ "special_ref, special_name, descr) VALUES " + "( ?, ?, ?, ?, ?, ?, ?, ?);";
 
@@ -323,13 +329,13 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		sqlStr = "DELETE FROM t012_obj_obj";
 		jdbc.executeUpdate(sqlStr);
 
-		for (Iterator<Row> i = dataProvider.getRowIterator("t012_obj_obj"); i.hasNext();) {
+		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
 			if (IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("object_from_id")) == 0) {
-				log.warn("Invalid entry in t012_obj_obj found: object_from_id ('" + row.get("object_from_id")
+				log.warn("Invalid entry in " + entityName + " found: object_from_id ('" + row.get("object_from_id")
 						+ "') not found in imported data of t01_object. Skip record.");
 			} else if (IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("object_to_id")) == 0) {
-				log.warn("Invalid entry in t012_obj_obj found: object_to_id ('" + row.get("object_to_id")
+				log.warn("Invalid entry in " + entityName + " found: object_to_id ('" + row.get("object_to_id")
 						+ "') not found in imported data of t01_object. Skip record.");
 			} else if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
 				int cnt = 1;
@@ -349,9 +355,18 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				}
 			}
 		}
+		if (log.isDebugEnabled()) {
+			log.debug("Importing " + entityName + "... done.");
+		}
 	}
 
 	protected void processT022AdrAdr() throws Exception {
+
+		String entityName = "t022_adr_adr";
+		
+		if (log.isDebugEnabled()) {
+			log.debug("Importing " + entityName + "...");
+		}
 
 		pSqlStr = "INSERT INTO t022_adr_adr (id, adr_from_uuid, adr_to_uuid) VALUES ( ?, ?, ?);";
 
@@ -360,13 +375,13 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		sqlStr = "DELETE FROM t022_adr_adr";
 		jdbc.executeUpdate(sqlStr);
 
-		for (Iterator<Row> i = dataProvider.getRowIterator("t022_adr_adr"); i.hasNext();) {
+		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
 			if (IDCStrategyHelper.getPK(dataProvider, "t02_address", "adr_id", row.get("adr_from_id")) == 0) {
-				log.warn("Invalid entry in t022_adr_adr found: adr_from_id ('" + row.get("adr_from_id")
+				log.warn("Invalid entry in " + entityName + " found: adr_from_id ('" + row.get("adr_from_id")
 						+ "') not found in imported data of t02_address.");
 			} else if (IDCStrategyHelper.getPK(dataProvider, "t02_address", "adr_id", row.get("adr_to_id")) == 0) {
-				log.warn("Invalid entry in t022_adr_adr found: adr_to_id ('" + row.get("adr_to_id")
+				log.warn("Invalid entry in " + entityName + " found: adr_to_id ('" + row.get("adr_to_id")
 						+ "') not found in imported data of t02_address.");
 			} else if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
 				int cnt = 1;
@@ -381,8 +396,52 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				}
 			}
 		}
+		if (log.isDebugEnabled()) {
+			log.debug("Importing " + entityName + "... done.");
+		}
 	}
+	
+	protected void processT021Communication() throws Exception {
 
+		String entityName = "t021_communication";
+		
+		if (log.isDebugEnabled()) {
+			log.debug("Importing " + entityName + "...");
+		}
+
+		pSqlStr = "INSERT INTO t021_communication (id, adr_id, line, comm_type, comm_value, descr) VALUES (?, ?, ?, ?, ?, ?);";
+
+		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
+
+		sqlStr = "DELETE FROM t021_communication";
+		jdbc.executeUpdate(sqlStr);
+
+		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
+			Row row = i.next();
+			if (IDCStrategyHelper.getPK(dataProvider, "t02_address", "adr_id", row.get("adr_id")) == 0) {
+				log.warn("Invalid entry in " + entityName + " found: adr_id ('" + row.get("adr_id")
+						+ "') not found in imported data of t02_address. Skip record.");
+			} else if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
+				int cnt = 1;
+				p.setInt(cnt++, row.getInt("primary_key")); // id
+				p.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "t02_address", "adr_id", row.get("adr_id"))); // adr_id
+				p.setInt(cnt++, row.getInt("line")); // line
+				p.setString(cnt++, row.get("comm_type")); // comm_type
+				p.setString(cnt++, row.get("comm_value")); // comm_value
+				p.setString(cnt++, row.get("descr")); // descr
+				try {
+					p.executeUpdate();
+				} catch (Exception e) {
+					log.error("Error executing SQL: " + p.toString(), e);
+					throw e;
+				}
+			}
+		}
+		if (log.isDebugEnabled()) {
+			log.debug("Importing " + entityName + "... done.");
+		}
+	}
+	
 	protected void processT011ObjLiteratur() throws Exception {
 
 		pSqlStr = "INSERT INTO t011_obj_literature (id, obj_id, author, publisher, type, publish_in, "

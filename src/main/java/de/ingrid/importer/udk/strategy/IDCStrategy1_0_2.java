@@ -31,6 +31,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault {
 			processT01Object();
 			processT02Address();
 			processT022AdrAdr();
+			processT021Communication();
 			processT012ObjObj();
 			processT012ObjAdr();
 			processT04Search();
