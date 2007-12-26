@@ -2132,6 +2132,140 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		}
 	}
 
+	protected void processT08AttrList() throws Exception {
+
+		String entityName = "t08_attrlist";
+
+		if (log.isInfoEnabled()) {
+			log.info("Importing " + entityName + "...");
+		}
+
+		pSqlStr = "INSERT INTO t08_attr_list (id, attr_type_id, type, listitem_line, listitem_value, lang_code) "
+				+ "VALUES (?, ?, ?, ?, ?, ?);";
+		
+		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
+
+		sqlStr = "DELETE FROM t08_attr_list";
+		jdbc.executeUpdate(sqlStr);
+
+		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
+			Row row = i.next();
+			if (IDCStrategyHelper.getPK(dataProvider, "t08_attrtyp", "attr_id", row.get("attr_id")) == 0) {
+				if (log.isDebugEnabled()) {
+					log.debug("Invalid entry in " + entityName + " found: attr_id ('" + row.get("attr_id")
+							+ "') not found in imported data of t08_attrtyp. Skip record.");
+				}
+			} else if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
+				int cnt = 1;
+				p.setInt(cnt++, row.getInt("primary_key")); // id
+				p.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t08_attrtyp", "attr_id", row.get("attr_id"))); // attr_type_id
+				p.setString(cnt++, "Z"); // type
+				p.setInt(cnt++, row.getInt("counter")); // listitem_line
+				p.setString(cnt++, row.get("data")); // listitem_value
+				p.setString(cnt++, "deu"); // lang_code
+				try {
+					p.executeUpdate();
+				} catch (Exception e) {
+					log.error("Error executing SQL: " + p.toString(), e);
+					throw e;
+				}
+			}
+		}
+		if (log.isInfoEnabled()) {
+			log.info("Importing " + entityName + "... done.");
+		}
+	}		
+	
+	
+	protected void processT08AttrTyp() throws Exception {
+
+		String entityName = "t08_attrtyp";
+
+		if (log.isInfoEnabled()) {
+			log.info("Importing " + entityName + "...");
+		}
+		pSqlStr = "INSERT INTO t08_attr_type (id, name, length, type) "
+				+ "VALUES (?, ?, ?, ?);";
+		
+		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
+
+		sqlStr = "DELETE FROM t08_attr_type";
+		jdbc.executeUpdate(sqlStr);
+
+		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
+			Row row = i.next();
+			if (IDCStrategyHelper.getPK(dataProvider, "t03_catalogue", "cat_id", row.get("cat_id")) == 0) {
+				if (log.isDebugEnabled()) {
+					log.debug("Invalid entry in " + entityName + " found: cat_id ('" + row.get("cat_id")
+							+ "') not found in imported data of t03_catalogue. Skip record.");
+				}
+			} else if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
+				int cnt = 1;
+				p.setInt(cnt++, row.getInt("primary_key")); // id
+				p.setString(cnt++, row.get("attr_name")); // attr_id
+				p.setInt(cnt++, row.getInt("length")); // length
+				p.setString(cnt++, row.get("typ")); // type
+				try {
+					p.executeUpdate();
+				} catch (Exception e) {
+					log.error("Error executing SQL: " + p.toString(), e);
+					throw e;
+				}
+			}
+		}
+		if (log.isInfoEnabled()) {
+			log.info("Importing " + entityName + "... done.");
+		}
+	}		
+	
+	protected void processT08Attr() throws Exception {
+
+		String entityName = "t08_attr";
+
+		if (log.isInfoEnabled()) {
+			log.info("Importing " + entityName + "...");
+		}
+
+		pSqlStr = "INSERT INTO t08_attr (attr_id, obj_id, version, data) "
+				+ "VALUES (?, ?, ?, ?);";
+		
+		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
+
+		sqlStr = "DELETE FROM t08_attr";
+		jdbc.executeUpdate(sqlStr);
+
+		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
+			Row row = i.next();
+			if (IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id")) == 0) {
+				if (log.isDebugEnabled()) {
+					log.debug("Invalid entry in " + entityName + " found: obj_id ('" + row.get("obj_id")
+							+ "') not found in imported data of t01_object. Skip record.");
+				}
+			} else if (IDCStrategyHelper.getPK(dataProvider, "t08_attrtyp", "attr_id", row.get("attr_id")) == 0) {
+				if (log.isDebugEnabled()) {
+					log.debug("Invalid entry in " + entityName + " found: attr_id ('" + row.get("attr_id")
+							+ "') not found in imported data of t08_attrtyp. Skip record.");
+				}
+	
+			} else if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
+				int cnt = 1;
+				p.setInt(cnt++, row.getInt("primary_key")); // id
+				p.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t08_attrtyp", "attr_id", row.get("attr_id"))); // attr_id
+				p.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"))); // obj_id
+				p.setString(cnt++, row.get("data")); // data
+				try {
+					p.executeUpdate();
+				} catch (Exception e) {
+					log.error("Error executing SQL: " + p.toString(), e);
+					throw e;
+				}
+			}
+		}
+		if (log.isInfoEnabled()) {
+			log.info("Importing " + entityName + "... done.");
+		}
+	}	
+	
 	protected void setHiLoGenerator() throws SQLException {
 		sqlStr = "DELETE FROM hibernate_unique_key";
 		jdbc.executeUpdate(sqlStr);

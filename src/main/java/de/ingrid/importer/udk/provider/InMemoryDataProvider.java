@@ -40,6 +40,9 @@ public class InMemoryDataProvider implements DataProvider {
 
 	public Row findRow(String entityName, String rowName, String rowValue) {
 		Entity e = entities.get(entityName);
+		if (e == null) {
+			return null;
+		}
 		for (Row row : e.getRows()) {
 			if (row.get(rowName) != null && row.get(rowName).equals(rowValue)) {
 				return row;
@@ -50,6 +53,9 @@ public class InMemoryDataProvider implements DataProvider {
 
 	public Row findRowStartsWith(String entityName, String rowName, String rowValue) {
 		Entity e = entities.get(entityName);
+		if (e == null) {
+			return null;
+		}
 		for (Row row : e.getRows()) {
 			if (row.get(rowName) != null && row.get(rowName).startsWith(rowValue)) {
 				return row;

@@ -130,6 +130,15 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault {
 			System.out.print("  Importing t019_coordinates...");
 			processT019Coordinates();
 			System.out.println("done.");
+			System.out.print("  Importing t08_attrtyp...");
+			processT08AttrTyp();
+			System.out.println("done.");
+			System.out.print("  Importing t08_attrlist...");
+			processT08AttrList();
+			System.out.println("done.");
+			System.out.print("  Importing t08_attr...");
+			processT08Attr();
+			System.out.println("done.");
 			
 			setHiLoGenerator();
 
