@@ -2266,6 +2266,88 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		}
 	}	
 	
+	
+	protected void processSysGui() throws Exception {
+
+		String entityName = "sys_gui";
+
+		if (log.isInfoEnabled()) {
+			log.info("Importing " + entityName + "...");
+		}
+
+		pSqlStr = "INSERT INTO sys_gui (id, gui_id, class_id, name, help, sample, link_to, type) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+		
+		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
+
+		sqlStr = "DELETE FROM sys_gui";
+		jdbc.executeUpdate(sqlStr);
+
+		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
+			Row row = i.next();
+				int cnt = 1;
+				p.setInt(cnt++, row.getInt("primary_key")); // id
+				p.setInt(cnt++, row.getInt("gui_id")); // gui_id
+				p.setInt(cnt++, row.getInt("class_id")); // class_id
+				p.setString(cnt++, row.get("name")); // name
+				p.setString(cnt++, row.get("help")); // help
+				p.setString(cnt++, row.get("bsp")); // sample
+				p.setInt(cnt++, row.getInt("link_to")); // link_to
+				p.setInt(cnt++, row.getInt("typ")); // type
+				try {
+					p.executeUpdate();
+				} catch (Exception e) {
+					log.error("Error executing SQL: " + p.toString(), e);
+					throw e;
+				}
+		}
+		if (log.isInfoEnabled()) {
+			log.info("Importing " + entityName + "... done.");
+		}
+	}
+	
+	protected void processSysList() throws Exception {
+
+		String entityName = "sys_list";
+
+		if (log.isInfoEnabled()) {
+			log.info("Importing " + entityName + "...");
+		}
+
+		pSqlStr = "INSERT INTO sys_gui_list (id, gui_id, entry_id, lang_id, db_id, name, data, codelist_id, domain_id, maintainable, rowid) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+		
+		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
+
+		sqlStr = "DELETE FROM sys_gui_list";
+		jdbc.executeUpdate(sqlStr);
+
+		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
+			Row row = i.next();
+				int cnt = 1;
+				p.setInt(cnt++, row.getInt("primary_key")); // id
+				p.setInt(cnt++, row.getInt("lst_id")); // gui_id
+				p.setInt(cnt++, row.getInt("entry_id")); // entry_id
+				p.setInt(cnt++, row.getInt("lang_id")); // lang_id
+				p.setString(cnt++, row.get("db_id")); // db_id
+				p.setString(cnt++, row.get("name")); // name
+				p.setInt(cnt++, row.getInt("data")); // data
+				p.setInt(cnt++, row.getInt("codelist_id")); // codelist_id
+				p.setInt(cnt++, row.getInt("domain_id")); // domain_id
+				p.setInt(cnt++, row.getInt("maintainable")); // maintainable
+				p.setString(cnt++, row.get("rowid")); // rowid
+				try {
+					p.executeUpdate();
+				} catch (Exception e) {
+					log.error("Error executing SQL: " + p.toString(), e);
+					throw e;
+				}
+		}
+		if (log.isInfoEnabled()) {
+			log.info("Importing " + entityName + "... done.");
+		}
+	}	
+	
 	protected void setHiLoGenerator() throws SQLException {
 		sqlStr = "DELETE FROM hibernate_unique_key";
 		jdbc.executeUpdate(sqlStr);
