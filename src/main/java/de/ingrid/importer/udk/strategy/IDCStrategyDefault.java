@@ -79,7 +79,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				+ "metadata_standard_version, metadata_language_code, vertical_extent_minimum, "
 				+ "vertical_extent_maximum, vertical_extent_unit, vertical_extent_vdatum, fees, "
 				+ "ordering_instructions, lastexport_time, expiry_time, work_state, work_version, "
-				+ "mark_deleted, create_time, mod_time, mod_id, responsible_id) "
+				+ "mark_deleted, create_time, mod_time, mod_uuid, responsible_uuid) "
 				+ "VALUES "
 				+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -153,18 +153,19 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setString(cnt++, "N"); // mark_deleted,
 				p.setString(cnt++, IDCStrategyHelper.transDateTime(row.get("create_time"))); // create_time,
 				p.setString(cnt++, IDCStrategyHelper.transDateTime(row.get("mod_time"))); // mod_time,
-				int modId = IDCStrategyHelper.getPK(dataProvider, "t02_address", "adr_id", row.get("mod_id"));
-				if (modId == 0) {
-					modId = IDCStrategyHelper.getPK(dataProvider, "t02_address", "adr_id", row.get("create_id"));
+				String modId = row.get("mod_id");
+				if (IDCStrategyHelper.getPK(dataProvider, "t02_address", "adr_id", modId) == 0) {
+					modId = row.get("create_id");
 				}
-				p.setInt(cnt++, modId); // mod_id,
-				p.setInt(cnt++, modId); // responsible_id
+				p.setString(cnt++, modId); // mod_uuid,
+				p.setString(cnt++, modId); // responsible_uuid
 				try {
 					p.executeUpdate();
 				} catch (Exception e) {
 					log.error("Error executing SQL: " + p.toString(), e);
 					throw e;
 				}
+
 			} else {
 				// clear row: we do not want invalid references
 				// in other entities refering to this entity
@@ -192,7 +193,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				+ "root, adr_type, institution, lastname, firstname, address, title, "
 				+ "street, postcode, postbox, postbox_pc, city, country_code, job, "
 				+ "descr, lastexport_time, expiry_time, work_state, work_version, "
-				+ "mark_deleted, create_time, mod_time, mod_id, responsible_id) VALUES "
+				+ "mark_deleted, create_time, mod_time, mod_uuid, responsible_uuid) VALUES "
 				+ "( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
@@ -248,12 +249,12 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setString(cnt++, "N"); // mark_deleted
 				p.setString(cnt++, IDCStrategyHelper.transDateTime(row.get("create_time"))); // create_time
 				p.setString(cnt++, IDCStrategyHelper.transDateTime(row.get("mod_time"))); // mod_time
-				int modId = IDCStrategyHelper.getPK(dataProvider, "t02_address", "adr_id", row.get("mod_id"));
-				if (modId == 0) {
-					modId = IDCStrategyHelper.getPK(dataProvider, "t02_address", "adr_id", row.get("create_id"));
+				String modId = row.get("mod_id");
+				if (IDCStrategyHelper.getPK(dataProvider, "t02_address", "adr_id", modId) == 0) {
+					modId = row.get("create_id");
 				}
-				p.setInt(cnt++, modId); // mod_id,
-				p.setInt(cnt++, modId); // responsible_id
+				p.setString(cnt++, modId); // mod_uuid,
+				p.setString(cnt++, modId); // responsible_uuid
 
 				try {
 					p.executeUpdate();
@@ -286,7 +287,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		}
 
 		pSqlStr = "INSERT INTO t03_catalogue (id, cat_uuid, cat_name, country_code, "
-				+ "workflow_control, expiry_duration, create_time, mod_id, mod_time) VALUES "
+				+ "workflow_control, expiry_duration, create_time, mod_uuid, mod_time) VALUES "
 				+ "( ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
@@ -318,11 +319,11 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setString(cnt++, "N"); // workflow_control
 				p.setInt(cnt++, 0); // expiry_duration
 				p.setString(cnt++, IDCStrategyHelper.transDateTime(row.get("create_time"))); // create_time
-				int modId = IDCStrategyHelper.getPK(dataProvider, "t02_address", "adr_id", row.get("mod_id"));
-				if (modId == 0) {
-					modId = IDCStrategyHelper.getPK(dataProvider, "t02_address", "adr_id", row.get("create_id"));
+				String modId = row.get("mod_id");
+				if (IDCStrategyHelper.getPK(dataProvider, "t02_address", "adr_id", modId) == 0) {
+					modId = row.get("create_id");
 				}
-				p.setInt(cnt++, modId); // mod_id
+				p.setString(cnt++, modId); // mod_uuid,
 				p.setString(cnt++, IDCStrategyHelper.transDateTime(row.get("mod_time"))); // mod_time
 				try {
 					p.executeUpdate();
@@ -353,12 +354,17 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t012_obj_obj (id, object_from_uuid, object_to_uuid, type, line, "
-				+ "special_ref, special_name, descr) VALUES " + "( ?, ?, ?, ?, ?, ?, ?, ?);";
+		String pSqlStrObjectNode = "INSERT INTO object_node (id, obj_uuid, obj_id, obj_id_published, fk_obj_uuid) VALUES "
+				+ "(?, ?, ?, ?, ?);";
+		String pSqlStrObjectReference = "INSERT INTO object_reference (id, obj_from_id, obj_to_uuid, line, special_ref, special_name, descr) VALUES "
+				+ "(?, ?, ?, ?, ?, ?, ?);";
 
-		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
+		PreparedStatement pSqlObjectNode = jdbc.prepareStatement(pSqlStrObjectNode);
+		PreparedStatement pSqlObjectReference = jdbc.prepareStatement(pSqlStrObjectReference);
 
-		sqlStr = "DELETE FROM t012_obj_obj";
+		sqlStr = "DELETE FROM object_node";
+		jdbc.executeUpdate(sqlStr);
+		sqlStr = "DELETE FROM object_reference";
 		jdbc.executeUpdate(sqlStr);
 
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
@@ -375,22 +381,62 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				}
 			} else if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
 				int cnt = 1;
-				p.setInt(cnt++, row.getInt("primary_key")); // id
-				p.setString(cnt++, row.get("object_from_id")); // object_from_uuid
-				p.setString(cnt++, row.get("object_to_id")); // object_to_uuid
-				p.setInt(cnt++, row.getInt("typ")); // type
-				p.setInt(cnt++, row.getInt("line")); // line
-				p.setInt(cnt++, row.getInt("special_ref")); // special_ref
-				p.setString(cnt++, row.get("special_name")); // special_name
-				p.setString(cnt++, row.get("descr")); // descr
+				if (row.getInt("typ") == 0) {
+					// structure
+					pSqlObjectNode.setInt(cnt++, row.getInt("primary_key")); // id
+					pSqlObjectNode.setString(cnt++, row.get("object_to_id")); // object_uuid
+					pSqlObjectNode.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row
+							.get("object_to_id"))); // object_id
+					pSqlObjectNode.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row
+							.get("object_to_id"))); // object_id_published
+					pSqlObjectNode.setString(cnt++, row.get("object_from_id")); // fk_obj_uuid
+					try {
+						pSqlObjectNode.executeUpdate();
+					} catch (Exception e) {
+						log.error("Error executing SQL: " + pSqlObjectNode.toString(), e);
+						throw e;
+					}
+				} else if (row.getInt("typ") == 1) {
+					pSqlObjectReference.setInt(cnt++, row.getInt("primary_key")); // id
+					pSqlObjectReference.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row
+							.get("object_from_id"))); // object_from_uuid
+					pSqlObjectReference.setString(cnt++, row.get("object_to_id")); // object_to_uuid
+					pSqlObjectReference.setInt(cnt++, row.getInt("line")); // line
+					pSqlObjectReference.setInt(cnt++, row.getInt("special_ref")); // special_ref
+					pSqlObjectReference.setString(cnt++, row.get("special_name")); // special_name
+					pSqlObjectReference.setString(cnt++, row.get("descr")); // descr
+					try {
+						pSqlObjectReference.executeUpdate();
+					} catch (Exception e) {
+						log.error("Error executing SQL: " + pSqlObjectReference.toString(), e);
+						throw e;
+					}
+				}
+			}
+		}
+		// insert root objects into object_node
+		for (Iterator<Row> i = dataProvider.getRowIterator("t01_object"); i.hasNext();) {
+			Row row = i.next();
+			int cnt = 1;
+			if (row.getInt("root") == 1 && row.get("mod_type") != null
+					&& !invalidModTypes.contains(row.get("mod_type"))) {
+				long id = dataProvider.getId();
+				id++;
+				pSqlObjectNode.setLong(cnt++, id); // id
+				dataProvider.setId(id);
+				pSqlObjectNode.setString(cnt++, row.get("obj_id")); // object_uuid
+				pSqlObjectNode.setInt(cnt++, row.getInt("primary_key")); // object_id
+				pSqlObjectNode.setInt(cnt++, row.getInt("primary_key")); // object_id_published
+				pSqlObjectNode.setString(cnt++, "ROOT"); // fk_obj_uuid
 				try {
-					p.executeUpdate();
+					pSqlObjectNode.executeUpdate();
 				} catch (Exception e) {
-					log.error("Error executing SQL: " + p.toString(), e);
+					log.error("Error executing SQL: " + pSqlObjectNode.toString(), e);
 					throw e;
 				}
 			}
 		}
+
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
@@ -404,12 +450,14 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t022_adr_adr (id, adr_from_uuid, adr_to_uuid) VALUES ( ?, ?, ?);";
+		pSqlStr = "INSERT INTO address_node (id, addr_uuid, addr_id, addr_id_published, fk_addr_uuid) VALUES (?, ?, ?, ?, ?);";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
-		sqlStr = "DELETE FROM t022_adr_adr";
+		sqlStr = "DELETE FROM address_node";
 		jdbc.executeUpdate(sqlStr);
+
+		ArrayList<String> storedEntries = new ArrayList<String>();
 
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
@@ -424,10 +472,47 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 							+ "') not found in imported data of t02_address.");
 				}
 			} else if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
+				if (storedEntries.contains(row.get("adr_to_id"))) {
+					if (log.isDebugEnabled()) {
+						log.debug("Duplicate entry for adr_to_id in " + entityName + " ('" + row.get("adr_to_id")
+								+ "', mod_type='" + row.get("mod_type") + "'). Skip import.");
+					}
+				} else {
+					int cnt = 1;
+					p.setInt(cnt++, row.getInt("primary_key")); // id
+					p.setString(cnt++, row.get("adr_to_id")); // addr_uuid
+					p.setInt(cnt++, IDCStrategyHelper
+							.getPK(dataProvider, "t02_address", "adr_id", row.get("adr_to_id"))); // addr_to_uuid
+					p.setInt(cnt++, IDCStrategyHelper
+							.getPK(dataProvider, "t02_address", "adr_id", row.get("adr_to_id"))); // addr_id_published
+					p.setString(cnt++, row
+							.get("adr_from_id")); // fk_addr_uuid
+					try {
+						p.executeUpdate();
+						storedEntries.add(row.get("adr_to_id"));
+					} catch (Exception e) {
+						log.error("Error executing SQL: " + p.toString(), e);
+						throw e;
+					}
+
+				}
+			}
+		}
+
+		// insert root objects into address_node
+		for (Iterator<Row> i = dataProvider.getRowIterator("t02_address"); i.hasNext();) {
+			Row row = i.next();
+			if (row.getInt("root") == 1 && row.get("mod_type") != null
+					&& !invalidModTypes.contains(row.get("mod_type"))) {
 				int cnt = 1;
-				p.setInt(cnt++, row.getInt("primary_key")); // id
-				p.setString(cnt++, row.get("adr_from_id")); // adr_from_uuid
-				p.setString(cnt++, row.get("adr_to_id")); // adr_to_uuid
+				long id = dataProvider.getId();
+				id++;
+				p.setLong(cnt++, id); // id
+				dataProvider.setId(id);
+				p.setString(cnt++, row.get("adr_id")); // addr_uuid
+				p.setInt(cnt++, row.getInt("primary_key")); // addr_id
+				p.setInt(cnt++, row.getInt("primary_key")); // addr_id_published
+				p.setString(cnt++, "ROOT"); // fk_addr_uuid
 				try {
 					p.executeUpdate();
 				} catch (Exception e) {
@@ -435,7 +520,9 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					throw e;
 				}
 			}
+
 		}
+
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
@@ -2142,7 +2229,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 		pSqlStr = "INSERT INTO t08_attr_list (id, attr_type_id, type, listitem_line, listitem_value, lang_code) "
 				+ "VALUES (?, ?, ?, ?, ?, ?);";
-		
+
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
 		sqlStr = "DELETE FROM t08_attr_list";
@@ -2174,9 +2261,8 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
-	}		
-	
-	
+	}
+
 	protected void processT08AttrTyp() throws Exception {
 
 		String entityName = "t08_attrtyp";
@@ -2184,9 +2270,8 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "...");
 		}
-		pSqlStr = "INSERT INTO t08_attr_type (id, name, length, type) "
-				+ "VALUES (?, ?, ?, ?);";
-		
+		pSqlStr = "INSERT INTO t08_attr_type (id, name, length, type) " + "VALUES (?, ?, ?, ?);";
+
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
 		sqlStr = "DELETE FROM t08_attr_type";
@@ -2216,8 +2301,8 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
-	}		
-	
+	}
+
 	protected void processT08Attr() throws Exception {
 
 		String entityName = "t08_attr";
@@ -2226,9 +2311,8 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t08_attr (attr_id, obj_id, version, data) "
-				+ "VALUES (?, ?, ?, ?);";
-		
+		pSqlStr = "INSERT INTO t08_attr (attr_id, obj_id, version, data) " + "VALUES (?, ?, ?, ?);";
+
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
 		sqlStr = "DELETE FROM t08_attr";
@@ -2246,7 +2330,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					log.debug("Invalid entry in " + entityName + " found: attr_id ('" + row.get("attr_id")
 							+ "') not found in imported data of t08_attrtyp. Skip record.");
 				}
-	
+
 			} else if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
 				int cnt = 1;
 				p.setInt(cnt++, row.getInt("primary_key")); // id
@@ -2264,9 +2348,8 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
-	}	
-	
-	
+	}
+
 	protected void processSysGui() throws Exception {
 
 		String entityName = "sys_gui";
@@ -2277,7 +2360,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 		pSqlStr = "INSERT INTO sys_gui (id, gui_id, class_id, name, help, sample, link_to, type) "
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
-		
+
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
 		sqlStr = "DELETE FROM sys_gui";
@@ -2285,27 +2368,27 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
-				int cnt = 1;
-				p.setInt(cnt++, row.getInt("primary_key")); // id
-				p.setInt(cnt++, row.getInt("gui_id")); // gui_id
-				p.setInt(cnt++, row.getInt("class_id")); // class_id
-				p.setString(cnt++, row.get("name")); // name
-				p.setString(cnt++, row.get("help")); // help
-				p.setString(cnt++, row.get("bsp")); // sample
-				p.setInt(cnt++, row.getInt("link_to")); // link_to
-				p.setInt(cnt++, row.getInt("typ")); // type
-				try {
-					p.executeUpdate();
-				} catch (Exception e) {
-					log.error("Error executing SQL: " + p.toString(), e);
-					throw e;
-				}
+			int cnt = 1;
+			p.setInt(cnt++, row.getInt("primary_key")); // id
+			p.setInt(cnt++, row.getInt("gui_id")); // gui_id
+			p.setInt(cnt++, row.getInt("class_id")); // class_id
+			p.setString(cnt++, row.get("name")); // name
+			p.setString(cnt++, row.get("help")); // help
+			p.setString(cnt++, row.get("bsp")); // sample
+			p.setInt(cnt++, row.getInt("link_to")); // link_to
+			p.setInt(cnt++, row.getInt("typ")); // type
+			try {
+				p.executeUpdate();
+			} catch (Exception e) {
+				log.error("Error executing SQL: " + p.toString(), e);
+				throw e;
+			}
 		}
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
 	}
-	
+
 	protected void processSysList() throws Exception {
 
 		String entityName = "sys_list";
@@ -2316,7 +2399,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 		pSqlStr = "INSERT INTO sys_gui_list (id, gui_id, entry_id, lang_id, db_id, name, data, codelist_id, domain_id, maintainable, rowid) "
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
-		
+
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
 		sqlStr = "DELETE FROM sys_gui_list";
@@ -2324,30 +2407,30 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
-				int cnt = 1;
-				p.setInt(cnt++, row.getInt("primary_key")); // id
-				p.setInt(cnt++, row.getInt("lst_id")); // gui_id
-				p.setInt(cnt++, row.getInt("entry_id")); // entry_id
-				p.setInt(cnt++, row.getInt("lang_id")); // lang_id
-				p.setString(cnt++, row.get("db_id")); // db_id
-				p.setString(cnt++, row.get("name")); // name
-				p.setInt(cnt++, row.getInt("data")); // data
-				p.setInt(cnt++, row.getInt("codelist_id")); // codelist_id
-				p.setInt(cnt++, row.getInt("domain_id")); // domain_id
-				p.setInt(cnt++, row.getInt("maintainable")); // maintainable
-				p.setString(cnt++, row.get("rowid")); // rowid
-				try {
-					p.executeUpdate();
-				} catch (Exception e) {
-					log.error("Error executing SQL: " + p.toString(), e);
-					throw e;
-				}
+			int cnt = 1;
+			p.setInt(cnt++, row.getInt("primary_key")); // id
+			p.setInt(cnt++, row.getInt("lst_id")); // gui_id
+			p.setInt(cnt++, row.getInt("entry_id")); // entry_id
+			p.setInt(cnt++, row.getInt("lang_id")); // lang_id
+			p.setString(cnt++, row.get("db_id")); // db_id
+			p.setString(cnt++, row.get("name")); // name
+			p.setInt(cnt++, row.getInt("data")); // data
+			p.setInt(cnt++, row.getInt("codelist_id")); // codelist_id
+			p.setInt(cnt++, row.getInt("domain_id")); // domain_id
+			p.setInt(cnt++, row.getInt("maintainable")); // maintainable
+			p.setString(cnt++, row.get("rowid")); // rowid
+			try {
+				p.executeUpdate();
+			} catch (Exception e) {
+				log.error("Error executing SQL: " + p.toString(), e);
+				throw e;
+			}
 		}
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
-	}	
-	
+	}
+
 	protected void setHiLoGenerator() throws SQLException {
 		sqlStr = "DELETE FROM hibernate_unique_key";
 		jdbc.executeUpdate(sqlStr);
