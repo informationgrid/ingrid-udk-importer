@@ -427,7 +427,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				pSqlObjectNode.setString(cnt++, row.get("obj_id")); // object_uuid
 				pSqlObjectNode.setInt(cnt++, row.getInt("primary_key")); // object_id
 				pSqlObjectNode.setInt(cnt++, row.getInt("primary_key")); // object_id_published
-				pSqlObjectNode.setString(cnt++, "ROOT"); // fk_obj_uuid
+				pSqlObjectNode.setString(cnt++, null); // fk_obj_uuid
 				try {
 					pSqlObjectNode.executeUpdate();
 				} catch (Exception e) {
@@ -512,7 +512,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setString(cnt++, row.get("adr_id")); // addr_uuid
 				p.setInt(cnt++, row.getInt("primary_key")); // addr_id
 				p.setInt(cnt++, row.getInt("primary_key")); // addr_id_published
-				p.setString(cnt++, "ROOT"); // fk_addr_uuid
+				p.setString(cnt++, null); // fk_addr_uuid
 				try {
 					p.executeUpdate();
 				} catch (Exception e) {
