@@ -53,7 +53,6 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		super();
 		invalidModTypes = new ArrayList<String>();
 		invalidModTypes.add("D");
-		invalidModTypes.add("U");
 	}
 
 	/*
@@ -118,7 +117,13 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setString(cnt++, row.get("org_id")); // org_obj_id
 				p.setInt(cnt++, row.getInt("root")); // root
 				p.setInt(cnt++, row.getInt("obj_class")); // class_id
-				p.setString(cnt++, row.get("obj_descr")); // obj_descr
+				if (row.get("obj_descr") != null && row.get("obj_descr").length() > 65535) {
+					p.setString(cnt++, row.get("obj_descr").substring(0, 65535)); // obj_descr
+					log.warn("Content too large (> 65535 chars) in '" + entityName + ".obj_descr'. obj_id= '" + row.get("obj_id")
+							+ "'");
+				} else {
+					p.setString(cnt++, row.get("obj_descr")); // obj_descr
+				}
 				p.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "t03_catalogue", "cat_id", row.get("cat_id"))); // cat_id
 				p.setString(cnt++, row.get("info_note")); // info_note
 				p.setString(cnt++, row.get("avail_access_note")); // avail_access_note
@@ -1723,7 +1728,11 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					pSpatialRefValue.setString(cnt++, "G"); // type
 					pSpatialRefValue.setLong(cnt++, 0); // spatial_ref_sns_id
 					String locName = "";
-					if (row.get("township_no").length() == 2) {
+					if (row.get("township_no") == null) {
+						if (log.isDebugEnabled()) {
+							log.debug("Invalid ags key length:" + row.get("township_no"));
+						}
+					} else if (row.get("township_no").length() == 2) {
 						locName = IDCStrategyHelper.getEntityFieldValueStartsWith(dataProvider, "t01_st_township",
 								"loc_town_no", row.get("township_no"), "state");
 					} else if (row.get("township_no").length() == 3) {
@@ -2311,7 +2320,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t08_attr (attr_id, obj_id, version, data) " + "VALUES (?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO t08_attr (id, attr_type_id, obj_id, data) " + "VALUES (?, ?, ?, ?);";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
