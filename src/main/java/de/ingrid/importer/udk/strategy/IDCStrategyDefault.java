@@ -109,7 +109,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 						}
 					}
 				}
-				if (row.get("root") != "1" &&  IDCStrategyHelper.getEntityFieldValue(dataProvider, "t012_obj_obj", "object_to_id", row.get("obj_id"), "object_from_id").length() == 0) {
+				if (!row.get("root").equals("1") &&  IDCStrategyHelper.getEntityFieldValue(dataProvider, "t012_obj_obj", "object_to_id", row.get("obj_id"), "object_to_id").length() == 0) {
 					if (log.isDebugEnabled()) {
 						log.debug("Invalid entry in " + entityName + " found: obj_id ('" + row.get("obj_id")
 								+ "') not found in t012_obj_obj and root != 1. Skip record.");
@@ -123,12 +123,17 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					p.setString(cnt++, row.get("org_id")); // org_obj_id
 					p.setInt(cnt++, row.getInt("root")); // root
 					p.setInt(cnt++, row.getInt("obj_class")); // class_id
-					if (row.get("obj_descr") != null && row.get("obj_descr").length() > 65535) {
-						p.setString(cnt++, row.get("obj_descr").substring(0, 65535)); // obj_descr
-						log.warn("Content too large (> 65535 chars) in '" + entityName + ".obj_descr'. obj_id= '" + row.get("obj_id")
-								+ "'");
+					
+					if (row.get("obj_descr") != null) {
+						// check for max length of the underlying text field, take the multi byte characterset into account.
+						byte[] bArray = row.get("obj_descr").getBytes("UTF-8");
+						if (bArray.length > 65535) {
+							p.setString(cnt++, new String(bArray, 0, 65535, "UTF-8")); // obj_descr
+						} else { 
+							p.setString(cnt++, row.get("obj_descr")); // obj_descr
+						}
 					} else {
-						p.setString(cnt++, row.get("obj_descr")); // obj_descr
+						p.setString(cnt++, null); // obj_descr
 					}
 					p.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "t03_catalogue", "cat_id", row.get("cat_id"))); // cat_id
 					p.setString(cnt++, row.get("info_note")); // info_note
