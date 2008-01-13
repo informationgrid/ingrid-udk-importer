@@ -239,45 +239,53 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 						}
 					}
 				}
-				int cnt = 1;
-				p.setInt(cnt++, row.getInt("primary_key")); // id
-				p.setString(cnt++, row.get("adr_id")); // adr_uuid
-				p.setString(cnt++, row.get("org_adr_id")); // org_adr_id
-				p.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "t03_catalogue", "cat_id", row.get("cat_id"))); // cat_id
-				p.setInt(cnt++, row.getInt("root")); // root
-				p.setInt(cnt++, row.getInt("typ")); // adr_type
-				p.setString(cnt++, row.get("institution")); // institution
-				p.setString(cnt++, row.get("lastname")); // lastname
-				p.setString(cnt++, row.get("firstname")); // firstname
-				p.setString(cnt++, row.get("address")); // address
-				p.setString(cnt++, row.get("title")); // title
-				p.setString(cnt++, row.get("street")); // street
-				p.setString(cnt++, row.get("postcode")); // postcode
-				p.setString(cnt++, row.get("postbox")); // postbox
-				p.setString(cnt++, row.get("postbox_pc")); // postbox_pc
-				p.setString(cnt++, row.get("city")); // city
-				p.setString(cnt++, IDCStrategyHelper.transCountryCode(row.get("state_id"))); // country_code
-				p.setString(cnt++, row.get("job")); // job
-				p.setString(cnt++, row.get("descr")); // descr
-				p.setString(cnt++, ""); // lastexport_time
-				p.setString(cnt++, ""); // expiry_time
-				p.setString(cnt++, "V"); // work_state
-				p.setInt(cnt++, 0); // work_version
-				p.setString(cnt++, "N"); // mark_deleted
-				p.setString(cnt++, IDCStrategyHelper.transDateTime(row.get("create_time"))); // create_time
-				p.setString(cnt++, IDCStrategyHelper.transDateTime(row.get("mod_time"))); // mod_time
-				String modId = row.get("mod_id");
-				if (IDCStrategyHelper.getPK(dataProvider, "t02_address", "adr_id", modId) == 0) {
-					modId = row.get("create_id");
-				}
-				p.setString(cnt++, modId); // mod_uuid,
-				p.setString(cnt++, modId); // responsible_uuid
-
-				try {
-					p.executeUpdate();
-				} catch (Exception e) {
-					log.error("Error executing SQL: " + p.toString(), e);
-					throw e;
+				if (!row.get("root").equals("1") &&  IDCStrategyHelper.getEntityFieldValue(dataProvider, "t022_adr_adr", "adr_to_id", row.get("adr_id"), "adr_to_id").length() == 0) {
+					if (log.isDebugEnabled()) {
+						log.debug("Invalid entry in " + entityName + " found: adr_id ('" + row.get("adr_id")
+								+ "') not found in t022_adr_adr and root != 1. Skip record.");
+					}
+					row.clear();
+				} else {
+					int cnt = 1;
+					p.setInt(cnt++, row.getInt("primary_key")); // id
+					p.setString(cnt++, row.get("adr_id")); // adr_uuid
+					p.setString(cnt++, row.get("org_adr_id")); // org_adr_id
+					p.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "t03_catalogue", "cat_id", row.get("cat_id"))); // cat_id
+					p.setInt(cnt++, row.getInt("root")); // root
+					p.setInt(cnt++, row.getInt("typ")); // adr_type
+					p.setString(cnt++, row.get("institution")); // institution
+					p.setString(cnt++, row.get("lastname")); // lastname
+					p.setString(cnt++, row.get("firstname")); // firstname
+					p.setString(cnt++, row.get("address")); // address
+					p.setString(cnt++, row.get("title")); // title
+					p.setString(cnt++, row.get("street")); // street
+					p.setString(cnt++, row.get("postcode")); // postcode
+					p.setString(cnt++, row.get("postbox")); // postbox
+					p.setString(cnt++, row.get("postbox_pc")); // postbox_pc
+					p.setString(cnt++, row.get("city")); // city
+					p.setString(cnt++, IDCStrategyHelper.transCountryCode(row.get("state_id"))); // country_code
+					p.setString(cnt++, row.get("job")); // job
+					p.setString(cnt++, row.get("descr")); // descr
+					p.setString(cnt++, ""); // lastexport_time
+					p.setString(cnt++, ""); // expiry_time
+					p.setString(cnt++, "V"); // work_state
+					p.setInt(cnt++, 0); // work_version
+					p.setString(cnt++, "N"); // mark_deleted
+					p.setString(cnt++, IDCStrategyHelper.transDateTime(row.get("create_time"))); // create_time
+					p.setString(cnt++, IDCStrategyHelper.transDateTime(row.get("mod_time"))); // mod_time
+					String modId = row.get("mod_id");
+					if (IDCStrategyHelper.getPK(dataProvider, "t02_address", "adr_id", modId) == 0) {
+						modId = row.get("create_id");
+					}
+					p.setString(cnt++, modId); // mod_uuid,
+					p.setString(cnt++, modId); // responsible_uuid
+	
+					try {
+						p.executeUpdate();
+					} catch (Exception e) {
+						log.error("Error executing SQL: " + p.toString(), e);
+						throw e;
+					}
 				}
 			} else {
 				// clear row: we do not want invalid references
