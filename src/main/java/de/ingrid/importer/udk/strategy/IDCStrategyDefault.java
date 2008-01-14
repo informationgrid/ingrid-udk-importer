@@ -5,6 +5,7 @@ package de.ingrid.importer.udk.strategy;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -1774,7 +1775,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 					pSpatialRefValue.setLong(cnt++, dataProvider.getId()); // id
 					pSpatialRefValue.setString(cnt++, "G"); // type
-					pSpatialRefValue.setLong(cnt++, 0); // spatial_ref_sns_id
+					pSpatialRefValue.setNull(cnt++, Types.INTEGER); // spatial_ref_sns_id
 					String locName = "";
 					if (row.get("township_no") == null) {
 						if (log.isDebugEnabled()) {
@@ -1899,7 +1900,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 					pSpatialRefValue.setLong(cnt++, dataProvider.getId()); // id
 					pSpatialRefValue.setString(cnt++, "F"); // type
-					pSpatialRefValue.setLong(cnt++, 0); // spatial_ref_sns_id
+					pSpatialRefValue.setNull(cnt++, Types.INTEGER); // spatial_ref_sns_id
 					pSpatialRefValue.setString(cnt++, row.get("bezug")); // name
 					pSpatialRefValue.setString(cnt++, ""); // nativekey
 					pSpatialRefValue.setDouble(cnt++, row.getDouble("geo_x1")); // x1
@@ -2059,7 +2060,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 							// = T, 3 =
 							// F, 4 = T
 							pSearchtermValue.setString(cnt++, row.get("searchterm")); // term
-							pSearchtermValue.setInt(cnt++, 0); // searchterm_sns_id
+							pSearchtermValue.setNull(cnt++, Types.INTEGER); // searchterm_sns_id
 							try {
 								pSearchtermValue.executeUpdate();
 							} catch (Exception e) {
@@ -2184,7 +2185,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 							// = T, 3 =
 							// F, 4 = T
 							pSearchtermValue.setString(cnt++, row.get("searchterm")); // term
-							pSearchtermValue.setInt(cnt++, 0); // searchterm_sns_id
+							pSearchtermValue.setNull(cnt++, Types.INTEGER); // searchterm_sns_id
 							try {
 								pSearchtermValue.executeUpdate();
 							} catch (Exception e) {
