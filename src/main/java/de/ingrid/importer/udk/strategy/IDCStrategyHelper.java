@@ -9,7 +9,6 @@ import java.text.SimpleDateFormat;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import de.ingrid.importer.udk.jdbc.JDBCConnectionProxy;
 import de.ingrid.importer.udk.provider.DataProvider;
 import de.ingrid.importer.udk.provider.Row;
 
@@ -19,7 +18,7 @@ import de.ingrid.importer.udk.provider.Row;
  */
 public class IDCStrategyHelper {
 
-	private static Log log = LogFactory.getLog(JDBCConnectionProxy.class);
+	private static Log log = LogFactory.getLog(IDCStrategyHelper.class);
 
 	private static SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
 
