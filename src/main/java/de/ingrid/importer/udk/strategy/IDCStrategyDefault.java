@@ -1765,17 +1765,41 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			} else if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
 				int cnt = 1;
 				long pSpatialRefValueId;
+				long spatialRefSnsId = 0;
 				// if the spatial ref has been stored already, refere to the
 				// already stored id
 				if (storedNativekeys.containsKey(row.get("township_no"))) {
 					pSpatialRefValueId = ((Long) storedNativekeys.get(row.get("township_no"))).longValue();
 				} else {
+					if (row.get("township_no") != null) {
+						String topicId = IDCStrategyHelper.transformNativeKey2TopicId(row.get("township_no"));
+						if (topicId.length() > 0) {
+							// store the spatial ref sns values
+							dataProvider.setId(dataProvider.getId() + 1);
+							pSpatialRefSns.setLong(cnt++, dataProvider.getId()); // id
+							pSpatialRefSns.setString(cnt++, topicId); // sns_id
+							pSpatialRefSns.setString(cnt++, null); // expired_at
+							try {
+								pSpatialRefSns.executeUpdate();
+								spatialRefSnsId = dataProvider.getId();
+							} catch (Exception e) {
+								log.error("Error executing SQL: " + pSpatialRefSns.toString(), e);
+								throw e;
+							}
+						}
+					}
+					
 					// store the spatial ref
+					cnt = 1;
 					dataProvider.setId(dataProvider.getId() + 1);
 
 					pSpatialRefValue.setLong(cnt++, dataProvider.getId()); // id
 					pSpatialRefValue.setString(cnt++, "G"); // type
-					pSpatialRefValue.setNull(cnt++, Types.INTEGER); // spatial_ref_sns_id
+					if (spatialRefSnsId > 0) {
+						pSpatialRefValue.setLong(cnt++, spatialRefSnsId); // spatial_ref_sns_id
+					} else {
+						pSpatialRefValue.setNull(cnt++, Types.INTEGER); // spatial_ref_sns_id
+					}
 					String locName = "";
 					if (row.get("township_no") == null) {
 						if (log.isDebugEnabled()) {
@@ -2119,7 +2143,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 							pSearchtermSns.setString(cnt++, "uba_thes_"
 									.concat(IDCStrategyHelper.getEntityFieldValue(dataProvider, "thesorigid",
 											"th_desc_no", row.get("th_desc_no"), "th_orig_desc_no"))); // sns_id
-							pSearchtermSns.setNull(cnt++, java.sql.Types.VARCHAR);
+							pSearchtermSns.setNull(cnt++, java.sql.Types.VARCHAR); // expired_at
 							try {
 								pSearchtermSns.executeUpdate();
 							} catch (Exception e) {

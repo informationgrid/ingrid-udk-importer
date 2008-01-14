@@ -170,4 +170,19 @@ public class IDCStrategyHelper {
 		}
 	}
 
+    public static String transformNativeKey2TopicId(String nativeKey) {
+        if (nativeKey == null) {
+        	return "";
+        } else if (nativeKey.length() == 8) {
+        	return "GEMEINDE" + nativeKey.substring(0, 5) + "00" + nativeKey.substring(5); 
+        } else if (nativeKey.length() == 5) {
+        	return "KREIS" + nativeKey + "00000";
+        } else if (nativeKey.length() == 2) {
+        	return "BUNDESLAND" + nativeKey;
+        } else {
+        	log.error("Invalid nativekey: " + nativeKey);
+        	return "";
+        }
+    }
+
 }
