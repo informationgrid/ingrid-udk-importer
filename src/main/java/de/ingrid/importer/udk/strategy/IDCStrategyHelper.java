@@ -185,4 +185,22 @@ public class IDCStrategyHelper {
         }
     }
 
+    public static String transformNativeKey2FullAgs(String nativeKey) {
+        if (nativeKey == null) {
+        	return "";
+        } else if (nativeKey.length() == 8) {
+        	return nativeKey; 
+        } else if (nativeKey.length() == 5) {
+        	return nativeKey + "000";
+        } else if (nativeKey.length() == 3) {
+        	return nativeKey + "00000";
+        } else if (nativeKey.length() == 2) {
+        	return nativeKey + "000000";
+        } else {
+        	log.error("Invalid nativekey: " + nativeKey);
+        	return "";
+        }
+    }
+    
+    
 }

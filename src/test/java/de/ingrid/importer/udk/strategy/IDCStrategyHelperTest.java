@@ -18,5 +18,13 @@ public class IDCStrategyHelperTest extends TestCase {
 		assertEquals(IDCStrategyHelper.transformNativeKey2TopicId(null), "");
 		assertEquals(IDCStrategyHelper.transformNativeKey2TopicId("123"), "");
 	}
-
+	
+	public void testTransformNativeKey2FullAgs() {
+		assertEquals(IDCStrategyHelper.transformNativeKey2FullAgs("12345678"), "12345678");
+		assertEquals(IDCStrategyHelper.transformNativeKey2FullAgs("12345"), "12345000");
+		assertEquals(IDCStrategyHelper.transformNativeKey2FullAgs("123"), "12300000");
+		assertEquals(IDCStrategyHelper.transformNativeKey2FullAgs("12"), "12000000");
+		assertEquals(IDCStrategyHelper.transformNativeKey2FullAgs(null), "");
+		assertEquals(IDCStrategyHelper.transformNativeKey2FullAgs("1234"), "");
+	}
 }

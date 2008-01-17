@@ -1823,7 +1823,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 						}
 					}
 					pSpatialRefValue.setString(cnt++, locName); // name
-					pSpatialRefValue.setString(cnt++, row.get("township_no")); // nativekey
+					pSpatialRefValue.setString(cnt++, IDCStrategyHelper.transformNativeKey2FullAgs(row.get("township_no"))); // nativekey
 					pSpatialRefValue.setDouble(cnt++, IDCStrategyHelper.getEntityFieldValueAsDouble(dataProvider,
 							"t01_st_bbox", "loc_town_no", row.get("township_no"), "x1")); // x1
 					pSpatialRefValue.setDouble(cnt++, IDCStrategyHelper.getEntityFieldValueAsDouble(dataProvider,
