@@ -2532,7 +2532,51 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			log.info("Importing " + entityName + "... done.");
 		}
 	}
+	
+	
+	protected void processT014InfoImpart() throws Exception {
 
+		String entityName = "t014_info_impart";
+
+		if (log.isInfoEnabled()) {
+			log.info("Importing " + entityName + "...");
+		}
+
+		pSqlStr = "INSERT INTO t014_info_impart (id, obj_id, line, name) "
+				+ "VALUES (?, ?, ?, ?);";
+
+		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
+
+		sqlStr = "DELETE FROM t014_info_impart";
+		jdbc.executeUpdate(sqlStr);
+
+		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
+			Row row = i.next();
+			if (IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id")) == 0) {
+				if (log.isDebugEnabled()) {
+					log.debug("Invalid entry in " + entityName + " found: obj_id ('" + row.get("obj_id")
+							+ "') not found in imported data of t01_object. Skip record.");
+				}
+				row.clear();
+			} else {
+				int cnt = 1;
+				p.setInt(cnt++, row.getInt("primary_key")); // id
+				p.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"))); // obj_id
+				p.setInt(cnt++, row.getInt("line")); // line
+				p.setString(cnt++, row.get("name")); // name
+				try {
+					p.executeUpdate();
+				} catch (Exception e) {
+					log.error("Error executing SQL: " + p.toString(), e);
+					throw e;
+				}
+			}
+		}
+		if (log.isInfoEnabled()) {
+			log.info("Importing " + entityName + "... done.");
+		}
+	}	
+	
 	protected void setHiLoGenerator() throws SQLException {
 		sqlStr = "DELETE FROM hibernate_unique_key";
 		jdbc.executeUpdate(sqlStr);

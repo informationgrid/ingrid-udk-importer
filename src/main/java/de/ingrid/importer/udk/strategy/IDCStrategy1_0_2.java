@@ -139,6 +139,9 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault {
 			System.out.print("  Importing t08_attr...");
 			processT08Attr();
 			System.out.println("done.");
+			System.out.print("  Importing t014_info_impart...");
+			processT014InfoImpart();
+			System.out.println("done.");
 			System.out.print("  Importing sys_gui...");
 			processSysGui();
 			System.out.println("done.");
