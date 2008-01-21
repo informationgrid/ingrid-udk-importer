@@ -1421,25 +1421,25 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t011_obj_geo_topic_cat (id, obj_geo_id, line, topic_category) VALUES ( ?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO t011_obj_topic_cat (id, obj_id, line, topic_category) VALUES ( ?, ?, ?, ?);";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
-		sqlStr = "DELETE FROM t011_obj_geo_topic_cat";
+		sqlStr = "DELETE FROM t011_obj_topic_cat";
 		jdbc.executeUpdate(sqlStr);
 
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
-			if (IDCStrategyHelper.getPK(dataProvider, "t011_obj_geo", "obj_id", row.get("obj_id")) == 0) {
+			if (IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id")) == 0) {
 				if (log.isDebugEnabled()) {
 					log.debug("Invalid entry in " + entityName + " found: obj_id ('" + row.get("obj_id")
-							+ "') not found in imported data of t011_obj_geo. Skip record.");
+							+ "') not found in imported data of t01_object. Skip record.");
 				}
 				row.clear();
 			} else if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
 				int cnt = 1;
 				p.setInt(cnt++, row.getInt("primary_key")); // id
-				p.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t011_obj_geo", "obj_id", row.get("obj_id"))); // obj_id
+				p.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"))); // obj_id
 				p.setInt(cnt++, row.getInt("line")); // line
 				p.setInt(cnt++, row.getInt("topic_category")); // topic_category
 				try {
@@ -2558,7 +2558,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 							+ "') not found in imported data of t01_object. Skip record.");
 				}
 				row.clear();
-			} else {
+			} else if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
 				int cnt = 1;
 				p.setInt(cnt++, row.getInt("primary_key")); // id
 				p.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"))); // obj_id
