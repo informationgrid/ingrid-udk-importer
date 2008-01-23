@@ -37,6 +37,8 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 	private static Log log = LogFactory.getLog(IDCStrategyDefault.class);
 
 	protected static ArrayList<String> invalidModTypes;
+	
+	private ArrayList<String> duplicateEntries;
 
 	public void setDataProvider(DataProvider data) {
 		dataProvider = data;
@@ -65,6 +67,8 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 	protected void processT01Object() throws Exception {
 
+		duplicateEntries = new ArrayList<String>();
+		
 		String entityName = "t01_object";
 
 		if (log.isInfoEnabled()) {
@@ -91,13 +95,9 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
 			if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
-
-				if (IDCStrategyHelper.getPK(dataProvider, "t03_catalogue", "cat_id", row.get("cat_id")) == 0) {
-					if (log.isDebugEnabled()) {
-						log.debug("Invalid entry in " + entityName + " found: cat_id ('" + row.get("cat_id")
-								+ "') not found in imported data of t03_catalogue.");
-					}
-				}
+				
+				String duplicateKey = row.get("obj_id");
+				
 				if (IDCStrategyHelper.getPK(dataProvider, "t02_address", "adr_id", row.get("mod_id")) == 0) {
 					if (log.isDebugEnabled()) {
 						log.debug("Invalid entry in " + entityName + " found: mod_id ('" + row.get("mod_id")
@@ -111,9 +111,21 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					}
 				}
 				if (!row.get("root").equals("1") &&  IDCStrategyHelper.getEntityFieldValue(dataProvider, "t012_obj_obj", "object_to_id", row.get("obj_id"), "object_to_id").length() == 0) {
-					if (log.isDebugEnabled()) {
-						log.debug("Invalid entry in " + entityName + " found: obj_id ('" + row.get("obj_id")
-								+ "') not found in t012_obj_obj and root != 1. Skip record.");
+					if (log.isInfoEnabled()) {
+						log.info("Invalid entry (outside the hierarchy) in " + entityName + " found: obj_id ('" + row.get("obj_id")
+								+ "') not found in t012_obj_obj.object_to_id and root != 1. Skip record.");
+					}
+					row.clear();
+				} else if (duplicateEntries.contains(duplicateKey)) {
+					if (log.isInfoEnabled()) {
+						log.info("Duplicate entry in " + entityName + " found: obj_id ('" + row.get("obj_id")
+								+ "'). Skip record.");
+					}
+					row.clear();
+				} else if (IDCStrategyHelper.getPK(dataProvider, "t03_catalogue", "cat_id", row.get("cat_id")) == 0) {
+					if (log.isInfoEnabled()) {
+						log.info("Invalid entry in " + entityName + " found: cat_id ('" + row.get("cat_id")
+								+ "') not found in imported data of t03_catalogue. Skip record");
 					}
 					row.clear();
 				} else {
@@ -178,6 +190,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					p.setString(cnt++, modId); // responsible_uuid
 					try {
 						p.executeUpdate();
+						duplicateEntries.add(duplicateKey);
 					} catch (Exception e) {
 						log.error("Error executing SQL: " + p.toString(), e);
 						throw e;
@@ -201,6 +214,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 	protected void processT02Address() throws Exception {
 
+		duplicateEntries = new ArrayList<String>();
 		String entityName = "t02_address";
 
 		if (log.isInfoEnabled()) {
@@ -222,12 +236,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
 			if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
-				if (IDCStrategyHelper.getPK(dataProvider, "t03_catalogue", "cat_id", row.get("cat_id")) == 0) {
-					if (log.isDebugEnabled()) {
-						log.debug("Invalid entry in " + entityName + " found: cat_id ('" + row.get("cat_id")
-								+ "') not found in imported data of t03_catalogue.");
-					}
-				}
+				String duplicateKey = row.get("adr_id");
 				if (IDCStrategyHelper.getPK(dataProvider, "t02_address", "adr_id", row.get("mod_id")) == 0) {
 					if (log.isDebugEnabled()) {
 						log.debug("Invalid entry in " + entityName + " found: mod_id ('" + row.get("mod_id")
@@ -244,6 +253,18 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					if (log.isDebugEnabled()) {
 						log.debug("Invalid entry in " + entityName + " found: adr_id ('" + row.get("adr_id")
 								+ "') not found in t022_adr_adr and root != 1. Skip record.");
+					}
+					row.clear();
+				} else if (duplicateEntries.contains(duplicateKey)) {
+					if (log.isInfoEnabled()) {
+						log.info("Duplicate entry in " + entityName + " found: adr_id ('" + row.get("adr_id")
+								+ "'). Skip record.");
+					}
+					row.clear();
+				} else if (IDCStrategyHelper.getPK(dataProvider, "t03_catalogue", "cat_id", row.get("cat_id")) == 0) {
+					if (log.isInfoEnabled()) {
+						log.info("Invalid entry in " + entityName + " found: cat_id ('" + row.get("cat_id")
+								+ "') not found in imported data of t03_catalogue. Skip record.");
 					}
 					row.clear();
 				} else {
@@ -283,6 +304,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 	
 					try {
 						p.executeUpdate();
+						duplicateEntries.add(duplicateKey);
 					} catch (Exception e) {
 						log.error("Error executing SQL: " + p.toString(), e);
 						throw e;
@@ -443,6 +465,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			}
 		}
 		// insert root objects into object_node
+		duplicateEntries = new ArrayList<String>();
 		for (Iterator<Row> i = dataProvider.getRowIterator("t01_object"); i.hasNext();) {
 			Row row = i.next();
 			int cnt = 1;
@@ -1515,23 +1538,25 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
-			if (IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id")) == 0) {
-				if (log.isDebugEnabled()) {
-					log.debug("Invalid entry in " + entityName + " found: obj_id ('" + row.get("obj_id")
-							+ "') not found in imported data of t01_object. Skip record.");
-				}
-				row.clear();
-			} else if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
-				int cnt = 1;
-				p.setInt(cnt++, row.getInt("primary_key")); // id
-				p.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"))); // obj_id
-				p.setInt(cnt++, row.getInt("line")); // line
-				p.setString(cnt++, row.get("name")); // name
-				try {
-					p.executeUpdate();
-				} catch (Exception e) {
-					log.error("Error executing SQL: " + p.toString(), e);
-					throw e;
+			if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
+				if (IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id")) == 0) {
+					if (log.isDebugEnabled()) {
+						log.debug("Invalid entry in " + entityName + " found: obj_id ('" + row.get("obj_id")
+								+ "') not found in imported data of t01_object. Skip record.");
+					}
+					row.clear();
+				} else  {
+					int cnt = 1;
+					p.setInt(cnt++, row.getInt("primary_key")); // id
+					p.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"))); // obj_id
+					p.setInt(cnt++, row.getInt("line")); // line
+					p.setString(cnt++, row.get("name")); // name
+					try {
+						p.executeUpdate();
+					} catch (Exception e) {
+						log.error("Error executing SQL: " + p.toString(), e);
+						throw e;
+					}
 				}
 			}
 		}
@@ -1977,43 +2002,54 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
-			if (row.get("obj_id") == null || row.get("obj_id").length() == 0) {
-				if (log.isDebugEnabled()) {
-					log.debug("Invalid entry in " + entityName + " found: obj_id not set. Skip record.");
-				}
-				row.clear();
-			} else if (row.get("adr_id") == null || row.get("adr_id").length() == 0) {
-				if (log.isDebugEnabled()) {
-					log.debug("Invalid entry in " + entityName + " found: adr_id not set. Skip record.");
-				}
-				row.clear();
-			} else if (IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id")) == 0) {
-				if (log.isDebugEnabled()) {
-					log.debug("Invalid entry in " + entityName + " found: obj_id ('" + row.get("obj_id")
-							+ "') not found in imported data of t01_object. Skip record.");
-				}
-				row.clear();
-			} else if (IDCStrategyHelper.getPK(dataProvider, "t02_address", "adr_id", row.get("adr_id")) == 0) {
-				if (log.isDebugEnabled()) {
-					log.debug("Invalid entry in " + entityName + " found: adr_id ('" + row.get("adr_id")
-							+ "') not found in imported data of t02_address. Skip record.");
-				}
-				row.clear();
-			} else if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
-				int cnt = 1;
-				p.setInt(cnt++, row.getInt("primary_key")); // id
-				p.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"))); // obj_id
-				p.setString(cnt++, row.get("adr_id")); // adr_uuid
-				p.setInt(cnt++, row.getInt("typ")); // type
-				p.setInt(cnt++, row.getInt("line")); // line
-				p.setInt(cnt++, row.getInt("special_ref")); // special_ref
-				p.setString(cnt++, row.get("special_name")); // special_name
-				p.setString(cnt++, IDCStrategyHelper.transDateTime(row.get("mod_time"))); // mod_time
-				try {
-					p.executeUpdate();
-				} catch (Exception e) {
-					log.error("Error executing SQL: " + p.toString(), e);
-					throw e;
+			if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
+				if (row.get("obj_id") == null || row.get("obj_id").length() == 0) {
+					if (log.isDebugEnabled()) {
+						log.debug("Invalid entry in " + entityName + " found: obj_id not set. Skip record.");
+					}
+					row.clear();
+				} else if (row.get("adr_id") == null || row.get("adr_id").length() == 0) {
+					if (log.isDebugEnabled()) {
+						log.debug("Invalid entry in " + entityName + " found: adr_id not set. Skip record.");
+					}
+					row.clear();
+				} else if (IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id")) == 0) {
+					if (log.isDebugEnabled()) {
+						log.debug("Invalid entry in " + entityName + " found: obj_id ('" + row.get("obj_id")
+								+ "') not found in imported data of t01_object. Skip record.");
+					}
+					row.clear();
+				} else if (IDCStrategyHelper.getPK(dataProvider, "t02_address", "adr_id", row.get("adr_id")) == 0) {
+					if (log.isDebugEnabled()) {
+						log.debug("Invalid entry in " + entityName + " found: adr_id ('" + row.get("adr_id")
+								+ "') not found in imported data of t02_address. Skip record.");
+					}
+					row.clear();
+				} else if (row.get("typ").equals("0") && row.get("special_ref").equals("0") && (row.get("special_name") == null || row.get("special_name").length() == 0)) {
+					if (log.isInfoEnabled()) {
+						log.info("Invalid entry in " + entityName + " found: TYP ('" + row.get("typ") + "'), SPECIAL_REF ('" + row.get("special_ref") + "'), SPECIAL_NAME ('" + row.get("special_name") + "'). Skip record.");
+					}
+					row.clear();
+				} else  {
+					int cnt = 1;
+					p.setInt(cnt++, row.getInt("primary_key")); // id
+					p.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"))); // obj_id
+					p.setString(cnt++, row.get("adr_id")); // adr_uuid
+					if (row.getInt("typ") == 999) {
+						p.setInt(cnt++, -1); // type
+					} else {
+						p.setInt(cnt++, row.getInt("typ")); // type
+					}
+					p.setInt(cnt++, row.getInt("line")); // line
+					p.setInt(cnt++, row.getInt("special_ref")); // special_ref
+					p.setString(cnt++, row.get("special_name")); // special_name
+					p.setString(cnt++, IDCStrategyHelper.transDateTime(row.get("mod_time"))); // mod_time
+					try {
+						p.executeUpdate();
+					} catch (Exception e) {
+						log.error("Error executing SQL: " + p.toString(), e);
+						throw e;
+					}
 				}
 			}
 		}
