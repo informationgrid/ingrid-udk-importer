@@ -7,8 +7,10 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -2488,45 +2490,6 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		}
 	}
 
-	protected void processSysGui() throws Exception {
-
-		String entityName = "sys_gui";
-
-		if (log.isInfoEnabled()) {
-			log.info("Importing " + entityName + "...");
-		}
-
-		pSqlStr = "INSERT INTO sys_gui (id, gui_id, class_id, name, help, sample, link_to, type) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
-
-		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
-
-		sqlStr = "DELETE FROM sys_gui";
-		jdbc.executeUpdate(sqlStr);
-
-		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
-			Row row = i.next();
-			int cnt = 1;
-			p.setInt(cnt++, row.getInt("primary_key")); // id
-			p.setInt(cnt++, row.getInt("gui_id")); // gui_id
-			p.setInt(cnt++, row.getInt("class_id")); // class_id
-			p.setString(cnt++, row.get("name")); // name
-			p.setString(cnt++, row.get("help")); // help
-			p.setString(cnt++, row.get("bsp")); // sample
-			p.setInt(cnt++, row.getInt("link_to")); // link_to
-			p.setInt(cnt++, row.getInt("typ")); // type
-			try {
-				p.executeUpdate();
-			} catch (Exception e) {
-				log.error("Error executing SQL: " + p.toString(), e);
-				throw e;
-			}
-		}
-		if (log.isInfoEnabled()) {
-			log.info("Importing " + entityName + "... done.");
-		}
-	}
-
 	protected void processSysList() throws Exception {
 
 		String entityName = "sys_list";
@@ -2535,28 +2498,54 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO sys_gui_list (id, gui_id, entry_id, lang_id, db_id, name, data, codelist_id, domain_id, maintainable, rowid) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, description, maintainable) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?);";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
-		sqlStr = "DELETE FROM sys_gui_list";
-		jdbc.executeUpdate(sqlStr);
-
+		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
+			Row row = i.next();
+			
+			if (row.getInt("lst_id") == 1000) {
+				//	ignore list with id==1000, codelist 505 will be used instead
+			} else if (row.getInt("lst_id") == 3571 && row.getInt("entry_id") == 4) {
+				//	ignore list with id==3571 and entry_id==4, codelist 505 will be used instead
+			} else {
+				int cnt = 1;
+				p.setInt(cnt++, row.getInt("primary_key")); // id
+				p.setInt(cnt++, row.getInt("lst_id")); // lst_id
+				p.setInt(cnt++, row.getInt("entry_id")); // entry_id
+				p.setInt(cnt++, row.getInt("lang_id")); // lang_id
+				p.setString(cnt++, row.get("name")); // name
+				p.setString(cnt++, null); // description
+				p.setInt(cnt++, row.getInt("maintainable")); // maintainable
+				try {
+					p.executeUpdate();
+				} catch (Exception e) {
+					log.error("Error executing SQL: " + p.toString(), e);
+					throw e;
+				}
+			}
+		}
+		if (log.isInfoEnabled()) {
+			log.info("Importing " + entityName + "... done.");
+		}
+		
+		
+		entityName = "sys_codelist_domain";
+		if (log.isInfoEnabled()) {
+			log.info("Importing " + entityName + "...");
+		}
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
 			int cnt = 1;
 			p.setInt(cnt++, row.getInt("primary_key")); // id
-			p.setInt(cnt++, row.getInt("lst_id")); // gui_id
-			p.setInt(cnt++, row.getInt("entry_id")); // entry_id
+			p.setInt(cnt++, row.getInt("codelist_id")); // lst_id
+			p.setInt(cnt++, row.getInt("domain_id")); // entry_id
 			p.setInt(cnt++, row.getInt("lang_id")); // lang_id
-			p.setString(cnt++, row.get("db_id")); // db_id
 			p.setString(cnt++, row.get("name")); // name
-			p.setInt(cnt++, row.getInt("data")); // data
-			p.setInt(cnt++, row.getInt("codelist_id")); // codelist_id
-			p.setInt(cnt++, row.getInt("domain_id")); // domain_id
-			p.setInt(cnt++, row.getInt("maintainable")); // maintainable
-			p.setString(cnt++, row.get("rowid")); // rowid
+			p.setString(cnt++, row.get("description")); // description
+			p.setInt(cnt++, 0); // maintainable
 			try {
 				p.executeUpdate();
 			} catch (Exception e) {
@@ -2567,9 +2556,92 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
+		if (log.isInfoEnabled()) {
+			log.info("Importing special values...");
+		}
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1400, 1, 121, 'Daten und Karten', 0);");   
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1400, 2, 121, 'Konzeptionelles', 0);");  
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1400, 3, 121, 'Rechtliches', 0);");      
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1400, 4, 121, 'Risikobewertungen', 0);");
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1400, 5, 121, 'Statusberichte', 0);");   
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1400, 6, 121, 'Umweltzustand', 0);");    
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1410, 1, 121, 'Abfall', 0);");                   
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1410, 2, 121, 'Altlasten', 0);");                
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1410, 3, 121, 'Bauen', 0);");                    
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1410, 4, 121, 'Boden', 0);");                    
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1410, 5, 121, 'Chemikalien', 0);");              
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1410, 6, 121, 'Energie', 0);");                  
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1410, 7, 121, 'Forstwirtschaft', 0);");          
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1410, 8, 121, 'Gentechnik', 0);");               
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1410, 9, 121, 'Geologie', 0);");                 
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1410, 10, 121, 'Gesundheit', 0);");              
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1410, 11, 121, 'Lärm und Erschütterungen', 0);");
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1410, 12, 121, 'Landwirtschaft', 0);");          
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1410, 13, 121, 'Luft und Klima', 0);");          
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1410, 14, 121, 'Nachhaltige Entwicklung', 0);"); 
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1410, 15, 121, 'Natur und Landschaft', 0);");    
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1410, 16, 121, 'Strahlung', 0);");               
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1410, 17, 121, 'Tierschutz', 0);");              
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1410, 18, 121, 'Umweltinformationen', 0);");     
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1410, 19, 121, 'Umweltwirtschaft', 0);");        
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1410, 20, 121, 'Verkehr', 0);");                 
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1410, 21, 121, 'Wasser', 0);");                  
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 3100, 1, 121, 'Methode / Datengrundlage', 0);");                                        
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 3210, 1, 121, 'Basisdaten', 0);");
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 3345, 1, 121, 'Basisdaten', 0);");
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 3360, 1, 121, 'Standort', 0);");                                                        
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 3400, 1, 121, 'Projektleiter', 0);");                                                   
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 3410, 1, 121, 'Beteiligte', 0);");                                                      
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 3515, 1, 121, 'Herstellungsprozess', 0);");                                             
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 3520, 1, 121, 'Fachliche Grundlage', 0);");                                             
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 3535, 0, 121, 'Schlüsselkatalog', 0);");                                                
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 3555, 0, 121, 'Symbolkatalog', 0);");                                                   
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 3570, 1, 121, 'Datengrundlage', 0);");                                                  
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 5066, 1, 121, 'Verweis zu Dienst', 0);");                                               		
+		if (log.isInfoEnabled()) {
+			log.info("Importing special values... done.");
+		}
 	}
-	
-	
+
 	protected void processT014InfoImpart() throws Exception {
 
 		String entityName = "t014_info_impart";
