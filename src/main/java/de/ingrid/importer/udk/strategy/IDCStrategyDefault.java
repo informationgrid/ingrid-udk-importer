@@ -278,8 +278,8 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					p.setString(cnt++, row.get("adr_id")); // adr_uuid
 					p.setString(cnt++, row.get("org_adr_id")); // org_adr_id
 					p.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "t03_catalogue", "cat_id", row.get("cat_id"))); // cat_id
-					p.setInt(cnt++, row.getInteger("root")); // root
-					p.setInt(cnt++, row.getInteger("typ")); // adr_type
+					JDBCHelper.addInteger(p, cnt++, row.getInteger("root"));  // root
+					JDBCHelper.addInteger(p, cnt++, row.getInteger("typ"));  // typ
 					p.setString(cnt++, row.get("institution")); // institution
 					p.setString(cnt++, row.get("lastname")); // lastname
 					p.setString(cnt++, row.get("firstname")); // firstname
@@ -370,7 +370,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setString(cnt++, row.get("catalogue")); // cat_name
 				p.setString(cnt++, IDCStrategyHelper.transCountryCode(row.get("country"))); // country_code
 				p.setString(cnt++, "N"); // workflow_control
-				p.setInt(cnt++, 0); // expiry_duration
+				p.setNull(cnt++, Types.INTEGER); // expiry_duration
 				p.setString(cnt++, IDCStrategyHelper.transDateTime(row.get("create_time"))); // create_time
 				String modId = row.get("mod_id");
 				if (IDCStrategyHelper.getPK(dataProvider, "t02_address", "adr_id", modId) == 0) {
@@ -463,7 +463,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				row.clear();
 			} else if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
 				int cnt = 1;
-				if (row.getInteger("typ") == 0) {
+				if (row.getInteger("typ") != null && row.getInteger("typ") == 0) {
 					// structure
 					pSqlObjectNode.setInt(cnt++, row.getInteger("primary_key")); // id
 					pSqlObjectNode.setString(cnt++, row.get("object_to_id")); // object_uuid
@@ -478,13 +478,13 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 						log.error("Error executing SQL: " + pSqlObjectNode.toString(), e);
 						throw e;
 					}
-				} else if (row.getInteger("typ") == 1) {
+				} else if (row.getInteger("typ") != null && row.getInteger("typ") == 1) {
 					pSqlObjectReference.setInt(cnt++, row.getInteger("primary_key")); // id
 					pSqlObjectReference.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row
 							.get("object_from_id"))); // object_from_uuid
 					pSqlObjectReference.setString(cnt++, row.get("object_to_id")); // object_to_uuid
 					pSqlObjectReference.setInt(cnt++, row.getInteger("line")); // line
-					pSqlObjectReference.setInt(cnt++, row.getInteger("special_ref")); // special_ref
+					JDBCHelper.addInteger(pSqlObjectReference, cnt++, row.getInteger("special_ref"));  // special_ref
 					pSqlObjectReference.setString(cnt++, row.get("special_name")); // special_name
 					pSqlObjectReference.setString(cnt++, row.get("descr")); // descr
 					try {
@@ -501,7 +501,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		for (Iterator<Row> i = dataProvider.getRowIterator("t01_object"); i.hasNext();) {
 			Row row = i.next();
 			int cnt = 1;
-			if (row.getInteger("root") == 1 && row.get("mod_type") != null
+			if (row.getInteger("root") != null && row.getInteger("root") == 1 && row.get("mod_type") != null
 					&& !invalidModTypes.contains(row.get("mod_type"))) {
 				long id = dataProvider.getId();
 				id++;
@@ -585,7 +585,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		// insert root objects into address_node
 		for (Iterator<Row> i = dataProvider.getRowIterator("t02_address"); i.hasNext();) {
 			Row row = i.next();
-			if (row.getInteger("root") == 1 && row.get("mod_type") != null
+			if (row.getInteger("root") != null && row.getInteger("root") == 1 && row.get("mod_type") != null
 					&& !invalidModTypes.contains(row.get("mod_type"))) {
 				int cnt = 1;
 				long id = dataProvider.getId();
@@ -979,7 +979,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				int cnt = 1;
 				p.setInt(cnt++, row.getInteger("primary_key")); // id
 				p.setLong(cnt++, fk); // obj_id
-				p.setInt(cnt++, row.getInteger("dcp_line")); // line
+				JDBCHelper.addInteger(p, cnt++, row.getInteger("dcp_line"));  // line
 				p.setString(cnt++, row.get("platform")); // platform
 				try {
 					p.executeUpdate();
@@ -1033,8 +1033,8 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setString(cnt++, row.get("name")); // name
 				p.setString(cnt++, row.get("direction")); // direction
 				p.setString(cnt++, row.get("descr")); // descr
-				p.setInt(cnt++, row.getInteger("optional")); // optional
-				p.setInt(cnt++, row.getInteger("repeatability")); // repeatability
+				JDBCHelper.addInteger(p, cnt++, row.getInteger("optional"));  // optional
+				JDBCHelper.addInteger(p, cnt++, row.getInteger("repeatability"));  // repeatability
 				try {
 					p.executeUpdate();
 				} catch (Exception e) {
@@ -1083,7 +1083,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				int cnt = 1;
 				p.setInt(cnt++, row.getInteger("primary_key")); // id
 				p.setLong(cnt++, fk); // obj_id
-				p.setInt(cnt++, row.getInteger("dep_line")); // line
+				JDBCHelper.addInteger(p, cnt++, row.getInteger("dep_line"));  // line
 				p.setString(cnt++, row.get("depends_on")); // depends_on
 				try {
 					p.executeUpdate();
@@ -1133,7 +1133,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				int cnt = 1;
 				p.setInt(cnt++, row.getInteger("primary_key")); // id
 				p.setLong(cnt++, fk); // obj_id
-				p.setInt(cnt++, row.getInteger("dep_line")); // line
+				JDBCHelper.addInteger(p, cnt++, row.getInteger("dep_line"));  // line
 				p.setString(cnt++, row.get("depends_on")); // depends_on
 				try {
 					p.executeUpdate();
@@ -1181,13 +1181,13 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setString(cnt++, row.get("data_base")); // data_base
 				p.setString(cnt++, row.get("method")); // method
 				p.setString(cnt++, row.get("coord")); // coord
-				p.setDouble(cnt++, row.getDouble("rec_exact")); // rec_exact
-				p.setDouble(cnt++, row.getDouble("rec_grade")); // rec_grade
-				p.setInt(cnt++, row.getInteger("hierarchy_level")); // hierarchy_level
-				p.setInt(cnt++, row.getInteger("vector_topology_level")); // vector_topology_level
-				p.setInt(cnt++, row.getInteger("referencesystem_id")); // referencesystem_id
-				p.setDouble(cnt++, row.getDouble("pos_accuracy_vertical")); // pos_accuracy_vertical
-				p.setInt(cnt++, row.getInteger("keyc_incl_w_dataset")); // keyc_incl_w_dataset
+				JDBCHelper.addDouble(p, cnt++, row.getDouble("rec_exact"));  // rec_exact
+				JDBCHelper.addDouble(p, cnt++, row.getDouble("rec_grade"));  // rec_grade
+				JDBCHelper.addInteger(p, cnt++, row.getInteger("hierarchy_level"));  // hierarchy_level
+				JDBCHelper.addInteger(p, cnt++, row.getInteger("vector_topology_level"));  // vector_topology_level
+				JDBCHelper.addInteger(p, cnt++, row.getInteger("referencesystem_id"));  // referencesystem_id
+				JDBCHelper.addDouble(p, cnt++, row.getDouble("pos_accuracy_vertical"));  // pos_accuracy_vertical
+				JDBCHelper.addInteger(p, cnt++, row.getInteger("keyc_incl_w_dataset"));  // keyc_incl_w_dataset
 				try {
 					p.executeUpdate();
 				} catch (Exception e) {
@@ -1281,9 +1281,9 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setInt(cnt++, row.getInteger("primary_key")); // id
 				p.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t011_obj_geo", "obj_id", row.get("obj_id"))); // obj_id
 				p.setInt(cnt++, row.getInteger("line")); // line
-				p.setInt(cnt++, row.getInteger("scale")); // scale
-				p.setDouble(cnt++, row.getDouble("resolution_ground")); // resolution_ground
-				p.setDouble(cnt++, row.getDouble("resolution_scan")); // resolution_scan
+				JDBCHelper.addInteger(p, cnt++, row.getInteger("scale"));  // scale
+				JDBCHelper.addDouble(p, cnt++, row.getDouble("resolution_ground"));  // resolution_ground
+				JDBCHelper.addDouble(p, cnt++, row.getDouble("resolution_scan"));  // resolution_scan
 				try {
 					p.executeUpdate();
 				} catch (Exception e) {
@@ -1325,7 +1325,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setInt(cnt++, row.getInteger("primary_key")); // id
 				p.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t011_obj_geo", "obj_id", row.get("obj_id"))); // obj_id
 				p.setInt(cnt++, row.getInteger("line")); // line
-				p.setInt(cnt++, row.getInteger("type")); // type
+				JDBCHelper.addInteger(p, cnt++, row.getInteger("type"));  // type
 				try {
 					p.executeUpdate();
 				} catch (Exception e) {
@@ -1409,8 +1409,8 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setInt(cnt++, row.getInteger("primary_key")); // id
 				p.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t011_obj_geo", "obj_id", row.get("obj_id"))); // obj_id
 				p.setInt(cnt++, row.getInteger("line")); // line
-				p.setInt(cnt++, row.getInteger("geometric_object_type")); // geometric_object_type
-				p.setInt(cnt++, row.getInteger("geometric_object_count")); // geometric_object_count
+				JDBCHelper.addInteger(p, cnt++, row.getInteger("geometric_object_type"));  // geometric_object_type
+				JDBCHelper.addInteger(p, cnt++, row.getInteger("geometric_object_count"));  // geometric_object_count
 				try {
 					p.executeUpdate();
 				} catch (Exception e) {
@@ -1496,7 +1496,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setInt(cnt++, row.getInteger("primary_key")); // id
 				p.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"))); // obj_id
 				p.setInt(cnt++, row.getInteger("line")); // line
-				p.setInt(cnt++, row.getInteger("topic_category")); // topic_category
+				JDBCHelper.addInteger(p, cnt++, row.getInteger("topic_category"));  // topic_category
 				try {
 					p.executeUpdate();
 				} catch (Exception e) {
@@ -1626,7 +1626,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"))); // obj_id
 				p.setInt(cnt++, row.getInteger("line")); // line
 				p.setString(cnt++, IDCStrategyHelper.transDateTime(row.get("reference_date"))); // reference_date
-				p.setInt(cnt++, row.getInteger("type")); // type
+				JDBCHelper.addInteger(p, cnt++, row.getInteger("type"));  // type
 				try {
 					p.executeUpdate();
 				} catch (Exception e) {
@@ -1715,7 +1715,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setInt(cnt++, row.getInteger("line")); // line
 				p.setString(cnt++, row.get("medium_note")); // medium_note
 				p.setString(cnt++, row.get("medium_name")); // medium_name
-				p.setDouble(cnt++, row.getDouble("transfer_size")); // transfer_size
+				JDBCHelper.addDouble(p, cnt++, row.getDouble("transfer_size"));  // transfer_size
 				try {
 					p.executeUpdate();
 				} catch (Exception e) {
@@ -1759,7 +1759,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"))); // obj_id
 				p.setInt(cnt++, row.getInteger("line")); // line
 				p.setString(cnt++, row.get("url_link")); // url_link
-				p.setInt(cnt++, row.getInteger("special_ref")); // special_ref
+				JDBCHelper.addInteger(p, cnt++, row.getInteger("special_ref"));  // special_ref
 				p.setString(cnt++, row.get("special_name")); // special_name
 				p.setString(cnt++, row.get("content")); // content
 				p.setString(cnt++, row.get("datatype")); // datatype
@@ -1767,7 +1767,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setString(cnt++, row.get("icon")); // icon
 				p.setString(cnt++, row.get("icon_text")); // icon_text
 				p.setString(cnt++, row.get("descr")); // descr
-				p.setInt(cnt++, row.getInteger("url_type")); // url_type
+				JDBCHelper.addInteger(p, cnt++, row.getInteger("url_type"));  // url_type
 				try {
 					p.executeUpdate();
 				} catch (Exception e) {
@@ -1881,14 +1881,14 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					}
 					pSpatialRefValue.setString(cnt++, locName); // name
 					pSpatialRefValue.setString(cnt++, IDCStrategyHelper.transformNativeKey2FullAgs(row.get("township_no"))); // nativekey
-					pSpatialRefValue.setDouble(cnt++, IDCStrategyHelper.getEntityFieldValueAsDouble(dataProvider,
-							"t01_st_bbox", "loc_town_no", row.get("township_no"), "x1")); // x1
-					pSpatialRefValue.setDouble(cnt++, IDCStrategyHelper.getEntityFieldValueAsDouble(dataProvider,
-							"t01_st_bbox", "loc_town_no", row.get("township_no"), "x2")); // x1
-					pSpatialRefValue.setDouble(cnt++, IDCStrategyHelper.getEntityFieldValueAsDouble(dataProvider,
-							"t01_st_bbox", "loc_town_no", row.get("township_no"), "y1")); // x1
-					pSpatialRefValue.setDouble(cnt++, IDCStrategyHelper.getEntityFieldValueAsDouble(dataProvider,
-							"t01_st_bbox", "loc_town_no", row.get("township_no"), "y2")); // x1
+					JDBCHelper.addDouble(pSpatialRefValue, cnt++, IDCStrategyHelper.getEntityFieldValueAsDouble(dataProvider,
+							"t01_st_bbox", "loc_town_no", row.get("township_no"), "x1"));  // x1
+					JDBCHelper.addDouble(pSpatialRefValue, cnt++, IDCStrategyHelper.getEntityFieldValueAsDouble(dataProvider,
+							"t01_st_bbox", "loc_town_no", row.get("township_no"), "x2"));  // x2
+					JDBCHelper.addDouble(pSpatialRefValue, cnt++, IDCStrategyHelper.getEntityFieldValueAsDouble(dataProvider,
+							"t01_st_bbox", "loc_town_no", row.get("township_no"), "y1"));  // y1
+					JDBCHelper.addDouble(pSpatialRefValue, cnt++, IDCStrategyHelper.getEntityFieldValueAsDouble(dataProvider,
+							"t01_st_bbox", "loc_town_no", row.get("township_no"), "y2"));  // y2
 					try {
 						pSpatialRefValue.executeUpdate();
 						pSpatialRefValueId = dataProvider.getId();
@@ -1984,10 +1984,10 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					pSpatialRefValue.setNull(cnt++, Types.INTEGER); // spatial_ref_sns_id
 					pSpatialRefValue.setString(cnt++, row.get("bezug")); // name
 					pSpatialRefValue.setString(cnt++, ""); // nativekey
-					pSpatialRefValue.setDouble(cnt++, row.getDouble("geo_x1")); // x1
-					pSpatialRefValue.setDouble(cnt++, row.getDouble("geo_x2")); // x2
-					pSpatialRefValue.setDouble(cnt++, row.getDouble("geo_y1")); // y1
-					pSpatialRefValue.setDouble(cnt++, row.getDouble("geo_y2")); // y2
+					JDBCHelper.addDouble(pSpatialRefValue, cnt++, row.getDouble("geo_x1"));  // x1
+					JDBCHelper.addDouble(pSpatialRefValue, cnt++, row.getDouble("geo_x2"));  // x2
+					JDBCHelper.addDouble(pSpatialRefValue, cnt++, row.getDouble("geo_y1"));  // y1
+					JDBCHelper.addDouble(pSpatialRefValue, cnt++, row.getDouble("geo_y2"));  // y1
 					try {
 						pSpatialRefValue.executeUpdate();
 						pSpatialRefValueId = dataProvider.getId();
@@ -2067,13 +2067,13 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					p.setInt(cnt++, row.getInteger("primary_key")); // id
 					p.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"))); // obj_id
 					p.setString(cnt++, row.get("adr_id")); // adr_uuid
-					if (row.getInteger("typ") == 999) {
+					if (row.getInteger("typ") != null && row.getInteger("typ") == 999) {
 						p.setInt(cnt++, -1); // type
 					} else {
-						p.setInt(cnt++, row.getInteger("typ")); // type
+						JDBCHelper.addInteger(p, cnt++, row.getInteger("typ"));  // type
 					}
 					p.setInt(cnt++, row.getInteger("line")); // line
-					p.setInt(cnt++, row.getInteger("special_ref")); // special_ref
+					JDBCHelper.addInteger(p, cnt++, row.getInteger("special_ref"));  // special_ref
 					p.setString(cnt++, row.get("special_name")); // special_name
 					p.setString(cnt++, IDCStrategyHelper.transDateTime(row.get("mod_time"))); // mod_time
 					try {
@@ -2125,7 +2125,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
 				int cnt = 1;
 				// free searchterm object
-				if (row.getInteger("type") == 1) {
+				if (row.getInteger("type") != null && row.getInteger("type") == 1) {
 					// check for invalid record
 					if (IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id")) == 0) {
 						if (log.isDebugEnabled()) {
@@ -2180,7 +2180,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 						}
 					}
 					// thesaurus searchterm object
-				} else if (row.getInteger("type") == 2) {
+				} else if (row.getInteger("type") != null && row.getInteger("type") == 2) {
 					// check for invalid record
 					if (IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id")) == 0) {
 						if (log.isDebugEnabled()) {
@@ -2260,7 +2260,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 							throw e;
 						}
 					}
-				} else if (row.getInteger("type") == 3) {
+				} else if (row.getInteger("type") != null && row.getInteger("type") == 3) {
 					// check for invalid record
 					if (IDCStrategyHelper.getPK(dataProvider, "t02_address", "adr_id", row.get("obj_id")) == 0) {
 						if (log.isDebugEnabled()) {
@@ -2309,7 +2309,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 							throw e;
 						}
 					}
-				} else if (row.getInteger("type") == 4) {
+				} else if (row.getInteger("type") != null && row.getInteger("type") == 4) {
 					// check for invalid record
 					if (IDCStrategyHelper.getPK(dataProvider, "t02_address", "adr_id", row.get("obj_id")) == 0) {
 						if (log.isDebugEnabled()) {
@@ -2468,7 +2468,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				int cnt = 1;
 				p.setInt(cnt++, row.getInteger("primary_key")); // id
 				p.setString(cnt++, row.get("attr_name")); // attr_id
-				p.setInt(cnt++, row.getInteger("length")); // length
+				JDBCHelper.addInteger(p, cnt++, row.getInteger("length"));  // length
 				p.setString(cnt++, row.get("typ")); // type
 				try {
 					p.executeUpdate();
@@ -2563,7 +2563,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setInt(cnt++, row.getInteger("lang_id")); // lang_id
 				p.setString(cnt++, row.get("name")); // name
 				p.setString(cnt++, null); // description
-				p.setInt(cnt++, row.getInteger("maintainable")); // maintainable
+				JDBCHelper.addInteger(p, cnt++, row.getInteger("maintainable"));  // maintainable
 				try {
 					p.executeUpdate();
 				} catch (Exception e) {
