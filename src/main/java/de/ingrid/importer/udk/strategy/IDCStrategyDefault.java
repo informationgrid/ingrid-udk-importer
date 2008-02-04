@@ -2079,6 +2079,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		PreparedStatement pSearchtermSns = jdbc.prepareStatement(pSqlStrSearchtermSns);
 
 		HashMap<String, Long> searchTermValues = new HashMap<String, Long>();
+		HashMap<String, Long> searchTermSnsValues = new HashMap<String, Long>();
 
 		sqlStr = "DELETE FROM searchterm_sns";
 		jdbc.executeUpdate(sqlStr);
@@ -2166,29 +2167,34 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 						row.clear();
 					} else {
 						long pSearchtermValueId;
+						long pSearchtermSnsId;
+						String snsTopicId = IDCStrategyHelper.getEntityFieldValue(dataProvider, "thesorigid",
+								"th_desc_no", row.get("th_desc_no"), "th_orig_desc_no");
+						String snsSearchTermCheckIdent = row.get("searchterm").concat("_").concat(snsTopicId);
 						// if the term has been stored already, refere to the
 						// already stored id
-						if (searchTermValues.containsKey(row.get("searchterm").concat("_T"))) {
-							pSearchtermValueId = ((Long) searchTermValues.get(row.get("searchterm").concat("_T")))
-									.longValue();
+						if (searchTermValues.containsKey(snsSearchTermCheckIdent)) {
+							pSearchtermValueId = searchTermValues.get(snsSearchTermCheckIdent).longValue();
 						} else {
-
-							// this is a thesaurus term: store the sns id in
-							// table searchterm_sns
-							cnt = 1;
-							dataProvider.setId(dataProvider.getId() + 1);
-							pSearchtermSns.setLong(cnt++, dataProvider.getId()); // id
-							pSearchtermSns.setString(cnt++, "uba_thes_"
-									.concat(IDCStrategyHelper.getEntityFieldValue(dataProvider, "thesorigid",
-											"th_desc_no", row.get("th_desc_no"), "th_orig_desc_no"))); // sns_id
-							pSearchtermSns.setNull(cnt++, java.sql.Types.VARCHAR); // expired_at
-							try {
-								pSearchtermSns.executeUpdate();
-							} catch (Exception e) {
-								log.error("Error executing SQL: " + pSearchtermSns.toString(), e);
-								throw e;
+							if (searchTermSnsValues.containsKey(snsTopicId)) {
+								pSearchtermSnsId = searchTermSnsValues.get(snsTopicId).longValue();
+							} else {
+								// store the new sns topic id in table searchterm_sns
+								cnt = 1;
+								dataProvider.setId(dataProvider.getId() + 1);
+								pSearchtermSns.setLong(cnt++, dataProvider.getId()); // id
+								pSearchtermSns.setString(cnt++, "uba_thes_"
+										.concat(snsTopicId)); // sns_id
+								pSearchtermSns.setNull(cnt++, java.sql.Types.VARCHAR); // expired_at
+								try {
+									pSearchtermSns.executeUpdate();
+								} catch (Exception e) {
+									log.error("Error executing SQL: " + pSearchtermSns.toString(), e);
+									throw e;
+								}
+								pSearchtermSnsId = dataProvider.getId();
+								searchTermSnsValues.put(snsTopicId, new Long(pSearchtermSnsId));
 							}
-							long pSearchtermSnsId = dataProvider.getId();
 
 							// store the search term
 							cnt = 1;
@@ -2205,7 +2211,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 								log.error("Error executing SQL: " + pSearchtermValue.toString(), e);
 								throw e;
 							}
-							searchTermValues.put(row.get("searchterm").concat("_T"), new Long(dataProvider.getId()));
+							searchTermValues.put(snsSearchTermCheckIdent, new Long(dataProvider.getId()));
 							pSearchtermValueId = dataProvider.getId();
 						}
 
@@ -2290,29 +2296,34 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 						row.clear();
 					} else {
 						long pSearchtermValueId;
+						long pSearchtermSnsId;
+						String snsTopicId = IDCStrategyHelper.getEntityFieldValue(dataProvider, "thesorigid",
+								"th_desc_no", row.get("th_desc_no"), "th_orig_desc_no");
+						String snsSearchTermCheckIdent = row.get("searchterm").concat("_").concat(snsTopicId);
 						// if the term has been stored already, refere to the
 						// already stored id
-						if (searchTermValues.containsKey(row.get("searchterm").concat("_T"))) {
-							pSearchtermValueId = ((Long) searchTermValues.get(row.get("searchterm").concat("_T")))
-									.longValue();
+						if (searchTermValues.containsKey(snsSearchTermCheckIdent)) {
+							pSearchtermValueId = searchTermValues.get(snsSearchTermCheckIdent).longValue();
 						} else {
-
-							// this is a thesaurus term: store the sns id in
-							// table searchterm_sns
-							cnt = 1;
-							dataProvider.setId(dataProvider.getId() + 1);
-							pSearchtermSns.setLong(cnt++, dataProvider.getId()); // id
-							pSearchtermSns.setString(cnt++, "uba_thes_"
-									.concat(IDCStrategyHelper.getEntityFieldValue(dataProvider, "thesorigid",
-											"th_desc_no", row.get("th_desc_no"), "th_orig_desc_no"))); // sns_id
-							pSearchtermSns.setNull(cnt++, java.sql.Types.VARCHAR);
-							try {
-								pSearchtermSns.executeUpdate();
-							} catch (Exception e) {
-								log.error("Error executing SQL: " + pSearchtermSns.toString(), e);
-								throw e;
+							if (searchTermSnsValues.containsKey(snsTopicId)) {
+								pSearchtermSnsId = searchTermSnsValues.get(snsTopicId).longValue();
+							} else {
+								// store the new sns topic id in table searchterm_sns
+								cnt = 1;
+								dataProvider.setId(dataProvider.getId() + 1);
+								pSearchtermSns.setLong(cnt++, dataProvider.getId()); // id
+								pSearchtermSns.setString(cnt++, "uba_thes_"
+										.concat(snsTopicId)); // sns_id
+								pSearchtermSns.setNull(cnt++, java.sql.Types.VARCHAR); // expired_at
+								try {
+									pSearchtermSns.executeUpdate();
+								} catch (Exception e) {
+									log.error("Error executing SQL: " + pSearchtermSns.toString(), e);
+									throw e;
+								}
+								pSearchtermSnsId = dataProvider.getId();
+								searchTermSnsValues.put(snsTopicId, new Long(pSearchtermSnsId));
 							}
-							long pSearchtermSnsId = dataProvider.getId();
 
 							// store the search term
 							cnt = 1;
@@ -2329,7 +2340,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 								log.error("Error executing SQL: " + pSearchtermValue.toString(), e);
 								throw e;
 							}
-							searchTermValues.put(row.get("searchterm").concat("_T"), new Long(dataProvider.getId()));
+							searchTermValues.put(snsSearchTermCheckIdent, new Long(dataProvider.getId()));
 							pSearchtermValueId = dataProvider.getId();
 						}
 
@@ -2503,6 +2514,10 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
+		sqlStr = "DELETE FROM sys_list";
+		jdbc.executeUpdate(sqlStr);
+		
+		
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
 			
