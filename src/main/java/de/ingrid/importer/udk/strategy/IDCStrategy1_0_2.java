@@ -142,14 +142,18 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault {
 			System.out.print("  Importing t014_info_impart...");
 			processT014InfoImpart();
 			System.out.println("done.");
-
 			System.out.print("  Importing sys_list...");
 			processSysList();
 			System.out.println("done.");
-			
 			setHiLoGenerator();
-
 			jdbc.commit();
+			
+			jdbc.setAutoCommit(false);
+			System.out.print("  Post processing...");
+			postProcess();
+			System.out.println("done.");
+			jdbc.commit();
+
 		} catch (Exception e) {
 			System.out.println("Error executing sql! See log file for further information.");
 			log.error("Error executing SQL!", e);

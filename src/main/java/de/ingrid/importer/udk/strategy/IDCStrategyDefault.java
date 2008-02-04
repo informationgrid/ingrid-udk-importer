@@ -4,6 +4,7 @@
 package de.ingrid.importer.udk.strategy;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.ArrayList;
@@ -336,7 +337,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t03_catalogue (id, cat_uuid, cat_name, country_code, "
+		pSqlStr = "INSERT INTO t03_catalogue (id, cat_uuid, cat_name, country_code,"
 				+ "workflow_control, expiry_duration, create_time, mod_uuid, mod_time) VALUES "
 				+ "( ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
@@ -396,6 +397,33 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		}
 	}
 
+	
+	protected void postProcess() throws Exception {
+		if (log.isInfoEnabled()) {
+			log.info("Post processing ...");
+		}
+		
+		// get spatial ref id for the catalog
+		for (Iterator<Row> i = dataProvider.getRowIterator("t03_catalogue"); i.hasNext();) {
+			Row row = i.next();
+			if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
+				String locTownNo = IDCStrategyHelper.getEntityFieldValue(dataProvider, "t071_state", "state_id", row.get("state"), "loc_town_no");
+				String sql = "SELECT id FROM spatial_ref_value WHERE nativekey='" + IDCStrategyHelper.transformNativeKey2FullAgs(locTownNo) + "'";
+				ResultSet rs = jdbc.executeQuery(sql);
+				if (rs.next()) {
+					Long id = rs.getLong("id");
+					if (id != null && id.longValue() > 0) {
+						jdbc.executeUpdate("UPDATE t03_catalogue SET spatial_ref_id = " + id + " WHERE id=" + row.getInt("primary_key") + ";");
+					}
+				}
+			}
+		}
+		
+		if (log.isInfoEnabled()) {
+			log.info("Post processing ... done.");
+		}
+	}
+	
 	protected void processT012ObjObj() throws Exception {
 
 		String entityName = "t012_obj_obj";
