@@ -2652,6 +2652,28 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 3570, 1, 121, 'Datengrundlage', 0);");                                                  
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 5066, 1, 121, 'Verweis zu Dienst', 0);");                                               		
+
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 5100, 1, 121, 'WMS', 0);");                                               		
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 5100, 2, 121, 'WFS', 0);");                                               		
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 5150, 1, 121, 'GetCapabilities', 0);");                                               		
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 5150, 2, 121, 'GetMap', 0);");                                               		
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 5150, 3, 121, 'GetFeatureInfo', 0);");                                               		
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 5150, 4, 121, 'DescribeFeatureType', 0);");                                               		
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 5150, 5, 121, 'GetFeature', 0);");                                               		
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 5150, 6, 121, 'GetFeature', 0);");                                               		
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 5150, 7, 121, 'LockFeature', 0);");                                               		
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 5150, 8, 121, 'Transaction', 0);");                                               		
+		
 		if (log.isInfoEnabled()) {
 			log.info("Importing special values... done.");
 		}
