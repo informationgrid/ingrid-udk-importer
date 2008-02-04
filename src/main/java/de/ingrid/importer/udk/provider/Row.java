@@ -21,28 +21,28 @@ public class Row extends HashMap<String, String> {
 	 */
 	private static final long serialVersionUID = -5678481012226552594L;
 	
-	public int getInt(String key) {
+	public Integer getInteger(String key) {
 		if (key == null || this.get(key) == null) {
-			return 0;
+			return null;
 		} else {
 			try {
 				return Integer.parseInt(this.get(key));
 			} catch (NumberFormatException e) {
 				log.warn("Unable to convert '" + key + "'->'" + this.get(key) + "' into int, returning 0.");
-				return 0;
+				return null;
 			}
 		}
 	}
 	
-	public double getDouble(String key) {
+	public Double getDouble(String key) {
 		if (key == null || this.get(key) == null) {
-			return 0;
+			return null;
 		} else {
 			try {
 				return Double.parseDouble(this.get(key));
 			} catch (NumberFormatException e) {
 				log.warn("Unable to convert '" + key + "'->'" + this.get(key) + "' into double, returning 0.");
-				return 0;
+				return null;
 			}
 		}
 	}
