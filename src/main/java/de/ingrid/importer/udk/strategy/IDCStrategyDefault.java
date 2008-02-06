@@ -139,7 +139,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					p.setString(cnt++, row.get("obj_name")); // obj_name
 					p.setString(cnt++, row.get("org_id")); // org_obj_id
 					JDBCHelper.addInteger(p, cnt++, row.getInteger("root"));  // root
-					JDBCHelper.addInteger(p, cnt++, row.getInteger("class_id"));  // class_id
+					JDBCHelper.addInteger(p, cnt++, row.getInteger("obj_class"));  // class_id
 					
 					if (row.get("obj_descr") != null) {
 						// check for max length of the underlying text field, take the multi byte characterset into account.
@@ -168,11 +168,11 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					p.setString(cnt++, row.get("dataset_alternate_name")); // dataset_alternate_name
 					JDBCHelper.addInteger(p, cnt++, row.getInteger("dataset_character_set"));  // dataset_character_set
 					p.setString(cnt++, row.get("dataset_usage")); // dataset_usage
-					p.setString(cnt++, row.get("data_language_code")); // data_language_code
+					p.setString(cnt++, row.get("data_language")); // data_language_code
 					JDBCHelper.addInteger(p, cnt++, row.getInteger("metadata_character_set"));  // metadata_character_set
 					p.setString(cnt++, row.get("metadata_standard_name")); // metadata_standard_name
 					p.setString(cnt++, row.get("metadata_standard_version")); // metadata_standard_version
-					p.setString(cnt++, row.get("metadata_language_code")); // metadata_language_code
+					p.setString(cnt++, row.get("metadata_language")); // metadata_language_code
 					JDBCHelper.addDouble(p, cnt++, row.getDouble("vertical_extent_minimum"));  // vertical_extent_minimum
 					JDBCHelper.addDouble(p, cnt++, row.getDouble("vertical_extent_maximum"));  // vertical_extent_maximum
 					
@@ -2688,21 +2688,21 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 5100, 2, 121, 'WFS', 0);");                                               		
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 5150, 1, 121, 'GetCapabilities', 0);");                                               		
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 5110, 1, 121, 'GetCapabilities', 0);");                                               		
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 5150, 2, 121, 'GetMap', 0);");                                               		
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 5110, 2, 121, 'GetMap', 0);");                                               		
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 5150, 3, 121, 'GetFeatureInfo', 0);");                                               		
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 5110, 3, 121, 'GetFeatureInfo', 0);");                                               		
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 5150, 4, 121, 'DescribeFeatureType', 0);");                                               		
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 5120, 1, 121, 'DescribeFeatureType', 0);");                                               		
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 5150, 5, 121, 'GetFeature', 0);");                                               		
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 5120, 2, 121, 'GetFeature', 0);");                                               		
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 5150, 6, 121, 'GetFeature', 0);");                                               		
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 5120, 3, 121, 'GetFeature', 0);");                                               		
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 5150, 7, 121, 'LockFeature', 0);");                                               		
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 5120, 4, 121, 'LockFeature', 0);");                                               		
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 5150, 8, 121, 'Transaction', 0);");                                               		
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 5120, 5, 121, 'Transaction', 0);");                                               		
 		
 		if (log.isInfoEnabled()) {
 			log.info("Importing special values... done.");
