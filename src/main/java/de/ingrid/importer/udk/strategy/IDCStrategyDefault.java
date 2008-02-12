@@ -2703,6 +2703,28 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 5120, 4, 121, 'LockFeature', 0);");                                               		
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 5120, 5, 121, 'Transaction', 0);");                                               		
+
+		// remove old values
+		jdbc.executeUpdate("DELETE FROM sys_list WHERE lst_id=2240;");                                               		
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 2240, 1, 121, 'HTML', 0);");                                               		
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 2240, 2, 121, 'JPG', 0);");                                               		
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 2240, 3, 121, 'PNG', 0);");                                               		
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 2240, 4, 121, 'GIF', 0);");                                               		
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 2240, 5, 121, 'PDF', 0);");                                               		
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 2240, 6, 121, 'DOC', 0);");                                               		
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 2240, 7, 121, 'PPT', 0);");                                               		
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 2240, 8, 121, 'XLS', 0);");                                               		
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 2240, 9, 121, 'ASCII/Text', 0);");                                               		
+		
 		
 		if (log.isInfoEnabled()) {
 			log.info("Importing special values... done.");
