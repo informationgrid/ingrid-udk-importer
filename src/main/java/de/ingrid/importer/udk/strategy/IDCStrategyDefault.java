@@ -79,7 +79,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t01_object (id, obj_uuid, obj_name, org_obj_id, root, obj_class, "
+		pSqlStr = "INSERT INTO t01_object (id, obj_uuid, obj_name, org_obj_id, obj_class, "
 				+ "obj_descr, cat_id, info_note, avail_access_note, loc_descr, time_from, time_to, "
 				+ "time_descr, time_period, time_interval, time_status, time_alle, time_type, "
 				+ "publish_id, dataset_alternate_name, dataset_character_set, dataset_usage, "
@@ -89,7 +89,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				+ "ordering_instructions, lastexport_time, expiry_time, work_state, work_version, "
 				+ "mark_deleted, create_time, mod_time, mod_uuid, responsible_uuid) "
 				+ "VALUES "
-				+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -114,10 +114,10 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 						}
 					}
 				}
-				if (!row.get("root").equals("1") &&  IDCStrategyHelper.getEntityFieldValue(dataProvider, "t012_obj_obj", "object_to_id", row.get("obj_id"), "object_to_id").length() == 0) {
+				if (row.get("root").equals("0") &&  IDCStrategyHelper.getEntityFieldValue(dataProvider, "t012_obj_obj", "object_to_id", row.get("obj_id"), "object_to_id").length() == 0) {
 					if (log.isInfoEnabled()) {
 						log.info("Invalid entry (outside the hierarchy) in " + entityName + " found: obj_id ('" + row.get("obj_id")
-								+ "') not found in t012_obj_obj.object_to_id and root != 1. Skip record.");
+								+ "') not found in t012_obj_obj.object_to_id and root == 0. Skip record.");
 					}
 					row.clear();
 				} else if (duplicateEntries.contains(duplicateKey)) {
@@ -138,7 +138,6 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					p.setString(cnt++, row.get("obj_id")); // obj_uuid
 					p.setString(cnt++, row.get("obj_name")); // obj_name
 					p.setString(cnt++, row.get("org_id")); // org_obj_id
-					JDBCHelper.addInteger(p, cnt++, row.getInteger("root"));  // root
 					JDBCHelper.addInteger(p, cnt++, row.getInteger("obj_class"));  // class_id
 					
 					if (row.get("obj_descr") != null) {
@@ -226,12 +225,12 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t02_address (id, adr_uuid, org_adr_id, cat_id, "
-				+ "root, adr_type, institution, lastname, firstname, address, title, "
+		pSqlStr = "INSERT INTO t02_address (id, adr_uuid, org_adr_id, "
+				+ "adr_type, institution, lastname, firstname, address, title, "
 				+ "street, postcode, postbox, postbox_pc, city, country_code, job, "
 				+ "descr, lastexport_time, expiry_time, work_state, work_version, "
 				+ "mark_deleted, create_time, mod_time, mod_uuid, responsible_uuid) VALUES "
-				+ "( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+				+ "( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -254,10 +253,10 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 						}
 					}
 				}
-				if (!row.get("root").equals("1") &&  IDCStrategyHelper.getEntityFieldValue(dataProvider, "t022_adr_adr", "adr_to_id", row.get("adr_id"), "adr_to_id").length() == 0) {
+				if (row.get("root").equals("0") &&  IDCStrategyHelper.getEntityFieldValue(dataProvider, "t022_adr_adr", "adr_to_id", row.get("adr_id"), "adr_to_id").length() == 0) {
 					if (log.isDebugEnabled()) {
 						log.debug("Invalid entry in " + entityName + " found: adr_id ('" + row.get("adr_id")
-								+ "') not found in t022_adr_adr and root != 1. Skip record.");
+								+ "') not found in t022_adr_adr and root == 0. Skip record.");
 					}
 					row.clear();
 				} else if (duplicateEntries.contains(duplicateKey)) {
@@ -277,8 +276,6 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					p.setInt(cnt++, row.getInteger("primary_key")); // id
 					p.setString(cnt++, row.get("adr_id")); // adr_uuid
 					p.setString(cnt++, row.get("org_adr_id")); // org_adr_id
-					p.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "t03_catalogue", "cat_id", row.get("cat_id"))); // cat_id
-					JDBCHelper.addInteger(p, cnt++, row.getInteger("root"));  // root
 					JDBCHelper.addInteger(p, cnt++, row.getInteger("typ"));  // typ
 					p.setString(cnt++, row.get("institution")); // institution
 					p.setString(cnt++, row.get("lastname")); // lastname
@@ -501,7 +498,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		for (Iterator<Row> i = dataProvider.getRowIterator("t01_object"); i.hasNext();) {
 			Row row = i.next();
 			int cnt = 1;
-			if (row.getInteger("root") != null && row.getInteger("root") == 1 && row.get("mod_type") != null
+			if (row.getInteger("root") != null && row.getInteger("root") != 0 && row.get("mod_type") != null
 					&& !invalidModTypes.contains(row.get("mod_type"))) {
 				long id = dataProvider.getId();
 				id++;
@@ -585,7 +582,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		// insert root objects into address_node
 		for (Iterator<Row> i = dataProvider.getRowIterator("t02_address"); i.hasNext();) {
 			Row row = i.next();
-			if (row.getInteger("root") != null && row.getInteger("root") == 1 && row.get("mod_type") != null
+			if (row.getInteger("root") != null && row.getInteger("root") != 0 && row.get("mod_type") != null
 					&& !invalidModTypes.contains(row.get("mod_type"))) {
 				int cnt = 1;
 				long id = dataProvider.getId();
