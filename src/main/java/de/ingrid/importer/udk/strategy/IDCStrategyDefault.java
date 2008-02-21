@@ -41,7 +41,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 	private static Log log = LogFactory.getLog(IDCStrategyDefault.class);
 
 	protected static ArrayList<String> invalidModTypes;
-	
+
 	private ArrayList<String> duplicateEntries;
 
 	public void setDataProvider(DataProvider data) {
@@ -72,7 +72,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 	protected void processT01Object() throws Exception {
 
 		duplicateEntries = new ArrayList<String>();
-		
+
 		String entityName = "t01_object";
 
 		if (log.isInfoEnabled()) {
@@ -87,8 +87,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				+ "metadata_standard_version, metadata_language_code, vertical_extent_minimum, "
 				+ "vertical_extent_maximum, vertical_extent_unit, vertical_extent_vdatum, fees, "
 				+ "ordering_instructions, lastexport_time, expiry_time, work_state, work_version, "
-				+ "mark_deleted, create_time, mod_time, mod_uuid, responsible_uuid) "
-				+ "VALUES "
+				+ "mark_deleted, create_time, mod_time, mod_uuid, responsible_uuid) " + "VALUES "
 				+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
@@ -99,9 +98,9 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
 			if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
-				
+
 				String duplicateKey = row.get("obj_id");
-				
+
 				if (IDCStrategyHelper.getPK(dataProvider, "t02_address", "adr_id", row.get("mod_id")) == 0) {
 					if (log.isDebugEnabled()) {
 						log.debug("Invalid entry in " + entityName + " found: mod_id ('" + row.get("mod_id")
@@ -114,7 +113,8 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 						}
 					}
 				}
-				if (row.get("root").equals("0") &&  IDCStrategyHelper.getEntityFieldValue(dataProvider, "t012_obj_obj", "object_to_id", row.get("obj_id"), "object_to_id").length() == 0) {
+				if (row.get("root").equals("0")
+						&& IDCStrategyHelper.getEntityFieldValue(dataProvider, "t012_obj_obj", "object_to_id", row.get("obj_id"), "object_to_id").length() == 0) {
 					if (log.isInfoEnabled()) {
 						log.info("Invalid entry (outside the hierarchy) in " + entityName + " found: obj_id ('" + row.get("obj_id")
 								+ "') not found in t012_obj_obj.object_to_id and root == 0. Skip record.");
@@ -122,8 +122,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					row.clear();
 				} else if (duplicateEntries.contains(duplicateKey)) {
 					if (log.isInfoEnabled()) {
-						log.info("Duplicate entry in " + entityName + " found: obj_id ('" + row.get("obj_id")
-								+ "'). Skip record.");
+						log.info("Duplicate entry in " + entityName + " found: obj_id ('" + row.get("obj_id") + "'). Skip record.");
 					}
 					row.clear();
 				} else if (IDCStrategyHelper.getPK(dataProvider, "t03_catalogue", "cat_id", row.get("cat_id")) == 0) {
@@ -138,14 +137,15 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					p.setString(cnt++, row.get("obj_id")); // obj_uuid
 					p.setString(cnt++, row.get("obj_name")); // obj_name
 					p.setString(cnt++, row.get("org_id")); // org_obj_id
-					JDBCHelper.addInteger(p, cnt++, row.getInteger("obj_class"));  // class_id
-					
+					JDBCHelper.addInteger(p, cnt++, row.getInteger("obj_class")); // class_id
+
 					if (row.get("obj_descr") != null) {
-						// check for max length of the underlying text field, take the multi byte characterset into account.
+						// check for max length of the underlying text field,
+						// take the multi byte characterset into account.
 						byte[] bArray = row.get("obj_descr").getBytes("UTF-8");
 						if (bArray.length > 65535) {
 							p.setString(cnt++, new String(bArray, 0, 65535, "UTF-8")); // obj_descr
-						} else { 
+						} else {
 							p.setString(cnt++, row.get("obj_descr")); // obj_descr
 						}
 					} else {
@@ -158,25 +158,25 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					p.setString(cnt++, IDCStrategyHelper.transDateTime(row.get("time_from"))); // time_from
 					p.setString(cnt++, IDCStrategyHelper.transDateTime(row.get("time_to"))); // time_to
 					p.setString(cnt++, row.get("time_descr")); // time_descr
-					JDBCHelper.addInteger(p, cnt++, row.getInteger("time_period"));  // time_period
+					JDBCHelper.addInteger(p, cnt++, row.getInteger("time_period")); // time_period
 					p.setString(cnt++, row.get("time_interval")); // time_interval
-					JDBCHelper.addInteger(p, cnt++, row.getInteger("time_status"));  // time_status
+					JDBCHelper.addInteger(p, cnt++, row.getInteger("time_status")); // time_status
 					p.setString(cnt++, row.get("time_alle")); // time_alle
 					p.setString(cnt++, row.get("time_type")); // time_type
-					JDBCHelper.addInteger(p, cnt++, row.getInteger("publish_id"));  // publish_id
+					JDBCHelper.addInteger(p, cnt++, row.getInteger("publish_id")); // publish_id
 					p.setString(cnt++, row.get("dataset_alternate_name")); // dataset_alternate_name
-					JDBCHelper.addInteger(p, cnt++, row.getInteger("dataset_character_set"));  // dataset_character_set
+					JDBCHelper.addInteger(p, cnt++, row.getInteger("dataset_character_set")); // dataset_character_set
 					p.setString(cnt++, row.get("dataset_usage")); // dataset_usage
 					p.setString(cnt++, row.get("data_language")); // data_language_code
-					JDBCHelper.addInteger(p, cnt++, row.getInteger("metadata_character_set"));  // metadata_character_set
+					JDBCHelper.addInteger(p, cnt++, row.getInteger("metadata_character_set")); // metadata_character_set
 					p.setString(cnt++, row.get("metadata_standard_name")); // metadata_standard_name
 					p.setString(cnt++, row.get("metadata_standard_version")); // metadata_standard_version
 					p.setString(cnt++, row.get("metadata_language")); // metadata_language_code
-					JDBCHelper.addDouble(p, cnt++, row.getDouble("vertical_extent_minimum"));  // vertical_extent_minimum
-					JDBCHelper.addDouble(p, cnt++, row.getDouble("vertical_extent_maximum"));  // vertical_extent_maximum
-					
-					JDBCHelper.addInteger(p, cnt++, row.getInteger("vertical_extent_unit"));  // vertical_extent_unit
-					JDBCHelper.addInteger(p, cnt++, row.getInteger("vertical_extent_vdatum"));  // vertical_extent_vdatum
+					JDBCHelper.addDouble(p, cnt++, row.getDouble("vertical_extent_minimum")); // vertical_extent_minimum
+					JDBCHelper.addDouble(p, cnt++, row.getDouble("vertical_extent_maximum")); // vertical_extent_maximum
+
+					JDBCHelper.addInteger(p, cnt++, row.getInteger("vertical_extent_unit")); // vertical_extent_unit
+					JDBCHelper.addInteger(p, cnt++, row.getInteger("vertical_extent_vdatum")); // vertical_extent_vdatum
 					p.setString(cnt++, row.get("fees")); // fees,
 					p.setString(cnt++, row.get("ordering_instructions")); // ordering_instructions
 					p.setString(cnt++, ""); // lastexport_time
@@ -205,8 +205,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				// clear row: we do not want invalid references
 				// in other entities refering to this entity
 				if (log.isDebugEnabled()) {
-					log.debug("Skip record of t01_object (obj_id='" + row.get("obj_id") + "'; mod_type='"
-							+ row.get("mod_type") + "')");
+					log.debug("Skip record of t01_object (obj_id='" + row.get("obj_id") + "'; mod_type='" + row.get("mod_type") + "')");
 				}
 				row.clear();
 			}
@@ -225,10 +224,8 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t02_address (id, adr_uuid, org_adr_id, "
-				+ "adr_type, institution, lastname, firstname, address, title, "
-				+ "street, postcode, postbox, postbox_pc, city, country_code, job, "
-				+ "descr, lastexport_time, expiry_time, work_state, work_version, "
+		pSqlStr = "INSERT INTO t02_address (id, adr_uuid, org_adr_id, " + "adr_type, institution, lastname, firstname, address, title, "
+				+ "street, postcode, postbox, postbox_pc, city, country_code, job, " + "descr, lastexport_time, expiry_time, work_state, work_version, "
 				+ "mark_deleted, create_time, mod_time, mod_uuid, responsible_uuid) VALUES "
 				+ "( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
@@ -253,7 +250,8 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 						}
 					}
 				}
-				if (row.get("root").equals("0") &&  IDCStrategyHelper.getEntityFieldValue(dataProvider, "t022_adr_adr", "adr_to_id", row.get("adr_id"), "adr_to_id").length() == 0) {
+				if (row.get("root").equals("0")
+						&& IDCStrategyHelper.getEntityFieldValue(dataProvider, "t022_adr_adr", "adr_to_id", row.get("adr_id"), "adr_to_id").length() == 0) {
 					if (log.isDebugEnabled()) {
 						log.debug("Invalid entry in " + entityName + " found: adr_id ('" + row.get("adr_id")
 								+ "') not found in t022_adr_adr and root == 0. Skip record.");
@@ -261,8 +259,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					row.clear();
 				} else if (duplicateEntries.contains(duplicateKey)) {
 					if (log.isInfoEnabled()) {
-						log.info("Duplicate entry in " + entityName + " found: adr_id ('" + row.get("adr_id")
-								+ "'). Skip record.");
+						log.info("Duplicate entry in " + entityName + " found: adr_id ('" + row.get("adr_id") + "'). Skip record.");
 					}
 					row.clear();
 				} else if (IDCStrategyHelper.getPK(dataProvider, "t03_catalogue", "cat_id", row.get("cat_id")) == 0) {
@@ -276,7 +273,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					p.setInt(cnt++, row.getInteger("primary_key")); // id
 					p.setString(cnt++, row.get("adr_id")); // adr_uuid
 					p.setString(cnt++, row.get("org_adr_id")); // org_adr_id
-					JDBCHelper.addInteger(p, cnt++, row.getInteger("typ"));  // typ
+					JDBCHelper.addInteger(p, cnt++, row.getInteger("typ")); // typ
 					p.setString(cnt++, row.get("institution")); // institution
 					p.setString(cnt++, row.get("lastname")); // lastname
 					p.setString(cnt++, row.get("firstname")); // firstname
@@ -303,7 +300,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					}
 					p.setString(cnt++, modId); // mod_uuid,
 					p.setString(cnt++, modId); // responsible_uuid
-	
+
 					try {
 						p.executeUpdate();
 						duplicateEntries.add(duplicateKey);
@@ -316,8 +313,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				// clear row: we do not want invalid references
 				// in other entities refering to this entity
 				if (log.isDebugEnabled()) {
-					log.debug("Skip record of " + entityName + " (adr_id='" + row.get("adr_id") + "'; mod_type='"
-							+ row.get("mod_type") + "')");
+					log.debug("Skip record of " + entityName + " (adr_id='" + row.get("adr_id") + "'; mod_type='" + row.get("mod_type") + "')");
 				}
 				row.clear();
 			}
@@ -337,8 +333,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		}
 
 		pSqlStr = "INSERT INTO t03_catalogue (id, cat_uuid, cat_name, country_code,"
-				+ "workflow_control, expiry_duration, create_time, mod_uuid, mod_time) VALUES "
-				+ "( ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+				+ "workflow_control, expiry_duration, create_time, mod_uuid, mod_time) VALUES " + "( ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -385,8 +380,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				// clear row: we do not want invalid references
 				// in other entities refering to this entity
 				if (log.isDebugEnabled()) {
-					log.info("Skip record of t03_catalogue (cat_id='" + row.get("cat_id") + "'; mod_type='"
-							+ row.get("mod_type") + "')");
+					log.info("Skip record of t03_catalogue (cat_id='" + row.get("cat_id") + "'; mod_type='" + row.get("mod_type") + "')");
 				}
 				row.clear();
 			}
@@ -396,12 +390,11 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		}
 	}
 
-	
 	protected void postProcess() throws Exception {
 		if (log.isInfoEnabled()) {
 			log.info("Post processing ...");
 		}
-		
+
 		// get spatial ref id for the catalog
 		for (Iterator<Row> i = dataProvider.getRowIterator("t03_catalogue"); i.hasNext();) {
 			Row row = i.next();
@@ -417,12 +410,12 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				}
 			}
 		}
-		
+
 		if (log.isInfoEnabled()) {
 			log.info("Post processing ... done.");
 		}
 	}
-	
+
 	protected void processT012ObjObj() throws Exception {
 
 		String entityName = "t012_obj_obj";
@@ -431,8 +424,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			log.info("Importing " + entityName + "...");
 		}
 
-		String pSqlStrObjectNode = "INSERT INTO object_node (id, obj_uuid, obj_id, obj_id_published, fk_obj_uuid) VALUES "
-				+ "(?, ?, ?, ?, ?);";
+		String pSqlStrObjectNode = "INSERT INTO object_node (id, obj_uuid, obj_id, obj_id_published, fk_obj_uuid) VALUES " + "(?, ?, ?, ?, ?);";
 		String pSqlStrObjectReference = "INSERT INTO object_reference (id, obj_from_id, obj_to_uuid, line, special_ref, special_name, descr) VALUES "
 				+ "(?, ?, ?, ?, ?, ?, ?);";
 
@@ -444,12 +436,26 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		sqlStr = "DELETE FROM object_reference";
 		jdbc.executeUpdate(sqlStr);
 
+		final List<String> allowedSpecialRefEntries = new ArrayList<String>();
+		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
+
+		String sql = "SELECT lst_id, name FROM sys_list WHERE lst_id IN (3100, 3210, 3345, 3360, 3400, 3410, 3515, 3520, 3535, 3555, 3570, 5066) AND entry_id=0;";
+		ResultSet rs = jdbc.executeQuery(sql);
+		while (rs.next()) {
+			if (rs.getString("name") != null) {
+				allowedSpecialRefEntryNames.add(rs.getString("name").toLowerCase());
+				allowedSpecialRefEntries.add(rs.getString("lst_id"));
+			}
+		}
+
+		boolean skipRecord = false;
+
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
 			if (IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("object_from_id")) == 0) {
 				if (log.isDebugEnabled()) {
-					log.debug("Invalid entry in " + entityName + " found: object_from_id ('"
-							+ row.get("object_from_id") + "') not found in imported data of t01_object. Skip record.");
+					log.debug("Invalid entry in " + entityName + " found: object_from_id ('" + row.get("object_from_id")
+							+ "') not found in imported data of t01_object. Skip record.");
 				}
 				row.clear();
 			} else if (IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("object_to_id")) == 0) {
@@ -464,10 +470,8 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					// structure
 					pSqlObjectNode.setInt(cnt++, row.getInteger("primary_key")); // id
 					pSqlObjectNode.setString(cnt++, row.get("object_to_id")); // object_uuid
-					pSqlObjectNode.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row
-							.get("object_to_id"))); // object_id
-					pSqlObjectNode.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row
-							.get("object_to_id"))); // object_id_published
+					pSqlObjectNode.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("object_to_id"))); // object_id
+					pSqlObjectNode.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("object_to_id"))); // object_id_published
 					pSqlObjectNode.setString(cnt++, row.get("object_from_id")); // fk_obj_uuid
 					try {
 						pSqlObjectNode.executeUpdate();
@@ -476,19 +480,43 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 						throw e;
 					}
 				} else if (row.getInteger("typ") != null && row.getInteger("typ") == 1) {
+					skipRecord = false;
 					pSqlObjectReference.setInt(cnt++, row.getInteger("primary_key")); // id
-					pSqlObjectReference.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row
-							.get("object_from_id"))); // object_from_uuid
+					pSqlObjectReference.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("object_from_id"))); // object_from_uuid
 					pSqlObjectReference.setString(cnt++, row.get("object_to_id")); // object_to_uuid
 					pSqlObjectReference.setInt(cnt++, row.getInteger("line")); // line
-					JDBCHelper.addInteger(pSqlObjectReference, cnt++, row.getInteger("special_ref"));  // special_ref
-					pSqlObjectReference.setString(cnt++, row.get("special_name")); // special_name
+					if (allowedSpecialRefEntries.contains(row.get("special_ref"))) {
+						JDBCHelper.addInteger(pSqlObjectReference, cnt++, row.getInteger("special_ref")); // special_ref
+						pSqlObjectReference.setString(cnt++, null); // special_name
+					} else if (row.get("special_name") != null && !allowedSpecialRefEntryNames.contains(row.get("special_name").toLowerCase())) {
+						if (row.get("special_ref") != null && row.getInteger("special_ref") != 0 && !allowedSpecialRefEntries.contains(row.get("special_ref"))) {
+							log.info("Invalid special_ref '" + row.get("special_ref") + "' found. Reference will be imported as free entry with special_name='"
+									+ row.get("special_name") + "'.");
+						}
+						pSqlObjectReference.setNull(cnt++, Types.INTEGER); // special_ref
+						pSqlObjectReference.setString(cnt++, row.get("special_name")); // special_name
+					} else if (row.get("special_name") != null && row.get("special_ref") != null && row.getInteger("special_ref").intValue() != 0
+							&& !allowedSpecialRefEntries.contains(row.get("special_ref"))) {
+						log.info("Invalid special_ref '" + row.get("special_ref") + "' found. Reference will be imported as free entry with special_name='"
+								+ row.get("special_name") + "'.");
+						pSqlObjectReference.setNull(cnt++, Types.INTEGER); // special_ref
+						pSqlObjectReference.setString(cnt++, row.get("special_name")); // special_name
+					} else if (row.get("special_name") != null && allowedSpecialRefEntryNames.contains(row.get("special_name").toLowerCase())) {
+						pSqlObjectReference.setInt(cnt++, Integer.parseInt(allowedSpecialRefEntries.get(allowedSpecialRefEntryNames.indexOf(row.get(
+								"special_name").toLowerCase())))); // special_ref
+						pSqlObjectReference.setNull(cnt++, Types.VARCHAR); // special_name
+					} else {
+						log.error("Invalid special_ref='" + row.get("special_ref") + "' with special_name='" + row.get("special_name") + "' found.");
+						skipRecord = true;
+					}
 					pSqlObjectReference.setString(cnt++, row.get("descr")); // descr
-					try {
-						pSqlObjectReference.executeUpdate();
-					} catch (Exception e) {
-						log.error("Error executing SQL: " + pSqlObjectReference.toString(), e);
-						throw e;
+					if (!skipRecord) {
+						try {
+							pSqlObjectReference.executeUpdate();
+						} catch (Exception e) {
+							log.error("Error executing SQL: " + pSqlObjectReference.toString(), e);
+							throw e;
+						}
 					}
 				}
 			}
@@ -498,8 +526,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		for (Iterator<Row> i = dataProvider.getRowIterator("t01_object"); i.hasNext();) {
 			Row row = i.next();
 			int cnt = 1;
-			if (row.getInteger("root") != null && row.getInteger("root") != 0 && row.get("mod_type") != null
-					&& !invalidModTypes.contains(row.get("mod_type"))) {
+			if (row.getInteger("root") != null && row.getInteger("root") != 0 && row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
 				long id = dataProvider.getId();
 				id++;
 				pSqlObjectNode.setLong(cnt++, id); // id
@@ -554,19 +581,16 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			} else if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
 				if (storedEntries.contains(row.get("adr_to_id"))) {
 					if (log.isDebugEnabled()) {
-						log.debug("Duplicate entry for adr_to_id in " + entityName + " ('" + row.get("adr_to_id")
-								+ "', mod_type='" + row.get("mod_type") + "'). Skip import.");
+						log.debug("Duplicate entry for adr_to_id in " + entityName + " ('" + row.get("adr_to_id") + "', mod_type='" + row.get("mod_type")
+								+ "'). Skip import.");
 					}
 				} else {
 					int cnt = 1;
 					p.setInt(cnt++, row.getInteger("primary_key")); // id
 					p.setString(cnt++, row.get("adr_to_id")); // addr_uuid
-					p.setInt(cnt++, IDCStrategyHelper
-							.getPK(dataProvider, "t02_address", "adr_id", row.get("adr_to_id"))); // addr_to_uuid
-					p.setInt(cnt++, IDCStrategyHelper
-							.getPK(dataProvider, "t02_address", "adr_id", row.get("adr_to_id"))); // addr_id_published
-					p.setString(cnt++, row
-							.get("adr_from_id")); // fk_addr_uuid
+					p.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "t02_address", "adr_id", row.get("adr_to_id"))); // addr_to_uuid
+					p.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "t02_address", "adr_id", row.get("adr_to_id"))); // addr_id_published
+					p.setString(cnt++, row.get("adr_from_id")); // fk_addr_uuid
 					try {
 						p.executeUpdate();
 						storedEntries.add(row.get("adr_to_id"));
@@ -582,8 +606,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		// insert root objects into address_node
 		for (Iterator<Row> i = dataProvider.getRowIterator("t02_address"); i.hasNext();) {
 			Row row = i.next();
-			if (row.getInteger("root") != null && row.getInteger("root") != 0 && row.get("mod_type") != null
-					&& !invalidModTypes.contains(row.get("mod_type"))) {
+			if (row.getInteger("root") != null && row.getInteger("root") != 0 && row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
 				int cnt = 1;
 				long id = dataProvider.getId();
 				id++;
@@ -801,8 +824,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t011_obj_serv (id, obj_id, type, history, environment, base, description) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO t011_obj_serv (id, obj_id, type, history, environment, base, description) " + "VALUES (?, ?, ?, ?, ?, ?, ?);";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -836,8 +858,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				// clear row: we do not want invalid references
 				// in other entities refering to this entity
 				if (log.isDebugEnabled()) {
-					log.debug("Skip record of " + entityName + " (obj_id='" + row.get("obj_id") + "'; mod_type='"
-							+ row.get("mod_type") + "')");
+					log.debug("Skip record of " + entityName + " (obj_id='" + row.get("obj_id") + "'; mod_type='" + row.get("mod_type") + "')");
 				}
 				row.clear();
 			}
@@ -930,8 +951,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				// clear row: we do not want invalid references
 				// in other entities refering to this entity
 				if (log.isDebugEnabled()) {
-					log.debug("Skip record of " + entityName + " (obj_id='" + row.get("obj_id") + "'; mod_type='"
-							+ row.get("mod_type") + "')");
+					log.debug("Skip record of " + entityName + " (obj_id='" + row.get("obj_id") + "'; mod_type='" + row.get("mod_type") + "')");
 				}
 				row.clear();
 			}
@@ -967,8 +987,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			int fk = IDCStrategyHelper.getPK(dataProvider, "t011_obj_serv_operation", rowNames, rowValues);
 			if (fk == 0) {
 				if (log.isDebugEnabled()) {
-					log.debug("Invalid entry in " + entityName + " found: obj_id ('" + row.get("obj_id")
-							+ "'), line ('" + row.get("line")
+					log.debug("Invalid entry in " + entityName + " found: obj_id ('" + row.get("obj_id") + "'), line ('" + row.get("line")
 							+ "') not found in imported data of t011_obj_serv_operation. Skip record.");
 				}
 				row.clear();
@@ -976,7 +995,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				int cnt = 1;
 				p.setInt(cnt++, row.getInteger("primary_key")); // id
 				p.setLong(cnt++, fk); // obj_id
-				JDBCHelper.addInteger(p, cnt++, row.getInteger("dcp_line"));  // line
+				JDBCHelper.addInteger(p, cnt++, row.getInteger("dcp_line")); // line
 				p.setString(cnt++, row.get("platform")); // platform
 				try {
 					p.executeUpdate();
@@ -1017,8 +1036,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			int fk = IDCStrategyHelper.getPK(dataProvider, "t011_obj_serv_operation", rowNames, rowValues);
 			if (fk == 0) {
 				if (log.isDebugEnabled()) {
-					log.debug("Invalid entry in " + entityName + " found: obj_id ('" + row.get("obj_id")
-							+ "'), line ('" + row.get("line")
+					log.debug("Invalid entry in " + entityName + " found: obj_id ('" + row.get("obj_id") + "'), line ('" + row.get("line")
 							+ "') not found in imported data of t011_obj_serv_operation. Skip record.");
 				}
 				row.clear();
@@ -1030,8 +1048,8 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setString(cnt++, row.get("name")); // name
 				p.setString(cnt++, row.get("direction")); // direction
 				p.setString(cnt++, row.get("descr")); // descr
-				JDBCHelper.addInteger(p, cnt++, row.getInteger("optional"));  // optional
-				JDBCHelper.addInteger(p, cnt++, row.getInteger("repeatability"));  // repeatability
+				JDBCHelper.addInteger(p, cnt++, row.getInteger("optional")); // optional
+				JDBCHelper.addInteger(p, cnt++, row.getInteger("repeatability")); // repeatability
 				try {
 					p.executeUpdate();
 				} catch (Exception e) {
@@ -1071,8 +1089,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			int fk = IDCStrategyHelper.getPK(dataProvider, "t011_obj_serv_operation", rowNames, rowValues);
 			if (fk == 0) {
 				if (log.isDebugEnabled()) {
-					log.debug("Invalid entry in " + entityName + " found: obj_id ('" + row.get("obj_id")
-							+ "'), line ('" + row.get("line")
+					log.debug("Invalid entry in " + entityName + " found: obj_id ('" + row.get("obj_id") + "'), line ('" + row.get("line")
 							+ "') not found in imported data of t011_obj_serv_operation. Skip record.");
 				}
 				row.clear();
@@ -1080,7 +1097,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				int cnt = 1;
 				p.setInt(cnt++, row.getInteger("primary_key")); // id
 				p.setLong(cnt++, fk); // obj_id
-				JDBCHelper.addInteger(p, cnt++, row.getInteger("dep_line"));  // line
+				JDBCHelper.addInteger(p, cnt++, row.getInteger("dep_line")); // line
 				p.setString(cnt++, row.get("depends_on")); // depends_on
 				try {
 					p.executeUpdate();
@@ -1121,8 +1138,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			int fk = IDCStrategyHelper.getPK(dataProvider, "t011_obj_serv_operation", rowNames, rowValues);
 			if (fk == 0) {
 				if (log.isDebugEnabled()) {
-					log.debug("Invalid entry in " + entityName + " found: obj_id ('" + row.get("obj_id")
-							+ "'), line ('" + row.get("line")
+					log.debug("Invalid entry in " + entityName + " found: obj_id ('" + row.get("obj_id") + "'), line ('" + row.get("line")
 							+ "') not found in imported data of t011_obj_serv_operation. Skip record.");
 				}
 				row.clear();
@@ -1130,7 +1146,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				int cnt = 1;
 				p.setInt(cnt++, row.getInteger("primary_key")); // id
 				p.setLong(cnt++, fk); // obj_id
-				JDBCHelper.addInteger(p, cnt++, row.getInteger("dep_line"));  // line
+				JDBCHelper.addInteger(p, cnt++, row.getInteger("dep_line")); // line
 				p.setString(cnt++, row.get("depends_on")); // depends_on
 				try {
 					p.executeUpdate();
@@ -1178,13 +1194,13 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setString(cnt++, row.get("data_base")); // data_base
 				p.setString(cnt++, row.get("method")); // method
 				p.setString(cnt++, row.get("coord")); // coord
-				JDBCHelper.addDouble(p, cnt++, row.getDouble("rec_exact"));  // rec_exact
-				JDBCHelper.addDouble(p, cnt++, row.getDouble("rec_grade"));  // rec_grade
-				JDBCHelper.addInteger(p, cnt++, row.getInteger("hierarchy_level"));  // hierarchy_level
-				JDBCHelper.addInteger(p, cnt++, row.getInteger("vector_topology_level"));  // vector_topology_level
-				JDBCHelper.addInteger(p, cnt++, row.getInteger("referencesystem_id"));  // referencesystem_id
-				JDBCHelper.addDouble(p, cnt++, row.getDouble("pos_accuracy_vertical"));  // pos_accuracy_vertical
-				JDBCHelper.addInteger(p, cnt++, row.getInteger("keyc_incl_w_dataset"));  // keyc_incl_w_dataset
+				JDBCHelper.addDouble(p, cnt++, row.getDouble("rec_exact")); // rec_exact
+				JDBCHelper.addDouble(p, cnt++, row.getDouble("rec_grade")); // rec_grade
+				JDBCHelper.addInteger(p, cnt++, row.getInteger("hierarchy_level")); // hierarchy_level
+				JDBCHelper.addInteger(p, cnt++, row.getInteger("vector_topology_level")); // vector_topology_level
+				JDBCHelper.addInteger(p, cnt++, row.getInteger("referencesystem_id")); // referencesystem_id
+				JDBCHelper.addDouble(p, cnt++, row.getDouble("pos_accuracy_vertical")); // pos_accuracy_vertical
+				JDBCHelper.addInteger(p, cnt++, row.getInteger("keyc_incl_w_dataset")); // keyc_incl_w_dataset
 				try {
 					p.executeUpdate();
 				} catch (Exception e) {
@@ -1195,8 +1211,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				// clear row: we do not want invalid references
 				// in other entities refering to this entity
 				if (log.isDebugEnabled()) {
-					log.debug("Skip record of " + entityName + " (obj_id='" + row.get("obj_id") + "'; mod_type='"
-							+ row.get("mod_type") + "')");
+					log.debug("Skip record of " + entityName + " (obj_id='" + row.get("obj_id") + "'; mod_type='" + row.get("mod_type") + "')");
 				}
 				row.clear();
 			}
@@ -1278,9 +1293,9 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setInt(cnt++, row.getInteger("primary_key")); // id
 				p.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t011_obj_geo", "obj_id", row.get("obj_id"))); // obj_id
 				p.setInt(cnt++, row.getInteger("line")); // line
-				JDBCHelper.addInteger(p, cnt++, row.getInteger("scale"));  // scale
-				JDBCHelper.addDouble(p, cnt++, row.getDouble("resolution_ground"));  // resolution_ground
-				JDBCHelper.addDouble(p, cnt++, row.getDouble("resolution_scan"));  // resolution_scan
+				JDBCHelper.addInteger(p, cnt++, row.getInteger("scale")); // scale
+				JDBCHelper.addDouble(p, cnt++, row.getDouble("resolution_ground")); // resolution_ground
+				JDBCHelper.addDouble(p, cnt++, row.getDouble("resolution_scan")); // resolution_scan
 				try {
 					p.executeUpdate();
 				} catch (Exception e) {
@@ -1322,7 +1337,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setInt(cnt++, row.getInteger("primary_key")); // id
 				p.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t011_obj_geo", "obj_id", row.get("obj_id"))); // obj_id
 				p.setInt(cnt++, row.getInteger("line")); // line
-				JDBCHelper.addInteger(p, cnt++, row.getInteger("type"));  // type
+				JDBCHelper.addInteger(p, cnt++, row.getInteger("type")); // type
 				try {
 					p.executeUpdate();
 				} catch (Exception e) {
@@ -1406,8 +1421,8 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setInt(cnt++, row.getInteger("primary_key")); // id
 				p.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t011_obj_geo", "obj_id", row.get("obj_id"))); // obj_id
 				p.setInt(cnt++, row.getInteger("line")); // line
-				JDBCHelper.addInteger(p, cnt++, row.getInteger("geometric_object_type"));  // geometric_object_type
-				JDBCHelper.addInteger(p, cnt++, row.getInteger("geometric_object_count"));  // geometric_object_count
+				JDBCHelper.addInteger(p, cnt++, row.getInteger("geometric_object_type")); // geometric_object_type
+				JDBCHelper.addInteger(p, cnt++, row.getInteger("geometric_object_count")); // geometric_object_count
 				try {
 					p.executeUpdate();
 				} catch (Exception e) {
@@ -1493,7 +1508,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setInt(cnt++, row.getInteger("primary_key")); // id
 				p.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"))); // obj_id
 				p.setInt(cnt++, row.getInteger("line")); // line
-				JDBCHelper.addInteger(p, cnt++, row.getInteger("topic_category"));  // topic_category
+				JDBCHelper.addInteger(p, cnt++, row.getInteger("topic_category")); // topic_category
 				try {
 					p.executeUpdate();
 				} catch (Exception e) {
@@ -1574,7 +1589,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 								+ "') not found in imported data of t01_object. Skip record.");
 					}
 					row.clear();
-				} else  {
+				} else {
 					int cnt = 1;
 					p.setInt(cnt++, row.getInteger("primary_key")); // id
 					p.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"))); // obj_id
@@ -1623,7 +1638,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"))); // obj_id
 				p.setInt(cnt++, row.getInteger("line")); // line
 				p.setString(cnt++, IDCStrategyHelper.transDateTime(row.get("reference_date"))); // reference_date
-				JDBCHelper.addInteger(p, cnt++, row.getInteger("type"));  // type
+				JDBCHelper.addInteger(p, cnt++, row.getInteger("type")); // type
 				try {
 					p.executeUpdate();
 				} catch (Exception e) {
@@ -1712,7 +1727,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setInt(cnt++, row.getInteger("line")); // line
 				p.setString(cnt++, row.get("medium_note")); // medium_note
 				p.setString(cnt++, row.get("medium_name")); // medium_name
-				JDBCHelper.addDouble(p, cnt++, row.getDouble("transfer_size"));  // transfer_size
+				JDBCHelper.addDouble(p, cnt++, row.getDouble("transfer_size")); // transfer_size
 				try {
 					p.executeUpdate();
 				} catch (Exception e) {
@@ -1756,7 +1771,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"))); // obj_id
 				p.setInt(cnt++, row.getInteger("line")); // line
 				p.setString(cnt++, row.get("url_link")); // url_link
-				JDBCHelper.addInteger(p, cnt++, row.getInteger("special_ref"));  // special_ref
+				JDBCHelper.addInteger(p, cnt++, row.getInteger("special_ref")); // special_ref
 				p.setString(cnt++, row.get("special_name")); // special_name
 				p.setString(cnt++, row.get("content")); // content
 				p.setString(cnt++, row.get("datatype")); // datatype
@@ -1764,7 +1779,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setString(cnt++, row.get("icon")); // icon
 				p.setString(cnt++, row.get("icon_text")); // icon_text
 				p.setString(cnt++, row.get("descr")); // descr
-				JDBCHelper.addInteger(p, cnt++, row.getInteger("url_type"));  // url_type
+				JDBCHelper.addInteger(p, cnt++, row.getInteger("url_type")); // url_type
 				try {
 					p.executeUpdate();
 				} catch (Exception e) {
@@ -1786,8 +1801,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			log.info("Importing " + entityName + "...");
 		}
 
-		String pSqlStrSpatialReference = "INSERT INTO spatial_reference (id, obj_id, line, spatial_ref_id) "
-				+ "VALUES (?, ?, ?, ?);";
+		String pSqlStrSpatialReference = "INSERT INTO spatial_reference (id, obj_id, line, spatial_ref_id) " + "VALUES (?, ?, ?, ?);";
 
 		String pSqlStrSpatialRefValue = "INSERT INTO spatial_ref_value (id, type, spatial_ref_sns_id, name, nativekey, x1, x2, y1, y2) "
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
@@ -1842,7 +1856,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 							}
 						}
 					}
-					
+
 					// store the spatial ref
 					cnt = 1;
 					dataProvider.setId(dataProvider.getId() + 1);
@@ -1860,17 +1874,17 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 							log.debug("Invalid ags key length:" + row.get("township_no"));
 						}
 					} else if (row.get("township_no").length() == 2) {
-						locName = IDCStrategyHelper.getEntityFieldValueStartsWith(dataProvider, "t01_st_township",
-								"loc_town_no", row.get("township_no"), "state");
+						locName = IDCStrategyHelper.getEntityFieldValueStartsWith(dataProvider, "t01_st_township", "loc_town_no", row.get("township_no"),
+								"state");
 					} else if (row.get("township_no").length() == 3) {
-						locName = IDCStrategyHelper.getEntityFieldValueStartsWith(dataProvider, "t01_st_township",
-								"loc_town_no", row.get("township_no"), "district").concat(" (District)");
+						locName = IDCStrategyHelper.getEntityFieldValueStartsWith(dataProvider, "t01_st_township", "loc_town_no", row.get("township_no"),
+								"district").concat(" (District)");
 					} else if (row.get("township_no").length() == 5) {
-						locName = IDCStrategyHelper.getEntityFieldValueStartsWith(dataProvider, "t01_st_township",
-								"loc_town_no", row.get("township_no"), "country");
+						locName = IDCStrategyHelper.getEntityFieldValueStartsWith(dataProvider, "t01_st_township", "loc_town_no", row.get("township_no"),
+								"country");
 					} else if (row.get("township_no").length() == 8) {
-						locName = IDCStrategyHelper.getEntityFieldValueStartsWith(dataProvider, "t01_st_township",
-								"loc_town_no", row.get("township_no"), "township");
+						locName = IDCStrategyHelper.getEntityFieldValueStartsWith(dataProvider, "t01_st_township", "loc_town_no", row.get("township_no"),
+								"township");
 					} else {
 						if (log.isDebugEnabled()) {
 							log.debug("Invalid ags key length:" + row.get("township_no"));
@@ -1878,14 +1892,14 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					}
 					pSpatialRefValue.setString(cnt++, locName); // name
 					pSpatialRefValue.setString(cnt++, IDCStrategyHelper.transformNativeKey2FullAgs(row.get("township_no"))); // nativekey
-					JDBCHelper.addDouble(pSpatialRefValue, cnt++, IDCStrategyHelper.getEntityFieldValueAsDouble(dataProvider,
-							"t01_st_bbox", "loc_town_no", row.get("township_no"), "x1"));  // x1
-					JDBCHelper.addDouble(pSpatialRefValue, cnt++, IDCStrategyHelper.getEntityFieldValueAsDouble(dataProvider,
-							"t01_st_bbox", "loc_town_no", row.get("township_no"), "x2"));  // x2
-					JDBCHelper.addDouble(pSpatialRefValue, cnt++, IDCStrategyHelper.getEntityFieldValueAsDouble(dataProvider,
-							"t01_st_bbox", "loc_town_no", row.get("township_no"), "y1"));  // y1
-					JDBCHelper.addDouble(pSpatialRefValue, cnt++, IDCStrategyHelper.getEntityFieldValueAsDouble(dataProvider,
-							"t01_st_bbox", "loc_town_no", row.get("township_no"), "y2"));  // y2
+					JDBCHelper.addDouble(pSpatialRefValue, cnt++, IDCStrategyHelper.getEntityFieldValueAsDouble(dataProvider, "t01_st_bbox", "loc_town_no", row
+							.get("township_no"), "x1")); // x1
+					JDBCHelper.addDouble(pSpatialRefValue, cnt++, IDCStrategyHelper.getEntityFieldValueAsDouble(dataProvider, "t01_st_bbox", "loc_town_no", row
+							.get("township_no"), "x2")); // x2
+					JDBCHelper.addDouble(pSpatialRefValue, cnt++, IDCStrategyHelper.getEntityFieldValueAsDouble(dataProvider, "t01_st_bbox", "loc_town_no", row
+							.get("township_no"), "y1")); // y1
+					JDBCHelper.addDouble(pSpatialRefValue, cnt++, IDCStrategyHelper.getEntityFieldValueAsDouble(dataProvider, "t01_st_bbox", "loc_town_no", row
+							.get("township_no"), "y2")); // y2
 					try {
 						pSpatialRefValue.executeUpdate();
 						pSpatialRefValueId = dataProvider.getId();
@@ -1897,8 +1911,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				}
 				cnt = 1;
 				pSpatialReference.setInt(cnt++, row.getInteger("primary_key")); // id
-				pSpatialReference.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row
-						.get("obj_id"))); // obj_id
+				pSpatialReference.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"))); // obj_id
 				pSpatialReference.setInt(cnt++, row.getInteger("line")); // line
 				pSpatialReference.setLong(cnt++, pSpatialRefValueId); // spatial_ref_id
 				try {
@@ -1922,8 +1935,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			log.info("Importing " + entityName + "...");
 		}
 
-		String pSqlStrSpatialReference = "INSERT INTO spatial_reference (id, obj_id, line, spatial_ref_id) "
-				+ "VALUES (?, ?, ?, ?);";
+		String pSqlStrSpatialReference = "INSERT INTO spatial_reference (id, obj_id, line, spatial_ref_id) " + "VALUES (?, ?, ?, ?);";
 
 		String pSqlStrSpatialRefValue = "INSERT INTO spatial_ref_value (id, type, spatial_ref_sns_id, name, nativekey, x1, x2, y1, y2) "
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
@@ -1941,27 +1953,21 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 							+ "') not found in imported data of t01_object. Skip record.");
 				}
 				row.clear();
-/*			} else if (row.get("geo_x1") == null) {
-				if (log.isDebugEnabled()) {
-					log.debug("Invalid entry in " + entityName + " found: geo_x1 is null. Skip record.");
-				}
-				row.clear();
-			} else if (row.get("geo_x2") == null) {
-				if (log.isDebugEnabled()) {
-					log.debug("Invalid entry in " + entityName + " found: geo_x2 is null. Skip record.");
-				}
-				row.clear();
-			} else if (row.get("geo_y1") == null) {
-				if (log.isDebugEnabled()) {
-					log.debug("Invalid entry in " + entityName + " found: geo_y1 is null. Skip record.");
-				}
-				row.clear();
-			} else if (row.get("geo_y2") == null) {
-				if (log.isDebugEnabled()) {
-					log.debug("Invalid entry in " + entityName + " found: geo_y2 is null. Skip record.");
-				}
-				row.clear();
-*/
+				/*
+				 * } else if (row.get("geo_x1") == null) { if
+				 * (log.isDebugEnabled()) { log.debug("Invalid entry in " +
+				 * entityName + " found: geo_x1 is null. Skip record."); }
+				 * row.clear(); } else if (row.get("geo_x2") == null) { if
+				 * (log.isDebugEnabled()) { log.debug("Invalid entry in " +
+				 * entityName + " found: geo_x2 is null. Skip record."); }
+				 * row.clear(); } else if (row.get("geo_y1") == null) { if
+				 * (log.isDebugEnabled()) { log.debug("Invalid entry in " +
+				 * entityName + " found: geo_y1 is null. Skip record."); }
+				 * row.clear(); } else if (row.get("geo_y2") == null) { if
+				 * (log.isDebugEnabled()) { log.debug("Invalid entry in " +
+				 * entityName + " found: geo_y2 is null. Skip record."); }
+				 * row.clear();
+				 */
 
 			} else if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
 				int cnt = 1;
@@ -1981,10 +1987,10 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					pSpatialRefValue.setNull(cnt++, Types.INTEGER); // spatial_ref_sns_id
 					pSpatialRefValue.setString(cnt++, row.get("bezug")); // name
 					pSpatialRefValue.setString(cnt++, ""); // nativekey
-					JDBCHelper.addDouble(pSpatialRefValue, cnt++, row.getDouble("geo_x1"));  // x1
-					JDBCHelper.addDouble(pSpatialRefValue, cnt++, row.getDouble("geo_x2"));  // x2
-					JDBCHelper.addDouble(pSpatialRefValue, cnt++, row.getDouble("geo_y1"));  // y1
-					JDBCHelper.addDouble(pSpatialRefValue, cnt++, row.getDouble("geo_y2"));  // y1
+					JDBCHelper.addDouble(pSpatialRefValue, cnt++, row.getDouble("geo_x1")); // x1
+					JDBCHelper.addDouble(pSpatialRefValue, cnt++, row.getDouble("geo_x2")); // x2
+					JDBCHelper.addDouble(pSpatialRefValue, cnt++, row.getDouble("geo_y1")); // y1
+					JDBCHelper.addDouble(pSpatialRefValue, cnt++, row.getDouble("geo_y2")); // y1
 					try {
 						pSpatialRefValue.executeUpdate();
 						pSpatialRefValueId = dataProvider.getId();
@@ -1996,8 +2002,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				}
 				cnt = 1;
 				pSpatialReference.setInt(cnt++, row.getInteger("primary_key")); // id
-				pSpatialReference.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row
-						.get("obj_id"))); // obj_id
+				pSpatialReference.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"))); // obj_id
 				pSpatialReference.setInt(cnt++, row.getInteger("line")); // line
 				pSpatialReference.setLong(cnt++, pSpatialRefValueId); // spatial_ref_id
 				try {
@@ -2021,8 +2026,8 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t012_obj_adr (id, obj_id, adr_uuid, type, line, "
-				+ "special_ref, special_name, mod_time) VALUES " + "( ?, ?, ?, ?, ?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO t012_obj_adr (id, obj_id, adr_uuid, type, line, " + "special_ref, special_name, mod_time) VALUES "
+				+ "( ?, ?, ?, ?, ?, ?, ?, ?);";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -2054,24 +2059,39 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 								+ "') not found in imported data of t02_address. Skip record.");
 					}
 					row.clear();
-				} else if (row.get("typ").equals("0") && row.get("special_ref").equals("0") && (row.get("special_name") == null || row.get("special_name").length() == 0)) {
-					if (log.isInfoEnabled()) {
-						log.info("Invalid entry in " + entityName + " found: TYP ('" + row.get("typ") + "'), SPECIAL_REF ('" + row.get("special_ref") + "'), SPECIAL_NAME ('" + row.get("special_name") + "'). Skip record.");
-					}
+				} else if (!IDCStrategyHelper.isValidUdkAddressType(row.getInteger("typ"), row.get("special_name"))) {
+					log.info("Invalid entry in " + entityName + " found: typ ('" + row.get("typ") + "') does not correspond with special_name ('"
+							+ row.get("special_name") + "'). Skip record.");
 					row.clear();
-				} else  {
+				} else {
 					int cnt = 1;
 					p.setInt(cnt++, row.getInteger("primary_key")); // id
 					p.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"))); // obj_id
 					p.setString(cnt++, row.get("adr_id")); // adr_uuid
-					if (row.getInteger("typ") != null && row.getInteger("typ") == 999) {
+					if (row.getInteger("typ") != null && (row.getInteger("typ").intValue() == 999 || row.getInteger("typ").intValue() == -1)) {
 						p.setInt(cnt++, -1); // type
+						p.setInt(cnt++, row.getInteger("line")); // line
+						if (row.getInteger("special_ref") != null && row.getInteger("special_ref").intValue() > 0) {
+							JDBCHelper.addInteger(p, cnt++, row.getInteger("special_ref")); // special_ref
+							p.setNull(cnt++, Types.VARCHAR); // special_name
+						} else {
+							p.setNull(cnt++, Types.INTEGER); // special_ref
+							p.setString(cnt++, row.get("special_name")); // special_name
+						}
+					} else if (row.getInteger("typ") != null
+							&& !((row.getInteger("typ").intValue() >= 0 && row.getInteger("typ").intValue() <= 9) || row.getInteger("typ").intValue() == 999 || row.getInteger("typ").intValue() == -1)) {
+						log.info("Invalid udk address type detected (type='" + row.getInteger("typ") + "', special_name='" + row.get("special_name")
+								+ "'). The record will be imported as free entry.");
+						p.setInt(cnt++, -1); // type
+						p.setInt(cnt++, row.getInteger("line")); // line
+						p.setNull(cnt++, Types.INTEGER); // special_ref
+						p.setString(cnt++, row.get("special_name")); // special_name
 					} else {
-						JDBCHelper.addInteger(p, cnt++, row.getInteger("typ"));  // type
+						JDBCHelper.addInteger(p, cnt++, IDCStrategyHelper.transAddressTypeUdk2Idc(row.getInteger("typ"))); // type
+						p.setInt(cnt++, row.getInteger("line")); // line
+						p.setNull(cnt++, Types.INTEGER); // special_ref
+						p.setNull(cnt++, Types.VARCHAR); // special_name
 					}
-					p.setInt(cnt++, row.getInteger("line")); // line
-					JDBCHelper.addInteger(p, cnt++, row.getInteger("special_ref"));  // special_ref
-					p.setString(cnt++, row.get("special_name")); // special_name
 					p.setString(cnt++, IDCStrategyHelper.transDateTime(row.get("mod_time"))); // mod_time
 					try {
 						p.executeUpdate();
@@ -2140,8 +2160,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 						// if the term has been stored already, refere to the
 						// already stored id
 						if (searchTermValues.containsKey(row.get("searchterm").concat("_F"))) {
-							pSearchtermValueId = ((Long) searchTermValues.get(row.get("searchterm").concat("_F")))
-									.longValue();
+							pSearchtermValueId = ((Long) searchTermValues.get(row.get("searchterm").concat("_F"))).longValue();
 						} else {
 							// store the search term
 							dataProvider.setId(dataProvider.getId() + 1);
@@ -2165,8 +2184,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 						cnt = 1;
 						dataProvider.setId(dataProvider.getId() + 1);
 						pSearchtermObj.setLong(cnt++, dataProvider.getId()); // id
-						pSearchtermObj.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row
-								.get("obj_id"))); // obj_id
+						pSearchtermObj.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"))); // obj_id
 						pSearchtermObj.setString(cnt++, row.get("line")); // term
 						pSearchtermObj.setLong(cnt++, pSearchtermValueId); // searchterm_id
 						try {
@@ -2185,18 +2203,18 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 									+ "') not found in imported data of t01_object. Skip record.");
 						}
 						row.clear();
-					} else if (IDCStrategyHelper.getEntityFieldValue(dataProvider, "thesorigid", "th_desc_no",
-							row.get("th_desc_no"), "th_orig_desc_no").length() == 0) {
+					} else if (IDCStrategyHelper.getEntityFieldValue(dataProvider, "thesorigid", "th_desc_no", row.get("th_desc_no"), "th_orig_desc_no")
+							.length() == 0) {
 						if (log.isDebugEnabled()) {
-							log.debug("Invalid entry in " + entityName + " found: th_desc_no ('"
-									+ row.get("th_desc_no") + "') not found in thesorigid. Skip record.");
+							log.debug("Invalid entry in " + entityName + " found: th_desc_no ('" + row.get("th_desc_no")
+									+ "') not found in thesorigid. Skip record.");
 						}
 						row.clear();
 					} else {
 						long pSearchtermValueId;
 						long pSearchtermSnsId;
-						String snsTopicId = IDCStrategyHelper.getEntityFieldValue(dataProvider, "thesorigid",
-								"th_desc_no", row.get("th_desc_no"), "th_orig_desc_no");
+						String snsTopicId = IDCStrategyHelper.getEntityFieldValue(dataProvider, "thesorigid", "th_desc_no", row.get("th_desc_no"),
+								"th_orig_desc_no");
 						String snsSearchTermCheckIdent = row.get("searchterm").concat("_").concat(snsTopicId);
 						// if the term has been stored already, refere to the
 						// already stored id
@@ -2206,12 +2224,12 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 							if (searchTermSnsValues.containsKey(snsTopicId)) {
 								pSearchtermSnsId = searchTermSnsValues.get(snsTopicId).longValue();
 							} else {
-								// store the new sns topic id in table searchterm_sns
+								// store the new sns topic id in table
+								// searchterm_sns
 								cnt = 1;
 								dataProvider.setId(dataProvider.getId() + 1);
 								pSearchtermSns.setLong(cnt++, dataProvider.getId()); // id
-								pSearchtermSns.setString(cnt++, "uba_thes_"
-										.concat(snsTopicId)); // sns_id
+								pSearchtermSns.setString(cnt++, "uba_thes_".concat(snsTopicId)); // sns_id
 								pSearchtermSns.setNull(cnt++, java.sql.Types.VARCHAR); // expired_at
 								try {
 									pSearchtermSns.executeUpdate();
@@ -2246,8 +2264,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 						cnt = 1;
 						dataProvider.setId(dataProvider.getId() + 1);
 						pSearchtermObj.setLong(cnt++, dataProvider.getId()); // id
-						pSearchtermObj.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row
-								.get("obj_id"))); // obj_id
+						pSearchtermObj.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"))); // obj_id
 						pSearchtermObj.setString(cnt++, row.get("line")); // term
 						pSearchtermObj.setLong(cnt++, pSearchtermValueId); // searchterm_id
 						try {
@@ -2270,8 +2287,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 						// if the term has been stored already, refere to the
 						// already stored id
 						if (searchTermValues.containsKey(row.get("searchterm").concat("_F"))) {
-							pSearchtermValueId = ((Long) searchTermValues.get(row.get("searchterm").concat("_F")))
-									.longValue();
+							pSearchtermValueId = ((Long) searchTermValues.get(row.get("searchterm").concat("_F"))).longValue();
 						} else {
 							// store the search term
 							dataProvider.setId(dataProvider.getId() + 1);
@@ -2295,8 +2311,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 						cnt = 1;
 						dataProvider.setId(dataProvider.getId() + 1);
 						pSearchtermAdr.setLong(cnt++, dataProvider.getId()); // id
-						pSearchtermAdr.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t02_address", "adr_id",
-								row.get("obj_id"))); // obj_id
+						pSearchtermAdr.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t02_address", "adr_id", row.get("obj_id"))); // obj_id
 						pSearchtermAdr.setString(cnt++, row.get("line")); // term
 						pSearchtermAdr.setLong(cnt++, pSearchtermValueId); // searchterm_id
 						try {
@@ -2314,18 +2329,18 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 									+ "') not found in imported data of t02_address. Skip record.");
 						}
 						row.clear();
-					} else if (IDCStrategyHelper.getEntityFieldValue(dataProvider, "thesorigid", "th_desc_no",
-							row.get("th_desc_no"), "th_orig_desc_no").length() == 0) {
+					} else if (IDCStrategyHelper.getEntityFieldValue(dataProvider, "thesorigid", "th_desc_no", row.get("th_desc_no"), "th_orig_desc_no")
+							.length() == 0) {
 						if (log.isDebugEnabled()) {
-							log.debug("Invalid entry in " + entityName + " found: th_desc_no ('"
-									+ row.get("th_desc_no") + "') not found in thesorigid. Skip record.");
+							log.debug("Invalid entry in " + entityName + " found: th_desc_no ('" + row.get("th_desc_no")
+									+ "') not found in thesorigid. Skip record.");
 						}
 						row.clear();
 					} else {
 						long pSearchtermValueId;
 						long pSearchtermSnsId;
-						String snsTopicId = IDCStrategyHelper.getEntityFieldValue(dataProvider, "thesorigid",
-								"th_desc_no", row.get("th_desc_no"), "th_orig_desc_no");
+						String snsTopicId = IDCStrategyHelper.getEntityFieldValue(dataProvider, "thesorigid", "th_desc_no", row.get("th_desc_no"),
+								"th_orig_desc_no");
 						String snsSearchTermCheckIdent = row.get("searchterm").concat("_").concat(snsTopicId);
 						// if the term has been stored already, refere to the
 						// already stored id
@@ -2335,12 +2350,12 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 							if (searchTermSnsValues.containsKey(snsTopicId)) {
 								pSearchtermSnsId = searchTermSnsValues.get(snsTopicId).longValue();
 							} else {
-								// store the new sns topic id in table searchterm_sns
+								// store the new sns topic id in table
+								// searchterm_sns
 								cnt = 1;
 								dataProvider.setId(dataProvider.getId() + 1);
 								pSearchtermSns.setLong(cnt++, dataProvider.getId()); // id
-								pSearchtermSns.setString(cnt++, "uba_thes_"
-										.concat(snsTopicId)); // sns_id
+								pSearchtermSns.setString(cnt++, "uba_thes_".concat(snsTopicId)); // sns_id
 								pSearchtermSns.setNull(cnt++, java.sql.Types.VARCHAR); // expired_at
 								try {
 									pSearchtermSns.executeUpdate();
@@ -2375,8 +2390,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 						cnt = 1;
 						dataProvider.setId(dataProvider.getId() + 1);
 						pSearchtermAdr.setLong(cnt++, dataProvider.getId()); // id
-						pSearchtermAdr.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t02_address", "adr_id",
-								row.get("obj_id"))); // obj_id
+						pSearchtermAdr.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t02_address", "adr_id", row.get("obj_id"))); // obj_id
 						pSearchtermAdr.setString(cnt++, row.get("line")); // term
 						pSearchtermAdr.setLong(cnt++, pSearchtermValueId); // searchterm_id
 						try {
@@ -2402,8 +2416,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t08_attr_list (id, attr_type_id, type, listitem_line, listitem_value, lang_code) "
-				+ "VALUES (?, ?, ?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO t08_attr_list (id, attr_type_id, type, listitem_line, listitem_value, lang_code) " + "VALUES (?, ?, ?, ?, ?, ?);";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -2465,7 +2478,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				int cnt = 1;
 				p.setInt(cnt++, row.getInteger("primary_key")); // id
 				p.setString(cnt++, row.get("attr_name")); // attr_id
-				JDBCHelper.addInteger(p, cnt++, row.getInteger("length"));  // length
+				JDBCHelper.addInteger(p, cnt++, row.getInteger("length")); // length
 				p.setString(cnt++, row.get("typ")); // type
 				try {
 					p.executeUpdate();
@@ -2536,22 +2549,21 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, description, maintainable) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, description, maintainable) " + "VALUES (?, ?, ?, ?, ?, ?, ?);";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
 		sqlStr = "DELETE FROM sys_list";
 		jdbc.executeUpdate(sqlStr);
-		
-		
+
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
-			
+
 			if (row.getInteger("lst_id") == 1000) {
-				//	ignore list with id==1000, codelist 505 will be used instead
+				// ignore list with id==1000, codelist 505 will be used instead
 			} else if (row.getInteger("lst_id") == 3571 && row.getInteger("entry_id") == 4) {
-				//	ignore list with id==3571 and entry_id==4, codelist 505 will be used instead
+				// ignore list with id==3571 and entry_id==4, codelist 505 will
+				// be used instead
 			} else {
 				int cnt = 1;
 				p.setInt(cnt++, row.getInteger("primary_key")); // id
@@ -2560,7 +2572,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setInt(cnt++, row.getInteger("lang_id")); // lang_id
 				p.setString(cnt++, row.get("name")); // name
 				p.setString(cnt++, null); // description
-				JDBCHelper.addInteger(p, cnt++, row.getInteger("maintainable"));  // maintainable
+				JDBCHelper.addInteger(p, cnt++, row.getInteger("maintainable")); // maintainable
 				try {
 					p.executeUpdate();
 				} catch (Exception e) {
@@ -2572,8 +2584,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
-		
-		
+
 		entityName = "sys_codelist_domain";
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "...");
@@ -2602,127 +2613,184 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			log.info("Importing special values...");
 		}
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1400, 1, 121, 'Daten und Karten', 0);");   
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 1400, 1, 121, 'Daten und Karten', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1400, 2, 121, 'Konzeptionelles', 0);");  
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 1400, 2, 121, 'Konzeptionelles', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1400, 3, 121, 'Rechtliches', 0);");      
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 1400, 3, 121, 'Rechtliches', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1400, 4, 121, 'Risikobewertungen', 0);");
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 1400, 4, 121, 'Risikobewertungen', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1400, 5, 121, 'Statusberichte', 0);");   
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 1400, 5, 121, 'Statusberichte', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1400, 6, 121, 'Umweltzustand', 0);");    
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 1400, 6, 121, 'Umweltzustand', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1410, 1, 121, 'Abfall', 0);");                   
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 1410, 1, 121, 'Abfall', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1410, 2, 121, 'Altlasten', 0);");                
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 1410, 2, 121, 'Altlasten', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1410, 3, 121, 'Bauen', 0);");                    
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 1410, 3, 121, 'Bauen', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1410, 4, 121, 'Boden', 0);");                    
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 1410, 4, 121, 'Boden', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1410, 5, 121, 'Chemikalien', 0);");              
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 1410, 5, 121, 'Chemikalien', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1410, 6, 121, 'Energie', 0);");                  
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 1410, 6, 121, 'Energie', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1410, 7, 121, 'Forstwirtschaft', 0);");          
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 1410, 7, 121, 'Forstwirtschaft', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1410, 8, 121, 'Gentechnik', 0);");               
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 1410, 8, 121, 'Gentechnik', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1410, 9, 121, 'Geologie', 0);");                 
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 1410, 9, 121, 'Geologie', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1410, 10, 121, 'Gesundheit', 0);");              
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 1410, 10, 121, 'Gesundheit', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1410, 11, 121, 'Lärm und Erschütterungen', 0);");
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 1410, 11, 121, 'Lärm und Erschütterungen', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1410, 12, 121, 'Landwirtschaft', 0);");          
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 1410, 12, 121, 'Landwirtschaft', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1410, 13, 121, 'Luft und Klima', 0);");          
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 1410, 13, 121, 'Luft und Klima', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1410, 14, 121, 'Nachhaltige Entwicklung', 0);"); 
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 1410, 14, 121, 'Nachhaltige Entwicklung', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1410, 15, 121, 'Natur und Landschaft', 0);");    
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 1410, 15, 121, 'Natur und Landschaft', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1410, 16, 121, 'Strahlung', 0);");               
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 1410, 16, 121, 'Strahlung', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1410, 17, 121, 'Tierschutz', 0);");              
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 1410, 17, 121, 'Tierschutz', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1410, 18, 121, 'Umweltinformationen', 0);");     
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 1410, 18, 121, 'Umweltinformationen', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1410, 19, 121, 'Umweltwirtschaft', 0);");        
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 1410, 19, 121, 'Umweltwirtschaft', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1410, 20, 121, 'Verkehr', 0);");                 
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 1410, 20, 121, 'Verkehr', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 1410, 21, 121, 'Wasser', 0);");                  
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 1410, 21, 121, 'Wasser', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 3100, 1, 121, 'Methode / Datengrundlage', 0);");                                        
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 3100, 0, 121, 'Methode / Datengrundlage', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 3210, 1, 121, 'Basisdaten', 0);");
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 3210, 0, 121, 'Basisdaten', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 3345, 1, 121, 'Basisdaten', 0);");
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 3345, 0, 121, 'Basisdaten', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 3360, 1, 121, 'Standort', 0);");                                                        
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 3360, 0, 121, 'Standort', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 3400, 1, 121, 'Projektleiter', 0);");                                                   
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 3400, 0, 121, 'Projektleiter', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 3410, 1, 121, 'Beteiligte', 0);");                                                      
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 3410, 0, 121, 'Beteiligte', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 3515, 1, 121, 'Herstellungsprozess', 0);");                                             
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 3515, 0, 121, 'Herstellungsprozess', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 3520, 1, 121, 'Fachliche Grundlage', 0);");                                             
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 3520, 0, 121, 'Fachliche Grundlage', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 3535, 0, 121, 'Schlüsselkatalog', 0);");                                                
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 3535, 0, 121, 'Schlüsselkatalog', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 3555, 0, 121, 'Symbolkatalog', 0);");                                                   
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 3555, 0, 121, 'Symbolkatalog', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 3570, 1, 121, 'Datengrundlage', 0);");                                                  
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 3570, 0, 121, 'Datengrundlage', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 5066, 1, 121, 'Verweis zu Dienst', 0);");                                               		
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 5066, 0, 121, 'Verweis zu Dienst', 0);");
 
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 5100, 1, 121, 'WMS', 0);");                                               		
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 5100, 1, 121, 'WMS', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 5100, 2, 121, 'WFS', 0);");                                               		
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 5100, 2, 121, 'WFS', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 5110, 1, 121, 'GetCapabilities', 0);");                                               		
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 5110, 1, 121, 'GetCapabilities', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 5110, 2, 121, 'GetMap', 0);");                                               		
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 5110, 2, 121, 'GetMap', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 5110, 3, 121, 'GetFeatureInfo', 0);");                                               		
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 5110, 3, 121, 'GetFeatureInfo', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 5120, 1, 121, 'DescribeFeatureType', 0);");                                               		
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 5120, 1, 121, 'DescribeFeatureType', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 5120, 2, 121, 'GetFeature', 0);");                                               		
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 5120, 2, 121, 'GetFeature', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 5120, 3, 121, 'GetFeature', 0);");                                               		
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 5120, 3, 121, 'GetFeature', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 5120, 4, 121, 'LockFeature', 0);");                                               		
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 5120, 4, 121, 'LockFeature', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 5120, 5, 121, 'Transaction', 0);");                                               		
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 5120, 5, 121, 'Transaction', 0);");
 
 		// remove old values
-		jdbc.executeUpdate("DELETE FROM sys_list WHERE lst_id=2240;");                                               		
+		jdbc.executeUpdate("DELETE FROM sys_list WHERE lst_id=2240;");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 2240, 1, 121, 'HTML', 0);");                                               		
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 2240, 1, 121, 'HTML', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 2240, 2, 121, 'JPG', 0);");                                               		
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 2240, 2, 121, 'JPG', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 2240, 3, 121, 'PNG', 0);");                                               		
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 2240, 3, 121, 'PNG', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 2240, 4, 121, 'GIF', 0);");                                               		
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 2240, 4, 121, 'GIF', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 2240, 5, 121, 'PDF', 0);");                                               		
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 2240, 5, 121, 'PDF', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 2240, 6, 121, 'DOC', 0);");                                               		
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 2240, 6, 121, 'DOC', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 2240, 7, 121, 'PPT', 0);");                                               		
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 2240, 7, 121, 'PPT', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 2240, 8, 121, 'XLS', 0);");                                               		
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 2240, 8, 121, 'XLS', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
-		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId() + ", 2240, 9, 121, 'ASCII/Text', 0);");                                               		
-		
-		
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES (" + dataProvider.getId()
+				+ ", 2240, 9, 121, 'ASCII/Text', 0);");
+
 		if (log.isInfoEnabled()) {
 			log.info("Importing special values... done.");
 		}
@@ -2736,8 +2804,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t014_info_impart (id, obj_id, line, name) "
-				+ "VALUES (?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO t014_info_impart (id, obj_id, line, name) " + "VALUES (?, ?, ?, ?);";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -2769,8 +2836,8 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
-	}	
-	
+	}
+
 	protected void setHiLoGenerator() throws SQLException {
 		sqlStr = "DELETE FROM hibernate_unique_key";
 		jdbc.executeUpdate(sqlStr);

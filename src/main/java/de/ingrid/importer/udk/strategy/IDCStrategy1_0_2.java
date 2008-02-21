@@ -27,6 +27,10 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault {
 
 			jdbc.setAutoCommit(false);
 
+			System.out.print("  Importing sys_list...");
+			// must be processed first because other methods depend on that data
+			processSysList();
+			System.out.println("done.");
 			System.out.print("  Importing t03_catalogue...");
 			processT03Catalogue();
 			System.out.println("done.");
@@ -142,9 +146,6 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault {
 			System.out.print("  Importing t014_info_impart...");
 			processT014InfoImpart();
 			System.out.println("done.");
-			System.out.print("  Importing sys_list...");
-			processSysList();
-			System.out.println("done.");
 			setHiLoGenerator();
 			jdbc.commit();
 			
@@ -153,6 +154,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault {
 			postProcess();
 			System.out.println("done.");
 			jdbc.commit();
+			System.out.println("Import finished successfully.");
 
 		} catch (Exception e) {
 			System.out.println("Error executing sql! See log file for further information.");
@@ -173,7 +175,6 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault {
 				}
 			}
 		}
-		System.out.println("Import finished successfully.");
 	}
 
 }

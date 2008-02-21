@@ -5,6 +5,7 @@ package de.ingrid.importer.udk.strategy;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -25,11 +26,88 @@ public class IDCStrategyHelper {
 	private static SimpleDateFormat df = new SimpleDateFormat("yyyy");
 
 	private static String pad = "00000000000000000";
+	
+	private static HashMap<String, String> addressTypeLookup = new HashMap<String, String>();
+	private static HashMap<Integer, String> udkAddressTypes = new HashMap<Integer, String>();
 
 	static {
 		sdf.setLenient(false);
+		// lookup table for translating udk address type to idc address type
+		// see http://wiki.media-style.com/display/INGRIDII/UDK-Migration
+		/*
+		 * 		# Auskunft (0) --> Auskunft (7)
+		 * 		# Datenhalter (1) --> Halter (3)
+				# Datenverantwortlicher (2) --> Datenverantwortung (2)
+				# Anbieter (3) --> Anbieter (1)
+				# Benutzer(4) --> Benutzer(4)
+				# Vertrieb (5) --> Vertrieb (5)
+				# Herkunft (6) --> Herkunft (6)
+				# Datenerfassung (7) --> Datenerfassung (8)
+				# Auswertung (8) --> Auswertung (9)
+				# Herausgeber (9) --> Herausgeber (10) 		
+
+		 */
+		addressTypeLookup.put("0", "7");
+		addressTypeLookup.put("1", "3");
+		addressTypeLookup.put("2", "2");
+		addressTypeLookup.put("3", "1");
+		addressTypeLookup.put("4", "4");
+		addressTypeLookup.put("5", "5");
+		addressTypeLookup.put("6", "6");
+		addressTypeLookup.put("7", "8");
+		addressTypeLookup.put("8", "9");
+		addressTypeLookup.put("9", "10");
+		
+		udkAddressTypes.put(new Integer(0), "auskunft");
+		udkAddressTypes.put(new Integer(1), "datenhalter");
+		udkAddressTypes.put(new Integer(2), "datenverantwortlicher");
+		udkAddressTypes.put(new Integer(3), "anbieter");
+		udkAddressTypes.put(new Integer(4), "benutzer");
+		udkAddressTypes.put(new Integer(5), "vertrieb");
+		udkAddressTypes.put(new Integer(6), "herkunft");
+		udkAddressTypes.put(new Integer(7), "datenerfassung");
+		udkAddressTypes.put(new Integer(8), "auswertung");
+		udkAddressTypes.put(new Integer(9), "herausgeber");
 	}
 
+	/**
+	 * Transforms UDK address type into IDC (ISO) address type.
+	 * 
+	 * @param type
+	 * @return
+	 */
+	public static Integer transAddressTypeUdk2Idc(Integer type) {
+		if (type == null) {
+			return null;
+		}
+		String idcType = addressTypeLookup.get(type.toString());
+		if (idcType != null) {
+			return Integer.parseInt(idcType);
+		} else {
+			log.error("Unknown UDK address type: " + type);
+			return null;
+		}
+	}
+	
+	/**
+	 *  Check if the UDK address type is valid. Basically checks if the type corresponds with the name of the type (case insensitive).
+	 *  
+	 *  Caution: returns also true, if type is no valid UDK address type (valid means: 0 <= value <= 9 || value == 999).
+	 *  
+	 *  If type == 999 the name will be ignored.
+	 * 
+	 * @param type The UDK type.
+	 * @param name The corresponding UDK type name (German).
+	 * @return True if type and name correspond OR if type is no valid UDK address type. False if the values do not correspond.
+	 */
+	public static boolean isValidUdkAddressType(Integer type, String name) {
+		if (type == null || !(type.intValue() >= 0 && type.intValue() <= 9) || name==null || name.length() == 0) {
+			return true;
+		}
+		return udkAddressTypes.get(type).equals(name.toLowerCase());
+	}
+	
+	
 	public static String transDateTime(String src) {
 		if (src != null && src.length() > 0) {
 			String dst = "";
