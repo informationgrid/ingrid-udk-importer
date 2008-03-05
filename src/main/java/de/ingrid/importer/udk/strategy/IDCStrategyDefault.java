@@ -456,7 +456,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		final List<String> allowedSpecialRefEntries = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
 
-		String sql = "SELECT lst_id, name FROM sys_list WHERE lst_id IN (3100, 3210, 3345, 3360, 3400, 3410, 3515, 3520, 3535, 3555, 3570, 5066) AND entry_id=0;";
+		String sql = "SELECT lst_id, name FROM sys_list WHERE lst_id=2000 AND entry_id IN (3100, 3210, 3345, 3515, 3520, 3535, 3555, 3570, 5066);";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
@@ -516,7 +516,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 									+ "' found. Reference will be imported as free entry with special_name='"
 									+ row.get("special_name") + "'.");
 						}
-						pSqlObjectReference.setNull(cnt++, Types.INTEGER); // special_ref
+						pSqlObjectReference.setInt(cnt++, -1); // special_ref
 						pSqlObjectReference.setString(cnt++, row.get("special_name")); // special_name
 					} else if (row.get("special_name") != null && row.get("special_ref") != null
 							&& row.getInteger("special_ref").intValue() != 0
@@ -524,7 +524,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 						log.info("Invalid special_ref '" + row.get("special_ref")
 								+ "' found. Reference will be imported as free entry with special_name='"
 								+ row.get("special_name") + "'.");
-						pSqlObjectReference.setNull(cnt++, Types.INTEGER); // special_ref
+						pSqlObjectReference.setInt(cnt++, -1); // special_ref
 						pSqlObjectReference.setString(cnt++, row.get("special_name")); // special_name
 					} else if (row.get("special_name") != null
 							&& allowedSpecialRefEntryNames.contains(row.get("special_name").toLowerCase())) {
@@ -1233,10 +1233,10 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 						log.info("Invalid entry in " + entityName
 								+ " found: coord=NULL OR empty AND referencesystem_id=-1 !! Record will be imported!");
 					}
-					// REFERENCESYSTEM_ID NOT IN (SELECT DISTINCT (DOMAIN_ID)
-					// FROM SYS_CODELIST_DOMAIN WHERE CODELIST_ID=100) AND
-					// REFERENCESYSTEM_ID!=-1"
 				}
+				// REFERENCESYSTEM_ID NOT IN (SELECT DISTINCT (DOMAIN_ID)
+				// FROM SYS_CODELIST_DOMAIN WHERE CODELIST_ID=100) AND
+				// REFERENCESYSTEM_ID!=-1"
 				if (row.getInteger("referencesystem_id") != null
 						&& row.getInteger("referencesystem_id").intValue() != -1
 						&& dataProvider.findRow("sys_codelist_domain", new String[] { "CODELIST_ID", "DOMAIN_ID" },
@@ -1248,7 +1248,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					}
 				}
 				String coord = row.get("coord");
-				if (coord != null && coord.indexOf("\n") > -1 || coord.indexOf("\r") > -1) {
+				if (coord != null && (coord.indexOf("\n") > -1 || coord.indexOf("\r") > -1)) {
 					if (log.isInfoEnabled()) {
 						log
 								.info("Invalid entry in "
@@ -2170,11 +2170,18 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 						p.setInt(cnt++, row.getInteger("line")); // line
 						p.setNull(cnt++, Types.INTEGER); // special_ref
 						p.setString(cnt++, row.get("special_name")); // special_name
+					} else if (row.getInteger("typ") != null
+							&& (row.getInteger("typ").intValue() == 3360 || row.getInteger("typ").intValue() == 3400 || row
+									.getInteger("typ").intValue() == 3410)) {
+						JDBCHelper.addInteger(p, cnt++, row.getInteger("special_ref")); // type
+						p.setInt(cnt++, row.getInteger("line")); // line
+						p.setInt(cnt++, 2010); // special_ref
+						p.setNull(cnt++, Types.VARCHAR); // special_name
 					} else {
 						JDBCHelper.addInteger(p, cnt++, IDCStrategyHelper
 								.transAddressTypeUdk2Idc(row.getInteger("typ"))); // type
 						p.setInt(cnt++, row.getInteger("line")); // line
-						p.setNull(cnt++, Types.INTEGER); // special_ref
+						p.setInt(cnt++, 505); // special_ref
 						p.setNull(cnt++, Types.VARCHAR); // special_name
 					}
 					p.setString(cnt++, IDCStrategyHelper.transDateTime(row.get("mod_time"))); // mod_time
