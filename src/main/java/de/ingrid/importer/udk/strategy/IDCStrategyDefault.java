@@ -456,14 +456,15 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		final List<String> allowedSpecialRefEntries = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
 
-		String sql = "SELECT lst_id, name FROM sys_list WHERE lst_id=2000 AND entry_id IN (3100, 3210, 3345, 3515, 3520, 3535, 3555, 3570, 5066);";
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=2000 AND entry_id IN (3100, 3210, 3345, 3515, 3520, 3535, 3555, 3570, 5066);";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
 				allowedSpecialRefEntryNames.add(rs.getString("name").toLowerCase());
-				allowedSpecialRefEntries.add(rs.getString("lst_id"));
+				allowedSpecialRefEntries.add(rs.getString("entry_id"));
 			}
 		}
+		rs.close();
 
 		boolean skipRecord = false;
 
@@ -1823,14 +1824,41 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t017_url_ref (id, obj_id, line, url_link, special_ref, special_name, content, datatype, volume, icon, icon_text, descr, url_type) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO t017_url_ref (id, obj_id, line, url_link, special_ref, special_name, content, datatype_value,, datatype_key, volume, icon, icon_text, descr, url_type) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
 		sqlStr = "DELETE FROM t017_url_ref";
 		jdbc.executeUpdate(sqlStr);
 
+		final List<String> allowedDatatypeValues = new ArrayList<String>();
+		final List<String> allowedDatatypeKeys = new ArrayList<String>();
+
+		String sql = "SELECT name, entry_id FROM sys_list WHERE LST_ID=2240;";
+		ResultSet rs = jdbc.executeQuery(sql);
+		while (rs.next()) {
+			if (rs.getString("name") != null) {
+				allowedDatatypeValues.add(rs.getString("name").toLowerCase());
+				allowedDatatypeKeys.add(rs.getString("entry_id").toLowerCase());
+			}
+		}
+		rs.close();
+		
+		final List<String> allowedSpecialRefEntries = new ArrayList<String>();
+		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
+
+		sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=2000 AND entry_id IN (3100, 3210, 3345, 3515, 3520, 3535, 3555, 3570, 5066);";
+		rs = jdbc.executeQuery(sql);
+		while (rs.next()) {
+			if (rs.getString("name") != null) {
+				allowedSpecialRefEntryNames.add(rs.getString("name").toLowerCase());
+				allowedSpecialRefEntries.add(rs.getString("entry_id"));
+			}
+		}
+		rs.close();
+
+		
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
 			if (IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id")) == 0) {
@@ -1845,10 +1873,25 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"))); // obj_id
 				p.setInt(cnt++, row.getInteger("line")); // line
 				p.setString(cnt++, row.get("url_link")); // url_link
-				JDBCHelper.addInteger(p, cnt++, row.getInteger("special_ref")); // special_ref
-				p.setString(cnt++, row.get("special_name")); // special_name
+				if (row.get("special_ref") != null && allowedSpecialRefEntries.contains(row.get("special_ref").toLowerCase())) {
+					JDBCHelper.addInteger(p, cnt++, row.getInteger("special_ref")); // special_ref
+					p.setNull(cnt++, Types.VARCHAR); // special_name
+				} else if (row.get("special_name") != null && allowedSpecialRefEntryNames.contains(row.get("special_name").toLowerCase()) ) {
+					JDBCHelper.addInteger(p, cnt++, allowedSpecialRefEntryNames.indexOf(row.get("special_name").toLowerCase())); // special_ref
+					p.setNull(cnt++, Types.VARCHAR); // special_name
+				} else {
+					p.setInt(cnt++, -1); // special_ref
+					p.setString(cnt++, row.get("special_name")); // special_name
+				}
+				
 				p.setString(cnt++, row.get("content")); // content
-				p.setString(cnt++, row.get("datatype")); // datatype
+				if (row.get("datatype") == null || !allowedDatatypeValues.contains(row.get("datatype").toLowerCase())) {
+					p.setString(cnt++, row.get("datatype")); // datatype_value
+					p.setInt(cnt++, -1); // datatype_key
+				} else {
+					p.setNull(cnt++, Types.VARCHAR); // datatype_value
+					p.setInt(cnt++, allowedDatatypeKeys.indexOf(row.get("datatype").toLowerCase())); // datatype_key
+				}
 				p.setString(cnt++, row.get("volume")); // volume
 				p.setString(cnt++, row.get("icon")); // icon
 				p.setString(cnt++, row.get("icon_text")); // icon_text
