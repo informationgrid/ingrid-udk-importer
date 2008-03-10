@@ -20,6 +20,14 @@ public class JDBCHelper {
 			p.setInt(cnt, val);
 		}
 	}
+
+	public static void addString(PreparedStatement p, int cnt, String val) throws SQLException {
+		if (val == null) {
+			p.setNull(cnt, Types.VARCHAR);
+		} else {
+			p.setString(cnt, val);
+		}
+	}
 	
 	public static void addDouble(PreparedStatement p, int cnt, Double val) throws SQLException {
 		if (val == null) {

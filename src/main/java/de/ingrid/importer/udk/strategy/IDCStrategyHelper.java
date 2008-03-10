@@ -198,6 +198,20 @@ public class IDCStrategyHelper {
 			return "";
 		}
 	}
+	
+	public static Integer getEntityFieldValueAsInteger(DataProvider dataProvider, String entity, String fieldWhere,
+	String valueWhere, String field) {
+		String value = getEntityFieldValue(dataProvider, entity, fieldWhere,
+				valueWhere, field);
+		try {
+			return Integer.getInteger(value);
+		} catch (NumberFormatException e) {
+			if (log.isDebugEnabled()) {
+				log.debug("Cannot convert to Integer: " + value);
+			}
+			return null;
+		}
+	}
 
 	public static double getEntityFieldValueAsDouble(DataProvider dataProvider, String entity, String fieldWhere,
 			String valueWhere, String field) {

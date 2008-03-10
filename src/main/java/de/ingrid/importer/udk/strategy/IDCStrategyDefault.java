@@ -571,9 +571,33 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 						pSqlObjectReference.setString(cnt++, row.get("special_name")); // special_name
 					} else if (row.get("special_name") != null
 							&& allowedSpecialRefEntryNames.contains(row.get("special_name").toLowerCase())) {
-						pSqlObjectReference.setInt(cnt++, Integer.parseInt(allowedSpecialRefEntries
-								.get(allowedSpecialRefEntryNames.indexOf(row.get("special_name").toLowerCase())))); // special_ref
-						pSqlObjectReference.setNull(cnt++, Types.VARCHAR); // special_name
+						int specialReferenceTypeId = Integer.parseInt(allowedSpecialRefEntries
+								.get(allowedSpecialRefEntryNames.indexOf(row.get("special_name").toLowerCase())));
+						// get object class
+						Integer objClass = IDCStrategyHelper.getEntityFieldValueAsInteger(dataProvider, "t01_object", "obj_id", row.get("obj_id"), "obj_class");
+						if (objClass == null) {
+							pSqlObjectReference.setInt(cnt++, -1); // special_ref
+							pSqlObjectReference.setString(cnt++, row.get("special_name")); // special_name
+						} else if (specialReferenceTypeId == 3210 && objClass.intValue() == 3) {
+							// if object class corresponds with special reference type id
+							pSqlObjectReference.setInt(cnt++, specialReferenceTypeId); // special_ref
+							pSqlObjectReference.setNull(cnt++, Types.VARCHAR); // special_name
+						} else if (specialReferenceTypeId == 3345 && objClass.intValue() == 2) {
+							// if object class corresponds with special reference type id
+							pSqlObjectReference.setInt(cnt++, specialReferenceTypeId); // special_ref
+							pSqlObjectReference.setNull(cnt++, Types.VARCHAR); // special_name
+						} else if ((specialReferenceTypeId == 3100) && objClass.intValue() == 5) {
+							// if object class corresponds with special reference type id
+							pSqlObjectReference.setInt(cnt++, specialReferenceTypeId); // special_ref
+							pSqlObjectReference.setNull(cnt++, Types.VARCHAR); // special_name
+						} else if ((specialReferenceTypeId == 3515 || specialReferenceTypeId == 3520 || specialReferenceTypeId == 3535 || specialReferenceTypeId == 3555 || specialReferenceTypeId == 3570 || specialReferenceTypeId == 5066) && objClass.intValue() == 1) {
+							// if object class corresponds with special reference type id
+							pSqlObjectReference.setInt(cnt++, specialReferenceTypeId); // special_ref
+							pSqlObjectReference.setNull(cnt++, Types.VARCHAR); // special_name
+						} else {
+							pSqlObjectReference.setInt(cnt++, -1); // special_ref
+							pSqlObjectReference.setString(cnt++, row.get("special_name")); // special_name
+						}
 					} else {
 						log.error("Invalid special_ref='" + row.get("special_ref") + "' with special_name='"
 								+ row.get("special_name") + "' found.");
@@ -2410,6 +2434,20 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		sqlStr = "DELETE FROM t012_obj_adr";
 		jdbc.executeUpdate(sqlStr);
 
+		final List<String> allowedSpecialRefEntries = new ArrayList<String>();
+		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
+
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=2010 AND entry_id IN (3360, 3400, 3410);";
+		ResultSet rs = jdbc.executeQuery(sql);
+		while (rs.next()) {
+			if (rs.getString("name") != null) {
+				allowedSpecialRefEntryNames.add(rs.getString("name").toLowerCase());
+				allowedSpecialRefEntries.add(rs.getString("entry_id"));
+			}
+		}
+		rs.close();
+		
+		
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
 			if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
@@ -2435,7 +2473,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 								+ "') not found in imported data of t02_address. Skip record.");
 					}
 					row.clear();
-				} else if (!IDCStrategyHelper.isValidUdkAddressType(row.getInteger("typ"), row.get("special_name"))) {
+				} else if (!IDCStrategyHelper.isValidUdkAddressType(row.getInteger("typ"), row.get("special_name")) && row.get("typ") != null && row.getInteger("typ").intValue() != 0) {
 					log.info("Invalid entry in " + entityName + " found: typ ('" + row.get("typ")
 							+ "') does not correspond with special_name ('" + row.get("special_name")
 							+ "'). Skip record.");
@@ -2445,41 +2483,62 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					p.setInt(cnt++, row.getInteger("primary_key")); // id
 					p.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"))); // obj_id
 					p.setString(cnt++, row.get("adr_id")); // adr_uuid
-					if (row.getInteger("typ") != null
-							&& (row.getInteger("typ").intValue() == 999 || row.getInteger("typ").intValue() == -1)) {
-						p.setInt(cnt++, -1); // type
-						p.setInt(cnt++, row.getInteger("line")); // line
-						if (row.getInteger("special_ref") != null && row.getInteger("special_ref").intValue() > 0) {
-							JDBCHelper.addInteger(p, cnt++, row.getInteger("special_ref")); // special_ref
-							p.setNull(cnt++, Types.VARCHAR); // special_name
-						} else {
-							p.setNull(cnt++, Types.INTEGER); // special_ref
-							p.setString(cnt++, row.get("special_name")); // special_name
-						}
-					} else if (row.getInteger("typ") != null
-							&& !((row.getInteger("typ").intValue() >= 0 && row.getInteger("typ").intValue() <= 9)
-									|| row.getInteger("typ").intValue() == 999 || row.getInteger("typ").intValue() == -1)) {
+					
+					Integer type = null;
+					Integer specialRef = null;
+					String specialName = null;
+					
+					if (row.getInteger("typ") == null || row.getInteger("typ").intValue() == 999 || row.getInteger("typ").intValue() == -1) {
+						type = new Integer(-1);
+					// if type is valid
+					} else if (row.getInteger("typ").intValue() >= 0 && row.getInteger("typ").intValue() <= 9) {
+						type = IDCStrategyHelper.transAddressTypeUdk2Idc(row.getInteger("typ"));
+						specialRef = new Integer(505);
+					// if typ is invalid
+					} else  {
 						log.info("Invalid udk address type detected (type='" + row.getInteger("typ")
 								+ "', special_name='" + row.get("special_name")
 								+ "'). The record will be imported as free entry.");
-						p.setInt(cnt++, -1); // type
-						p.setInt(cnt++, row.getInteger("line")); // line
-						p.setNull(cnt++, Types.INTEGER); // special_ref
-						p.setString(cnt++, row.get("special_name")); // special_name
-					} else if (row.getInteger("typ") != null
-							&& (row.getInteger("typ").intValue() == 3360 || row.getInteger("typ").intValue() == 3400 || row
-									.getInteger("typ").intValue() == 3410)) {
-						JDBCHelper.addInteger(p, cnt++, row.getInteger("special_ref")); // type
-						p.setInt(cnt++, row.getInteger("line")); // line
-						p.setInt(cnt++, 2010); // special_ref
-						p.setNull(cnt++, Types.VARCHAR); // special_name
-					} else {
-						JDBCHelper.addInteger(p, cnt++, IDCStrategyHelper
-								.transAddressTypeUdk2Idc(row.getInteger("typ"))); // type
-						p.setInt(cnt++, row.getInteger("line")); // line
-						p.setInt(cnt++, 505); // special_ref
-						p.setNull(cnt++, Types.VARCHAR); // special_name
+						type = new Integer(-1);
 					}
+					
+					if (specialRef == null && (row.get("special_ref") != null && allowedSpecialRefEntries.contains(row.get("special_ref")))) {
+						// if special_ref is valid
+						specialRef = row.getInteger("special_ref");
+					} else if (specialRef == null && specialName != null) {
+						if (!allowedSpecialRefEntryNames.contains(row.get("special_name").toLowerCase())) {
+							// if special_name is not in lookup list
+							specialName = row.get("special_name");
+						} else {
+							//	if special_name is in lookup list, check against object classes for valid ids
+							Integer specialReferenceTypeId = Integer.getInteger(allowedSpecialRefEntries
+									.get(allowedSpecialRefEntryNames.indexOf(row.get("special_name").toLowerCase())));
+							Integer objClass = IDCStrategyHelper.getEntityFieldValueAsInteger(dataProvider, "t01_object", "obj_id", row.get("obj_id"), "obj_class");
+							if (objClass == null) {
+								// if not valid import as free entry
+								specialRef = null;
+								specialName = row.get("special_name");
+							} else if (specialReferenceTypeId.intValue() == 3360 && objClass.intValue() == 2) {
+								specialRef = specialReferenceTypeId;
+							} else if ((specialReferenceTypeId.intValue() == 3400 || specialReferenceTypeId.intValue() == 3410)&& objClass.intValue() == 4) {
+								specialRef = specialReferenceTypeId;
+							} else {
+								// if not valid import as free entry
+								specialRef = null;
+								specialName = row.get("special_name");
+							}
+						}
+					} else {
+						//import in all other cases as free value, should not be the case
+						specialRef = null;
+						specialName = row.get("special_name");
+					}
+
+					JDBCHelper.addInteger(p, cnt++, type ); // type
+					JDBCHelper.addInteger(p, cnt++, row.getInteger("line") ); // line
+					JDBCHelper.addInteger(p, cnt++, specialRef ); // special_ref
+					JDBCHelper.addString(p, cnt++, specialName ); // special_name
+
 					p.setString(cnt++, IDCStrategyHelper.transDateTime(row.get("mod_time"))); // mod_time
 					try {
 						p.executeUpdate();
