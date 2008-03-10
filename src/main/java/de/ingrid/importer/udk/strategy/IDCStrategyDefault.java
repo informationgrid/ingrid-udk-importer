@@ -154,8 +154,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					} else {
 						p.setString(cnt++, null); // obj_descr
 					}
-					p
-							.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "t03_catalogue", "cat_id", row
+					p.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "t03_catalogue", "cat_id", row
 									.get("cat_id"))); // cat_id
 					p.setString(cnt++, row.get("info_note")); // info_note
 					p.setString(cnt++, row.get("avail_access_note")); // avail_access_note
@@ -168,7 +167,13 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					JDBCHelper.addInteger(p, cnt++, row.getInteger("time_status")); // time_status
 					p.setString(cnt++, row.get("time_alle")); // time_alle
 					p.setString(cnt++, row.get("time_type")); // time_type
-					JDBCHelper.addInteger(p, cnt++, row.getInteger("publish_id")); // publish_id
+					Integer publishId = row.getInteger("publish_id");
+					if (publishId == null) {
+						publishId = new Integer(3);
+					} else if (publishId.intValue() == 4) {
+						publishId = new Integer(3);
+					}
+					JDBCHelper.addInteger(p, cnt++, publishId); // publish_id
 					p.setString(cnt++, row.get("dataset_alternate_name")); // dataset_alternate_name
 					JDBCHelper.addInteger(p, cnt++, row.getInteger("dataset_character_set")); // dataset_character_set
 					p.setString(cnt++, row.get("dataset_usage")); // dataset_usage
@@ -231,17 +236,42 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		}
 
 		pSqlStr = "INSERT INTO t02_address (id, adr_uuid, org_adr_id, "
-				+ "adr_type, institution, lastname, firstname, address, title, "
+				+ "adr_type, institution, lastname, firstname, address_value, address_key, title_value, title_key, "
 				+ "street, postcode, postbox, postbox_pc, city, country_code, job, "
 				+ "descr, lastexport_time, expiry_time, work_state, work_version, "
 				+ "mark_deleted, create_time, mod_time, mod_uuid, responsible_uuid) VALUES "
-				+ "( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+				+ "( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
 		sqlStr = "DELETE FROM t02_address";
 		jdbc.executeUpdate(sqlStr);
 
+		final List<String> allowedSpecialRefTitleEntries = new ArrayList<String>();
+		final List<String> allowedSpecialRefTitleEntryNames = new ArrayList<String>();
+
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=4305;";
+		ResultSet rs = jdbc.executeQuery(sql);
+		while (rs.next()) {
+			if (rs.getString("name") != null) {
+				allowedSpecialRefTitleEntryNames.add(rs.getString("name").toLowerCase());
+				allowedSpecialRefTitleEntries.add(rs.getString("entry_id"));
+			}
+		}
+		rs.close();
+		final List<String> allowedSpecialRefAddressEntries = new ArrayList<String>();
+		final List<String> allowedSpecialRefAddressEntryNames = new ArrayList<String>();
+
+		sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=4300;";
+		rs = jdbc.executeQuery(sql);
+		while (rs.next()) {
+			if (rs.getString("name") != null) {
+				allowedSpecialRefAddressEntryNames.add(rs.getString("name").toLowerCase());
+				allowedSpecialRefAddressEntries.add(rs.getString("entry_id"));
+			}
+		}
+		rs.close();
+		
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
 			if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
@@ -287,8 +317,20 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					p.setString(cnt++, row.get("institution")); // institution
 					p.setString(cnt++, row.get("lastname")); // lastname
 					p.setString(cnt++, row.get("firstname")); // firstname
-					p.setString(cnt++, row.get("address")); // address
-					p.setString(cnt++, row.get("title")); // title
+					if (row.get("address") != null && allowedSpecialRefAddressEntryNames.contains(row.get("address").toLowerCase())) {
+						p.setNull(cnt++, Types.VARCHAR); // address_value
+						p.setInt(cnt++, Integer.parseInt(allowedSpecialRefAddressEntries.get(allowedSpecialRefAddressEntryNames.indexOf(row.get("address").toLowerCase())))); // address_key
+					} else {
+						p.setString(cnt++, row.get("address")); // address_value
+						p.setInt(cnt++, -1); // address_key
+					}
+					if (row.get("title") != null && allowedSpecialRefTitleEntryNames.contains(row.get("title").toLowerCase())) {
+						p.setNull(cnt++, Types.VARCHAR); // title_value
+						p.setInt(cnt++, Integer.parseInt(allowedSpecialRefTitleEntries.get(allowedSpecialRefTitleEntryNames.indexOf(row.get("title").toLowerCase())))); // title_key
+					} else {
+						p.setString(cnt++, row.get("title")); // title_value
+						p.setInt(cnt++, -1); // title_key
+					}
 					p.setString(cnt++, row.get("street")); // street
 					p.setString(cnt++, row.get("postcode")); // postcode
 					p.setString(cnt++, row.get("postbox")); // postbox
@@ -671,13 +713,26 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t021_communication (id, adr_id, line, comm_type, comm_value, descr) VALUES (?, ?, ?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO t021_communication (id, adr_id, line, commtype_value, commtype_key, comm_value, descr) VALUES (?, ?, ?, ?, ?, ?, ?);";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
 		sqlStr = "DELETE FROM t021_communication";
 		jdbc.executeUpdate(sqlStr);
 
+		final List<String> allowedSpecialRefEntries = new ArrayList<String>();
+		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
+
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=4430;";
+		ResultSet rs = jdbc.executeQuery(sql);
+		while (rs.next()) {
+			if (rs.getString("name") != null) {
+				allowedSpecialRefEntryNames.add(rs.getString("name").toLowerCase());
+				allowedSpecialRefEntries.add(rs.getString("entry_id"));
+			}
+		}
+		rs.close();
+		
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
 			if (IDCStrategyHelper.getPK(dataProvider, "t02_address", "adr_id", row.get("adr_id")) == 0) {
@@ -691,7 +746,13 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setInt(cnt++, row.getInteger("primary_key")); // id
 				p.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "t02_address", "adr_id", row.get("adr_id"))); // adr_id
 				p.setInt(cnt++, row.getInteger("line")); // line
-				p.setString(cnt++, row.get("comm_type")); // comm_type
+				if (row.get("comm_type") != null && allowedSpecialRefEntryNames.contains(row.get("comm_type").toLowerCase())) {
+					p.setNull(cnt++, Types.VARCHAR); // legist_value
+					p.setInt(cnt++, Integer.parseInt(allowedSpecialRefEntries.get(allowedSpecialRefEntryNames.indexOf(row.get("comm_type").toLowerCase())))); // legist_key
+				} else {
+					p.setString(cnt++, row.get("comm_type")); // legist_value
+					p.setInt(cnt++, -1); // legist_key
+				}
 				p.setString(cnt++, row.get("comm_value")); // comm_value
 				p.setString(cnt++, row.get("descr")); // descr
 				try {
@@ -715,15 +776,28 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t011_obj_literature (id, obj_id, author, publisher, type, publish_in, "
+		pSqlStr = "INSERT INTO t011_obj_literature (id, obj_id, author, publisher, type_value, type_key, publish_in, "
 				+ "volume, sides, publish_year, publish_loc, loc, doc_info, base, isbn, publishing, "
-				+ "description) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+				+ "description) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
 		sqlStr = "DELETE FROM t011_obj_literature";
 		jdbc.executeUpdate(sqlStr);
 
+		final List<String> allowedSpecialRefEntries = new ArrayList<String>();
+		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
+
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=3385;";
+		ResultSet rs = jdbc.executeQuery(sql);
+		while (rs.next()) {
+			if (rs.getString("name") != null) {
+				allowedSpecialRefEntryNames.add(rs.getString("name").toLowerCase());
+				allowedSpecialRefEntries.add(rs.getString("entry_id"));
+			}
+		}
+		rs.close();
+		
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
 			if (IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id")) == 0) {
@@ -738,7 +812,13 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"))); // obj_id
 				p.setString(cnt++, row.get("autor")); // author
 				p.setString(cnt++, row.get("publisher")); // publisher
-				p.setString(cnt++, row.get("typ")); // type
+				if (row.get("typ") != null && allowedSpecialRefEntryNames.contains(row.get("typ").toLowerCase())) {
+					p.setNull(cnt++, Types.VARCHAR); // type_value
+					p.setInt(cnt++, Integer.parseInt(allowedSpecialRefEntries.get(allowedSpecialRefEntryNames.indexOf(row.get("typ").toLowerCase())))); // type_key
+				} else {
+					p.setString(cnt++, row.get("typ")); // type_value
+					p.setInt(cnt++, -1); // type_key
+				}
 				p.setString(cnt++, row.get("publish_in")); // publish_in
 				p.setString(cnt++, row.get("volume")); // volume
 				p.setString(cnt++, row.get("sides")); // sides
@@ -856,14 +936,27 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t011_obj_serv (id, obj_id, type, history, environment, base, description) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO t011_obj_serv (id, obj_id, type_value, type_key, history, environment, base, description) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
 		sqlStr = "DELETE FROM t011_obj_serv";
 		jdbc.executeUpdate(sqlStr);
 
+		final List<String> allowedSpecialRefEntries = new ArrayList<String>();
+		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
+
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=5100;";
+		ResultSet rs = jdbc.executeQuery(sql);
+		while (rs.next()) {
+			if (rs.getString("name") != null) {
+				allowedSpecialRefEntryNames.add(rs.getString("name").toLowerCase());
+				allowedSpecialRefEntries.add(rs.getString("entry_id"));
+			}
+		}
+		rs.close();
+		
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
 			if (IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id")) == 0) {
@@ -876,9 +969,15 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				int cnt = 1;
 				p.setInt(cnt++, row.getInteger("primary_key")); // id
 				p.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"))); // obj_id
-				p.setString(cnt++, row.get("special_base")); // special_base
-				p.setString(cnt++, row.get("type")); // type
+				if (row.get("type") != null && allowedSpecialRefEntryNames.contains(row.get("type").toLowerCase())) {
+					p.setNull(cnt++, Types.VARCHAR); // type_value
+					p.setInt(cnt++, Integer.parseInt(allowedSpecialRefEntries.get(allowedSpecialRefEntryNames.indexOf(row.get("type").toLowerCase())))); // type_key
+				} else {
+					p.setString(cnt++, row.get("type")); // type_value
+					p.setInt(cnt++, -1); // type_key
+				}
 				p.setString(cnt++, row.get("history")); // history
+				p.setString(cnt++, row.get("environment")); // environment
 				p.setString(cnt++, row.get("base")); // base
 				p.setString(cnt++, row.get("description")); // description
 				try {
@@ -952,13 +1051,38 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t011_obj_serv_operation (id, obj_serv_id, line, name, descr, invocation_name) VALUES ( ?, ?, ?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO t011_obj_serv_operation (id, obj_serv_id, line, name_value, name_key, descr, invocation_name) VALUES ( ?, ?, ?, ?, ?, ?, ?);";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
 		sqlStr = "DELETE FROM t011_obj_serv_operation";
 		jdbc.executeUpdate(sqlStr);
 
+		final List<String> allowedSpecialWMSRefEntries = new ArrayList<String>();
+		final List<String> allowedSpecialWMSRefEntryNames = new ArrayList<String>();
+
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=5110;";
+		ResultSet rs = jdbc.executeQuery(sql);
+		while (rs.next()) {
+			if (rs.getString("name") != null) {
+				allowedSpecialWMSRefEntryNames.add(rs.getString("name").toLowerCase());
+				allowedSpecialWMSRefEntries.add(rs.getString("entry_id"));
+			}
+		}
+		rs.close();
+		final List<String> allowedSpecialWFSRefEntries = new ArrayList<String>();
+		final List<String> allowedSpecialWFSRefEntryNames = new ArrayList<String>();
+
+		sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=5120;";
+		rs = jdbc.executeQuery(sql);
+		while (rs.next()) {
+			if (rs.getString("name") != null) {
+				allowedSpecialWFSRefEntryNames.add(rs.getString("name").toLowerCase());
+				allowedSpecialWFSRefEntries.add(rs.getString("entry_id"));
+			}
+		}
+		rs.close();
+		
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
 			if (IDCStrategyHelper.getPK(dataProvider, "t011_obj_serv", "obj_id", row.get("obj_id")) == 0) {
@@ -972,7 +1096,27 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setInt(cnt++, row.getInteger("primary_key")); // id
 				p.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t011_obj_serv", "obj_id", row.get("obj_id"))); // obj_id
 				p.setInt(cnt++, row.getInteger("line")); // line
-				p.setString(cnt++, row.get("name")); // name
+				String serviceType = IDCStrategyHelper.getEntityFieldValue(dataProvider, "t011_obj_serv", "obj_id", row.get("obj_id"), "type");
+				if (serviceType != null && serviceType.equalsIgnoreCase("WMS")) {
+					if (row.get("name") != null && allowedSpecialWMSRefEntryNames.contains(row.get("name").toLowerCase())) {
+						p.setNull(cnt++, Types.VARCHAR); // name_value
+						p.setInt(cnt++, Integer.parseInt(allowedSpecialWMSRefEntries.get(allowedSpecialWMSRefEntryNames.indexOf(row.get("name").toLowerCase())))); // name_key
+					} else {
+						p.setString(cnt++, row.get("name")); // name_value
+						p.setInt(cnt++, -1); // name_key
+					}
+				} else if (serviceType != null && serviceType.equalsIgnoreCase("WFS")) {
+					if (row.get("name") != null && allowedSpecialWFSRefEntryNames.contains(row.get("name").toLowerCase())) {
+						p.setNull(cnt++, Types.VARCHAR); // name_value
+						p.setInt(cnt++, Integer.parseInt(allowedSpecialWFSRefEntries.get(allowedSpecialWFSRefEntryNames.indexOf(row.get("name").toLowerCase())))); // name_key
+					} else {
+						p.setString(cnt++, row.get("name")); // name_value
+						p.setInt(cnt++, -1); // name_key
+					}
+				} else {
+					p.setString(cnt++, row.get("name")); // name_value
+					p.setInt(cnt++, -1); // name_key
+				}
 				p.setString(cnt++, row.get("descr")); // descr
 				p.setString(cnt++, row.get("invocation_name")); // invocation_name
 				try {
@@ -1240,7 +1384,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				// REFERENCESYSTEM_ID!=-1"
 				if (row.getInteger("referencesystem_id") != null
 						&& row.getInteger("referencesystem_id").intValue() != -1
-						&& dataProvider.findRow("sys_codelist_domain", new String[] { "CODELIST_ID", "DOMAIN_ID" },
+						&& dataProvider.findRow("sys_codelist_domain", new String[] { "codelist_id", "domain_id" },
 								new String[] { "100", row.get("referencesystem_id") }) == null) {
 					if (log.isInfoEnabled()) {
 						log.info("Invalid entry in " + entityName + " found: referencesystem_id="
@@ -1251,8 +1395,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				String coord = row.get("coord");
 				if (coord != null && (coord.indexOf("\n") > -1 || coord.indexOf("\r") > -1)) {
 					if (log.isInfoEnabled()) {
-						log
-								.info("Invalid entry in "
+						log.info("Invalid entry in "
 										+ entityName
 										+ " found: coord contains one or more newlines. newlines will be replaced with ';' ! Record will be imported!");
 					}
@@ -1304,13 +1447,26 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t011_obj_geo_keyc (id, obj_geo_id, line, subject_cat, key_date, edition) VALUES ( ?, ?, ?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO t011_obj_geo_keyc (id, obj_geo_id, line, keyc_value, keyc_key, key_date, edition) VALUES ( ?, ?, ?, ?, ?, ?, ?);";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
 		sqlStr = "DELETE FROM t011_obj_geo_keyc";
 		jdbc.executeUpdate(sqlStr);
 
+		final List<String> allowedSpecialRefEntries = new ArrayList<String>();
+		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
+
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=3535;";
+		ResultSet rs = jdbc.executeQuery(sql);
+		while (rs.next()) {
+			if (rs.getString("name") != null) {
+				allowedSpecialRefEntryNames.add(rs.getString("name").toLowerCase());
+				allowedSpecialRefEntries.add(rs.getString("entry_id"));
+			}
+		}
+		rs.close();
+		
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
 			if (IDCStrategyHelper.getPK(dataProvider, "t011_obj_geo", "obj_id", row.get("obj_id")) == 0) {
@@ -1324,7 +1480,13 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setInt(cnt++, row.getInteger("primary_key")); // id
 				p.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t011_obj_geo", "obj_id", row.get("obj_id"))); // obj_id
 				p.setInt(cnt++, row.getInteger("line")); // line
-				p.setString(cnt++, row.get("subject_cat")); // subject_cat
+				if (row.get("subject_cat") != null && allowedSpecialRefEntryNames.contains(row.get("subject_cat").toLowerCase())) {
+					p.setNull(cnt++, Types.VARCHAR); // keyc_value
+					p.setInt(cnt++, Integer.parseInt(allowedSpecialRefEntries.get(allowedSpecialRefEntryNames.indexOf(row.get("subject_cat").toLowerCase())))); // keyc_key
+				} else {
+					p.setString(cnt++, row.get("subject_cat")); // keyc_value
+					p.setInt(cnt++, -1); // keyc_key
+				}
 				p.setString(cnt++, IDCStrategyHelper.transDateTime(row.get("key_date"))); // subject_cat
 				p.setString(cnt++, row.get("edition")); // subject_cat
 				try {
@@ -1519,13 +1681,26 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t011_obj_geo_symc (id, obj_geo_id, line, symbol_cat, symbol_date, edition) VALUES ( ?, ?, ?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO t011_obj_geo_symc (id, obj_geo_id, line, symbol_cat_value, symbol_cat_key, symbol_date, edition) VALUES ( ?, ?, ?, ?, ?, ?, ?);";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
 		sqlStr = "DELETE FROM t011_obj_geo_symc";
 		jdbc.executeUpdate(sqlStr);
 
+		final List<String> allowedSpecialRefEntries = new ArrayList<String>();
+		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
+
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=3555;";
+		ResultSet rs = jdbc.executeQuery(sql);
+		while (rs.next()) {
+			if (rs.getString("name") != null) {
+				allowedSpecialRefEntryNames.add(rs.getString("name").toLowerCase());
+				allowedSpecialRefEntries.add(rs.getString("entry_id"));
+			}
+		}
+		rs.close();
+		
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
 			if (IDCStrategyHelper.getPK(dataProvider, "t011_obj_geo", "obj_id", row.get("obj_id")) == 0) {
@@ -1539,7 +1714,13 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setInt(cnt++, row.getInteger("primary_key")); // id
 				p.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t011_obj_geo", "obj_id", row.get("obj_id"))); // obj_id
 				p.setInt(cnt++, row.getInteger("line")); // line
-				p.setString(cnt++, row.get("symbol_cat")); // symbol_cat
+				if (row.get("symbol_cat") != null && allowedSpecialRefEntryNames.contains(row.get("symbol_cat").toLowerCase())) {
+					p.setNull(cnt++, Types.VARCHAR); // symbol_cat_value
+					p.setInt(cnt++, Integer.parseInt(allowedSpecialRefEntries.get(allowedSpecialRefEntryNames.indexOf(row.get("symbol_cat").toLowerCase())))); // symbol_cat_key
+				} else {
+					p.setString(cnt++, row.get("symbol_cat")); // symbol_cat_value
+					p.setInt(cnt++, -1); // symbol_cat_key
+				}
 				p.setString(cnt++, IDCStrategyHelper.transDateTime(row.get("symbol_date"))); // symbol_date
 				p.setString(cnt++, row.get("edition")); // edition
 				try {
@@ -1648,13 +1829,27 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t015_legist (id, obj_id, line, name) VALUES (?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO t015_legist (id, obj_id, line, legist_value, legist_key) VALUES (?, ?, ?, ?, ?);";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
 		sqlStr = "DELETE FROM t015_legist";
 		jdbc.executeUpdate(sqlStr);
 
+		final List<String> allowedSpecialRefEntries = new ArrayList<String>();
+		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
+
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1350;";
+		ResultSet rs = jdbc.executeQuery(sql);
+		while (rs.next()) {
+			if (rs.getString("name") != null) {
+				allowedSpecialRefEntryNames.add(rs.getString("name").toLowerCase());
+				allowedSpecialRefEntries.add(rs.getString("entry_id"));
+			}
+		}
+		rs.close();
+
+		
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
 			if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
@@ -1669,7 +1864,13 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					p.setInt(cnt++, row.getInteger("primary_key")); // id
 					p.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"))); // obj_id
 					p.setInt(cnt++, row.getInteger("line")); // line
-					p.setString(cnt++, row.get("name")); // name
+					if (row.get("name") != null && allowedSpecialRefEntryNames.contains(row.get("name").toLowerCase())) {
+						p.setNull(cnt++, Types.VARCHAR); // legist_value
+						p.setInt(cnt++, Integer.parseInt(allowedSpecialRefEntries.get(allowedSpecialRefEntryNames.indexOf(row.get("name").toLowerCase())))); // legist_key
+					} else {
+						p.setString(cnt++, row.get("name")); // legist_value
+						p.setInt(cnt++, -1); // legist_key
+					}
 					try {
 						p.executeUpdate();
 					} catch (Exception e) {
@@ -1735,13 +1936,26 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t0110_avail_format (id, obj_id, line, name, ver, file_decompression_technique, specification) VALUES (?, ?, ?, ?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO t0110_avail_format (id, obj_id, line, format_value, format_key, ver, file_decompression_technique, specification) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
 		sqlStr = "DELETE FROM t0110_avail_format";
 		jdbc.executeUpdate(sqlStr);
 
+		final List<String> allowedSpecialRefEntries = new ArrayList<String>();
+		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
+
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1320;";
+		ResultSet rs = jdbc.executeQuery(sql);
+		while (rs.next()) {
+			if (rs.getString("name") != null) {
+				allowedSpecialRefEntryNames.add(rs.getString("name").toLowerCase());
+				allowedSpecialRefEntries.add(rs.getString("entry_id"));
+			}
+		}
+		rs.close();
+		
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
 			if (IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id")) == 0) {
@@ -1755,7 +1969,13 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setInt(cnt++, row.getInteger("primary_key")); // id
 				p.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"))); // obj_id
 				p.setInt(cnt++, row.getInteger("line")); // line
-				p.setString(cnt++, row.get("name")); // name
+				if (row.get("name") != null && allowedSpecialRefEntryNames.contains(row.get("name").toLowerCase())) {
+					p.setNull(cnt++, Types.VARCHAR); // format_value
+					p.setInt(cnt++, Integer.parseInt(allowedSpecialRefEntries.get(allowedSpecialRefEntryNames.indexOf(row.get("name").toLowerCase())))); // format_key
+				} else {
+					p.setString(cnt++, row.get("name")); // format_value
+					p.setInt(cnt++, -1); // format_key
+				}
 				p.setString(cnt++, row.get("version")); // ver
 				p.setString(cnt++, row.get("file_decompression_technique")); // file_decompression_technique
 				p.setString(cnt++, row.get("specification")); // specification
@@ -1824,7 +2044,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t017_url_ref (id, obj_id, line, url_link, special_ref, special_name, content, datatype_value,, datatype_key, volume, icon, icon_text, descr, url_type) "
+		pSqlStr = "INSERT INTO t017_url_ref (id, obj_id, line, url_link, special_ref, special_name, content, datatype_value, datatype_key, volume, icon, icon_text, descr, url_type) "
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
@@ -1877,7 +2097,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					JDBCHelper.addInteger(p, cnt++, row.getInteger("special_ref")); // special_ref
 					p.setNull(cnt++, Types.VARCHAR); // special_name
 				} else if (row.get("special_name") != null && allowedSpecialRefEntryNames.contains(row.get("special_name").toLowerCase()) ) {
-					JDBCHelper.addInteger(p, cnt++, allowedSpecialRefEntryNames.indexOf(row.get("special_name").toLowerCase())); // special_ref
+					JDBCHelper.addInteger(p, cnt++, Integer.parseInt(allowedSpecialRefEntries.get(allowedSpecialRefEntryNames.indexOf(row.get("special_name").toLowerCase())))); // special_ref
 					p.setNull(cnt++, Types.VARCHAR); // special_name
 				} else {
 					p.setInt(cnt++, -1); // special_ref
@@ -1890,7 +2110,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					p.setInt(cnt++, -1); // datatype_key
 				} else {
 					p.setNull(cnt++, Types.VARCHAR); // datatype_value
-					p.setInt(cnt++, allowedDatatypeKeys.indexOf(row.get("datatype").toLowerCase())); // datatype_key
+					p.setInt(cnt++, Integer.parseInt(allowedDatatypeKeys.get(allowedDatatypeValues.indexOf(row.get("datatype").toLowerCase())))); // datatype_key
 				}
 				p.setString(cnt++, row.get("volume")); // volume
 				p.setString(cnt++, row.get("icon")); // icon
@@ -1921,8 +2141,8 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		String pSqlStrSpatialReference = "INSERT INTO spatial_reference (id, obj_id, line, spatial_ref_id) "
 				+ "VALUES (?, ?, ?, ?);";
 
-		String pSqlStrSpatialRefValue = "INSERT INTO spatial_ref_value (id, type, spatial_ref_sns_id, name, nativekey, x1, x2, y1, y2) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+		String pSqlStrSpatialRefValue = "INSERT INTO spatial_ref_value (id, type, spatial_ref_sns_id, name_value, name_key, nativekey, x1, x2, y1, y2) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
 		String pSqlStrSpatialRefSns = "INSERT INTO spatial_ref_sns (id, sns_id, expired_at) " + "VALUES (?, ?, ?);";
 
@@ -1938,6 +2158,19 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		sqlStr = "DELETE FROM spatial_ref_sns";
 		jdbc.executeUpdate(sqlStr);
 
+		final List<String> allowedSpecialRefEntries = new ArrayList<String>();
+		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1100;";
+		ResultSet rs = jdbc.executeQuery(sql);
+		while (rs.next()) {
+			if (rs.getString("name") != null) {
+				allowedSpecialRefEntryNames.add(rs.getString("name").toLowerCase());
+				allowedSpecialRefEntries.add(rs.getString("entry_id"));
+			}
+		}
+		rs.close();
+		
+		
 		HashMap<String, Long> storedNativekeys = new HashMap<String, Long>();
 
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
@@ -2008,7 +2241,8 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 							log.debug("Invalid ags key length:" + row.get("township_no"));
 						}
 					}
-					pSpatialRefValue.setString(cnt++, locName); // name
+					pSpatialRefValue.setString(cnt++, locName); // name_value
+					pSpatialRefValue.setInt(cnt++, -1); // name_key
 					pSpatialRefValue.setString(cnt++, IDCStrategyHelper.transformNativeKey2FullAgs(row
 							.get("township_no"))); // nativekey
 					JDBCHelper.addDouble(pSpatialRefValue, cnt++, IDCStrategyHelper.getEntityFieldValueAsDouble(
@@ -2058,12 +2292,25 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		String pSqlStrSpatialReference = "INSERT INTO spatial_reference (id, obj_id, line, spatial_ref_id) "
 				+ "VALUES (?, ?, ?, ?);";
 
-		String pSqlStrSpatialRefValue = "INSERT INTO spatial_ref_value (id, type, spatial_ref_sns_id, name, nativekey, x1, x2, y1, y2) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+		String pSqlStrSpatialRefValue = "INSERT INTO spatial_ref_value (id, type, spatial_ref_sns_id, name_value, name_key, nativekey, x1, x2, y1, y2) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
 		PreparedStatement pSpatialReference = jdbc.prepareStatement(pSqlStrSpatialReference);
 		PreparedStatement pSpatialRefValue = jdbc.prepareStatement(pSqlStrSpatialRefValue);
 
+		final List<String> allowedSpecialRefEntries = new ArrayList<String>();
+		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1100;";
+		ResultSet rs = jdbc.executeQuery(sql);
+		while (rs.next()) {
+			if (rs.getString("name") != null) {
+				allowedSpecialRefEntryNames.add(rs.getString("name").toLowerCase());
+				allowedSpecialRefEntries.add(rs.getString("entry_id"));
+			}
+		}
+		rs.close();
+		
+		
 		HashMap<String, Long> storedNativekeys = new HashMap<String, Long>();
 
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
@@ -2107,7 +2354,13 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					pSpatialRefValue.setLong(cnt++, dataProvider.getId()); // id
 					pSpatialRefValue.setString(cnt++, "F"); // type
 					pSpatialRefValue.setNull(cnt++, Types.INTEGER); // spatial_ref_sns_id
-					pSpatialRefValue.setString(cnt++, row.get("bezug")); // name
+					if (row.get("bezug") != null && allowedSpecialRefEntryNames.contains(row.get("bezug").toLowerCase())) {
+						pSpatialRefValue.setNull(cnt++, Types.VARCHAR); // name_value
+						pSpatialRefValue.setInt(cnt++, Integer.parseInt(allowedSpecialRefEntries.get(allowedSpecialRefEntryNames.indexOf(row.get("bezug").toLowerCase())))); // name_key
+					} else {
+						pSpatialRefValue.setString(cnt++, row.get("bezug")); // name_value
+						pSpatialRefValue.setInt(cnt++, -1); // name_key
+					}
 					pSpatialRefValue.setString(cnt++, ""); // nativekey
 					JDBCHelper.addDouble(pSpatialRefValue, cnt++, row.getDouble("geo_x1")); // x1
 					JDBCHelper.addDouble(pSpatialRefValue, cnt++, row.getDouble("geo_x2")); // x2
@@ -2949,13 +3202,27 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t014_info_impart (id, obj_id, line, name) " + "VALUES (?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO t014_info_impart (id, obj_id, line, impart_value, impart_key) " + "VALUES (?, ?, ?, ?, ?);";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
 		sqlStr = "DELETE FROM t014_info_impart";
 		jdbc.executeUpdate(sqlStr);
 
+		final List<String> allowedSpecialRefEntries = new ArrayList<String>();
+		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
+
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1370;";
+		ResultSet rs = jdbc.executeQuery(sql);
+		while (rs.next()) {
+			if (rs.getString("name") != null) {
+				allowedSpecialRefEntryNames.add(rs.getString("name").toLowerCase());
+				allowedSpecialRefEntries.add(rs.getString("entry_id"));
+			}
+		}
+		rs.close();
+		
+		
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
 			if (IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id")) == 0) {
@@ -2969,7 +3236,13 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setInt(cnt++, row.getInteger("primary_key")); // id
 				p.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"))); // obj_id
 				p.setInt(cnt++, row.getInteger("line")); // line
-				p.setString(cnt++, row.get("name")); // name
+				if (row.get("name") != null && allowedSpecialRefEntryNames.contains(row.get("name").toLowerCase())) {
+					p.setNull(cnt++, Types.VARCHAR); // impart_value
+					p.setInt(cnt++, Integer.parseInt(allowedSpecialRefEntries.get(allowedSpecialRefEntryNames.indexOf(row.get("name").toLowerCase())))); // impart_key
+				} else {
+					p.setString(cnt++, row.get("name")); // impart_value
+					p.setInt(cnt++, -1); // impart_key
+				}
 				try {
 					p.executeUpdate();
 				} catch (Exception e) {
