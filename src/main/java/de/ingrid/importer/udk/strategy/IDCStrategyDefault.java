@@ -20,6 +20,7 @@ import de.ingrid.importer.udk.jdbc.JDBCConnectionProxy;
 import de.ingrid.importer.udk.jdbc.JDBCHelper;
 import de.ingrid.importer.udk.provider.DataProvider;
 import de.ingrid.importer.udk.provider.Row;
+import de.ingrid.importer.udk.util.UuidGenerator;
 
 /**
  * @author Administrator
@@ -3323,4 +3324,76 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		jdbc.executeUpdate(sqlStr);
 	}
 
+	protected void importDefaultUserdata() throws Exception {
+		sqlStr = "DELETE FROM idc_group";
+		jdbc.executeUpdate(sqlStr);
+		sqlStr = "DELETE FROM idc_user";
+		jdbc.executeUpdate(sqlStr);
+		sqlStr = "DELETE FROM permission";
+		jdbc.executeUpdate(sqlStr);
+		sqlStr = "DELETE FROM idc_user_permission";
+		jdbc.executeUpdate(sqlStr);
+		
+		// import default admin adress
+		dataProvider.setId(dataProvider.getId() + 1);
+		long adrId = dataProvider.getId();
+		String uuid = UuidGenerator.getInstance().generateUuid();
+		String sqlStr = "INSERT INTO t02_address (id, adr_uuid, org_adr_id, "
+			+ "adr_type, institution, lastname, firstname, address_value, address_key, title_value, title_key, "
+			+ "street, postcode, postbox, postbox_pc, city, country_code, job, "
+			+ "descr, lastexport_time, expiry_time, work_state, work_version, "
+			+ "mark_deleted, create_time, mod_time, mod_uuid, responsible_uuid) VALUES "
+			+ "( " + dataProvider.getId() + ", '" + uuid + "', NULL, 3, NULL, 'admin', 'admin', 'Frau', -1, 'Dr.', -1, "
+			+ "NULL, NULL, NULL, NULL, NULL, NULL, 'Administrator of this catalog.', "
+			+ "'Administrator of this catalog.', NULL, NULL, 'V', 0, "
+			+ "'N', NULL, NULL, NULL, NULL);";
+		jdbc.executeUpdate(sqlStr);
+		
+		dataProvider.setId(dataProvider.getId() + 1);
+		sqlStr = "INSERT INTO `address_node` ( `id` , `addr_uuid` , `addr_id` , `addr_id_published` , `fk_addr_uuid` ) VALUES ( " + dataProvider.getId() + ", '" + uuid + "', "+adrId+", "+adrId+", NULL )"; 
+		jdbc.executeUpdate(sqlStr);
+
+		// import default admin group
+		dataProvider.setId(dataProvider.getId() + 1);
+		long groupId = dataProvider.getId();
+		sqlStr = "INSERT INTO idc_group ( id, name) VALUES (" + groupId + ", 'administrators');";
+		jdbc.executeUpdate(sqlStr);
+		
+		// import default admin user
+		dataProvider.setId(dataProvider.getId() + 1);
+		long userId = dataProvider.getId();
+		sqlStr = "INSERT INTO idc_user ( id, addr_uuid, idc_group_id, idc_role) VALUES (" + userId + ", '"+uuid+"', "+groupId+", 0 );";
+		jdbc.executeUpdate(sqlStr);
+		
+		// import permissions
+		dataProvider.setId(dataProvider.getId() + 1);
+		sqlStr = "INSERT INTO permission ( id , class_name , name , action ) VALUES ( " + dataProvider.getId() + ", 'IdcObjectPermission', 'object', 'write');";
+		jdbc.executeUpdate(sqlStr);
+		dataProvider.setId(dataProvider.getId() + 1);
+		sqlStr = "INSERT INTO permission ( id , class_name , name , action ) VALUES ( " + dataProvider.getId() + ", 'IdcObjectPermission', 'object', 'write-tree');";
+		jdbc.executeUpdate(sqlStr);
+		dataProvider.setId(dataProvider.getId() + 1);
+		sqlStr = "INSERT INTO permission ( id , class_name , name , action ) VALUES ( " + dataProvider.getId() + ", 'IdcAddressPermission', 'address', 'write');";
+		jdbc.executeUpdate(sqlStr);
+		dataProvider.setId(dataProvider.getId() + 1);
+		sqlStr = "INSERT INTO permission ( id , class_name , name , action ) VALUES ( " + dataProvider.getId() + ", 'IdcAddressPermission', 'address', 'write-tree');";
+		jdbc.executeUpdate(sqlStr);
+		dataProvider.setId(dataProvider.getId() + 1);
+		long permissionCreateCatalodId = dataProvider.getId();
+		sqlStr = "INSERT INTO permission ( id , class_name , name , action ) VALUES ( " + dataProvider.getId() + ", 'IdcUserPermission', 'catalog', 'create-root');";
+		jdbc.executeUpdate(sqlStr);
+		dataProvider.setId(dataProvider.getId() + 1);
+		long permissionCreateQaId = dataProvider.getId();
+		sqlStr = "INSERT INTO permission ( id , class_name , name , action ) VALUES ( " + dataProvider.getId() + ", 'IdcUserPermission', 'catalog', 'qa');";
+		jdbc.executeUpdate(sqlStr);
+		
+		// import user permissions
+		dataProvider.setId(dataProvider.getId() + 1);
+		sqlStr = "INSERT INTO idc_user_permission ( id , permission_id , idc_user_id ) VALUES ( " + dataProvider.getId() + ", "+permissionCreateCatalodId+", "+userId+");";
+		jdbc.executeUpdate(sqlStr);
+		dataProvider.setId(dataProvider.getId() + 1);
+		sqlStr = "INSERT INTO idc_user_permission ( id , permission_id , idc_user_id ) VALUES ( " + dataProvider.getId() + ", "+permissionCreateQaId+", "+userId+");";
+		jdbc.executeUpdate(sqlStr);
+	}
+	
 }
