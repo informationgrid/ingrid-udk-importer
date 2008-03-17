@@ -149,12 +149,14 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault {
 			System.out.print("  Importing default address/permission for admin...");
 			importDefaultUserdata();
 			System.out.println("done.");
-			setHiLoGenerator();
 			jdbc.commit();
 			
 			jdbc.setAutoCommit(false);
 			System.out.print("  Post processing...");
 			postProcess();
+			System.out.println("done.");
+			System.out.print("  Set HI/LO table...");
+			setHiLoGenerator();
 			System.out.println("done.");
 			jdbc.commit();
 			System.out.println("Import finished successfully.");
