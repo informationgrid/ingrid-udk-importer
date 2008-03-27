@@ -2575,6 +2575,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 		HashMap<String, Long> searchTermValues = new HashMap<String, Long>();
 		HashMap<String, Long> searchTermSnsValues = new HashMap<String, Long>();
+		ArrayList<String> alreadyImported = new ArrayList<String>();
 
 		sqlStr = "DELETE FROM searchterm_sns";
 		jdbc.executeUpdate(sqlStr);
@@ -2587,7 +2588,11 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
-			if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
+			
+			String key = row.get("obj_id") + "_" + row.get("type") + "_" + row.get("searchterm");
+			
+			if (!alreadyImported.contains(key) && row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
+				alreadyImported.add(key);
 				int cnt = 1;
 				// free searchterm object
 				if (row.getInteger("type") != null && row.getInteger("type") == 1) {
