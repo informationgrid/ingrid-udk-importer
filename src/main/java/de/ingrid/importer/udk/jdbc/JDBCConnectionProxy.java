@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -50,7 +51,12 @@ public class JDBCConnectionProxy {
 			}
 
 			Class.forName(descriptor.getDbDriver());
-			fConnection = DriverManager.getConnection(descriptor.getDbURL(), descriptor.getDbUser(), descriptor.getDbPass());
+			String url=(descriptor.getDbURL());
+			Properties p = new Properties();
+			p.setProperty("user",descriptor.getDbUser());
+			p.setProperty("password",descriptor.getDbPass());
+//			p.setProperty("jdbcCompliantTruncation","false"); //new line
+			fConnection = DriverManager.getConnection(url,p);
 
 			String dbSchema = descriptor.getDbSchema();
 

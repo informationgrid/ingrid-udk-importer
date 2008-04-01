@@ -143,15 +143,17 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					p.setString(cnt++, row.get("org_id")); // org_obj_id
 					JDBCHelper.addInteger(p, cnt++, row.getInteger("obj_class")); // class_id
 
+					String objDescr;
 					if (row.get("obj_descr") != null) {
 						// check for max length of the underlying text field,
 						// take the multi byte characterset into account.
 						byte[] bArray = row.get("obj_descr").getBytes("UTF-8");
 						if (bArray.length > 65535) {
-							p.setString(cnt++, new String(bArray, 0, 65535, "UTF-8")); // obj_descr
+							objDescr = new String(bArray, 0, 65535, "UTF-8");
 						} else {
-							p.setString(cnt++, row.get("obj_descr")); // obj_descr
+							objDescr = row.get("obj_descr");
 						}
+						p.setString(cnt++, objDescr); // obj_descr
 					} else {
 						p.setString(cnt++, null); // obj_descr
 					}
@@ -210,6 +212,23 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 						log.error("Error executing SQL: " + p.toString(), e);
 						throw e;
 					}
+					
+					dataProvider.setId(dataProvider.getId() + 1);
+					JDBCHelper.createObjectIndex(dataProvider.getId(), row.getInteger("primary_key"), jdbc);
+					String idxVal =  row.get("obj_id");
+					idxVal += "|" + row.get("obj_name");
+					idxVal += "|" + row.get("org_id");
+					idxVal += "|" + row.get("objDescr");
+					idxVal += "|" + row.get("info_note");
+					idxVal += "|" + row.get("avail_access_note");
+					idxVal += "|" + row.get("loc_descr");
+					idxVal += "|" + row.get("dataset_alternate_name");
+					idxVal += "|" + row.get("dataset_usage");
+					idxVal += "|" + row.get("metadata_standard_name");
+					idxVal += "|" + row.get("metadata_standard_version");
+					idxVal += "|" + row.get("fees");
+					idxVal += "|" + row.get("ordering_instructions");
+					JDBCHelper.updateObjectIndex(row.getInteger("primary_key"), idxVal, jdbc);
 				}
 
 			} else {
@@ -833,8 +852,9 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				row.clear();
 			} else if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
 				int cnt = 1;
+				long objId = IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id")); 
 				p.setInt(cnt++, row.getInteger("primary_key")); // id
-				p.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"))); // obj_id
+				p.setLong(cnt++, objId); // obj_id
 				p.setString(cnt++, row.get("autor")); // author
 				p.setString(cnt++, row.get("publisher")); // publisher
 				if (row.get("typ") != null && allowedSpecialRefEntryNames.contains(row.get("typ").toLowerCase())) {
@@ -861,6 +881,18 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					log.error("Error executing SQL: " + p.toString(), e);
 					throw e;
 				}
+				
+				JDBCHelper.updateObjectIndex(objId, row.get("publish_in"), jdbc);
+				JDBCHelper.updateObjectIndex(objId, row.get("volume"), jdbc);
+				JDBCHelper.updateObjectIndex(objId, row.get("sides"), jdbc);
+				JDBCHelper.updateObjectIndex(objId, row.get("publish_year"), jdbc);
+				JDBCHelper.updateObjectIndex(objId, row.get("publish_loc"), jdbc);
+				JDBCHelper.updateObjectIndex(objId, row.get("loc"), jdbc);
+				JDBCHelper.updateObjectIndex(objId, row.get("doc_info"), jdbc);
+				JDBCHelper.updateObjectIndex(objId, row.get("base"), jdbc);
+				JDBCHelper.updateObjectIndex(objId, row.get("isbn"), jdbc);
+				JDBCHelper.updateObjectIndex(objId, row.get("publishing"), jdbc);
+				JDBCHelper.updateObjectIndex(objId, row.get("description"), jdbc);
 			}
 		}
 		if (log.isInfoEnabled()) {
@@ -893,8 +925,9 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				row.clear();
 			} else if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
 				int cnt = 1;
+				long objId = IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"));
 				p.setInt(cnt++, row.getInteger("primary_key")); // id
-				p.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"))); // obj_id
+				p.setLong(cnt++, objId); // obj_id
 				p.setString(cnt++, row.get("base")); // base
 				p.setString(cnt++, row.get("description")); // description
 				try {
@@ -903,6 +936,10 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					log.error("Error executing SQL: " + p.toString(), e);
 					throw e;
 				}
+				
+				JDBCHelper.updateObjectIndex(objId, row.get("base"), jdbc);
+				JDBCHelper.updateObjectIndex(objId, row.get("description"), jdbc);
+
 			}
 		}
 		if (log.isInfoEnabled()) {
@@ -935,6 +972,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				row.clear();
 			} else if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
 				int cnt = 1;
+				long objId = IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id")); 
 				p.setInt(cnt++, row.getInteger("primary_key")); // id
 				p.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"))); // obj_id
 				p.setInt(cnt++, row.getInteger("line")); // line
@@ -946,6 +984,10 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					log.error("Error executing SQL: " + p.toString(), e);
 					throw e;
 				}
+				
+				JDBCHelper.updateObjectIndex(objId, row.get("parameter"), jdbc);
+				JDBCHelper.updateObjectIndex(objId, row.get("unit"), jdbc);
+
 			}
 		}
 		if (log.isInfoEnabled()) {
@@ -992,8 +1034,9 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				row.clear();
 			} else if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
 				int cnt = 1;
+				long objId = IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"));
 				p.setInt(cnt++, row.getInteger("primary_key")); // id
-				p.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"))); // obj_id
+				p.setLong(cnt++, objId); // obj_id
 				if (row.get("type") != null && allowedSpecialRefEntryNames.contains(row.get("type").toLowerCase())) {
 					p.setNull(cnt++, Types.VARCHAR); // type_value
 					p.setInt(cnt++, Integer.parseInt(allowedSpecialRefEntries.get(allowedSpecialRefEntryNames.indexOf(row.get("type").toLowerCase())))); // type_key
@@ -1011,6 +1054,12 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					log.error("Error executing SQL: " + p.toString(), e);
 					throw e;
 				}
+				
+				JDBCHelper.updateObjectIndex(objId, row.get("history"), jdbc);
+				JDBCHelper.updateObjectIndex(objId, row.get("environment"), jdbc);
+				JDBCHelper.updateObjectIndex(objId, row.get("base"), jdbc);
+				JDBCHelper.updateObjectIndex(objId, row.get("description"), jdbc);
+				
 			} else {
 				// clear row: we do not want invalid references
 				// in other entities refering to this entity
