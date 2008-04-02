@@ -152,6 +152,22 @@ public class IDCStrategyHelper {
 		}
 	}
 
+	public static String transLanguageCode(String code) {
+		if (code == null) {
+			return "";
+		}
+		if (code.equalsIgnoreCase("121") || code.equalsIgnoreCase("de")) {
+			return "de";
+		} else if (code.equalsIgnoreCase("94") || code.equalsIgnoreCase("en")) {
+				return "en";
+		} else {
+			if (log.isErrorEnabled()) {
+				log.error("Cannot translate country code '" + code + "'");
+			}
+			return "";
+		}
+	}
+	
 	public static int getPK(DataProvider dataProvider, String entity, String field, String value) {
 		Row row = dataProvider.findRow(entity, field, value);
 		if (row != null && row.get("primary_key") != null) {
