@@ -216,21 +216,20 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					// create and update full index
 					dataProvider.setId(dataProvider.getId() + 1);
 					JDBCHelper.createObjectIndex(dataProvider.getId(), row.getInteger("primary_key"), jdbc);
-					String idxVal =  row.get("obj_id"); // T01Object.objUuid
-					idxVal += "|" + row.get("obj_name"); // T01Object.objName
-					idxVal += "|" + row.get("org_id"); // T01Object.orgObjId
-					idxVal += "|" + row.get("objDescr"); // T01Object.objDescr
-					idxVal += "|" + row.get("info_note"); // T01Object.infoNote
-					idxVal += "|" + row.get("avail_access_note"); // T01Object.availAccessNote
-					idxVal += "|" + row.get("loc_descr"); // T01Object.locDescr
-					idxVal += "|" + row.get("time_descr"); // T01Object.timeDescr
-					idxVal += "|" + row.get("dataset_alternate_name"); // T01Object.datasetAlternateName
-					idxVal += "|" + row.get("dataset_usage"); // T01Object.datasetUsage
-					idxVal += "|" + row.get("metadata_standard_name"); // T01Object.metadataStandardName
-					idxVal += "|" + row.get("metadata_standard_version"); // T01Object.metadataStandardVersion
-					idxVal += "|" + row.get("fees"); // T01Object.fees
-					idxVal += "|" + row.get("ordering_instructions"); // T01Object.orderingInstructions
-					JDBCHelper.updateObjectIndex(row.getInteger("primary_key"), idxVal, jdbc);
+					JDBCHelper.updateObjectIndex(row.getInteger("primary_key"), row.get("obj_id"), jdbc); // T01Object.objUuid
+					JDBCHelper.updateObjectIndex(row.getInteger("primary_key"), row.get("obj_name"), jdbc); // T01Object.objName
+					JDBCHelper.updateObjectIndex(row.getInteger("primary_key"), row.get("org_id"), jdbc); // T01Object.orgObjId
+					JDBCHelper.updateObjectIndex(row.getInteger("primary_key"), row.get("objDescr"), jdbc); // T01Object.objDescr
+					JDBCHelper.updateObjectIndex(row.getInteger("primary_key"), row.get("info_note"), jdbc); // T01Object.infoNote
+					JDBCHelper.updateObjectIndex(row.getInteger("primary_key"), row.get("avail_access_note"), jdbc); // T01Object.availAccessNote
+					JDBCHelper.updateObjectIndex(row.getInteger("primary_key"), row.get("loc_descr"), jdbc); // T01Object.locDescr
+					JDBCHelper.updateObjectIndex(row.getInteger("primary_key"), row.get("time_descr"), jdbc); // T01Object.timeDescr
+					JDBCHelper.updateObjectIndex(row.getInteger("primary_key"), row.get("dataset_alternate_name"), jdbc); // T01Object.datasetAlternateName
+					JDBCHelper.updateObjectIndex(row.getInteger("primary_key"), row.get("dataset_usage"), jdbc); // T01Object.datasetUsage
+					JDBCHelper.updateObjectIndex(row.getInteger("primary_key"), row.get("metadata_standard_name"), jdbc); // T01Object.metadataStandardName
+					JDBCHelper.updateObjectIndex(row.getInteger("primary_key"), row.get("metadata_standard_version"), jdbc); // T01Object.metadataStandardVersion
+					JDBCHelper.updateObjectIndex(row.getInteger("primary_key"), row.get("fees"), jdbc); // T01Object.fees
+					JDBCHelper.updateObjectIndex(row.getInteger("primary_key"), row.get("ordering_instructions"), jdbc); // T01Object.orderingInstructions
 				}
 
 			} else {
@@ -386,21 +385,20 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					// create and update full index
 					dataProvider.setId(dataProvider.getId() + 1);
 					JDBCHelper.createAddressIndex(dataProvider.getId(), row.getInteger("primary_key"), jdbc);
-					String idxVal =  row.get("adr_id"); // T02Address.adrUuid
-					idxVal += "|" + row.get("org_adr_id"); // T02Address.orgAdrId
-					idxVal += "|" + row.get("institution"); // T02Address.institution
-					idxVal += "|" + row.get("lastname"); // T02Address.lastname
-					idxVal += "|" + row.get("firstname"); // T02Address.firstname
-					idxVal += "|" + row.get("address"); // T02Address.addressValue
-					idxVal += "|" + row.get("title"); // T02Address.titleValue
-					idxVal += "|" + row.get("street"); // T02Address.street
-					idxVal += "|" + row.get("postcode"); // T02Address.postcode
-					idxVal += "|" + row.get("postbox"); // T02Address.postbox
-					idxVal += "|" + row.get("postbox_pc"); // T02Address.postboxPc
-					idxVal += "|" + row.get("city"); // T02Address.city
-					idxVal += "|" + row.get("job"); // T02Address.job
-					idxVal += "|" + row.get("descr"); // T02Address.descr
-					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), idxVal, jdbc);
+					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("adr_id"), jdbc); // T02Address.adrUuid
+					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("org_adr_id"), jdbc); // T02Address.orgAdrId
+					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("institution"), jdbc); // T02Address.institution
+					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("lastname"), jdbc); // T02Address.lastname
+					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("firstname"), jdbc); // T02Address.firstname
+					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("address"), jdbc); // T02Address.addressValue
+					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("title"), jdbc); // T02Address.titleValue
+					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("street"), jdbc); // T02Address.street
+					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("postcode"), jdbc); // T02Address.postcode
+					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("postbox"), jdbc); // T02Address.postbox
+					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("postbox_pc"), jdbc); // T02Address.postboxPc
+					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("city"), jdbc); // T02Address.city
+					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("job"), jdbc); // T02Address.job
+					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("descr"), jdbc); // T02Address.descr
 					
 				}
 			} else {
