@@ -506,10 +506,43 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 						jdbc.executeUpdate("UPDATE t03_catalogue SET spatial_ref_id = " + id + " WHERE id="
 								+ row.getInteger("primary_key") + ";");
 					}
+					rs.close();
 				}
 			}
 		}
-
+		
+		// set the correct obj_node_id to the object index table
+		// this is necessary, because the node_id is not yet known, when the index is created
+		for (Iterator<Row> i = dataProvider.getRowIterator("t01_object"); i.hasNext();) {
+			Row row = i.next();
+			if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
+				String sql = "SELECT id FROM object_node WHERE obj_id="
+					+ row.getInteger("primary_key");
+				ResultSet rs = jdbc.executeQuery(sql);
+				if (rs.next()) {
+					jdbc.executeUpdate("UPDATE full_index_obj SET obj_node_id = " + rs.getLong("id") + " WHERE obj_node_id="
+							+ row.getInteger("primary_key") + ";");
+				}
+				rs.close();
+			}
+		}
+		
+		// set the correct addr_node_id to the address index table
+		// this is necessary, because the node_id is not yet known, when the index is created
+		for (Iterator<Row> i = dataProvider.getRowIterator("t02_address"); i.hasNext();) {
+			Row row = i.next();
+			if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
+				String sql = "SELECT id FROM address_node WHERE addr_id="
+					+ row.getInteger("primary_key");
+				ResultSet rs = jdbc.executeQuery(sql);
+				if (rs.next()) {
+					jdbc.executeUpdate("UPDATE full_index_addr SET addr_node_id = " + rs.getLong("id") + " WHERE addr_node_id="
+							+ row.getInteger("primary_key") + ";");
+				}
+				rs.close();
+			}
+		}		
+			
 		if (log.isInfoEnabled()) {
 			log.info("Post processing ... done.");
 		}
