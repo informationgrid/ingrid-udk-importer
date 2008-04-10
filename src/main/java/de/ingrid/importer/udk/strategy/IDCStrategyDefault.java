@@ -571,6 +571,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 		final List<String> allowedSpecialRefEntries = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
+		final List<String> importedObjectNodes = new ArrayList<String>();
 
 		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=2000 AND entry_id IN (3100, 3210, 3345, 3515, 3520, 3535, 3555, 3570, 5066);";
 		ResultSet rs = jdbc.executeQuery(sql);
@@ -601,19 +602,28 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			} else if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
 				int cnt = 1;
 				if (row.getInteger("typ") != null && row.getInteger("typ") == 0) {
-					// structure
-					pSqlObjectNode.setInt(cnt++, row.getInteger("primary_key")); // id
-					pSqlObjectNode.setString(cnt++, row.get("object_to_id")); // object_uuid
-					pSqlObjectNode.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row
-							.get("object_to_id"))); // object_id
-					pSqlObjectNode.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row
-							.get("object_to_id"))); // object_id_published
-					pSqlObjectNode.setString(cnt++, row.get("object_from_id")); // fk_obj_uuid
-					try {
-						pSqlObjectNode.executeUpdate();
-					} catch (Exception e) {
-						log.error("Error executing SQL: " + pSqlObjectNode.toString(), e);
-						throw e;
+					if (importedObjectNodes.contains(row.get("object_to_id"))) {
+						if (log.isDebugEnabled()) {
+							log.debug("ObjectNode for obj_id='" + row.get("object_to_id") + "' already imported!");
+						}
+					} else {
+						// structure
+						pSqlObjectNode.setInt(cnt++, row.getInteger("primary_key")); // id
+						pSqlObjectNode.setString(cnt++, row.get("object_to_id")); // object_uuid
+						pSqlObjectNode.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row
+								.get("object_to_id"))); // object_id
+						pSqlObjectNode.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row
+								.get("object_to_id"))); // object_id_published
+						pSqlObjectNode.setString(cnt++, row.get("object_from_id")); // fk_obj_uuid
+						
+						importedObjectNodes.add(row.get("object_to_id"));
+						
+						try {
+							pSqlObjectNode.executeUpdate();
+						} catch (Exception e) {
+							log.error("Error executing SQL: " + pSqlObjectNode.toString(), e);
+							throw e;
+						}
 					}
 				} else if (row.getInteger("typ") != null && row.getInteger("typ") == 1) {
 					skipRecord = false;
