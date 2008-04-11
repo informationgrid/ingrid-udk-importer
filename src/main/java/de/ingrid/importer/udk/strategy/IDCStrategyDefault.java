@@ -95,6 +95,9 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 		sqlStr = "DELETE FROM t01_object";
 		jdbc.executeUpdate(sqlStr);
+		
+		sqlStr = "DELETE FROM full_index_obj";
+		jdbc.executeUpdate(sqlStr);
 
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
@@ -268,6 +271,9 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		sqlStr = "DELETE FROM t02_address";
 		jdbc.executeUpdate(sqlStr);
 
+		sqlStr = "DELETE FROM full_index_addr";
+		jdbc.executeUpdate(sqlStr);
+		
 		final List<String> allowedSpecialRefTitleEntries = new ArrayList<String>();
 		final List<String> allowedSpecialRefTitleEntryNames = new ArrayList<String>();
 
