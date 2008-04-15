@@ -77,13 +77,14 @@ public class JDBCHelper {
 		}
 	}
 
-	public static void createAddressIndex(long id, long addrId, JDBCConnectionProxy jdbc) throws Exception {
-		jdbc.executeUpdate("DELETE FROM full_index_addr WHERE addr_node_id = " + addrId + " AND idx_name = 'full'");
+	public static void createAddressIndex(long id, long addrId, String idxName, JDBCConnectionProxy jdbc) throws Exception {
+		jdbc.executeUpdate("DELETE FROM full_index_addr WHERE addr_node_id = " + addrId + " AND idx_name = '" + idxName + "'");
 		
-		String pSqlStr = "INSERT INTO full_index_addr (id, addr_node_id, idx_name, idx_value) VALUES (?, ?, 'full', '')";
+		String pSqlStr = "INSERT INTO full_index_addr (id, addr_node_id, idx_name, idx_value) VALUES (?, ?, ?, '')";
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 		p.setLong(1, id);
 		p.setLong(2, addrId);
+		p.setString(3, idxName);
 		
 		try {
 			p.executeUpdate();
@@ -94,10 +95,14 @@ public class JDBCHelper {
 	}
 
 	public static void updateAddressIndex(long addrId, String token, JDBCConnectionProxy jdbc) throws Exception {
+		JDBCHelper.updateAddressIndex(addrId, token, "full", jdbc);
+	}
+
+	public static void updateAddressIndex(long addrId, String token, String idxName, JDBCConnectionProxy jdbc) throws Exception {
 		if (token==null || token.length() == 0) {
 			return;
 		}
-		String pSqlStr = "UPDATE full_index_addr SET idx_value = concat(idx_value, ?) WHERE addr_node_id = ? AND idx_name = 'full'";
+		String pSqlStr = "UPDATE full_index_addr SET idx_value = concat(idx_value, ?) WHERE addr_node_id = ? AND idx_name = '" + idxName + "'";
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 		p.setString(1, "|" + token);
 		p.setLong(2, addrId);
@@ -109,5 +114,5 @@ public class JDBCHelper {
 			throw e;
 		}
 	}
-
+	
 }

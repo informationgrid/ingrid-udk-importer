@@ -390,12 +390,17 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 					// create and update full index
 					dataProvider.setId(dataProvider.getId() + 1);
-					JDBCHelper.createAddressIndex(dataProvider.getId(), row.getInteger("primary_key"), jdbc);
+					JDBCHelper.createAddressIndex(dataProvider.getId(), row.getInteger("primary_key"), "full", jdbc);
+					dataProvider.setId(dataProvider.getId() + 1);
+					JDBCHelper.createAddressIndex(dataProvider.getId(), row.getInteger("primary_key"), "partial", jdbc);
 					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("adr_id"), jdbc); // T02Address.adrUuid
 					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("org_adr_id"), jdbc); // T02Address.orgAdrId
 					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("institution"), jdbc); // T02Address.institution
+					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("institution"), "partial", jdbc); // T02Address.institution in partial idx
 					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("lastname"), jdbc); // T02Address.lastname
+					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("lastname"), "partial", jdbc); // T02Address.lastname in partial idx
 					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("firstname"), jdbc); // T02Address.firstname
+					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("firstname"), "partial", jdbc); // T02Address.firstname in partial idx 
 					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("address"), jdbc); // T02Address.addressValue
 					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("title"), jdbc); // T02Address.titleValue
 					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("street"), jdbc); // T02Address.street
@@ -405,6 +410,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("city"), jdbc); // T02Address.city
 					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("job"), jdbc); // T02Address.job
 					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("descr"), jdbc); // T02Address.descr
+					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("descr"), "partial", jdbc); // T02Address.descr in partial idx
 					
 				}
 			} else {
@@ -3015,6 +3021,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 						}
 						// update full text index
 						JDBCHelper.updateAddressIndex(addrId, row.get("searchterm"), jdbc); // SearchtermValue.term
+						JDBCHelper.updateAddressIndex(addrId, row.get("searchterm"), "partial", jdbc); // SearchtermValue.term in partial idx
 
 					}
 				} else if (row.getInteger("type") != null && row.getInteger("type") == 4) {
@@ -3098,7 +3105,9 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 						}
 						// update full text index
 						JDBCHelper.updateAddressIndex(addrId, row.get("searchterm"), jdbc); // SearchtermValue.term
+						JDBCHelper.updateAddressIndex(addrId, row.get("searchterm"), "partial", jdbc); // SearchtermValue.term in partial idx
 						JDBCHelper.updateAddressIndex(addrId, "uba_thes_".concat(snsTopicId), jdbc); // SearchtermSns.snsId
+						JDBCHelper.updateAddressIndex(addrId, "uba_thes_".concat(snsTopicId), "partial", jdbc); // SearchtermSns.snsId in partial idx
 
 					}
 				}
