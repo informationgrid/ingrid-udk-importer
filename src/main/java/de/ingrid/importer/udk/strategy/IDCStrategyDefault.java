@@ -3625,7 +3625,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		// import default admin user
 		dataProvider.setId(dataProvider.getId() + 1);
 		long userId = dataProvider.getId();
-		sqlStr = "INSERT INTO idc_user ( id, addr_uuid, idc_group_id, idc_role) VALUES (" + userId + ", '"+uuid+"', "+groupId+", 0 );";
+		sqlStr = "INSERT INTO idc_user ( id, addr_uuid, idc_group_id, idc_role) VALUES (" + userId + ", '"+uuid+"', "+groupId+", 1 );";
 		jdbc.executeUpdate(sqlStr);
 		
 		// import permissions
