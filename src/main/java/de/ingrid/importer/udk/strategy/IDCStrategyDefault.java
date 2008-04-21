@@ -44,6 +44,8 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 	private ArrayList<String> duplicateEntries;
 
+	static Integer ADDRESS_TYPE_PERSON = 2;  
+
 	static String IDX_SEPARATOR = "|";  
 	static String IDX_NAME_THESAURUS = "thesaurus";
 	static String IDX_NAME_GEOTHESAURUS = "geothesaurus";
@@ -349,8 +351,14 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					p.setInt(cnt++, row.getInteger("primary_key")); // id
 					p.setString(cnt++, row.get("adr_id")); // adr_uuid
 					p.setString(cnt++, row.get("org_adr_id")); // org_adr_id
-					JDBCHelper.addInteger(p, cnt++, row.getInteger("typ")); // typ
-					p.setString(cnt++, row.get("institution")); // institution
+					Integer addrType = row.getInteger("typ");
+					JDBCHelper.addInteger(p, cnt++, addrType); // adr_type
+					// institution only if not person ! see http://jira.media-style.com/browse/INGRIDII-146
+					String institution = row.get("institution");
+					if (ADDRESS_TYPE_PERSON.equals(addrType)) {
+						institution = null;
+					}
+					p.setString(cnt++, institution); // institution						
 					p.setString(cnt++, row.get("lastname")); // lastname
 					p.setString(cnt++, row.get("firstname")); // firstname
 					if (row.get("address") != null && allowedSpecialRefAddressEntryNames.contains(row.get("address").toLowerCase())) {
@@ -405,8 +413,10 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("adr_id"), jdbc); // T02Address.adrUuid
 					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("org_adr_id"), jdbc); // T02Address.orgAdrId
-					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("institution"), jdbc); // T02Address.institution
-					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("institution"), "partial", jdbc); // T02Address.institution in partial idx
+					if (institution != null) {
+						JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), institution, jdbc); // T02Address.institution
+						JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), institution, "partial", jdbc); // T02Address.institution in partial idx						
+					}
 					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("lastname"), jdbc); // T02Address.lastname
 					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("lastname"), "partial", jdbc); // T02Address.lastname in partial idx
 					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("firstname"), jdbc); // T02Address.firstname
