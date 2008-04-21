@@ -44,6 +44,10 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 	private ArrayList<String> duplicateEntries;
 
+	static String IDX_SEPARATOR = "|";  
+	static String IDX_NAME_THESAURUS = "thesaurus";
+	static String IDX_NAME_GEOTHESAURUS = "geothesaurus";
+
 	public void setDataProvider(DataProvider data) {
 		dataProvider = data;
 	}
@@ -216,9 +220,14 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 						throw e;
 					}
 					
-					// create and update full index
-					dataProvider.setId(dataProvider.getId() + 1);
-					JDBCHelper.createObjectIndex(dataProvider.getId(), row.getInteger("primary_key"), jdbc);
+					// create and update index data
+					dataProvider.setId(dataProvider.getId() + 1);					
+					JDBCHelper.createObjectIndex(dataProvider.getId(), row.getInteger("primary_key"), "full", jdbc);
+					dataProvider.setId(dataProvider.getId() + 1);					
+					JDBCHelper.createObjectIndex(dataProvider.getId(), row.getInteger("primary_key"), IDX_NAME_THESAURUS, jdbc);
+					dataProvider.setId(dataProvider.getId() + 1);					
+					JDBCHelper.createObjectIndex(dataProvider.getId(), row.getInteger("primary_key"), IDX_NAME_GEOTHESAURUS, jdbc);
+
 					JDBCHelper.updateObjectIndex(row.getInteger("primary_key"), row.get("obj_id"), jdbc); // T01Object.objUuid
 					JDBCHelper.updateObjectIndex(row.getInteger("primary_key"), row.get("obj_name"), jdbc); // T01Object.objName
 					JDBCHelper.updateObjectIndex(row.getInteger("primary_key"), row.get("org_id"), jdbc); // T01Object.orgObjId
@@ -393,6 +402,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					JDBCHelper.createAddressIndex(dataProvider.getId(), row.getInteger("primary_key"), "full", jdbc);
 					dataProvider.setId(dataProvider.getId() + 1);
 					JDBCHelper.createAddressIndex(dataProvider.getId(), row.getInteger("primary_key"), "partial", jdbc);
+
 					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("adr_id"), jdbc); // T02Address.adrUuid
 					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("org_adr_id"), jdbc); // T02Address.orgAdrId
 					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("institution"), jdbc); // T02Address.institution
@@ -555,6 +565,10 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			}
 		}		
 			
+		// final closing separator in object index and address index
+		jdbc.executeUpdate("UPDATE full_index_obj SET idx_value = concat(idx_value, '" + IDX_SEPARATOR + "');");
+		jdbc.executeUpdate("UPDATE full_index_addr SET idx_value = concat(idx_value, '" + IDX_SEPARATOR + "');");
+
 		if (log.isInfoEnabled()) {
 			log.info("Post processing ... done.");
 		}
@@ -2528,7 +2542,10 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				JDBCHelper.updateObjectIndex(objId, locName, jdbc);
 				JDBCHelper.updateObjectIndex(objId, topicId, jdbc);
 				JDBCHelper.updateObjectIndex(objId, IDCStrategyHelper.transformNativeKey2FullAgs(row.get("township_no")), jdbc);
-				
+				// update geothesaurus index
+				if (topicId != null) {
+					JDBCHelper.updateObjectIndex(objId, topicId, IDX_NAME_GEOTHESAURUS, jdbc); // SpatialRefSns.snsId
+				}
 			}
 		}
 		if (log.isInfoEnabled()) {
@@ -2965,10 +2982,11 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 						}
 
 						// update full text index
-						JDBCHelper.updateObjectIndex(IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row
-								.get("obj_id")), row.get("searchterm"), jdbc); // SearchtermValue.term
-						JDBCHelper.updateObjectIndex(IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row
-								.get("obj_id")), "uba_thes_".concat(snsTopicId), jdbc); // SearchtermSns.snsId
+						int objId = IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"));
+						JDBCHelper.updateObjectIndex(objId, row.get("searchterm"), jdbc); // SearchtermValue.term in full index
+						String snsId = "uba_thes_".concat(snsTopicId);
+						JDBCHelper.updateObjectIndex(objId, snsId, jdbc); // SearchtermSns.snsId in full index
+						JDBCHelper.updateObjectIndex(objId, snsId, IDX_NAME_THESAURUS, jdbc); // SearchtermSns.snsId in thesaurus index
 						
 					}
 				} else if (row.getInteger("type") != null && row.getInteger("type") == 3) {
