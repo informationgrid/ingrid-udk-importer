@@ -3,10 +3,17 @@
  */
 package de.ingrid.importer.udk.strategy;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
+import java.util.Iterator;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import de.ingrid.importer.udk.provider.Row;
+import de.ingrid.importer.udk.util.UuidGenerator;
 
 /**
  * @author Administrator
@@ -33,7 +40,14 @@ public class IDCInitDBStrategy1_0_2 extends IDCStrategyDefault {
 			System.out.println("done.");
 			
 			System.out.print("  Importing default address/permission for admin...");
+			sqlStr = "DELETE FROM t02_address";
+			jdbc.executeUpdate(sqlStr);
+			sqlStr = "DELETE FROM address_node";
+			jdbc.executeUpdate(sqlStr);
 			importDefaultUserdata();
+			System.out.println("done.");
+			System.out.print("  Creating default catalog...");
+			importDefaultCatalogData();
 			System.out.println("done.");
 			jdbc.commit();
 			
@@ -64,5 +78,57 @@ public class IDCInitDBStrategy1_0_2 extends IDCStrategyDefault {
 			}
 		}
 	}
+	
+	protected void importDefaultCatalogData() throws Exception {
+
+		if (log.isInfoEnabled()) {
+			log.info("Creating default catalog...");
+		}
+
+		pSqlStr = "INSERT INTO t03_catalogue (id, cat_uuid, cat_name, country_code,"
+				+ "workflow_control, expiry_duration, create_time, mod_uuid, mod_time, language_code) VALUES "
+				+ "( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+
+		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
+
+		sqlStr = "DELETE FROM t03_catalogue";
+		jdbc.executeUpdate(sqlStr);
+
+		int cnt = 1;
+		dataProvider.setId(dataProvider.getId() + 1);
+		p.setLong(cnt++, dataProvider.getId()); // id
+		p.setString(cnt++, UuidGenerator.getInstance().generateUuid()); // cat_uuid
+		p.setString(cnt++, "default catalog"); // cat_name
+		p.setString(cnt++, IDCStrategyHelper.transCountryCode("D")); // country_code
+		p.setString(cnt++, "N"); // workflow_control
+		p.setNull(cnt++, Types.INTEGER); // expiry_duration
+		p.setString(cnt++, IDCStrategyHelper.transDateTime("01.05.2008")); // create_time
+		
+		String modId = null;
+		
+		String sql = "SELECT adr_uuid FROM t02_address;";
+		ResultSet rs = jdbc.executeQuery(sql);
+		if (rs.next()) {
+			modId = rs.getString("adr_uuid");
+		}
+		rs.close();
+		
+		if (modId == null) {
+			modId = "";
+		}
+		p.setString(cnt++, modId); // mod_uuid,
+		p.setString(cnt++, IDCStrategyHelper.transDateTime("01.05.2008")); // mod_time
+		p.setString(cnt++, "de"); // language_code
+		try {
+			p.executeUpdate();
+		} catch (Exception e) {
+			log.error("Error executing SQL: " + p.toString(), e);
+			throw e;
+		}
+
+		if (log.isInfoEnabled()) {
+			log.info("Creating default catalog... done.");
+		}
+	}	
 
 }
