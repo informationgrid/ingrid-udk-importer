@@ -20,6 +20,8 @@ public class IDCStrategyFactory {
 			throw new IllegalArgumentException("IDC version  not set in import descriptor.");
 		} else if (idcVersion.equals("1.0.2")) {
 			return new IDCStrategy1_0_2();
+		} else if (idcVersion.equals("1.0.2_init")) {
+			return new IDCInitDBStrategy1_0_2();
 		} else {
 			log.error("Unknown IDC version '" + idcVersion + "'.");
 			throw new IllegalArgumentException("Unknown IDC version '" + idcVersion + "'.");

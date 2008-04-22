@@ -4,7 +4,9 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import de.ingrid.importer.udk.jdbc.JDBCConnectionProxy;
+import de.ingrid.importer.udk.provider.DataProvider;
 import de.ingrid.importer.udk.provider.InMemoryDataProvider;
+import de.ingrid.importer.udk.provider.LazyInMemoryDataProvider;
 import de.ingrid.importer.udk.strategy.IDCStrategy;
 import de.ingrid.importer.udk.strategy.IDCStrategyFactory;
 
@@ -33,7 +35,7 @@ public class Importer {
 		}
 
 		System.out.print("  reading data...");
-		InMemoryDataProvider data = new InMemoryDataProvider(descriptor);
+		DataProvider data = new LazyInMemoryDataProvider(descriptor);
 		System.out.println(" done.");
 
 		// remove temp dir
