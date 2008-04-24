@@ -27,4 +27,8 @@ public class IDCStrategyFactory {
 			throw new IllegalArgumentException("Unknown IDC version '" + idcVersion + "'.");
 		}
 	}
+	
+	public IDCStrategy getHelpImporterStrategy() {
+		return new IDCHelpImporterStrategy();
+	}
 }
