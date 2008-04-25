@@ -3658,16 +3658,10 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		
 		// import permissions
 		dataProvider.setId(dataProvider.getId() + 1);
-		sqlStr = "INSERT INTO permission ( id , class_name , name , action ) VALUES ( " + dataProvider.getId() + ", 'IdcObjectPermission', 'object', 'write');";
+		sqlStr = "INSERT INTO permission ( id , class_name , name , action ) VALUES ( " + dataProvider.getId() + ", 'IdcEntityPermission', 'entity', 'write');";
 		jdbc.executeUpdate(sqlStr);
 		dataProvider.setId(dataProvider.getId() + 1);
-		sqlStr = "INSERT INTO permission ( id , class_name , name , action ) VALUES ( " + dataProvider.getId() + ", 'IdcObjectPermission', 'object', 'write-tree');";
-		jdbc.executeUpdate(sqlStr);
-		dataProvider.setId(dataProvider.getId() + 1);
-		sqlStr = "INSERT INTO permission ( id , class_name , name , action ) VALUES ( " + dataProvider.getId() + ", 'IdcAddressPermission', 'address', 'write');";
-		jdbc.executeUpdate(sqlStr);
-		dataProvider.setId(dataProvider.getId() + 1);
-		sqlStr = "INSERT INTO permission ( id , class_name , name , action ) VALUES ( " + dataProvider.getId() + ", 'IdcAddressPermission', 'address', 'write-tree');";
+		sqlStr = "INSERT INTO permission ( id , class_name , name , action ) VALUES ( " + dataProvider.getId() + ", 'IdcEntityPermission', 'entity', 'write-tree');";
 		jdbc.executeUpdate(sqlStr);
 		dataProvider.setId(dataProvider.getId() + 1);
 		long permissionCreateCatalodId = dataProvider.getId();
