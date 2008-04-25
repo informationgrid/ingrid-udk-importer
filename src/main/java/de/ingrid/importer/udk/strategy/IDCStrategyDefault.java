@@ -2484,7 +2484,8 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					cnt = 1;
 					dataProvider.setId(dataProvider.getId() + 1);
 
-					pSpatialRefValue.setLong(cnt++, dataProvider.getId()); // id
+					pSpatialRefValueId = dataProvider.getId();
+					pSpatialRefValue.setLong(cnt++, pSpatialRefValueId); // id
 					pSpatialRefValue.setString(cnt++, "G"); // type
 					if (spatialRefSnsId > 0) {
 						pSpatialRefValue.setLong(cnt++, spatialRefSnsId); // spatial_ref_sns_id
@@ -2526,7 +2527,6 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 							dataProvider, "t01_st_bbox", "loc_town_no", row.get("township_no"), "y2")); // y2
 					try {
 						pSpatialRefValue.executeUpdate();
-						pSpatialRefValueId = dataProvider.getId();
 						storedNativekeys.put(row.get("township_no"), new Long(pSpatialRefValueId));
 					} catch (Exception e) {
 						log.error("Error executing SQL: " + pSpatialRefValue.toString(), e);
