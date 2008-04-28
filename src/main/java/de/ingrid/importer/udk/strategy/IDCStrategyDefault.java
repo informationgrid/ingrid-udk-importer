@@ -3674,10 +3674,10 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		
 		// import user permissions
 		dataProvider.setId(dataProvider.getId() + 1);
-		sqlStr = "INSERT INTO idc_user_permission ( id , permission_id , idc_user_id ) VALUES ( " + dataProvider.getId() + ", "+permissionCreateCatalodId+", "+userId+");";
+		sqlStr = "INSERT INTO idc_user_permission ( id , permission_id , idc_group_id ) VALUES ( " + dataProvider.getId() + ", "+permissionCreateCatalodId+", "+groupId+");";
 		jdbc.executeUpdate(sqlStr);
 		dataProvider.setId(dataProvider.getId() + 1);
-		sqlStr = "INSERT INTO idc_user_permission ( id , permission_id , idc_user_id ) VALUES ( " + dataProvider.getId() + ", "+permissionCreateQaId+", "+userId+");";
+		sqlStr = "INSERT INTO idc_user_permission ( id , permission_id , idc_group_id ) VALUES ( " + dataProvider.getId() + ", "+permissionCreateQaId+", "+groupId+");";
 		jdbc.executeUpdate(sqlStr);
 	}
 	
