@@ -11,7 +11,7 @@ import de.ingrid.importer.udk.strategy.IDCStrategy;
 import de.ingrid.importer.udk.strategy.IDCStrategyFactory;
 
 /**
- * Hello world!
+ * UDK Data Importer UDK5.0 -> IDC.
  * 
  */
 public class Importer {
