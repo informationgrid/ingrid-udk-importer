@@ -526,6 +526,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		}
 
 		// get spatial ref id for the catalog
+		// ---------------------------------------------
 		if (log.isInfoEnabled()) {
 			log.info("update spatial ref id for the catalog ...");
 		}
@@ -550,6 +551,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		
 		// set the correct obj_node_id to the object index table
 		// this is necessary, because the node_id is not yet known, when the index is created
+		// ---------------------------------------------
 		if (log.isInfoEnabled()) {
 			log.info("update obj_node_id in object index ...");
 		}
@@ -569,6 +571,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		
 		// set the correct addr_node_id to the address index table
 		// this is necessary, because the node_id is not yet known, when the index is created
+		// ---------------------------------------------
 		if (log.isInfoEnabled()) {
 			log.info("update addr_node_id in address index ...");
 		}
@@ -587,13 +590,16 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		}		
 			
 		// final closing separator in object index and address index
+		// ---------------------------------------------
 		if (log.isInfoEnabled()) {
 			log.info("add closing separator to object/address index ...");
 		}
 		jdbc.executeUpdate("UPDATE full_index_obj SET idx_value = concat(idx_value, '" + IDX_SEPARATOR + "');");
 		jdbc.executeUpdate("UPDATE full_index_addr SET idx_value = concat(idx_value, '" + IDX_SEPARATOR + "');");
 
+
 		// set responsible user to cat-admin in entities
+		// ---------------------------------------------
 		if (log.isInfoEnabled()) {
 			log.info("set responsible_uuid in entities to cat admin ...");
 		}
@@ -614,6 +620,20 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			}			
 		}
 
+		// set default language of metadata entities (=default entry in sys_list 99999999)
+		// ---------------------------------------------
+		if (log.isInfoEnabled()) {
+			log.info("set default language of metadata entities ...");
+		}
+		// first check whether defaults set
+		rs = jdbc.executeQuery("SELECT id FROM sys_list WHERE lst_id=99999999 AND is_default = 'Y'");
+		boolean hasDefaults = rs.next();
+		rs.close();
+		if (!hasDefaults) {
+			// default is german (=121) ! set in all localized versions as default (lang_id='de' -> "Deutsch", lang_id='en' -> "German", ...)
+			jdbc.executeUpdate("UPDATE sys_list SET is_default = 'Y' WHERE lst_id=99999999 AND entry_id=121;");
+		}
+		
 		if (log.isInfoEnabled()) {
 			log.info("Post processing ... done.");
 		}
