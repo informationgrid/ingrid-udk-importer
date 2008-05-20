@@ -49,6 +49,8 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 	static String IDX_SEPARATOR = "|";  
 	static String IDX_NAME_THESAURUS = "thesaurus";
 	static String IDX_NAME_GEOTHESAURUS = "geothesaurus";
+	
+	static int ROLE_CATALOG_ADMINISTRATOR = 1;
 
 	public void setDataProvider(DataProvider data) {
 		dataProvider = data;
@@ -524,6 +526,9 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		}
 
 		// get spatial ref id for the catalog
+		if (log.isInfoEnabled()) {
+			log.info("update spatial ref id for the catalog ...");
+		}
 		for (Iterator<Row> i = dataProvider.getRowIterator("t03_catalogue"); i.hasNext();) {
 			Row row = i.next();
 			if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
@@ -545,6 +550,9 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		
 		// set the correct obj_node_id to the object index table
 		// this is necessary, because the node_id is not yet known, when the index is created
+		if (log.isInfoEnabled()) {
+			log.info("update obj_node_id in object index ...");
+		}
 		for (Iterator<Row> i = dataProvider.getRowIterator("t01_object"); i.hasNext();) {
 			Row row = i.next();
 			if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
@@ -561,6 +569,9 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		
 		// set the correct addr_node_id to the address index table
 		// this is necessary, because the node_id is not yet known, when the index is created
+		if (log.isInfoEnabled()) {
+			log.info("update addr_node_id in address index ...");
+		}
 		for (Iterator<Row> i = dataProvider.getRowIterator("t02_address"); i.hasNext();) {
 			Row row = i.next();
 			if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
@@ -576,8 +587,32 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		}		
 			
 		// final closing separator in object index and address index
+		if (log.isInfoEnabled()) {
+			log.info("add closing separator to object/address index ...");
+		}
 		jdbc.executeUpdate("UPDATE full_index_obj SET idx_value = concat(idx_value, '" + IDX_SEPARATOR + "');");
 		jdbc.executeUpdate("UPDATE full_index_addr SET idx_value = concat(idx_value, '" + IDX_SEPARATOR + "');");
+
+		// set responsible user to cat-admin in entities
+		if (log.isInfoEnabled()) {
+			log.info("set responsible_uuid in entities to cat admin ...");
+		}
+		String catAdminUuid = null;
+		String sql = "SELECT addr_uuid FROM idc_user WHERE idc_role=" + ROLE_CATALOG_ADMINISTRATOR;
+		ResultSet rs = jdbc.executeQuery(sql);
+		if (rs.next()) {
+			catAdminUuid = rs.getString("addr_uuid");
+		}
+		rs.close();
+		
+		if (catAdminUuid != null) {
+			jdbc.executeUpdate("UPDATE t01_object SET responsible_uuid = '" + catAdminUuid + "';");
+			jdbc.executeUpdate("UPDATE t02_address SET responsible_uuid = '" + catAdminUuid + "';");			
+		} else {
+			if (log.isInfoEnabled()) {
+				log.info("Couldn't find addr_uuid of CATALOG_ADMINISTRATOR ! sql = '" + sql + "'");
+			}			
+		}
 
 		if (log.isInfoEnabled()) {
 			log.info("Post processing ... done.");
@@ -3653,7 +3688,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		// import default admin user
 		dataProvider.setId(dataProvider.getId() + 1);
 		long userId = dataProvider.getId();
-		sqlStr = "INSERT INTO idc_user ( id, addr_uuid, idc_group_id, idc_role) VALUES (" + userId + ", '"+uuid+"', "+groupId+", 1 );";
+		sqlStr = "INSERT INTO idc_user ( id, addr_uuid, idc_group_id, idc_role) VALUES (" + userId + ", '"+uuid+"', "+groupId+", "+ROLE_CATALOG_ADMINISTRATOR+" );";
 		jdbc.executeUpdate(sqlStr);
 		
 		// import permissions
