@@ -289,24 +289,28 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		
 		final List<String> allowedSpecialRefTitleEntries = new ArrayList<String>();
 		final List<String> allowedSpecialRefTitleEntryNames = new ArrayList<String>();
+		final List<String> allowedSpecialRefTitleEntryNamesLowerCase = new ArrayList<String>();
 
 		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=4305;";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
-				allowedSpecialRefTitleEntryNames.add(rs.getString("name").toLowerCase());
+				allowedSpecialRefTitleEntryNames.add(rs.getString("name"));
+				allowedSpecialRefTitleEntryNamesLowerCase.add(rs.getString("name").toLowerCase());
 				allowedSpecialRefTitleEntries.add(rs.getString("entry_id"));
 			}
 		}
 		rs.close();
 		final List<String> allowedSpecialRefAddressEntries = new ArrayList<String>();
 		final List<String> allowedSpecialRefAddressEntryNames = new ArrayList<String>();
+		final List<String> allowedSpecialRefAddressEntryNamesLowerCase = new ArrayList<String>();
 
 		sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=4300;";
 		rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
-				allowedSpecialRefAddressEntryNames.add(rs.getString("name").toLowerCase());
+				allowedSpecialRefAddressEntryNames.add(rs.getString("name"));
+				allowedSpecialRefAddressEntryNamesLowerCase.add(rs.getString("name").toLowerCase());
 				allowedSpecialRefAddressEntries.add(rs.getString("entry_id"));
 			}
 		}
@@ -363,20 +367,39 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					p.setString(cnt++, institution); // institution						
 					p.setString(cnt++, row.get("lastname")); // lastname
 					p.setString(cnt++, row.get("firstname")); // firstname
-					if (row.get("address") != null && allowedSpecialRefAddressEntryNames.contains(row.get("address").toLowerCase())) {
-						p.setNull(cnt++, Types.VARCHAR); // address_value
-						p.setInt(cnt++, Integer.parseInt(allowedSpecialRefAddressEntries.get(allowedSpecialRefAddressEntryNames.indexOf(row.get("address").toLowerCase())))); // address_key
+
+					// try to find entry in syslist
+					int entryIndex = -1;
+					if (row.get("address") != null) {
+						entryIndex = allowedSpecialRefAddressEntryNamesLowerCase.indexOf(row.get("address").toLowerCase());
+					}
+					String addressValueWritten = row.get("address");
+					if (entryIndex != -1) {
+						// we set also value from entry !!! necessary for mapping !
+						addressValueWritten = allowedSpecialRefAddressEntryNames.get(entryIndex);
+						p.setString(cnt++, addressValueWritten); // address_value
+						p.setInt(cnt++, Integer.parseInt(allowedSpecialRefAddressEntries.get(entryIndex))); // address_key
 					} else {
-						p.setString(cnt++, row.get("address")); // address_value
+						p.setString(cnt++, addressValueWritten); // address_value
 						p.setInt(cnt++, -1); // address_key
 					}
-					if (row.get("title") != null && allowedSpecialRefTitleEntryNames.contains(row.get("title").toLowerCase())) {
-						p.setNull(cnt++, Types.VARCHAR); // title_value
-						p.setInt(cnt++, Integer.parseInt(allowedSpecialRefTitleEntries.get(allowedSpecialRefTitleEntryNames.indexOf(row.get("title").toLowerCase())))); // title_key
+
+					// try to find entry in syslist
+					entryIndex = -1;
+					if (row.get("title") != null) {
+						entryIndex = allowedSpecialRefTitleEntryNamesLowerCase.indexOf(row.get("title").toLowerCase());
+					}
+					String titleValueWritten = row.get("title");
+					if (entryIndex != -1) {
+						// we set also value from entry !!! necessary for mapping !
+						titleValueWritten = allowedSpecialRefTitleEntryNames.get(entryIndex);
+						p.setString(cnt++, titleValueWritten); // title_value
+						p.setInt(cnt++, Integer.parseInt(allowedSpecialRefTitleEntries.get(entryIndex))); // title_key
 					} else {
-						p.setString(cnt++, row.get("title")); // title_value
+						p.setString(cnt++, titleValueWritten); // title_value
 						p.setInt(cnt++, -1); // title_key
 					}
+
 					p.setString(cnt++, row.get("street")); // street
 					p.setString(cnt++, row.get("postcode")); // postcode
 					p.setString(cnt++, row.get("postbox")); // postbox
@@ -423,8 +446,8 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("lastname"), "partial", jdbc); // T02Address.lastname in partial idx
 					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("firstname"), jdbc); // T02Address.firstname
 					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("firstname"), "partial", jdbc); // T02Address.firstname in partial idx 
-					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("address"), jdbc); // T02Address.addressValue
-					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("title"), jdbc); // T02Address.titleValue
+					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), addressValueWritten, jdbc); // T02Address.addressValue
+					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), titleValueWritten, jdbc); // T02Address.titleValue
 					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("street"), jdbc); // T02Address.street
 					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("postcode"), jdbc); // T02Address.postcode
 					JDBCHelper.updateAddressIndex(row.getInteger("primary_key"), row.get("postbox"), jdbc); // T02Address.postbox
@@ -662,13 +685,15 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 		final List<String> allowedSpecialRefEntries = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
+		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 		final List<String> importedObjectNodes = new ArrayList<String>();
 
 		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=2000 AND entry_id IN (3100, 3210, 3345, 3515, 3520, 3535, 3555, 3570, 5066);";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
-				allowedSpecialRefEntryNames.add(rs.getString("name").toLowerCase());
+				allowedSpecialRefEntryNames.add(rs.getString("name"));
+				allowedSpecialRefEntryNamesLowerCase.add(rs.getString("name").toLowerCase());
 				allowedSpecialRefEntries.add(rs.getString("entry_id"));
 			}
 		}
@@ -723,61 +748,86 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 							.get("object_from_id"))); // object_from_uuid
 					pSqlObjectReference.setString(cnt++, row.get("object_to_id")); // object_to_uuid
 					pSqlObjectReference.setInt(cnt++, row.getInteger("line")); // line
-					if (allowedSpecialRefEntries.contains(row.get("special_ref"))) {
-						JDBCHelper.addInteger(pSqlObjectReference, cnt++, row.getInteger("special_ref")); // special_ref
-						pSqlObjectReference.setString(cnt++, null); // special_name
-					} else if (row.get("special_name") != null
-							&& !allowedSpecialRefEntryNames.contains(row.get("special_name").toLowerCase())) {
-						if (row.get("special_ref") != null && row.getInteger("special_ref") != 0
-								&& !allowedSpecialRefEntries.contains(row.get("special_ref"))) {
+
+					// try to find entry in sys_list
+					int entryIndex = -1;
+
+					// first analyze special_ref
+					boolean hasSpecialRef = false;
+					if (row.get("special_ref") != null && row.getInteger("special_ref") != 0) {
+						hasSpecialRef = true;
+						entryIndex = allowedSpecialRefEntries.indexOf(row.get("special_ref"));
+					}
+
+					// then analyze special_name if necessary
+					boolean hasSpecialName = false;
+					if (row.get("special_name") != null && row.get("special_name").trim().length() > 0) {
+						hasSpecialName = true;
+						
+						// analyze special name if entry not found yet
+						if (entryIndex == -1) {
+							entryIndex = allowedSpecialRefEntryNamesLowerCase.indexOf(row.get("special_name").toLowerCase());
+
+							if (entryIndex != -1) {
+								// fits object class to syslist entry ? if not then do free entry !
+								
+								// get according key (special_ref)
+								int specialRef = Integer.parseInt(allowedSpecialRefEntries.get(entryIndex));
+								// get object class
+								Integer objClass = IDCStrategyHelper.getEntityFieldValueAsInteger(dataProvider, "t01_object", "obj_id", row.get("obj_id"), "obj_class");
+								if (objClass == null) {
+									entryIndex = -1;
+								} else if (specialRef == 3210 && objClass == 2) {
+									// "Basisdaten" of wrong object class, we set to "Basisdaten" of correct class
+									entryIndex = allowedSpecialRefEntries.indexOf("3345");
+								} else if (specialRef == 3345 && objClass == 3) {
+									// "Basisdaten" of wrong object class, we set to "Basisdaten" of correct class
+									entryIndex = allowedSpecialRefEntries.indexOf("3210");
+								} else if (specialRef == 3210 && objClass == 3) {
+									// correct index
+								} else if (specialRef == 3345 && objClass == 2) {
+									// correct index
+								} else if (specialRef == 3100 && objClass == 5) {
+									// correct index
+								} else if ((specialRef == 3515 || specialRef == 3520 || specialRef == 3535 || specialRef == 3555 || specialRef == 3570 || specialRef == 5066) && objClass == 1) {
+									// correct index
+								} else {
+									entryIndex = -1;
+								}
+
+								// log whether entry key was determined via name !
+								if (entryIndex != -1 && hasSpecialRef) {
+									int newSpecialRef = Integer.parseInt(allowedSpecialRefEntries.get(entryIndex));
+									log.info("Invalid special_ref '" + row.get("special_ref")
+										+ "' found !!! We set new special_ref '" + newSpecialRef + "' detected via special_name='"
+										+ row.get("special_name") + "'.");							
+								}
+							}
+						}
+					}
+
+					// write special_ref, special_name
+					String specialNameWritten = row.get("special_name");
+					if (entryIndex != -1) {
+						JDBCHelper.addInteger(pSqlObjectReference, cnt++, Integer.parseInt(allowedSpecialRefEntries.get(entryIndex))); // special_ref
+						// we set also value from entry !!! necessary for mapping !
+						specialNameWritten = allowedSpecialRefEntryNames.get(entryIndex);
+						pSqlObjectReference.setString(cnt++, specialNameWritten); // special_name
+					} else if (hasSpecialName) {
+						if (hasSpecialRef) {
 							log.info("Invalid special_ref '" + row.get("special_ref")
-									+ "' found. Reference will be imported as free entry with special_name='"
-									+ row.get("special_name") + "'.");
-						}
-						pSqlObjectReference.setInt(cnt++, -1); // special_ref
-						pSqlObjectReference.setString(cnt++, row.get("special_name")); // special_name
-					} else if (row.get("special_name") != null && row.get("special_ref") != null
-							&& row.getInteger("special_ref").intValue() != 0
-							&& !allowedSpecialRefEntries.contains(row.get("special_ref"))) {
-						log.info("Invalid special_ref '" + row.get("special_ref")
 								+ "' found. Reference will be imported as free entry with special_name='"
-								+ row.get("special_name") + "'.");
-						pSqlObjectReference.setInt(cnt++, -1); // special_ref
-						pSqlObjectReference.setString(cnt++, row.get("special_name")); // special_name
-					} else if (row.get("special_name") != null
-							&& allowedSpecialRefEntryNames.contains(row.get("special_name").toLowerCase())) {
-						int specialReferenceTypeId = Integer.parseInt(allowedSpecialRefEntries
-								.get(allowedSpecialRefEntryNames.indexOf(row.get("special_name").toLowerCase())));
-						// get object class
-						Integer objClass = IDCStrategyHelper.getEntityFieldValueAsInteger(dataProvider, "t01_object", "obj_id", row.get("obj_id"), "obj_class");
-						if (objClass == null) {
-							pSqlObjectReference.setInt(cnt++, -1); // special_ref
-							pSqlObjectReference.setString(cnt++, row.get("special_name")); // special_name
-						} else if (specialReferenceTypeId == 3210 && objClass.intValue() == 3) {
-							// if object class corresponds with special reference type id
-							pSqlObjectReference.setInt(cnt++, specialReferenceTypeId); // special_ref
-							pSqlObjectReference.setNull(cnt++, Types.VARCHAR); // special_name
-						} else if (specialReferenceTypeId == 3345 && objClass.intValue() == 2) {
-							// if object class corresponds with special reference type id
-							pSqlObjectReference.setInt(cnt++, specialReferenceTypeId); // special_ref
-							pSqlObjectReference.setNull(cnt++, Types.VARCHAR); // special_name
-						} else if ((specialReferenceTypeId == 3100) && objClass.intValue() == 5) {
-							// if object class corresponds with special reference type id
-							pSqlObjectReference.setInt(cnt++, specialReferenceTypeId); // special_ref
-							pSqlObjectReference.setNull(cnt++, Types.VARCHAR); // special_name
-						} else if ((specialReferenceTypeId == 3515 || specialReferenceTypeId == 3520 || specialReferenceTypeId == 3535 || specialReferenceTypeId == 3555 || specialReferenceTypeId == 3570 || specialReferenceTypeId == 5066) && objClass.intValue() == 1) {
-							// if object class corresponds with special reference type id
-							pSqlObjectReference.setInt(cnt++, specialReferenceTypeId); // special_ref
-							pSqlObjectReference.setNull(cnt++, Types.VARCHAR); // special_name
-						} else {
-							pSqlObjectReference.setInt(cnt++, -1); // special_ref
-							pSqlObjectReference.setString(cnt++, row.get("special_name")); // special_name
+								+ row.get("special_name") + "'.");							
 						}
+
+						pSqlObjectReference.setInt(cnt++, -1); // special_ref
+						pSqlObjectReference.setString(cnt++, specialNameWritten); // special_name
 					} else {
 						log.error("Invalid special_ref='" + row.get("special_ref") + "' with special_name='"
-								+ row.get("special_name") + "' found.");
+								+ row.get("special_name") + "' found. We skip record !");
 						skipRecord = true;
 					}
+					
 					pSqlObjectReference.setString(cnt++, row.get("descr")); // descr
 					if (!skipRecord) {
 						try {
@@ -921,12 +971,14 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 		final List<String> allowedSpecialRefEntries = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
+		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
 		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=4430;";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
-				allowedSpecialRefEntryNames.add(rs.getString("name").toLowerCase());
+				allowedSpecialRefEntryNames.add(rs.getString("name"));
+				allowedSpecialRefEntryNamesLowerCase.add(rs.getString("name").toLowerCase());
 				allowedSpecialRefEntries.add(rs.getString("entry_id"));
 			}
 		}
@@ -945,12 +997,20 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setInt(cnt++, row.getInteger("primary_key")); // id
 				p.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "t02_address", "adr_id", row.get("adr_id"))); // adr_id
 				p.setInt(cnt++, row.getInteger("line")); // line
-				if (row.get("comm_type") != null && allowedSpecialRefEntryNames.contains(row.get("comm_type").toLowerCase())) {
-					p.setNull(cnt++, Types.VARCHAR); // legist_value
-					p.setInt(cnt++, Integer.parseInt(allowedSpecialRefEntries.get(allowedSpecialRefEntryNames.indexOf(row.get("comm_type").toLowerCase())))); // legist_key
+				// try to find entry in syslist
+				int entryIndex = -1;
+				if (row.get("comm_type") != null) {
+					entryIndex = allowedSpecialRefEntryNamesLowerCase.indexOf(row.get("comm_type").toLowerCase());
+				}
+				String valueWritten = row.get("comm_type");
+				if (entryIndex != -1) {
+					// we set also value from entry !!! necessary for mapping !
+					valueWritten = allowedSpecialRefEntryNames.get(entryIndex);
+					p.setString(cnt++, valueWritten); // commtype_value
+					p.setInt(cnt++, Integer.parseInt(allowedSpecialRefEntries.get(entryIndex))); // commtype_key
 				} else {
-					p.setString(cnt++, row.get("comm_type")); // legist_value
-					p.setInt(cnt++, -1); // legist_key
+					p.setString(cnt++, valueWritten); // commtype_value
+					p.setInt(cnt++, -1); // commtype_key
 				}
 				p.setString(cnt++, row.get("comm_value")); // comm_value
 				p.setString(cnt++, row.get("descr")); // descr
@@ -991,12 +1051,14 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 		final List<String> allowedSpecialRefEntries = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
+		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
 		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=3385;";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
-				allowedSpecialRefEntryNames.add(rs.getString("name").toLowerCase());
+				allowedSpecialRefEntryNames.add(rs.getString("name"));
+				allowedSpecialRefEntryNamesLowerCase.add(rs.getString("name").toLowerCase());
 				allowedSpecialRefEntries.add(rs.getString("entry_id"));
 			}
 		}
@@ -1017,11 +1079,19 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setLong(cnt++, objId); // obj_id
 				p.setString(cnt++, row.get("autor")); // author
 				p.setString(cnt++, row.get("publisher")); // publisher
-				if (row.get("typ") != null && allowedSpecialRefEntryNames.contains(row.get("typ").toLowerCase())) {
-					p.setNull(cnt++, Types.VARCHAR); // type_value
-					p.setInt(cnt++, Integer.parseInt(allowedSpecialRefEntries.get(allowedSpecialRefEntryNames.indexOf(row.get("typ").toLowerCase())))); // type_key
+				// try to find entry in syslist
+				int entryIndex = -1;
+				if (row.get("typ") != null) {
+					entryIndex = allowedSpecialRefEntryNamesLowerCase.indexOf(row.get("typ").toLowerCase());
+				}
+				String valueWritten = row.get("typ");
+				if (entryIndex != -1) {
+					// we set also value from entry !!! necessary for mapping !
+					valueWritten = allowedSpecialRefEntryNames.get(entryIndex);
+					p.setString(cnt++, valueWritten); // type_value
+					p.setInt(cnt++, Integer.parseInt(allowedSpecialRefEntries.get(entryIndex))); // type_key
 				} else {
-					p.setString(cnt++, row.get("typ")); // type_value
+					p.setString(cnt++, valueWritten); // type_value
 					p.setInt(cnt++, -1); // type_key
 				}
 				p.setString(cnt++, row.get("publish_in")); // publish_in
@@ -1045,7 +1115,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				// update full text index
 				JDBCHelper.updateObjectIndex(objId, row.get("autor"), jdbc); // T011ObjLiterature.author
 				JDBCHelper.updateObjectIndex(objId, row.get("publisher"), jdbc); // T011ObjLiterature.publisher
-				JDBCHelper.updateObjectIndex(objId, row.get("typ"), jdbc); // T011ObjLiterature.typeValue
+				JDBCHelper.updateObjectIndex(objId, valueWritten, jdbc); // T011ObjLiterature.typeValue
 				JDBCHelper.updateObjectIndex(objId, row.get("publish_in"), jdbc); // T011ObjLiterature.publishIn
 				JDBCHelper.updateObjectIndex(objId, row.get("volume"), jdbc); // T011ObjLiterature.volume
 				JDBCHelper.updateObjectIndex(objId, row.get("sides"), jdbc); // T011ObjLiterature.sides
@@ -1178,12 +1248,14 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 		final List<String> allowedSpecialRefEntries = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
+		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
 		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=5100;";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
-				allowedSpecialRefEntryNames.add(rs.getString("name").toLowerCase());
+				allowedSpecialRefEntryNames.add(rs.getString("name"));
+				allowedSpecialRefEntryNamesLowerCase.add(rs.getString("name").toLowerCase());
 				allowedSpecialRefEntries.add(rs.getString("entry_id"));
 			}
 		}
@@ -1202,11 +1274,19 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				long objId = IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"));
 				p.setInt(cnt++, row.getInteger("primary_key")); // id
 				p.setLong(cnt++, objId); // obj_id
-				if (row.get("type") != null && allowedSpecialRefEntryNames.contains(row.get("type").toLowerCase())) {
-					p.setNull(cnt++, Types.VARCHAR); // type_value
-					p.setInt(cnt++, Integer.parseInt(allowedSpecialRefEntries.get(allowedSpecialRefEntryNames.indexOf(row.get("type").toLowerCase())))); // type_key
+				// try to find entry in syslist
+				int entryIndex = -1;
+				if (row.get("type") != null) {
+					entryIndex = allowedSpecialRefEntryNamesLowerCase.indexOf(row.get("type").toLowerCase());
+				}
+				String valueWritten = row.get("type");
+				if (entryIndex != -1) {
+					// we set also value from entry !!! necessary for mapping !
+					valueWritten = allowedSpecialRefEntryNames.get(entryIndex);
+					p.setString(cnt++, valueWritten); // type_value
+					p.setInt(cnt++, Integer.parseInt(allowedSpecialRefEntries.get(entryIndex))); // type_key
 				} else {
-					p.setString(cnt++, row.get("type")); // type_value
+					p.setString(cnt++, valueWritten); // type_value
 					p.setInt(cnt++, -1); // type_key
 				}
 				p.setString(cnt++, row.get("history")); // history
@@ -1221,7 +1301,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				}
 				
 				// update full text index
-				JDBCHelper.updateObjectIndex(objId, row.get("type"), jdbc); // T011ObjServ.typeValue
+				JDBCHelper.updateObjectIndex(objId, valueWritten, jdbc); // T011ObjServ.typeValue
 				JDBCHelper.updateObjectIndex(objId, row.get("history"), jdbc); // T011ObjServ.history
 				JDBCHelper.updateObjectIndex(objId, row.get("environment"), jdbc); // T011ObjServ.environment
 				JDBCHelper.updateObjectIndex(objId, row.get("base"), jdbc); // T011ObjServ.base
@@ -1306,24 +1386,28 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 		final List<String> allowedSpecialWMSRefEntries = new ArrayList<String>();
 		final List<String> allowedSpecialWMSRefEntryNames = new ArrayList<String>();
+		final List<String> allowedSpecialWMSRefEntryNamesLowerCase = new ArrayList<String>();
 
 		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=5110;";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
-				allowedSpecialWMSRefEntryNames.add(rs.getString("name").toLowerCase());
+				allowedSpecialWMSRefEntryNames.add(rs.getString("name"));
+				allowedSpecialWMSRefEntryNamesLowerCase.add(rs.getString("name").toLowerCase());
 				allowedSpecialWMSRefEntries.add(rs.getString("entry_id"));
 			}
 		}
 		rs.close();
 		final List<String> allowedSpecialWFSRefEntries = new ArrayList<String>();
 		final List<String> allowedSpecialWFSRefEntryNames = new ArrayList<String>();
+		final List<String> allowedSpecialWFSRefEntryNamesLowerCase = new ArrayList<String>();
 
 		sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=5120;";
 		rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
-				allowedSpecialWFSRefEntryNames.add(rs.getString("name").toLowerCase());
+				allowedSpecialWFSRefEntryNames.add(rs.getString("name"));
+				allowedSpecialWFSRefEntryNamesLowerCase.add(rs.getString("name").toLowerCase());
 				allowedSpecialWFSRefEntries.add(rs.getString("entry_id"));
 			}
 		}
@@ -1343,24 +1427,39 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t011_obj_serv", "obj_id", row.get("obj_id"))); // obj_id
 				p.setInt(cnt++, row.getInteger("line")); // line
 				String serviceType = IDCStrategyHelper.getEntityFieldValue(dataProvider, "t011_obj_serv", "obj_id", row.get("obj_id"), "type");
+				String nameWritten = row.get("name");
 				if (serviceType != null && serviceType.equalsIgnoreCase("WMS")) {
-					if (row.get("name") != null && allowedSpecialWMSRefEntryNames.contains(row.get("name").toLowerCase())) {
-						p.setNull(cnt++, Types.VARCHAR); // name_value
-						p.setInt(cnt++, Integer.parseInt(allowedSpecialWMSRefEntries.get(allowedSpecialWMSRefEntryNames.indexOf(row.get("name").toLowerCase())))); // name_key
+					// try to find entry in syslist
+					int entryIndex = -1;
+					if (row.get("name") != null) {
+						entryIndex = allowedSpecialWMSRefEntryNamesLowerCase.indexOf(row.get("name").toLowerCase());
+					}
+					if (entryIndex != -1) {
+						// we set also value from entry !!! necessary for mapping !
+						nameWritten = allowedSpecialWMSRefEntryNames.get(entryIndex);
+						p.setString(cnt++, nameWritten); // name_value
+						p.setInt(cnt++, Integer.parseInt(allowedSpecialWMSRefEntries.get(entryIndex))); // name_key
 					} else {
-						p.setString(cnt++, row.get("name")); // name_value
+						p.setString(cnt++, nameWritten); // name_value
 						p.setInt(cnt++, -1); // name_key
 					}
 				} else if (serviceType != null && serviceType.equalsIgnoreCase("WFS")) {
-					if (row.get("name") != null && allowedSpecialWFSRefEntryNames.contains(row.get("name").toLowerCase())) {
-						p.setNull(cnt++, Types.VARCHAR); // name_value
-						p.setInt(cnt++, Integer.parseInt(allowedSpecialWFSRefEntries.get(allowedSpecialWFSRefEntryNames.indexOf(row.get("name").toLowerCase())))); // name_key
+					// try to find entry in syslist
+					int entryIndex = -1;
+					if (row.get("name") != null) {
+						entryIndex = allowedSpecialWFSRefEntryNamesLowerCase.indexOf(row.get("name").toLowerCase());
+					}
+					if (entryIndex != -1) {
+						// we set also value from entry !!! necessary for mapping !
+						nameWritten = allowedSpecialWFSRefEntryNames.get(entryIndex);
+						p.setString(cnt++, nameWritten); // name_value
+						p.setInt(cnt++, Integer.parseInt(allowedSpecialWFSRefEntries.get(entryIndex))); // name_key
 					} else {
-						p.setString(cnt++, row.get("name")); // name_value
+						p.setString(cnt++, nameWritten); // name_value
 						p.setInt(cnt++, -1); // name_key
 					}
 				} else {
-					p.setString(cnt++, row.get("name")); // name_value
+					p.setString(cnt++, nameWritten); // name_value
 					p.setInt(cnt++, -1); // name_key
 				}
 				p.setString(cnt++, row.get("descr")); // descr
@@ -1374,7 +1473,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				
 				// update full text index
 				long objId = IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"));
-				JDBCHelper.updateObjectIndex(objId, row.get("name"), jdbc); // T011ObjServOperation.nameValue
+				JDBCHelper.updateObjectIndex(objId, nameWritten, jdbc); // T011ObjServOperation.nameValue
 				JDBCHelper.updateObjectIndex(objId, row.get("descr"), jdbc); // T011ObjServOperation.descr
 				JDBCHelper.updateObjectIndex(objId, row.get("invocation_name"), jdbc); // T011ObjServOperation.invocationName
 			
@@ -1737,12 +1836,14 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 		final List<String> allowedSpecialRefEntries = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
+		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
 		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=3535;";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
-				allowedSpecialRefEntryNames.add(rs.getString("name").toLowerCase());
+				allowedSpecialRefEntryNames.add(rs.getString("name"));
+				allowedSpecialRefEntryNamesLowerCase.add(rs.getString("name").toLowerCase());
 				allowedSpecialRefEntries.add(rs.getString("entry_id"));
 			}
 		}
@@ -1761,11 +1862,19 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setInt(cnt++, row.getInteger("primary_key")); // id
 				p.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t011_obj_geo", "obj_id", row.get("obj_id"))); // obj_id
 				p.setInt(cnt++, row.getInteger("line")); // line
-				if (row.get("subject_cat") != null && allowedSpecialRefEntryNames.contains(row.get("subject_cat").toLowerCase())) {
-					p.setNull(cnt++, Types.VARCHAR); // keyc_value
-					p.setInt(cnt++, Integer.parseInt(allowedSpecialRefEntries.get(allowedSpecialRefEntryNames.indexOf(row.get("subject_cat").toLowerCase())))); // keyc_key
+				// try to find entry in syslist
+				int entryIndex = -1;
+				if (row.get("subject_cat") != null) {
+					entryIndex = allowedSpecialRefEntryNamesLowerCase.indexOf(row.get("subject_cat").toLowerCase());
+				}
+				String valueWritten = row.get("subject_cat");
+				if (entryIndex != -1) {
+					// we set also value from entry !!! necessary for mapping !
+					valueWritten = allowedSpecialRefEntryNames.get(entryIndex);
+					p.setString(cnt++, valueWritten); // keyc_value
+					p.setInt(cnt++, Integer.parseInt(allowedSpecialRefEntries.get(entryIndex))); // keyc_key
 				} else {
-					p.setString(cnt++, row.get("subject_cat")); // keyc_value
+					p.setString(cnt++, valueWritten); // keyc_value
 					p.setInt(cnt++, -1); // keyc_key
 				}
 				p.setString(cnt++, IDCStrategyHelper.transDateTime(row.get("key_date"))); // subject_cat
@@ -1779,7 +1888,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				
 				// update full text index
 				long objId = IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"));
-				JDBCHelper.updateObjectIndex(objId, row.get("subject_cat"), jdbc); // T011ObjGeoKeyc.keycValue
+				JDBCHelper.updateObjectIndex(objId, valueWritten, jdbc); // T011ObjGeoKeyc.keycValue
 				JDBCHelper.updateObjectIndex(objId, IDCStrategyHelper.transDateTime(row.get("key_date")), jdbc); // T011ObjGeoKeyc.keyDate
 				JDBCHelper.updateObjectIndex(objId, row.get("edition"), jdbc); // T011ObjGeoKeyc.edition
 			}
@@ -1977,12 +2086,14 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 		final List<String> allowedSpecialRefEntries = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
+		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
 		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=3555;";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
-				allowedSpecialRefEntryNames.add(rs.getString("name").toLowerCase());
+				allowedSpecialRefEntryNames.add(rs.getString("name"));
+				allowedSpecialRefEntryNamesLowerCase.add(rs.getString("name").toLowerCase());
 				allowedSpecialRefEntries.add(rs.getString("entry_id"));
 			}
 		}
@@ -2001,11 +2112,19 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setInt(cnt++, row.getInteger("primary_key")); // id
 				p.setLong(cnt++, IDCStrategyHelper.getPK(dataProvider, "t011_obj_geo", "obj_id", row.get("obj_id"))); // obj_id
 				p.setInt(cnt++, row.getInteger("line")); // line
-				if (row.get("symbol_cat") != null && allowedSpecialRefEntryNames.contains(row.get("symbol_cat").toLowerCase())) {
-					p.setNull(cnt++, Types.VARCHAR); // symbol_cat_value
-					p.setInt(cnt++, Integer.parseInt(allowedSpecialRefEntries.get(allowedSpecialRefEntryNames.indexOf(row.get("symbol_cat").toLowerCase())))); // symbol_cat_key
+				// try to find entry in syslist
+				int entryIndex = -1;
+				if (row.get("symbol_cat") != null) {
+					entryIndex = allowedSpecialRefEntryNamesLowerCase.indexOf(row.get("symbol_cat").toLowerCase());
+				}
+				String valueWritten = row.get("symbol_cat");
+				if (entryIndex != -1) {
+					// we set also value from entry !!! necessary for mapping !
+					valueWritten = allowedSpecialRefEntryNames.get(entryIndex);
+					p.setString(cnt++, valueWritten); // symbol_cat_value
+					p.setInt(cnt++, Integer.parseInt(allowedSpecialRefEntries.get(entryIndex))); // symbol_cat_key
 				} else {
-					p.setString(cnt++, row.get("symbol_cat")); // symbol_cat_value
+					p.setString(cnt++, valueWritten); // symbol_cat_value
 					p.setInt(cnt++, -1); // symbol_cat_key
 				}
 				p.setString(cnt++, IDCStrategyHelper.transDateTime(row.get("symbol_date"))); // symbol_date
@@ -2019,7 +2138,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				
 				// update full text index
 				long objId = IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"));
-				JDBCHelper.updateObjectIndex(objId, row.get("symbol_cat"), jdbc); // T011ObjGeoSymc.symbolCatValue
+				JDBCHelper.updateObjectIndex(objId, valueWritten, jdbc); // T011ObjGeoSymc.symbolCatValue
 				JDBCHelper.updateObjectIndex(objId, IDCStrategyHelper.transDateTime(row.get("symbol_date")), jdbc); // T011ObjGeoSymc.symbolDate
 				JDBCHelper.updateObjectIndex(objId, row.get("edition"), jdbc); // T011ObjGeoSymc.edition
 			}
@@ -2137,12 +2256,14 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 		final List<String> allowedSpecialRefEntries = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
+		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
 		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1350;";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
-				allowedSpecialRefEntryNames.add(rs.getString("name").toLowerCase());
+				allowedSpecialRefEntryNames.add(rs.getString("name"));
+				allowedSpecialRefEntryNamesLowerCase.add(rs.getString("name").toLowerCase());
 				allowedSpecialRefEntries.add(rs.getString("entry_id"));
 			}
 		}
@@ -2164,11 +2285,19 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					p.setInt(cnt++, row.getInteger("primary_key")); // id
 					p.setLong(cnt++, objId); // obj_id
 					p.setInt(cnt++, row.getInteger("line")); // line
-					if (row.get("name") != null && allowedSpecialRefEntryNames.contains(row.get("name").toLowerCase())) {
-						p.setNull(cnt++, Types.VARCHAR); // legist_value
-						p.setInt(cnt++, Integer.parseInt(allowedSpecialRefEntries.get(allowedSpecialRefEntryNames.indexOf(row.get("name").toLowerCase())))); // legist_key
+					// try to find entry in syslist
+					int entryIndex = -1;
+					if (row.get("name") != null) {
+						entryIndex = allowedSpecialRefEntryNamesLowerCase.indexOf(row.get("name").toLowerCase());
+					}
+					String valueWritten = row.get("name");
+					if (entryIndex != -1) {
+						// we set also value from entry !!! necessary for mapping !
+						valueWritten = allowedSpecialRefEntryNames.get(entryIndex);
+						p.setString(cnt++, valueWritten); // legist_value
+						p.setInt(cnt++, Integer.parseInt(allowedSpecialRefEntries.get(entryIndex))); // legist_key
 					} else {
-						p.setString(cnt++, row.get("name")); // legist_value
+						p.setString(cnt++, valueWritten); // legist_value
 						p.setInt(cnt++, -1); // legist_key
 					}
 					try {
@@ -2179,7 +2308,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					}
 					
 					// update full text index
-					JDBCHelper.updateObjectIndex(objId, row.get("name"), jdbc); // T015Legist.legistValue
+					JDBCHelper.updateObjectIndex(objId, valueWritten, jdbc); // T015Legist.legistValue
 				}
 			}
 		}
@@ -2248,12 +2377,14 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 		final List<String> allowedSpecialRefEntries = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
+		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
 		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1320;";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
-				allowedSpecialRefEntryNames.add(rs.getString("name").toLowerCase());
+				allowedSpecialRefEntryNames.add(rs.getString("name"));
+				allowedSpecialRefEntryNamesLowerCase.add(rs.getString("name").toLowerCase());
 				allowedSpecialRefEntries.add(rs.getString("entry_id"));
 			}
 		}
@@ -2273,11 +2404,19 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setInt(cnt++, row.getInteger("primary_key")); // id
 				p.setLong(cnt++, objId); // obj_id
 				p.setInt(cnt++, row.getInteger("line")); // line
-				if (row.get("name") != null && allowedSpecialRefEntryNames.contains(row.get("name").toLowerCase())) {
-					p.setNull(cnt++, Types.VARCHAR); // format_value
-					p.setInt(cnt++, Integer.parseInt(allowedSpecialRefEntries.get(allowedSpecialRefEntryNames.indexOf(row.get("name").toLowerCase())))); // format_key
+				// try to find entry in syslist
+				int entryIndex = -1;
+				if (row.get("name") != null) {
+					entryIndex = allowedSpecialRefEntryNamesLowerCase.indexOf(row.get("name").toLowerCase());
+				}
+				String valueWritten = row.get("name");
+				if (entryIndex != -1) {
+					// we set also value from entry !!! necessary for mapping !
+					valueWritten = allowedSpecialRefEntryNames.get(entryIndex);
+					p.setString(cnt++, valueWritten); // format_value
+					p.setInt(cnt++, Integer.parseInt(allowedSpecialRefEntries.get(entryIndex))); // format_key
 				} else {
-					p.setString(cnt++, row.get("name")); // format_value
+					p.setString(cnt++, valueWritten); // format_value
 					p.setInt(cnt++, -1); // format_key
 				}
 				p.setString(cnt++, row.get("version")); // ver
@@ -2291,7 +2430,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				}
 				
 				// update full text index
-				JDBCHelper.updateObjectIndex(objId, row.get("name"), jdbc); // T0110AvailFormat.formatValue
+				JDBCHelper.updateObjectIndex(objId, valueWritten, jdbc); // T0110AvailFormat.formatValue
 				JDBCHelper.updateObjectIndex(objId, row.get("version"), jdbc); // T0110AvailFormat.ver
 				JDBCHelper.updateObjectIndex(objId, row.get("file_decompression_technique"), jdbc); // T0110AvailFormat.fileDecompressionTechnique
 				JDBCHelper.updateObjectIndex(objId, row.get("specification"), jdbc); // T0110AvailFormat.specification
@@ -2367,26 +2506,30 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		jdbc.executeUpdate(sqlStr);
 
 		final List<String> allowedDatatypeValues = new ArrayList<String>();
+		final List<String> allowedDatatypeValuesLowerCase = new ArrayList<String>();
 		final List<String> allowedDatatypeKeys = new ArrayList<String>();
 
 		String sql = "SELECT name, entry_id FROM sys_list WHERE LST_ID=2240;";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
-				allowedDatatypeValues.add(rs.getString("name").toLowerCase());
-				allowedDatatypeKeys.add(rs.getString("entry_id").toLowerCase());
+				allowedDatatypeValues.add(rs.getString("name"));
+				allowedDatatypeValuesLowerCase.add(rs.getString("name").toLowerCase());
+				allowedDatatypeKeys.add(rs.getString("entry_id"));
 			}
 		}
 		rs.close();
 		
 		final List<String> allowedSpecialRefEntries = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
+		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
 		sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=2000 AND entry_id IN (3100, 3210, 3345, 3515, 3520, 3535, 3555, 3570, 5066);";
 		rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
-				allowedSpecialRefEntryNames.add(rs.getString("name").toLowerCase());
+				allowedSpecialRefEntryNames.add(rs.getString("name"));
+				allowedSpecialRefEntryNamesLowerCase.add(rs.getString("name").toLowerCase());
 				allowedSpecialRefEntries.add(rs.getString("entry_id"));
 			}
 		}
@@ -2408,24 +2551,42 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setLong(cnt++, objId); // obj_id
 				p.setInt(cnt++, row.getInteger("line")); // line
 				p.setString(cnt++, row.get("url_link")); // url_link
-				if (row.get("special_ref") != null && allowedSpecialRefEntries.contains(row.get("special_ref").toLowerCase())) {
-					JDBCHelper.addInteger(p, cnt++, row.getInteger("special_ref")); // special_ref
-					p.setNull(cnt++, Types.VARCHAR); // special_name
-				} else if (row.get("special_name") != null && allowedSpecialRefEntryNames.contains(row.get("special_name").toLowerCase()) ) {
-					JDBCHelper.addInteger(p, cnt++, Integer.parseInt(allowedSpecialRefEntries.get(allowedSpecialRefEntryNames.indexOf(row.get("special_name").toLowerCase())))); // special_ref
-					p.setNull(cnt++, Types.VARCHAR); // special_name
+
+				// try to find entry in syslist
+				int entryIndex = -1;
+				if (row.get("special_ref") != null) {
+					entryIndex = allowedSpecialRefEntries.indexOf(row.get("special_ref").toLowerCase());
+				}
+				if (entryIndex == -1 && row.get("special_name") != null) {
+					entryIndex = allowedSpecialRefEntryNamesLowerCase.indexOf(row.get("special_name").toLowerCase());
+				}
+				String specialNameWritten = row.get("special_name");
+				if (entryIndex != -1) {
+					JDBCHelper.addInteger(p, cnt++, Integer.parseInt(allowedSpecialRefEntries.get(entryIndex))); // special_ref
+					// we set also value from entry !!! necessary for mapping !
+					specialNameWritten = allowedSpecialRefEntryNames.get(entryIndex);
+					p.setString(cnt++, specialNameWritten); // special_name
 				} else {
 					p.setInt(cnt++, -1); // special_ref
-					p.setString(cnt++, row.get("special_name")); // special_name
+					p.setString(cnt++, specialNameWritten); // special_name
 				}
-				
+			
 				p.setString(cnt++, row.get("content")); // content
-				if (row.get("datatype") == null || !allowedDatatypeValues.contains(row.get("datatype").toLowerCase())) {
-					p.setString(cnt++, row.get("datatype")); // datatype_value
-					p.setInt(cnt++, -1); // datatype_key
+				
+				// try to find entry in syslist
+				entryIndex = -1;
+				if (row.get("datatype") != null) {
+					entryIndex = allowedDatatypeValuesLowerCase.indexOf(row.get("datatype").toLowerCase());
+				}
+				String valueWritten = row.get("datatype");
+				if (entryIndex != -1) {
+					// we set also value from entry !!! necessary for mapping !
+					valueWritten = allowedDatatypeValues.get(entryIndex);
+					p.setString(cnt++, valueWritten); // datatype_value
+					p.setInt(cnt++, Integer.parseInt(allowedDatatypeKeys.get(entryIndex))); // datatype_key
 				} else {
-					p.setNull(cnt++, Types.VARCHAR); // datatype_value
-					p.setInt(cnt++, Integer.parseInt(allowedDatatypeKeys.get(allowedDatatypeValues.indexOf(row.get("datatype").toLowerCase())))); // datatype_key
+					p.setString(cnt++, valueWritten); // datatype_value
+					p.setInt(cnt++, -1); // datatype_key
 				}
 				p.setString(cnt++, row.get("volume")); // volume
 				p.setString(cnt++, row.get("icon")); // icon
@@ -2441,9 +2602,9 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 				// update full text index
 				JDBCHelper.updateObjectIndex(objId, row.get("url_link"), jdbc); // T017UrlRef.urlLink
-				JDBCHelper.updateObjectIndex(objId, row.get("special_name"), jdbc); // T017UrlRef.specialName
+				JDBCHelper.updateObjectIndex(objId, specialNameWritten, jdbc); // T017UrlRef.specialName
 				JDBCHelper.updateObjectIndex(objId, row.get("content"), jdbc); // T017UrlRef.content
-				JDBCHelper.updateObjectIndex(objId, row.get("datatype"), jdbc); // T017UrlRef.datatypeValue
+				JDBCHelper.updateObjectIndex(objId, valueWritten, jdbc); // T017UrlRef.datatypeValue
 				JDBCHelper.updateObjectIndex(objId, row.get("volume"), jdbc); // T017UrlRef.volume
 				JDBCHelper.updateObjectIndex(objId, row.get("icon_text"), jdbc); // T017UrlRef.iconText
 				JDBCHelper.updateObjectIndex(objId, row.get("descr"), jdbc); // T017UrlRef.descr
@@ -2482,19 +2643,6 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		sqlStr = "DELETE FROM spatial_ref_sns";
 		jdbc.executeUpdate(sqlStr);
 
-		final List<String> allowedSpecialRefEntries = new ArrayList<String>();
-		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1100;";
-		ResultSet rs = jdbc.executeQuery(sql);
-		while (rs.next()) {
-			if (rs.getString("name") != null) {
-				allowedSpecialRefEntryNames.add(rs.getString("name").toLowerCase());
-				allowedSpecialRefEntries.add(rs.getString("entry_id"));
-			}
-		}
-		rs.close();
-		
-		
 		HashMap<String, Long> storedNativekeys = new HashMap<String, Long>();
 
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
@@ -2568,6 +2716,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 							log.debug("Invalid ags key length:" + row.get("township_no"));
 						}
 					}
+					// do NOT map via sys_list, this is a geothesaurus entry (SNS) !
 					pSpatialRefValue.setString(cnt++, locName); // name_value
 					pSpatialRefValue.setInt(cnt++, -1); // name_key
 					pSpatialRefValue.setString(cnt++, IDCStrategyHelper.transformNativeKey2FullAgs(row
@@ -2637,11 +2786,13 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 		final List<String> allowedSpecialRefEntries = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
+		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1100;";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
-				allowedSpecialRefEntryNames.add(rs.getString("name").toLowerCase());
+				allowedSpecialRefEntryNames.add(rs.getString("name"));
+				allowedSpecialRefEntryNamesLowerCase.add(rs.getString("name").toLowerCase());
 				allowedSpecialRefEntries.add(rs.getString("entry_id"));
 			}
 		}
@@ -2682,8 +2833,11 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				// create key
 				String geoKey = row.get("geo_x1") + row.get("geo_x2") + row.get("geo_y1") + row.get("geo_y1")
 						+ row.get("bezug");
+				String valueWritten = row.get("bezug");
 				if (storedNativekeys.containsKey(geoKey)) {
 					pSpatialRefValueId = ((Long) storedNativekeys.get(geoKey)).longValue();
+					// NOTICE: valueWritten is OLD value from udk and not from sys_list (lower/upper case may be different).
+					// we ignore this !
 				} else {
 					// store the spatial ref
 					dataProvider.setId(dataProvider.getId() + 1);
@@ -2691,11 +2845,18 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					pSpatialRefValue.setLong(cnt++, dataProvider.getId()); // id
 					pSpatialRefValue.setString(cnt++, "F"); // type
 					pSpatialRefValue.setNull(cnt++, Types.INTEGER); // spatial_ref_sns_id
-					if (row.get("bezug") != null && allowedSpecialRefEntryNames.contains(row.get("bezug").toLowerCase())) {
-						pSpatialRefValue.setNull(cnt++, Types.VARCHAR); // name_value
-						pSpatialRefValue.setInt(cnt++, Integer.parseInt(allowedSpecialRefEntries.get(allowedSpecialRefEntryNames.indexOf(row.get("bezug").toLowerCase())))); // name_key
+					// try to find entry in syslist
+					int entryIndex = -1;
+					if (row.get("bezug") != null) {
+						entryIndex = allowedSpecialRefEntryNamesLowerCase.indexOf(row.get("bezug").toLowerCase());
+					}
+					if (entryIndex != -1) {
+						// we set also value from entry !!! necessary for mapping !
+						valueWritten = allowedSpecialRefEntryNames.get(entryIndex);
+						pSpatialRefValue.setString(cnt++, valueWritten); // name_value
+						pSpatialRefValue.setInt(cnt++, Integer.parseInt(allowedSpecialRefEntries.get(entryIndex))); // name_key
 					} else {
-						pSpatialRefValue.setString(cnt++, row.get("bezug")); // name_value
+						pSpatialRefValue.setString(cnt++, valueWritten); // name_value
 						pSpatialRefValue.setInt(cnt++, -1); // name_key
 					}
 					pSpatialRefValue.setString(cnt++, ""); // nativekey
@@ -2713,9 +2874,9 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					}
 				}
 				cnt = 1;
+				long objId = IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"));
 				pSpatialReference.setInt(cnt++, row.getInteger("primary_key")); // id
-				pSpatialReference.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row
-						.get("obj_id"))); // obj_id
+				pSpatialReference.setLong(cnt++, objId); // obj_id
 				pSpatialReference.setInt(cnt++, row.getInteger("line")); // line
 				pSpatialReference.setLong(cnt++, pSpatialRefValueId); // spatial_ref_id
 				try {
@@ -2724,6 +2885,9 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					log.error("Error executing SQL: " + pSpatialReference.toString(), e);
 					throw e;
 				}
+
+				// update full text index
+				JDBCHelper.updateObjectIndex(objId, valueWritten, jdbc);
 			}
 		}
 		if (log.isInfoEnabled()) {
@@ -2747,15 +2911,30 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		sqlStr = "DELETE FROM t012_obj_adr";
 		jdbc.executeUpdate(sqlStr);
 
-		final List<String> allowedSpecialRefEntries = new ArrayList<String>();
-		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
+		final List<String> allowedSpecialRefEntries505 = new ArrayList<String>();
+		final List<String> allowedSpecialRefEntryNames505 = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=2010 AND entry_id IN (3360, 3400, 3410);";
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=505 and lang_id='de';";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
-				allowedSpecialRefEntryNames.add(rs.getString("name").toLowerCase());
-				allowedSpecialRefEntries.add(rs.getString("entry_id"));
+				allowedSpecialRefEntryNames505.add(rs.getString("name"));
+				allowedSpecialRefEntries505.add(rs.getString("entry_id"));
+			}
+		}
+		rs.close();
+
+		final List<String> allowedSpecialRefEntries2010 = new ArrayList<String>();
+		final List<String> allowedSpecialRefEntryNames2010 = new ArrayList<String>();
+		final List<String> allowedSpecialRefEntryNamesLowerCase2010 = new ArrayList<String>();
+
+		sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=2010 AND entry_id IN (3360, 3400, 3410);";
+		rs = jdbc.executeQuery(sql);
+		while (rs.next()) {
+			if (rs.getString("name") != null) {
+				allowedSpecialRefEntryNames2010.add(rs.getString("name"));
+				allowedSpecialRefEntryNamesLowerCase2010.add(rs.getString("name").toLowerCase());
+				allowedSpecialRefEntries2010.add(rs.getString("entry_id"));
 			}
 		}
 		rs.close();
@@ -2807,6 +2986,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					} else if (row.getInteger("typ").intValue() >= 0 && row.getInteger("typ").intValue() <= 9) {
 						type = IDCStrategyHelper.transAddressTypeUdk2Idc(row.getInteger("typ"));
 						specialRef = new Integer(505);
+						specialName = allowedSpecialRefEntryNames505.get(allowedSpecialRefEntries505.indexOf(type.toString()));
 					// if typ is invalid
 					} else  {
 						log.info("Invalid udk address type detected (type='" + row.getInteger("typ")
@@ -2814,37 +2994,44 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 								+ "'). The record will be imported as free entry.");
 						type = new Integer(-1);
 					}
-					
-					if (specialRef == null && (row.get("special_ref") != null && allowedSpecialRefEntries.contains(row.get("special_ref")))) {
-						// if special_ref is valid
-						specialRef = row.getInteger("special_ref");
-					} else if (specialRef == null && specialName != null) {
-						if (!allowedSpecialRefEntryNames.contains(row.get("special_name").toLowerCase())) {
-							// if special_name is not in lookup list
-							specialName = row.get("special_name");
-						} else {
-							//	if special_name is in lookup list, check against object classes for valid ids
-							Integer specialReferenceTypeId = Integer.getInteger(allowedSpecialRefEntries
-									.get(allowedSpecialRefEntryNames.indexOf(row.get("special_name").toLowerCase())));
-							Integer objClass = IDCStrategyHelper.getEntityFieldValueAsInteger(dataProvider, "t01_object", "obj_id", row.get("obj_id"), "obj_class");
-							if (objClass == null) {
-								// if not valid import as free entry
-								specialRef = null;
-								specialName = row.get("special_name");
-							} else if (specialReferenceTypeId.intValue() == 3360 && objClass.intValue() == 2) {
-								specialRef = specialReferenceTypeId;
-							} else if ((specialReferenceTypeId.intValue() == 3400 || specialReferenceTypeId.intValue() == 3410)&& objClass.intValue() == 4) {
-								specialRef = specialReferenceTypeId;
-							} else {
-								// if not valid import as free entry
-								specialRef = null;
-								specialName = row.get("special_name");
-							}
-						}
-					} else {
-						//import in all other cases as free value, should not be the case
-						specialRef = null;
+
+					if (specialRef == null) {
+						// default
+						// special ref null -> free entry
 						specialName = row.get("special_name");
+
+						if (row.get("special_ref") != null) {
+							int entryIndex = allowedSpecialRefEntries2010.indexOf(row.get("special_ref"));
+							if (entryIndex != -1) {
+								// if special_ref is valid
+								type = row.getInteger("special_ref");
+								specialRef = new Integer(2010);
+								specialName = allowedSpecialRefEntryNames2010.get(entryIndex);
+							}
+						} else if (row.get("special_name") != null) {
+							int entryIndex = allowedSpecialRefEntryNamesLowerCase2010.indexOf(row.get("special_name").toLowerCase());
+							if (entryIndex != -1) {
+								//	if special_name is in lookup list, check against object classes for valid ids
+								int specialReferenceTypeId = Integer.getInteger(allowedSpecialRefEntries2010.get(entryIndex));
+								Integer objClass = IDCStrategyHelper.getEntityFieldValueAsInteger(dataProvider, "t01_object", "obj_id", row.get("obj_id"), "obj_class");
+								if (objClass != null) {
+									if (specialReferenceTypeId == 3360 && objClass.intValue() == 2) {
+										type = specialReferenceTypeId;
+										specialRef = new Integer(2010);
+										specialName = allowedSpecialRefEntryNames2010.get(entryIndex);
+									} else if ((specialReferenceTypeId == 3400 || specialReferenceTypeId == 3410)&& objClass.intValue() == 4) {
+										type = specialReferenceTypeId;
+										specialRef = new Integer(2010);
+										specialName = allowedSpecialRefEntryNames2010.get(entryIndex);
+									}
+								}
+							}
+						} else {
+							log.info("Invalid udk obj-addr detected (type='" + row.getInteger("typ")
+									+ "', special_name='" + row.get("special_name")
+									+ "', special_ref='" + row.get("special_ref") + "').");
+							specialName = row.get("special_name");
+						}
 					}
 
 					JDBCHelper.addInteger(p, cnt++, type ); // type
@@ -3613,12 +3800,14 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 		final List<String> allowedSpecialRefEntries = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
+		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
 		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1370;";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
-				allowedSpecialRefEntryNames.add(rs.getString("name").toLowerCase());
+				allowedSpecialRefEntryNames.add(rs.getString("name"));
+				allowedSpecialRefEntryNamesLowerCase.add(rs.getString("name").toLowerCase());
 				allowedSpecialRefEntries.add(rs.getString("entry_id"));
 			}
 		}
@@ -3638,11 +3827,19 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setInt(cnt++, row.getInteger("primary_key")); // id
 				p.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"))); // obj_id
 				p.setInt(cnt++, row.getInteger("line")); // line
-				if (row.get("name") != null && allowedSpecialRefEntryNames.contains(row.get("name").toLowerCase())) {
-					p.setNull(cnt++, Types.VARCHAR); // impart_value
-					p.setInt(cnt++, Integer.parseInt(allowedSpecialRefEntries.get(allowedSpecialRefEntryNames.indexOf(row.get("name").toLowerCase())))); // impart_key
+				// try to find entry in syslist
+				int entryIndex = -1;
+				if (row.get("name") != null) {
+					entryIndex = allowedSpecialRefEntryNamesLowerCase.indexOf(row.get("name").toLowerCase());
+				}
+				String valueWritten = row.get("name");
+				if (entryIndex != -1) {
+					// we set also value from entry !!! necessary for mapping !
+					valueWritten = allowedSpecialRefEntryNames.get(entryIndex);
+					p.setString(cnt++, valueWritten); // impart_value
+					p.setInt(cnt++, Integer.parseInt(allowedSpecialRefEntries.get(entryIndex))); // impart_key
 				} else {
-					p.setString(cnt++, row.get("name")); // impart_value
+					p.setString(cnt++, valueWritten); // impart_value
 					p.setInt(cnt++, -1); // impart_key
 				}
 				try {
@@ -3654,7 +3851,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				
 				// update full text index
 				long objId = IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"));
-				JDBCHelper.updateObjectIndex(objId, row.get("name"), jdbc); // T014InfoImpart.impartValue
+				JDBCHelper.updateObjectIndex(objId, valueWritten, jdbc); // T014InfoImpart.impartValue
 			}
 		}
 		if (log.isInfoEnabled()) {
