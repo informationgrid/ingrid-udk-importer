@@ -3009,6 +3009,8 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 								specialName = allowedSpecialRefEntryNames2010.get(entryIndex);
 							}
 						} else if (row.get("special_name") != null) {
+							// TODO: also map via allowedSpecialRefEntryNames505 ??? at the moment only mapped to syslist2010 and not 505 !!!
+
 							int entryIndex = allowedSpecialRefEntryNamesLowerCase2010.indexOf(row.get("special_name").toLowerCase());
 							if (entryIndex != -1) {
 								//	if special_name is in lookup list, check against object classes for valid ids
