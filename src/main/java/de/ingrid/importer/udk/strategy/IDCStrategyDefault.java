@@ -531,7 +531,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			} else {
 				// clear row: we do not want invalid references
 				// in other entities refering to this entity
-				if (log.isDebugEnabled()) {
+				if (log.isInfoEnabled()) {
 					log.info("Skip record of t03_catalogue (cat_id='" + row.get("cat_id") + "'; mod_type='"
 							+ row.get("mod_type") + "')");
 				}
@@ -2938,8 +2938,10 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			}
 		}
 		rs.close();
-		
-		
+
+		// for tracking duplicate entries in udk !
+		HashMap<String, String> writtenUniqueKeys = new HashMap<String, String>();
+
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
 			if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
@@ -2973,8 +2975,10 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				} else {
 					int cnt = 1;
 					p.setInt(cnt++, row.getInteger("primary_key")); // id
-					p.setInt(cnt++, IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"))); // obj_id
-					p.setString(cnt++, row.get("adr_id")); // adr_uuid
+					int objId = IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"));
+					p.setInt(cnt++, objId); // obj_id
+					String adrUuid = row.get("adr_id");
+					p.setString(cnt++, adrUuid); // adr_uuid
 					
 					Integer type = null;
 					Integer specialRef = null;
@@ -2995,6 +2999,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 						type = new Integer(-1);
 					}
 
+					// handle 2010 syslist if no entry yet
 					if (specialRef == null) {
 						// default
 						// special ref null -> free entry
@@ -3009,8 +3014,6 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 								specialName = allowedSpecialRefEntryNames2010.get(entryIndex);
 							}
 						} else if (row.get("special_name") != null) {
-							// TODO: also map via allowedSpecialRefEntryNames505 ??? at the moment only mapped to syslist2010 and not 505 !!!
-
 							int entryIndex = allowedSpecialRefEntryNamesLowerCase2010.indexOf(row.get("special_name").toLowerCase());
 							if (entryIndex != -1) {
 								//	if special_name is in lookup list, check against object classes for valid ids
@@ -3029,9 +3032,9 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 								}
 							}
 						} else {
-							log.info("Invalid udk obj-addr detected (type='" + row.getInteger("typ")
-									+ "', special_name='" + row.get("special_name")
-									+ "', special_ref='" + row.get("special_ref") + "').");
+							log.info("Invalid entry in " + entityName + " found: type('" + row.getInteger("typ")
+									+ "'), special_name('" + row.get("special_name")
+									+ "'), special_ref('" + row.get("special_ref") + "'). BUT WE WRITE RECORD with these values !");
 							specialName = row.get("special_name");
 						}
 					}
@@ -3042,11 +3045,21 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					JDBCHelper.addString(p, cnt++, specialName ); // special_name
 
 					p.setString(cnt++, IDCStrategyHelper.transDateTime(row.get("mod_time"))); // mod_time
-					try {
-						p.executeUpdate();
-					} catch (Exception e) {
-						log.error("Error executing SQL: " + p.toString(), e);
-						throw e;
+					
+					// check for duplicate entries
+					String key = "" + objId + adrUuid + type;
+					if (writtenUniqueKeys.containsKey(key)) {
+						log.info("Invalid entry in " + entityName + " found: duplicate entry, objId('" + objId +
+								"'), adrUuid('" + adrUuid + "'), type ('" + type + "') found. Skip record.");
+						row.clear();						
+					} else {
+						try {
+							p.executeUpdate();
+						} catch (Exception e) {
+							log.error("Error executing SQL: " + p.toString(), e);
+							throw e;
+						}
+						writtenUniqueKeys.put(key, key);
 					}
 				}
 			}
