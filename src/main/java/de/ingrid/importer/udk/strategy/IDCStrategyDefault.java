@@ -28,29 +28,34 @@ import de.ingrid.importer.udk.util.UuidGenerator;
  */
 public abstract class IDCStrategyDefault implements IDCStrategy {
 
+	private static Log log = LogFactory.getLog(IDCStrategyDefault.class);
+
 	protected DataProvider dataProvider = null;
-
 	protected ImportDescriptor importDescriptor = null;
-
 	protected JDBCConnectionProxy jdbc = null;
 
 	String sqlStr = null;
-
 	String pSqlStr = null;
 
-	private static Log log = LogFactory.getLog(IDCStrategyDefault.class);
-
 	protected static ArrayList<String> invalidModTypes;
-
 	private ArrayList<String> duplicateEntries;
 
 	static Integer ADDRESS_TYPE_PERSON = 2;  
-
+	static int ROLE_CATALOG_ADMINISTRATOR = 1;
 	static String IDX_SEPARATOR = "|";  
 	static String IDX_NAME_THESAURUS = "thesaurus";
 	static String IDX_NAME_GEOTHESAURUS = "geothesaurus";
 	
-	static int ROLE_CATALOG_ADMINISTRATOR = 1;
+	String catalogLanguage;
+
+	public IDCStrategyDefault() {
+		super();
+		invalidModTypes = new ArrayList<String>();
+		invalidModTypes.add("D");
+		
+		// default language
+		catalogLanguage = "de";
+	}
 
 	public void setDataProvider(DataProvider data) {
 		dataProvider = data;
@@ -64,17 +69,6 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		importDescriptor = descriptor;
 	}
 
-	public IDCStrategyDefault() {
-		super();
-		invalidModTypes = new ArrayList<String>();
-		invalidModTypes.add("D");
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see de.ingrid.importer.udk.strategy.IDCStrategy#execute()
-	 */
 	public abstract void execute();
 
 	protected void processT01Object() throws Exception {
@@ -291,7 +285,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		final List<String> allowedSpecialRefTitleEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefTitleEntryNamesLowerCase = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=4305;";
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=4305 and lang_id='" + catalogLanguage + "';";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
@@ -305,7 +299,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		final List<String> allowedSpecialRefAddressEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefAddressEntryNamesLowerCase = new ArrayList<String>();
 
-		sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=4300;";
+		sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=4300 and lang_id='" + catalogLanguage + "';";
 		rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
@@ -521,7 +515,8 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				}
 				p.setString(cnt++, modId); // mod_uuid,
 				p.setString(cnt++, IDCStrategyHelper.transDateTime(row.get("mod_time"))); // mod_time
-				p.setString(cnt++, "de"); // language_code
+				catalogLanguage="de";
+				p.setString(cnt++, catalogLanguage); // language_code
 				try {
 					p.executeUpdate();
 				} catch (Exception e) {
@@ -648,7 +643,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		if (log.isInfoEnabled()) {
 			log.info("set default language of metadata entities ...");
 		}
-		// first check whether defaults set
+		// first check whether defaults set -> ignore localization !
 		rs = jdbc.executeQuery("SELECT id FROM sys_list WHERE lst_id=99999999 AND is_default = 'Y'");
 		boolean hasDefaults = rs.next();
 		rs.close();
@@ -688,7 +683,9 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 		final List<String> importedObjectNodes = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=2000 AND entry_id IN (3100, 3210, 3345, 3515, 3520, 3535, 3555, 3570, 5066);";
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=2000 " +
+				"AND entry_id IN (3100, 3210, 3345, 3515, 3520, 3535, 3555, 3570, 5066) " +
+				"and lang_id='" + catalogLanguage + "';";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
@@ -973,7 +970,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=4430;";
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=4430 and lang_id='" + catalogLanguage + "';";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
@@ -1053,7 +1050,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=3385;";
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=3385 and lang_id='" + catalogLanguage + "';";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
@@ -1250,7 +1247,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=5100;";
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=5100 and lang_id='" + catalogLanguage + "';";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
@@ -1388,7 +1385,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		final List<String> allowedSpecialWMSRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialWMSRefEntryNamesLowerCase = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=5110;";
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=5110 and lang_id='" + catalogLanguage + "';";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
@@ -1402,7 +1399,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		final List<String> allowedSpecialWFSRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialWFSRefEntryNamesLowerCase = new ArrayList<String>();
 
-		sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=5120;";
+		sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=5120 and lang_id='" + catalogLanguage + "';";
 		rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
@@ -1838,7 +1835,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=3535;";
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=3535 and lang_id='" + catalogLanguage + "';";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
@@ -2088,7 +2085,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=3555;";
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=3555 and lang_id='" + catalogLanguage + "';";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
@@ -2258,7 +2255,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1350;";
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1350 and lang_id='" + catalogLanguage + "';";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
@@ -2379,7 +2376,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1320;";
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1320 and lang_id='" + catalogLanguage + "';";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
@@ -2509,7 +2506,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		final List<String> allowedDatatypeValuesLowerCase = new ArrayList<String>();
 		final List<String> allowedDatatypeKeys = new ArrayList<String>();
 
-		String sql = "SELECT name, entry_id FROM sys_list WHERE LST_ID=2240;";
+		String sql = "SELECT name, entry_id FROM sys_list WHERE LST_ID=2240 and lang_id='" + catalogLanguage + "';";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
@@ -2524,7 +2521,9 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
-		sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=2000 AND entry_id IN (3100, 3210, 3345, 3515, 3520, 3535, 3555, 3570, 5066);";
+		sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=2000 " +
+				"AND entry_id IN (3100, 3210, 3345, 3515, 3520, 3535, 3555, 3570, 5066) " +
+				"and lang_id='" + catalogLanguage + "';";
 		rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
@@ -2787,7 +2786,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		final List<String> allowedSpecialRefEntries = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1100;";
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1100 and lang_id='" + catalogLanguage + "';";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
@@ -2914,7 +2913,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		final List<String> allowedSpecialRefEntries505 = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNames505 = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=505 and lang_id='de';";
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=505 and lang_id='" + catalogLanguage + "';";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
@@ -2928,7 +2927,9 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		final List<String> allowedSpecialRefEntryNames2010 = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNamesLowerCase2010 = new ArrayList<String>();
 
-		sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=2010 AND entry_id IN (3360, 3400, 3410);";
+		sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=2010 " +
+				"AND entry_id IN (3360, 3400, 3410) " +
+				"and lang_id='" + catalogLanguage + "';";
 		rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
@@ -3817,7 +3818,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1370;";
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1370 and lang_id='" + catalogLanguage + "';";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
