@@ -7,12 +7,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
-import java.util.Iterator;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import de.ingrid.importer.udk.provider.Row;
 import de.ingrid.importer.udk.util.UuidGenerator;
 
 /**
@@ -23,16 +21,16 @@ public class IDCInitDBStrategy1_0_2 extends IDCStrategyDefault {
 
 	private static Log log = LogFactory.getLog(IDCInitDBStrategy1_0_2.class);
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see de.ingrid.importer.udk.strategy.IDCStrategy#execute()
-	 */
+	private String IDC_VERSION = "1.0.2_dev";
+
 	public void execute() {
 
 		try {
 
 			jdbc.setAutoCommit(false);
+
+			// write version !
+			setGenericKey(KEY_IDC_VERSION, IDC_VERSION);
 
 			System.out.print("  Importing sys_list...");
 			// must be processed first because other methods depend on that data

@@ -16,16 +16,16 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault {
 
 	private static Log log = LogFactory.getLog(IDCStrategy1_0_2.class);
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see de.ingrid.importer.udk.strategy.IDCStrategy#execute()
-	 */
+	private String IDC_VERSION = "1.0.2_dev";
+
 	public void execute() {
 
 		try {
 
 			jdbc.setAutoCommit(false);
+
+			// write version !
+			setGenericKey(KEY_IDC_VERSION, IDC_VERSION);
 
 			System.out.print("  Importing sys_list...");
 			// must be processed first because other methods depend on that data

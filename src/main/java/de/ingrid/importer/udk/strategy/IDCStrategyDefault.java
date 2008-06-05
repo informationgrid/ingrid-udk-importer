@@ -3883,6 +3883,14 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		jdbc.executeUpdate(sqlStr);
 	}
 
+	protected void setGenericKey(String key, String value) throws SQLException {
+		jdbc.executeUpdate("DELETE FROM sys_generic_key WHERE key_name='" + key + "';");
+
+		sqlStr = "INSERT INTO sys_generic_key (key_name, value_string) " +
+			"VALUES ('" + key + "', '" + value + "')";
+		jdbc.executeUpdate(sqlStr);
+	}
+
 	protected void importDefaultUserdata() throws Exception {
 		sqlStr = "DELETE FROM idc_group";
 		jdbc.executeUpdate(sqlStr);

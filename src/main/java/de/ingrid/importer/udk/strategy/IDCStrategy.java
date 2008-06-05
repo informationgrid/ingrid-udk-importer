@@ -12,6 +12,9 @@ import de.ingrid.importer.udk.provider.DataProvider;
  * 
  */
 public interface IDCStrategy {
+	
+	/** Key for sys_generic_key table to set/extract version of idc schema. */
+	static String KEY_IDC_VERSION = "IDC_VERSION";
 
 	public void execute() throws Exception;
 
