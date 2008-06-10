@@ -42,12 +42,15 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 	static Integer ADDRESS_TYPE_PERSON = 2;  
 	static int ROLE_CATALOG_ADMINISTRATOR = 1;
+	static Integer AUSKUNFT_ADDRESS_TYPE = 7;
+	static Integer AUSKUNFT_ADDRESS_SPECIAL_REF = 505;
 	static String IDX_SEPARATOR = "|";  
 	static String IDX_NAME_THESAURUS = "thesaurus";
 	static String IDX_NAME_GEOTHESAURUS = "geothesaurus";
 	
 	String catalogLanguage;
-
+	String catalogAdminUuid = null;
+	
 	public IDCStrategyDefault() {
 		super();
 		invalidModTypes = new ArrayList<String>();
@@ -2942,6 +2945,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 		// for tracking duplicate entries in udk !
 		HashMap<String, String> writtenUniqueKeys = new HashMap<String, String>();
+		long maxId = 0;
 
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
@@ -2974,8 +2978,12 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 							+ "'). Skip record.");
 					row.clear();
 				} else {
+					int currId = row.getInteger("primary_key");
+					if (currId > maxId) {
+						maxId = currId;
+					}
 					int cnt = 1;
-					p.setInt(cnt++, row.getInteger("primary_key")); // id
+					p.setInt(cnt++, currId); // id
 					int objId = IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"));
 					p.setInt(cnt++, objId); // obj_id
 					String adrUuid = row.get("adr_id");
@@ -3065,6 +3073,71 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				}
 			}
 		}
+
+		// check whether there are objects without auskunft addresses !
+		// then set catadmin as auskunft !
+
+		// get "consts"
+		if (catalogAdminUuid == null) {
+			catalogAdminUuid = UuidGenerator.getInstance().generateUuid();
+		}
+		String auskunftSpecialName = allowedSpecialRefEntryNames505.get(allowedSpecialRefEntries505.indexOf(AUSKUNFT_ADDRESS_TYPE.toString()));
+
+		// fetch with outer join, so we can process address references of EVERY object !
+		sql = "select distinct obj.id, oa.type, oa.special_ref, oa.line " +
+			"from t01_object obj left outer join t012_obj_adr oa on obj.id =oa.obj_id " +
+			"ORDER BY obj.id, oa.special_ref, oa.type ASC";
+		rs = jdbc.executeQuery(sql);
+
+		// process, if an object has no auskunft add it !
+		boolean hasAuskunft = true;
+		long lastObjId = -1;
+		int line = 0;
+		while (rs.next()) {
+			long currObjId = rs.getLong("id");
+			if (currObjId != lastObjId) {
+				if (!hasAuskunft) {
+					log.info("Invalid entry in " + entityName + " found: no auskunft address !!! objId('" + lastObjId +
+						"'). We add catAdmin address as auskunft.");
+
+					// write catadmin as auskunft !
+					int cnt = 1;
+					p.setLong(cnt++, ++maxId); // id
+					p.setLong(cnt++, lastObjId); // obj_id
+					p.setString(cnt++, catalogAdminUuid); // adr_uuid
+					JDBCHelper.addInteger(p, cnt++, AUSKUNFT_ADDRESS_TYPE ); // type
+					JDBCHelper.addInteger(p, cnt++, line ); // line
+					JDBCHelper.addInteger(p, cnt++, AUSKUNFT_ADDRESS_SPECIAL_REF ); // special_ref
+					JDBCHelper.addString(p, cnt++, auskunftSpecialName ); // special_name
+					p.setString(cnt++, null); // mod_time
+
+					try {
+						p.executeUpdate();
+					} catch (Exception e) {
+						log.error("Error executing SQL: " + p.toString(), e);
+						throw e;
+					}
+				}
+
+				hasAuskunft = false;
+				line = 0;
+			}
+
+			lastObjId = currObjId;
+			Integer currLine = rs.getInt("line");
+			if (currLine != null && line < currLine) {
+				line = currLine;
+			}
+			if (!hasAuskunft) {
+				boolean typeOk = AUSKUNFT_ADDRESS_TYPE.equals(rs.getInt("type"));
+				boolean specialRefOk = AUSKUNFT_ADDRESS_SPECIAL_REF.equals(rs.getInt("special_ref"));
+				if (typeOk && specialRefOk) {
+					hasAuskunft = true;
+				}
+			}
+		}
+		rs.close();
+
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
@@ -3904,20 +3977,22 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		// import default admin adress
 		dataProvider.setId(dataProvider.getId() + 1);
 		long adrId = dataProvider.getId();
-		String uuid = UuidGenerator.getInstance().generateUuid();
+		if (catalogAdminUuid == null) {
+			catalogAdminUuid = UuidGenerator.getInstance().generateUuid();
+		}
 		String sqlStr = "INSERT INTO t02_address (id, adr_uuid, org_adr_id, "
 			+ "adr_type, institution, lastname, firstname, address_value, address_key, title_value, title_key, "
 			+ "street, postcode, postbox, postbox_pc, city, country_code, job, "
 			+ "descr, lastexport_time, expiry_time, work_state, work_version, "
 			+ "mark_deleted, create_time, mod_time, mod_uuid, responsible_uuid) VALUES "
-			+ "( " + dataProvider.getId() + ", '" + uuid + "', NULL, 3, NULL, 'admin', 'admin', 'Frau', -1, 'Dr.', -1, "
+			+ "( " + dataProvider.getId() + ", '" + catalogAdminUuid + "', NULL, 3, NULL, 'admin', 'admin', 'Frau', -1, 'Dr.', -1, "
 			+ "NULL, NULL, NULL, NULL, NULL, NULL, 'Administrator of this catalog.', "
 			+ "'Administrator of this catalog.', NULL, NULL, 'V', 0, "
 			+ "'N', NULL, NULL, NULL, NULL);";
 		jdbc.executeUpdate(sqlStr);
 		
 		dataProvider.setId(dataProvider.getId() + 1);
-		sqlStr = "INSERT INTO `address_node` ( `id` , `addr_uuid` , `addr_id` , `addr_id_published` , `fk_addr_uuid` ) VALUES ( " + dataProvider.getId() + ", '" + uuid + "', "+adrId+", "+adrId+", NULL )"; 
+		sqlStr = "INSERT INTO `address_node` ( `id` , `addr_uuid` , `addr_id` , `addr_id_published` , `fk_addr_uuid` ) VALUES ( " + dataProvider.getId() + ", '" + catalogAdminUuid + "', "+adrId+", "+adrId+", NULL )"; 
 		jdbc.executeUpdate(sqlStr);
 
 		// import default admin group
@@ -3929,7 +4004,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		// import default admin user
 		dataProvider.setId(dataProvider.getId() + 1);
 		long userId = dataProvider.getId();
-		sqlStr = "INSERT INTO idc_user ( id, addr_uuid, idc_group_id, idc_role) VALUES (" + userId + ", '"+uuid+"', "+groupId+", "+ROLE_CATALOG_ADMINISTRATOR+" );";
+		sqlStr = "INSERT INTO idc_user ( id, addr_uuid, idc_group_id, idc_role) VALUES (" + userId + ", '"+catalogAdminUuid+"', "+groupId+", "+ROLE_CATALOG_ADMINISTRATOR+" );";
 		jdbc.executeUpdate(sqlStr);
 		
 		// import permissions
