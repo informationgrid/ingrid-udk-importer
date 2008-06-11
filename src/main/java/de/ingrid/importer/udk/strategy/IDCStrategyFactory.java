@@ -22,6 +22,8 @@ public class IDCStrategyFactory {
 			return new IDCStrategy1_0_2();
 		} else if (idcVersion.equals("1.0.2_init")) {
 			return new IDCInitDBStrategy1_0_2();
+		} else if (idcVersion.equals("1.0.2_help")) {
+			return new IDCHelpImporterStrategy();
 		} else {
 			log.error("Unknown IDC version '" + idcVersion + "'.");
 			throw new IllegalArgumentException("Unknown IDC version '" + idcVersion + "'.");
