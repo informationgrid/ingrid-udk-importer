@@ -50,6 +50,10 @@ public class IDCInitDBStrategy1_0_2 extends IDCStrategyDefault {
 			jdbc.commit();
 			
 			jdbc.setAutoCommit(false);
+			System.out.print("  Post processing...");
+			postProcess_generic();
+			// no post processing of spatial ref in catalogue !
+			System.out.println("done.");
 			System.out.print("  Set HI/LO table...");
 			setHiLoGenerator();
 			System.out.println("done.");

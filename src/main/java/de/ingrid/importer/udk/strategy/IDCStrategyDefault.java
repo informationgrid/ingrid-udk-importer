@@ -541,35 +541,11 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		}
 	}
 
-	protected void postProcess() throws Exception {
+	protected void postProcess_generic() throws Exception {
 		if (log.isInfoEnabled()) {
 			log.info("Post processing ...");
 		}
 
-		// get spatial ref id for the catalog
-		// ---------------------------------------------
-		if (log.isInfoEnabled()) {
-			log.info("update spatial ref id for the catalog ...");
-		}
-		for (Iterator<Row> i = dataProvider.getRowIterator("t03_catalogue"); i.hasNext();) {
-			Row row = i.next();
-			if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
-				String locTownNo = IDCStrategyHelper.getEntityFieldValue(dataProvider, "t071_state", "state_id", row
-						.get("state"), "loc_town_no");
-				String sql = "SELECT id FROM spatial_ref_value WHERE nativekey='"
-						+ IDCStrategyHelper.transformNativeKey2FullAgs(locTownNo) + "'";
-				ResultSet rs = jdbc.executeQuery(sql);
-				if (rs.next()) {
-					Long id = rs.getLong("id");
-					if (id != null && id.longValue() > 0) {
-						jdbc.executeUpdate("UPDATE t03_catalogue SET spatial_ref_id = " + id + " WHERE id="
-								+ row.getInteger("primary_key") + ";");
-					}
-					rs.close();
-				}
-			}
-		}
-		
 		// set the correct obj_node_id to the object index table
 		// this is necessary, because the node_id is not yet known, when the index is created
 		// ---------------------------------------------
@@ -622,7 +598,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		// set responsible user to cat-admin in entities
 		// ---------------------------------------------
 		if (log.isInfoEnabled()) {
-			log.info("set responsible_uuid in entities to cat admin ...");
+			log.info("set responsible_uuid in entities to catadmin ...");
 		}
 		String catAdminUuid = null;
 		String sql = "SELECT addr_uuid FROM idc_user WHERE idc_role=" + ROLE_CATALOG_ADMINISTRATOR;
@@ -632,15 +608,57 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		}
 		rs.close();
 		
-		if (catAdminUuid != null) {
-			jdbc.executeUpdate("UPDATE t01_object SET responsible_uuid = '" + catAdminUuid + "';");
-			jdbc.executeUpdate("UPDATE t02_address SET responsible_uuid = '" + catAdminUuid + "';");			
-		} else {
+		if (catAdminUuid == null) {
 			if (log.isInfoEnabled()) {
-				log.info("Couldn't find addr_uuid of CATALOG_ADMINISTRATOR ! sql = '" + sql + "'");
+				log.info("Couldn't find addr_uuid of CATALOG_ADMINISTRATOR !!!!!!!!!!!!! sql = '" + sql + "'");
 			}			
 		}
 
+		jdbc.executeUpdate("UPDATE t01_object SET responsible_uuid = '" + catAdminUuid + "';");
+		jdbc.executeUpdate("UPDATE t02_address SET responsible_uuid = '" + catAdminUuid + "';");			
+
+		
+		// set entities mod-user to cat-admin if address non existent
+		// -----------------------------------------------------------------------
+		if (log.isInfoEnabled()) {
+			log.info("set mod_uuid in entities to catadminUuid(" + catAdminUuid + ") if mod_uuid not found ...");
+		}
+		
+		// OBJECTS
+		sql = "select distinct obj.obj_uuid, obj.id, obj.mod_uuid " +
+			"from t01_object obj left outer join address_node aNode on obj.mod_uuid = aNode.addr_uuid " +
+			"where aNode.addr_uuid is null " +
+			"ORDER BY obj.obj_uuid, obj.id, obj.mod_uuid";
+
+		rs = jdbc.executeQuery(sql);
+		while (rs.next()) {
+			long objId = rs.getLong("id");
+
+			log.info("Invalid entry in t01_object found: mod_uuid not found, we set catadmin as mod_uuid !!! " +
+				"objId('" + objId + "'), obj_uuid('" + rs.getString("obj_uuid") + "'), invalid mod_uuid('" + rs.getString("mod_uuid") + "').");
+			
+			jdbc.executeUpdate("UPDATE t01_object SET mod_uuid = '" + catAdminUuid + "' where id=" + objId + ";");
+		}
+		rs.close();
+
+		// ADDRESSES
+		sql = "select distinct addr.adr_uuid, addr.id, addr.mod_uuid " +
+			"from t02_address addr left outer join address_node aNode on addr.mod_uuid = aNode.addr_uuid " +
+			"where aNode.addr_uuid is null " +
+			"ORDER BY addr.adr_uuid, addr.id, addr.mod_uuid";
+
+		rs = jdbc.executeQuery(sql);
+		while (rs.next()) {
+			long addrId = rs.getLong("id");
+
+			log.info("Invalid entry in t02_address found: mod_uuid not found, we set catadmin as mod_uuid !!! " +
+				"addrId('" + addrId + "'), adr_uuid('" + rs.getString("adr_uuid") + "'), invalid mod_uuid('" + rs.getString("mod_uuid") + "').");
+			
+			jdbc.executeUpdate("UPDATE t02_address SET mod_uuid = '" + catAdminUuid + "' where id=" + addrId + ";");
+		}
+		rs.close();
+
+			
 		// set default language of metadata entities (=default entry in sys_list 99999999)
 		// ---------------------------------------------
 		if (log.isInfoEnabled()) {
@@ -657,6 +675,33 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		
 		if (log.isInfoEnabled()) {
 			log.info("Post processing ... done.");
+		}
+	}
+
+	protected void postProcess_spatialRefCatalogue() throws Exception {
+
+		// set spatial ref id for the catalog
+		// ----------------------------------
+		if (log.isInfoEnabled()) {
+			log.info("update spatial ref id for the catalog ...");
+		}
+		for (Iterator<Row> i = dataProvider.getRowIterator("t03_catalogue"); i.hasNext();) {
+			Row row = i.next();
+			if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
+				String locTownNo = IDCStrategyHelper.getEntityFieldValue(dataProvider, "t071_state", "state_id", row
+						.get("state"), "loc_town_no");
+				String sql = "SELECT id FROM spatial_ref_value WHERE nativekey='"
+						+ IDCStrategyHelper.transformNativeKey2FullAgs(locTownNo) + "'";
+				ResultSet rs = jdbc.executeQuery(sql);
+				if (rs.next()) {
+					Long id = rs.getLong("id");
+					if (id != null && id.longValue() > 0) {
+						jdbc.executeUpdate("UPDATE t03_catalogue SET spatial_ref_id = " + id + " WHERE id="
+								+ row.getInteger("primary_key") + ";");
+					}
+					rs.close();
+				}
+			}
 		}
 	}
 

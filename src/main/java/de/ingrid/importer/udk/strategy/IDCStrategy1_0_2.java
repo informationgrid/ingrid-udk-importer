@@ -153,7 +153,8 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault {
 			
 			jdbc.setAutoCommit(false);
 			System.out.print("  Post processing...");
-			postProcess();
+			postProcess_generic();
+			postProcess_spatialRefCatalogue();
 			System.out.println("done.");
 			System.out.print("  Set HI/LO table...");
 			setHiLoGenerator();
