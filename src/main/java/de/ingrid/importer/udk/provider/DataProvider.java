@@ -10,6 +10,8 @@ import java.util.Iterator;
  * 
  */
 public interface DataProvider {
+	
+	public static String[] invalidModTypes = new String[] { "D" };
 
 	public Row findRow(String entityName, String rowName, String rowValue);
 

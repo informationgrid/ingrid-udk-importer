@@ -27,6 +27,10 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault {
 			// write version !
 			setGenericKey(KEY_IDC_VERSION, IDC_VERSION);
 
+			System.out.print("  Pre processing...");
+			preProcess_generic();
+			System.out.println("done.");
+
 			System.out.print("  Importing sys_list...");
 			// must be processed first because other methods depend on that data
 			processSysList();

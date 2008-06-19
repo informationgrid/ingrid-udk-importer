@@ -5,6 +5,7 @@ package de.ingrid.importer.udk.provider;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -34,8 +35,12 @@ public class InMemoryDataProvider implements DataProvider {
 
 	private long id = 0;
 
+	protected static List<String> invalidModTypes;
+
 	public InMemoryDataProvider(ImportDescriptor desciptor) {
 		getEntities(desciptor);
+
+		invalidModTypes = Arrays.asList(DataProvider.invalidModTypes);
 	}
 
 	public Row findRow(String entityName, String rowName, String rowValue) {
@@ -134,6 +139,16 @@ public class InMemoryDataProvider implements DataProvider {
 				for (int j = 0; j < nm.getLength(); j++) {
 					row.put(nm.item(j).getNodeName().toLowerCase(), nm.item(j).getNodeValue());
 				}
+
+				// SKIP INVALID ROWS (e.g. marked deleted) !
+				if (row.get("mod_type") != null && invalidModTypes.contains(row.get("mod_type"))) {
+					if (log.isDebugEnabled()) {
+						log.debug("Skip row with mod_type('" + row.get("mod_type") +
+							"'). Skipped Row: " + row);
+					}
+					continue;
+				}
+				
 				row.put("primary_key", String.valueOf(++id));
 				rows.add(row);
 			}

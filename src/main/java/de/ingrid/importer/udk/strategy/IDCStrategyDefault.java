@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -37,7 +38,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 	String sqlStr = null;
 	String pSqlStr = null;
 
-	protected static ArrayList<String> invalidModTypes;
+	protected static List<String> invalidModTypes;
 	private ArrayList<String> duplicateEntries;
 
 	static Integer ADDRESS_TYPE_PERSON = 2;  
@@ -53,8 +54,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 	
 	public IDCStrategyDefault() {
 		super();
-		invalidModTypes = new ArrayList<String>();
-		invalidModTypes.add("D");
+		invalidModTypes = Arrays.asList(DataProvider.invalidModTypes);
 		
 		// default language
 		catalogLanguage = "de";
@@ -73,6 +73,69 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 	}
 
 	public abstract void execute();
+
+	protected void preProcess_generic() throws Exception {
+		if (log.isInfoEnabled()) {
+			log.info("Pre processing ...");
+		}
+
+		// clean up non existing object relations and orphaned objects !!!!
+
+		boolean checkObjectRelations = true;
+		while (checkObjectRelations) {
+			checkObjectRelations = false;
+			
+			// load object relations and verify ! remove relations between non existing objects !		
+			String entityName = "t012_obj_obj";
+			for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
+				Row row = i.next();
+				// from uuid exists ?
+				if (IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("object_from_id")) == 0) {
+					if (log.isDebugEnabled()) {
+						log.debug("Invalid entry in " + entityName + " found: object_from_id ('"
+							+ row.get("object_from_id") + "') not found in imported data of t01_object. Skip record (" +
+							"object_to_id ('" + row.get("object_to_id") + "')).");
+					}
+					i.remove();
+					continue;
+				}
+				
+				// to uuid exists ?
+				if (IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("object_to_id")) == 0) {
+					if (log.isDebugEnabled()) {
+						log.debug("Invalid entry in " + entityName + " found: object_to_id ('" + row.get("object_to_id")
+							+ "') not found in imported data of t01_object. Skip record (" +
+							"object_from_id ('"	+ row.get("object_from_id") + "')).");
+					}
+					i.remove();
+					continue;
+				}
+			}
+
+			// after clear up of object relations verify objects ! remove orphans !		
+			entityName = "t01_object";
+			for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
+				Row row = i.next();
+				if (row.get("root").equals("0")) {
+					// non root object
+					int toIdSize = IDCStrategyHelper.getEntityFieldValue(dataProvider, "t012_obj_obj", "object_to_id",
+							row.get("obj_id"), "object_to_id").length();
+					if (toIdSize == 0) {
+						if (log.isInfoEnabled()) {
+							log.info("Invalid entry (outside the hierarchy) in " + entityName + " found: obj_id ('"
+								+ row.get("obj_id")	+ "') not found in t012_obj_obj.object_to_id and root == 0. Skip record.");
+						}
+						i.remove();
+						checkObjectRelations = true;
+					}
+				}
+			}
+		}
+
+		if (log.isInfoEnabled()) {
+			log.info("Pre processing ... done.");
+		}
+	}
 
 	protected void processT01Object() throws Exception {
 
@@ -110,27 +173,18 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 				String duplicateKey = row.get("obj_id");
 
-				if (IDCStrategyHelper.getPK(dataProvider, "t02_address", "adr_id", row.get("mod_id")) == 0) {
-					if (log.isDebugEnabled()) {
-						log.debug("Invalid entry in " + entityName + " found: mod_id ('" + row.get("mod_id")
-								+ "') not found in imported data of t02_address. Trying to use create_id instead.");
-					}
-					if (IDCStrategyHelper.getPK(dataProvider, "t02_address", "adr_id", row.get("create_id")) == 0) {
-						if (log.isDebugEnabled()) {
-							log.debug("Invalid entry in " + entityName + " found: create_id ('" + row.get("create_id")
-									+ "') not found in imported data of t02_address.");
+				// Skip Record ?
+				if (row.get("root").equals("0")) {
+					int toIdSize = IDCStrategyHelper.getEntityFieldValue(dataProvider, "t012_obj_obj", "object_to_id",
+							row.get("obj_id"), "object_to_id").length();
+					if (toIdSize == 0) {
+						if (log.isInfoEnabled()) {
+							log.info("Invalid entry (outside the hierarchy) in " + entityName + " found: obj_id ('"
+									+ row.get("obj_id")
+									+ "') not found in t012_obj_obj.object_to_id and root == 0. Skip record.");
 						}
+						row.clear();						
 					}
-				}
-				if (row.get("root").equals("0")
-						&& IDCStrategyHelper.getEntityFieldValue(dataProvider, "t012_obj_obj", "object_to_id",
-								row.get("obj_id"), "object_to_id").length() == 0) {
-					if (log.isInfoEnabled()) {
-						log.info("Invalid entry (outside the hierarchy) in " + entityName + " found: obj_id ('"
-								+ row.get("obj_id")
-								+ "') not found in t012_obj_obj.object_to_id and root == 0. Skip record.");
-					}
-					row.clear();
 				} else if (duplicateEntries.contains(duplicateKey)) {
 					if (log.isInfoEnabled()) {
 						log.info("Duplicate entry in " + entityName + " found: obj_id ('" + row.get("obj_id")
@@ -143,7 +197,10 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 								+ "') not found in imported data of t03_catalogue. Skip record");
 					}
 					row.clear();
-				} else {
+				}
+				
+				// if row not cleared process row !
+				if (row.get("obj_id") != null) {
 					int cnt = 1;
 					p.setInt(cnt++, row.getInteger("primary_key")); // id
 					p.setString(cnt++, row.get("obj_id")); // obj_uuid
@@ -170,14 +227,21 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					p.setString(cnt++, row.get("info_note")); // info_note
 					p.setString(cnt++, row.get("avail_access_note")); // avail_access_note
 					p.setString(cnt++, row.get("loc_descr")); // loc_descr
-					p.setString(cnt++, IDCStrategyHelper.transDateTime(row.get("time_from"))); // time_from
-					p.setString(cnt++, IDCStrategyHelper.transDateTime(row.get("time_to"))); // time_to
+
+					HashMap<String, String> timeMap = new HashMap<String, String>();
+					timeMap.put("time_from", row.get("time_from"));
+					timeMap.put("time_to", row.get("time_to"));
+					timeMap.put("time_type", row.get("time_type"));
+					IDCStrategyHelper.processObjectTimeReference(row.get("obj_id"), timeMap);
+
+					p.setString(cnt++, (String) timeMap.get("time_from")); // time_from
+					p.setString(cnt++, (String) timeMap.get("time_to")); // time_to
 					p.setString(cnt++, row.get("time_descr")); // time_descr
 					JDBCHelper.addInteger(p, cnt++, row.getInteger("time_period")); // time_period
 					p.setString(cnt++, row.get("time_interval")); // time_interval
 					JDBCHelper.addInteger(p, cnt++, row.getInteger("time_status")); // time_status
 					p.setString(cnt++, row.get("time_alle")); // time_alle
-					p.setString(cnt++, row.get("time_type")); // time_type
+					p.setString(cnt++, (String) timeMap.get("time_type")); // time_type
 					Integer publishId = row.getInteger("publish_id");
 					if (publishId == null) {
 						publishId = new Integer(3);
@@ -208,8 +272,23 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					p.setString(cnt++, IDCStrategyHelper.transDateTime(row.get("create_time"))); // create_time,
 					p.setString(cnt++, IDCStrategyHelper.transDateTime(row.get("mod_time"))); // mod_time,
 					String modId = row.get("mod_id");
+					// log invalid address references (user addresses)
 					if (IDCStrategyHelper.getPK(dataProvider, "t02_address", "adr_id", modId) == 0) {
+						if (log.isDebugEnabled()) {
+							log.debug("Invalid entry in " + entityName + " found: mod_id ('" + modId
+									+ "') not found in imported data of t02_address. Trying to use create_id instead.");
+						}
+
+						// we use create_id instead
 						modId = row.get("create_id");
+						
+						// but log if also not valid (will be fixed in post processing)
+						if (IDCStrategyHelper.getPK(dataProvider, "t02_address", "adr_id", row.get("create_id")) == 0) {
+							if (log.isDebugEnabled()) {
+								log.debug("Invalid entry in " + entityName + " found: create_id ('" + row.get("create_id")
+										+ "') not found in imported data of t02_address.");
+							}
+						}
 					}
 					p.setString(cnt++, modId); // mod_uuid,
 					p.setString(cnt++, modId); // responsible_uuid

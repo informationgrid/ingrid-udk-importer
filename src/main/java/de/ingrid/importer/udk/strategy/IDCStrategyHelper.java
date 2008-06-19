@@ -5,6 +5,8 @@ package de.ingrid.importer.udk.strategy;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 
 import org.apache.commons.logging.Log;
@@ -135,7 +137,145 @@ public class IDCStrategyHelper {
 				}
 			}
 		}
-		return "";
+		return null;
+	}
+
+	public static void processObjectTimeReference(String objUuid, HashMap<String, String> timeMap) {
+		String timeFrom = IDCStrategyHelper.transDateTime(timeMap.get("time_from"));
+		String timeTo = IDCStrategyHelper.transDateTime(timeMap.get("time_to"));
+		String timeType = timeMap.get("time_type");
+
+		// default: same values !
+		String processedTimeFrom = timeFrom;
+		String processedTimeTo = timeTo;
+		String processedTimeType = timeType;
+
+		boolean timeValid = false;
+
+		if (timeType == null) {
+			// no time (type) set, we clear all time data to assure no wrong values !
+			timeValid = true;
+			processedTimeFrom = processedTimeTo = processedTimeType = null;
+
+		} else {
+			// process time data according to time type 
+			// ----------------------------------------------------------------
+			if (timeType.equals("am")) {
+				if (timeFrom != null && timeFrom.equals(timeTo)) {
+					processedTimeFrom = processTimeFrom(objUuid, timeFrom);
+					processedTimeTo = processTimeTo(objUuid, timeTo);
+					if (processedTimeFrom != null && 
+							processedTimeTo != null &&
+							processedTimeFrom.compareTo(processedTimeTo) <= 0)
+					{
+						timeValid = true;
+						if (processedTimeFrom.compareTo(processedTimeTo) < 0) {
+							processedTimeType = "von";							
+						}
+					}
+				}
+			// ----------------------------------------------------------------
+			} else if (timeType.equals("seit")) {
+				if (timeFrom != null) {
+					processedTimeFrom = processTimeFrom(objUuid, timeFrom);
+					if (processedTimeFrom != null) {						
+						timeValid = true;
+						// we set time_to to NULL, may have wrong data !
+						processedTimeTo = null;
+					}
+				}
+				
+			// ----------------------------------------------------------------
+			} else if (timeType.equals("von")) {
+				if (timeFrom != null && timeTo != null) {
+					processedTimeFrom = processTimeFrom(objUuid, timeFrom);
+					processedTimeTo = processTimeTo(objUuid, timeTo);
+					if (processedTimeFrom != null &&
+						processedTimeTo != null &&
+						processedTimeFrom.compareTo(processedTimeTo) <= 0)
+					{
+						timeValid = true;
+					}
+				}
+			}
+		}
+		
+		// set return data in map dependent from process result !
+
+		if (timeValid) {
+			timeMap.put("time_from", processedTimeFrom);
+			timeMap.put("time_to", processedTimeTo);
+			timeMap.put("time_type", processedTimeType);			
+
+		} else {
+			// invalid time data !
+			if (log.isDebugEnabled()) {
+				log.debug("Wrong time_from('" + timeFrom +	"'), time_to('" + timeTo +
+					"'), time_type('" + timeType + "') in obj('" + objUuid +
+					"'), we reset time data in object !");
+			}
+
+			// clear all if time data not valid !
+			timeMap.put("time_from", null);
+			timeMap.put("time_to", null);
+			timeMap.put("time_type", null);
+		}
+	}
+
+	/** Decrease timeFrom to "lowest" DAY if passed timeFrom NOT day specific (e.g. only year set, then will be 01.01. of that year) */
+	private static String processTimeFrom(String objUuid, String timeFrom) {
+		String processedTime = null;
+		
+		try {
+			StringBuilder tmpTime = new StringBuilder(timeFrom);
+			// set lowest month if not set
+			if (tmpTime.substring(4, 6).equals("00")) {
+				tmpTime.replace(4, 6, "01");
+			}
+			// set lowest day in month if not set
+			if (tmpTime.substring(6, 8).equals("00")) {
+				tmpTime.replace(6, 8, "01");
+			}
+			processedTime = tmpTime.toString();
+			
+		} catch (Exception exc) {
+			if (log.isDebugEnabled()) {
+				log.debug("Problems processing time_from('" + timeFrom + "') in obj('" + objUuid + "') !");
+			}
+		}
+
+		return processedTime;
+	}
+
+	/** Increase timeTo to "highest" DAY if passed timeTo NOT day specific (e.g. only year set, then will be 31.12. of that year) */
+	private static String processTimeTo(String objUuid, String timeTo) {
+		String processedTime = null;
+		
+		try {
+			StringBuilder tmpTime = new StringBuilder(timeTo);
+			// set highest month if not set
+			if (tmpTime.substring(4, 6).equals("00")) {
+				tmpTime.replace(4, 6, "12");
+			}
+			// set highest day in month if not set
+			if (tmpTime.substring(6, 8).equals("00")) {
+				// Determining the Number of Days in the specified Month
+				int year = Integer.parseInt(tmpTime.substring(0, 4));
+				int month = Integer.parseInt(tmpTime.substring(4, 6));
+			    Calendar cal = new GregorianCalendar(year, month-1, 1);
+			    int days = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+			    
+				tmpTime.replace(6, 8, String.valueOf(days));
+			}
+			processedTime = tmpTime.toString();
+			
+		} catch (Exception exc) {
+			if (log.isDebugEnabled()) {
+				log.debug("Problems processing time_to('" + timeTo + "') in obj('" + objUuid + "') !");
+			}
+		}
+
+		return processedTime;
 	}
 
 	public static String transCountryCode(String code) {
