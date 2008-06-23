@@ -23,7 +23,7 @@ public class ImportDescriptorHelper {
 	/**
 	 * The logging object
 	 */
-	private static Log log = LogFactory.getLog(Importer.class);
+	private static Log log = LogFactory.getLog(ImportDescriptorHelper.class);
 
 	/**
 	 * Adds all files (suffix '.xml') of the given directory <code>dir</code>
@@ -49,7 +49,7 @@ public class ImportDescriptorHelper {
 	}
 	
 	private static boolean deleteDirectory(File path) {
-	    if( path.exists() ) {
+		if( path.exists() ) {
 	      File[] files = path.listFiles();
 	      for(int i=0; i<files.length; i++) {
 	         if(files[i].isDirectory()) {
@@ -133,7 +133,9 @@ public class ImportDescriptorHelper {
 					// read directory
 					ImportDescriptorHelper.addDirectory(f, descr.getFiles());
 				} else if (f.getName().endsWith(".zip")) {
-
+					if (log.isDebugEnabled()) {
+						log.debug("Zip archive found. Extracting to " + getTmpDir());
+					}
 					List<String> vExtracted = extractZipFile(f, getTmpDir() + "/");
 
 					if (vExtracted != null) {

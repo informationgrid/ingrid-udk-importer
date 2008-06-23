@@ -12,9 +12,15 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import de.ingrid.importer.udk.ImportDescriptorHelper;
+
 public class Zipper {
 
 	private static final String separator = "/";
+	private static Log log = LogFactory.getLog(Zipper.class);
 
 	/** The Size of the Buffer, reading and writing the files */
 	private static int buffersize = 1024;
@@ -110,7 +116,9 @@ public class Zipper {
 
 					// write the File
 					writeFile(zfile.getInputStream(zEntry), fos, buffersize);
-					// System.out.println("FILE WRITTEN: "+outputFile);
+					if (log.isDebugEnabled()) {
+						log.debug("FILE WRITTEN: " + outputFile.getAbsolutePath());
+					}
 
 					// add the file to the vector to be returned
 
