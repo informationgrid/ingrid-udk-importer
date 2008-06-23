@@ -711,7 +711,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		jdbc.executeUpdate("UPDATE t02_address SET responsible_uuid = '" + catAdminUuid + "';");			
 
 		
-		// set entities mod-user to cat-admin if address non existent
+		// set entities mod-user to cat-admin if address non existent (in objects, addresses, catalogue)
 		// -----------------------------------------------------------------------
 		if (log.isInfoEnabled()) {
 			log.info("set mod_uuid in entities to catadminUuid(" + catAdminUuid + ") if mod_uuid not found ...");
@@ -748,6 +748,23 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				"addrId('" + addrId + "'), adr_uuid('" + rs.getString("adr_uuid") + "'), invalid mod_uuid('" + rs.getString("mod_uuid") + "').");
 			
 			jdbc.executeUpdate("UPDATE t02_address SET mod_uuid = '" + catAdminUuid + "' where id=" + addrId + ";");
+		}
+		rs.close();
+
+		// CATALOGUE
+		sql = "select distinct cat.cat_uuid, cat.id, cat.mod_uuid " +
+			"from t03_catalogue cat left outer join address_node aNode on cat.mod_uuid = aNode.addr_uuid " +
+			"where aNode.addr_uuid is null " +
+			"ORDER BY cat.cat_uuid";
+
+		rs = jdbc.executeQuery(sql);
+		while (rs.next()) {
+			long catId = rs.getLong("id");
+
+			log.info("Invalid entry in t03_catalogue found: mod_uuid not found, we set catadmin as mod_uuid !!! " +
+				"cat_uuid('" + rs.getString("cat_uuid") + "'), invalid mod_uuid('" + rs.getString("mod_uuid") + "').");
+			
+			jdbc.executeUpdate("UPDATE t03_catalogue SET mod_uuid = '" + catAdminUuid + "' where id=" + catId + ";");
 		}
 		rs.close();
 
