@@ -7,7 +7,8 @@ public class IDCStrategyHelperTest extends TestCase {
 	public void testTransDateTime() {
 		assertEquals(IDCStrategyHelper.transDateTime("20071212153212"), "20071212153212000");
 		assertEquals(IDCStrategyHelper.transDateTime("20072312153212"), null);
-		assertEquals(IDCStrategyHelper.transDateTime(null), null);
+		String dateTime = null;
+		assertEquals(IDCStrategyHelper.transDateTime(dateTime), null);
 		assertEquals(IDCStrategyHelper.transDateTime(""), null);
 	}
 	

@@ -101,32 +101,44 @@ public class ImportDescriptorHelper {
 		String dbUser = null;
 		String dbPasswd = null;
 		String idcVersion = null;
+		String idcCatalogLanguage = null;
 
 		for (int i = 0; i < args.length; i++) {
 			if (args[i].equalsIgnoreCase("-u")) {
 				if (args.length <= i + 1) {
-					System.out.println("Missing argument for parameter '-u'.");
-					throw new IllegalArgumentException("Missing argument for parameter '-u'.");
+					String msg = "Missing argument for parameter '-u' (Database User).";
+					System.out.println(msg);
+					throw new IllegalArgumentException(msg);
 				}
 				dbUser = args[++i];
 			} else if (args[i].equalsIgnoreCase("-p")) {
 				if (args.length <= i + 1) {
-					System.out.println("Missing argument for parameter '-p'.");
-					throw new IllegalArgumentException("Missing argument for parameter '-p'.");
+					String msg = "Missing argument for parameter '-p' (Database Password).";
+					System.out.println(msg);
+					throw new IllegalArgumentException(msg);
 				}
 				dbPasswd = args[++i];
 			} else if (args[i].equalsIgnoreCase("-c")) {
 				if (args.length <= i + 1) {
-					System.out.println("Missing argument for parameter '-c'.");
-					throw new IllegalArgumentException("Missing argument for parameter '-c'.");
+					String msg = "Missing argument for parameter '-c' (Configuration File).";
+					System.out.println(msg);
+					throw new IllegalArgumentException(msg);
 				}
 				descr.setConfigurationFile(args[++i]);
 			} else if (args[i].equalsIgnoreCase("-v")) {
 				if (args.length <= i + 1) {
-					System.out.println("Missing argument for parameter '-c'.");
-					throw new IllegalArgumentException("Missing argument for parameter '-c'.");
+					String msg = "Missing argument for parameter '-v' (IDC Version).";
+					System.out.println(msg);
+					throw new IllegalArgumentException(msg);
 				}
 				idcVersion = args[++i];
+			} else if (args[i].equalsIgnoreCase("-l")) {
+				if (args.length <= i + 1) {
+					String msg = "Missing argument for parameter '-l' (Catalogue Language).";
+					System.out.println(msg);
+					throw new IllegalArgumentException(msg);
+				}
+				idcCatalogLanguage = args[++i];
 			} else {
 				File f = new File(args[i]);
 				if (f.isDirectory()) {
@@ -170,6 +182,7 @@ public class ImportDescriptorHelper {
 		descr.setDbUser(configuration.getString("db.user", ""));
 		descr.setDbPass(configuration.getString("db.password", ""));
 		descr.setIdcVersion(configuration.getString("idc.version", ""));
+		descr.setIdcCatalogueLanguage(configuration.getString("idc.catalogue.language", ""));
 
 		if (dbUser != null) {
 			descr.setDbUser(dbUser);
@@ -179,6 +192,9 @@ public class ImportDescriptorHelper {
 		}
 		if (idcVersion != null) {
 			descr.setIdcVersion(idcVersion);
+		}
+		if (idcCatalogLanguage != null) {
+			descr.setIdcCatalogueLanguage(idcCatalogLanguage);
 		}
 
 		if (descr.getFiles() == null || descr.getFiles().isEmpty()) {

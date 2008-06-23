@@ -49,8 +49,8 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 	static String IDX_NAME_THESAURUS = "thesaurus";
 	static String IDX_NAME_GEOTHESAURUS = "geothesaurus";
 	
-	String catalogLanguage;
-	String catalogAdminUuid = null;
+	private String catalogLanguage = null;
+	private String catalogAdminUuid = null;
 	
 	public IDCStrategyDefault() {
 		super();
@@ -70,6 +70,21 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 	public void setImportDescriptor(ImportDescriptor descriptor) {
 		importDescriptor = descriptor;
+		
+		String catLang = descriptor.getIdcCatalogueLanguage();
+		if (catLang != null && catLang.trim().length() > 0) {
+			catalogLanguage = catLang;
+		}
+	}
+
+	protected String getCatalogAdminUuid() {
+		if (catalogAdminUuid == null) {
+			catalogAdminUuid = UuidGenerator.getInstance().generateUuid();
+		}
+		return catalogAdminUuid;
+	}
+	protected String getCatalogLanguage() {
+		return catalogLanguage;
 	}
 
 	public abstract void execute();
@@ -367,7 +382,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		final List<String> allowedSpecialRefTitleEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefTitleEntryNamesLowerCase = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=4305 and lang_id='" + catalogLanguage + "';";
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=4305 and lang_id='" + getCatalogLanguage() + "';";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
@@ -381,7 +396,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		final List<String> allowedSpecialRefAddressEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefAddressEntryNamesLowerCase = new ArrayList<String>();
 
-		sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=4300 and lang_id='" + catalogLanguage + "';";
+		sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=4300 and lang_id='" + getCatalogLanguage() + "';";
 		rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
@@ -597,8 +612,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				}
 				p.setString(cnt++, modId); // mod_uuid,
 				p.setString(cnt++, IDCStrategyHelper.transDateTime(row.get("mod_time"))); // mod_time
-				catalogLanguage="de";
-				p.setString(cnt++, catalogLanguage); // language_code
+				p.setString(cnt++, getCatalogLanguage()); // language_code
 				try {
 					p.executeUpdate();
 				} catch (Exception e) {
@@ -812,7 +826,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=2000 " +
 				"AND entry_id IN (3100, 3210, 3345, 3515, 3520, 3535, 3555, 3570, 5066) " +
-				"and lang_id='" + catalogLanguage + "';";
+				"and lang_id='" + getCatalogLanguage() + "';";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
@@ -1097,7 +1111,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=4430 and lang_id='" + catalogLanguage + "';";
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=4430 and lang_id='" + getCatalogLanguage() + "';";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
@@ -1177,7 +1191,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=3385 and lang_id='" + catalogLanguage + "';";
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=3385 and lang_id='" + getCatalogLanguage() + "';";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
@@ -1374,7 +1388,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=5100 and lang_id='" + catalogLanguage + "';";
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=5100 and lang_id='" + getCatalogLanguage() + "';";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
@@ -1512,7 +1526,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		final List<String> allowedSpecialWMSRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialWMSRefEntryNamesLowerCase = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=5110 and lang_id='" + catalogLanguage + "';";
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=5110 and lang_id='" + getCatalogLanguage() + "';";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
@@ -1526,7 +1540,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		final List<String> allowedSpecialWFSRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialWFSRefEntryNamesLowerCase = new ArrayList<String>();
 
-		sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=5120 and lang_id='" + catalogLanguage + "';";
+		sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=5120 and lang_id='" + getCatalogLanguage() + "';";
 		rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
@@ -1962,7 +1976,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=3535 and lang_id='" + catalogLanguage + "';";
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=3535 and lang_id='" + getCatalogLanguage() + "';";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
@@ -2212,7 +2226,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=3555 and lang_id='" + catalogLanguage + "';";
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=3555 and lang_id='" + getCatalogLanguage() + "';";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
@@ -2382,7 +2396,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1350 and lang_id='" + catalogLanguage + "';";
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1350 and lang_id='" + getCatalogLanguage() + "';";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
@@ -2503,7 +2517,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1320 and lang_id='" + catalogLanguage + "';";
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1320 and lang_id='" + getCatalogLanguage() + "';";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
@@ -2633,7 +2647,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		final List<String> allowedDatatypeValuesLowerCase = new ArrayList<String>();
 		final List<String> allowedDatatypeKeys = new ArrayList<String>();
 
-		String sql = "SELECT name, entry_id FROM sys_list WHERE LST_ID=2240 and lang_id='" + catalogLanguage + "';";
+		String sql = "SELECT name, entry_id FROM sys_list WHERE LST_ID=2240 and lang_id='" + getCatalogLanguage() + "';";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
@@ -2650,7 +2664,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 		sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=2000 " +
 				"AND entry_id IN (3100, 3210, 3345, 3515, 3520, 3535, 3555, 3570, 5066) " +
-				"and lang_id='" + catalogLanguage + "';";
+				"and lang_id='" + getCatalogLanguage() + "';";
 		rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
@@ -2913,7 +2927,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		final List<String> allowedSpecialRefEntries = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1100 and lang_id='" + catalogLanguage + "';";
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1100 and lang_id='" + getCatalogLanguage() + "';";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
@@ -3040,7 +3054,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		final List<String> allowedSpecialRefEntries505 = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNames505 = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=505 and lang_id='" + catalogLanguage + "';";
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=505 and lang_id='" + getCatalogLanguage() + "';";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
@@ -3056,7 +3070,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 		sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=2010 " +
 				"AND entry_id IN (3360, 3400, 3410) " +
-				"and lang_id='" + catalogLanguage + "';";
+				"and lang_id='" + getCatalogLanguage() + "';";
 		rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
@@ -3202,9 +3216,6 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		// then set catadmin as auskunft !
 
 		// get "consts"
-		if (catalogAdminUuid == null) {
-			catalogAdminUuid = UuidGenerator.getInstance().generateUuid();
-		}
 		String auskunftSpecialName = allowedSpecialRefEntryNames505.get(allowedSpecialRefEntries505.indexOf(AUSKUNFT_ADDRESS_TYPE.toString()));
 
 		// fetch with outer join, so we can process address references of EVERY object !
@@ -3228,7 +3239,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					int cnt = 1;
 					p.setLong(cnt++, ++maxId); // id
 					p.setLong(cnt++, lastObjId); // obj_id
-					p.setString(cnt++, catalogAdminUuid); // adr_uuid
+					p.setString(cnt++, getCatalogAdminUuid()); // adr_uuid
 					JDBCHelper.addInteger(p, cnt++, AUSKUNFT_ADDRESS_TYPE ); // type
 					JDBCHelper.addInteger(p, cnt++, line ); // line
 					JDBCHelper.addInteger(p, cnt++, AUSKUNFT_ADDRESS_SPECIAL_REF ); // special_ref
@@ -4015,7 +4026,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1370 and lang_id='" + catalogLanguage + "';";
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1370 and lang_id='" + getCatalogLanguage() + "';";
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
@@ -4101,22 +4112,19 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		// import default admin adress
 		dataProvider.setId(dataProvider.getId() + 1);
 		long adrId = dataProvider.getId();
-		if (catalogAdminUuid == null) {
-			catalogAdminUuid = UuidGenerator.getInstance().generateUuid();
-		}
 		String sqlStr = "INSERT INTO t02_address (id, adr_uuid, org_adr_id, "
 			+ "adr_type, institution, lastname, firstname, address_value, address_key, title_value, title_key, "
 			+ "street, postcode, postbox, postbox_pc, city, country_code, job, "
 			+ "descr, lastexport_time, expiry_time, work_state, work_version, "
 			+ "mark_deleted, create_time, mod_time, mod_uuid, responsible_uuid) VALUES "
-			+ "( " + dataProvider.getId() + ", '" + catalogAdminUuid + "', NULL, 3, NULL, 'admin', 'admin', 'Frau', -1, 'Dr.', -1, "
+			+ "( " + dataProvider.getId() + ", '" + getCatalogAdminUuid() + "', NULL, 3, NULL, 'admin', 'admin', 'Frau', -1, 'Dr.', -1, "
 			+ "NULL, NULL, NULL, NULL, NULL, NULL, 'Administrator of this catalog.', "
 			+ "'Administrator of this catalog.', NULL, NULL, 'V', 0, "
 			+ "'N', NULL, NULL, NULL, NULL);";
 		jdbc.executeUpdate(sqlStr);
 		
 		dataProvider.setId(dataProvider.getId() + 1);
-		sqlStr = "INSERT INTO `address_node` ( `id` , `addr_uuid` , `addr_id` , `addr_id_published` , `fk_addr_uuid` ) VALUES ( " + dataProvider.getId() + ", '" + catalogAdminUuid + "', "+adrId+", "+adrId+", NULL )"; 
+		sqlStr = "INSERT INTO `address_node` ( `id` , `addr_uuid` , `addr_id` , `addr_id_published` , `fk_addr_uuid` ) VALUES ( " + dataProvider.getId() + ", '" + getCatalogAdminUuid() + "', "+adrId+", "+adrId+", NULL )"; 
 		jdbc.executeUpdate(sqlStr);
 
 		// import default admin group
@@ -4128,7 +4136,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		// import default admin user
 		dataProvider.setId(dataProvider.getId() + 1);
 		long userId = dataProvider.getId();
-		sqlStr = "INSERT INTO idc_user ( id, addr_uuid, idc_group_id, idc_role) VALUES (" + userId + ", '"+catalogAdminUuid+"', "+groupId+", "+ROLE_CATALOG_ADMINISTRATOR+" );";
+		sqlStr = "INSERT INTO idc_user ( id, addr_uuid, idc_group_id, idc_role) VALUES (" + userId + ", '"+getCatalogAdminUuid()+"', "+groupId+", "+ROLE_CATALOG_ADMINISTRATOR+" );";
 		jdbc.executeUpdate(sqlStr);
 		
 		// import permissions

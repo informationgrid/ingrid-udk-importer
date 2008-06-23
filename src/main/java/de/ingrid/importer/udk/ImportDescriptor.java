@@ -33,6 +33,8 @@ public class ImportDescriptor {
 
 	private String idcVersion = null;
 
+	private String idcCatalogueLanguage = null;
+
 	/**
 	 * ArrayList to store import files
 	 * 
@@ -172,6 +174,14 @@ public class ImportDescriptor {
 	 */
 	public void setIdcVersion(String udkDbVersion) {
 		this.idcVersion = udkDbVersion;
+	}
+
+	public String getIdcCatalogueLanguage() {
+		return idcCatalogueLanguage;
+	}
+
+	public void setIdcCatalogueLanguage(String idcCatalogueLanguage) {
+		this.idcCatalogueLanguage = idcCatalogueLanguage;
 	}
 
 }

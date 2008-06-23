@@ -6,6 +6,7 @@ package de.ingrid.importer.udk.strategy;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 
@@ -110,6 +111,10 @@ public class IDCStrategyHelper {
 	}
 	
 	
+	public static String transDateTime(Date date) {
+		return sdf.format(date);
+	}
+
 	public static String transDateTime(String src) {
 		if (src != null && src.length() > 0) {
 			String dst = "";

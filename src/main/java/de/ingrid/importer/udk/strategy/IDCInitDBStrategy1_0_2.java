@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.Date;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -96,6 +97,8 @@ public class IDCInitDBStrategy1_0_2 extends IDCStrategyDefault {
 		sqlStr = "DELETE FROM t03_catalogue";
 		jdbc.executeUpdate(sqlStr);
 
+		String currentTime = IDCStrategyHelper.transDateTime(new Date());
+
 		int cnt = 1;
 		dataProvider.setId(dataProvider.getId() + 1);
 		p.setLong(cnt++, dataProvider.getId()); // id
@@ -104,23 +107,24 @@ public class IDCInitDBStrategy1_0_2 extends IDCStrategyDefault {
 		p.setString(cnt++, IDCStrategyHelper.transCountryCode("D")); // country_code
 		p.setString(cnt++, "N"); // workflow_control
 		p.setNull(cnt++, Types.INTEGER); // expiry_duration
-		p.setString(cnt++, IDCStrategyHelper.transDateTime("01.05.2008")); // create_time
+		p.setString(cnt++, currentTime); // create_time
 		
 		String modId = null;
+		String modTime = null;
 		
 		String sql = "SELECT adr_uuid FROM t02_address;";
 		ResultSet rs = jdbc.executeQuery(sql);
 		if (rs.next()) {
 			modId = rs.getString("adr_uuid");
+			if (modId != null) {
+				modTime = currentTime;
+			}
 		}
 		rs.close();
 		
-		if (modId == null) {
-			modId = "";
-		}
 		p.setString(cnt++, modId); // mod_uuid,
-		p.setString(cnt++, IDCStrategyHelper.transDateTime("01.05.2008")); // mod_time
-		p.setString(cnt++, "de"); // language_code
+		p.setString(cnt++, modTime); // mod_time
+		p.setString(cnt++, getCatalogLanguage()); // language_code
 		try {
 			p.executeUpdate();
 		} catch (Exception e) {
