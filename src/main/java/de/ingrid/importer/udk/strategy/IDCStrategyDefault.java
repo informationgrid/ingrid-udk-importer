@@ -97,12 +97,17 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		// clean up non existing object relations and orphaned objects !!!!
 
 		boolean checkObjectRelations = true;
+		int numCycles = 0;
 		while (checkObjectRelations) {
 			checkObjectRelations = false;
+			numCycles++;
 			
 			// load object relations and verify ! remove relations between non existing objects !		
 			String entityName = "t012_obj_obj";
+			int numReadEntities = 0;
+			int numRemovedEntities = 0;
 			for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
+				numReadEntities++;
 				Row row = i.next();
 				// from uuid exists ?
 				if (IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("object_from_id")) == 0) {
@@ -112,6 +117,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 							"object_to_id ('" + row.get("object_to_id") + "')).");
 					}
 					i.remove();
+					numRemovedEntities++;
 					continue;
 				}
 				
@@ -123,13 +129,22 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 							"object_from_id ('"	+ row.get("object_from_id") + "')).");
 					}
 					i.remove();
+					numRemovedEntities++;
 					continue;
 				}
 			}
 
+			if (log.isInfoEnabled()) {
+				log.info("PREPROCESSING t012_obj_obj: " +
+					"cycle " + numCycles + ", read " + numReadEntities + ", removed " + numRemovedEntities);
+			}
+
 			// after clear up of object relations verify objects ! remove orphans !		
 			entityName = "t01_object";
+			numReadEntities = 0;
+			numRemovedEntities = 0;
 			for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
+				numReadEntities++;
 				Row row = i.next();
 				if (row.get("root").equals("0")) {
 					// non root object
@@ -141,9 +156,15 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 								+ row.get("obj_id")	+ "') not found in t012_obj_obj.object_to_id and root == 0. Skip record.");
 						}
 						i.remove();
+						numRemovedEntities++;
 						checkObjectRelations = true;
 					}
 				}
+			}
+
+			if (log.isInfoEnabled()) {
+				log.info("PREPROCESSING t01_object: " +
+					"cycle " + numCycles + ", read " + numReadEntities + ", removed " + numRemovedEntities);
 			}
 		}
 
