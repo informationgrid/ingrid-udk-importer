@@ -3681,7 +3681,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				p.setString(cnt++, "Z"); // type
 				p.setInt(cnt++, row.getInteger("counter")); // listitem_line
 				p.setString(cnt++, row.get("data")); // listitem_value
-				p.setString(cnt++, "de"); // lang_code
+				p.setString(cnt++, getCatalogLanguage()); // lang_code
 				try {
 					p.executeUpdate();
 				} catch (Exception e) {

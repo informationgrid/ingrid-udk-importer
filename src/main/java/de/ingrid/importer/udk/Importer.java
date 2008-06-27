@@ -30,7 +30,7 @@ public class Importer {
 			descriptor = ImportDescriptorHelper.getDescriptor(args);
 			System.out.println("done.");
 		} catch (IllegalArgumentException e) {
-			System.out.println("Error parsing input parameters.\n\nusage: java ingrid-udk-importer.jar [-u <user>] [-p <password>] [-v <idc version>] -c <config file> <file/directory> [file/directory]");
+			System.out.println("Error parsing input parameters.\n\nusage: java ingrid-udk-importer.jar [-u <user>] [-p <password>] [-v <idc version>] [-l <idc language>] -c <config file> <file/directory> [file/directory]");
 			return;
 		}
 
