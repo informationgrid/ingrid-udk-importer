@@ -51,7 +51,12 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 	
 	private String catalogLanguage = null;
 	private String catalogAdminUuid = null;
-	
+
+	// mapping of old codelists to new codelists 
+	HashMap<Integer, Integer> mapOldKeyToNewKeyList100 = new HashMap<Integer, Integer>();
+	HashMap<Integer, Integer> mapOldKeyToNewKeyList101 = new HashMap<Integer, Integer>();
+
+
 	public IDCStrategyDefault() {
 		super();
 		invalidModTypes = Arrays.asList(DataProvider.invalidModTypes);
@@ -297,7 +302,21 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					JDBCHelper.addDouble(p, cnt++, row.getDouble("vertical_extent_maximum")); // vertical_extent_maximum
 
 					JDBCHelper.addInteger(p, cnt++, row.getInteger("vertical_extent_unit")); // vertical_extent_unit
-					JDBCHelper.addInteger(p, cnt++, row.getInteger("vertical_extent_vdatum")); // vertical_extent_vdatum
+					
+					// map old codelist to new codelist, log inconsistencies
+					Integer oldKeyList101 = row.getInteger("vertical_extent_vdatum");
+					Integer newKeyList101 = oldKeyList101;
+					if (oldKeyList101 != null) {
+						newKeyList101 = mapOldKeyToNewKeyList101.get(oldKeyList101);
+						if (newKeyList101 == null) {
+							if (log.isDebugEnabled()) {
+								log.debug("Invalid entry in " + entityName + " found: vertical_extent_vdatum ('" + oldKeyList101
+										+ "') not found in syslist 101, is set to null. obj_uuid=" + row.get("obj_id"));
+							}
+						}
+					}
+					
+					JDBCHelper.addInteger(p, cnt++, newKeyList101); // vertical_extent_vdatum
 					p.setString(cnt++, row.get("fees")); // fees,
 					p.setString(cnt++, row.get("ordering_instructions")); // ordering_instructions
 					p.setString(cnt++, ""); // lastexport_time
@@ -1963,7 +1982,21 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				JDBCHelper.addDouble(p, cnt++, row.getDouble("rec_grade")); // rec_grade
 				JDBCHelper.addInteger(p, cnt++, row.getInteger("hierarchy_level")); // hierarchy_level
 				JDBCHelper.addInteger(p, cnt++, row.getInteger("vector_topology_level")); // vector_topology_level
-				JDBCHelper.addInteger(p, cnt++, row.getInteger("referencesystem_id")); // referencesystem_key
+
+				// map old codelist to new codelist, log inconsistencies
+				Integer oldKeyList100 = row.getInteger("referencesystem_id");
+				Integer newKeyList100 = oldKeyList100;
+				if (oldKeyList100 != null && oldKeyList100 != -1) {
+					newKeyList100 = mapOldKeyToNewKeyList100.get(oldKeyList100);
+					if (newKeyList100 == null) {
+						if (log.isDebugEnabled()) {
+							log.debug("Invalid entry in " + entityName + " found: referencesystem_key ('" + oldKeyList100
+									+ "') not found in syslist 100, is set to null. obj_id=" + objId);
+						}
+					}
+				}
+				
+				JDBCHelper.addInteger(p, cnt++, newKeyList100); // referencesystem_key
 				JDBCHelper.addDouble(p, cnt++, row.getDouble("pos_accuracy_vertical")); // pos_accuracy_vertical
 				JDBCHelper.addInteger(p, cnt++, row.getInteger("keyc_incl_w_dataset")); // keyc_incl_w_dataset
 				try {
@@ -3795,6 +3828,99 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			log.info("Importing " + entityName + "...");
 		}
 
+		// new syslist 100
+		HashMap<Integer, String> mapNewKeyToNewValueList100 = new HashMap<Integer, String>();
+		mapNewKeyToNewValueList100.put(1, "EPSG 3068: DHDN / Soldner Berlin");
+		mapNewKeyToNewValueList100.put(2, "EPSG 4178: Pulkovo 1942(83) / geographisch");
+		mapNewKeyToNewValueList100.put(3, "EPSG 4230: ED50 / geographisch");
+		mapNewKeyToNewValueList100.put(4, "EPSG 4258: ETRS89 / geographisch");
+		mapNewKeyToNewValueList100.put(5, "EPSG 4284: Pulkovo 1942 / geographisch");
+		mapNewKeyToNewValueList100.put(6, "EPSG 4314: DHDN / geographisch");
+		mapNewKeyToNewValueList100.put(7, "EPSG 4326: WGS 84 / geographisch");
+		mapNewKeyToNewValueList100.put(8, "EPSG 23031: ED50 / UTM Zone 31N");
+		mapNewKeyToNewValueList100.put(9, "EPSG 23032: ED50 / UTM Zone 32N");
+		mapNewKeyToNewValueList100.put(10, "EPSG 23033: ED50 / UTM Zone 33N");
+		mapNewKeyToNewValueList100.put(11, "EPSG 32631: WGS 84 / UTM Zone 31N");
+		mapNewKeyToNewValueList100.put(12, "EPSG 32632: WGS 84 / UTM Zone 32N");
+		mapNewKeyToNewValueList100.put(13, "EPSG 32633: WGS 84 / UTM Zone 33N");
+		mapNewKeyToNewValueList100.put(14, "EPSG 25831: ETRS89 / UTM Zone 31N");
+		mapNewKeyToNewValueList100.put(15, "EPSG 25832: ETRS89 / UTM Zone 32N");
+		mapNewKeyToNewValueList100.put(16, "EPSG 25833: ETRS89 / UTM Zone 33N");
+		mapNewKeyToNewValueList100.put(17, "EPSG 25834: ETRS89 / UTM Zone 34N");
+		mapNewKeyToNewValueList100.put(18, "EPSG 28462: Pulkovo 1942 / Gauss-Krüger 2N");
+		mapNewKeyToNewValueList100.put(19, "EPSG 28463: Pulkovo 1942 / Gauss-Krüger 3N");
+		mapNewKeyToNewValueList100.put(20, "EPSG 31466: DHDN / Gauss-Krüger Zone 2");
+		mapNewKeyToNewValueList100.put(21, "EPSG 31467: DHDN / Gauss-Krüger Zone 3");
+		mapNewKeyToNewValueList100.put(22, "EPSG 31468: DHDN / Gauss-Krüger Zone 4");
+		mapNewKeyToNewValueList100.put(23, "EPSG 31469: DHDN / Gauss-Krüger Zone 5");
+		mapNewKeyToNewValueList100.put(24, "DE_42/83 / GK_3");
+		mapNewKeyToNewValueList100.put(25, "DE_DHDN / GK_3");
+		mapNewKeyToNewValueList100.put(26, "DE_DHDN / GK_3_RDN");
+		mapNewKeyToNewValueList100.put(27, "DE_DHDN / GK_3_RP101");
+		mapNewKeyToNewValueList100.put(28, "DE_DHDN / GK_3_RP180");
+		mapNewKeyToNewValueList100.put(29, "DE_DHDN / GK_3_NW177");
+		mapNewKeyToNewValueList100.put(30, "DE_DHDN / GK_3_HE100");
+		mapNewKeyToNewValueList100.put(31, "DE_DHDN / GK_3_BW100");
+		mapNewKeyToNewValueList100.put(32, "DE_ETRS89 / UTM");
+		mapNewKeyToNewValueList100.put(33, "DE_PD/83 / GK_3");
+		mapNewKeyToNewValueList100.put(34, "DE_RD/83 / GK_3");
+		mapNewKeyToNewValueList100.put(35, "DE_PD/83 / GK_9-15, Bezug 12. Meridian (BY)");
+
+		// set up mapping of old syslist 100 to new syslist 100 via map<oldValue, newKey>
+		HashMap<String, Integer> mapOldValueToNewKeyList100 = new HashMap<String, Integer>();
+		mapOldValueToNewKeyList100.put("EPSG:4178 / Pulkovo 1942(83) / geographisch", 2);
+		mapOldValueToNewKeyList100.put("EPSG:4230 / ED50 / geographisch ", 3);
+		mapOldValueToNewKeyList100.put("EPSG:4258 / ETRS89 / geographisch", 4);
+		mapOldValueToNewKeyList100.put("EPSG:4284 / Pulkovo 1942 / geographisch", 5);
+		mapOldValueToNewKeyList100.put("EPSG:4314 / DHDN / geographisch", 6);
+		mapOldValueToNewKeyList100.put("EPSG:4326 / WGS 84 / geographisch", 7);
+		mapOldValueToNewKeyList100.put("EPSG:23031 / ED50 / UTM Zone 31N", 8);
+		mapOldValueToNewKeyList100.put("EPSG:23032 / ED50 / UTM Zone 32N", 9);
+		mapOldValueToNewKeyList100.put("EPSG:23033 / ED50 / UTM Zone 33N", 10);
+		mapOldValueToNewKeyList100.put("EPSG:32631 / WGS 84 / UTM Zone 31N", 11);
+		mapOldValueToNewKeyList100.put("EPSG:32632 / WGS 84 / UTM Zone 32N/33N", 12);
+		mapOldValueToNewKeyList100.put("EPSG:25831 / ETRS89 / UTM Zone 31N ", 14);
+		mapOldValueToNewKeyList100.put("EPSG:25832 / ETRS89 / UTM Zone 32N", 15);
+		mapOldValueToNewKeyList100.put("EPSG:25833 / ETRS89 / UTM Zone 33N", 16);
+		mapOldValueToNewKeyList100.put("EPSG:28463 / Pulkovo 1942 / Gauss-Krüger 2N/3N ", 19);
+		mapOldValueToNewKeyList100.put("EPSG:31466 / DHDN / Gauss-Krüger Zone 2", 20);
+		mapOldValueToNewKeyList100.put("EPSG:31467 /DHDN / Gauss-Krüger Zone 3", 21);
+		mapOldValueToNewKeyList100.put("EPSG:31468 / DHDN / Gauss-Krüger Zone 4", 22);
+		mapOldValueToNewKeyList100.put("EPSG:31469 / DHDN / Gauss-Krüger Zone 5", 23);
+		mapOldValueToNewKeyList100.put("EPSG:31492 /DHDN / Germany zone 2", 20);
+		mapOldValueToNewKeyList100.put("EPSG:31493 / DHDN / Germany zone 3", 21);
+		mapOldValueToNewKeyList100.put("EPSG:31494 / DHDN / Germany zone 4", 22);
+		mapOldValueToNewKeyList100.put("EPSG:31495 / DHDN / Germany zone 5", 23);
+		mapOldValueToNewKeyList100.put("DE_42/83 / GK_3", 24);
+		mapOldValueToNewKeyList100.put("DE_DHDN / GK_3", 25);
+		mapOldValueToNewKeyList100.put("DE_ETRS89 / UTM", 32);
+		mapOldValueToNewKeyList100.put("DE_PD/83 / GK_3", 33);
+		mapOldValueToNewKeyList100.put("DE_RD/83 / GK_3", 34);
+
+		// new syslist 101
+		HashMap<Integer, String> mapNewKeyToNewValueList101 = new HashMap<Integer, String>();
+		mapNewKeyToNewValueList101.put(1, "DE_AMST / NH");
+		mapNewKeyToNewValueList101.put(2, "DE_AMST / NOH");
+		mapNewKeyToNewValueList101.put(3, "DE_DHHN12_NOH");
+		mapNewKeyToNewValueList101.put(4, "DE_DHHN12_RP120");
+		mapNewKeyToNewValueList101.put(5, "DE_DHHN85_NOH");
+		mapNewKeyToNewValueList101.put(6, "DE_DHHN92_NH");
+		mapNewKeyToNewValueList101.put(7, "DE_KRON / NH");
+		mapNewKeyToNewValueList101.put(8, "Horizont 74_NOH");
+		mapNewKeyToNewValueList101.put(9, "European Vertical Reference Frame 2000");
+		mapNewKeyToNewValueList101.put(10, "Baltic Sea");
+		mapNewKeyToNewValueList101.put(11, "Höhe über GRS80 Ellipsoid");
+
+		// set up mapping of old syslist 101 to new syslist 101 via map<oldValue, newKey>
+		HashMap<String, Integer> mapOldValueToNewKeyList101 = new HashMap<String, Integer>();
+		mapOldValueToNewKeyList101.put("Baltic Sea", 10);
+		mapOldValueToNewKeyList101.put("Normaal Amsterdams Peil", 1);
+		mapOldValueToNewKeyList101.put("European Vertical Reference Frame 2000", 9);
+		mapOldValueToNewKeyList101.put("Kronstädter Pegel (HN)", 7);
+		mapOldValueToNewKeyList101.put("DE_AMST / NH", 1);
+		mapOldValueToNewKeyList101.put("DE_AMST / NOH", 2);
+		mapOldValueToNewKeyList101.put("DE_KRON / NH", 7);
+
 		pSqlStr = "INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, description, maintainable) "
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?);";
 
@@ -3808,9 +3934,11 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 			if (row.getInteger("lst_id") == 1000) {
 				// ignore list with id==1000, codelist 505 will be used instead
+				
 			} else if (row.getInteger("lst_id") == 3571 && row.getInteger("entry_id") == 4) {
 				// ignore list with id==3571 and entry_id==4, codelist 505 will
 				// be used instead
+				
 			} else {
 				int cnt = 1;
 				p.setInt(cnt++, row.getInteger("primary_key")); // id
@@ -3838,19 +3966,46 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		}
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
-			int cnt = 1;
-			p.setInt(cnt++, row.getInteger("primary_key")); // id
-			p.setInt(cnt++, row.getInteger("codelist_id")); // lst_id
-			p.setInt(cnt++, row.getInteger("domain_id")); // entry_id
-			p.setString(cnt++, IDCStrategyHelper.transLanguageCode(row.get("lang_id"))); // lang_id
-			p.setString(cnt++, row.get("name")); // name
-			p.setString(cnt++, row.get("description")); // description
-			p.setInt(cnt++, 0); // maintainable
-			try {
-				p.executeUpdate();
-			} catch (Exception e) {
-				log.error("Error executing SQL: " + p.toString(), e);
-				throw e;
+			
+			if (row.getInteger("codelist_id") == 100) {
+				// list with id==100 has to be mapped from old to new values !
+				// set up mapping !
+				Integer oldKey = row.getInteger("domain_id");
+				if (mapOldKeyToNewKeyList100.get(oldKey) == null) {
+					String oldValue = row.get("name");
+					Integer newKey = mapOldValueToNewKeyList100.get(oldValue);
+					if (newKey != null) {
+						mapOldKeyToNewKeyList100.put(oldKey, newKey);
+					}
+				}
+
+			} else if (row.getInteger("codelist_id") == 101) {
+				// list with id==101 has to be mapped from old to new values !
+				// set up mapping !
+				Integer oldKey = row.getInteger("domain_id");
+				if (mapOldKeyToNewKeyList101.get(oldKey) == null) {
+					String oldValue = row.get("name");
+					Integer newKey = mapOldValueToNewKeyList101.get(oldValue);
+					if (newKey != null) {
+						mapOldKeyToNewKeyList101.put(oldKey, newKey);
+					}
+				}
+
+			} else {
+				int cnt = 1;
+				p.setInt(cnt++, row.getInteger("primary_key")); // id
+				p.setInt(cnt++, row.getInteger("codelist_id")); // lst_id
+				p.setInt(cnt++, row.getInteger("domain_id")); // entry_id
+				p.setString(cnt++, IDCStrategyHelper.transLanguageCode(row.get("lang_id"))); // lang_id
+				p.setString(cnt++, row.get("name")); // name
+				p.setString(cnt++, row.get("description")); // description
+				p.setInt(cnt++, 0); // maintainable
+				try {
+					p.executeUpdate();
+				} catch (Exception e) {
+					log.error("Error executing SQL: " + p.toString(), e);
+					throw e;
+				}
 			}
 		}
 		if (log.isInfoEnabled()) {
@@ -4042,6 +4197,34 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 		if (log.isInfoEnabled()) {
 			log.info("Importing special values... done.");
+		}
+
+		if (log.isInfoEnabled()) {
+			log.info("Importing new syslist 100 (Raumbezugsystem), 101 (Vertikaldaten)...");
+		}
+		// syslist 100 !
+		for(Object key : mapNewKeyToNewValueList100.keySet()) {
+		    Object value = mapNewKeyToNewValueList100.get(key);
+			dataProvider.setId(dataProvider.getId() + 1);
+			jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name) VALUES ("
+					+ dataProvider.getId() + ", 100, " + key + ", 'de', '" + value + "');");
+			dataProvider.setId(dataProvider.getId() + 1);
+			jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name) VALUES ("
+					+ dataProvider.getId() + ", 100, " + key + ", 'en', '" + value + "');");
+		}
+
+		// syslist 101 !
+		for(Object key : mapNewKeyToNewValueList101.keySet()) {
+		    Object value = mapNewKeyToNewValueList101.get(key);
+			dataProvider.setId(dataProvider.getId() + 1);
+			jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name) VALUES ("
+					+ dataProvider.getId() + ", 101, " + key + ", 'de', '" + value + "');");
+			dataProvider.setId(dataProvider.getId() + 1);
+			jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name) VALUES ("
+					+ dataProvider.getId() + ", 101, " + key + ", 'en', '" + value + "');");
+		}
+		if (log.isInfoEnabled()) {
+			log.info("Importing new syslist 100 (Raumbezugsystem), 101 (Vertikaldaten)... done");
 		}
 	}
 
