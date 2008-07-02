@@ -38,9 +38,6 @@ public class Importer {
 		DataProvider data = new LazyInMemoryDataProvider(descriptor);
 		System.out.println(" done.");
 
-		// remove temp dir
-		ImportDescriptorHelper.removeTempDir();
-
 		JDBCConnectionProxy jdbc = null;
 		try {
 			jdbc = new JDBCConnectionProxy(descriptor);
@@ -64,6 +61,9 @@ public class Importer {
 			strategy.execute();
 		} catch (Exception e) {
 			log.error(e.getMessage());
+		} finally {
+			// remove temp dir
+			ImportDescriptorHelper.removeTempDir();
 		}
 	}
 }
