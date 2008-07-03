@@ -51,10 +51,11 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 	
 	private String catalogLanguage = null;
 	private String catalogAdminUuid = null;
+	private int defaultThemenkategorieEntryId = -1;
 
 	// mapping of old codelists to new codelists 
-	HashMap<Integer, Integer> mapOldKeyToNewKeyList100 = new HashMap<Integer, Integer>();
-	HashMap<Integer, Integer> mapOldKeyToNewKeyList101 = new HashMap<Integer, Integer>();
+	private HashMap<Integer, Integer> mapOldKeyToNewKeyList100 = new HashMap<Integer, Integer>();
+	private HashMap<Integer, Integer> mapOldKeyToNewKeyList101 = new HashMap<Integer, Integer>();
 
 
 	public IDCStrategyDefault() {
@@ -808,7 +809,46 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		}
 		rs.close();
 
+
+		// set default object "Themenkategorie" if none set
+		// ------------------------------------------------
+		if (defaultThemenkategorieEntryId != -1) {
+			if (log.isInfoEnabled()) {
+				log.info("set default \"Themenkategorie\" in objects not categorized ...");
+			}
 			
+			pSqlStr = "INSERT INTO t011_obj_topic_cat (id, obj_id, line, topic_category) VALUES ( ?, ?, ?, ?);";
+			PreparedStatement p = jdbc.prepareStatement(pSqlStr);
+
+			sql = "select distinct obj.id " +
+				"from t01_object obj left outer join t011_obj_topic_cat topicCat on obj.id = topicCat.obj_id " +
+				"where topicCat.obj_id is null " +
+				"ORDER BY obj.id";
+
+			rs = jdbc.executeQuery(sql);
+			while (rs.next()) {
+				long objId = rs.getLong("id");
+
+				log.info("No \"Themenkategorie\" set for t01_object, we set default category entryid(" + defaultThemenkategorieEntryId +
+						"): objId('" + objId + "').");
+
+				int cnt = 1;
+				dataProvider.setId(dataProvider.getId() + 1);					
+				p.setLong(cnt++, dataProvider.getId()); // id
+				p.setLong(cnt++, objId); // obj_id
+				p.setInt(cnt++, 1); // line
+				JDBCHelper.addInteger(p, cnt++, defaultThemenkategorieEntryId); // topic_category
+				try {
+					p.executeUpdate();
+				} catch (Exception e) {
+					log.error("Error executing SQL: " + p.toString(), e);
+					throw e;
+				}
+			}
+			p.close();
+			rs.close();
+		}
+
 		// set default language of metadata entities (=default entry in sys_list 99999999)
 		// ---------------------------------------------
 		if (log.isInfoEnabled()) {
@@ -2394,6 +2434,125 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				}
 			}
 		}
+		if (log.isInfoEnabled()) {
+			log.info("Importing " + entityName + "... done.");
+		}
+		
+		// map another udk table (T0111_env_class) to same idc table (t011_obj_topic_cat)
+		processT0111EnvClass();
+	}
+
+	private void processT0111EnvClass() throws Exception {
+
+		String entityName = "t0111_env_class";
+
+		if (log.isInfoEnabled()) {
+			log.info("Importing " + entityName + "...");
+		}
+
+		// set up mapping of old value to new syslist 527 value via map<oldValue, newValue>
+		HashMap<String, String[]> mapOldValueToNewValuesList527 = new HashMap<String, String[]>();
+		mapOldValueToNewValuesList527.put("ab", new String[] {"umwelt"});
+		mapOldValueToNewValuesList527.put("ua", new String[] {"umwelt"});
+		mapOldValueToNewValuesList527.put("bo", new String[] {"umwelt"});
+		mapOldValueToNewValuesList527.put("le", new String[] {"umwelt"});
+		mapOldValueToNewValuesList527.put("lu", new String[] {"umwelt", "klima und atmosphäre"});
+		mapOldValueToNewValuesList527.put("nl", new String[] {"umwelt"});
+		mapOldValueToNewValuesList527.put("sr", new String[] {"umwelt", "gesundheit", "klima und atmosphäre"});
+		mapOldValueToNewValuesList527.put("lf", new String[] {"umwelt", "landwirtschaft"});
+		mapOldValueToNewValuesList527.put("gt", new String[] {"umwelt", "gesundheit"});
+		mapOldValueToNewValuesList527.put("en", new String[] {"umwelt", "ökonomie", "energie und kommunikation"});
+		mapOldValueToNewValuesList527.put("ch", new String[] {"umwelt", "gesundheit"});
+		mapOldValueToNewValuesList527.put("uw", new String[] {"umwelt", "ökonomie"});
+		mapOldValueToNewValuesList527.put("ur", new String[] {"umwelt", "gesellschaft"});
+		mapOldValueToNewValuesList527.put("wa", new String[] {"umwelt"});
+
+		// load syslist 527 ids, values needed for mapping
+		final List<Integer> allowedSpecialRefEntries = new ArrayList<Integer>();
+		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
+
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=527 and lang_id='" + getCatalogLanguage() + "';";
+		ResultSet rs = jdbc.executeQuery(sql);
+		while (rs.next()) {
+			if (rs.getString("name") != null) {
+				allowedSpecialRefEntryNamesLowerCase.add(rs.getString("name").toLowerCase());
+				allowedSpecialRefEntries.add(rs.getInt("entry_id"));
+			}
+		}
+		rs.close();
+
+		// remember key for "Umwelt", is used in postprocessing !
+		int indxDefault = allowedSpecialRefEntryNamesLowerCase.indexOf("umwelt");
+		if (indxDefault != -1) {
+			defaultThemenkategorieEntryId = allowedSpecialRefEntries.get(indxDefault);
+		}
+
+		pSqlStr = "INSERT INTO t011_obj_topic_cat (id, obj_id, line, topic_category) VALUES ( ?, ?, ?, ?);";
+		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
+
+		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
+			Row row = i.next();
+			int objId = IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"));
+			if (objId == 0) {
+				if (log.isDebugEnabled()) {
+					log.debug("Invalid entry in " + entityName + " found: obj_id ('" + row.get("obj_id")
+							+ "') not found in imported data of t01_object. Skip record.");
+				}
+				row.clear();
+			} else if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
+
+				// map old value to new keys !
+				String oldValue = row.get("name");
+				String[] newValues = mapOldValueToNewValuesList527.get(oldValue.toLowerCase());
+				ArrayList<Integer> newKeys = new ArrayList<Integer>();
+				if (newValues != null) {
+					for (String newValue : newValues) {
+						int entryIndex = allowedSpecialRefEntryNamesLowerCase.indexOf(newValue);
+						if (entryIndex != -1) {
+							int newKey = allowedSpecialRefEntries.get(entryIndex);
+							if (!newKeys.contains(newKey)) {
+								newKeys.add(newKey);
+							}
+						}
+					}
+				}
+				if (newKeys.size() > 0) {
+					// we have new "themenkategorien" to add, add only the ones not added yet
+
+					// fetch the ones already added !
+					sql = "SELECT topic_category, line FROM t011_obj_topic_cat WHERE obj_id=" + objId + ";";
+					rs = jdbc.executeQuery(sql);
+					int lastLine = 0;
+					List<Integer> existingKeys = new ArrayList<Integer>();
+					while (rs.next()) {
+						existingKeys.add(rs.getInt("topic_category"));
+						int line = rs.getInt("line");
+						lastLine = line > lastLine ? line : lastLine; 
+					}
+					rs.close();
+					
+					// add new ones
+					for (Integer newKey : newKeys) {
+						if (!existingKeys.contains(newKey)) {
+							int cnt = 1;
+							dataProvider.setId(dataProvider.getId() + 1);
+							p.setLong(cnt++, dataProvider.getId()); // id
+							p.setLong(cnt++, objId); // obj_id
+							p.setInt(cnt++, ++lastLine); // line
+							JDBCHelper.addInteger(p, cnt++, newKey); // topic_category
+							try {
+								p.executeUpdate();
+							} catch (Exception e) {
+								log.error("Error executing SQL: " + p.toString(), e);
+								throw e;
+							}
+							existingKeys.add(newKey);
+						}
+					}
+				}
+			}
+		}
+		p.close();
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
