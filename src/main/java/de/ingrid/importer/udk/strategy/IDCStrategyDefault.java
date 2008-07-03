@@ -849,11 +849,14 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			rs.close();
 		}
 
-		// set default language of metadata entities (=default entry in sys_list 99999999)
-		// ---------------------------------------------
+		// set default entries in sys_lists
+		// --------------------------------
 		if (log.isInfoEnabled()) {
-			log.info("set default language of metadata entities ...");
+			log.info("set default entries in sys_lists ...");
 		}
+
+		// set default language of metadata entities (=default entry in sys_list 99999999)
+
 		// first check whether defaults set -> ignore localization !
 		rs = jdbc.executeQuery("SELECT id FROM sys_list WHERE lst_id=99999999 AND is_default = 'Y'");
 		boolean hasDefaults = rs.next();
@@ -861,6 +864,17 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		if (!hasDefaults) {
 			// default is german (=121) ! set in all localized versions as default (lang_id='de' -> "Deutsch", lang_id='en' -> "German", ...)
 			jdbc.executeUpdate("UPDATE sys_list SET is_default = 'Y' WHERE lst_id=99999999 AND entry_id=121;");
+		}
+		
+		// set default publication condition INTERNET (=default entry in sys_list 3571)
+
+		// first check whether defaults set -> ignore localization !
+		rs = jdbc.executeQuery("SELECT id FROM sys_list WHERE lst_id=3571 AND is_default = 'Y'");
+		hasDefaults = rs.next();
+		rs.close();
+		if (!hasDefaults) {
+			// default is Internet (=1) ! set in all localized versions as default
+			jdbc.executeUpdate("UPDATE sys_list SET is_default = 'Y' WHERE lst_id=3571 AND entry_id=1;");
 		}
 		
 		if (log.isInfoEnabled()) {
