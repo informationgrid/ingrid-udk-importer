@@ -2513,6 +2513,14 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 							+ "') not found in imported data of t01_object. Skip record.");
 				}
 				row.clear();
+
+			} else if (row.get("name") == null) {
+				if (log.isDebugEnabled()) {
+					log.debug("Invalid entry in " + entityName + " found: name IS NULL !!! obj_id ('" + row.get("obj_id")
+							+ "'). Skip record.");
+				}
+				row.clear();
+
 			} else if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
 
 				// map old value to new keys !

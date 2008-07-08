@@ -4,6 +4,9 @@
 package de.ingrid.importer.udk.provider;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -20,8 +23,10 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
 
 import de.ingrid.importer.udk.ImportDescriptor;
+import de.ingrid.importer.udk.util.UdkXMLReader;
 
 /**
  * @author Administrator
@@ -126,7 +131,6 @@ public class LazyInMemoryDataProvider implements DataProvider {
 		Document dom = null;
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		DocumentBuilder db = null;
-		
 
 		for (String fileName : descriptor.getFiles()) {
 			try {
@@ -141,7 +145,13 @@ public class LazyInMemoryDataProvider implements DataProvider {
 					if (log.isDebugEnabled()) {
 						log.debug("Parse file '" + fileName + "' for entity name.");
 					}
-					dom = db.parse(new File(fileName));
+
+			        Reader fr = new InputStreamReader(new FileInputStream(fileName), "UTF-8");
+					// preprocess file -> replace line feeds in attributes with "&#xA;" so parser doesn't replace them with blank  !
+			        UdkXMLReader xr = new UdkXMLReader( fr );
+					InputSource inputSource = new InputSource(xr);
+
+					dom = db.parse(inputSource);
 					aEntityName = readTargetTable(dom);
 					fetchedXmlFiles.put(fileName, aEntityName);
 				}
