@@ -29,19 +29,22 @@ public class UdkXMLReader extends FilterReader
   throws IOException  {
 	  String retString = new String();
 	  
+	  // do we have leftovers from last read ?
 	  if (leftover != null) {
 		  retString = leftover;
 		  leftover = null;
 	  }
 
 	  if (len < retString.length()) {
+		  // more leftovers than chars requested
 		  leftover = retString.substring(len);
 		  retString = retString.substring(0, len);
 
 	  } else if (len == retString.length()) {
-		  leftover = null;
+		  // length matches exactly, nothing to do
 
 	  } else {
+		  // number requested chars > leftovers, read next ones ! 
 		  int numToRead = len - retString.length();
 		  
 		  char myBuf[] = new char[numToRead];
@@ -81,7 +84,7 @@ public class UdkXMLReader extends FilterReader
 	  }
 	  
 	  int numRetChars = retString.length();
-	  if (numRetChars == 0) {
+	  if (numRetChars == 0 && len != 0) {
 //		  System.out.println("\n\n\n");
 
 		  return -1;
