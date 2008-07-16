@@ -3049,33 +3049,55 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				int cnt = 1;
 				long pSpatialRefValueId;
 				long spatialRefSnsId = 0;
+
+				// location name
 				String locName = "";
-				String topicId = null;
-				// if the spatial ref has been stored already, refere to the
-				// already stored id
+				if (row.get("township_no") == null) {
+					if (log.isDebugEnabled()) {
+						log.debug("Invalid ags key length:" + row.get("township_no"));
+					}
+				} else if (row.get("township_no").length() == 2) {
+					locName = IDCStrategyHelper.getEntityFieldValueStartsWith(dataProvider, "t01_st_township",
+							"loc_town_no", row.get("township_no"), "state");
+				} else if (row.get("township_no").length() == 3) {
+					locName = IDCStrategyHelper.getEntityFieldValueStartsWith(dataProvider, "t01_st_township",
+							"loc_town_no", row.get("township_no"), "district").concat(" (District)");
+				} else if (row.get("township_no").length() == 5) {
+					locName = IDCStrategyHelper.getEntityFieldValueStartsWith(dataProvider, "t01_st_township",
+							"loc_town_no", row.get("township_no"), "country");
+				} else if (row.get("township_no").length() == 8) {
+					locName = IDCStrategyHelper.getEntityFieldValueStartsWith(dataProvider, "t01_st_township",
+							"loc_town_no", row.get("township_no"), "township");
+				} else {
+					if (log.isDebugEnabled()) {
+						log.debug("Invalid ags key length:" + row.get("township_no"));
+					}
+				}
+
+				// sns id
+				String snsTopicId = IDCStrategyHelper.transformNativeKey2TopicId(row.get("township_no"));
+
+				// if the spatial ref has been stored already, refere to the already stored id
 				if (storedNativekeys.containsKey(row.get("township_no"))) {
 					pSpatialRefValueId = ((Long) storedNativekeys.get(row.get("township_no"))).longValue();
-					topicId = IDCStrategyHelper.transformNativeKey2TopicId(row.get("township_no"));
+					
 				} else {
-					if (row.get("township_no") != null) {
-						topicId = IDCStrategyHelper.transformNativeKey2TopicId(row.get("township_no"));
-						if (topicId.length() > 0) {
-							// store the spatial ref sns values
-							dataProvider.setId(dataProvider.getId() + 1);
-							pSpatialRefSns.setLong(cnt++, dataProvider.getId()); // id
-							pSpatialRefSns.setString(cnt++, topicId); // sns_id
-							pSpatialRefSns.setString(cnt++, null); // expired_at
-							try {
-								pSpatialRefSns.executeUpdate();
-								spatialRefSnsId = dataProvider.getId();
-							} catch (Exception e) {
-								log.error("Error executing SQL: " + pSpatialRefSns.toString(), e);
-								throw e;
-							}
+					if (snsTopicId.length() > 0) {
+						// store the spatial ref sns values
+						dataProvider.setId(dataProvider.getId() + 1);
+						pSpatialRefSns.setLong(cnt++, dataProvider.getId()); // id
+						pSpatialRefSns.setString(cnt++, snsTopicId); // sns_id
+						pSpatialRefSns.setString(cnt++, null); // expired_at
+						try {
+							pSpatialRefSns.executeUpdate();
+							spatialRefSnsId = dataProvider.getId();
+						} catch (Exception e) {
+							log.error("Error executing SQL: " + pSpatialRefSns.toString(), e);
+							throw e;
 						}
 					}
 
-					// store the spatial ref
+					// store the spatial ref value refering to sns
 					cnt = 1;
 					dataProvider.setId(dataProvider.getId() + 1);
 
@@ -3087,27 +3109,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					} else {
 						pSpatialRefValue.setNull(cnt++, Types.INTEGER); // spatial_ref_sns_id
 					}
-					if (row.get("township_no") == null) {
-						if (log.isDebugEnabled()) {
-							log.debug("Invalid ags key length:" + row.get("township_no"));
-						}
-					} else if (row.get("township_no").length() == 2) {
-						locName = IDCStrategyHelper.getEntityFieldValueStartsWith(dataProvider, "t01_st_township",
-								"loc_town_no", row.get("township_no"), "state");
-					} else if (row.get("township_no").length() == 3) {
-						locName = IDCStrategyHelper.getEntityFieldValueStartsWith(dataProvider, "t01_st_township",
-								"loc_town_no", row.get("township_no"), "district").concat(" (District)");
-					} else if (row.get("township_no").length() == 5) {
-						locName = IDCStrategyHelper.getEntityFieldValueStartsWith(dataProvider, "t01_st_township",
-								"loc_town_no", row.get("township_no"), "country");
-					} else if (row.get("township_no").length() == 8) {
-						locName = IDCStrategyHelper.getEntityFieldValueStartsWith(dataProvider, "t01_st_township",
-								"loc_town_no", row.get("township_no"), "township");
-					} else {
-						if (log.isDebugEnabled()) {
-							log.debug("Invalid ags key length:" + row.get("township_no"));
-						}
-					}
+
 					// do NOT map via sys_list, this is a geothesaurus entry (SNS) !
 					pSpatialRefValue.setString(cnt++, locName); // name_value
 					pSpatialRefValue.setInt(cnt++, -1); // name_key
@@ -3128,9 +3130,9 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 						log.error("Error executing SQL: " + pSpatialRefValue.toString(), e);
 						throw e;
 					}
-					
-
 				}
+
+				// store the spatial reference to object
 				cnt = 1;
 				long objId = IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"));
 				pSpatialReference.setInt(cnt++, row.getInteger("primary_key")); // id
@@ -3146,11 +3148,11 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				
 				// update full text index
 				JDBCHelper.updateObjectIndex(objId, locName, jdbc);
-				JDBCHelper.updateObjectIndex(objId, topicId, jdbc);
+				JDBCHelper.updateObjectIndex(objId, snsTopicId, jdbc);
 				JDBCHelper.updateObjectIndex(objId, IDCStrategyHelper.transformNativeKey2FullAgs(row.get("township_no")), jdbc);
 				// update geothesaurus index
-				if (topicId != null) {
-					JDBCHelper.updateObjectIndex(objId, topicId, IDX_NAME_GEOTHESAURUS, jdbc); // SpatialRefSns.snsId
+				if (snsTopicId != null) {
+					JDBCHelper.updateObjectIndex(objId, snsTopicId, IDX_NAME_GEOTHESAURUS, jdbc); // SpatialRefSns.snsId
 				}
 			}
 		}
