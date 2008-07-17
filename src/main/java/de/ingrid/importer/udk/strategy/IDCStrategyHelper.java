@@ -455,5 +455,28 @@ public class IDCStrategyHelper {
         }
     }
     
-    
+    public static String getLocationNameFromNativeAGS(String nativeAGSKey, DataProvider dataProvider) {
+    	String locName = null;
+		if (nativeAGSKey != null) {
+			if (nativeAGSKey.length() == 2) {
+				locName = IDCStrategyHelper.getEntityFieldValueStartsWith(dataProvider, "t01_st_township",
+						"loc_town_no", nativeAGSKey, "state");
+			} else if (nativeAGSKey.length() == 3) {
+				locName = IDCStrategyHelper.getEntityFieldValueStartsWith(dataProvider, "t01_st_township",
+						"loc_town_no", nativeAGSKey, "district").concat(" (District)");
+			} else if (nativeAGSKey.length() == 5) {
+				locName = IDCStrategyHelper.getEntityFieldValueStartsWith(dataProvider, "t01_st_township",
+						"loc_town_no", nativeAGSKey, "country");
+			} else if (nativeAGSKey.length() == 8) {
+				locName = IDCStrategyHelper.getEntityFieldValueStartsWith(dataProvider, "t01_st_township",
+						"loc_town_no", nativeAGSKey, "township");
+			}
+		}
+
+		if (locName == null) {
+        	log.error("Invalid AGS nativekey: " + nativeAGSKey);
+		}
+
+		return locName;
+    }
 }

@@ -57,6 +57,17 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 	private HashMap<Integer, Integer> mapOldKeyToNewKeyList100 = new HashMap<Integer, Integer>();
 	private HashMap<Integer, Integer> mapOldKeyToNewKeyList101 = new HashMap<Integer, Integer>();
 
+	// possible syslist entries for free spatial references
+	private List<String> freeSpatialReferenceEntryKeys = null;
+	private List<String> freeSpatialReferenceEntryNames = null;
+	private List<String> freeSpatialReferenceEntryNamesLowerCase = null;
+	
+	// cache for remembering already stored FREE spatial_ref_values ! should be stored only once PER OBJECT !
+	private HashMap<String, Long> storedFreeSpatialReferences = new HashMap<String, Long>();
+
+	// global prepared statements, created once !
+	private PreparedStatement psInsertSpatialReference = null;
+	private PreparedStatement psInsertSpatialRefValue = null;
 
 	public IDCStrategyDefault() {
 		super();
@@ -1158,7 +1169,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					p.setInt(cnt++, row.getInteger("primary_key")); // id
 					p.setString(cnt++, row.get("adr_to_id")); // addr_uuid
 					p.setInt(cnt++, IDCStrategyHelper
-							.getPK(dataProvider, "t02_address", "adr_id", row.get("adr_to_id"))); // addr_to_uuid
+							.getPK(dataProvider, "t02_address", "adr_id", row.get("adr_to_id"))); // addr_id
 					p.setInt(cnt++, IDCStrategyHelper
 							.getPK(dataProvider, "t02_address", "adr_id", row.get("adr_to_id"))); // addr_id_published
 					p.setString(cnt++, row.get("adr_from_id")); // fk_addr_uuid
@@ -3015,19 +3026,11 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			log.info("Importing " + entityName + "...");
 		}
 
-		String pSqlStrSpatialReference = "INSERT INTO spatial_reference (id, obj_id, line, spatial_ref_id) "
-				+ "VALUES (?, ?, ?, ?);";
-
-		String pSqlStrSpatialRefValue = "INSERT INTO spatial_ref_value (id, type, spatial_ref_sns_id, name_value, name_key, nativekey, x1, x2, y1, y2) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
-
+		// TODO: import SNS key, ask Till about it ! / haeh ? was meinst du ? auf jeden fall gibt's jetzt probleme mit raumbezuegen ohne sns id (mm) ????
 		String pSqlStrSpatialRefSns = "INSERT INTO spatial_ref_sns (id, sns_id, expired_at) " + "VALUES (?, ?, ?);";
+		PreparedStatement psInsertSpatialRefSns = jdbc.prepareStatement(pSqlStrSpatialRefSns);
 
-		PreparedStatement pSpatialReference = jdbc.prepareStatement(pSqlStrSpatialReference);
-		PreparedStatement pSpatialRefValue = jdbc.prepareStatement(pSqlStrSpatialRefValue);
-		// TODO: import SNS key, ask Till about it
-		PreparedStatement pSpatialRefSns = jdbc.prepareStatement(pSqlStrSpatialRefSns);
-
+		// NOTICE: executed before importing free spatialReferences, so we CLEAR ALL REFERENCES !
 		sqlStr = "DELETE FROM spatial_reference";
 		jdbc.executeUpdate(sqlStr);
 		sqlStr = "DELETE FROM spatial_ref_value";
@@ -3035,129 +3038,237 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		sqlStr = "DELETE FROM spatial_ref_sns";
 		jdbc.executeUpdate(sqlStr);
 
-		HashMap<String, Long> storedNativekeys = new HashMap<String, Long>();
+		// cache for remembering already stored thesaurus spatial_ref_values, should be stored only ONCE !
+		HashMap<String, Long> storedNativeAGSKeys = new HashMap<String, Long>();
+		// cache for remembering already stored spatial references, meaning thesaurus spatial ref values connected to an object !
+		HashMap<String, Long> storedObjectSpatialReferences = new HashMap<String, Long>();
 
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
+			
+			// skip deleted rows
+			if (row.get("mod_type") == null || invalidModTypes.contains(row.get("mod_type"))) {
+				continue;
+			}
+
+			// skip rows with invalid object references
 			if (IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id")) == 0) {
 				if (log.isDebugEnabled()) {
 					log.debug("Invalid entry in " + entityName + " found: obj_id ('" + row.get("obj_id")
 							+ "') not found in imported data of t01_object. Skip record.");
 				}
 				row.clear();
-			} else if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
-				int cnt = 1;
-				long pSpatialRefValueId;
-				long spatialRefSnsId = 0;
+				continue;
+			}
 
-				// location name
-				String locName = "";
-				if (row.get("township_no") == null) {
-					if (log.isDebugEnabled()) {
-						log.debug("Invalid ags key length:" + row.get("township_no"));
-					}
-				} else if (row.get("township_no").length() == 2) {
-					locName = IDCStrategyHelper.getEntityFieldValueStartsWith(dataProvider, "t01_st_township",
-							"loc_town_no", row.get("township_no"), "state");
-				} else if (row.get("township_no").length() == 3) {
-					locName = IDCStrategyHelper.getEntityFieldValueStartsWith(dataProvider, "t01_st_township",
-							"loc_town_no", row.get("township_no"), "district").concat(" (District)");
-				} else if (row.get("township_no").length() == 5) {
-					locName = IDCStrategyHelper.getEntityFieldValueStartsWith(dataProvider, "t01_st_township",
-							"loc_town_no", row.get("township_no"), "country");
-				} else if (row.get("township_no").length() == 8) {
-					locName = IDCStrategyHelper.getEntityFieldValueStartsWith(dataProvider, "t01_st_township",
-							"loc_town_no", row.get("township_no"), "township");
-				} else {
-					if (log.isDebugEnabled()) {
-						log.debug("Invalid ags key length:" + row.get("township_no"));
-					}
-				}
+			// ags Key set ? skip rows where not set !
+			String nativeAGSKey = row.get("township_no");
+			if (nativeAGSKey == null || nativeAGSKey.trim().length() == 0) {
+				log.debug("Invalid entry in " + entityName + " found: township_no('" + nativeAGSKey +
+						"'), obj_id ('" + row.get("obj_id")	+ "'). Skip record.");
+				row.clear();
+				continue;
+			}
 
-				// sns id
-				String snsTopicId = IDCStrategyHelper.transformNativeKey2TopicId(row.get("township_no"));
+			// valid AGS ? extract location name. skip rows where not valid.
+			String locName = IDCStrategyHelper.getLocationNameFromNativeAGS(nativeAGSKey, dataProvider);
+			if (locName == null) {
+				log.debug("Invalid entry in " + entityName + " found: township_no ('" + nativeAGSKey
+						+ "') not valid AGS key ! obj_id ('" + row.get("obj_id")	+ "'). Skip record.");
+				row.clear();
+				continue;
+			}
 
-				// if the spatial ref has been stored already, refere to the already stored id
-				if (storedNativekeys.containsKey(row.get("township_no"))) {
-					pSpatialRefValueId = ((Long) storedNativekeys.get(row.get("township_no"))).longValue();
-					
-				} else {
-					if (snsTopicId.length() > 0) {
-						// store the spatial ref sns values
-						dataProvider.setId(dataProvider.getId() + 1);
-						pSpatialRefSns.setLong(cnt++, dataProvider.getId()); // id
-						pSpatialRefSns.setString(cnt++, snsTopicId); // sns_id
-						pSpatialRefSns.setString(cnt++, null); // expired_at
-						try {
-							pSpatialRefSns.executeUpdate();
-							spatialRefSnsId = dataProvider.getId();
-						} catch (Exception e) {
-							log.error("Error executing SQL: " + pSpatialRefSns.toString(), e);
-							throw e;
-						}
-					}
+			// OK, IS VALID !
 
-					// store the spatial ref value refering to sns
-					cnt = 1;
-					dataProvider.setId(dataProvider.getId() + 1);
+			// extract object data to be connected with
+			long objId = IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"));
+			Integer line = row.getInteger("line");
 
-					pSpatialRefValueId = dataProvider.getId();
-					pSpatialRefValue.setLong(cnt++, pSpatialRefValueId); // id
-					pSpatialRefValue.setString(cnt++, "G"); // type
-					if (spatialRefSnsId > 0) {
-						pSpatialRefValue.setLong(cnt++, spatialRefSnsId); // spatial_ref_sns_id
-					} else {
-						pSpatialRefValue.setNull(cnt++, Types.INTEGER); // spatial_ref_sns_id
-					}
+			// check whether it is a district -> no sns topics for districts !
+			// if district, the state is written as thesaurus spatial reference and district as free spatial reference !
+			if (nativeAGSKey.length() != 3) {
+				// NO DISTRICT ! write as thesaurus spatial reference !
+				// NOTICE: we already found location and it is no district, so snsTopicId should exist !
+				String snsTopicId = IDCStrategyHelper.transformNativeKey2TopicId(nativeAGSKey);
 
-					// do NOT map via sys_list, this is a geothesaurus entry (SNS) !
-					pSpatialRefValue.setString(cnt++, locName); // name_value
-					pSpatialRefValue.setInt(cnt++, -1); // name_key
-					pSpatialRefValue.setString(cnt++, IDCStrategyHelper.transformNativeKey2FullAgs(row
-							.get("township_no"))); // nativekey
-					JDBCHelper.addDouble(pSpatialRefValue, cnt++, IDCStrategyHelper.getEntityFieldValueAsDouble(
-							dataProvider, "t01_st_bbox", "loc_town_no", row.get("township_no"), "x1")); // x1
-					JDBCHelper.addDouble(pSpatialRefValue, cnt++, IDCStrategyHelper.getEntityFieldValueAsDouble(
-							dataProvider, "t01_st_bbox", "loc_town_no", row.get("township_no"), "x2")); // x2
-					JDBCHelper.addDouble(pSpatialRefValue, cnt++, IDCStrategyHelper.getEntityFieldValueAsDouble(
-							dataProvider, "t01_st_bbox", "loc_town_no", row.get("township_no"), "y1")); // y1
-					JDBCHelper.addDouble(pSpatialRefValue, cnt++, IDCStrategyHelper.getEntityFieldValueAsDouble(
-							dataProvider, "t01_st_bbox", "loc_town_no", row.get("township_no"), "y2")); // y2
-					try {
-						pSpatialRefValue.executeUpdate();
-						storedNativekeys.put(row.get("township_no"), new Long(pSpatialRefValueId));
-					} catch (Exception e) {
-						log.error("Error executing SQL: " + pSpatialRefValue.toString(), e);
-						throw e;
-					}
-				}
+				writeThesaurusSpatialReference (storedNativeAGSKeys,
+						nativeAGSKey,
+						snsTopicId,
+						locName,
+						objId,
+						line,
+						psInsertSpatialRefSns,
+						storedObjectSpatialReferences);
 
-				// store the spatial reference to object
-				cnt = 1;
-				long objId = IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"));
-				pSpatialReference.setInt(cnt++, row.getInteger("primary_key")); // id
-				pSpatialReference.setLong(cnt++, objId); // obj_id
-				pSpatialReference.setInt(cnt++, row.getInteger("line")); // line
-				pSpatialReference.setLong(cnt++, pSpatialRefValueId); // spatial_ref_id
-				try {
-					pSpatialReference.executeUpdate();
-				} catch (Exception e) {
-					log.error("Error executing SQL: " + pSpatialReference.toString(), e);
-					throw e;
-				}
+			} else {
+				// IS DISTRICT !
+
+				log.debug("District entry in " + entityName + " found: township_no ('" + nativeAGSKey + "'), obj_id ('" + row.get("obj_id")+ "'). " +
+						"Write state as thesaurus and district as free spatial reference !");
+
+				// NOTICE: we already found district, so state must exist !
+				String nativeAGSKeyState = nativeAGSKey.substring(0, 2);
+				String locNameState = IDCStrategyHelper.getLocationNameFromNativeAGS(nativeAGSKeyState, dataProvider);
+				String snsTopicIdState = IDCStrategyHelper.transformNativeKey2TopicId(nativeAGSKeyState);
 				
-				// update full text index
-				JDBCHelper.updateObjectIndex(objId, locName, jdbc);
-				JDBCHelper.updateObjectIndex(objId, snsTopicId, jdbc);
-				JDBCHelper.updateObjectIndex(objId, IDCStrategyHelper.transformNativeKey2FullAgs(row.get("township_no")), jdbc);
-				// update geothesaurus index
-				if (snsTopicId != null) {
-					JDBCHelper.updateObjectIndex(objId, snsTopicId, IDX_NAME_GEOTHESAURUS, jdbc); // SpatialRefSns.snsId
+				// write state as thesaurus spatial ref
+				boolean wasWritten = writeThesaurusSpatialReference (storedNativeAGSKeys,
+						nativeAGSKeyState,
+						snsTopicIdState,
+						locNameState,
+						objId,
+						line,
+						psInsertSpatialRefSns,
+						storedObjectSpatialReferences);
+
+				if (wasWritten) {
+					log.debug("Wrote state " + snsTopicIdState + ", '" + locNameState + "' as thesaurus spatial reference of object !");
+				} else {
+					log.debug("State " + snsTopicIdState + ", '" + locNameState + "' is already thesaurus spatial reference of object ! Not added !");
+				}
+
+				// write district as free spatial ref
+				// NOTICE: we use line 0, so this one is at start !
+
+				// extract bounding box values
+				double x1 = IDCStrategyHelper.getEntityFieldValueAsDouble(
+						dataProvider, "t01_st_bbox", "loc_town_no", nativeAGSKey, "x1");
+				double x2 = IDCStrategyHelper.getEntityFieldValueAsDouble(
+						dataProvider, "t01_st_bbox", "loc_town_no", nativeAGSKey, "x2");
+				double y1 = IDCStrategyHelper.getEntityFieldValueAsDouble(
+						dataProvider, "t01_st_bbox", "loc_town_no", nativeAGSKey, "y1");
+				double y2 = IDCStrategyHelper.getEntityFieldValueAsDouble(
+						dataProvider, "t01_st_bbox", "loc_town_no", nativeAGSKey, "y2");
+				wasWritten = writeFreeSpatialReference(locName,
+						x1, x2, y1, y2,
+						objId,
+						0,
+						nativeAGSKey);
+
+				if (wasWritten) {
+					log.debug("Wrote district '" + locName + "' as free spatial reference of object !");
+				} else {
+					log.debug("District '" + locName + "' is already free spatial reference of object ! Not added !");
 				}
 			}
 		}
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
+		}
+	}
+
+	private boolean writeThesaurusSpatialReference (HashMap<String, Long> storedNativeAGSKeys,
+			String nativeAGSKey,
+			String snsTopicId,
+			String locName,
+			long objId,
+			int line,
+			PreparedStatement psInsertSpatialRefSns,
+			HashMap<String, Long> storedObjectSpatialReferences
+			) throws Exception {
+
+		// create Prepared Statements for insert if not created yet
+		if (psInsertSpatialReference == null) {
+			String pSqlStrSpatialReference = "INSERT INTO spatial_reference (id, obj_id, line, spatial_ref_id) "
+				+ "VALUES (?, ?, ?, ?);";
+			psInsertSpatialReference = jdbc.prepareStatement(pSqlStrSpatialReference);
+
+			String pSqlStrSpatialRefValue = "INSERT INTO spatial_ref_value (id, type, spatial_ref_sns_id, name_value, name_key, nativekey, x1, x2, y1, y2) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+			psInsertSpatialRefValue = jdbc.prepareStatement(pSqlStrSpatialRefValue);
+		}
+		
+		long pSpatialRefValueId = 0;
+		int cnt = 1;
+
+		String fullAGSKey = IDCStrategyHelper.transformNativeKey2FullAgs(nativeAGSKey);
+
+		// if the spatial ref has been stored already, refer to the already stored id
+		// NOTICE: Thesaurus spatial ref exist only ONCE and can be connected to multiple objects !
+		if (storedNativeAGSKeys.containsKey(nativeAGSKey)) {
+			pSpatialRefValueId = ((Long) storedNativeAGSKeys.get(nativeAGSKey)).longValue();
+			
+		} else {
+			// store the spatial ref sns values
+			dataProvider.setId(dataProvider.getId() + 1);
+			long spatialRefSnsId = dataProvider.getId();
+			psInsertSpatialRefSns.setLong(cnt++, spatialRefSnsId); // id
+			psInsertSpatialRefSns.setString(cnt++, snsTopicId); // sns_id
+			psInsertSpatialRefSns.setString(cnt++, null); // expired_at
+			try {
+				psInsertSpatialRefSns.executeUpdate();
+			} catch (Exception e) {
+				log.error("Error executing SQL: " + psInsertSpatialRefSns.toString(), e);
+				throw e;
+			}
+
+			// extract bounding box values
+			double x1 = IDCStrategyHelper.getEntityFieldValueAsDouble(
+					dataProvider, "t01_st_bbox", "loc_town_no", nativeAGSKey, "x1");
+			double x2 = IDCStrategyHelper.getEntityFieldValueAsDouble(
+					dataProvider, "t01_st_bbox", "loc_town_no", nativeAGSKey, "x2");
+			double y1 = IDCStrategyHelper.getEntityFieldValueAsDouble(
+					dataProvider, "t01_st_bbox", "loc_town_no", nativeAGSKey, "y1");
+			double y2 = IDCStrategyHelper.getEntityFieldValueAsDouble(
+					dataProvider, "t01_st_bbox", "loc_town_no", nativeAGSKey, "y2");
+
+			// store the spatial ref value refering to sns
+			cnt = 1;
+			dataProvider.setId(dataProvider.getId() + 1);
+			pSpatialRefValueId = dataProvider.getId();
+
+			psInsertSpatialRefValue.setLong(cnt++, pSpatialRefValueId); // id
+			psInsertSpatialRefValue.setString(cnt++, "G"); // type
+			psInsertSpatialRefValue.setLong(cnt++, spatialRefSnsId); // spatial_ref_sns_id
+			// do NOT map via sys_list, this is a geothesaurus entry (SNS) !
+			psInsertSpatialRefValue.setString(cnt++, locName); // name_value
+			psInsertSpatialRefValue.setInt(cnt++, -1); // name_key
+			psInsertSpatialRefValue.setString(cnt++, fullAGSKey); // nativekey
+			JDBCHelper.addDouble(psInsertSpatialRefValue, cnt++, x1); // x1
+			JDBCHelper.addDouble(psInsertSpatialRefValue, cnt++, x2); // x2
+			JDBCHelper.addDouble(psInsertSpatialRefValue, cnt++, y1); // y1
+			JDBCHelper.addDouble(psInsertSpatialRefValue, cnt++, y2); // y2
+			try {
+				psInsertSpatialRefValue.executeUpdate();
+				storedNativeAGSKeys.put(nativeAGSKey, new Long(pSpatialRefValueId));
+			} catch (Exception e) {
+				log.error("Error executing SQL: " + psInsertSpatialRefValue.toString(), e);
+				throw e;
+			}
+		}
+
+		// check whether we already have this thesaurus ref in our object !
+		String objSpatialRefKey = "" + objId + "/" + pSpatialRefValueId; 
+		if (!storedObjectSpatialReferences.containsKey(objSpatialRefKey)) {
+			// store the spatial reference to object
+			cnt = 1;
+			dataProvider.setId(dataProvider.getId() + 1);
+			long spatialRefId = dataProvider.getId();
+			psInsertSpatialReference.setLong(cnt++, spatialRefId); // id
+			psInsertSpatialReference.setLong(cnt++, objId); // obj_id
+			psInsertSpatialReference.setInt(cnt++, line); // line
+			psInsertSpatialReference.setLong(cnt++, pSpatialRefValueId); // spatial_ref_id
+			try {
+				psInsertSpatialReference.executeUpdate();
+				storedObjectSpatialReferences.put(objSpatialRefKey, spatialRefId);
+			} catch (Exception e) {
+				log.error("Error executing SQL: " + psInsertSpatialReference.toString(), e);
+				throw e;
+			}
+			
+			// update full text index
+			JDBCHelper.updateObjectIndex(objId, locName, jdbc);
+			JDBCHelper.updateObjectIndex(objId, snsTopicId, jdbc);
+			JDBCHelper.updateObjectIndex(objId, fullAGSKey, jdbc);
+			// update geothesaurus index
+			if (snsTopicId != null) {
+				JDBCHelper.updateObjectIndex(objId, snsTopicId, IDX_NAME_GEOTHESAURUS, jdbc); // SpatialRefSns.snsId
+			}
+			
+			return true;
+		} else {
+			return false;
 		}
 	}
 
@@ -3169,123 +3280,172 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			log.info("Importing " + entityName + "...");
 		}
 
-		String pSqlStrSpatialReference = "INSERT INTO spatial_reference (id, obj_id, line, spatial_ref_id) "
-				+ "VALUES (?, ?, ?, ?);";
-
-		String pSqlStrSpatialRefValue = "INSERT INTO spatial_ref_value (id, type, spatial_ref_sns_id, name_value, name_key, nativekey, x1, x2, y1, y2) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
-
-		PreparedStatement pSpatialReference = jdbc.prepareStatement(pSqlStrSpatialReference);
-		PreparedStatement pSpatialRefValue = jdbc.prepareStatement(pSqlStrSpatialRefValue);
-
-		final List<String> allowedSpecialRefEntries = new ArrayList<String>();
-		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
-		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1100 and lang_id='" + getCatalogLanguage() + "';";
-		ResultSet rs = jdbc.executeQuery(sql);
-		while (rs.next()) {
-			if (rs.getString("name") != null) {
-				allowedSpecialRefEntryNames.add(rs.getString("name"));
-				allowedSpecialRefEntryNamesLowerCase.add(rs.getString("name").toLowerCase());
-				allowedSpecialRefEntries.add(rs.getString("entry_id"));
-			}
-		}
-		rs.close();
-		
-		
-		HashMap<String, Long> storedNativekeys = new HashMap<String, Long>();
-
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
+
+			// skip deleted rows
+			if (row.get("mod_type") == null || invalidModTypes.contains(row.get("mod_type"))) {
+				continue;
+			}
+
+			// skip rows with invalid object references
 			if (IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id")) == 0) {
 				if (log.isDebugEnabled()) {
 					log.debug("Invalid entry in " + entityName + " found: obj_id ('" + row.get("obj_id")
 							+ "') not found in imported data of t01_object. Skip record.");
 				}
 				row.clear();
-				/*
-				 * } else if (row.get("geo_x1") == null) { if
-				 * (log.isDebugEnabled()) { log.debug("Invalid entry in " +
-				 * entityName + " found: geo_x1 is null. Skip record."); }
-				 * row.clear(); } else if (row.get("geo_x2") == null) { if
-				 * (log.isDebugEnabled()) { log.debug("Invalid entry in " +
-				 * entityName + " found: geo_x2 is null. Skip record."); }
-				 * row.clear(); } else if (row.get("geo_y1") == null) { if
-				 * (log.isDebugEnabled()) { log.debug("Invalid entry in " +
-				 * entityName + " found: geo_y1 is null. Skip record."); }
-				 * row.clear(); } else if (row.get("geo_y2") == null) { if
-				 * (log.isDebugEnabled()) { log.debug("Invalid entry in " +
-				 * entityName + " found: geo_y2 is null. Skip record."); }
-				 * row.clear();
-				 */
-
-			} else if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
-				int cnt = 1;
-				long pSpatialRefValueId;
-				// if the spatial ref has been stored already, refere to the
-				// already stored id
-				// create key
-				String geoKey = row.get("geo_x1") + row.get("geo_x2") + row.get("geo_y1") + row.get("geo_y1")
-						+ row.get("bezug");
-				String valueWritten = row.get("bezug");
-				if (storedNativekeys.containsKey(geoKey)) {
-					pSpatialRefValueId = ((Long) storedNativekeys.get(geoKey)).longValue();
-					// NOTICE: valueWritten is OLD value from udk and not from sys_list (lower/upper case may be different).
-					// we ignore this !
-				} else {
-					// store the spatial ref
-					dataProvider.setId(dataProvider.getId() + 1);
-
-					pSpatialRefValue.setLong(cnt++, dataProvider.getId()); // id
-					pSpatialRefValue.setString(cnt++, "F"); // type
-					pSpatialRefValue.setNull(cnt++, Types.INTEGER); // spatial_ref_sns_id
-					// try to find entry in syslist
-					int entryIndex = -1;
-					if (row.get("bezug") != null) {
-						entryIndex = allowedSpecialRefEntryNamesLowerCase.indexOf(row.get("bezug").toLowerCase());
-					}
-					if (entryIndex != -1) {
-						// we set also value from entry !!! necessary for mapping !
-						valueWritten = allowedSpecialRefEntryNames.get(entryIndex);
-						pSpatialRefValue.setString(cnt++, valueWritten); // name_value
-						pSpatialRefValue.setInt(cnt++, Integer.parseInt(allowedSpecialRefEntries.get(entryIndex))); // name_key
-					} else {
-						pSpatialRefValue.setString(cnt++, valueWritten); // name_value
-						pSpatialRefValue.setInt(cnt++, -1); // name_key
-					}
-					pSpatialRefValue.setString(cnt++, ""); // nativekey
-					JDBCHelper.addDouble(pSpatialRefValue, cnt++, row.getDouble("geo_x1")); // x1
-					JDBCHelper.addDouble(pSpatialRefValue, cnt++, row.getDouble("geo_x2")); // x2
-					JDBCHelper.addDouble(pSpatialRefValue, cnt++, row.getDouble("geo_y1")); // y1
-					JDBCHelper.addDouble(pSpatialRefValue, cnt++, row.getDouble("geo_y2")); // y1
-					try {
-						pSpatialRefValue.executeUpdate();
-						pSpatialRefValueId = dataProvider.getId();
-						storedNativekeys.put(geoKey, new Long(pSpatialRefValueId));
-					} catch (Exception e) {
-						log.error("Error executing SQL: " + pSpatialRefValue.toString(), e);
-						throw e;
-					}
-				}
-				cnt = 1;
-				long objId = IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id"));
-				pSpatialReference.setInt(cnt++, row.getInteger("primary_key")); // id
-				pSpatialReference.setLong(cnt++, objId); // obj_id
-				pSpatialReference.setInt(cnt++, row.getInteger("line")); // line
-				pSpatialReference.setLong(cnt++, pSpatialRefValueId); // spatial_ref_id
-				try {
-					pSpatialReference.executeUpdate();
-				} catch (Exception e) {
-					log.error("Error executing SQL: " + pSpatialReference.toString(), e);
-					throw e;
-				}
-
-				// update full text index
-				JDBCHelper.updateObjectIndex(objId, valueWritten, jdbc);
+				continue;
 			}
+
+			/*
+			 * if (row.get("geo_x1") == null) { if
+			 * (log.isDebugEnabled()) { log.debug("Invalid entry in " +
+			 * entityName + " found: geo_x1 is null. Skip record."); }
+			 * row.clear(); } else if (row.get("geo_x2") == null) { if
+			 * (log.isDebugEnabled()) { log.debug("Invalid entry in " +
+			 * entityName + " found: geo_x2 is null. Skip record."); }
+			 * row.clear(); } else if (row.get("geo_y1") == null) { if
+			 * (log.isDebugEnabled()) { log.debug("Invalid entry in " +
+			 * entityName + " found: geo_y1 is null. Skip record."); }
+			 * row.clear(); } else if (row.get("geo_y2") == null) { if
+			 * (log.isDebugEnabled()) { log.debug("Invalid entry in " +
+			 * entityName + " found: geo_y2 is null. Skip record."); }
+			 * row.clear();
+			 */
+
+			// bezug set ? skip rows where not set !
+			String bezug = row.get("bezug");
+			if (bezug == null || bezug.trim().length() == 0) {
+				log.debug("Invalid entry in " + entityName + " found: bezug('" + bezug +
+						"'), obj_id ('" + row.get("obj_id")	+ "'). Skip record.");
+				row.clear();
+				continue;
+			}
+
+			// OK, IS VALID ! write it ! 
+			writeFreeSpatialReference(
+					bezug,
+					row.getDouble("geo_x1"),
+					row.getDouble("geo_x2"),
+					row.getDouble("geo_y1"),
+					row.getDouble("geo_y2"),
+					IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id")),
+					row.getInteger("line"),
+					null);
 		}
+
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
+		}
+	}
+
+	private boolean writeFreeSpatialReference (String bezug,
+			Double x1,
+			Double x2,
+			Double y1,
+			Double y2,
+			long objId,
+			int line,
+			String nativeAGSKey
+			) throws Exception {
+
+		// create Prepared Statements for insert if not created yet
+		if (psInsertSpatialReference == null) {
+			String pSqlStrSpatialReference = "INSERT INTO spatial_reference (id, obj_id, line, spatial_ref_id) "
+				+ "VALUES (?, ?, ?, ?);";
+			psInsertSpatialReference = jdbc.prepareStatement(pSqlStrSpatialReference);
+
+			String pSqlStrSpatialRefValue = "INSERT INTO spatial_ref_value (id, type, spatial_ref_sns_id, name_value, name_key, nativekey, x1, x2, y1, y2) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+			psInsertSpatialRefValue = jdbc.prepareStatement(pSqlStrSpatialRefValue);
+		}
+		
+		// load syslist entries for free spatial references if not loaded yet !
+		if (freeSpatialReferenceEntryKeys == null) {
+			freeSpatialReferenceEntryKeys = new ArrayList<String>();
+			freeSpatialReferenceEntryNames = new ArrayList<String>();
+			freeSpatialReferenceEntryNamesLowerCase = new ArrayList<String>();
+
+			String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1100 and lang_id='" + getCatalogLanguage() + "';";
+			ResultSet rs = jdbc.executeQuery(sql);
+			while (rs.next()) {
+				if (rs.getString("name") != null) {
+					freeSpatialReferenceEntryNames.add(rs.getString("name"));
+					freeSpatialReferenceEntryNamesLowerCase.add(rs.getString("name").toLowerCase());
+					freeSpatialReferenceEntryKeys.add(rs.getString("entry_id"));
+				}
+			}
+			rs.close();
+		}
+
+		int cnt = 1;
+		long pSpatialRefValueId;
+
+		// create key for this spatial reference to check whether it was stored already
+		// NOTICE: Free spatial references should exist PER OBJECT ! name can be changed interactively in frontend !
+		String freeSpatialRefKey = objId + bezug;
+
+		if (!storedFreeSpatialReferences.containsKey(freeSpatialRefKey)) {
+			// no free spatial ref with same name for this object ! create it !
+			
+			// try to find entry in syslist
+			int bezugKey = -1;
+			int entryIndex = freeSpatialReferenceEntryNamesLowerCase.indexOf(bezug.toLowerCase());
+			if (entryIndex != -1) {
+				// we set also value from syslist entry !!! necessary for mapping !
+				bezug = freeSpatialReferenceEntryNames.get(entryIndex);
+				bezugKey = Integer.parseInt(freeSpatialReferenceEntryKeys.get(entryIndex));
+			}
+
+			// was a native AGS key passed, meaning this one was written from t011_township (district).
+			// we write the full ags key.
+			String nativeKey = "";
+			if (nativeAGSKey != null) {
+				nativeKey = IDCStrategyHelper.transformNativeKey2FullAgs(nativeAGSKey);
+			}
+
+			// create the free spatial ref value
+			dataProvider.setId(dataProvider.getId() + 1);
+			pSpatialRefValueId = dataProvider.getId();
+			psInsertSpatialRefValue.setLong(cnt++, pSpatialRefValueId); // id
+			psInsertSpatialRefValue.setString(cnt++, "F"); // type
+			psInsertSpatialRefValue.setNull(cnt++, Types.INTEGER); // spatial_ref_sns_id
+			psInsertSpatialRefValue.setString(cnt++, bezug); // name_value
+			psInsertSpatialRefValue.setInt(cnt++, bezugKey); // name_key
+			psInsertSpatialRefValue.setString(cnt++, nativeKey); // nativekey
+			JDBCHelper.addDouble(psInsertSpatialRefValue, cnt++, x1); // x1
+			JDBCHelper.addDouble(psInsertSpatialRefValue, cnt++, x2); // x2
+			JDBCHelper.addDouble(psInsertSpatialRefValue, cnt++, y1); // y1
+			JDBCHelper.addDouble(psInsertSpatialRefValue, cnt++, y2); // y2
+			try {
+				psInsertSpatialRefValue.executeUpdate();
+				storedFreeSpatialReferences.put(freeSpatialRefKey, new Long(pSpatialRefValueId));
+			} catch (Exception e) {
+				log.error("Error executing SQL: " + psInsertSpatialRefValue.toString(), e);
+				throw e;
+			}
+
+			// and connect it to object
+			cnt = 1;
+			dataProvider.setId(dataProvider.getId() + 1);
+			psInsertSpatialReference.setLong(cnt++, dataProvider.getId()); // id
+			psInsertSpatialReference.setLong(cnt++, objId); // obj_id
+			psInsertSpatialReference.setInt(cnt++, line); // line
+			psInsertSpatialReference.setLong(cnt++, pSpatialRefValueId); // spatial_ref_id
+			try {
+				psInsertSpatialReference.executeUpdate();
+			} catch (Exception e) {
+				log.error("Error executing SQL: " + psInsertSpatialReference.toString(), e);
+				throw e;
+			}
+
+			// update full text index
+			JDBCHelper.updateObjectIndex(objId, bezug, jdbc);
+			
+			return true;
+		} else {
+			return false;			
 		}
 	}
 
