@@ -3384,7 +3384,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 		// create key for this spatial reference to check whether it was stored already
 		// NOTICE: Free spatial references should exist PER OBJECT ! name can be changed interactively in frontend !
-		String freeSpatialRefKey = objId + bezug;
+		String freeSpatialRefKey = objId + bezug.toLowerCase();
 
 		if (!storedFreeSpatialReferences.containsKey(freeSpatialRefKey)) {
 			// no free spatial ref with same name for this object ! create it !

@@ -157,10 +157,16 @@ public class IDCStrategyHelper {
 
 		boolean timeValid = false;
 
-		if (timeType == null) {
-			// no time (type) set, we clear all time data to assure no wrong values !
-			timeValid = true;
-			processedTimeFrom = processedTimeTo = processedTimeType = null;
+		if (timeType == null || timeType.trim().length() == 0) {
+			// no time type set, check whether time dates are set, then error
+			boolean timeFromSet = (timeFrom != null && timeFrom.trim().length() > 0);
+			boolean timeToSet = (timeTo != null && timeTo.trim().length() > 0);
+			
+			if (!timeFromSet && !timeToSet) {
+				// ok: no time data set, we clear all time data to assure no wrong values !
+				timeValid = true;
+				processedTimeFrom = processedTimeTo = processedTimeType = null;
+			}
 
 		} else {
 			// process time data according to time type 
