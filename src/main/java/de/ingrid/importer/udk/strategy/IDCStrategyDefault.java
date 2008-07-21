@@ -156,25 +156,52 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 					"cycle " + numCycles + ", read " + numReadEntities + ", removed " + numRemovedEntities);
 			}
 
-			// after clear up of object relations verify objects ! remove orphans !		
+			// after clear up of object relations verify objects ! remove orphans !
 			entityName = "t01_object";
 			numReadEntities = 0;
 			numRemovedEntities = 0;
 			for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 				numReadEntities++;
 				Row row = i.next();
-				if (row.get("root").equals("0")) {
-					// non root object
+				boolean rootNotSet = false;
+				if (row.get("root") == null || row.get("root").trim().length() == 0) {
+					if (log.isInfoEnabled()) {
+						log.info("Invalid entry in " + entityName + " found: root('" + row.get("root") + 
+							"') NOT SET ! obj_id ('" + row.get("obj_id")	+ "'). We check relations and set accordingly !");
+					}
+					rootNotSet = true;
+				}
+				// check whether object is referenced as "to object"
+				if (rootNotSet || row.get("root").equals("0")) {
+					// non root object OR root not set
 					int toIdSize = IDCStrategyHelper.getEntityFieldValue(dataProvider, "t012_obj_obj", "object_to_id",
 							row.get("obj_id"), "object_to_id").length();
 					if (toIdSize == 0) {
-						if (log.isInfoEnabled()) {
-							log.info("Invalid entry (outside the hierarchy) in " + entityName + " found: obj_id ('"
-								+ row.get("obj_id")	+ "') not found in t012_obj_obj.object_to_id and root == 0. Skip record.");
+						// NOT REFERENCED AS TO OBJECT !
+						if (rootNotSet) {
+							// we mark object as root !
+							if (log.isInfoEnabled()) {
+								log.info("Invalid entry: object ('" + row.get("obj_id")	+ "') NOT FOUND in t012_obj_obj.object_to_id. We set as new root object.");
+							}
+							row.put("root", "1");
+						} else {
+							if (log.isInfoEnabled()) {
+								log.info("Invalid entry (outside the hierarchy) in " + entityName + " found: obj_id ('"
+									+ row.get("obj_id")	+ "') not found in t012_obj_obj.object_to_id and root == 0. Skip record.");
+							}
+							i.remove();
+							numRemovedEntities++;
+							checkObjectRelations = true;
 						}
-						i.remove();
-						numRemovedEntities++;
-						checkObjectRelations = true;
+					} else {
+						// REFERENCED AS TO OBJECT !
+						if (rootNotSet) {
+							// we mark object as NOT root !
+							if (log.isInfoEnabled()) {
+								log.info("Invalid entry: object ('" + row.get("obj_id")	+ "') FOUND in t012_obj_obj.object_to_id. We DON'T set as root object.");
+							}
+							row.put("root", "0");							
+						}
 					}
 				}
 			}
