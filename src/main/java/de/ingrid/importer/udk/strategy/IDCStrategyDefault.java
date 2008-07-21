@@ -3725,7 +3725,18 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
-			
+
+			// check for null searchterms !!! (yes this is possible in exported udk data !)
+			String searchterm = row.get("searchterm");
+			if (searchterm == null || searchterm.trim().length() == 0) {
+				if (log.isDebugEnabled()) {
+					log.debug("Invalid entry in " + entityName + " found: invalid searchterm('" + searchterm + "') ! " +
+							"obj_id ('" + row.get("obj_id") + "'). Skip record.");
+				}
+				row.clear();
+				continue;
+			}
+
 			String key = row.get("obj_id") + "_" + row.get("type") + "_" + row.get("searchterm");
 			
 			if (!alreadyImported.contains(key) && row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
