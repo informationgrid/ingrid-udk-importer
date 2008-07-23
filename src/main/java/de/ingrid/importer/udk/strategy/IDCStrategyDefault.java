@@ -3531,12 +3531,14 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
 				if (row.get("obj_id") == null || row.get("obj_id").length() == 0) {
 					if (log.isDebugEnabled()) {
-						log.debug("Invalid entry in " + entityName + " found: obj_id not set. Skip record.");
+						log.debug("Invalid entry in " + entityName + " found: obj_id('" + row.get("obj_id") +
+								"') not set. Skip record.");
 					}
 					row.clear();
 				} else if (row.get("adr_id") == null || row.get("adr_id").length() == 0) {
 					if (log.isDebugEnabled()) {
-						log.debug("Invalid entry in " + entityName + " found: adr_id not set. Skip record.");
+						log.debug("Invalid entry in " + entityName + " found: adr_id('" + row.get("adr_id") +
+								"') not set. Skip record. obj_id ('" + row.get("obj_id") + "').");
 					}
 					row.clear();
 				} else if (IDCStrategyHelper.getPK(dataProvider, "t01_object", "obj_id", row.get("obj_id")) == 0) {
@@ -3548,13 +3550,13 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				} else if (IDCStrategyHelper.getPK(dataProvider, "t02_address", "adr_id", row.get("adr_id")) == 0) {
 					if (log.isDebugEnabled()) {
 						log.debug("Invalid entry in " + entityName + " found: adr_id ('" + row.get("adr_id")
-								+ "') not found in imported data of t02_address. Skip record.");
+								+ "') not found in imported data of t02_address. Skip record. obj_id ('" + row.get("obj_id")	+ "').");
 					}
 					row.clear();
 				} else if (!IDCStrategyHelper.isValidUdkAddressType(row.getInteger("typ"), row.get("special_name")) && row.get("typ") != null && row.getInteger("typ").intValue() != 0) {
 					log.info("Invalid entry in " + entityName + " found: typ ('" + row.get("typ")
 							+ "') does not correspond with special_name ('" + row.get("special_name")
-							+ "'). Skip record.");
+							+ "'). Skip record. obj_id ('" + row.get("obj_id")	+ "'), adr_id ('" + row.get("adr_id") + "').");
 					row.clear();
 				} else {
 					int currId = row.getInteger("primary_key");
