@@ -164,7 +164,12 @@ public class LazyInMemoryDataProvider implements DataProvider {
 						if (log.isDebugEnabled()) {
 							log.debug("Parse file '" + fileName + "'.");
 						}
-						dom = db.parse(new File(fileName));
+				        Reader fr = new InputStreamReader(new FileInputStream(fileName), "UTF-8");
+						// preprocess file -> replace line feeds in attributes with "&#xA;" so parser doesn't replace them with blank  !
+				        UdkXMLReader xr = new UdkXMLReader( fr );
+						InputSource inputSource = new InputSource(xr);
+
+						dom = db.parse(inputSource);
 					}
 					Entity entity = new Entity();
 					entity.setName(aEntityName);
