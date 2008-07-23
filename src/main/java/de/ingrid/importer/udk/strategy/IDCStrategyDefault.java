@@ -932,8 +932,10 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		for (Iterator<Row> i = dataProvider.getRowIterator("t03_catalogue"); i.hasNext();) {
 			Row row = i.next();
 			if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
-				String locTownNo = IDCStrategyHelper.getEntityFieldValue(dataProvider, "t071_state", "state_id", row
-						.get("state"), "loc_town_no");
+				String[] t071_stateFieldsWhere = new String[] { "country_id", "state_id" };
+				String[] t071_stateValuesWhere = new String[] { row.get("country"), row.get("state") };
+				String locTownNo = IDCStrategyHelper.getEntityFieldValue(dataProvider, "t071_state", 
+						t071_stateFieldsWhere, t071_stateValuesWhere, "loc_town_no");
 				fullAGS = IDCStrategyHelper.transformNativeKey2FullAgs(locTownNo);
 				if (fullAGS == null || fullAGS.length() == 0) {
 					if (log.isDebugEnabled()) {

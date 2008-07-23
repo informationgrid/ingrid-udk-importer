@@ -366,6 +366,27 @@ public class IDCStrategyHelper {
 		}
 	}
 	
+	public static String getEntityFieldValue(DataProvider dataProvider, String entity, String[] fieldsWhere,
+			String[] valuesWhere, String field) {
+		Row row = dataProvider.findRow(entity, fieldsWhere, valuesWhere);
+		if (row != null && row.get(field) != null) {
+			if (row.containsKey(field)) {
+				return row.get(field);
+			} else {
+				if (log.isDebugEnabled()) {
+					log.debug("Cannot not find key '" + field + "' in row for " + entity + "." + fieldsWhere + "='"
+							+ valuesWhere + "'.");
+				}
+				return "";
+			}
+		} else {
+			if (log.isDebugEnabled()) {
+				log.debug("Cannot not find row for " + entity + "." + fieldsWhere + "='" + valuesWhere + "'.");
+			}
+			return "";
+		}
+	}
+	
 	public static Integer getEntityFieldValueAsInteger(DataProvider dataProvider, String entity, String fieldWhere,
 	String valueWhere, String field) {
 		String value = getEntityFieldValue(dataProvider, entity, fieldWhere,
