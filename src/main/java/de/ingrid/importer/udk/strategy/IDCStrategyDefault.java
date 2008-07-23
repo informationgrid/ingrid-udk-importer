@@ -927,23 +927,40 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		if (log.isInfoEnabled()) {
 			log.info("update spatial ref id for the catalog ...");
 		}
+		boolean spatialRefWritten = false;
+		String fullAGS = null;
 		for (Iterator<Row> i = dataProvider.getRowIterator("t03_catalogue"); i.hasNext();) {
 			Row row = i.next();
 			if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
 				String locTownNo = IDCStrategyHelper.getEntityFieldValue(dataProvider, "t071_state", "state_id", row
 						.get("state"), "loc_town_no");
-				String sql = "SELECT id FROM spatial_ref_value WHERE nativekey='"
-						+ IDCStrategyHelper.transformNativeKey2FullAgs(locTownNo) + "'";
-				ResultSet rs = jdbc.executeQuery(sql);
-				if (rs.next()) {
-					Long id = rs.getLong("id");
-					if (id != null && id.longValue() > 0) {
-						jdbc.executeUpdate("UPDATE t03_catalogue SET spatial_ref_id = " + id + " WHERE id="
-								+ row.getInteger("primary_key") + ";");
+				fullAGS = IDCStrategyHelper.transformNativeKey2FullAgs(locTownNo);
+				if (fullAGS == null || fullAGS.length() == 0) {
+					if (log.isDebugEnabled()) {
+						log.debug("Problems mapping catalog state('" + row.get("state") + "') -> t071_state.loc_town_no('" + 
+								locTownNo +	"') to full AGS Key.");						
 					}
-					rs.close();
+
+				} else {
+					String sql = "SELECT id FROM spatial_ref_value WHERE nativekey='" + fullAGS + "'";
+					ResultSet rs = jdbc.executeQuery(sql);
+					if (rs.next()) {
+						Long id = rs.getLong("id");
+						if (id != null && id.longValue() > 0) {
+							jdbc.executeUpdate("UPDATE t03_catalogue SET spatial_ref_id = " + id + " WHERE id="
+									+ row.getInteger("primary_key") + ";");
+							spatialRefWritten = true;
+						}
+						rs.close();
+					}
 				}
 			}
+		}
+		if (!spatialRefWritten) {
+			if (log.isInfoEnabled()) {
+				log.info("Problems mapping computed catalog fullAGS '" + fullAGS + "' to spatial reference. No catalog spatial reference written.");						
+			}
+			
 		}
 	}
 
