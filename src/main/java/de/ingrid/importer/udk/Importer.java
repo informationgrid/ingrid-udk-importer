@@ -1,11 +1,15 @@
 package de.ingrid.importer.udk;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import de.ingrid.importer.udk.jdbc.JDBCConnectionProxy;
+import de.ingrid.importer.udk.jdbc.JDBCHelper;
 import de.ingrid.importer.udk.provider.DataProvider;
-import de.ingrid.importer.udk.provider.InMemoryDataProvider;
 import de.ingrid.importer.udk.provider.LazyInMemoryDataProvider;
 import de.ingrid.importer.udk.strategy.IDCStrategy;
 import de.ingrid.importer.udk.strategy.IDCStrategyFactory;
@@ -43,27 +47,70 @@ public class Importer {
 			jdbc = new JDBCConnectionProxy(descriptor);
 		} catch (Exception e) {
 			log.error(e.getMessage());
+			System.out.println("Problems establishing JDBC connection, see log for details.");
+			return;
 		}
-
-		IDCStrategyFactory idcStrategyFactory = new IDCStrategyFactory();
-
-		IDCStrategy strategy = null;
+		
+		// fetch current IDC Version ("old" version)
+		String oldIDCVersion;
 		try {
-			strategy = idcStrategyFactory.getIdcStrategy(descriptor.getIdcVersion());
+			oldIDCVersion = JDBCHelper.getCurrentIDCVersion(jdbc, true);
 		} catch (Exception e) {
 			log.error(e.getMessage());
+			System.out.println("Problems determining current IDC Version, see log for details.");
+			return;
 		}
-		strategy.setImportDescriptor(descriptor);
-		strategy.setDataProvider(data);
-		strategy.setJDBCConnectionProxy(jdbc);
+		String newIDCVersion = descriptor.getIdcVersion();
+		System.out.println("\ninfo: current version of IDC: " + oldIDCVersion
+			+ ", requested version of IDC: " + newIDCVersion);
 
+		List<IDCStrategy> strategiesToExecute = new ArrayList<IDCStrategy>();
 		try {
-			strategy.execute();
+			IDCStrategyFactory idcStrategyFactory = new IDCStrategyFactory();
+			strategiesToExecute = idcStrategyFactory.getIdcStrategiesToExecute(oldIDCVersion, newIDCVersion);
 		} catch (Exception e) {
 			log.error(e.getMessage());
-		} finally {
-			// remove temp dir
-			ImportDescriptorHelper.removeTempDir();
+			System.out.println("\nProblems determining strategies to execute, see log for details.");
+		}
+		
+		for (IDCStrategy strategy : strategiesToExecute) {
+
+			System.out.println("\nExecuting strategy for IDC Version: " + strategy.getIDCVersion());
+
+			strategy.setImportDescriptor(descriptor);
+			strategy.setDataProvider(data);
+			strategy.setJDBCConnectionProxy(jdbc);
+			
+			boolean executed = false;
+			try {
+				strategy.execute();
+				executed = true;
+			} catch (Exception e) {
+				log.error(e.getMessage());
+				try {
+					jdbc.rollback();
+				} catch (SQLException e1) {
+					log.error("Error rolling back transaction!", e);
+				}
+
+			} finally {
+				// remove temp dir after every strategy ? ok, to avoid conflicts with existing data in tmp.
+				ImportDescriptorHelper.removeTempDir();
+
+				// close connection if problems !
+				if (!executed) {
+					try {
+						jdbc.close();
+					} catch (SQLException e) {
+						log.error("Error closing DB connection!", e);
+					}
+				}					
+			}
+			
+			if (!executed) {
+				System.out.println("\nError executing strategy for IDC Version: " 
+					+ strategy.getIDCVersion() + ", see log for details");
+			}
 		}
 	}
 }

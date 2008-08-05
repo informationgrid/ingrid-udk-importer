@@ -4,11 +4,14 @@
 package de.ingrid.importer.udk.jdbc;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import de.ingrid.importer.udk.strategy.IDCStrategy;
 
 /**
  * @author joachim
@@ -117,5 +120,36 @@ public class JDBCHelper {
 			throw e;
 		}
 	}
-	
+
+	/**
+	 * Fetch IDC Version from IDC catalog. Returns null if no version set. Throws Exception if problems. 
+	 * @param jdbc connection
+	 * @param processVersion process the fetched Version, meaning remove info at end like "_dev" etc.
+	 * @return the current version, null if no version set meaning initial state !
+	 * @throws Exception
+	 */
+	public static String getCurrentIDCVersion(JDBCConnectionProxy jdbc, boolean processVersion) throws Exception {
+		String currentVersion = null;
+
+		String sql = "SELECT value_string FROM sys_generic_key WHERE key_name='" + IDCStrategy.KEY_IDC_VERSION + "'";
+		try {
+			ResultSet rs = jdbc.executeQuery(sql);
+			if (rs.next()) {
+				currentVersion = rs.getString(1);
+			}
+			rs.close();
+		} catch (SQLException e) {
+			log.error("Error executing SQL: " + sql, e);
+			throw e;
+		}
+		
+		if (processVersion && currentVersion != null) {
+			int index = currentVersion.indexOf("_dev");
+			if (index != -1) {
+				currentVersion = currentVersion.substring(0,index);
+			}
+		}
+
+		return currentVersion;
+	}
 }

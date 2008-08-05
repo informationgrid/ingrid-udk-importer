@@ -69,6 +69,8 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 	private PreparedStatement psInsertSpatialReference = null;
 	private PreparedStatement psInsertSpatialRefValue = null;
 
+	private long idFromHiLow = -1;
+
 	public IDCStrategyDefault() {
 		super();
 		invalidModTypes = Arrays.asList(DataProvider.invalidModTypes);
@@ -103,8 +105,6 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 	protected String getCatalogLanguage() {
 		return catalogLanguage;
 	}
-
-	public abstract void execute();
 
 	protected void preProcess_generic() throws Exception {
 		if (log.isInfoEnabled()) {
@@ -4707,11 +4707,43 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 	}
 
 	protected void setHiLoGenerator() throws SQLException {
+		setHiLoGenerator(dataProvider.getId());
+	}
+
+	protected void setHiLoGenerator(long lastId) throws SQLException {
 		sqlStr = "DELETE FROM hibernate_unique_key";
 		jdbc.executeUpdate(sqlStr);
 
-		sqlStr = "INSERT INTO hibernate_unique_key (next_hi) VALUES (" + (int)(dataProvider.getId() / Short.MAX_VALUE + 1) + ")";
+		sqlStr = "INSERT INTO hibernate_unique_key (next_hi) VALUES (" + (int)(lastId / Short.MAX_VALUE + 1) + ")";
 		jdbc.executeUpdate(sqlStr);
+	}
+
+	synchronized private void initializeIdFromHiLoGenerator() throws Exception {
+		if (idFromHiLow == -1) {
+			String sql = "SELECT next_hi FROM hibernate_unique_key";
+			try {
+				ResultSet rs = jdbc.executeQuery(sql);
+				// has to be there !!!
+				rs.next();
+
+				long nextHi = rs.getLong(1);
+				idFromHiLow = nextHi * Short.MAX_VALUE;
+
+				rs.close();
+			} catch (SQLException e) {
+				log.error("Error executing SQL: " + sql, e);
+				throw e;
+			}
+		}
+	}
+
+	/** Get next id ! is initialized once from HiLow generator in database (Hibernate) ! */
+	protected long getNextId() throws Exception {
+		if (idFromHiLow == -1) {
+			initializeIdFromHiLoGenerator();
+		}
+
+		return idFromHiLow++;
 	}
 
 	protected void setGenericKey(String key, String value) throws SQLException {

@@ -5,7 +5,6 @@ package de.ingrid.importer.udk.strategy;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Types;
 import java.util.Date;
 
@@ -22,16 +21,19 @@ public class IDCInitDBStrategy1_0_2 extends IDCStrategyDefault {
 
 	private static Log log = LogFactory.getLog(IDCInitDBStrategy1_0_2.class);
 
-	private String IDC_VERSION = "1.0.2_dev";
+	private static final String MY_VERSION = VALUE_IDC_VERSION_102;
+	
+	public String getIDCVersion() {
+		return MY_VERSION;
+	}
 
-	public void execute() {
+	public void execute() throws Exception {
 
 		try {
-
 			jdbc.setAutoCommit(false);
 
 			// write version !
-			setGenericKey(KEY_IDC_VERSION, IDC_VERSION);
+			setGenericKey(KEY_IDC_VERSION, MY_VERSION);
 
 			System.out.print("  Importing sys_list...");
 			// must be processed first because other methods depend on that data
@@ -62,23 +64,9 @@ public class IDCInitDBStrategy1_0_2 extends IDCStrategyDefault {
 			System.out.println("Import finished successfully.");
 
 		} catch (Exception e) {
-			System.out.println("Error executing sql! See log file for further information.");
-			log.error("Error executing SQL!", e);
-			if (jdbc != null) {
-				try {
-					jdbc.rollback();
-				} catch (SQLException e1) {
-					log.error("Error rolling back transaction!", e);
-				}
-			}
-		} finally {
-			if (jdbc != null) {
-				try {
-					jdbc.close();
-				} catch (SQLException e) {
-					log.error("Error closing DB connection!", e);
-				}
-			}
+			System.out.println("Error executing strategy ! See log file for further information.");
+			log.error("Error executing strategy!", e);
+			throw e;
 		}
 	}
 	

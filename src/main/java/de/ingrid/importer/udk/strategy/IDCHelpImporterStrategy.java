@@ -46,6 +46,11 @@ public class IDCHelpImporterStrategy implements IDCStrategy {
 		importDescriptor = descriptor;
 	}
 
+	public String getIDCVersion() {
+		// no version ! keep current version when importing help messages !
+		return null;
+	}
+
 	public IDCHelpImporterStrategy() {
 		super();
 	}
@@ -55,10 +60,9 @@ public class IDCHelpImporterStrategy implements IDCStrategy {
 	 * 
 	 * @see de.ingrid.importer.udk.strategy.IDCStrategy#execute()
 	 */
-	public void execute() {
+	public void execute() throws Exception {
 		
 		try {
-		
 			jdbc.setAutoCommit(false);
 
 			String entityName = "sys_gui";
@@ -97,23 +101,9 @@ public class IDCHelpImporterStrategy implements IDCStrategy {
 			
 			jdbc.commit();
 		} catch (Exception e) {
-			System.out.println("Error executing sql! See log file for further information.");
-			log.error("Error executing SQL!", e);
-			if (jdbc != null) {
-				try {
-					jdbc.rollback();
-				} catch (SQLException e1) {
-					log.error("Error rolling back transaction!", e);
-				}
-			}
-		} finally {
-			if (jdbc != null) {
-				try {
-					jdbc.close();
-				} catch (SQLException e) {
-					log.error("Error closing DB connection!", e);
-				}
-			}
+			System.out.println("Error executing strategy ! See log file for further information.");
+			log.error("Error executing strategy!", e);
+			throw e;
 		}		
 	}
 
