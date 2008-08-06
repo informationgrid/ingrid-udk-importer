@@ -69,7 +69,10 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 	private PreparedStatement psInsertSpatialReference = null;
 	private PreparedStatement psInsertSpatialRefValue = null;
 
+	// data for generating id's via hibernate HiLow mechanism (table hibernate_unique_key)
 	private long idFromHiLow = -1;
+	private long startIdNextHiLowBlock = -1;
+	private short numIdsInHiLowBlock = Short.MAX_VALUE;
 
 	public IDCStrategyDefault() {
 		super();
@@ -3072,7 +3075,6 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			log.info("Importing " + entityName + "...");
 		}
 
-		// TODO: import SNS key, ask Till about it ! / haeh ? was meinst du ? auf jeden fall gibt's jetzt probleme mit raumbezuegen ohne sns id (mm) ????
 		String pSqlStrSpatialRefSns = "INSERT INTO spatial_ref_sns (id, sns_id, expired_at) " + "VALUES (?, ?, ?);";
 		PreparedStatement psInsertSpatialRefSns = jdbc.prepareStatement(pSqlStrSpatialRefSns);
 
@@ -4707,14 +4709,22 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 	}
 
 	protected void setHiLoGenerator() throws SQLException {
-		setHiLoGenerator(dataProvider.getId());
+		setHiLoGeneratorViaId(dataProvider.getId());
 	}
 
-	protected void setHiLoGenerator(long lastId) throws SQLException {
+	protected void setHiLoGeneratorViaId(long lastId) throws SQLException {
 		sqlStr = "DELETE FROM hibernate_unique_key";
 		jdbc.executeUpdate(sqlStr);
 
-		sqlStr = "INSERT INTO hibernate_unique_key (next_hi) VALUES (" + (int)(lastId / Short.MAX_VALUE + 1) + ")";
+		sqlStr = "INSERT INTO hibernate_unique_key (next_hi) VALUES (" + (int)(lastId / numIdsInHiLowBlock + 1) + ")";
+		jdbc.executeUpdate(sqlStr);
+	}
+
+	protected void setHiLoGeneratorNextHi(long nextHi) throws SQLException {
+		sqlStr = "DELETE FROM hibernate_unique_key";
+		jdbc.executeUpdate(sqlStr);
+
+		sqlStr = "INSERT INTO hibernate_unique_key (next_hi) VALUES (" + nextHi + ")";
 		jdbc.executeUpdate(sqlStr);
 	}
 
@@ -4727,7 +4737,11 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				rs.next();
 
 				long nextHi = rs.getLong(1);
-				idFromHiLow = nextHi * Short.MAX_VALUE;
+				idFromHiLow = nextHi * numIdsInHiLowBlock;
+				
+				// immediately update HiLow generator to guarantee correct state in database (next block of id's) 
+				setHiLoGeneratorNextHi(nextHi + 1);
+				startIdNextHiLowBlock = (nextHi + 1) * numIdsInHiLowBlock;
 
 				rs.close();
 			} catch (SQLException e) {
@@ -4743,7 +4757,14 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			initializeIdFromHiLoGenerator();
 		}
 
-		return idFromHiLow++;
+		// check whether next id is in next HiLow block (more than numIdsInHiLowBlock = 32767 ids generated)
+		// then update HiLowGenerator !
+		long nextId = idFromHiLow++;
+		if (nextId == startIdNextHiLowBlock) {
+			setHiLoGeneratorViaId(nextId);
+			startIdNextHiLowBlock = startIdNextHiLowBlock + numIdsInHiLowBlock;
+		}
+		return nextId;
 	}
 
 	protected void setGenericKey(String key, String value) throws SQLException {

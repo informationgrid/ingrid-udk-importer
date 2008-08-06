@@ -60,14 +60,14 @@ public class Importer {
 			System.out.println("Problems determining current IDC Version, see log for details.");
 			return;
 		}
-		String newIDCVersion = descriptor.getIdcVersion();
+		String newIDCVersionFromDescriptor = descriptor.getIdcVersion();
 		System.out.println("\ninfo: current version of IDC: " + oldIDCVersion
-			+ ", requested version of IDC: " + newIDCVersion);
+			+ ", requested version of IDC from passed \"properties\": " + newIDCVersionFromDescriptor);
 
 		List<IDCStrategy> strategiesToExecute = new ArrayList<IDCStrategy>();
 		try {
 			IDCStrategyFactory idcStrategyFactory = new IDCStrategyFactory();
-			strategiesToExecute = idcStrategyFactory.getIdcStrategiesToExecute(oldIDCVersion, newIDCVersion);
+			strategiesToExecute = idcStrategyFactory.getIdcStrategiesToExecute(oldIDCVersion, newIDCVersionFromDescriptor);
 		} catch (Exception e) {
 			log.error(e.getMessage());
 			System.out.println("\nProblems determining strategies to execute, see log for details.");
@@ -75,7 +75,11 @@ public class Importer {
 		
 		for (IDCStrategy strategy : strategiesToExecute) {
 
-			System.out.println("\nExecuting strategy for IDC Version: " + strategy.getIDCVersion());
+			String targetVersionInfo = "";
+			if (strategy.getIDCVersion() != null) {
+				targetVersionInfo = " (target IDC Version: " + strategy.getIDCVersion() + ")";
+			}
+			System.out.println("\nExecuting strategy " + strategy + targetVersionInfo);
 
 			strategy.setImportDescriptor(descriptor);
 			strategy.setDataProvider(data);
@@ -108,8 +112,8 @@ public class Importer {
 			}
 			
 			if (!executed) {
-				System.out.println("\nError executing strategy for IDC Version: " 
-					+ strategy.getIDCVersion() + ", see log for details");
+				System.out.println("\nError executing strategy " + strategy 
+					+ targetVersionInfo + ", see log for details");
 			}
 		}
 	}

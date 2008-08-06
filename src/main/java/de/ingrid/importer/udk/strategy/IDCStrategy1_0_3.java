@@ -3,8 +3,6 @@
  */
 package de.ingrid.importer.udk.strategy;
 
-import java.sql.SQLException;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -34,9 +32,8 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 			// must be processed first because other methods depend on that data
 			updateSysList();
 			System.out.println("done.");
-			System.out.print("  Set HI/LO table...");
-			setHiLoGenerator(getNextId());
-			System.out.println("done.");
+			// Updating of HI/LO table not necessary anymore ! is checked and updated when fetching next id
+			// via getNextId() ...
 			jdbc.commit();
 			System.out.println("Update finished successfully.");
 
@@ -49,17 +46,21 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 
 	protected void updateSysList() throws Exception {
 
-		String tableName = "sys_list";
-
 		if (log.isInfoEnabled()) {
-			log.info("Updating " + tableName + "...");
-		}
-
-		if (log.isInfoEnabled()) {
-			log.info("Inserting new syslist ??? (Grad der Konformitaet)...");
+			log.info("Updating sys_list...");
 		}
 
 		int lstId = 6000;
+
+		if (log.isInfoEnabled()) {
+			log.info("Inserting new syslist " + lstId +	" (Grad der Konformitaet)...");
+		}
+
+		// clean up, to guarantee no old values !
+		sqlStr = "DELETE FROM sys_list where lst_id = " + lstId;
+		jdbc.executeUpdate(sqlStr);
+
+		// insert new syslist
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
 				+ getNextId() + ", " + lstId + ", 1, 'de', 'konform: Die Datenquelle ist vollständig konform zur zitierten Spezifikation', 0, 'N');");
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
@@ -68,7 +69,7 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 				+ getNextId() + ", " + lstId + ", 3, 'de', 'nicht evaluiert: Die Konformität der Datenquelle wurde noch nicht evaluiert', 0, 'Y');");
 
 		if (log.isInfoEnabled()) {
-			log.info("Inserting new syslist ??? (Grad der Konformitaet)... done");
+			log.info("Inserting new syslist " + lstId +	" (Grad der Konformitaet)... done");
 		}
 	}
 }
