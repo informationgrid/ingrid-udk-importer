@@ -111,4 +111,7 @@ public class JDBCConnectionProxy {
 		return fConnection.prepareStatement(sql);
 	}
 
+	public DBLogic getDBLogic() {
+		return dbLogic;
+	}
 }

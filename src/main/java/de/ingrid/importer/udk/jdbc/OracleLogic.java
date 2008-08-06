@@ -1,6 +1,7 @@
 package de.ingrid.importer.udk.jdbc;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import org.apache.commons.logging.Log;
@@ -41,4 +42,8 @@ public class OracleLogic implements DBLogic {
 		return;
 	}
 
+	public void createTableObjectConformity(JDBCConnectionProxy jdbcConn) throws SQLException {
+		// TODO !
+		return;
+	}
 }

@@ -1,6 +1,7 @@
 package de.ingrid.importer.udk.jdbc;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -20,4 +21,8 @@ public class MSSQLLogic implements DBLogic {
 
 	}
 
+	public void createTableObjectConformity(JDBCConnectionProxy jdbcConn) throws SQLException {
+		// TODO !
+		return;
+	}
 }
