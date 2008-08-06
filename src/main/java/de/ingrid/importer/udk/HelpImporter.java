@@ -33,7 +33,14 @@ public class HelpImporter {
 		}
 
 		System.out.print("  reading data...");
-		InMemoryDataProvider data = new InMemoryDataProvider(descriptor);
+		InMemoryDataProvider data = null;
+		try {
+			data = new InMemoryDataProvider(descriptor);
+		} catch (Exception e) {
+			System.out.println("Error setting up DataProvider, see log for details !");
+			log.error(e.getMessage());
+			return;
+		}
 		System.out.println(" done.");
 
 		// remove temp dir
@@ -43,7 +50,9 @@ public class HelpImporter {
 		try {
 			jdbc = new JDBCConnectionProxy(descriptor);
 		} catch (Exception e) {
+			System.out.println("Error setting up jdbc connection, see log for details !");
 			log.error(e.getMessage());
+			return;
 		}
 
 		IDCStrategyFactory idcStrategyFactory = new IDCStrategyFactory();

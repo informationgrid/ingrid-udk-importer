@@ -38,7 +38,7 @@ public class Importer {
 			return;
 		}
 
-		System.out.print("  reading data...");
+		System.out.print("  initializing data provider...");
 		DataProvider data = new LazyInMemoryDataProvider(descriptor);
 		System.out.println(" done.");
 
@@ -114,6 +114,8 @@ public class Importer {
 			if (!executed) {
 				System.out.println("\nError executing strategy " + strategy 
 					+ targetVersionInfo + ", see log for details");
+				// STOP !!!
+				break;
 			}
 		}
 	}

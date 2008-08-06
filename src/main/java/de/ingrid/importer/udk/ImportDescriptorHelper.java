@@ -196,11 +196,14 @@ public class ImportDescriptorHelper {
 		if (idcCatalogLanguage != null) {
 			descr.setIdcCatalogueLanguage(idcCatalogLanguage);
 		}
-
+		
+		// udk import data file/directory is NOT mandatory ! e.g. not necessary when starting importer as updater !
+/*
 		if (descr.getFiles() == null || descr.getFiles().isEmpty()) {
 			log.error("No import files specified.");
 			throw new IllegalArgumentException("No import files specified.");
 		}
+*/
 		return descr;
 	}
 

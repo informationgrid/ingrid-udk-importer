@@ -42,7 +42,7 @@ public class InMemoryDataProvider implements DataProvider {
 
 	protected static List<String> invalidModTypes;
 
-	public InMemoryDataProvider(ImportDescriptor desciptor) {
+	public InMemoryDataProvider(ImportDescriptor desciptor) throws Exception {
 		getEntities(desciptor);
 
 		invalidModTypes = Arrays.asList(DataProvider.invalidModTypes);
@@ -106,7 +106,14 @@ public class InMemoryDataProvider implements DataProvider {
 		}
 	}
 
-	private void getEntities(ImportDescriptor descriptor) {
+	private void getEntities(ImportDescriptor descriptor) throws Exception {
+
+		// check whether UDK file/directory to import was passed
+		if (descriptor.getFiles().size() == 0) {
+			String errTxt = "No UDK file/directory passed. Processing of UDK data not possible !";
+			log.error(errTxt);
+			throw new Exception(errTxt);
+		}
 
 		Document dom = null;
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();

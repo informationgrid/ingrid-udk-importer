@@ -3,7 +3,6 @@
  */
 package de.ingrid.importer.udk.provider;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -52,7 +51,7 @@ public class LazyInMemoryDataProvider implements DataProvider {
 		invalidModTypes = Arrays.asList(DataProvider.invalidModTypes);
 	}
 
-	public Row findRow(String entityName, String rowName, String rowValue) {
+	public Row findRow(String entityName, String rowName, String rowValue) throws Exception {
 		Entity e = getEntity(entityName);
 		if (e == null) {
 			return null;
@@ -65,7 +64,7 @@ public class LazyInMemoryDataProvider implements DataProvider {
 		return null;
 	}
 
-	public Row findRowStartsWith(String entityName, String rowName, String rowValue) {
+	public Row findRowStartsWith(String entityName, String rowName, String rowValue) throws Exception {
 		Entity e = getEntity(entityName);
 		if (e == null) {
 			return null;
@@ -78,7 +77,7 @@ public class LazyInMemoryDataProvider implements DataProvider {
 		return null;
 	}
 
-	public Row findRow(String entityName, String[] rowName, String[] rowValue) {
+	public Row findRow(String entityName, String[] rowName, String[] rowValue) throws Exception {
 		if (rowName.length != rowValue.length) {
 			log.error("Error finding row! Parameter arrays for rowName and rowValue are not equal.");
 			return null;
@@ -103,7 +102,7 @@ public class LazyInMemoryDataProvider implements DataProvider {
 		return null;
 	}
 
-	public Iterator<Row> getRowIterator(String entityName) {
+	public Iterator<Row> getRowIterator(String entityName) throws Exception {
 		Entity e = getEntity(entityName);
 		if (e == null) {
 			// return empty iterator
@@ -114,7 +113,7 @@ public class LazyInMemoryDataProvider implements DataProvider {
 	}
 
 	
-	private Entity getEntity(String entityName) {
+	private Entity getEntity(String entityName) throws Exception {
 		Entity e = entities.get(entityName);
 		if (e == null) {
 			loadEntity(descriptor, entityName);
@@ -126,8 +125,16 @@ public class LazyInMemoryDataProvider implements DataProvider {
 		return e;
 	}
 	
-	private void loadEntity(ImportDescriptor descriptor, String entityName) {
+	private void loadEntity(ImportDescriptor descriptor, String entityName) throws Exception {
 
+		// check whether UDK file/directory to import was passed
+		if (descriptor.getFiles().size() == 0) {
+			String errTxt = "No UDK file/directory passed. Processing of UDK data not possible (entity " +
+					entityName + ") !";
+			log.error(errTxt);
+			throw new Exception(errTxt);
+		}
+		
 		Document dom = null;
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		DocumentBuilder db = null;

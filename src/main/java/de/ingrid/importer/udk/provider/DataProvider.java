@@ -13,13 +13,13 @@ public interface DataProvider {
 	
 	public static String[] invalidModTypes = new String[] { "D" };
 
-	public Row findRow(String entityName, String rowName, String rowValue);
+	public Row findRow(String entityName, String rowName, String rowValue) throws Exception;
 
-	public Row findRow(String entityName, String[] rowName, String[] rowValue);
+	public Row findRow(String entityName, String[] rowName, String[] rowValue) throws Exception;
 	
-	public Row findRowStartsWith(String entityName, String rowName, String rowValue);
+	public Row findRowStartsWith(String entityName, String rowName, String rowValue) throws Exception;
 	
-	public Iterator<Row> getRowIterator(String entityName);
+	public Iterator<Row> getRowIterator(String entityName) throws Exception;
 
 	public long getId();
 

@@ -319,7 +319,7 @@ public class IDCStrategyHelper {
 		}
 	}
 	
-	public static int getPK(DataProvider dataProvider, String entity, String field, String value) {
+	public static int getPK(DataProvider dataProvider, String entity, String field, String value) throws Exception {
 		Row row = dataProvider.findRow(entity, field, value);
 		if (row != null && row.get("primary_key") != null) {
 			try {
@@ -332,7 +332,7 @@ public class IDCStrategyHelper {
 		}
 	}
 
-	public static int getPK(DataProvider dataProvider, String entity, String[] fields, String[] values) {
+	public static int getPK(DataProvider dataProvider, String entity, String[] fields, String[] values) throws Exception {
 		Row row = dataProvider.findRow(entity, fields, values);
 		if (row != null && row.get("primary_key") != null) {
 			try {
@@ -346,7 +346,7 @@ public class IDCStrategyHelper {
 	}
 
 	public static String getEntityFieldValue(DataProvider dataProvider, String entity, String fieldWhere,
-			String valueWhere, String field) {
+			String valueWhere, String field) throws Exception {
 		Row row = dataProvider.findRow(entity, fieldWhere, valueWhere);
 		if (row != null && row.get(field) != null) {
 			if (row.containsKey(field)) {
@@ -367,7 +367,7 @@ public class IDCStrategyHelper {
 	}
 	
 	public static String getEntityFieldValue(DataProvider dataProvider, String entity, String[] fieldsWhere,
-			String[] valuesWhere, String field) {
+			String[] valuesWhere, String field) throws Exception {
 		Row row = dataProvider.findRow(entity, fieldsWhere, valuesWhere);
 		if (row != null && row.get(field) != null) {
 			if (row.containsKey(field)) {
@@ -388,7 +388,7 @@ public class IDCStrategyHelper {
 	}
 	
 	public static Integer getEntityFieldValueAsInteger(DataProvider dataProvider, String entity, String fieldWhere,
-	String valueWhere, String field) {
+	String valueWhere, String field) throws Exception {
 		String value = getEntityFieldValue(dataProvider, entity, fieldWhere,
 				valueWhere, field);
 		try {
@@ -402,7 +402,7 @@ public class IDCStrategyHelper {
 	}
 
 	public static double getEntityFieldValueAsDouble(DataProvider dataProvider, String entity, String fieldWhere,
-			String valueWhere, String field) {
+			String valueWhere, String field) throws Exception {
 		Row row = dataProvider.findRow(entity, fieldWhere, valueWhere);
 		if (row != null && row.get(field) != null) {
 			if (row.containsKey(field)) {
@@ -430,7 +430,7 @@ public class IDCStrategyHelper {
 	}
 
 	public static String getEntityFieldValueStartsWith(DataProvider dataProvider, String entity, String fieldWhere,
-			String valueWhere, String field) {
+			String valueWhere, String field) throws Exception {
 		Row row = dataProvider.findRowStartsWith(entity, fieldWhere, valueWhere);
 		if (row != null && row.get(field) != null) {
 			if (row.containsKey(field)) {
@@ -482,7 +482,7 @@ public class IDCStrategyHelper {
         }
     }
     
-    public static String getLocationNameFromNativeAGS(String nativeAGSKey, DataProvider dataProvider) {
+    public static String getLocationNameFromNativeAGS(String nativeAGSKey, DataProvider dataProvider) throws Exception {
     	String locName = null;
 		if (nativeAGSKey != null) {
 			if (nativeAGSKey.length() == 2) {
