@@ -45,7 +45,6 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 	static int ROLE_CATALOG_ADMINISTRATOR = 1;
 	static Integer AUSKUNFT_ADDRESS_TYPE = 7;
 	static Integer AUSKUNFT_ADDRESS_SPECIAL_REF = 505;
-	static String IDX_SEPARATOR = "|";  
 	static String IDX_NAME_THESAURUS = "thesaurus";
 	static String IDX_NAME_GEOTHESAURUS = "geothesaurus";
 	
@@ -760,15 +759,6 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				rs.close();
 			}
 		}		
-			
-		// final closing separator in object index and address index
-		// ---------------------------------------------
-		if (log.isInfoEnabled()) {
-			log.info("add closing separator to object/address index ...");
-		}
-		jdbc.executeUpdate("UPDATE full_index_obj SET idx_value = concat(idx_value, '" + IDX_SEPARATOR + "');");
-		jdbc.executeUpdate("UPDATE full_index_addr SET idx_value = concat(idx_value, '" + IDX_SEPARATOR + "');");
-
 
 		// set responsible user to cat-admin in entities
 		// ---------------------------------------------

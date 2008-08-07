@@ -4,9 +4,12 @@
 package de.ingrid.importer.udk.strategy;
 
 import java.sql.ResultSet;
+import java.util.HashMap;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import de.ingrid.importer.udk.jdbc.JDBCHelper;
 
 /**
  * @author Administrator
@@ -98,14 +101,30 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		}
 
 		// then add entries for ALL t01_objects (no matter whether working or published version) 
-		String sql = "select distinct id  from t01_object";
+		String sql = "select distinct objNode.id as objNodeId, obj.id as objId " +
+			"from t01_object obj, object_node objNode " +
+			"where obj.obj_uuid = objNode.obj_uuid";
+
 		ResultSet rs = jdbc.executeQuery(sql);
+		HashMap<Long, Boolean> processedNodeIds = new HashMap<Long,Boolean>();
 		while (rs.next()) {
-			long objId = rs.getLong("id");
+			long objNodeId = rs.getLong("objNodeId");
+			long objId = rs.getLong("objId");
+
+			String defaultSpecification = "INSPIRE-Richtlinie";
 
 			jdbc.executeUpdate("INSERT INTO object_conformity (id, obj_id, specification, degree_key, degree_value) " +
-				"VALUES (" + getNextId() + ", " + objId + ", 'INSPIRE-Richtlinie', "
+				"VALUES (" + getNextId() + ", " + objId + ", '" + defaultSpecification + "', "
 				+ defaultSyslist6000EntryId + ", '" + defaultSyslist6000EntryValue + "');");
+			
+			// Node may contain different object versions, then we receive nodeId multiple times.
+			// Write Index only once (index contains data of working version!) !
+			if (!processedNodeIds.containsKey(objNodeId)) {
+				JDBCHelper.updateObjectIndex(objNodeId, defaultSpecification, jdbc); // ObjectConformity.specification
+				JDBCHelper.updateObjectIndex(objNodeId, defaultSyslist6000EntryValue, jdbc); // ObjectConformity.degreeValue
+				
+				processedNodeIds.put(objNodeId, true);
+			}
 		}
 		rs.close();
 

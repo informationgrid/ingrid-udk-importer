@@ -20,7 +20,9 @@ import de.ingrid.importer.udk.strategy.IDCStrategy;
 public class JDBCHelper {
 
 	private static Log log = LogFactory.getLog(JDBCHelper.class);
-	
+
+	public static String IDX_TOKEN_SEPARATOR = "|";  
+
 	public static void addInteger(PreparedStatement p, int cnt, Integer val) throws SQLException {
 		if (val == null) {
 			p.setNull(cnt, Types.INTEGER);
@@ -45,13 +47,13 @@ public class JDBCHelper {
 		}
 	}
 	
-	public static void createObjectIndex(long id, long objId, String idxName, JDBCConnectionProxy jdbc) throws Exception {
-		jdbc.executeUpdate("DELETE FROM full_index_obj WHERE obj_node_id = " + objId + " AND idx_name = '" + idxName + "'");
+	public static void createObjectIndex(long id, long objNodeId, String idxName, JDBCConnectionProxy jdbc) throws Exception {
+		jdbc.executeUpdate("DELETE FROM full_index_obj WHERE obj_node_id = " + objNodeId + " AND idx_name = '" + idxName + "'");
 		
 		String pSqlStr = "INSERT INTO full_index_obj (id, obj_node_id, idx_name, idx_value) VALUES (?, ?, ?, '')";
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 		p.setLong(1, id);
-		p.setLong(2, objId);
+		p.setLong(2, objNodeId);
 		p.setString(3, idxName);
 		
 		try {
@@ -62,18 +64,20 @@ public class JDBCHelper {
 		}
 	}
 
-	public static void updateObjectIndex(long objId, String token, JDBCConnectionProxy jdbc) throws Exception {
-		JDBCHelper.updateObjectIndex(objId, token, "full", jdbc);
+	/** NOTICE: we add pre- and post-separator to token before writing into index ! */
+	public static void updateObjectIndex(long objNodeId, String token, JDBCConnectionProxy jdbc) throws Exception {
+		JDBCHelper.updateObjectIndex(objNodeId, token, "full", jdbc);
 	}
 
-	public static void updateObjectIndex(long objId, String token, String idxName, JDBCConnectionProxy jdbc) throws Exception {
+	/** NOTICE: we add pre- and post-separator to token before writing into index ! */
+	public static void updateObjectIndex(long objNodeId, String token, String idxName, JDBCConnectionProxy jdbc) throws Exception {
 		if (token==null || token.length() == 0) {
 			return;
 		}
 		String pSqlStr = "UPDATE full_index_obj SET idx_value = concat(idx_value, ?) WHERE obj_node_id = ? AND idx_name = '" + idxName + "'";
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
-		p.setString(1, "|" + token);
-		p.setLong(2, objId);
+		p.setString(1, IDX_TOKEN_SEPARATOR + token + IDX_TOKEN_SEPARATOR);
+		p.setLong(2, objNodeId);
 		
 		try {
 			p.executeUpdate();
@@ -83,13 +87,13 @@ public class JDBCHelper {
 		}
 	}
 
-	public static void createAddressIndex(long id, long addrId, String idxName, JDBCConnectionProxy jdbc) throws Exception {
-		jdbc.executeUpdate("DELETE FROM full_index_addr WHERE addr_node_id = " + addrId + " AND idx_name = '" + idxName + "'");
+	public static void createAddressIndex(long id, long addrNodeId, String idxName, JDBCConnectionProxy jdbc) throws Exception {
+		jdbc.executeUpdate("DELETE FROM full_index_addr WHERE addr_node_id = " + addrNodeId + " AND idx_name = '" + idxName + "'");
 		
 		String pSqlStr = "INSERT INTO full_index_addr (id, addr_node_id, idx_name, idx_value) VALUES (?, ?, ?, '')";
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 		p.setLong(1, id);
-		p.setLong(2, addrId);
+		p.setLong(2, addrNodeId);
 		p.setString(3, idxName);
 		
 		try {
@@ -100,18 +104,20 @@ public class JDBCHelper {
 		}
 	}
 
-	public static void updateAddressIndex(long addrId, String token, JDBCConnectionProxy jdbc) throws Exception {
-		JDBCHelper.updateAddressIndex(addrId, token, "full", jdbc);
+	/** NOTICE: we add pre- and post-separator to token before writing into index ! */
+	public static void updateAddressIndex(long addrNodeId, String token, JDBCConnectionProxy jdbc) throws Exception {
+		JDBCHelper.updateAddressIndex(addrNodeId, token, "full", jdbc);
 	}
 
-	public static void updateAddressIndex(long addrId, String token, String idxName, JDBCConnectionProxy jdbc) throws Exception {
+	/** NOTICE: we add pre- and post-separator to token before writing into index ! */
+	public static void updateAddressIndex(long addrNodeId, String token, String idxName, JDBCConnectionProxy jdbc) throws Exception {
 		if (token==null || token.length() == 0) {
 			return;
 		}
 		String pSqlStr = "UPDATE full_index_addr SET idx_value = concat(idx_value, ?) WHERE addr_node_id = ? AND idx_name = '" + idxName + "'";
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
-		p.setString(1, "|" + token);
-		p.setLong(2, addrId);
+		p.setString(1, IDX_TOKEN_SEPARATOR + token + IDX_TOKEN_SEPARATOR);
+		p.setLong(2, addrNodeId);
 		
 		try {
 			p.executeUpdate();
