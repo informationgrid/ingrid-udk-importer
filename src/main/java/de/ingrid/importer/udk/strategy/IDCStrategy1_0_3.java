@@ -10,6 +10,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import de.ingrid.importer.udk.jdbc.JDBCHelper;
+import de.ingrid.importer.udk.jdbc.DBLogic.ColumnType;
 
 /**
  * @author Administrator
@@ -30,32 +31,54 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 	}
 
 	public void execute() throws Exception {
+		jdbc.setAutoCommit(false);
 
-		try {
-			jdbc.setAutoCommit(false);
+		// FIRST EXECUTE ALL DDL OPERATIONS ! These ones may cause commit (e.g. on MySQL)
+		System.out.print("  Updating datastructure...");
+		updateDataStructure();
+		System.out.println("done.");
 
-			// write version !
-			setGenericKey(KEY_IDC_VERSION, MY_VERSION);
+		// THEN PERFORM DATA MANIPULATIONS !
 
-			System.out.print("  Updating sys_list...");
-			updateSysList();
-			System.out.println("done.");
-			System.out.print("  Updating object_conformity...");
-			updateObjectConformity();
-			System.out.println("done.");
-			// Updating of HI/LO table not necessary anymore ! is checked and updated when fetching next id
-			// via getNextId() ...
+		// write IDC structure version !
+		setGenericKey(KEY_IDC_VERSION, MY_VERSION);
 
-			jdbc.commit();
-			System.out.println("Update finished successfully.");
+		System.out.print("  Updating sys_list...");
+		updateSysList();
+		System.out.println("done.");
+		System.out.print("  Updating object_conformity...");
+		updateObjectConformity();
+		System.out.println("done.");
+		System.out.print("  Updating t011_obj_geo...");
+		updateT011ObjGeo();
+		System.out.println("done.");
+		// Updating of HI/LO table not necessary anymore ! is checked and updated when fetching next id
+		// via getNextId() ...
 
-		} catch (Exception e) {
-			System.out.println("Error executing strategy ! See log file for further information.");
-			log.error("Error executing strategy!", e);
-			throw e;
-		}
+		jdbc.commit();
+		System.out.println("Update finished successfully.");
 	}
 
+	protected void updateDataStructure() throws Exception {
+		if (log.isInfoEnabled()) {
+			log.info("Updating datastructures...");
+		}
+
+		if (log.isInfoEnabled()) {
+			log.info("Create table 'object_conformity'...");
+		}
+		jdbc.getDBLogic().createTableObjectConformity(jdbc);
+
+		if (log.isInfoEnabled()) {
+			log.info("Add column 'datasource_uuid' to 'table t011_obj_geo'...");
+		}
+		jdbc.getDBLogic().addColumn("datasource_uuid", ColumnType.TEXT, "t011_obj_geo", true, jdbc);
+		
+		if (log.isInfoEnabled()) {
+			log.info("Updating datastructures... done");
+		}
+	}
+	
 	protected void updateSysList() throws Exception {
 		if (log.isInfoEnabled()) {
 			log.info("Updating sys_list...");
@@ -91,12 +114,6 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		}
 
 		if (log.isInfoEnabled()) {
-			log.info("Create table object_conformity...");
-		}
-
-		jdbc.getDBLogic().createTableObjectConformity(jdbc);
-		
-		if (log.isInfoEnabled()) {
 			log.info("Add default entries for every object...");
 		}
 
@@ -130,6 +147,53 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 
 		if (log.isInfoEnabled()) {
 			log.info("Updating object_conformity... done");
+		}
+	}
+
+	protected void updateT011ObjGeo() throws Exception {
+		if (log.isInfoEnabled()) {
+			log.info("Updating t011_obj_geo...");
+		}
+
+		if (log.isInfoEnabled()) {
+			log.info("Add default data...");
+		}
+
+		// get catalog name and create prefix for unique datasource_uuid
+		String sql = "select cat_name from t03_catalogue";
+		ResultSet rs = jdbc.executeQuery(sql);
+		rs.next();
+		String catName = rs.getString("cat_name");
+		rs.close();
+		
+		String datasourceUuidPrefix = catName.replace(' ', '_');
+		datasourceUuidPrefix += ":";
+
+		// then add default data for ALL t011_obj_geo 
+		sql = "select distinct objGeo.id as objGeoId, obj.obj_uuid as objUuid " +
+			"from t011_obj_geo objGeo, t01_object obj " +
+			"where objGeo.obj_id = obj.id";
+
+		rs = jdbc.executeQuery(sql);
+		HashMap<String, Boolean> processedObjUuids = new HashMap<String,Boolean>();
+		while (rs.next()) {
+			long objGeoId = rs.getLong("objGeoId");
+			String objUuid = rs.getString("objUuid");
+
+			if (processedObjUuids.containsKey(objUuid)) {
+				throw new Exception("Object with multiple 't011_obj_geo' records ! " +
+					"obj_uuid(" + objUuid + "), failing t011_obj_geo.id(" + objGeoId + ")" );
+			}
+			processedObjUuids.put(objUuid, true);
+			
+			String datasourceUuid = datasourceUuidPrefix + objUuid;
+			jdbc.executeUpdate("UPDATE t011_obj_geo SET datasource_uuid = '" + datasourceUuid + "' " +
+				"where id = " + objGeoId);
+		}
+		rs.close();
+
+		if (log.isInfoEnabled()) {
+			log.info("Updating t011_obj_geo... done");
 		}
 	}
 }

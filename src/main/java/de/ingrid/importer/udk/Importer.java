@@ -45,6 +45,7 @@ public class Importer {
 		JDBCConnectionProxy jdbc = null;
 		try {
 			jdbc = new JDBCConnectionProxy(descriptor);
+			jdbc.setAutoCommit(false);
 		} catch (Exception e) {
 			log.error(e.getMessage());
 			System.out.println("Problems establishing JDBC connection, see log for details.");
@@ -79,18 +80,24 @@ public class Importer {
 			if (strategy.getIDCVersion() != null) {
 				targetVersionInfo = " (target IDC Version: " + strategy.getIDCVersion() + ")";
 			}
-			System.out.println("\nExecuting strategy " + strategy + targetVersionInfo);
+			String msg = "\nExecuting strategy " + strategy + targetVersionInfo;
+			System.out.println(msg);
+			log.info(msg);
 
-			strategy.setImportDescriptor(descriptor);
-			strategy.setDataProvider(data);
-			strategy.setJDBCConnectionProxy(jdbc);
-			
 			boolean executed = false;
 			try {
+				strategy.setImportDescriptor(descriptor);
+				strategy.setDataProvider(data);
+				strategy.setJDBCConnectionProxy(jdbc);
+				
 				strategy.execute();
+				// we assure a commit for every strategy !
+				jdbc.commit();
+
 				executed = true;
+
 			} catch (Exception e) {
-				log.error(e.getMessage());
+				log.error("Error executing strategy " + strategy + targetVersionInfo, e);
 				try {
 					jdbc.rollback();
 				} catch (SQLException e1) {
@@ -112,8 +119,7 @@ public class Importer {
 			}
 			
 			if (!executed) {
-				System.out.println("\nError executing strategy " + strategy 
-					+ targetVersionInfo + ", see log for details");
+				System.out.println("\nError executing strategy " + strategy + targetVersionInfo + ", see log for details");
 				// STOP !!!
 				break;
 			}

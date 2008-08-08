@@ -61,50 +61,43 @@ public class IDCHelpImporterStrategy implements IDCStrategy {
 	 * @see de.ingrid.importer.udk.strategy.IDCStrategy#execute()
 	 */
 	public void execute() throws Exception {
-		
-		try {
-			jdbc.setAutoCommit(false);
+		jdbc.setAutoCommit(false);
 
-			String entityName = "sys_gui";
-			
-			if (log.isInfoEnabled()) {
-				log.info("Importing " + entityName + "...");
+		String entityName = "sys_gui";
+		
+		if (log.isInfoEnabled()) {
+			log.info("Importing " + entityName + "...");
+		}
+		
+		pSqlStr = "INSERT INTO help_messages (id, help_id, entity_class, language,"
+			+ "name, help_text, sample) VALUES "
+			+ "( ?, ?, ?, ?, ?, ?, ?);";
+		
+		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
+
+		sqlStr = "DELETE FROM help_messages";
+		jdbc.executeUpdate(sqlStr);
+		
+		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
+			Row row = i.next();
+			int cnt = 1;
+			p.setInt(cnt++, row.getInteger("primary_key")); // id
+			JDBCHelper.addInteger(p, cnt++, row.getInteger("gui_id")); // help_id
+			JDBCHelper.addInteger(p, cnt++, row.getInteger("class_id")); // entity_class
+			p.setString(cnt++, "de"); // language
+			p.setString(cnt++, row.get("name")); // name
+			p.setString(cnt++, row.get("help")); // help_text
+			p.setString(cnt++, row.get("bsp")); // sample
+			try {
+				p.executeUpdate();
+			} catch (Exception e) {
+				log.error("Error executing SQL: " + p.toString(), e);
+				throw e;
 			}
 			
-			pSqlStr = "INSERT INTO help_messages (id, help_id, entity_class, language,"
-				+ "name, help_text, sample) VALUES "
-				+ "( ?, ?, ?, ?, ?, ?, ?);";
-			
-			PreparedStatement p = jdbc.prepareStatement(pSqlStr);
-	
-			sqlStr = "DELETE FROM help_messages";
-			jdbc.executeUpdate(sqlStr);
-			
-			for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
-				Row row = i.next();
-				int cnt = 1;
-				p.setInt(cnt++, row.getInteger("primary_key")); // id
-				JDBCHelper.addInteger(p, cnt++, row.getInteger("gui_id")); // help_id
-				JDBCHelper.addInteger(p, cnt++, row.getInteger("class_id")); // entity_class
-				p.setString(cnt++, "de"); // language
-				p.setString(cnt++, row.get("name")); // name
-				p.setString(cnt++, row.get("help")); // help_text
-				p.setString(cnt++, row.get("bsp")); // sample
-				try {
-					p.executeUpdate();
-				} catch (Exception e) {
-					log.error("Error executing SQL: " + p.toString(), e);
-					throw e;
-				}
-				
-			}
-			
-			jdbc.commit();
-		} catch (Exception e) {
-			System.out.println("Error executing strategy ! See log file for further information.");
-			log.error("Error executing strategy!", e);
-			throw e;
-		}		
+		}
+		
+		jdbc.commit();
 	}
 
 

@@ -39,11 +39,14 @@ public class OracleLogic implements DBLogic {
 
 		String changeSchema = "alter session set current_schema = " + schema;
 		statement.executeUpdate(changeSchema);
-		return;
 	}
 
-	public void createTableObjectConformity(JDBCConnectionProxy jdbcConn) throws SQLException {
+	public void addColumn(String colName, ColumnType colType, String tableName, boolean notNull, 
+			JDBCConnectionProxy jdbc) throws SQLException {
 		// TODO !
-		return;
+	}
+
+	public void createTableObjectConformity(JDBCConnectionProxy jdbc) throws SQLException {
+		// TODO !
 	}
 }

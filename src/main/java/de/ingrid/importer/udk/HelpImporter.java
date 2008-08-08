@@ -3,11 +3,6 @@ package de.ingrid.importer.udk;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import de.ingrid.importer.udk.jdbc.JDBCConnectionProxy;
-import de.ingrid.importer.udk.provider.InMemoryDataProvider;
-import de.ingrid.importer.udk.strategy.IDCStrategy;
-import de.ingrid.importer.udk.strategy.IDCStrategyFactory;
-
 /**
  * UDK HELP Text importer
  * 
@@ -21,6 +16,8 @@ public class HelpImporter {
 
 	public static void main(String[] args) {
 
+		System.out.println("DO NOT USE SEPARATE IMPORTER HERE ! BETTER USE MAIN IMPORTER WITH TARGET 1.0.2_help !!!");
+/*
 		System.out.println("Starting help import.");
 		ImportDescriptor descriptor = null;
 		try {
@@ -72,5 +69,6 @@ public class HelpImporter {
 		} catch (Exception e) {
 			log.error(e.getMessage());
 		}
+*/
 	}
 }

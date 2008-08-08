@@ -28,46 +28,38 @@ public class IDCInitDBStrategy1_0_2 extends IDCStrategyDefault {
 	}
 
 	public void execute() throws Exception {
+		jdbc.setAutoCommit(false);
 
-		try {
-			jdbc.setAutoCommit(false);
+		// write IDC structure version !
+		setGenericKey(KEY_IDC_VERSION, MY_VERSION);
 
-			// write version !
-			setGenericKey(KEY_IDC_VERSION, MY_VERSION);
-
-			System.out.print("  Importing sys_list...");
-			// must be processed first because other methods depend on that data
-			processSysList();
-			System.out.println("done.");
-			
-			System.out.print("  Importing default address/permission for admin...");
-			sqlStr = "DELETE FROM t02_address";
-			jdbc.executeUpdate(sqlStr);
-			sqlStr = "DELETE FROM address_node";
-			jdbc.executeUpdate(sqlStr);
-			importDefaultUserdata();
-			System.out.println("done.");
-			System.out.print("  Creating default catalog...");
-			importDefaultCatalogData();
-			System.out.println("done.");
-			jdbc.commit();
-			
-			jdbc.setAutoCommit(false);
-			System.out.print("  Post processing...");
-			postProcess_generic();
-			// no post processing of spatial ref in catalogue !
-			System.out.println("done.");
-			System.out.print("  Set HI/LO table...");
-			setHiLoGenerator();
-			System.out.println("done.");
-			jdbc.commit();
-			System.out.println("Import finished successfully.");
-
-		} catch (Exception e) {
-			System.out.println("Error executing strategy ! See log file for further information.");
-			log.error("Error executing strategy!", e);
-			throw e;
-		}
+		System.out.print("  Importing sys_list...");
+		// must be processed first because other methods depend on that data
+		processSysList();
+		System.out.println("done.");
+		
+		System.out.print("  Importing default address/permission for admin...");
+		sqlStr = "DELETE FROM t02_address";
+		jdbc.executeUpdate(sqlStr);
+		sqlStr = "DELETE FROM address_node";
+		jdbc.executeUpdate(sqlStr);
+		importDefaultUserdata();
+		System.out.println("done.");
+		System.out.print("  Creating default catalog...");
+		importDefaultCatalogData();
+		System.out.println("done.");
+		jdbc.commit();
+		
+		jdbc.setAutoCommit(false);
+		System.out.print("  Post processing...");
+		postProcess_generic();
+		// no post processing of spatial ref in catalogue !
+		System.out.println("done.");
+		System.out.print("  Set HI/LO table...");
+		setHiLoGenerator();
+		System.out.println("done.");
+		jdbc.commit();
+		System.out.println("Import finished successfully.");
 	}
 	
 	protected void importDefaultCatalogData() throws Exception {

@@ -17,12 +17,14 @@ public class MSSQLLogic implements DBLogic {
 
 	public void setSchema(Connection connection, String schema) throws Exception {
 		// no schema support for mssql
-		return;
-
 	}
 
-	public void createTableObjectConformity(JDBCConnectionProxy jdbcConn) throws SQLException {
+	public void addColumn(String colName, ColumnType colType, String tableName, boolean notNull, 
+			JDBCConnectionProxy jdbc) throws SQLException {
 		// TODO !
-		return;
+	}
+
+	public void createTableObjectConformity(JDBCConnectionProxy jdbc) throws SQLException {
+		// TODO !
 	}
 }
