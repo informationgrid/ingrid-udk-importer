@@ -33,19 +33,39 @@ public class MySQLLogic implements DBLogic {
 			// NOTICE: adding default value causes ERROR ! is added by jdbc automatically !
 		}
 
-		try {
-			jdbc.executeUpdate(sql);
-		} catch (SQLException e) {
-			throw e;
-		}
+		jdbc.executeUpdate(sql);
+	}
+
+	public void dropColumn(String colName, String tableName, JDBCConnectionProxy jdbc) throws SQLException {
+		String sql = "ALTER TABLE " + tableName	+ " DROP COLUMN " + colName;
+		jdbc.executeUpdate(sql);
 	}
 
 	public void createTableObjectConformity(JDBCConnectionProxy jdbc) throws SQLException {
-		// first create table
-		String sql = "CREATE TABLE object_conformity(id BIGINT NOT NULL, " +
-			"version INTEGER NOT NULL DEFAULT 0, obj_id BIGINT, specification VARCHAR(255),	" +
-			"degree_key INTEGER, degree_value VARCHAR(255),	PRIMARY KEY (id), " +
-			"INDEX idxObjConf_ObjId (obj_id ASC)) TYPE=InnoDB;";
+		String sql = "CREATE TABLE object_conformity(" +
+			"id BIGINT NOT NULL, " +
+			"version INTEGER NOT NULL DEFAULT 0, " +
+			"obj_id BIGINT, " +
+			"specification TEXT, " +
+			"degree_key INTEGER, " +
+			"degree_value VARCHAR(255),	" +
+			"PRIMARY KEY (id), " +
+			"INDEX idxObjConf_ObjId (obj_id ASC)) " +
+			"TYPE=InnoDB;";
+		jdbc.executeUpdate(sql);
+	}
+
+	public void createTableObjectAccess(JDBCConnectionProxy jdbc) throws SQLException {
+		String sql = "CREATE TABLE object_access(" +
+			"id BIGINT NOT NULL, " +
+			"version INTEGER NOT NULL DEFAULT 0, " +
+			"obj_id BIGINT, " +
+			"restriction_key INTEGER, " +
+			"restriction_value VARCHAR(255), " +
+			"terms_of_use TEXT,	" +
+			"PRIMARY KEY (id), " +
+			"INDEX idxObjAccess_ObjId (obj_id ASC)) " +
+			"TYPE=InnoDB;";
 		jdbc.executeUpdate(sql);
 	}
 }

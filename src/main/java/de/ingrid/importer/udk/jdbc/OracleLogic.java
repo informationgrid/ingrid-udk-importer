@@ -46,7 +46,14 @@ public class OracleLogic implements DBLogic {
 		// TODO !
 	}
 
+	public void dropColumn(String colName, String tableName, JDBCConnectionProxy jdbc) throws SQLException {
+		// TODO
+	}
+
 	public void createTableObjectConformity(JDBCConnectionProxy jdbc) throws SQLException {
+		// TODO !
+	}
+	public void createTableObjectAccess(JDBCConnectionProxy jdbc) throws SQLException {
 		// TODO !
 	}
 }
