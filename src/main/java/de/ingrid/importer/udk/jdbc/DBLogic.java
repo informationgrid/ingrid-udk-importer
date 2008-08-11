@@ -23,6 +23,13 @@ public interface DBLogic {
 	void addColumn(String colName, ColumnType colType, String tableName, 
 		boolean notNull, JDBCConnectionProxy jdbc) throws SQLException;
 
+	/**
+	 * DDL Operation ! CAUSES COMMIT ON MySQL ! Modify a column (new type or constraint)
+	 * @param notNull if true the default value is set per jdbc automatically ???
+	 */
+	void modifyColumn(String colName, ColumnType colType, String tableName, 
+		boolean notNull, JDBCConnectionProxy jdbc) throws SQLException;
+
 	/** DDL Operation ! CAUSES COMMIT ON MySQL ! DROP a column. */
 	void dropColumn(String colName, String tableName, JDBCConnectionProxy jdbc) throws SQLException;
 

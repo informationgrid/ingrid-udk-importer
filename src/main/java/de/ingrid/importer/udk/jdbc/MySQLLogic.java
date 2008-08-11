@@ -36,6 +36,22 @@ public class MySQLLogic implements DBLogic {
 		jdbc.executeUpdate(sql);
 	}
 
+	public void modifyColumn(String colName, ColumnType colType, String tableName, boolean notNull, 
+			JDBCConnectionProxy jdbc) throws SQLException {
+		String sql = "ALTER TABLE " + tableName	+ " MODIFY " + colName;
+
+		if (colType == ColumnType.TEXT) {
+			sql += " TEXT";
+		}
+
+		if (notNull) {
+			sql += " NOT NULL";
+			// NOTICE: adding default value causes ERROR ! is added by jdbc automatically !
+		}
+
+		jdbc.executeUpdate(sql);
+	}
+
 	public void dropColumn(String colName, String tableName, JDBCConnectionProxy jdbc) throws SQLException {
 		String sql = "ALTER TABLE " + tableName	+ " DROP COLUMN " + colName;
 		jdbc.executeUpdate(sql);

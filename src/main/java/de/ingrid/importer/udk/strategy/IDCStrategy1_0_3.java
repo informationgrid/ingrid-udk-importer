@@ -207,7 +207,7 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		}
 
 		if (log.isInfoEnabled()) {
-			log.info("Add 'datasource_uuid' default values...");
+			log.info("Add 'datasource_uuid' default values, 'special_base' defaults...");
 		}
 
 		// get catalog name and create prefix for unique datasource_uuid
@@ -221,7 +221,7 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		datasourceUuidPrefix += ":";
 
 		// then add default data for ALL t011_obj_geo 
-		sql = "select distinct objGeo.id as objGeoId, obj.obj_uuid as objUuid " +
+		sql = "select distinct objGeo.id as objGeoId, objGeo.special_base, obj.obj_uuid as objUuid " +
 			"from t011_obj_geo objGeo, t01_object obj " +
 			"where objGeo.obj_id = obj.id";
 
@@ -230,6 +230,7 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		while (rs.next()) {
 			long objGeoId = rs.getLong("objGeoId");
 			String objUuid = rs.getString("objUuid");
+			String objGeoSpecialBase = rs.getString("special_base");
 
 			if (processedObjUuids.containsKey(objUuid)) {
 				throw new Exception("Object with multiple 't011_obj_geo' records ! " +
@@ -240,6 +241,12 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 			String datasourceUuid = datasourceUuidPrefix + objUuid;
 			jdbc.executeUpdate("UPDATE t011_obj_geo SET datasource_uuid = '" + datasourceUuid + "' " +
 				"where id = " + objGeoId);
+			
+			// special_base is now mandatory ! supply default value
+			if (objGeoSpecialBase == null || objGeoSpecialBase.trim().length() == 0) {
+				jdbc.executeUpdate("UPDATE t011_obj_geo SET special_base = 'Unbekannt' " +
+						"where id = " + objGeoId);				
+			}
 		}
 		rs.close();
 
@@ -340,8 +347,12 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		jdbc.getDBLogic().dropColumn("fees", "t01_object", jdbc);
 		
 		if (log.isInfoEnabled()) {
+			log.info("Add not null constraint to 't011_obj_geo.special_base' ...");
+		}
+		jdbc.getDBLogic().modifyColumn("special_base", ColumnType.TEXT, "t011_obj_geo", true, jdbc);
+
+		if (log.isInfoEnabled()) {
 			log.info("Cleaning up datastructure... done");
 		}
 	}
-	
 }
