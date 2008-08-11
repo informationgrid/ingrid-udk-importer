@@ -46,6 +46,7 @@ public class MySQLLogic implements DBLogic {
 			"id BIGINT NOT NULL, " +
 			"version INTEGER NOT NULL DEFAULT 0, " +
 			"obj_id BIGINT, " +
+			"line INTEGER DEFAULT 0, " +
 			"specification TEXT, " +
 			"degree_key INTEGER, " +
 			"degree_value VARCHAR(255),	" +
@@ -60,6 +61,7 @@ public class MySQLLogic implements DBLogic {
 			"id BIGINT NOT NULL, " +
 			"version INTEGER NOT NULL DEFAULT 0, " +
 			"obj_id BIGINT, " +
+			"line INTEGER DEFAULT 0, " +
 			"restriction_key INTEGER, " +
 			"restriction_value VARCHAR(255), " +
 			"terms_of_use TEXT,	" +

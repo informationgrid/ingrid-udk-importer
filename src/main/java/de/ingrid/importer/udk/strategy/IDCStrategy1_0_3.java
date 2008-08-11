@@ -181,8 +181,8 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 
 			String defaultSpecification = "INSPIRE-Richtlinie";
 
-			jdbc.executeUpdate("INSERT INTO object_conformity (id, obj_id, specification, degree_key, degree_value) " +
-				"VALUES (" + getNextId() + ", " + objId + ", '" + defaultSpecification + "', "
+			jdbc.executeUpdate("INSERT INTO object_conformity (id, obj_id, line, specification, degree_key, degree_value) " +
+				"VALUES (" + getNextId() + ", " + objId + ", 1, '" + defaultSpecification + "', "
 				+ defaultSyslist6000EntryId + ", '" + defaultSyslist6000EntryValue + "');");
 			
 			// Node may contain different object versions, then we receive nodeId multiple times.
@@ -294,14 +294,14 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 					}
 					if (fees.length() > 0) {
 						if (termsOfUse.length() > 0) {
-							termsOfUse += " / ";						
+							termsOfUse += " // ";						
 						}
 						termsOfUse += fees;
 					}
 				}
 
-				jdbc.executeUpdate("INSERT INTO object_access (id, obj_id, restriction_key, restriction_value, terms_of_use) "
-					+ "VALUES (" + getNextId() + ", " + objId + ", " + syslist6010EntryId + ", '" + syslist6010EntryValue
+				jdbc.executeUpdate("INSERT INTO object_access (id, obj_id, line, restriction_key, restriction_value, terms_of_use) "
+					+ "VALUES (" + getNextId() + ", " + objId + ", 1, " + syslist6010EntryId + ", '" + syslist6010EntryValue
 					+ "', '" + termsOfUse + "');");
 				
 				processedObjIds.put(objId, true);
