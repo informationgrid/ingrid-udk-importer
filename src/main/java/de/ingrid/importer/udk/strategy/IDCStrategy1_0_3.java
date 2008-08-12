@@ -86,7 +86,8 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		if (log.isInfoEnabled()) {
 			log.info("Add column 'datasource_uuid' to 'table t011_obj_geo'...");
 		}
-		jdbc.getDBLogic().addColumn("datasource_uuid", ColumnType.TEXT, "t011_obj_geo", true, jdbc);
+		// don't add "not null", can be empty in working version !
+		jdbc.getDBLogic().addColumn("datasource_uuid", ColumnType.TEXT, "t011_obj_geo", false, jdbc);
 		
 		if (log.isInfoEnabled()) {
 			log.info("Create table 'object_access'...");
@@ -345,12 +346,13 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 			log.info("Drop 't01_object.fees' ...");
 		}
 		jdbc.getDBLogic().dropColumn("fees", "t01_object", jdbc);
-		
+/*
+// don't add "not null", can be empty in working version !
 		if (log.isInfoEnabled()) {
 			log.info("Add not null constraint to 't011_obj_geo.special_base' ...");
 		}
 		jdbc.getDBLogic().modifyColumn("special_base", ColumnType.TEXT, "t011_obj_geo", true, jdbc);
-
+*/
 		if (log.isInfoEnabled()) {
 			log.info("Cleaning up datastructure... done");
 		}
