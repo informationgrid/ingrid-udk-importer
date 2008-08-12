@@ -5,6 +5,8 @@ package de.ingrid.importer.udk.strategy;
 
 import java.sql.ResultSet;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -31,6 +33,16 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 	private int existingData_Syslist6010EntryId = 6;
 	private String existingData_Syslist6010EntryValue = "aufgrund der Rechte des geistigen Eigentums";
 
+	private Integer wmsSyslist5100EntryId = 2;
+	private String wmsSyslist5100EntryValue = "Visualisierungsdienste (WMS)";
+	private Integer wfsSyslist5100EntryId = 3;
+	private String wfsSyslist5100EntryValue = "Zugriffsdienste (WFS)";
+	private int defaultSyslist5100EntryId = 6;
+	private String defaultSyslist5100EntryValue = "Andere Dienste";
+
+	private LinkedHashMap<Integer, String> newSyslist5120 = new LinkedHashMap<Integer, String>(); 
+	private HashMap<Integer, Integer> oldToNewKeySyslist5120 = new HashMap<Integer, Integer>(); 
+	
 	public String getIDCVersion() {
 		return MY_VERSION;
 	}
@@ -59,6 +71,12 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		System.out.println("done.");
 		System.out.print("  Updating object_access...");
 		updateObjectAccess();
+		System.out.println("done.");
+		System.out.print("  Updating t011_obj_serv...");
+		updateT011ObjServ();
+		System.out.println("done.");
+		System.out.print("  Updating t011_obj_serv_operation...");
+		updateT011ObjServOperation();
 		System.out.println("done.");
 
 		// Updating of HI/LO table not necessary anymore ! is checked and updated when fetching next id
@@ -155,6 +173,124 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
 			+ getNextId() + ", " + lstId + ", 9, 'de', 'aufgrund des Schutzes von Umweltbereichen', 0, 'N');");
 
+		// --------------------
+
+		lstId = 5100;
+		if (log.isInfoEnabled()) {
+			log.info("Updating syslist " + lstId +	" (Service-Klassifikation)...");
+		}
+
+		// clean up, to guarantee no old values !
+		sqlStr = "DELETE FROM sys_list where lst_id = " + lstId;
+		jdbc.executeUpdate(sqlStr);
+
+		// insert new syslist
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
+				+ getNextId() + ", " + lstId + ", 1, 'de', 'Suchdienste (CSW)', 0, 'N');");
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
+				+ getNextId() + ", " + lstId + ", 1, 'en', 'Discovery Service', 0, 'N');");
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
+				+ getNextId() + ", " + lstId + ", " + wmsSyslist5100EntryId + ", 'de', '" + wmsSyslist5100EntryValue + "', 0, 'N');");
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("					
+				+ getNextId() + ", " + lstId + ", " + wmsSyslist5100EntryId + ", 'en', 'View Service', 0, 'N');");
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
+				+ getNextId() + ", " + lstId + ", " + wfsSyslist5100EntryId + ", 'de', '" + wfsSyslist5100EntryValue + "', 0, 'N');");
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("					
+				+ getNextId() + ", " + lstId + ", " + wfsSyslist5100EntryId + ", 'en', 'Download Service', 0, 'N');");
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
+				+ getNextId() + ", " + lstId + ", 4, 'de', 'Transformationsdienste (WCTS)', 0, 'N');");
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("					
+				+ getNextId() + ", " + lstId + ", 4, 'en', 'Transformation Service', 0, 'N');");
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
+				+ getNextId() + ", " + lstId + ", 5, 'de', 'Verkettete Geodatendienste', 0, 'N');");
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("					
+				+ getNextId() + ", " + lstId + ", 5, 'en', 'Invoke Spatial Data Service', 0, 'N');");
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
+				+ getNextId() + ", " + lstId + ", " + defaultSyslist5100EntryId + ", 'de', '" + defaultSyslist5100EntryValue + "', 0, 'N');");
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("					
+				+ getNextId() + ", " + lstId + ", " + defaultSyslist5100EntryId + ", 'en', 'Other Service', 0, 'N');");
+
+		// --------------------
+
+		lstId = 5105;
+		if (log.isInfoEnabled()) {
+			log.info("Inserting new syslist " + lstId +	" (Operations for CSW Service)...");
+		}
+
+		// clean up, to guarantee no old values !
+		sqlStr = "DELETE FROM sys_list where lst_id = " + lstId;
+		jdbc.executeUpdate(sqlStr);
+
+		// insert new syslist
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
+				+ getNextId() + ", " + lstId + ", 1, 'de', 'GetCapabilities', 0, 'N');");
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
+				+ getNextId() + ", " + lstId + ", 2, 'de', 'GetRecords', 0, 'N');");
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
+				+ getNextId() + ", " + lstId + ", 3, 'de', 'GetRecordById', 0, 'N');");
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
+				+ getNextId() + ", " + lstId + ", 4, 'de', 'DescribeRecord', 0, 'N');");
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
+				+ getNextId() + ", " + lstId + ", 5, 'de', 'GetDomain', 0, 'N');");
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
+				+ getNextId() + ", " + lstId + ", 6, 'de', 'Transaction', 0, 'N');");
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
+				+ getNextId() + ", " + lstId + ", 7, 'de', 'Harvest', 0, 'N');");
+
+		// --------------------
+
+		lstId = 5130;
+		if (log.isInfoEnabled()) {
+			log.info("Inserting new syslist " + lstId +	" (Operations for WCTS Service)...");
+		}
+
+		// clean up, to guarantee no old values !
+		sqlStr = "DELETE FROM sys_list where lst_id = " + lstId;
+		jdbc.executeUpdate(sqlStr);
+
+		// insert new syslist
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
+				+ getNextId() + ", " + lstId + ", 1, 'de', 'GetCapabilities', 0, 'N');");
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
+				+ getNextId() + ", " + lstId + ", 2, 'de', 'Transform', 0, 'N');");
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
+				+ getNextId() + ", " + lstId + ", 3, 'de', 'IsTransformable', 0, 'N');");
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
+				+ getNextId() + ", " + lstId + ", 4, 'de', 'GetTransformation', 0, 'N');");
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
+				+ getNextId() + ", " + lstId + ", 5, 'de', 'GetResourceById', 0, 'N');");
+
+		// --------------------
+
+		lstId = 5120;
+		if (log.isInfoEnabled()) {
+			log.info("Updating syslist " + lstId +	" (Operations for WFS Service)...");
+		}
+
+		// clean up, to guarantee no old values !
+		sqlStr = "DELETE FROM sys_list where lst_id = " + lstId;
+		jdbc.executeUpdate(sqlStr);
+
+		oldToNewKeySyslist5120.put(1, 2);
+		// both old "GetFeature" mapped to new "GetFeature" (error in old syslist)
+		oldToNewKeySyslist5120.put(2, 3);
+		oldToNewKeySyslist5120.put(3, 3);
+		oldToNewKeySyslist5120.put(4, 4);
+		oldToNewKeySyslist5120.put(5, 5);
+		
+		newSyslist5120.put(1, "GetCapabilities");
+		newSyslist5120.put(2, "DescribeFeatureType");
+		newSyslist5120.put(3, "GetFeature");
+		newSyslist5120.put(4, "LockFeature");
+		newSyslist5120.put(5, "Transaction");
+		
+		Iterator<Integer> itr = newSyslist5120.keySet().iterator();
+		while (itr.hasNext()) {
+			int key = itr.next();
+			jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
+					+ getNextId() + ", " + lstId + ", " + key + ", 'de', '" + newSyslist5120.get(key) + "', 0, 'N')");
+		}
+		
 		if (log.isInfoEnabled()) {
 			log.info("Updating sys_list... done");
 		}
@@ -227,18 +363,11 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 			"where objGeo.obj_id = obj.id";
 
 		rs = jdbc.executeQuery(sql);
-		HashMap<String, Boolean> processedObjUuids = new HashMap<String,Boolean>();
 		while (rs.next()) {
 			long objGeoId = rs.getLong("objGeoId");
 			String objUuid = rs.getString("objUuid");
 			String objGeoSpecialBase = rs.getString("special_base");
 
-			if (processedObjUuids.containsKey(objUuid)) {
-				throw new Exception("Object with multiple 't011_obj_geo' records ! " +
-					"obj_uuid(" + objUuid + "), failing t011_obj_geo.id(" + objGeoId + ")" );
-			}
-			processedObjUuids.put(objUuid, true);
-			
 			String datasourceUuid = datasourceUuidPrefix + objUuid;
 			jdbc.executeUpdate("UPDATE t011_obj_geo SET datasource_uuid = '" + datasourceUuid + "' " +
 				"where id = " + objGeoId);
@@ -262,10 +391,9 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		}
 
 		if (log.isInfoEnabled()) {
-			log.info("Add entries for every object...");
+			log.info("Migrate obj.avail_access_note, obj.fees to table object_access...");
 		}
 
-		// then add entries for ALL t01_objects (no matter whether working or published version) 
 		String sql = "select distinct objNode.id as objNodeId, objNode.obj_id as objWorkId, obj.id as objId, obj.avail_access_note, obj.fees " +
 			"from t01_object obj, object_node objNode " +
 			"where obj.obj_uuid = objNode.obj_uuid";
@@ -273,7 +401,6 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		// Node may contain different object versions (working and published version), just to be sure 
 		// we track written data in hash maps to avoid multiple writing for same object (or should we trust upper sql ;)
 		HashMap<Long, Boolean> processedObjIds = new HashMap<Long,Boolean>();
-		HashMap<Long, Boolean> processedObjWorkIds = new HashMap<Long,Boolean>();
 
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
@@ -314,14 +441,10 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 				
 				processedObjIds.put(objId, true);
 
-				// extend object index if not written yet (index contains only data of working versions !)
+				// extend object index (index contains only data of working versions !)
 				if (objWorkId == objId) {
-					if (!processedObjWorkIds.containsKey(objId)) {
-						JDBCHelper.updateObjectIndex(objNodeId, syslist6010EntryValue, jdbc); // ObjectAccess.restrictionValue
-						JDBCHelper.updateObjectIndex(objNodeId, termsOfUse, jdbc); // ObjectAccess.termsOfUse
-						
-						processedObjWorkIds.put(objId, true);
-					}				
+					JDBCHelper.updateObjectIndex(objNodeId, syslist6010EntryValue, jdbc); // ObjectAccess.restrictionValue
+					JDBCHelper.updateObjectIndex(objNodeId, termsOfUse, jdbc); // ObjectAccess.termsOfUse
 				}
 			}
 		}
@@ -329,6 +452,121 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 
 		if (log.isInfoEnabled()) {
 			log.info("Updating object_access... done");
+		}
+	}
+
+	protected void updateT011ObjServ() throws Exception {
+		if (log.isInfoEnabled()) {
+			log.info("Updating t011_obj_serv...");
+		}
+
+		if (log.isInfoEnabled()) {
+			log.info("Migrate type_key, type_value to new syslist (Service-Klassifikation) ...");
+		}
+
+		String sql = "select distinct objNode.id as objNodeId, objNode.obj_id as objWorkId, obj.id as objId, " +
+			"objServ.id as objServId, objServ.type_key, objServ.type_value " +
+			"from t011_obj_serv objServ, t01_object obj, object_node objNode " +
+			"where objServ.obj_id = obj.id " +
+			"and obj.obj_uuid = objNode.obj_uuid";
+
+		// Node may contain different object versions (working and published version), just to be sure 
+		// we track written data in hash maps to avoid multiple writing for same object (or should we trust upper sql ;)
+		HashMap<Long, Boolean> processedObjIds = new HashMap<Long,Boolean>();
+
+		ResultSet rs = jdbc.executeQuery(sql);
+		while (rs.next()) {
+			long objNodeId = rs.getLong("objNodeId");
+			long objWorkId = rs.getLong("objWorkId");
+			long objId = rs.getLong("objId");
+
+			long objServId = rs.getLong("objServId");
+			Integer objServTypeKey = rs.getInt("type_key");
+			objServTypeKey = (objServTypeKey == null) ? -1 : objServTypeKey;
+			String objServTypeValue = rs.getString("type_value");
+			objServTypeValue = (objServTypeValue == null) ? "" : objServTypeValue.trim();
+
+			// write values if not written yet !
+			if (!processedObjIds.containsKey(objId)) {
+				// default
+				int syslist5100EntryId = defaultSyslist5100EntryId;
+				String syslist5100EntryValue = defaultSyslist5100EntryValue;
+
+				// values if data set in object
+				if (objServTypeKey == 1) {
+					syslist5100EntryId = wmsSyslist5100EntryId;
+					syslist5100EntryValue = wmsSyslist5100EntryValue;
+				} else if (objServTypeKey == 2) {
+					syslist5100EntryId = wfsSyslist5100EntryId;
+					syslist5100EntryValue = wfsSyslist5100EntryValue;
+				}
+
+				jdbc.executeUpdate("UPDATE t011_obj_serv SET type_key = " + syslist5100EntryId
+					+ ", type_value = '" + syslist5100EntryValue + "' where id = " + objServId);
+				
+				processedObjIds.put(objId, true);
+
+				// extend object index (index contains only data of working versions !)
+				if (objWorkId == objId) {
+					JDBCHelper.updateObjectIndex(objNodeId, syslist5100EntryValue, jdbc); // objServ.type_value
+				}
+			}
+		}
+		rs.close();
+
+		if (log.isInfoEnabled()) {
+			log.info("Updating t011_obj_serv... done");
+		}
+	}
+
+	/** migrate old WFS operation entries to new ones (old ones had bug -> two times "GetFeature" in syslist) */
+	protected void updateT011ObjServOperation() throws Exception {
+		if (log.isInfoEnabled()) {
+			log.info("Updating t011_obj_serv_operation...");
+		}
+
+		if (log.isInfoEnabled()) {
+			log.info("Migrate WFS name_key, name_value to new syslist 5120 (WFS Operations) ...");
+		}
+
+		// then add entries for ALL t01_objects (no matter whether working or published version) 
+		String sql = "select objServOp.id as objServOpId, objServ.type_key, objServOp.name_key " +
+			"from t011_obj_serv objServ, t011_obj_serv_operation objServOp " +
+			"where objServ.id = objServOp.obj_serv_id";
+
+		HashMap<Long, Boolean> processedServOpIds = new HashMap<Long,Boolean>();
+
+		ResultSet rs = jdbc.executeQuery(sql);
+		while (rs.next()) {
+			long objServOpId = rs.getLong("objServOpId");
+
+			Integer servTypeKey = rs.getInt("type_key");
+			Integer servOpKey = rs.getInt("name_key");
+			
+			// only process WFS Operations
+			if (!wfsSyslist5100EntryId.equals(servTypeKey)) {
+				continue;
+			}
+
+			// write values if not written yet !
+			if (!processedServOpIds.containsKey(objServOpId)) {
+				Integer newKey = oldToNewKeySyslist5120.get(servOpKey);
+				String newValue = newSyslist5120.get(newKey);
+
+				if (newKey != null) {
+					jdbc.executeUpdate("UPDATE t011_obj_serv_operation SET name_key = " + newKey
+							+ ", name_value = '" + newValue + "' where id = " + objServOpId);
+				}
+
+				processedServOpIds.put(objServOpId, true);
+				
+				// NO UPDATE OF INDEX, should already contain old values !
+			}
+		}
+		rs.close();
+
+		if (log.isInfoEnabled()) {
+			log.info("Updating t011_obj_serv... done");
 		}
 	}
 
