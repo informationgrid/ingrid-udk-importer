@@ -571,7 +571,7 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		}
 
 		String sql = "select distinct objNode.id as objNodeId, objNode.obj_id as objWorkId, obj.id as objId, " +
-			"objServ.id as objServId, objServ.type_key, objServ.type_value " +
+			"objServ.id as objServId, objServ.type_key, objServ.type_value, objServ.description " +
 			"from t011_obj_serv objServ, t01_object obj, object_node objNode " +
 			"where objServ.obj_id = obj.id " +
 			"and obj.obj_uuid = objNode.obj_uuid";
@@ -591,6 +591,7 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 			objServTypeKey = (objServTypeKey == null) ? -1 : objServTypeKey;
 			String objServTypeValue = rs.getString("type_value");
 			objServTypeValue = (objServTypeValue == null) ? "" : objServTypeValue.trim();
+			String objServDescr = rs.getString("description");
 
 			// write values if not written yet !
 			if (!processedObjIds.containsKey(objId)) {
@@ -605,10 +606,20 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 				} else if (objServTypeKey == 2) {
 					syslist5100EntryId = wfsSyslist5100EntryId;
 					syslist5100EntryValue = wfsSyslist5100EntryValue;
+				} else {
+					// migrate free entry into description !
+					if (objServTypeValue.length() > 0) {
+						objServDescr = (objServDescr == null) ? "" : objServDescr.trim();
+						if (objServDescr.length() > 0) {
+							objServDescr = "\n\n" + objServDescr;
+						}
+						objServDescr = objServTypeValue + objServDescr;
+					}
 				}
 
 				jdbc.executeUpdate("UPDATE t011_obj_serv SET type_key = " + syslist5100EntryId
-					+ ", type_value = '" + syslist5100EntryValue + "' where id = " + objServId);
+					+ ", type_value = '" + syslist5100EntryValue + "', description = '" + objServDescr +
+							"' where id = " + objServId);
 				
 				processedObjIds.put(objId, true);
 
