@@ -11,7 +11,7 @@ import java.sql.SQLException;
 public interface DBLogic {
 	
 	public static enum ColumnType {
-		TEXT,
+		TEXT, VARCHAR50
 	}
 
 	void setSchema(Connection connection, String schema) throws Exception;

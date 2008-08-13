@@ -26,6 +26,8 @@ public class MySQLLogic implements DBLogic {
 
 		if (colType == ColumnType.TEXT) {
 			sql += " TEXT";
+		} else if (colType == ColumnType.VARCHAR50) {
+			sql += " VARCHAR(50)";
 		}
 
 		if (notNull) {
@@ -42,6 +44,8 @@ public class MySQLLogic implements DBLogic {
 
 		if (colType == ColumnType.TEXT) {
 			sql += " TEXT";
+		} else if (colType == ColumnType.VARCHAR50) {
+			sql += " VARCHAR(50)";
 		}
 
 		if (notNull) {
