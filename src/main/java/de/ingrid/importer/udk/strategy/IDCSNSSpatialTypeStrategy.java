@@ -9,11 +9,8 @@ import java.util.HashMap;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import de.ingrid.importer.udk.ImportDescriptor;
-import de.ingrid.importer.udk.jdbc.JDBCConnectionProxy;
 import de.ingrid.importer.udk.jdbc.JDBCHelper;
 import de.ingrid.importer.udk.jdbc.DBLogic.ColumnType;
-import de.ingrid.importer.udk.provider.DataProvider;
 
 /**
  * @author michael
@@ -24,8 +21,7 @@ public class IDCSNSSpatialTypeStrategy extends IDCStrategyDefault {
 	private static Log log = LogFactory.getLog(IDCSNSSpatialTypeStrategy.class);
 
 	public String getIDCVersion() {
-		// no version ! keep current version when adding sns spatial types !
-		return null;
+		return VALUE_IDC_VERSION_102_SNS_SPATIAL_TYPE;
 	}
 
 	public void execute() throws Exception {
@@ -35,17 +31,13 @@ public class IDCSNSSpatialTypeStrategy extends IDCStrategyDefault {
 		extendDataStructure();
 		System.out.println("done.");
 
+		// THEN PERFORM DATA MANIPULATIONS !
 		System.out.print("  Updating spatial_ref_value...");
 		updateSpatialRefValue();
 		System.out.println("done.");
-/*
-// Nothing to cleanup yet
-		// FINALLY EXECUTE ALL "DROPPING" DDL OPERATIONS ! These ones may cause commit (e.g. on MySQL)
-		System.out.print("  Clean up datastructure...");
-		cleanUpDataStructure();
-		System.out.println("done.");
-*/
-		// THEN PERFORM DATA MANIPULATIONS !
+
+		// Nothing to cleanup yet
+
 		jdbc.commit();
 		System.out.println("Update finished successfully.");
 	}
@@ -130,16 +122,4 @@ public class IDCSNSSpatialTypeStrategy extends IDCStrategyDefault {
 			log.info("Extending datastructure... done");
 		}
 	}
-
-/*
-// Nothing to cleanup yet	
-	protected void cleanUpDataStructure() throws Exception {
-		if (log.isInfoEnabled()) {
-			log.info("Cleaning up datastructure -> CAUSES COMMIT ! ...");
-		}
-		if (log.isInfoEnabled()) {
-			log.info("Cleaning up datastructure... done");
-		}
-	}
-*/
 }

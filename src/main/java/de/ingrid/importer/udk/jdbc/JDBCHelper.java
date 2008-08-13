@@ -130,7 +130,7 @@ public class JDBCHelper {
 	/**
 	 * Fetch IDC Version from IDC catalog. Returns null if no version set. Throws Exception if problems. 
 	 * @param jdbc connection
-	 * @param processVersion process the fetched Version, meaning remove info at end like "_dev" etc.
+	 * @param processVersion process the fetched Version, meaning remove temporary info "_dev" at end
 	 * @return the current version, null if no version set meaning initial state !
 	 * @throws Exception
 	 */

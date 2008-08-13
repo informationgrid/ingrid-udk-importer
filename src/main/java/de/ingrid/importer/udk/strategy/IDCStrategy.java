@@ -18,13 +18,16 @@ public interface IDCStrategy {
 
 	/** initial version */
 	static String VALUE_IDC_VERSION_102 = "1.0.2";
+	/** SNS Spatial Type Update */
+	static String VALUE_IDC_VERSION_102_SNS_SPATIAL_TYPE = "1.0.2_sns_spatial_type";
 	/** INSPIRE update version */
 	static String VALUE_IDC_VERSION_103 = "1.0.3";
 
 	/** contains all idc versions (specifying according default strategy) in ascending order.
-	 * The default strategies for obtaining these versions are executed if needed. */
+	 * NOTICE: THESE VERSIONS ARE MAPPED TO STRATEGIES IN STRATEGY FACTORY !!! */
 	static String[] ALL_IDC_VERSIONS = new String[] {
 		VALUE_IDC_VERSION_102,
+		VALUE_IDC_VERSION_102_SNS_SPATIAL_TYPE,
 		VALUE_IDC_VERSION_103,
 	};
 		
