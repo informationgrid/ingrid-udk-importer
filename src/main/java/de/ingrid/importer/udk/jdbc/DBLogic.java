@@ -38,4 +38,7 @@ public interface DBLogic {
 
 	/** DDL Operation ! CAUSES COMMIT ON MySQL ! */
 	void createTableObjectAccess(JDBCConnectionProxy jdbc) throws SQLException;
+
+	/** DDL Operation ! CAUSES COMMIT ON MySQL ! */
+	void createTableT011ObjServType(JDBCConnectionProxy jdbc) throws SQLException;
 }

@@ -90,4 +90,18 @@ public class MySQLLogic implements DBLogic {
 			"TYPE=InnoDB;";
 		jdbc.executeUpdate(sql);
 	}
+
+	public void createTableT011ObjServType(JDBCConnectionProxy jdbc) throws SQLException {
+		String sql = "CREATE TABLE t011_obj_serv_type(" +
+			"id BIGINT NOT NULL, " +
+			"version INTEGER NOT NULL DEFAULT 0, " +
+			"obj_serv_id BIGINT, " +
+			"line INTEGER DEFAULT 0, " +
+			"serv_type_key INTEGER, " +
+			"serv_type_value TEXT, " +
+			"PRIMARY KEY (id), " +
+			"INDEX idxOSerType_OSerId (obj_serv_id ASC)) " +
+			"TYPE=InnoDB;";
+		jdbc.executeUpdate(sql);
+	}
 }

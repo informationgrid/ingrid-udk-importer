@@ -42,7 +42,10 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 
 	private LinkedHashMap<Integer, String> newSyslist5120 = new LinkedHashMap<Integer, String>(); 
 	private HashMap<Integer, Integer> oldToNewKeySyslist5120 = new HashMap<Integer, Integer>(); 
-	
+
+	private LinkedHashMap<Integer, String> newSyslist5200 = new LinkedHashMap<Integer, String>(); 
+	private HashMap<Integer, Integer> oldToNewKeySyslist5200 = new HashMap<Integer, Integer>(); 
+
 	public String getIDCVersion() {
 		return MY_VERSION;
 	}
@@ -78,6 +81,9 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		System.out.print("  Updating t011_obj_serv_operation...");
 		updateT011ObjServOperation();
 		System.out.println("done.");
+		System.out.print("  Updating t011_obj_serv_type...");
+		updateT011ObjServType();
+		System.out.println("done.");
 
 		// Updating of HI/LO table not necessary anymore ! is checked and updated when fetching next id
 		// via getNextId() ...
@@ -111,6 +117,11 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 			log.info("Create table 'object_access'...");
 		}
 		jdbc.getDBLogic().createTableObjectAccess(jdbc);
+
+		if (log.isInfoEnabled()) {
+			log.info("Create table 't011_obj_serv_type'...");
+		}
+		jdbc.getDBLogic().createTableT011ObjServType(jdbc);
 
 		if (log.isInfoEnabled()) {
 			log.info("Extending datastructure... done");
@@ -271,6 +282,12 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		sqlStr = "DELETE FROM sys_list where lst_id = " + lstId;
 		jdbc.executeUpdate(sqlStr);
 
+		newSyslist5120.put(1, "GetCapabilities");
+		newSyslist5120.put(2, "DescribeFeatureType");
+		newSyslist5120.put(3, "GetFeature");
+		newSyslist5120.put(4, "LockFeature");
+		newSyslist5120.put(5, "Transaction");
+		
 		oldToNewKeySyslist5120.put(1, 2);
 		// both old "GetFeature" mapped to new "GetFeature" (error in old syslist)
 		oldToNewKeySyslist5120.put(2, 3);
@@ -278,17 +295,106 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		oldToNewKeySyslist5120.put(4, 4);
 		oldToNewKeySyslist5120.put(5, 5);
 		
-		newSyslist5120.put(1, "GetCapabilities");
-		newSyslist5120.put(2, "DescribeFeatureType");
-		newSyslist5120.put(3, "GetFeature");
-		newSyslist5120.put(4, "LockFeature");
-		newSyslist5120.put(5, "Transaction");
-		
 		Iterator<Integer> itr = newSyslist5120.keySet().iterator();
 		while (itr.hasNext()) {
 			int key = itr.next();
 			jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
 					+ getNextId() + ", " + lstId + ", " + key + ", 'de', '" + newSyslist5120.get(key) + "', 0, 'N')");
+		}
+		
+		// --------------------
+
+		lstId = 5200;
+		if (log.isInfoEnabled()) {
+			log.info("Updating syslist " + lstId +	" (INSPIRE: Classification of spatial data services)...");
+		}
+
+		// clean up, to guarantee no old values !
+		sqlStr = "DELETE FROM sys_list where lst_id = " + lstId;
+		jdbc.executeUpdate(sqlStr);
+
+		newSyslist5200.put(101, "Catalogue viewer");
+		newSyslist5200.put(102, "Geographic viewer");
+		newSyslist5200.put(103, "Geographic spreadsheet viewer");
+		newSyslist5200.put(104, "Service editor");
+		newSyslist5200.put(105, "Chain definition editor");
+		newSyslist5200.put(106, "Workflow enactment manager");
+		newSyslist5200.put(107, "Geographic feature editor");
+		newSyslist5200.put(108, "Geographic symbol editor");
+		newSyslist5200.put(109, "Feature generalization editor");
+		newSyslist5200.put(110, "Geographic data-structure viewer");
+		newSyslist5200.put(201, "Feature access service");
+		newSyslist5200.put(202, "Map access service");
+		newSyslist5200.put(203, "Coverage access service");
+		newSyslist5200.put(204, "Sensor description service");
+		newSyslist5200.put(205, "Product access service");
+		newSyslist5200.put(206, "Feature type service");
+		newSyslist5200.put(207, "Catalogue service");
+		newSyslist5200.put(208, "Registry Service");
+		newSyslist5200.put(209, "Gazetteer service");
+		newSyslist5200.put(210, "Order handling service");
+		newSyslist5200.put(211, "Standing order service");
+		newSyslist5200.put(301, "Chain definition service");
+		newSyslist5200.put(302, "Workflow enactment service");
+		newSyslist5200.put(303, "Subscription service");
+		newSyslist5200.put(401, "Coordinate conversion service");
+		newSyslist5200.put(402, "Coordinate transformation service");
+		newSyslist5200.put(403, "Coverage/vector conversion service");
+		newSyslist5200.put(404, "Image coordinate conversion service");
+		newSyslist5200.put(405, "Rectification service");
+		newSyslist5200.put(406, "Orthorectification service");
+		newSyslist5200.put(407, "Sensor geometry model adjustment service");
+		newSyslist5200.put(408, "Image geometry model conversion service");
+		newSyslist5200.put(409, "Subsetting service");
+		newSyslist5200.put(410, "Sampling service");
+		newSyslist5200.put(411, "Tiling change service");
+		newSyslist5200.put(412, "Dimension measurement service");
+		newSyslist5200.put(413, "Feature manipulation services");
+		newSyslist5200.put(414, "Feature matching service");
+		newSyslist5200.put(415, "Feature generalization service");
+		newSyslist5200.put(416, "Route determination service");
+		newSyslist5200.put(417, "Positioning service");
+		newSyslist5200.put(418, "Proximity analysis service");
+		newSyslist5200.put(501, "Geoparameter calculation service");
+		newSyslist5200.put(502, "Thematic classification service");
+		newSyslist5200.put(503, "Feature generalization service");
+		newSyslist5200.put(504, "Subsetting service");
+		newSyslist5200.put(505, "Spatial counting service");
+		newSyslist5200.put(506, "Change detection service");
+		newSyslist5200.put(507, "Geographic information extraction services");
+		newSyslist5200.put(508, "Image processing service");
+		newSyslist5200.put(509, "Reduced resolution generation service");
+		newSyslist5200.put(510, "Image Manipulation Services");
+		newSyslist5200.put(511, "Image understanding services");
+		newSyslist5200.put(512, "Image synthesis services");
+		newSyslist5200.put(513, "Multi-band image manipulation");
+		newSyslist5200.put(514, "Object detection service");
+		newSyslist5200.put(515, "Geoparsing service");
+		newSyslist5200.put(516, "Geocoding service");
+		newSyslist5200.put(601, "Temporal reference system transformation service");
+		newSyslist5200.put(602, "Subsetting service");
+		newSyslist5200.put(603, "Sampling service");
+		newSyslist5200.put(604, "Temporal proximity analysis service");
+		newSyslist5200.put(701, "Statistical calculation service");
+		newSyslist5200.put(702, "Geographic annotation services");
+		newSyslist5200.put(801, "Encoding service");
+		newSyslist5200.put(802, "Transfer service");
+		newSyslist5200.put(803, "Geographic compression service");
+		newSyslist5200.put(804, "Geographic format conversion service");
+		newSyslist5200.put(805, "Messaging service");
+		newSyslist5200.put(806, "Remote file and executable management");
+		newSyslist5200.put(901, "Non Geographic Service");
+
+		oldToNewKeySyslist5200.put(1, 207);
+		oldToNewKeySyslist5200.put(2, 202);
+		oldToNewKeySyslist5200.put(3, 201);
+		oldToNewKeySyslist5200.put(6, 901);
+
+		itr = newSyslist5200.keySet().iterator();
+		while (itr.hasNext()) {
+			int key = itr.next();
+			jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
+					+ getNextId() + ", " + lstId + ", " + key + ", 'de', '" + newSyslist5200.get(key) + "', 0, 'N')");
 		}
 		
 		if (log.isInfoEnabled()) {
@@ -567,6 +673,58 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 
 		if (log.isInfoEnabled()) {
 			log.info("Updating t011_obj_serv... done");
+		}
+	}
+
+	protected void updateT011ObjServType() throws Exception {
+		if (log.isInfoEnabled()) {
+			log.info("Updating t011_obj_serv_type...");
+		}
+
+		if (log.isInfoEnabled()) {
+			log.info("Migrate t011_obj_serv.type to table t011_obj_serv_type.serv_type ...");
+		}
+
+		String sql = "select distinct objNode.id as objNodeId, objNode.obj_id as objWorkId, obj.id as objId, " +
+		"objServ.id as objServId, objServ.type_key " +
+		"from t011_obj_serv objServ, t01_object obj, object_node objNode " +
+		"where objServ.obj_id = obj.id " +
+		"and obj.obj_uuid = objNode.obj_uuid";
+
+		// Node may contain different object versions (working and published version), just to be sure 
+		// we track written data in hash maps to avoid multiple writing for same object (or should we trust upper sql ;)
+		HashMap<Long, Boolean> processedObjIds = new HashMap<Long,Boolean>();
+
+		ResultSet rs = jdbc.executeQuery(sql);
+		while (rs.next()) {
+			long objNodeId = rs.getLong("objNodeId");
+			long objWorkId = rs.getLong("objWorkId");
+			long objId = rs.getLong("objId");
+
+			long objServId = rs.getLong("objServId");
+			Integer objServTypeKey = rs.getInt("type_key");
+
+			// write values if not written yet !
+			if (!processedObjIds.containsKey(objId)) {
+				Integer syslist5200EntryId = oldToNewKeySyslist5200.get(objServTypeKey);
+				String syslist5200EntryValue = newSyslist5200.get(syslist5200EntryId);
+
+				jdbc.executeUpdate("INSERT INTO t011_obj_serv_type (id, obj_serv_id, line, serv_type_key, serv_type_value) "
+					+ "VALUES (" + getNextId() + ", " + objServId + ", 1, " + syslist5200EntryId + ", '"
+					+ syslist5200EntryValue	+ "');");
+				
+				processedObjIds.put(objId, true);
+
+				// extend object index (index contains only data of working versions !)
+				if (objWorkId == objId) {
+					JDBCHelper.updateObjectIndex(objNodeId, syslist5200EntryValue, jdbc); // t011_obj_serv_type.serv_type_value
+				}
+			}
+		}
+		rs.close();
+
+		if (log.isInfoEnabled()) {
+			log.info("Updating t011_obj_serv_type... done");
 		}
 	}
 
