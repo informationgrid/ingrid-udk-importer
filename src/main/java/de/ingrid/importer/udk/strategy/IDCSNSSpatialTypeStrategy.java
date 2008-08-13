@@ -4,12 +4,14 @@
 package de.ingrid.importer.udk.strategy;
 
 import java.sql.ResultSet;
+import java.util.HashMap;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import de.ingrid.importer.udk.ImportDescriptor;
 import de.ingrid.importer.udk.jdbc.JDBCConnectionProxy;
+import de.ingrid.importer.udk.jdbc.JDBCHelper;
 import de.ingrid.importer.udk.jdbc.DBLogic.ColumnType;
 import de.ingrid.importer.udk.provider.DataProvider;
 
@@ -54,35 +56,58 @@ public class IDCSNSSpatialTypeStrategy extends IDCStrategyDefault {
 		}
 
 		// Get all entries (id and nativekey)
-		String sql = "select id, nativekey from spatial_ref_value;";
+//		String sql = "select id, nativekey from spatial_ref_value;";
+		// Extended query so we can update the index
+		String sql = "select distinct objNode.id as objNodeId, objNode.obj_id as objWorkId, obj.id as objId, " +
+		"spatialRefVal.id as spatialRefValId, spatialRefVal.nativekey as spatialRefNativekey, spatialRef.id as spatialRefId " +
+		"from spatial_ref_value spatialRefVal, spatial_reference spatialRef, t01_object obj, object_node objNode " +
+		"where spatialRefVal.id = spatialRef.spatial_ref_id " +
+		"and spatialRef.obj_id = obj.id " +
+		"and obj.obj_uuid = objNode.obj_uuid";
+
+		// we track written data in hash maps to avoid multiple writing for same spatial reference values
+		HashMap<Long, Boolean> processedSpatialRefIds = new HashMap<Long,Boolean>();
 
 		ResultSet rs = jdbc.executeQuery(sql);
 		while (rs.next()) {
-			long id = rs.getLong("id");
-			String nativeKey = rs.getString("nativekey");
+			long objNodeId = rs.getLong("objNodeId");
+			long objWorkId = rs.getLong("objWorkId");
+			long objId = rs.getLong("objId");
+			long id = rs.getLong("spatialRefValId");
+			long spatialRefId = rs.getLong("spatialRefId");
+			String nativeKey = rs.getString("spatialRefNativekey");
 			String type = "";
 
-			// Extract the topic type from the native key.
-			// This is problematic since the ags/rs native keys are NOT unique!
-			if (nativeKey.endsWith("00000000")) {
-				type = "nationType";
-			} else if (nativeKey.endsWith("000000")) {
-				type = "use2Type";
-			} else if (nativeKey.endsWith("00000")) {
-				type = "use3Type";
-			} else if (nativeKey.endsWith("000")) {
-				type = "use4Type";
-			} else if (nativeKey.length() == 8) {
-				type = "use6Type";
+			// convert & write values if not written yet !
+			if (!processedSpatialRefIds.containsKey(spatialRefId)) {
+				// Extract the topic type from the native key.
+				// This is problematic since the ags/rs native keys are NOT unique!
+				if (nativeKey.endsWith("00000000")) {
+					type = "nationType";
+				} else if (nativeKey.endsWith("000000")) {
+					type = "use2Type";
+				} else if (nativeKey.endsWith("00000")) {
+					type = "use3Type";
+				} else if (nativeKey.endsWith("000")) {
+					type = "use4Type";
+				} else if (nativeKey.length() == 8) {
+					type = "use6Type";
+				}
+
+				if (log.isDebugEnabled()) {
+					log.debug("Updating spatial_ref_value entry: ["+id+", "+nativeKey+", "+type+"]");
+				}
+	
+				String sqlStr = "update spatial_ref_value set topic_type = '"+type+"' where id = "+id;
+				jdbc.executeUpdate(sqlStr);
+
+				processedSpatialRefIds.put(spatialRefId, true);
+
+				// extend object index (index contains only data of working versions !)
+				if (objWorkId == objId) {
+					JDBCHelper.updateObjectIndex(objNodeId, type, jdbc); // spatial_ref_value.topic_type
+				}
 			}
-
-			if (log.isDebugEnabled()) {
-				log.debug("Updating spatial_ref_value entry: ["+id+", "+nativeKey+", "+type+"]");
-			}
-
-			String sqlStr = "update spatial_ref_value set topic_type = '"+type+"' where id = "+id;
-			jdbc.executeUpdate(sqlStr);
-
 		}
 		rs.close();
 		
