@@ -17,46 +17,15 @@ import de.ingrid.importer.udk.provider.DataProvider;
  * @author michael
  * 
  */
-public class IDCSNSSpatialTypeStrategy implements IDCStrategy {
-
-	protected DataProvider dataProvider = null;
-
-	protected ImportDescriptor importDescriptor = null;
-
-	protected JDBCConnectionProxy jdbc = null;
-
-	String sqlStr = null;
-
-	String pSqlStr = null;
+public class IDCSNSSpatialTypeStrategy extends IDCStrategyDefault {
 
 	private static Log log = LogFactory.getLog(IDCSNSSpatialTypeStrategy.class);
-
-	public void setDataProvider(DataProvider data) {
-		dataProvider = data;
-	}
-
-	public void setJDBCConnectionProxy(JDBCConnectionProxy jdbc) {
-		this.jdbc = jdbc;
-	}
-
-	public void setImportDescriptor(ImportDescriptor descriptor) {
-		importDescriptor = descriptor;
-	}
 
 	public String getIDCVersion() {
 		// no version ! keep current version when adding sns spatial types !
 		return null;
 	}
 
-	public IDCSNSSpatialTypeStrategy() {
-		super();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see de.ingrid.importer.udk.strategy.IDCStrategy#execute()
-	 */
 	public void execute() throws Exception {
 		jdbc.setAutoCommit(false);
 		// FIRST EXECUTE ALL "CREATING" DDL OPERATIONS ! NOTICE: causes commit (e.g. on MySQL)
@@ -107,8 +76,8 @@ public class IDCSNSSpatialTypeStrategy implements IDCStrategy {
 				type = "use6Type";
 			}
 
-			if (log.isInfoEnabled()) {
-				log.info("Updating spatial_ref_value entry: ["+id+", "+nativeKey+", "+type+"]");
+			if (log.isDebugEnabled()) {
+				log.debug("Updating spatial_ref_value entry: ["+id+", "+nativeKey+", "+type+"]");
 			}
 
 			String sqlStr = "update spatial_ref_value set topic_type = '"+type+"' where id = "+id;
