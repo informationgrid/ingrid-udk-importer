@@ -104,4 +104,18 @@ public class MySQLLogic implements DBLogic {
 			"TYPE=InnoDB;";
 		jdbc.executeUpdate(sql);
 	}
+	public void createTableT011ObjServScale(JDBCConnectionProxy jdbc) throws SQLException {
+		String sql = "CREATE TABLE t011_obj_serv_scale(" +
+			"id BIGINT NOT NULL, " +
+			"version INTEGER NOT NULL DEFAULT 0, " +
+			"obj_serv_id BIGINT, " +
+			"line INTEGER DEFAULT 0, " +
+			"scale INTEGER, " +
+			"resolution_ground DOUBLE, " +
+			"resolution_scan DOUBLE, " +
+			"PRIMARY KEY (id), " +
+			"INDEX idxOSrvScal_OSrvId (obj_serv_id ASC)) " +
+			"TYPE=InnoDB;";
+		jdbc.executeUpdate(sql);
+	}
 }

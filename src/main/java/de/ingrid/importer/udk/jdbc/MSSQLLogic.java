@@ -42,4 +42,7 @@ public class MSSQLLogic implements DBLogic {
 	public void createTableT011ObjServType(JDBCConnectionProxy jdbc) throws SQLException {
 		// TODO !
 	}
+	public void createTableT011ObjServScale(JDBCConnectionProxy jdbc) throws SQLException {
+		// TODO !
+	}
 }

@@ -11,7 +11,8 @@ import java.sql.SQLException;
 public interface DBLogic {
 	
 	public static enum ColumnType {
-		TEXT, VARCHAR50
+		TEXT,
+		VARCHAR50
 	}
 
 	void setSchema(Connection connection, String schema) throws Exception;
@@ -25,7 +26,7 @@ public interface DBLogic {
 
 	/**
 	 * DDL Operation ! CAUSES COMMIT ON MySQL ! Modify a column (new type or constraint)
-	 * @param notNull if true the default value is set per jdbc automatically ???
+	 * @param notNull if true the default value is set per jdbc automatically ?
 	 */
 	void modifyColumn(String colName, ColumnType colType, String tableName, 
 		boolean notNull, JDBCConnectionProxy jdbc) throws SQLException;
@@ -35,10 +36,10 @@ public interface DBLogic {
 
 	/** DDL Operation ! CAUSES COMMIT ON MySQL ! */
 	void createTableObjectConformity(JDBCConnectionProxy jdbc) throws SQLException;
-
 	/** DDL Operation ! CAUSES COMMIT ON MySQL ! */
 	void createTableObjectAccess(JDBCConnectionProxy jdbc) throws SQLException;
-
 	/** DDL Operation ! CAUSES COMMIT ON MySQL ! */
 	void createTableT011ObjServType(JDBCConnectionProxy jdbc) throws SQLException;
+	/** DDL Operation ! CAUSES COMMIT ON MySQL ! */
+	void createTableT011ObjServScale(JDBCConnectionProxy jdbc) throws SQLException;
 }

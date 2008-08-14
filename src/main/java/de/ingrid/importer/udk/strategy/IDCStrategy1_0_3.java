@@ -124,6 +124,11 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		jdbc.getDBLogic().createTableT011ObjServType(jdbc);
 
 		if (log.isInfoEnabled()) {
+			log.info("Create table 't011_obj_serv_scale'...");
+		}
+		jdbc.getDBLogic().createTableT011ObjServScale(jdbc);
+
+		if (log.isInfoEnabled()) {
 			log.info("Extending datastructure... done");
 		}
 	}
