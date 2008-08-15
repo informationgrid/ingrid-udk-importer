@@ -1323,6 +1323,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 				// update full text index
 				long addrId = IDCStrategyHelper.getPK(dataProvider, "t02_address", "adr_id", row.get("obj_id"));
 				JDBCHelper.updateAddressIndex(addrId, row.get("comm_value"), jdbc); // T021Communication.commValue
+				JDBCHelper.updateAddressIndex(addrId, row.get("descr"), jdbc); // T021Communication.descr
 				
 			}
 		}
