@@ -32,8 +32,8 @@ public class ImportDescriptor {
 	private String configurationFile = "conf/descriptor.properties";
 
 	private String idcVersion = null;
-
 	private String idcCatalogueLanguage = null;
+	private String idcEmailDefault = null;
 
 	/**
 	 * ArrayList to store import files
@@ -179,9 +179,15 @@ public class ImportDescriptor {
 	public String getIdcCatalogueLanguage() {
 		return idcCatalogueLanguage;
 	}
-
 	public void setIdcCatalogueLanguage(String idcCatalogueLanguage) {
 		this.idcCatalogueLanguage = idcCatalogueLanguage;
+	}
+
+	public String getIdcEmailDefault() {
+		return idcEmailDefault;
+	}
+	public void setIdcEmailDefault(String idcEmailDefault) {
+		this.idcEmailDefault = idcEmailDefault;
 	}
 
 }

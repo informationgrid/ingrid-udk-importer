@@ -46,6 +46,9 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 	private LinkedHashMap<Integer, String> newSyslist5200 = new LinkedHashMap<Integer, String>(); 
 	private HashMap<Integer, Integer> oldToNewKeySyslist5200 = new HashMap<Integer, Integer>(); 
 
+	private final static Integer COMMUNICATION_TYPE_EMAIL_KEY = 3;
+	private final static String COMMUNICATION_TYPE_EMAIL_VALUE = "Email";
+
 	public String getIDCVersion() {
 		return MY_VERSION;
 	}
@@ -83,6 +86,9 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		System.out.println("done.");
 		System.out.print("  Updating t011_obj_serv_type...");
 		updateT011ObjServType();
+		System.out.println("done.");
+		System.out.print("  Updating t021_communication...");
+		updateT021Communication();
 		System.out.println("done.");
 
 		// Updating of HI/LO table not necessary anymore ! is checked and updated when fetching next id
@@ -648,7 +654,7 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		}
 
 		if (log.isInfoEnabled()) {
-			log.info("Migrate WFS name_key, name_value to new syslist 5120 (WFS Operations) ...");
+			log.info("Migrate buggy old WFS operation key/names to new syslist 5120 (WFS Operations) ...");
 		}
 
 		// then add entries for ALL t01_objects (no matter whether working or published version) 
@@ -728,13 +734,21 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 				jdbc.executeUpdate("INSERT INTO t011_obj_serv_type (id, obj_serv_id, line, serv_type_key, serv_type_value) "
 					+ "VALUES (" + getNextId() + ", " + objServId + ", 1, " + syslist5200EntryId + ", '"
 					+ syslist5200EntryValue	+ "');");
-				
-				processedObjIds.put(objId, true);
 
+				if (log.isDebugEnabled()) {
+					log.info("Obj-Service id(" + objServId+ "), wrote type " + syslist5200EntryId + "/" + syslist5200EntryValue);
+				}
+				
 				// extend object index (index contains only data of working versions !)
 				if (objWorkId == objId) {
 					JDBCHelper.updateObjectIndex(objNodeId, syslist5200EntryValue, jdbc); // t011_obj_serv_type.serv_type_value
+					
+					if (log.isDebugEnabled()) {
+						log.info("Also updated according index objNodeId(" + objNodeId + ") with '" + syslist5200EntryValue + "'");
+					}
 				}
+
+				processedObjIds.put(objId, true);
 			}
 		}
 		rs.close();
@@ -742,6 +756,141 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		if (log.isInfoEnabled()) {
 			log.info("Updating t011_obj_serv_type... done");
 		}
+	}
+
+	protected void updateT021Communication() throws Exception {
+		if (log.isInfoEnabled()) {
+			log.info("Updating t021_communication...");
+		}
+
+		String defaultEmail = importDescriptor.getIdcEmailDefault();
+		if (defaultEmail == null || defaultEmail.trim().length() == 0) {
+			throw new Exception("Default email missing for updating t021_communication, email is now mandatory");
+		}
+		String defaultEmailDescr = "Migration INSPIRE: Email hinzugefügt";
+
+		if (log.isInfoEnabled()) {
+			log.info("Check every object for email address and add if missing ...");
+		}
+
+		// select all addresses !
+		String sql = "select addrNode.id as addrNodeId, " +
+			"addrNode.addr_id as addrWorkId, addr.id as addrId, " +
+			"addrNode.fk_addr_uuid as parentUuid " +
+			"from t02_address addr, address_node addrNode " +
+			"where addr.adr_uuid = addrNode.addr_uuid";
+
+		// Node may contain different address versions (working and published version), just to be sure 
+		// we track written data in hash maps to avoid multiple writing for same address (or should we trust upper sql ;)
+		HashMap<Long, Boolean> processedAddrIds = new HashMap<Long,Boolean>();
+
+		ResultSet rs = jdbc.executeQuery(sql);
+		while (rs.next()) {
+			long addrNodeId = rs.getLong("addrNodeId");
+
+			long addrWorkId = rs.getLong("addrWorkId");
+			long addrId = rs.getLong("addrId");
+			boolean isWorkingVersion = (addrWorkId == addrId); 
+
+			String parentAddrUuid = rs.getString("parentUuid");
+
+			// already processed ?
+			if (!processedAddrIds.containsKey(addrId)) {
+				// check whether address has email
+				HashMap returnData = new HashMap();
+				String email = getAddressEmail(addrId, returnData);
+				if (email == null) {
+					// this is the line number the new email is added with
+					int line = ((Integer) returnData.get("MAX_LINE")) + 1;
+					
+					// get email from parent(s), use default email if no email set
+					String emailToAdd = getParentAddressEmail(parentAddrUuid, isWorkingVersion);				
+					emailToAdd = (emailToAdd == null) ? defaultEmail : emailToAdd;
+					
+					jdbc.executeUpdate(
+						"INSERT INTO t021_communication (id, adr_id, line, commtype_key, commtype_value, comm_value, descr) "
+						+ "VALUES (" + getNextId() + ", " + addrId + ", " + line + ", " + COMMUNICATION_TYPE_EMAIL_KEY + ", '"
+						+ COMMUNICATION_TYPE_EMAIL_VALUE + "', '" + emailToAdd + "', '" + defaultEmailDescr+ "');");					
+
+					if (log.isDebugEnabled()) {
+						log.info("Updated Address id(" + addrId + ") with email '" + emailToAdd + "'");
+					}
+					
+					// extend address index (index contains only data of working versions !)
+					if (isWorkingVersion) {
+						JDBCHelper.updateAddressIndex(addrNodeId, emailToAdd, jdbc); // t021_communication.comm_value
+						JDBCHelper.updateAddressIndex(addrNodeId, defaultEmailDescr, jdbc); // t021_communication.descr
+						
+						if (log.isDebugEnabled()) {
+							log.info("Also updated according index addressNodeId(" + addrNodeId + ") with '" + emailToAdd + "', '" + defaultEmailDescr + "'");
+						}
+					}
+				}
+
+				processedAddrIds.put(addrId, true);
+			}
+		}
+		rs.close();
+
+		if (log.isInfoEnabled()) {
+			log.info("Updating t021_communication... done");
+		}
+	}
+	
+	private String getAddressEmail(long addrId, HashMap returnData) throws Exception {
+		// select all communication values of address
+		String sql = "select commtype_key, comm_value, line " +
+		"from t021_communication " +
+		"where adr_id = " + addrId + " order by line";
+
+		String email = null;
+		ResultSet rs = jdbc.executeQuery(sql);
+		int maxLine = 0;
+		while (rs.next()) {
+			if (COMMUNICATION_TYPE_EMAIL_KEY.equals(rs.getInt("commtype_key"))) {
+				email = rs.getString("comm_value");
+			}
+			maxLine = rs.getInt("line");
+		}
+		rs.close();
+		
+		if (returnData != null) {
+			returnData.put("MAX_LINE", maxLine);
+		}
+
+		return email;
+	}
+
+	private String getParentAddressEmail(String parentAddrUuid, boolean isWorkingVersion) throws Exception {
+		if (parentAddrUuid == null) {
+			return null;
+		}
+
+		String sql;
+		if (isWorkingVersion) {
+			sql = "select addr_id as addrId";
+		} else {
+			sql = "select addr_id_published as addrId"; 
+		}
+		sql += ", fk_addr_uuid as parentUuid " +
+			"from address_node " +
+			"where addr_uuid = '" + parentAddrUuid + "'"; 
+
+		String email = null;
+		String parentUuid = null;
+		ResultSet rs = jdbc.executeQuery(sql);
+		if (rs.next()) {
+			parentUuid = rs.getString("parentUuid");
+			email = getAddressEmail(rs.getLong("addrId"), null);
+		}
+		rs.close();
+		
+		// recursive call to parent if no email yet 
+		if (email == null) {
+			getParentAddressEmail(parentUuid, isWorkingVersion);
+		}
+		
+		return email;
 	}
 
 	protected void cleanUpDataStructure() throws Exception {
