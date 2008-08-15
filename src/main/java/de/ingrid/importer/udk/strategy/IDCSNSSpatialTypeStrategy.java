@@ -47,16 +47,15 @@ public class IDCSNSSpatialTypeStrategy extends IDCStrategyDefault {
 			log.info("Updating spatial_ref_value...");
 		}
 
-		// Get all entries (id and nativekey)
-//		String sql = "select id, nativekey from spatial_ref_value;";
+		// Get all geothesaurus entries (id and nativekey)
 		// Extended query so we can update the index
 		String sql = "select distinct objNode.id as objNodeId, objNode.obj_id as objWorkId, obj.id as objId, " +
-		"spatialRefVal.id as spatialRefValId, spatialRefVal.nativekey as spatialRefNativekey, spatialRefVal.type as spatialRefValType, " +
-		"spatialRef.id as spatialRefId " +
+		"spatialRefVal.id as spatialRefValId, spatialRefVal.nativekey as spatialRefNativekey, spatialRef.id as spatialRefId " +
 		"from spatial_ref_value spatialRefVal, spatial_reference spatialRef, t01_object obj, object_node objNode " +
 		"where spatialRefVal.id = spatialRef.spatial_ref_id " +
 		"and spatialRef.obj_id = obj.id " +
-		"and obj.obj_uuid = objNode.obj_uuid";
+		"and obj.obj_uuid = objNode.obj_uuid " +
+		"and spatialRefVal.type = 'G'";
 
 		// we track written data in hash maps to avoid multiple writing for same spatial reference values
 		HashMap<Long, Boolean> processedSpatialRefIds = new HashMap<Long,Boolean>();
@@ -69,11 +68,10 @@ public class IDCSNSSpatialTypeStrategy extends IDCStrategyDefault {
 			long id = rs.getLong("spatialRefValId");
 			long spatialRefId = rs.getLong("spatialRefId");
 			String nativeKey = rs.getString("spatialRefNativekey");
-			boolean isSNSTopic = rs.getString("spatialRefValType").equalsIgnoreCase("G");
 			String type = "";
 
 			// convert & write values if not written yet !
-			if (isSNSTopic && !processedSpatialRefIds.containsKey(spatialRefId)) {
+			if (!processedSpatialRefIds.containsKey(spatialRefId)) {
 				// Extract the topic type from the native key.
 				// This is problematic since the ags/rs native keys are NOT unique!
 				if (nativeKey.endsWith("00000000")) {
