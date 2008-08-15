@@ -20,8 +20,10 @@ public class IDCSNSSpatialTypeStrategy extends IDCStrategyDefault {
 
 	private static Log log = LogFactory.getLog(IDCSNSSpatialTypeStrategy.class);
 
+	private static final String MY_VERSION = VALUE_IDC_VERSION_102_SNS_SPATIAL_TYPE;
+
 	public String getIDCVersion() {
-		return VALUE_IDC_VERSION_102_SNS_SPATIAL_TYPE;
+		return MY_VERSION;
 	}
 
 	public void execute() throws Exception {
@@ -32,6 +34,10 @@ public class IDCSNSSpatialTypeStrategy extends IDCStrategyDefault {
 		System.out.println("done.");
 
 		// THEN PERFORM DATA MANIPULATIONS !
+
+		// write IDC structure version !
+		setGenericKey(KEY_IDC_VERSION, MY_VERSION);
+
 		System.out.print("  Updating spatial_ref_value...");
 		updateSpatialRefValue();
 		System.out.println("done.");
