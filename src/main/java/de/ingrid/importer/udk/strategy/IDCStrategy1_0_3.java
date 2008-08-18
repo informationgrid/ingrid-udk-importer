@@ -135,6 +135,11 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		jdbc.getDBLogic().createTableT011ObjServScale(jdbc);
 
 		if (log.isInfoEnabled()) {
+			log.info("Create table 'sys_gui'...");
+		}
+		jdbc.getDBLogic().createTableSysGui(jdbc);
+
+		if (log.isInfoEnabled()) {
 			log.info("Extending datastructure... done");
 		}
 	}

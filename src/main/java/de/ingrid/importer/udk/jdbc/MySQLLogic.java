@@ -118,4 +118,15 @@ public class MySQLLogic implements DBLogic {
 			"TYPE=InnoDB;";
 		jdbc.executeUpdate(sql);
 	}
+	public void createTableSysGui(JDBCConnectionProxy jdbc) throws SQLException {
+		String sql = "CREATE TABLE sys_gui(" +
+			"id BIGINT NOT NULL, " +
+			"version INTEGER NOT NULL DEFAULT 0, " +
+			"gui_id VARCHAR(100) NOT NULL, " +
+			"behaviour INTEGER NOT NULL DEFAULT -1, " +
+			"PRIMARY KEY (id), " +
+			"UNIQUE (gui_id)) " +
+			"TYPE=InnoDB;";
+		jdbc.executeUpdate(sql);
+	}
 }
