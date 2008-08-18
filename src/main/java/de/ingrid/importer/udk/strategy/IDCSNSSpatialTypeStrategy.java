@@ -56,9 +56,11 @@ public class IDCSNSSpatialTypeStrategy extends IDCStrategyDefault {
 		// Get all geothesaurus entries (id and nativekey)
 		// Extended query so we can update the index
 		String sql = "select distinct objNode.id as objNodeId, objNode.obj_id as objWorkId, obj.id as objId, " +
-		"spatialRefVal.id as spatialRefValId, spatialRefVal.nativekey as spatialRefNativekey, spatialRef.id as spatialRefId " +
-		"from spatial_ref_value spatialRefVal, spatial_reference spatialRef, t01_object obj, object_node objNode " +
+		"spatialRefVal.id as spatialRefValId, spatialRefVal.nativekey as spatialRefNativekey, spatialRef.id as spatialRefId, " +
+		"spatialRefSNS.sns_id as spatialRefSNSId " +
+		"from spatial_ref_value spatialRefVal, spatial_reference spatialRef, spatial_ref_sns spatialRefSNS, t01_object obj, object_node objNode " +
 		"where spatialRefVal.id = spatialRef.spatial_ref_id " +
+		"and spatialRefSNS.id = spatialRefVal.spatial_ref_sns_id " +
 		"and spatialRef.obj_id = obj.id " +
 		"and obj.obj_uuid = objNode.obj_uuid " +
 		"and spatialRefVal.type = 'G'";
@@ -73,6 +75,7 @@ public class IDCSNSSpatialTypeStrategy extends IDCStrategyDefault {
 			long objId = rs.getLong("objId");
 			long id = rs.getLong("spatialRefValId");
 			long spatialRefId = rs.getLong("spatialRefId");
+			String spatialRefSNSId = rs.getString("spatialRefSNSId");
 			String nativeKey = rs.getString("spatialRefNativekey");
 			String type = "";
 
@@ -80,17 +83,7 @@ public class IDCSNSSpatialTypeStrategy extends IDCStrategyDefault {
 			if (!processedSpatialRefIds.containsKey(spatialRefId)) {
 				// Extract the topic type from the native key.
 				// This is problematic since the ags/rs native keys are NOT unique!
-				if (nativeKey.endsWith("00000000")) {
-					type = "nationType";
-				} else if (nativeKey.endsWith("000000")) {
-					type = "use2Type";
-				} else if (nativeKey.endsWith("00000")) {
-					type = "use3Type";
-				} else if (nativeKey.endsWith("000")) {
-					type = "use4Type";
-				} else if (nativeKey.length() == 8) {
-					type = "use6Type";
-				}
+				type = getSNSTopicTypeFor(spatialRefSNSId, nativeKey);
 
 				if (log.isDebugEnabled()) {
 					log.debug("Updating spatial_ref_value entry: ["+id+", "+nativeKey+", "+type+"]");
@@ -127,5 +120,38 @@ public class IDCSNSSpatialTypeStrategy extends IDCStrategyDefault {
 		if (log.isInfoEnabled()) {
 			log.info("Extending datastructure... done");
 		}
+	}
+
+	// Determine the SNS Topic Type (use2Type, use4Type, ...) from the given snsId and nativeKey.
+	// The SNS ID is checked first for 'KREIS', 'GEMEINDE', ...
+	// If no type could be constructed from the SNS ID, the nativekey is analyzed. 
+	private String getSNSTopicTypeFor(String snsId, String nativeKey) {
+		// First try to determine the type from the given sns id
+		if (snsId.startsWith("BUNDESLAND")) {
+			return "use2Type";
+
+		} else if (snsId.startsWith("KREIS")) {
+			return "use4Type";
+
+		} else if (snsId.startsWith("GEMEINDE")) {
+			return "use6Type";
+		}
+
+		// Try to determine the type from the given rs nativeKey
+		if (nativeKey.endsWith("00000000")) {
+			return "nationType";
+		} else if (nativeKey.endsWith("000000")) {
+			return "use2Type";
+		} else if (nativeKey.endsWith("00000")) {
+			return "use3Type";
+		} else if (nativeKey.endsWith("000")) {
+			return "use4Type";
+		} else if (nativeKey.length() == 8) {
+			return "use6Type";
+		}
+
+		// Could not determine native key
+		log.debug("Could not determine type for SNS Topic with id '"+snsId+"' and nativekey: '"+nativeKey+"'");
+		return null;
 	}
 }
