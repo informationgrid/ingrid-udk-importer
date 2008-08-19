@@ -151,7 +151,7 @@ public class IDCSNSSpatialTypeStrategy extends IDCStrategyDefault {
 		}
 
 		// Could not determine native key
-		log.debug("Could not determine type for SNS Topic with id '"+snsId+"' and nativekey: '"+nativeKey+"'");
+		log.warn("Could not determine type for SNS Topic with id '"+snsId+"' and nativekey: '"+nativeKey+"'");
 		return null;
 	}
 }
