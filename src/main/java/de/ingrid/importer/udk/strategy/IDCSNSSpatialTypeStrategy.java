@@ -115,7 +115,7 @@ public class IDCSNSSpatialTypeStrategy extends IDCStrategyDefault {
 		if (log.isInfoEnabled()) {
 			log.info("Add column 'topic_type' to table 'spatial_ref_value'...");
 		}
-		jdbc.getDBLogic().addColumn("topic_type", ColumnType.VARCHAR50, "spatial_ref_value", false, jdbc);
+		jdbc.getDBLogic().addColumn("topic_type", ColumnType.VARCHAR50, "spatial_ref_value", false, null, jdbc);
 
 		if (log.isInfoEnabled()) {
 			log.info("Extending datastructure... done");

@@ -20,7 +20,7 @@ public class MSSQLLogic implements DBLogic {
 	}
 
 	public void addColumn(String colName, ColumnType colType, String tableName, boolean notNull, 
-			JDBCConnectionProxy jdbc) throws SQLException {
+			Object defaultValue, JDBCConnectionProxy jdbc) throws SQLException {
 		// TODO !
 	}
 

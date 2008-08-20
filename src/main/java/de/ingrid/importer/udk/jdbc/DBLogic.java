@@ -12,17 +12,20 @@ public interface DBLogic {
 	
 	public static enum ColumnType {
 		TEXT,
-		VARCHAR50
+		VARCHAR50,
+		INTEGER
 	}
 
 	void setSchema(Connection connection, String schema) throws Exception;
 
 	/**
 	 * DDL Operation ! CAUSES COMMIT ON MySQL ! ADD a column.
-	 * @param notNull if true the default value is set per jdbc automatically
+	 * @param notNull pass true if value cannot be null.
+	 * 		NOTICE: if true the default value is set per jdbc automatically.
+	 * @param defaultValue pass null if no default value. ONLY PASS IF notNull=false.
 	 */
 	void addColumn(String colName, ColumnType colType, String tableName, 
-		boolean notNull, JDBCConnectionProxy jdbc) throws SQLException;
+		boolean notNull, Object defaultValue, JDBCConnectionProxy jdbc) throws SQLException;
 
 	/**
 	 * DDL Operation ! CAUSES COMMIT ON MySQL ! Modify a column (new type or constraint)

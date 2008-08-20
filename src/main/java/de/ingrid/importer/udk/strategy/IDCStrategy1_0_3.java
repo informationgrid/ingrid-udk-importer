@@ -117,10 +117,10 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		jdbc.getDBLogic().createTableObjectConformity(jdbc);
 
 		if (log.isInfoEnabled()) {
-			log.info("Add column 'datasource_uuid' to 'table t011_obj_geo'...");
+			log.info("Add column 'datasource_uuid' to table 't011_obj_geo'...");
 		}
 		// don't add "not null", can be empty in working version !
-		jdbc.getDBLogic().addColumn("datasource_uuid", ColumnType.TEXT, "t011_obj_geo", false, jdbc);
+		jdbc.getDBLogic().addColumn("datasource_uuid", ColumnType.TEXT, "t011_obj_geo", false, null, jdbc);
 		
 		if (log.isInfoEnabled()) {
 			log.info("Create table 'object_access'...");
@@ -142,6 +142,11 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		}
 		jdbc.getDBLogic().createTableSysGui(jdbc);
 
+		if (log.isInfoEnabled()) {
+			log.info("Add column 'line' to table 'sys_list'...");
+		}
+		jdbc.getDBLogic().addColumn("line", ColumnType.INTEGER, "sys_list", false, 0, jdbc);
+		
 		if (log.isInfoEnabled()) {
 			log.info("Extending datastructure... done");
 		}

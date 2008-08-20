@@ -21,18 +21,24 @@ public class MySQLLogic implements DBLogic {
 	}
 
 	public void addColumn(String colName, ColumnType colType, String tableName, boolean notNull, 
-			JDBCConnectionProxy jdbc) throws SQLException {
+			Object defaultValue, JDBCConnectionProxy jdbc) throws SQLException {
 		String sql = "ALTER TABLE " + tableName	+ " ADD " + colName;
 
 		if (colType == ColumnType.TEXT) {
 			sql += " TEXT";
 		} else if (colType == ColumnType.VARCHAR50) {
 			sql += " VARCHAR(50)";
+		} else if (colType == ColumnType.INTEGER) {
+			sql += " INTEGER";
 		}
 
 		if (notNull) {
 			sql += " NOT NULL";
 			// NOTICE: adding default value causes ERROR ! is added by jdbc automatically !
+		} else {
+			if (defaultValue != null) {
+				sql += " DEFAULT " + defaultValue;				
+			}
 		}
 
 		jdbc.executeUpdate(sql);
@@ -46,6 +52,8 @@ public class MySQLLogic implements DBLogic {
 			sql += " TEXT";
 		} else if (colType == ColumnType.VARCHAR50) {
 			sql += " VARCHAR(50)";
+		} else if (colType == ColumnType.INTEGER) {
+			sql += " INTEGER";
 		}
 
 		if (notNull) {
