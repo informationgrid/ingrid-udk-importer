@@ -34,11 +34,10 @@ public class MySQLLogic implements DBLogic {
 
 		if (notNull) {
 			sql += " NOT NULL";
-			// NOTICE: adding default value causes ERROR ! is added by jdbc automatically !
-		} else {
-			if (defaultValue != null) {
-				sql += " DEFAULT " + defaultValue;				
-			}
+			// NOTICE: adding default value causes ERROR (at least when type string) ! is added by jdbc automatically !
+		}
+		if (defaultValue != null) {
+			sql += " DEFAULT " + defaultValue;
 		}
 
 		jdbc.executeUpdate(sql);

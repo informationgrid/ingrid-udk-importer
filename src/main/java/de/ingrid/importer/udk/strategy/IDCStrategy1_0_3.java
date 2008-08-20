@@ -143,10 +143,12 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		jdbc.getDBLogic().createTableSysGui(jdbc);
 
 		if (log.isInfoEnabled()) {
-			log.info("Add column 'line' to table 'sys_list'...");
+			log.info("Table 'sys_list': add column 'line'; change type of 'lst_id', 'entry_id' to VARCHAR(50)...");
 		}
 		jdbc.getDBLogic().addColumn("line", ColumnType.INTEGER, "sys_list", false, 0, jdbc);
-		
+		jdbc.getDBLogic().modifyColumn("lst_id", ColumnType.VARCHAR50, "sys_list", true, jdbc);
+		jdbc.getDBLogic().modifyColumn("entry_id", ColumnType.VARCHAR50, "sys_list", true, jdbc);
+
 		if (log.isInfoEnabled()) {
 			log.info("Extending datastructure... done");
 		}
