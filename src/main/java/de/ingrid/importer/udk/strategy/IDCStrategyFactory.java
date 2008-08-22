@@ -26,10 +26,12 @@ public class IDCStrategyFactory {
 			return new IDCInitDBStrategy1_0_2();
 		} else if (idcVersion.equals("1.0.2_help")) {
 			return new IDCHelpImporterStrategy();
-		} else if (idcVersion.equals("1.0.2_sns_spatial_type")) {
-			return new IDCSNSSpatialTypeStrategy();
 		} else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_102)) {
 			return new IDCStrategy1_0_2();
+		} else if (idcVersion.equals("1.0.2_fix_import")) {
+			return new IDCImporterFixStrategy();
+		} else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_102_SNS_SPATIAL_TYPE)) {
+			return new IDCSNSSpatialTypeStrategy();
 		} else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_103)) {
 			return new IDCStrategy1_0_3();
 		} else {
