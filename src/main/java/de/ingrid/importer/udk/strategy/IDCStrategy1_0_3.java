@@ -1097,6 +1097,7 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		jdbc.getDBLogic().dropColumn("lastexport_time", "t01_object", jdbc);
 		jdbc.getDBLogic().dropColumn("expiry_time", "t01_object", jdbc);
 		jdbc.getDBLogic().dropColumn("mark_deleted", "t01_object", jdbc);
+		jdbc.getDBLogic().dropColumn("work_version", "t01_object", jdbc);
 
 		if (log.isInfoEnabled()) {
 			log.info("Drop columns in 't02_address' (moved to 'address_metadata' table)...");
@@ -1104,6 +1105,7 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		jdbc.getDBLogic().dropColumn("lastexport_time", "t02_address", jdbc);
 		jdbc.getDBLogic().dropColumn("expiry_time", "t02_address", jdbc);
 		jdbc.getDBLogic().dropColumn("mark_deleted", "t02_address", jdbc);
+		jdbc.getDBLogic().dropColumn("work_version", "t02_address", jdbc);
 
 		if (log.isInfoEnabled()) {
 			log.info("Cleaning up datastructure... done");
