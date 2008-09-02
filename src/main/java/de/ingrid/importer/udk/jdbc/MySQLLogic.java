@@ -30,6 +30,8 @@ public class MySQLLogic implements DBLogic {
 			sql += " VARCHAR(50)";
 		} else if (colType == ColumnType.INTEGER) {
 			sql += " INTEGER";
+		} else if (colType == ColumnType.BIGINT) {
+			sql += " BIGINT";
 		}
 
 		if (notNull) {
@@ -53,6 +55,8 @@ public class MySQLLogic implements DBLogic {
 			sql += " VARCHAR(50)";
 		} else if (colType == ColumnType.INTEGER) {
 			sql += " INTEGER";
+		} else if (colType == ColumnType.BIGINT) {
+			sql += " BIGINT";
 		}
 
 		if (notNull) {
@@ -65,6 +69,12 @@ public class MySQLLogic implements DBLogic {
 
 	public void dropColumn(String colName, String tableName, JDBCConnectionProxy jdbc) throws SQLException {
 		String sql = "ALTER TABLE " + tableName	+ " DROP COLUMN " + colName;
+		jdbc.executeUpdate(sql);
+	}
+
+	public void addIndex(String colName, String tableName, String indexName,
+			JDBCConnectionProxy jdbc) throws SQLException {
+		String sql = "ALTER TABLE " + tableName + " ADD INDEX " + indexName + " (" + colName + ")";
 		jdbc.executeUpdate(sql);
 	}
 
@@ -133,6 +143,27 @@ public class MySQLLogic implements DBLogic {
 			"behaviour INTEGER NOT NULL DEFAULT -1, " +
 			"PRIMARY KEY (id), " +
 			"UNIQUE (gui_id)) " +
+			"TYPE=InnoDB;";
+		jdbc.executeUpdate(sql);
+	}
+	public void createTablesMetadata(JDBCConnectionProxy jdbc) throws SQLException {
+		String sql = "CREATE TABLE object_metadata(" +
+			"id BIGINT NOT NULL, " +
+			"version INTEGER NOT NULL DEFAULT 0, " +
+			"expiry_state INTEGER DEFAULT 0, " +
+			"lastexport_time VARCHAR(17), " +
+			"mark_deleted CHAR(1) DEFAULT 'N', " +
+			"PRIMARY KEY (id)) " +
+			"TYPE=InnoDB;";
+		jdbc.executeUpdate(sql);
+		
+		sql = "CREATE TABLE address_metadata(" +
+			"id BIGINT NOT NULL, " +
+			"version INTEGER NOT NULL DEFAULT 0, " +
+			"expiry_state INTEGER DEFAULT 0, " +
+			"lastexport_time VARCHAR(17), " +
+			"mark_deleted CHAR(1) DEFAULT 'N', " +
+			"PRIMARY KEY (id)) " +
 			"TYPE=InnoDB;";
 		jdbc.executeUpdate(sql);
 	}

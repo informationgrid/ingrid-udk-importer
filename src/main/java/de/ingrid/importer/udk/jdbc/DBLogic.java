@@ -13,7 +13,8 @@ public interface DBLogic {
 	public static enum ColumnType {
 		TEXT,
 		VARCHAR50,
-		INTEGER
+		INTEGER,
+		BIGINT
 	}
 
 	void setSchema(Connection connection, String schema) throws Exception;
@@ -35,6 +36,9 @@ public interface DBLogic {
 	void modifyColumn(String colName, ColumnType colType, String tableName, 
 		boolean notNull, JDBCConnectionProxy jdbc) throws SQLException;
 
+	void addIndex(String colName, String tableName, String indexName,
+		JDBCConnectionProxy jdbc) throws SQLException;
+
 	/** DDL Operation ! CAUSES COMMIT ON MySQL ! DROP a column. */
 	void dropColumn(String colName, String tableName, JDBCConnectionProxy jdbc) throws SQLException;
 
@@ -48,4 +52,6 @@ public interface DBLogic {
 	void createTableT011ObjServScale(JDBCConnectionProxy jdbc) throws SQLException;
 	/** DDL Operation ! CAUSES COMMIT ON MySQL ! */
 	void createTableSysGui(JDBCConnectionProxy jdbc) throws SQLException;
+	/** DDL Operation ! CAUSES COMMIT ON MySQL ! */
+	void createTablesMetadata(JDBCConnectionProxy jdbc) throws SQLException;
 }

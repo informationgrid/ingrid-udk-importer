@@ -93,6 +93,9 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		System.out.print("  Updating sys_gui...");
 		updateSysGui();
 		System.out.println("done.");
+		System.out.print("  Updating new object/address metadata tables ...");
+		updateTablesMetadata();
+		System.out.println("done.");
 
 		// Updating of HI/LO table not necessary anymore ! is checked and updated when fetching next id
 		// via getNextId() ...
@@ -146,6 +149,19 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 			log.info("Add column 'line' to table 'sys_list'...");
 		}
 		jdbc.getDBLogic().addColumn("line", ColumnType.INTEGER, "sys_list", false, 0, jdbc);
+
+		if (log.isInfoEnabled()) {
+			log.info("Create tables 'object_metadata', 'address_metadata'...");
+		}
+		jdbc.getDBLogic().createTablesMetadata(jdbc);
+
+		if (log.isInfoEnabled()) {
+			log.info("Add metadata association to object/address tables (FKey and index)...");
+		}
+		jdbc.getDBLogic().addColumn("obj_metadata_id", ColumnType.BIGINT, "t01_object", false, null, jdbc);
+		jdbc.getDBLogic().addIndex("obj_metadata_id", "t01_object", "idxObj_ObjMeta", jdbc);
+		jdbc.getDBLogic().addColumn("addr_metadata_id", ColumnType.BIGINT, "t02_address", false, null, jdbc);
+		jdbc.getDBLogic().addIndex("addr_metadata_id", "t02_address", "idxAddr_AddrMeta", jdbc);
 
 		if (log.isInfoEnabled()) {
 			log.info("Extending datastructure... done");
@@ -1016,6 +1032,43 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 			log.info("Updating sys_gui... done");
 		}
 	}
+
+	protected void updateTablesMetadata() throws Exception {
+		// update all objects !
+		if (log.isInfoEnabled()) {
+			log.info("Updating object_metadata...");
+		}
+		ResultSet rs = jdbc.executeQuery("select id from t01_object");
+		while (rs.next()) {
+			long id = rs.getLong("id");
+			long metaId = getNextId();
+
+			jdbc.executeUpdate("INSERT INTO object_metadata (id) "	+ "VALUES (" + metaId + ");");
+			jdbc.executeUpdate("UPDATE t01_object SET obj_metadata_id = " + metaId + " where id = " + id);
+		}
+		rs.close();
+		if (log.isInfoEnabled()) {
+			log.info("Updating object_metadata... done");
+		}
+
+		
+		// update all addresses !
+		if (log.isInfoEnabled()) {
+			log.info("Updating address_metadata...");
+		}
+		rs = jdbc.executeQuery("select id from t02_address");
+		while (rs.next()) {
+			long id = rs.getLong("id");
+			long metaId = getNextId();
+
+			jdbc.executeUpdate("INSERT INTO address_metadata (id) "	+ "VALUES (" + metaId + ");");
+			jdbc.executeUpdate("UPDATE t02_address SET addr_metadata_id = " + metaId + " where id = " + id);
+		}
+		rs.close();
+		if (log.isInfoEnabled()) {
+			log.info("Updating address_metadata... done");
+		}
+	}
 	
 	protected void cleanUpDataStructure() throws Exception {
 		if (log.isInfoEnabled()) {
@@ -1038,6 +1091,20 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		}
 		jdbc.getDBLogic().modifyColumn("special_base", ColumnType.TEXT, "t011_obj_geo", true, jdbc);
 */
+		if (log.isInfoEnabled()) {
+			log.info("Drop columns in 't01_object' (moved to 'object_metadata' table)...");
+		}
+		jdbc.getDBLogic().dropColumn("lastexport_time", "t01_object", jdbc);
+		jdbc.getDBLogic().dropColumn("expiry_time", "t01_object", jdbc);
+		jdbc.getDBLogic().dropColumn("mark_deleted", "t01_object", jdbc);
+
+		if (log.isInfoEnabled()) {
+			log.info("Drop columns in 't02_address' (moved to 'address_metadata' table)...");
+		}
+		jdbc.getDBLogic().dropColumn("lastexport_time", "t02_address", jdbc);
+		jdbc.getDBLogic().dropColumn("expiry_time", "t02_address", jdbc);
+		jdbc.getDBLogic().dropColumn("mark_deleted", "t02_address", jdbc);
+
 		if (log.isInfoEnabled()) {
 			log.info("Cleaning up datastructure... done");
 		}

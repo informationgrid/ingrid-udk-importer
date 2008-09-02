@@ -33,6 +33,11 @@ public class MSSQLLogic implements DBLogic {
 		// TODO
 	}
 
+	public void addIndex(String colName, String tableName, String indexName,
+			JDBCConnectionProxy jdbc) throws SQLException {
+		// TODO		
+	}
+
 	public void createTableObjectConformity(JDBCConnectionProxy jdbc) throws SQLException {
 		// TODO !
 	}
@@ -46,6 +51,9 @@ public class MSSQLLogic implements DBLogic {
 		// TODO !
 	}
 	public void createTableSysGui(JDBCConnectionProxy jdbc) throws SQLException {
+		// TODO !
+	}
+	public void createTablesMetadata(JDBCConnectionProxy jdbc) throws SQLException {
 		// TODO !
 	}
 }
