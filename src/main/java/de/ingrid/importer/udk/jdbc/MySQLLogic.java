@@ -87,6 +87,7 @@ public class MySQLLogic implements DBLogic {
 			"specification TEXT, " +
 			"degree_key INTEGER, " +
 			"degree_value VARCHAR(255),	" +
+			"publication_date VARCHAR(17), " +
 			"PRIMARY KEY (id), " +
 			"INDEX idxObjConf_ObjId (obj_id ASC)) " +
 			"TYPE=InnoDB;";

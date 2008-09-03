@@ -4,6 +4,8 @@
 package de.ingrid.importer.udk.strategy;
 
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -25,8 +27,7 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 	private static final String MY_VERSION = VALUE_IDC_VERSION_103;
 
 	private int defaultSyslist6000EntryId = 3;
-	private String defaultSyslist6000EntryValue =
-		"nicht evaluiert: Die Konformität der Datenquelle wurde noch nicht evaluiert";
+	private String defaultSyslist6000EntryValue = "nicht evaluiert";
 
 	private int noData_Syslist6010EntryId = 1;
 	private String noData_Syslist6010EntryValue = "keine";
@@ -184,9 +185,9 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 
 		// insert new syslist
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
-			+ getNextId() + ", " + lstId + ", 1, 'de', 'konform: Die Datenquelle ist vollständig konform zur zitierten Spezifikation', 0, 'N');");
+			+ getNextId() + ", " + lstId + ", 1, 'de', 'konform', 0, 'N');");
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
-			+ getNextId() + ", " + lstId + ", 2, 'de', 'nicht konform: Die Datenquelle ist nicht konform zur zitierten Spezifikation', 0, 'N');");
+			+ getNextId() + ", " + lstId + ", 2, 'de', 'nicht konform', 0, 'N');");
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
 			+ getNextId() + ", " + lstId + ", " + defaultSyslist6000EntryId + ", 'de', '"
 			+ defaultSyslist6000EntryValue + "', 0, 'Y');");
@@ -530,6 +531,9 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 			log.info("Add default entries for every object...");
 		}
 
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyyMMdd");
+		String currDateTimestamp = dateFormatter.format(new Date()) + "000000000";
+
 		// then add entries for ALL t01_objects (no matter whether working or published version) 
 		String sql = "select distinct objNode.id as objNodeId, obj.id as objId " +
 			"from t01_object obj, object_node objNode " +
@@ -543,9 +547,9 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 
 			String defaultSpecification = "INSPIRE-Richtlinie";
 
-			jdbc.executeUpdate("INSERT INTO object_conformity (id, obj_id, line, specification, degree_key, degree_value) " +
+			jdbc.executeUpdate("INSERT INTO object_conformity (id, obj_id, line, specification, degree_key, degree_value, publication_date) " +
 				"VALUES (" + getNextId() + ", " + objId + ", 1, '" + defaultSpecification + "', "
-				+ defaultSyslist6000EntryId + ", '" + defaultSyslist6000EntryValue + "');");
+				+ defaultSyslist6000EntryId + ", '" + defaultSyslist6000EntryValue + "', '" + currDateTimestamp + "');");
 			
 			// Node may contain different object versions, then we receive nodeId multiple times.
 			// Write Index only once (index contains data of working version!) !
