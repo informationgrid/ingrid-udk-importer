@@ -155,6 +155,9 @@ public class MySQLLogic implements DBLogic {
 			"lastexport_time VARCHAR(17), " +
 			"mark_deleted CHAR(1) DEFAULT 'N', " +
 			"assigner_uuid VARCHAR(40), " +
+			"assign_time VARCHAR(17), " +
+			"reassigner_uuid VARCHAR(40), " +
+			"reassign_time VARCHAR(17), " +
 			"PRIMARY KEY (id)) " +
 			"TYPE=InnoDB;";
 		jdbc.executeUpdate(sql);
@@ -166,6 +169,9 @@ public class MySQLLogic implements DBLogic {
 			"lastexport_time VARCHAR(17), " +
 			"mark_deleted CHAR(1) DEFAULT 'N', " +
 			"assigner_uuid VARCHAR(40), " +
+			"assign_time VARCHAR(17), " +
+			"reassigner_uuid VARCHAR(40), " +
+			"reassign_time VARCHAR(17), " +
 			"PRIMARY KEY (id)) " +
 			"TYPE=InnoDB;";
 		jdbc.executeUpdate(sql);
