@@ -154,6 +154,7 @@ public class MySQLLogic implements DBLogic {
 			"expiry_state INTEGER DEFAULT 0, " +
 			"lastexport_time VARCHAR(17), " +
 			"mark_deleted CHAR(1) DEFAULT 'N', " +
+			"assigner_uuid VARCHAR(40), " +
 			"PRIMARY KEY (id)) " +
 			"TYPE=InnoDB;";
 		jdbc.executeUpdate(sql);
@@ -164,6 +165,7 @@ public class MySQLLogic implements DBLogic {
 			"expiry_state INTEGER DEFAULT 0, " +
 			"lastexport_time VARCHAR(17), " +
 			"mark_deleted CHAR(1) DEFAULT 'N', " +
+			"assigner_uuid VARCHAR(40), " +
 			"PRIMARY KEY (id)) " +
 			"TYPE=InnoDB;";
 		jdbc.executeUpdate(sql);
