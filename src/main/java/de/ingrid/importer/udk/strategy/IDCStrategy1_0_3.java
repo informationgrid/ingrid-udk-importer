@@ -97,6 +97,9 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		System.out.print("  Updating new object/address metadata tables ...");
 		updateTablesMetadata();
 		System.out.println("done.");
+		System.out.print("  Updating object_comment/address_comment new line attribute ...");
+		updateComments();
+		System.out.println("done.");
 
 		// Updating of HI/LO table not necessary anymore ! is checked and updated when fetching next id
 		// via getNextId() ...
@@ -163,6 +166,12 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		jdbc.getDBLogic().addIndex("obj_metadata_id", "t01_object", "idxObj_ObjMeta", jdbc);
 		jdbc.getDBLogic().addColumn("addr_metadata_id", ColumnType.BIGINT, "t02_address", false, null, jdbc);
 		jdbc.getDBLogic().addIndex("addr_metadata_id", "t02_address", "idxAddr_AddrMeta", jdbc);
+
+		if (log.isInfoEnabled()) {
+			log.info("Add column 'line' to tables 'object_comment', 'address_comment'...");
+		}
+		jdbc.getDBLogic().addColumn("line", ColumnType.INTEGER, "object_comment", false, 0, jdbc);
+		jdbc.getDBLogic().addColumn("line", ColumnType.INTEGER, "address_comment", false, 0, jdbc);
 
 		if (log.isInfoEnabled()) {
 			log.info("Extending datastructure... done");
@@ -1150,6 +1159,58 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		rs.close();
 		if (log.isInfoEnabled()) {
 			log.info("Updating address_metadata... done");
+		}
+	}
+	
+	protected void updateComments() throws Exception {
+		// update all objects !
+		if (log.isInfoEnabled()) {
+			log.info("Updating object_comment new line attribute...");
+		}
+		ResultSet rs = jdbc.executeQuery(
+				"select id, obj_id from object_comment order by obj_id, create_time");
+		int currLine = 1;
+		long currEntityId = -1;
+		while (rs.next()) {
+			long id = rs.getLong("id");
+			long objId = rs.getLong("obj_id");
+			if (objId != currEntityId) {
+				currEntityId = objId;
+				currLine = 1;
+			}
+
+			jdbc.executeUpdate("UPDATE object_comment SET line = " + currLine + " where id = " + id);
+			
+			currLine++;
+		}
+		rs.close();
+		if (log.isInfoEnabled()) {
+			log.info("Updating object_comment... done");
+		}
+
+		
+		// update all addresses !
+		if (log.isInfoEnabled()) {
+			log.info("Updating address_comment new line attribute...");
+		}
+		rs = jdbc.executeQuery(
+				"select id, addr_id from address_comment order by addr_id, create_time");
+		currEntityId = -1;
+		while (rs.next()) {
+			long id = rs.getLong("id");
+			long addrId = rs.getLong("addr_id");
+			if (addrId != currEntityId) {
+				currEntityId = addrId;
+				currLine = 1;
+			}
+
+			jdbc.executeUpdate("UPDATE address_comment SET line = " + currLine + " where id = " + id);
+			
+			currLine++;
+		}
+		rs.close();
+		if (log.isInfoEnabled()) {
+			log.info("Updating address_comment... done");
 		}
 	}
 	
