@@ -73,7 +73,8 @@ public class Importer {
 			log.error(e.getMessage());
 			System.out.println("\nProblems determining strategies to execute, see log for details.");
 		}
-		
+
+		boolean errorOccured = false;
 		for (IDCStrategy strategy : strategiesToExecute) {
 
 			String targetVersionInfo = "";
@@ -120,9 +121,15 @@ public class Importer {
 			
 			if (!executed) {
 				System.out.println("\nError executing strategy " + strategy + targetVersionInfo + ", see log for details");
+				errorOccured = true;
 				// STOP !!!
 				break;
 			}
+		}
+		
+		if (!errorOccured) {
+			System.out.println("\nImporter/Updater executed succesfully.\n" +
+				"REMEMBER: full sys_lists (including localization) have to be imported via csv.");			
 		}
 	}
 }

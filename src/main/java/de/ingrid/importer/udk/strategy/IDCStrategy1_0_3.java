@@ -70,35 +70,49 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		System.out.print("  Updating sys_list...");
 		updateSysList();
 		System.out.println("done.");
+
 		System.out.print("  Updating object_conformity...");
 		updateObjectConformity();
 		System.out.println("done.");
+
 		System.out.print("  Updating t011_obj_geo...");
 		updateT011ObjGeo();
 		System.out.println("done.");
+
 		System.out.print("  Updating object_access...");
 		updateObjectAccess();
 		System.out.println("done.");
+
 		System.out.print("  Updating t011_obj_serv...");
 		updateT011ObjServ();
 		System.out.println("done.");
+
 		System.out.print("  Updating t011_obj_serv_operation...");
 		updateT011ObjServOperation();
 		System.out.println("done.");
+
 		System.out.print("  Updating t011_obj_serv_type...");
 		updateT011ObjServType();
 		System.out.println("done.");
+
 		System.out.print("  Updating t021_communication...");
 		updateT021Communication();
 		System.out.println("done.");
+
 		System.out.print("  Updating sys_gui...");
 		updateSysGui();
 		System.out.println("done.");
+
 		System.out.print("  Updating new object/address metadata tables ...");
 		updateTablesMetadata();
 		System.out.println("done.");
+
 		System.out.print("  Updating object_comment/address_comment new line attribute ...");
 		updateComments();
+		System.out.println("done.");
+
+		System.out.print("  Updating object_node/address_node new tree_path attribute ...");
+		updateTreePath();
 		System.out.println("done.");
 
 		// Updating of HI/LO table not necessary anymore ! is checked and updated when fetching next id
@@ -172,6 +186,12 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		}
 		jdbc.getDBLogic().addColumn("line", ColumnType.INTEGER, "object_comment", false, 0, jdbc);
 		jdbc.getDBLogic().addColumn("line", ColumnType.INTEGER, "address_comment", false, 0, jdbc);
+
+		if (log.isInfoEnabled()) {
+			log.info("Add column 'tree_path' to tables 'object_node', 'address_node'...");
+		}
+		jdbc.getDBLogic().addColumn("tree_path", ColumnType.MEDIUMTEXT, "object_node", false, null, jdbc);
+		jdbc.getDBLogic().addColumn("tree_path", ColumnType.MEDIUMTEXT, "address_node", false, null, jdbc);
 
 		if (log.isInfoEnabled()) {
 			log.info("Extending datastructure... done");
@@ -1211,6 +1231,89 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		rs.close();
 		if (log.isInfoEnabled()) {
 			log.info("Updating address_comment... done");
+		}
+	}
+	
+	protected void updateTreePath() throws Exception {
+		String NODE_SEPARATOR = "|";  
+
+		// update all objects !
+		if (log.isInfoEnabled()) {
+			log.info("Updating tree_path in object_node...");
+		}
+
+		// first set up map representing tree structure
+		HashMap<String, String> nodeToParentMap = new HashMap<String, String>();
+		ResultSet rs = jdbc.executeQuery("select obj_uuid, fk_obj_uuid from object_node");
+		while (rs.next()) {
+			String uuid = rs.getString("obj_uuid");
+			String parentUuid = rs.getString("fk_obj_uuid");
+			
+			nodeToParentMap.put(uuid, parentUuid);
+		}
+		rs.close();
+
+		// then process all nodes and write their path !
+		Iterator<String> nodeIt = nodeToParentMap.keySet().iterator();
+		while (nodeIt.hasNext()) {
+			String nodeUuid = nodeIt.next();
+			String parentUuid = nodeToParentMap.get(nodeUuid);
+			String path = "";
+			
+			// set up path
+			while (parentUuid != null) {
+				// insert parent at front !
+				path = NODE_SEPARATOR + parentUuid + NODE_SEPARATOR + path;
+				parentUuid = nodeToParentMap.get(parentUuid);
+			}
+			
+			// write path. NOTICE: top nodes have path ''
+			jdbc.executeUpdate("UPDATE object_node SET tree_path = '" + path + "' " +
+				"where obj_uuid = '" + nodeUuid + "'");				
+		}
+		
+		if (log.isInfoEnabled()) {
+			log.info("Updating tree_path in object_node... done");
+		}
+
+		
+		// update all addresses !
+		if (log.isInfoEnabled()) {
+			log.info("Updating tree_path in address_node...");
+		}
+
+		// first set up map representing tree structure
+		nodeToParentMap = new HashMap<String, String>();
+		rs = jdbc.executeQuery("select addr_uuid, fk_addr_uuid from address_node");
+		while (rs.next()) {
+			String uuid = rs.getString("addr_uuid");
+			String parentUuid = rs.getString("fk_addr_uuid");
+			
+			nodeToParentMap.put(uuid, parentUuid);
+		}
+		rs.close();
+
+		// then process all nodes and write their path !
+		nodeIt = nodeToParentMap.keySet().iterator();
+		while (nodeIt.hasNext()) {
+			String nodeUuid = nodeIt.next();
+			String parentUuid = nodeToParentMap.get(nodeUuid);
+			String path = "";
+			
+			// set up path
+			while (parentUuid != null) {
+				// insert parent at front !
+				path = NODE_SEPARATOR + parentUuid + NODE_SEPARATOR + path;
+				parentUuid = nodeToParentMap.get(parentUuid);
+			}
+			
+			// write path. NOTICE: top nodes have path ''
+			jdbc.executeUpdate("UPDATE address_node SET tree_path = '" + path + "' " +
+				"where addr_uuid = '" + nodeUuid + "'");				
+		}
+		
+		if (log.isInfoEnabled()) {
+			log.info("Updating tree_path in address_node... done");
 		}
 	}
 	

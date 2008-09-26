@@ -12,6 +12,7 @@ public interface DBLogic {
 	
 	public static enum ColumnType {
 		TEXT,
+		MEDIUMTEXT,
 		VARCHAR50,
 		INTEGER,
 		BIGINT
