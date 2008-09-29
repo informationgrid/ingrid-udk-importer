@@ -16,3 +16,6 @@ Default:
 	Felder escaped von: \
 	Zeilen getrennt mit: auto
 	Spaltennamen:
+
+
+Original von Kst geschickte Datei, s email: "AW: sys_list zur Übersetzung" vom 26.09.2008 13:44
