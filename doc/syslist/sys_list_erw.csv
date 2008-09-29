@@ -924,7 +924,7 @@ id;version;lst_id;entry_id;lang_id;name;description;maintainable;is_default;line
 923;0;6000;3;de;nicht evaluiert;NULL;0;Y;0
 924;0;6000;3;de;not evaluated;NULL;0;Y;0
 925;0;6010;1;de;keine;NULL;0;Y;0
-926;0;6010;1;en;no conditions apply;NULL;0;N;0
+926;0;6010;1;en;no conditions apply;NULL;0;Y;0
 927;0;6010;2;de;aufgrund der Vertraulichkeit der Verfahren von Behörden;NULL;0;N;0
 928;0;6010;2;en;the confidentiality of the proceedings of public authorities;NULL;0;N;0
 929;0;6010;3;de;aufgrund internationaler Beziehungen, der öffentliche Sicherheit oder der Landesverteidigung;NULL;0;N;0
