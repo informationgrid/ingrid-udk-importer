@@ -366,7 +366,7 @@ id;version;lst_id;entry_id;lang_id;name;description;maintainable;is_default;line
 365;0;1100;1;de;Harz;NULL;1;N;0
 366;0;1100;1;en;Harz;NULL;1;N;0
 367;0;1100;2;de;Harzvorland;NULL;1;N;0
-368;0;1100;2;de;Harz foreland;NULL;1;N;0
+368;0;1100;2;en;Harz foreland;NULL;1;N;0
 369;0;1100;3;de;Hildesheimer Börde;NULL;1;N;0
 370;0;1100;3;en;Hildesheimer Börde (fertile plain);NULL;1;N;0
 371;0;1100;4;de;Lüneburger Heide;NULL;1;N;0
@@ -388,7 +388,7 @@ id;version;lst_id;entry_id;lang_id;name;description;maintainable;is_default;line
 387;0;1100;12;de;Elbe-Weser-Dreieck;NULL;1;N;0
 388;0;1100;12;en;Elbe Weser Region;NULL;1;N;0
 389;0;1100;13;de;Großraum Hannover;NULL;1;N;0
-390;0;1100;13;de;Hannover Metropolitan Area;NULL;1;N;0
+390;0;1100;13;en;Hannover Metropolitan Area;NULL;1;N;0
 391;0;1100;14;de;Großraum Braunschweig;NULL;1;N;0
 392;0;1100;14;en;Braunschweig Metropolitan Area;NULL;1;N;0
 393;0;1100;15;de;Schutzgebietssystem Elbetal;NULL;1;N;0
@@ -434,7 +434,7 @@ id;version;lst_id;entry_id;lang_id;name;description;maintainable;is_default;line
 433;0;1320;11;de;EDBS;NULL;1;N;0
 434;0;1320;11;en;EDBS;NULL;1;N;0
 435;0;1320;12;de;E00-Austauschformat;NULL;1;N;0
-436;0;1320;12;de;E00 Exchange Format;NULL;1;N;0
+436;0;1320;12;en;E00 Exchange Format;NULL;1;N;0
 437;0;1350;1;de;Atomgesetz (AtG);NULL;1;N;0
 438;0;1350;1;en;German Atomic Energy Act (AtG);NULL;1;N;0
 439;0;1350;2;de;Baugesetzbuch (BauGB);NULL;1;N;0
@@ -534,7 +534,7 @@ id;version;lst_id;entry_id;lang_id;name;description;maintainable;is_default;line
 533;0;1350;54;de;Abfallklärschlammverordnung (AbfKlärV);NULL;1;N;0
 534;0;1350;54;en;Waste Water Sludge Ordinance (AbfKlärV);NULL;1;N;0
 535;0;1350;55;de;Bundesimmissionsschutzverordnung, 23.;NULL;1;N;0
-536;0;1350;55;de;Federal Immission Control Ordinance, 23.;NULL;1;N;0
+536;0;1350;55;en;Federal Immission Control Ordinance, 23.;NULL;1;N;0
 537;0;1350;56;de;Abwasserabgabengesetz (AbwAG);NULL;1;N;0
 538;0;1350;56;en;Waste Water Charges Act (AbwAG);NULL;1;N;0
 539;0;1350;57;de;Wasserhaushaltsgesetz (WHG) § 7a;NULL;1;N;0
@@ -922,7 +922,7 @@ id;version;lst_id;entry_id;lang_id;name;description;maintainable;is_default;line
 921;0;6000;2;de;nicht konform;NULL;0;N;0
 922;0;6000;2;en;not conformant;NULL;0;N;0
 923;0;6000;3;de;nicht evaluiert;NULL;0;Y;0
-924;0;6000;3;de;not evaluated;NULL;0;Y;0
+924;0;6000;3;en;not evaluated;NULL;0;Y;0
 925;0;6010;1;de;keine;NULL;0;Y;0
 926;0;6010;1;en;no conditions apply;NULL;0;Y;0
 927;0;6010;2;de;aufgrund der Vertraulichkeit der Verfahren von Behörden;NULL;0;N;0
