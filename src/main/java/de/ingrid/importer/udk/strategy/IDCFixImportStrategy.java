@@ -17,9 +17,9 @@ import de.ingrid.importer.udk.jdbc.JDBCHelper;
  * - free spatial ref value not written into search index
  * @author martin
  */
-public class IDCImporterFixStrategy extends IDCStrategyDefault {
+public class IDCFixImportStrategy extends IDCStrategyDefault {
 
-	private static Log log = LogFactory.getLog(IDCImporterFixStrategy.class);
+	private static Log log = LogFactory.getLog(IDCFixImportStrategy.class);
 
 	/**
 	 * Write NO Version, this strategy should be executed on its own on chosen catalogues
