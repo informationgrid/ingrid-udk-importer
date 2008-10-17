@@ -1,5 +1,6 @@
 
 mit phpMyAdmin in sys_list Tabelle importieren !
+-> Tabelle "sys_list" auswählen und Tab "Importieren"
 
 Von Default abweichend:
 -----------------------
@@ -19,3 +20,4 @@ Default:
 
 
 Original von Kst geschickte Datei, s email: "AW: sys_list zur Übersetzung" vom 26.09.2008 13:44
+Fehler wurden gefixt, s. Historie in svn.
