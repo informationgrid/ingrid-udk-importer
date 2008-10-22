@@ -13,8 +13,9 @@ import de.ingrid.importer.udk.jdbc.JDBCHelper;
 import de.ingrid.importer.udk.jdbc.DBLogic.ColumnType;
 
 /**
- * @author michael
+ * IGC Update: also store sns topic types in sns spatial references
  * 
+ * @author michael
  */
 public class IDCSNSSpatialTypeStrategy extends IDCStrategyDefault {
 

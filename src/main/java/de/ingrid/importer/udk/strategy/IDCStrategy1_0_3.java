@@ -18,8 +18,9 @@ import de.ingrid.importer.udk.jdbc.JDBCHelper;
 import de.ingrid.importer.udk.jdbc.DBLogic.ColumnType;
 
 /**
- * @author Administrator
+ * IGC Update: INSPIRE + sortKey in syslist + tree path etc. etc.
  * 
+ * @author martin
  */
 public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 
