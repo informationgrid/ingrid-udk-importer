@@ -5,6 +5,7 @@ package de.ingrid.importer.udk.strategy;
 
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -1249,6 +1250,21 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		while (rs.next()) {
 			String uuid = rs.getString("obj_uuid");
 			String parentUuid = rs.getString("fk_obj_uuid");
+
+			// check for nodes referencing itself as parent !!! (as in sh catalog !)
+			if (uuid.equals(parentUuid)) {
+				String msg = "\nWARN: Object node '" + uuid + "' references itself as parent ! WE MOVE THIS NODE TO TOP !!!";
+				System.out.println(msg);
+				if (log.isWarnEnabled()) {
+					log.warn(msg);
+				}
+
+				// set id of parent to null in database and map !
+
+				jdbc.executeUpdate("UPDATE object_node SET fk_obj_uuid = NULL " +
+					"where obj_uuid = '" + uuid + "'");
+				parentUuid = null;
+			}
 			
 			nodeToParentMap.put(uuid, parentUuid);
 		}
@@ -1262,7 +1278,21 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 			String path = "";
 			
 			// set up path
+			ArrayList<String> pathUuids = new ArrayList<String>();
+			pathUuids.add(nodeUuid);
 			while (parentUuid != null) {
+				// test for loops in hierarchy !!! corrupt data !
+				if (pathUuids.contains(parentUuid)) {
+					if (log.isWarnEnabled()) {
+						log.warn("Object node '" + nodeUuid + "' contains loop in tree hierarchy !!! " +
+								"Current path: '" + path + "', next parent: '" + parentUuid + "'");
+						log.warn("We only write path till loop: '" + path + "'");
+					}
+					break;
+				} else {
+					pathUuids.add(parentUuid);
+				}
+
 				// insert parent at front !
 				path = NODE_SEPARATOR + parentUuid + NODE_SEPARATOR + path;
 				parentUuid = nodeToParentMap.get(parentUuid);
@@ -1289,6 +1319,21 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		while (rs.next()) {
 			String uuid = rs.getString("addr_uuid");
 			String parentUuid = rs.getString("fk_addr_uuid");
+
+			// check for nodes referencing itself as parent !!! (as in sh catalog !)
+			if (uuid.equals(parentUuid)) {
+				String msg = "\nWARN: Address node '" + uuid + "' references itself as parent ! WE MOVE THIS NODE TO TOP !!!";
+				System.out.println(msg);
+				if (log.isWarnEnabled()) {
+					log.warn(msg);
+				}
+
+				// set id of parent to null in database and map !
+
+				jdbc.executeUpdate("UPDATE address_node SET fk_addr_uuid = NULL " +
+					"where addr_uuid = '" + uuid + "'");
+				parentUuid = null;
+			}
 			
 			nodeToParentMap.put(uuid, parentUuid);
 		}
@@ -1302,7 +1347,21 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 			String path = "";
 			
 			// set up path
+			ArrayList<String> pathUuids = new ArrayList<String>();
+			pathUuids.add(nodeUuid);
 			while (parentUuid != null) {
+				// test for loops in hierarchy !!! corrupt data !
+				if (pathUuids.contains(parentUuid)) {
+					if (log.isWarnEnabled()) {
+						log.warn("Address node '" + nodeUuid + "' contains loop in tree hierarchy !!! " +
+								"Current path: '" + path + "', next parent: '" + parentUuid + "'");
+						log.warn("We only write path till loop: '" + path + "'");
+					}
+					break;
+				} else {
+					pathUuids.add(parentUuid);
+				}
+
 				// insert parent at front !
 				path = NODE_SEPARATOR + parentUuid + NODE_SEPARATOR + path;
 				parentUuid = nodeToParentMap.get(parentUuid);
