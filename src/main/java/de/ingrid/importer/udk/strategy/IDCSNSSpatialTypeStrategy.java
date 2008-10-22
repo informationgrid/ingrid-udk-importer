@@ -85,19 +85,21 @@ public class IDCSNSSpatialTypeStrategy extends IDCStrategyDefault {
 				// This is problematic since the ags/rs native keys are NOT unique!
 				type = getSNSTopicTypeFor(spatialRefSNSId, nativeKey);
 
-				if (log.isDebugEnabled()) {
-					log.debug("Updating spatial_ref_value entry: ["+id+", "+nativeKey+", "+type+"]");
+				if (type != null) {
+					if (log.isDebugEnabled()) {
+						log.debug("Updating spatial_ref_value entry: ["+id+", "+nativeKey+", "+type+"]");
+					}
+
+					String sqlStr = "update spatial_ref_value set topic_type = '"+type+"' where id = "+id;
+					jdbc.executeUpdate(sqlStr);
+
+					// extend object index (index contains only data of working versions !)
+					if (objWorkId == objId) {
+						JDBCHelper.updateObjectIndex(objNodeId, type, jdbc); // spatial_ref_value.topic_type
+					}
 				}
-	
-				String sqlStr = "update spatial_ref_value set topic_type = '"+type+"' where id = "+id;
-				jdbc.executeUpdate(sqlStr);
 
 				processedSpatialRefIds.put(spatialRefId, true);
-
-				// extend object index (index contains only data of working versions !)
-				if (objWorkId == objId) {
-					JDBCHelper.updateObjectIndex(objNodeId, type, jdbc); // spatial_ref_value.topic_type
-				}
 			}
 		}
 		rs.close();
@@ -122,9 +124,14 @@ public class IDCSNSSpatialTypeStrategy extends IDCStrategyDefault {
 		}
 	}
 
-	// Determine the SNS Topic Type (use2Type, use4Type, ...) from the given snsId and nativeKey.
-	// The SNS ID is checked first for 'KREIS', 'GEMEINDE', ...
-	// If no type could be constructed from the SNS ID, the nativekey is analyzed. 
+	/**
+	 * Determine the SNS Topic Type (use2Type, use4Type, ...) from the given snsId and nativeKey.
+	 * The SNS ID is checked first for 'KREIS', 'GEMEINDE', ...
+	 * If no type could be constructed from the SNS ID, the nativekey is analyzed.
+	 * @param snsId
+	 * @param nativeKey
+	 * @return null if no topic type could be determined !
+	 */
 	private String getSNSTopicTypeFor(String snsId, String nativeKey) {
 		// First try to determine the type from the given sns id
 		if (snsId.startsWith("BUNDESLAND")) {
@@ -138,16 +145,18 @@ public class IDCSNSSpatialTypeStrategy extends IDCStrategyDefault {
 		}
 
 		// Try to determine the type from the given rs nativeKey
-		if (nativeKey.endsWith("00000000")) {
-			return "nationType";
-		} else if (nativeKey.endsWith("000000")) {
-			return "use2Type";
-		} else if (nativeKey.endsWith("00000")) {
-			return "use3Type";
-		} else if (nativeKey.endsWith("000")) {
-			return "use4Type";
-		} else if (nativeKey.length() == 8) {
-			return "use6Type";
+		if (nativeKey != null) {
+			if (nativeKey.endsWith("00000000")) {
+				return "nationType";
+			} else if (nativeKey.endsWith("000000")) {
+				return "use2Type";
+			} else if (nativeKey.endsWith("00000")) {
+				return "use3Type";
+			} else if (nativeKey.endsWith("000")) {
+				return "use4Type";
+			} else if (nativeKey.length() == 8) {
+				return "use6Type";
+			}			
 		}
 
 		// Could not determine native key
