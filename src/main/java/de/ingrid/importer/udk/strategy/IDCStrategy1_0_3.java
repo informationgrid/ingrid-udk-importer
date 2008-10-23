@@ -4,9 +4,7 @@
 package de.ingrid.importer.udk.strategy;
 
 import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -563,9 +561,6 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 			log.info("Add default entries for every object...");
 		}
 
-		SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyyMMdd");
-		String currDateTimestamp = dateFormatter.format(new Date()) + "000000000";
-
 		// then add entries for ALL t01_objects (no matter whether working or published version) 
 		String sql = "select distinct objNode.id as objNodeId, obj.id as objId " +
 			"from t01_object obj, object_node objNode " +
@@ -577,11 +572,13 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 			long objNodeId = rs.getLong("objNodeId");
 			long objId = rs.getLong("objId");
 
+			// publication_date of INSPIRE is 14.03.2007, see email 22.10.2008 13:57, "AW: AW: PortalU Aktualisierung!!"
 			String defaultSpecification = "INSPIRE-Richtlinie";
+			String defaultPubDate = "20070314000000000";
 
 			jdbc.executeUpdate("INSERT INTO object_conformity (id, obj_id, line, specification, degree_key, degree_value, publication_date) " +
 				"VALUES (" + getNextId() + ", " + objId + ", 1, '" + defaultSpecification + "', "
-				+ defaultSyslist6000EntryId + ", '" + defaultSyslist6000EntryValue + "', '" + currDateTimestamp + "');");
+				+ defaultSyslist6000EntryId + ", '" + defaultSyslist6000EntryValue + "', '" + defaultPubDate + "');");
 			
 			// Node may contain different object versions, then we receive nodeId multiple times.
 			// Write Index only once (index contains data of working version!) !
