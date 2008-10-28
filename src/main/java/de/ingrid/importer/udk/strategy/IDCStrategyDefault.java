@@ -52,9 +52,12 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 	private String catalogAdminUuid = null;
 	private int defaultThemenkategorieEntryId = -1;
 
-	// mapping of old codelists to new codelists 
+	// maps mapping old syslist entryIds to new ones <oldEntryId, newEntryId>
 	private HashMap<Integer, Integer> mapOldKeyToNewKeyList100 = new HashMap<Integer, Integer>();
 	private HashMap<Integer, Integer> mapOldKeyToNewKeyList101 = new HashMap<Integer, Integer>();
+	// maps containing new syslists <entryId, name>
+	protected HashMap<Integer, String> mapNewKeyToNewValueList100;
+	protected HashMap<Integer, String> mapNewKeyToNewValueList101;
 
 	// possible syslist entries for free spatial references
 	private List<String> freeSpatialReferenceEntryKeys = null;
@@ -79,6 +82,60 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		
 		// default language
 		catalogLanguage = "de";
+
+		// new syslist 100
+		// KEEP OLD ENTRY IDs, see http://88.198.11.89/jira/browse/INGRIDII-245
+		mapNewKeyToNewValueList100 = new HashMap<Integer, String>();
+		mapNewKeyToNewValueList100.put(3068, "EPSG 3068: DHDN / Soldner Berlin");
+		mapNewKeyToNewValueList100.put(4178, "EPSG 4178: Pulkovo 1942(83) / geographisch");
+		mapNewKeyToNewValueList100.put(4230, "EPSG 4230: ED50 / geographisch");
+		mapNewKeyToNewValueList100.put(4258, "EPSG 4258: ETRS89 / geographisch");
+		mapNewKeyToNewValueList100.put(4284, "EPSG 4284: Pulkovo 1942 / geographisch");
+		mapNewKeyToNewValueList100.put(4314, "EPSG 4314: DHDN / geographisch");
+		mapNewKeyToNewValueList100.put(4326, "EPSG 4326: WGS 84 / geographisch");
+		mapNewKeyToNewValueList100.put(23031, "EPSG 23031: ED50 / UTM Zone 31N");
+		mapNewKeyToNewValueList100.put(23032, "EPSG 23032: ED50 / UTM Zone 32N");
+		mapNewKeyToNewValueList100.put(23033, "EPSG 23033: ED50 / UTM Zone 33N");
+		mapNewKeyToNewValueList100.put(32631, "EPSG 32631: WGS 84 / UTM Zone 31N");
+		mapNewKeyToNewValueList100.put(32632, "EPSG 32632: WGS 84 / UTM Zone 32N");
+		mapNewKeyToNewValueList100.put(32633, "EPSG 32633: WGS 84 / UTM Zone 33N");
+		mapNewKeyToNewValueList100.put(25831, "EPSG 25831: ETRS89 / UTM Zone 31N");
+		mapNewKeyToNewValueList100.put(25832, "EPSG 25832: ETRS89 / UTM Zone 32N");
+		mapNewKeyToNewValueList100.put(25833, "EPSG 25833: ETRS89 / UTM Zone 33N");
+		mapNewKeyToNewValueList100.put(25834, "EPSG 25834: ETRS89 / UTM Zone 34N");
+		mapNewKeyToNewValueList100.put(28462, "EPSG 28462: Pulkovo 1942 / Gauss-Krüger 2N");
+		mapNewKeyToNewValueList100.put(28463, "EPSG 28463: Pulkovo 1942 / Gauss-Krüger 3N");
+		mapNewKeyToNewValueList100.put(31466, "EPSG 31466: DHDN / Gauss-Krüger Zone 2");
+		mapNewKeyToNewValueList100.put(31467, "EPSG 31467: DHDN / Gauss-Krüger Zone 3");
+		mapNewKeyToNewValueList100.put(31468, "EPSG 31468: DHDN / Gauss-Krüger Zone 4");
+		mapNewKeyToNewValueList100.put(31469, "EPSG 31469: DHDN / Gauss-Krüger Zone 5");
+		mapNewKeyToNewValueList100.put(9000001, "DE_42/83 / GK_3");
+		mapNewKeyToNewValueList100.put(9000002, "DE_DHDN / GK_3");
+		mapNewKeyToNewValueList100.put(9000007, "DE_DHDN / GK_3_RDN");
+		mapNewKeyToNewValueList100.put(9000008, "DE_DHDN / GK_3_RP101");
+		mapNewKeyToNewValueList100.put(9000009, "DE_DHDN / GK_3_RP180");
+		mapNewKeyToNewValueList100.put(9000010, "DE_DHDN / GK_3_NW177");
+		mapNewKeyToNewValueList100.put(9000011, "DE_DHDN / GK_3_HE100");
+		mapNewKeyToNewValueList100.put(9000012, "DE_DHDN / GK_3_BW100");
+		mapNewKeyToNewValueList100.put(9000003, "DE_ETRS89 / UTM");
+		mapNewKeyToNewValueList100.put(9000005, "DE_PD/83 / GK_3");
+		mapNewKeyToNewValueList100.put(9000006, "DE_RD/83 / GK_3");
+		mapNewKeyToNewValueList100.put(9000013, "DE_PD/83 / GK_9-15, Bezug 12. Meridian (BY)");
+
+		// new syslist 101
+		// KEEP OLD ENTRY IDs, see http://88.198.11.89/jira/browse/INGRIDII-245
+		mapNewKeyToNewValueList101 = new HashMap<Integer, String>();
+		mapNewKeyToNewValueList101.put(900002, "DE_AMST / NH");
+		mapNewKeyToNewValueList101.put(900003, "DE_AMST / NOH");
+		mapNewKeyToNewValueList101.put(900005, "DE_DHHN12_NOH");
+		mapNewKeyToNewValueList101.put(900006, "DE_DHHN12_RP120");
+		mapNewKeyToNewValueList101.put(900007, "DE_DHHN85_NOH");
+		mapNewKeyToNewValueList101.put(900008, "DE_DHHN92_NH");
+		mapNewKeyToNewValueList101.put(900004, "DE_KRON / NH");
+		mapNewKeyToNewValueList101.put(900009, "Horizont 74_NOH");
+		mapNewKeyToNewValueList101.put(5129, "European Vertical Reference Frame 2000");
+		mapNewKeyToNewValueList101.put(5105, "Baltic Sea");
+		mapNewKeyToNewValueList101.put(900010, "Höhe über GRS80 Ellipsoid");
 	}
 
 	public void setDataProvider(DataProvider data) {
@@ -4223,98 +4280,46 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			log.info("Importing " + entityName + "...");
 		}
 
-		// new syslist 100
-		HashMap<Integer, String> mapNewKeyToNewValueList100 = new HashMap<Integer, String>();
-		mapNewKeyToNewValueList100.put(1, "EPSG 3068: DHDN / Soldner Berlin");
-		mapNewKeyToNewValueList100.put(2, "EPSG 4178: Pulkovo 1942(83) / geographisch");
-		mapNewKeyToNewValueList100.put(3, "EPSG 4230: ED50 / geographisch");
-		mapNewKeyToNewValueList100.put(4, "EPSG 4258: ETRS89 / geographisch");
-		mapNewKeyToNewValueList100.put(5, "EPSG 4284: Pulkovo 1942 / geographisch");
-		mapNewKeyToNewValueList100.put(6, "EPSG 4314: DHDN / geographisch");
-		mapNewKeyToNewValueList100.put(7, "EPSG 4326: WGS 84 / geographisch");
-		mapNewKeyToNewValueList100.put(8, "EPSG 23031: ED50 / UTM Zone 31N");
-		mapNewKeyToNewValueList100.put(9, "EPSG 23032: ED50 / UTM Zone 32N");
-		mapNewKeyToNewValueList100.put(10, "EPSG 23033: ED50 / UTM Zone 33N");
-		mapNewKeyToNewValueList100.put(11, "EPSG 32631: WGS 84 / UTM Zone 31N");
-		mapNewKeyToNewValueList100.put(12, "EPSG 32632: WGS 84 / UTM Zone 32N");
-		mapNewKeyToNewValueList100.put(13, "EPSG 32633: WGS 84 / UTM Zone 33N");
-		mapNewKeyToNewValueList100.put(14, "EPSG 25831: ETRS89 / UTM Zone 31N");
-		mapNewKeyToNewValueList100.put(15, "EPSG 25832: ETRS89 / UTM Zone 32N");
-		mapNewKeyToNewValueList100.put(16, "EPSG 25833: ETRS89 / UTM Zone 33N");
-		mapNewKeyToNewValueList100.put(17, "EPSG 25834: ETRS89 / UTM Zone 34N");
-		mapNewKeyToNewValueList100.put(18, "EPSG 28462: Pulkovo 1942 / Gauss-Krüger 2N");
-		mapNewKeyToNewValueList100.put(19, "EPSG 28463: Pulkovo 1942 / Gauss-Krüger 3N");
-		mapNewKeyToNewValueList100.put(20, "EPSG 31466: DHDN / Gauss-Krüger Zone 2");
-		mapNewKeyToNewValueList100.put(21, "EPSG 31467: DHDN / Gauss-Krüger Zone 3");
-		mapNewKeyToNewValueList100.put(22, "EPSG 31468: DHDN / Gauss-Krüger Zone 4");
-		mapNewKeyToNewValueList100.put(23, "EPSG 31469: DHDN / Gauss-Krüger Zone 5");
-		mapNewKeyToNewValueList100.put(24, "DE_42/83 / GK_3");
-		mapNewKeyToNewValueList100.put(25, "DE_DHDN / GK_3");
-		mapNewKeyToNewValueList100.put(26, "DE_DHDN / GK_3_RDN");
-		mapNewKeyToNewValueList100.put(27, "DE_DHDN / GK_3_RP101");
-		mapNewKeyToNewValueList100.put(28, "DE_DHDN / GK_3_RP180");
-		mapNewKeyToNewValueList100.put(29, "DE_DHDN / GK_3_NW177");
-		mapNewKeyToNewValueList100.put(30, "DE_DHDN / GK_3_HE100");
-		mapNewKeyToNewValueList100.put(31, "DE_DHDN / GK_3_BW100");
-		mapNewKeyToNewValueList100.put(32, "DE_ETRS89 / UTM");
-		mapNewKeyToNewValueList100.put(33, "DE_PD/83 / GK_3");
-		mapNewKeyToNewValueList100.put(34, "DE_RD/83 / GK_3");
-		mapNewKeyToNewValueList100.put(35, "DE_PD/83 / GK_9-15, Bezug 12. Meridian (BY)");
-
 		// set up mapping of old syslist 100 to new syslist 100 via map<oldValue, newKey>
 		HashMap<String, Integer> mapOldValueToNewKeyList100 = new HashMap<String, Integer>();
-		mapOldValueToNewKeyList100.put("EPSG:4178 / Pulkovo 1942(83) / geographisch", 2);
-		mapOldValueToNewKeyList100.put("EPSG:4230 / ED50 / geographisch ", 3);
-		mapOldValueToNewKeyList100.put("EPSG:4258 / ETRS89 / geographisch", 4);
-		mapOldValueToNewKeyList100.put("EPSG:4284 / Pulkovo 1942 / geographisch", 5);
-		mapOldValueToNewKeyList100.put("EPSG:4314 / DHDN / geographisch", 6);
-		mapOldValueToNewKeyList100.put("EPSG:4326 / WGS 84 / geographisch", 7);
-		mapOldValueToNewKeyList100.put("EPSG:23031 / ED50 / UTM Zone 31N", 8);
-		mapOldValueToNewKeyList100.put("EPSG:23032 / ED50 / UTM Zone 32N", 9);
-		mapOldValueToNewKeyList100.put("EPSG:23033 / ED50 / UTM Zone 33N", 10);
-		mapOldValueToNewKeyList100.put("EPSG:32631 / WGS 84 / UTM Zone 31N", 11);
-		mapOldValueToNewKeyList100.put("EPSG:32632 / WGS 84 / UTM Zone 32N/33N", 12);
-		mapOldValueToNewKeyList100.put("EPSG:25831 / ETRS89 / UTM Zone 31N ", 14);
-		mapOldValueToNewKeyList100.put("EPSG:25832 / ETRS89 / UTM Zone 32N", 15);
-		mapOldValueToNewKeyList100.put("EPSG:25833 / ETRS89 / UTM Zone 33N", 16);
-		mapOldValueToNewKeyList100.put("EPSG:28463 / Pulkovo 1942 / Gauss-Krüger 2N/3N ", 19);
-		mapOldValueToNewKeyList100.put("EPSG:31466 / DHDN / Gauss-Krüger Zone 2", 20);
-		mapOldValueToNewKeyList100.put("EPSG:31467 /DHDN / Gauss-Krüger Zone 3", 21);
-		mapOldValueToNewKeyList100.put("EPSG:31468 / DHDN / Gauss-Krüger Zone 4", 22);
-		mapOldValueToNewKeyList100.put("EPSG:31469 / DHDN / Gauss-Krüger Zone 5", 23);
-		mapOldValueToNewKeyList100.put("EPSG:31492 /DHDN / Germany zone 2", 20);
-		mapOldValueToNewKeyList100.put("EPSG:31493 / DHDN / Germany zone 3", 21);
-		mapOldValueToNewKeyList100.put("EPSG:31494 / DHDN / Germany zone 4", 22);
-		mapOldValueToNewKeyList100.put("EPSG:31495 / DHDN / Germany zone 5", 23);
-		mapOldValueToNewKeyList100.put("DE_42/83 / GK_3", 24);
-		mapOldValueToNewKeyList100.put("DE_DHDN / GK_3", 25);
-		mapOldValueToNewKeyList100.put("DE_ETRS89 / UTM", 32);
-		mapOldValueToNewKeyList100.put("DE_PD/83 / GK_3", 33);
-		mapOldValueToNewKeyList100.put("DE_RD/83 / GK_3", 34);
-
-		// new syslist 101
-		HashMap<Integer, String> mapNewKeyToNewValueList101 = new HashMap<Integer, String>();
-		mapNewKeyToNewValueList101.put(1, "DE_AMST / NH");
-		mapNewKeyToNewValueList101.put(2, "DE_AMST / NOH");
-		mapNewKeyToNewValueList101.put(3, "DE_DHHN12_NOH");
-		mapNewKeyToNewValueList101.put(4, "DE_DHHN12_RP120");
-		mapNewKeyToNewValueList101.put(5, "DE_DHHN85_NOH");
-		mapNewKeyToNewValueList101.put(6, "DE_DHHN92_NH");
-		mapNewKeyToNewValueList101.put(7, "DE_KRON / NH");
-		mapNewKeyToNewValueList101.put(8, "Horizont 74_NOH");
-		mapNewKeyToNewValueList101.put(9, "European Vertical Reference Frame 2000");
-		mapNewKeyToNewValueList101.put(10, "Baltic Sea");
-		mapNewKeyToNewValueList101.put(11, "Höhe über GRS80 Ellipsoid");
+		mapOldValueToNewKeyList100.put("EPSG:4178 / Pulkovo 1942(83) / geographisch", 4178);
+		mapOldValueToNewKeyList100.put("EPSG:4230 / ED50 / geographisch ", 4230);
+		mapOldValueToNewKeyList100.put("EPSG:4258 / ETRS89 / geographisch", 4258);
+		mapOldValueToNewKeyList100.put("EPSG:4284 / Pulkovo 1942 / geographisch", 4284);
+		mapOldValueToNewKeyList100.put("EPSG:4314 / DHDN / geographisch", 4314);
+		mapOldValueToNewKeyList100.put("EPSG:4326 / WGS 84 / geographisch", 4326);
+		mapOldValueToNewKeyList100.put("EPSG:23031 / ED50 / UTM Zone 31N", 23031);
+		mapOldValueToNewKeyList100.put("EPSG:23032 / ED50 / UTM Zone 32N", 23032);
+		mapOldValueToNewKeyList100.put("EPSG:23033 / ED50 / UTM Zone 33N", 23033);
+		mapOldValueToNewKeyList100.put("EPSG:32631 / WGS 84 / UTM Zone 31N", 32631);
+		mapOldValueToNewKeyList100.put("EPSG:32632 / WGS 84 / UTM Zone 32N/33N", 32632);
+		mapOldValueToNewKeyList100.put("EPSG:25831 / ETRS89 / UTM Zone 31N ", 25831);
+		mapOldValueToNewKeyList100.put("EPSG:25832 / ETRS89 / UTM Zone 32N", 25832);
+		mapOldValueToNewKeyList100.put("EPSG:25833 / ETRS89 / UTM Zone 33N", 25833);
+		mapOldValueToNewKeyList100.put("EPSG:28463 / Pulkovo 1942 / Gauss-Krüger 2N/3N ", 28463);
+		mapOldValueToNewKeyList100.put("EPSG:31466 / DHDN / Gauss-Krüger Zone 2", 31466);
+		mapOldValueToNewKeyList100.put("EPSG:31467 /DHDN / Gauss-Krüger Zone 3", 31467);
+		mapOldValueToNewKeyList100.put("EPSG:31468 / DHDN / Gauss-Krüger Zone 4", 31468);
+		mapOldValueToNewKeyList100.put("EPSG:31469 / DHDN / Gauss-Krüger Zone 5", 31469);
+		mapOldValueToNewKeyList100.put("EPSG:31492 /DHDN / Germany zone 2", 31466);
+		mapOldValueToNewKeyList100.put("EPSG:31493 / DHDN / Germany zone 3", 31467);
+		mapOldValueToNewKeyList100.put("EPSG:31494 / DHDN / Germany zone 4", 31468);
+		mapOldValueToNewKeyList100.put("EPSG:31495 / DHDN / Germany zone 5", 31469);
+		mapOldValueToNewKeyList100.put("DE_42/83 / GK_3", 9000001);
+		mapOldValueToNewKeyList100.put("DE_DHDN / GK_3", 9000002);
+		mapOldValueToNewKeyList100.put("DE_ETRS89 / UTM", 9000003);
+		mapOldValueToNewKeyList100.put("DE_PD/83 / GK_3", 9000005);
+		mapOldValueToNewKeyList100.put("DE_RD/83 / GK_3", 9000006);
 
 		// set up mapping of old syslist 101 to new syslist 101 via map<oldValue, newKey>
 		HashMap<String, Integer> mapOldValueToNewKeyList101 = new HashMap<String, Integer>();
-		mapOldValueToNewKeyList101.put("Baltic Sea", 10);
-		mapOldValueToNewKeyList101.put("Normaal Amsterdams Peil", 1);
-		mapOldValueToNewKeyList101.put("European Vertical Reference Frame 2000", 9);
-		mapOldValueToNewKeyList101.put("Kronstädter Pegel (HN)", 7);
-		mapOldValueToNewKeyList101.put("DE_AMST / NH", 1);
-		mapOldValueToNewKeyList101.put("DE_AMST / NOH", 2);
-		mapOldValueToNewKeyList101.put("DE_KRON / NH", 7);
+		mapOldValueToNewKeyList101.put("Baltic Sea", 5105);
+		mapOldValueToNewKeyList101.put("Normaal Amsterdams Peil", 900002);
+		mapOldValueToNewKeyList101.put("European Vertical Reference Frame 2000", 5129);
+		mapOldValueToNewKeyList101.put("Kronstädter Pegel (HN)", 900004);
+		mapOldValueToNewKeyList101.put("DE_AMST / NH", 900002);
+		mapOldValueToNewKeyList101.put("DE_AMST / NOH", 900003);
+		mapOldValueToNewKeyList101.put("DE_KRON / NH", 900004);
 
 		pSqlStr = "INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, description, maintainable) "
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?);";

@@ -12,6 +12,7 @@ import org.apache.commons.logging.LogFactory;
 
 /**
  * Single Strategy for fixing tree path attribute in object/address nodes !
+ * WAS INCONSISTENT ON TEST IGC DUE TO BUG (no writing of tree path when publishing new object/address) !
  * @author martin
  */
 public class IDCFixTreePathStrategy extends IDCStrategyDefault {
