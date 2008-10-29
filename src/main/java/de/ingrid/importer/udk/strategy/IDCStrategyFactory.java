@@ -30,10 +30,10 @@ public class IDCStrategyFactory {
 			return new IDCStrategy1_0_2();
 		} else if (idcVersion.equals("1.0.2_fix_import")) {
 			return new IDCFixImportStrategy();
+		} else if (idcVersion.equals(IDCStrategy.VALUE_IDC_FIX_SYSLIST)) {
+			return new IDCFixSysList100_101Strategy();
 		} else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_102_SNS_SPATIAL_TYPE)) {
 			return new IDCSNSSpatialTypeStrategy();
-		} else if (idcVersion.equals("1.0.2_fix_syslist_100_101")) {
-			return new IDCFixSysList100_101Strategy();
 		} else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_103)) {
 			return new IDCStrategy1_0_3();
 		} else if (idcVersion.equals("1.0.3_fix_tree_path")) {
@@ -75,7 +75,7 @@ public class IDCStrategyFactory {
 			// execute strategies for versions in between and finally requested new strategy. 
 
 			// compare index of old and new version, obtain indices in between
-			List<String> allVersions = Arrays.asList(IDCStrategy.ALL_IDC_VERSIONS);
+			List<String> allVersions = Arrays.asList(IDCStrategy.STRATEGY_WORKFLOW);
 
 			// old version is null if initial state of idc (no version set yet)
 			int oldIndex = -1;
@@ -103,7 +103,7 @@ public class IDCStrategyFactory {
 						strategiesToExecute.add(newStrategy);
 					} else {
 						// add default strategy for that version !
-						strategiesToExecute.add(getIdcStrategy(IDCStrategy.ALL_IDC_VERSIONS[i]));
+						strategiesToExecute.add(getIdcStrategy(IDCStrategy.STRATEGY_WORKFLOW[i]));
 					}
 				}
 			}

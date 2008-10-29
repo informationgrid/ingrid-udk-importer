@@ -16,17 +16,21 @@ public interface IDCStrategy {
 	/** Key for sys_generic_key table to set/extract version of idc schema. */
 	static String KEY_IDC_VERSION = "IDC_VERSION";
 
-	/** initial version */
+	/** initial version/strategy */
 	static String VALUE_IDC_VERSION_102 = "1.0.2";
+	/** FIX strategy (writes NO version) for fixing wrong syslists. ALSO INTEGRATED IN STRATEGY WORKFLOW */
+	static String VALUE_IDC_FIX_SYSLIST = "1.0.2_fix_syslist_100_101";
 	/** SNS Spatial Type Update */
 	static String VALUE_IDC_VERSION_102_SNS_SPATIAL_TYPE = "1.0.2_sns_spatial_type";
-	/** INSPIRE update version */
+	/** INSPIRE update version/strategy */
 	static String VALUE_IDC_VERSION_103 = "1.0.3";
 
-	/** contains all idc versions (specifying according default strategy) in ascending order.
+	/** Order of strategies to execute to obtain most recent IGC.
+	 * Contains all according versions/strategies in ascending order.
 	 * NOTICE: THESE VERSIONS ARE MAPPED TO STRATEGIES IN STRATEGY FACTORY !!! */
-	static String[] ALL_IDC_VERSIONS = new String[] {
+	static String[] STRATEGY_WORKFLOW = new String[] {
 		VALUE_IDC_VERSION_102,
+		VALUE_IDC_FIX_SYSLIST,
 		VALUE_IDC_VERSION_102_SNS_SPATIAL_TYPE,
 		VALUE_IDC_VERSION_103,
 	};

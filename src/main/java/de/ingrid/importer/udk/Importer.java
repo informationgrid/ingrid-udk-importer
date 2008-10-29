@@ -128,7 +128,8 @@ public class Importer {
 		}
 		
 		if (!errorOccured) {
-			System.out.println("\nImporter/Updater executed succesfully.");			
+			System.out.println("\nImporter/Updater executed succesfully.");
+			System.out.println("REMEMBER: full sys_lists (including full localization) have to be imported via csv (in case not yet done).");
 		}
 	}
 }

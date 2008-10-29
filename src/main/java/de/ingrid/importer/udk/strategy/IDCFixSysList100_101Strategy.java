@@ -89,7 +89,7 @@ public class IDCFixSysList100_101Strategy extends IDCStrategyDefault {
 	public void execute() throws Exception {
 		jdbc.setAutoCommit(false);
 
-		System.out.print("  Fixing syslist 100 codes ...");
+		System.out.print("  Fixing syslist 100 codes/values ...");
 		fixSysList100();
 		System.out.println("done.");
 		System.out.print("  Fixing syslist 101 codes ...");
