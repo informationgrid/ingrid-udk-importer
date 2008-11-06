@@ -29,15 +29,16 @@ public class IDCSNSSpatialTypeStrategy extends IDCStrategyDefault {
 
 	public void execute() throws Exception {
 		jdbc.setAutoCommit(false);
+
+		// write IDC structure version !
+		setGenericKey(KEY_IDC_VERSION, MY_VERSION);
+
 		// FIRST EXECUTE ALL "CREATING" DDL OPERATIONS ! NOTICE: causes commit (e.g. on MySQL)
 		System.out.print("  Extend datastructure...");
 		extendDataStructure();
 		System.out.println("done.");
 
 		// THEN PERFORM DATA MANIPULATIONS !
-
-		// write IDC structure version !
-		setGenericKey(KEY_IDC_VERSION, MY_VERSION);
 
 		System.out.print("  Updating spatial_ref_value...");
 		updateSpatialRefValue();

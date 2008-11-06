@@ -38,6 +38,8 @@ public class IDCStrategyFactory {
 			return new IDCStrategy1_0_3();
 		} else if (idcVersion.equals("1.0.3_fix_tree_path")) {
 			return new IDCFixTreePathStrategy();
+		} else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_104)) {
+			return new IDCStrategy1_0_4();
 		} else {
 			log.error("Unknown IDC version '" + idcVersion + "'.");
 			throw new IllegalArgumentException("Unknown IDC version '" + idcVersion + "'.");
