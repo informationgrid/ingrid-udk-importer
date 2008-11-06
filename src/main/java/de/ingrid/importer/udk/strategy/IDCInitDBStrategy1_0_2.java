@@ -17,7 +17,7 @@ import de.ingrid.importer.udk.util.UuidGenerator;
  * @author Administrator
  * 
  */
-public class IDCInitDBStrategy1_0_2 extends IDCStrategyDefault {
+public class IDCInitDBStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 
 	private static Log log = LogFactory.getLog(IDCInitDBStrategy1_0_2.class);
 
