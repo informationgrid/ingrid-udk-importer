@@ -1,0 +1,169 @@
+id;version;lst_id;entry_id;lang_id;name;description;maintainable;is_default;line
+365;0;1100;1;de;Harz;NULL;1;N;0
+366;0;1100;1;en;Harz;NULL;1;N;0
+367;0;1100;2;de;Harzvorland;NULL;1;N;0
+368;0;1100;2;en;Harz foreland;NULL;1;N;0
+369;0;1100;3;de;Hildesheimer Börde;NULL;1;N;0
+370;0;1100;3;en;Hildesheimer Börde (fertile plain);NULL;1;N;0
+371;0;1100;4;de;Lüneburger Heide;NULL;1;N;0
+372;0;1100;4;en;Lüneburg Heath;NULL;1;N;0
+373;0;1100;5;de;Nordseeküste;NULL;1;N;0
+374;0;1100;5;en;North Sea Coast;NULL;1;N;0
+375;0;1100;6;de;Oldenburger Münsterland;NULL;1;N;0
+376;0;1100;6;en;Oldenburger Münsterland;NULL;1;N;0
+377;0;1100;7;de;Ostseeküste;NULL;1;N;0
+378;0;1100;7;en;Baltic Sea Coast;NULL;1;N;0
+379;0;1100;8;de;Teutoburger Wald;NULL;1;N;0
+380;0;1100;8;en;Teutoburg Forest;NULL;1;N;0
+381;0;1100;9;de;Weserbergland;NULL;1;N;0
+382;0;1100;9;en;Weserbergland;NULL;1;N;0
+383;0;1100;10;de;Wesermarsch;NULL;1;N;0
+384;0;1100;10;en;Wesermarsch;NULL;1;N;0
+385;0;1100;11;de;Solling;NULL;1;N;0
+386;0;1100;11;en;Solling;NULL;1;N;0
+387;0;1100;12;de;Elbe-Weser-Dreieck;NULL;1;N;0
+388;0;1100;12;en;Elbe Weser Region;NULL;1;N;0
+389;0;1100;13;de;Großraum Hannover;NULL;1;N;0
+390;0;1100;13;en;Hannover Metropolitan Area;NULL;1;N;0
+391;0;1100;14;de;Großraum Braunschweig;NULL;1;N;0
+392;0;1100;14;en;Braunschweig Metropolitan Area;NULL;1;N;0
+393;0;1100;15;de;Schutzgebietssystem Elbetal;NULL;1;N;0
+394;0;1100;15;en;Schutzgebietssystem (protective area) Elbe Valley;NULL;1;N;0
+437;0;1350;1;de;Atomgesetz (AtG);NULL;1;N;0
+438;0;1350;1;en;German Atomic Energy Act (AtG);NULL;1;N;0
+439;0;1350;2;de;Baugesetzbuch (BauGB);NULL;1;N;0
+440;0;1350;2;en;German federal building code (BauGB);NULL;1;N;0
+441;0;1350;3;de;Bürgerl. Gesetzbuch (BGB);NULL;1;N;0
+442;0;1350;3;en;German Civil Code (BGB);NULL;1;N;0
+443;0;1350;4;de;Bodenschutzgesetz (BodSchG);NULL;1;N;0
+444;0;1350;4;en;German Soil Protection Act (BodSchG);NULL;1;N;0
+445;0;1350;5;de;Bundesberggesetz (BBergG);NULL;1;N;0
+446;0;1350;5;en;Federal Mining Act (BBergG);NULL;1;N;0
+447;0;1350;7;de;Bundesnaturschutzgesetz (BNatSchG);NULL;1;N;0
+448;0;1350;7;en;German Federal Act for the Protection of Nature (BNatSchG);NULL;1;N;0
+449;0;1350;8;de;Bundeswaldgesetz (BundeswaldG);NULL;1;N;0
+450;0;1350;8;en;German Federal Forestry Law (BundeswaldG);NULL;1;N;0
+451;0;1350;9;de;Chemikaliengesetz (ChemG);NULL;1;N;0
+452;0;1350;9;en;German Chemicals Act (ChemG);NULL;1;N;0
+453;0;1350;10;de;Flurbereinigungsgesetz (FlurbG);NULL;1;N;0
+454;0;1350;10;en;German Farmland Consolidation Act (FlurbG);NULL;1;N;0
+455;0;1350;11;de;Gentechnikgesetz (GenTG);NULL;1;N;0
+456;0;1350;11;en;German Genetic Engineering Act (GenTG);NULL;1;N;0
+457;0;1350;13;de;Kreislaufwirtschafts- u. Abfallgesetz (KrW-/AbfG);NULL;1;N;0
+458;0;1350;13;en;German Closed Substance Cycle Waste Management Act (KrW-/AbfG);NULL;1;N;0
+459;0;1350;14;de;Landesabfallgesetz (LAbfG);NULL;1;N;0
+460;0;1350;14;en;State Waste Act (LAbfG);NULL;1;N;0
+461;0;1350;15;de;Landesabfallwirtschaftsgesetz (LAbfWG);NULL;1;N;0
+462;0;1350;15;en;State Waste Management Act (LAbfWG);NULL;1;N;0
+463;0;1350;16;de;Landschaftsgesetz (LG);NULL;1;N;0
+464;0;1350;16;en;Landscape Act (LG);NULL;1;N;0
+465;0;1350;17;de;Pflanzenschutzgesetz (PflSchG);NULL;1;N;0
+466;0;1350;17;en;Crop Protection Act (PflSchG);NULL;1;N;0
+467;0;1350;18;de;Raumordnungsgesetz (ROG);NULL;1;N;0
+468;0;1350;18;en;Federal Regional Planning Act (ROG);NULL;1;N;0
+469;0;1350;19;de;Strahlenschutzvorsorgegesetz (StrVG);NULL;1;N;0
+470;0;1350;19;en;Precautionary Radiation Protection Act (StrVG);NULL;1;N;0
+471;0;1350;20;de;Tierschutzgesetz (TierSchG);NULL;1;N;0
+472;0;1350;20;en;Animal Protection Act (TierSchG);NULL;1;N;0
+473;0;1350;21;de;Umwelthaftungsgesetz (UmweltHG);NULL;1;N;0
+474;0;1350;21;en;Environmental Liability Act (UmweltHG);NULL;1;N;0
+475;0;1350;22;de;Umweltinformationsgesetz (UIG);NULL;1;N;0
+476;0;1350;22;en;Environmental Information Act (UIG);NULL;1;N;0
+477;0;1350;23;de;Verwaltungsverfahrensgesetz (VwVfG);NULL;1;N;0
+478;0;1350;23;en;Federal Administrative Procedure Act (VwVfG);NULL;1;N;0
+479;0;1350;24;de;Bundeswasserstraßengesetz (WaStrG);NULL;1;N;0
+480;0;1350;24;en;Act for the waterways (WaStrG);NULL;1;N;0
+481;0;1350;25;de;Wasserhaushaltsgesetz (WHG);NULL;1;N;0
+482;0;1350;25;en;Federal Water Act (WHG);NULL;1;N;0
+483;0;1350;26;de;Umweltstatistikgesetz (Fass. 21.06.1994);NULL;1;N;0
+484;0;1350;26;en;Environmental Statistics Act as amended on Jun21, 1994;NULL;1;N;0
+485;0;1350;27;de;Umweltstatistikgesetz (Fass. 14.03.1980);NULL;1;N;0
+486;0;1350;27;en;Environmental Statistics Act as amanded on Mar14, 1980;NULL;1;N;0
+487;0;1350;29;de;Trinkwasserverordnung (TrinkwV);NULL;1;N;0
+488;0;1350;29;en;Drinking Water Ordinance (TrinkwV);NULL;1;N;0
+489;0;1350;30;de;TA Siedlungsabfall;NULL;1;N;0
+490;0;1350;30;en;Technical Instructions on Waste from Human Settlements and Supplementary Recommendations and Information (TA Siedlungsabfall);NULL;1;N;0
+491;0;1350;31;de;TA Abfall;NULL;1;N;0
+492;0;1350;31;en;Technical Instructions on Waste Management (TA Abfall);NULL;1;N;0
+493;0;1350;32;de;Strahlenschutzverordnung (StrlSchVO);NULL;1;N;0
+494;0;1350;32;en;Radiological Protection Ordinance (StrlSchVO);NULL;1;N;0
+495;0;1350;33;de;Richtl. Em.- u. Im.-Überwachung. kerntech. Anl.;NULL;1;N;0
+496;0;1350;33;en;Guideline Relating to Emission and Immission Monitoring of Nuclear Facilities;NULL;1;N;0
+497;0;1350;34;de;RdErl. d. ML v. 16.1.1986, GültL 10/66;NULL;1;N;0
+498;0;1350;34;en;RdErl. d. ML v. 16.1.1986, GültL 10/66;NULL;1;N;0
+499;0;1350;35;de;Nieders. Wassergesetz (NWG);NULL;1;N;0
+500;0;1350;35;en;State Water Law of Lower Saxony (NWG);NULL;1;N;0
+501;0;1350;36;de;Nieders. Naturschutzgesetz (NNatG);NULL;1;N;0
+502;0;1350;36;en;Nature Conservancy Act of Lower Saxony (NNatG);NULL;1;N;0
+503;0;1350;38;de;Nieders. Abfallgesetz (NAbfG);NULL;1;N;0
+504;0;1350;38;en;Waste Act of Lower Saxony (NAbfG);NULL;1;N;0
+505;0;1350;39;de;Nieders. Deichgesetz (NDG);NULL;1;N;0
+506;0;1350;39;en;Lower Saxony Dyke Act (NDG);NULL;1;N;0
+507;0;1350;40;de;"Nieders. Abfallgesetz. 6. Teil \"Altlasten\"";NULL;1;N;0
+508;0;1350;40;en;"Waste Act of Lower Saxony, part 6 \"Altlasten\"";NULL;1;N;0
+509;0;1350;41;de;Nieders. Abfallabgabengesetz;NULL;1;N;0
+510;0;1350;41;en;Lower Saxony  Waste Charge Act;NULL;1;N;0
+511;0;1350;42;de;Landesraumordnungsprogramm LROP;NULL;1;N;0
+512;0;1350;42;en;State Spatial Planning Program LROP;NULL;1;N;0
+513;0;1350;43;de;KTA 1508;NULL;1;N;0
+514;0;1350;43;en;KTA 1508;NULL;1;N;0
+515;0;1350;45;de;Gesetz über eine Holzstatistik;NULL;1;N;0
+516;0;1350;45;en;Act on a statistic about wood;NULL;1;N;0
+517;0;1350;46;de;Ges. Statistik im Produzierenden Gewerbe;NULL;1;N;0
+518;0;1350;46;en;Act on Statistics for the processing industries;NULL;1;N;0
+519;0;1350;47;de;Gesetz ü. d. Umweltverträglichkeitsprüfung (UVPG);NULL;1;N;0
+520;0;1350;47;en;Environmental Impact Assessment Act (UVPG);NULL;1;N;0
+521;0;1350;48;de;Erlaß Nds. Umweltministerium vom 16.10.1992;NULL;1;N;0
+522;0;1350;48;en;Order of the Lower Saxony Ministry for the Environment as amended on Oct16, 1992;NULL;1;N;0
+523;0;1350;49;de;Bundesimmissionsschutzgesetz (BImSchG);NULL;1;N;0
+524;0;1350;49;en;Federal Immission Control Act (BImSchG);NULL;1;N;0
+525;0;1350;50;de;BImSchG §47a;NULL;1;N;0
+526;0;1350;50;en;Federal Immission Control Act §47a;NULL;1;N;0
+527;0;1350;51;de;Arbeitsschutzgesetz;NULL;1;N;0
+528;0;1350;51;en;Occupational Safety and Health Act;NULL;1;N;0
+529;0;1350;52;de;Anleitung zur Berechnung von Fluglärm;NULL;1;N;0
+530;0;1350;52;en;Instruction on the Calculation of Aircraft Noise;NULL;1;N;0
+531;0;1350;53;de;Agrarstatistikgesetz (AgrStatG);NULL;1;N;0
+532;0;1350;53;en;Law on Agricultural Statistics (AgrStatG);NULL;1;N;0
+533;0;1350;54;de;Abfallklärschlammverordnung (AbfKlärV);NULL;1;N;0
+534;0;1350;54;en;Waste Water Sludge Ordinance (AbfKlärV);NULL;1;N;0
+535;0;1350;55;de;Bundesimmissionsschutzverordnung, 23.;NULL;1;N;0
+536;0;1350;55;en;Federal Immission Control Ordinance, 23.;NULL;1;N;0
+537;0;1350;56;de;Abwasserabgabengesetz (AbwAG);NULL;1;N;0
+538;0;1350;56;en;Waste Water Charges Act (AbwAG);NULL;1;N;0
+539;0;1350;57;de;Wasserhaushaltsgesetz (WHG) § 7a;NULL;1;N;0
+540;0;1350;57;en;Water Resources Act (WHG) § 7a;NULL;1;N;0
+541;0;1350;58;de;§ 152 NWG (Abwasserbeseitigungspläne);NULL;1;N;0
+542;0;1350;58;en;§ 152 NWG (Abwasserbeseitigungspläne);NULL;1;N;0
+543;0;1350;59;de;§ 52 Nieders. Wassergesetz (NWG);NULL;1;N;0
+544;0;1350;59;en;§ 52 Water Act of Lower Saxony (NWG);NULL;1;N;0
+545;0;1350;60;de;§ 67 NWG;NULL;1;N;0
+546;0;1350;60;en;§ 67 NWG;NULL;1;N;0
+547;0;1350;61;de;23. Bundesimmissionsschutzverordnung;NULL;1;N;0
+548;0;1350;61;en;23. Federal Immission Control Ordinance;NULL;1;N;0
+549;0;1350;62;de;Abfallgesetz (AbfG);NULL;1;N;0
+550;0;1350;62;en;Federal Waste Act (AbfG);NULL;1;N;0
+551;0;1350;63;de;AdV-Plenumsbeschluß von 1994;NULL;1;N;0
+552;0;1350;63;en;AdV-Plenumsbeschluß von 1994;NULL;1;N;0
+553;0;1350;64;de;AdV-Plenumsbeschluß von 1994;NULL;1;N;0
+554;0;1350;64;en;AdV-Plenumsbeschluß von 1994;NULL;1;N;0
+555;0;1350;65;de;Agrarstatistikgesetz AgrStatG;NULL;1;N;0
+556;0;1350;65;en;Law on Agricultural Statistics (AgrStatG);NULL;1;N;0
+557;0;1350;67;de;Betriebssatzung der LGN v. 7.7.1997;NULL;1;N;0
+558;0;1350;67;en;Betriebssatzung der LGN v. 7.7.1997;NULL;1;N;0
+559;0;1350;68;de;Bundesimmissionsschutzverordnung;NULL;1;N;0
+560;0;1350;68;en;Federal Immission Control Ordinance;NULL;1;N;0
+561;0;1350;69;de;26. Bundes-Immissionsschutzverordnung (26. BImSch);NULL;NULL;N;0
+562;0;1350;69;en;26. Federal Immission Control Ordinance (26. BImSch);NULL;NULL;N;0
+563;0;1350;70;de;Arbeitsschutzgesetz (ArbSchG);NULL;NULL;N;0
+564;0;1350;70;en;Occupational Safety and Health Act (ArbSchG);NULL;NULL;N;0
+565;0;1370;1;de;CDS;NULL;1;N;0
+566;0;1370;1;en;CDS;NULL;1;N;0
+685;0;3535;1;de;von Drachenfels 94;NULL;1;N;0
+686;0;3535;1;en;von Drachenfels 94;NULL;1;N;0
+687;0;3555;1;de;Ganzflächige Biotopkartierung 94;NULL;1;N;0
+688;0;3555;1;en;Ganzflächige Biotopkartierung 94;NULL;1;N;0
+689;0;3561;1;de;Nienburg (Weser);NULL;1;N;0
+690;0;3561;1;en;Nienburg (Weser);NULL;1;N;0
+691;0;3561;2;de;Damme (Dümmer);NULL;1;N;0
+692;0;3561;2;en;Damme (Dümmer);NULL;1;N;0
