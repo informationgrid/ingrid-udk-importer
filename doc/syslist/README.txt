@@ -9,7 +9,8 @@ allgemeine Syslisten, die für alle Länder gleich sind ! wurde von Kst separiert,
 NI spezifische Syslisten, s. email von oben
 - sys_list_local_*
 länderspezifische Syslisten. Erzeugt indem jeweiliger UDK5 Katalog komplett importiert wurde (von Cash Export) und die globalen Syslisten gelöscht wurden. Das Resultat wurde nach diesen csv exportiert.
-
+ACHTUNG: wenn nötig wurden die IDs im csv dann per Excel angepasst, damit sie nicht mit den globalen Ids (aus sys_list_erw_nur_global.csv) kollidieren. D.h. die lokalen IDs 
+müssen >= 1000 sein, wenn dies nicht der Fall war, wurden die IDs angepasst, so dass sie ab 1000 beginnen !
 
 Import in IGC Katalog:
 ======================
@@ -17,7 +18,7 @@ Import in IGC Katalog:
 VORSICHT: Es existieren länderspezifische Syslisten, s.o.
 Um einen korrekten Zustand herbei zu führen, folgendes Vorgehen:
 1. sys_list Tabelle leeren
-2. lokale länderspezifische Syslisten importieren (z.B. sys_list_local_ni.csv)
+2. lokale länderspezifische Syslisten importieren (z.B. sys_list_local_ni.csv). ACHTUNG: IDs müssen > 1000 sein, damit sie nicht mit globalen IDs kollidieren !
 3. globale länderübergreifende Syslisten importieren mit "Tabelleninhalt ersetzen: NEIN" (sys_list_erw_nur_global.csv)
 
 
