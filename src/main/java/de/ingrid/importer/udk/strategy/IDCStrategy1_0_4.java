@@ -51,6 +51,12 @@ public class IDCStrategy1_0_4 extends IDCStrategyDefault {
 		}
 
 		if (log.isInfoEnabled()) {
+			log.info("Create table 'sys_job_info' ...");
+		}
+		jdbc.getDBLogic().createTableSysJobInfo(jdbc);
+
+
+		if (log.isInfoEnabled()) {
 			log.info("Extending datastructure... done");
 		}
 	}
@@ -59,6 +65,11 @@ public class IDCStrategy1_0_4 extends IDCStrategyDefault {
 		if (log.isInfoEnabled()) {
 			log.info("Cleaning up datastructure -> CAUSES COMMIT ! ...");
 		}
+
+		if (log.isInfoEnabled()) {
+			log.info("Drop table 'sys_export' ...");
+		}
+		jdbc.getDBLogic().dropTable("sys_export", jdbc);
 
 		if (log.isInfoEnabled()) {
 			log.info("Cleaning up datastructure... done");

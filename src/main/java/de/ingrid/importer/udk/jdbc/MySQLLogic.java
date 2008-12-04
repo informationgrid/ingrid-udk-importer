@@ -76,6 +76,11 @@ public class MySQLLogic implements DBLogic {
 		jdbc.executeUpdate(sql);
 	}
 
+	public void dropTable(String tableName, JDBCConnectionProxy jdbc) throws SQLException {
+		String sql = "DROP TABLE " + tableName;
+		jdbc.executeUpdate(sql);
+	}
+
 	public void addIndex(String colName, String tableName, String indexName,
 			JDBCConnectionProxy jdbc) throws SQLException {
 		String sql = "ALTER TABLE " + tableName + " ADD INDEX " + indexName + " (" + colName + ")";
@@ -176,6 +181,19 @@ public class MySQLLogic implements DBLogic {
 			"assign_time VARCHAR(17), " +
 			"reassigner_uuid VARCHAR(40), " +
 			"reassign_time VARCHAR(17), " +
+			"PRIMARY KEY (id)) " +
+			"TYPE=InnoDB;";
+		jdbc.executeUpdate(sql);
+	}
+	public void createTableSysJobInfo(JDBCConnectionProxy jdbc) throws SQLException {
+		String sql = "CREATE TABLE sys_job_info(" +
+			"id BIGINT NOT NULL," +
+			"version INTEGER NOT NULL DEFAULT 0," +
+			"job_type VARCHAR(50)," +
+			"user_uuid VARCHAR(40)," +
+			"start_time VARCHAR(17)," +
+			"end_time VARCHAR(17)," +
+			"job_details TEXT," +
 			"PRIMARY KEY (id)) " +
 			"TYPE=InnoDB;";
 		jdbc.executeUpdate(sql);

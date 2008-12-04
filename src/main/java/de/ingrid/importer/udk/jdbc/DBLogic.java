@@ -43,6 +43,9 @@ public interface DBLogic {
 	/** DDL Operation ! CAUSES COMMIT ON MySQL ! DROP a column. */
 	void dropColumn(String colName, String tableName, JDBCConnectionProxy jdbc) throws SQLException;
 
+	/** DDL Operation ! CAUSES COMMIT ON MySQL ! DROP a table. */
+	void dropTable(String tableName, JDBCConnectionProxy jdbc) throws SQLException;
+
 	/** DDL Operation ! CAUSES COMMIT ON MySQL ! */
 	void createTableObjectConformity(JDBCConnectionProxy jdbc) throws SQLException;
 	/** DDL Operation ! CAUSES COMMIT ON MySQL ! */
@@ -55,4 +58,6 @@ public interface DBLogic {
 	void createTableSysGui(JDBCConnectionProxy jdbc) throws SQLException;
 	/** DDL Operation ! CAUSES COMMIT ON MySQL ! */
 	void createTablesMetadata(JDBCConnectionProxy jdbc) throws SQLException;
+	/** DDL Operation ! CAUSES COMMIT ON MySQL ! */
+	void createTableSysJobInfo(JDBCConnectionProxy jdbc) throws SQLException;
 }
