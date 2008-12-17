@@ -193,7 +193,7 @@ public class MySQLLogic implements DBLogic {
 			"user_uuid VARCHAR(40)," +
 			"start_time VARCHAR(17)," +
 			"end_time VARCHAR(17)," +
-			"job_details TEXT," +
+			"job_details MEDIUMTEXT," +
 			"PRIMARY KEY (id)) " +
 			"TYPE=InnoDB;";
 		jdbc.executeUpdate(sql);
