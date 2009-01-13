@@ -22,19 +22,7 @@ public class MySQLLogic implements DBLogic {
 
 	public void addColumn(String colName, ColumnType colType, String tableName, boolean notNull, 
 			Object defaultValue, JDBCConnectionProxy jdbc) throws SQLException {
-		String sql = "ALTER TABLE " + tableName	+ " ADD " + colName;
-
-		if (colType == ColumnType.TEXT) {
-			sql += " TEXT";
-		} else if (colType == ColumnType.MEDIUMTEXT) {
-			sql += " MEDIUMTEXT";
-		} else if (colType == ColumnType.VARCHAR50) {
-			sql += " VARCHAR(50)";
-		} else if (colType == ColumnType.INTEGER) {
-			sql += " INTEGER";
-		} else if (colType == ColumnType.BIGINT) {
-			sql += " BIGINT";
-		}
+		String sql = "ALTER TABLE " + tableName	+ " ADD " + colName + " " + mapColumnTypeToSQL(colType);
 
 		if (notNull) {
 			sql += " NOT NULL";
@@ -49,21 +37,7 @@ public class MySQLLogic implements DBLogic {
 
 	public void modifyColumn(String colName, ColumnType colType, String tableName, boolean notNull, 
 			JDBCConnectionProxy jdbc) throws SQLException {
-		String sql = "ALTER TABLE " + tableName	+ " MODIFY " + colName;
-
-		if (colType == ColumnType.TEXT) {
-			sql += " TEXT";
-		} else if (colType == ColumnType.MEDIUMTEXT) {
-			sql += " MEDIUMTEXT";
-		} else if (colType == ColumnType.VARCHAR50) {
-			sql += " VARCHAR(50)";
-		} else if (colType == ColumnType.VARCHAR255) {
-			sql += " VARCHAR(255)";
-		} else if (colType == ColumnType.INTEGER) {
-			sql += " INTEGER";
-		} else if (colType == ColumnType.BIGINT) {
-			sql += " BIGINT";
-		}
+		String sql = "ALTER TABLE " + tableName	+ " MODIFY " + colName + " " + mapColumnTypeToSQL(colType);
 
 		if (notNull) {
 			sql += " NOT NULL";
@@ -199,5 +173,25 @@ public class MySQLLogic implements DBLogic {
 			"PRIMARY KEY (id)) " +
 			"TYPE=InnoDB;";
 		jdbc.executeUpdate(sql);
+	}
+	
+	private String mapColumnTypeToSQL(ColumnType colType) {
+		String sql = "";
+
+		if (colType == ColumnType.TEXT) {
+			sql = "TEXT";
+		} else if (colType == ColumnType.MEDIUMTEXT) {
+			sql = "MEDIUMTEXT";
+		} else if (colType == ColumnType.VARCHAR50) {
+			sql = "VARCHAR(50)";
+		} else if (colType == ColumnType.VARCHAR255) {
+			sql = "VARCHAR(255)";
+		} else if (colType == ColumnType.INTEGER) {
+			sql = "INTEGER";
+		} else if (colType == ColumnType.BIGINT) {
+			sql = "BIGINT";
+		}
+		
+		return sql;
 	}
 }
