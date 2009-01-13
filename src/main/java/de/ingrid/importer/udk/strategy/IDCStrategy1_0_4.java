@@ -6,6 +6,8 @@ package de.ingrid.importer.udk.strategy;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import de.ingrid.importer.udk.jdbc.DBLogic.ColumnType;
+
 /**
  * 
  * @author martin
@@ -54,7 +56,12 @@ public class IDCStrategy1_0_4 extends IDCStrategyDefault {
 			log.info("Create table 'sys_job_info' ...");
 		}
 		jdbc.getDBLogic().createTableSysJobInfo(jdbc);
-
+		
+		if (log.isInfoEnabled()) {
+			log.info("Change field type of 't011_obj_geo.datasource_uuid' from TEXT to VARCHAR(255) ...");
+		}
+		jdbc.getDBLogic().modifyColumn("datasource_uuid", ColumnType.VARCHAR255, "t011_obj_geo", false, jdbc);
+		
 
 		if (log.isInfoEnabled()) {
 			log.info("Extending datastructure... done");

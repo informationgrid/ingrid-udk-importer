@@ -14,6 +14,7 @@ public interface DBLogic {
 		TEXT,
 		MEDIUMTEXT,
 		VARCHAR50,
+		VARCHAR255,
 		INTEGER,
 		BIGINT
 	}

@@ -57,6 +57,8 @@ public class MySQLLogic implements DBLogic {
 			sql += " MEDIUMTEXT";
 		} else if (colType == ColumnType.VARCHAR50) {
 			sql += " VARCHAR(50)";
+		} else if (colType == ColumnType.VARCHAR255) {
+			sql += " VARCHAR(255)";
 		} else if (colType == ColumnType.INTEGER) {
 			sql += " INTEGER";
 		} else if (colType == ColumnType.BIGINT) {
