@@ -85,4 +85,7 @@ public class OracleLogic implements DBLogic {
 	public void createTableSysJobInfo(JDBCConnectionProxy jdbc) throws SQLException {
 		// TODO !
 	}
+	public void createTableSysGenericKey(JDBCConnectionProxy jdbc) throws SQLException {
+		// TODO !
+	}
 }

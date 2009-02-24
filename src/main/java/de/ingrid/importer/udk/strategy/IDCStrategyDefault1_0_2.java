@@ -30,6 +30,15 @@ public abstract class IDCStrategyDefault1_0_2 extends IDCStrategyDefault {
 	protected HashMap<Integer, Integer> mapOldKeyToNewKeyList100 = new HashMap<Integer, Integer>();
 	protected HashMap<Integer, Integer> mapOldKeyToNewKeyList101 = new HashMap<Integer, Integer>();
 
+	/** REDEFINE ! OLDER VERSION, no ID column yet ! */
+	protected void setGenericKey(String key, String value) throws SQLException {
+		jdbc.executeUpdate("DELETE FROM sys_generic_key WHERE key_name='" + key + "';");
+
+		sqlStr = "INSERT INTO sys_generic_key (key_name, value_string) " +
+			"VALUES ('" + key + "', '" + value + "')";
+		jdbc.executeUpdate(sqlStr);
+	}
+
 	protected void processSysList() throws Exception {
 
 		String entityName = "sys_list";

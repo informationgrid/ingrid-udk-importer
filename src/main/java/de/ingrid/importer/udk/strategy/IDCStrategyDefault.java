@@ -190,11 +190,12 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		return nextId;
 	}
 
-	protected void setGenericKey(String key, String value) throws SQLException {
+	/** New Version WITH ID column !!! */
+	protected void setGenericKey(String key, String value) throws Exception {
 		jdbc.executeUpdate("DELETE FROM sys_generic_key WHERE key_name='" + key + "';");
 
-		sqlStr = "INSERT INTO sys_generic_key (key_name, value_string) " +
-			"VALUES ('" + key + "', '" + value + "')";
+		sqlStr = "INSERT INTO sys_generic_key (id, key_name, value_string) " +
+			"VALUES (" + getNextId() + ", '" + key + "', '" + value + "')";
 		jdbc.executeUpdate(sqlStr);
 	}
 

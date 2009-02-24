@@ -4,6 +4,7 @@
 package de.ingrid.importer.udk.strategy;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashMap;
 
 import org.apache.commons.logging.Log;
@@ -25,6 +26,15 @@ public class IDCSNSSpatialTypeStrategy extends IDCStrategyDefault {
 
 	public String getIDCVersion() {
 		return MY_VERSION;
+	}
+
+	/** REDEFINE ! OLDER VERSION, no ID column yet ! */
+	protected void setGenericKey(String key, String value) throws SQLException {
+		jdbc.executeUpdate("DELETE FROM sys_generic_key WHERE key_name='" + key + "';");
+
+		sqlStr = "INSERT INTO sys_generic_key (key_name, value_string) " +
+			"VALUES ('" + key + "', '" + value + "')";
+		jdbc.executeUpdate(sqlStr);
 	}
 
 	public void execute() throws Exception {

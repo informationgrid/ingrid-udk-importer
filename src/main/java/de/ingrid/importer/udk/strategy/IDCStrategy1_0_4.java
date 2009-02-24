@@ -9,6 +9,7 @@ import org.apache.commons.logging.LogFactory;
 import de.ingrid.importer.udk.jdbc.DBLogic.ColumnType;
 
 /**
+ * IGC Update: IMPORT/EXPORT (sys_job_info) etc. 
  * 
  * @author martin
  */
@@ -25,10 +26,16 @@ public class IDCStrategy1_0_4 extends IDCStrategyDefault {
 	public void execute() throws Exception {
 		jdbc.setAutoCommit(false);
 
-		// write IDC structure version !
+		// SPECIAL: first update structure of generic key table !!! has changed !
+		// NOTICE: causes commit (e.g. on MySQL)
+		System.out.print("  Recreate sys_generic_key table (new structure)...");
+		recreateGenericKeyDataStructure();
+		System.out.println("done.");
+
+		// then write version of IGC structure !
 		setGenericKey(KEY_IDC_VERSION, MY_VERSION);
 
-		// FIRST EXECUTE ALL "CREATING" DDL OPERATIONS ! NOTICE: causes commit (e.g. on MySQL)
+		// THEN EXECUTE ALL "CREATING" DDL OPERATIONS ! NOTICE: causes commit (e.g. on MySQL)
 		System.out.print("  Extend datastructure...");
 		extendDataStructure();
 		System.out.println("done.");
@@ -47,6 +54,27 @@ public class IDCStrategy1_0_4 extends IDCStrategyDefault {
 		System.out.println("Update finished successfully.");
 	}
 
+	protected void recreateGenericKeyDataStructure() throws Exception {
+		if (log.isInfoEnabled()) {
+			log.info("Recreating table sys_generic_key -> CAUSES COMMIT ! ...");
+		}
+
+		if (log.isInfoEnabled()) {
+			log.info("Drop table 'sys_generic_key' ...");
+		}
+		jdbc.getDBLogic().dropTable("sys_generic_key", jdbc);
+
+
+		if (log.isInfoEnabled()) {
+			log.info("Recreate table 'sys_generic_key' with new structure ...");
+		}
+		jdbc.getDBLogic().createTableSysGenericKey(jdbc);
+		
+		if (log.isInfoEnabled()) {
+			log.info("Recreating table sys_generic_key... done");
+		}
+	}
+	
 	protected void extendDataStructure() throws Exception {
 		if (log.isInfoEnabled()) {
 			log.info("Extending datastructure -> CAUSES COMMIT ! ...");

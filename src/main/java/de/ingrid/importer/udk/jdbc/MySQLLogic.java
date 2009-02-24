@@ -174,7 +174,18 @@ public class MySQLLogic implements DBLogic {
 			"TYPE=InnoDB;";
 		jdbc.executeUpdate(sql);
 	}
-	
+	public void createTableSysGenericKey(JDBCConnectionProxy jdbc) throws SQLException {
+		String sql = "CREATE TABLE sys_generic_key(" +
+			"id BIGINT NOT NULL," +
+			"version INTEGER NOT NULL DEFAULT 0," +
+			"key_name VARCHAR(255) NOT NULL," +
+			"value_string VARCHAR(255)," +
+			"PRIMARY KEY (id)," +
+			"UNIQUE (key_name)) " +
+			"TYPE=InnoDB;";
+		jdbc.executeUpdate(sql);
+	}
+
 	private String mapColumnTypeToSQL(ColumnType colType) {
 		String sql = "";
 

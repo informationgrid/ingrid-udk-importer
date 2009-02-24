@@ -61,4 +61,6 @@ public interface DBLogic {
 	void createTablesMetadata(JDBCConnectionProxy jdbc) throws SQLException;
 	/** DDL Operation ! CAUSES COMMIT ON MySQL ! */
 	void createTableSysJobInfo(JDBCConnectionProxy jdbc) throws SQLException;
+	/** DDL Operation ! CAUSES COMMIT ON MySQL ! */
+	void createTableSysGenericKey(JDBCConnectionProxy jdbc) throws SQLException;
 }
