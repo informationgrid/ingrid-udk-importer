@@ -89,7 +89,16 @@ public class IDCStrategy1_0_4 extends IDCStrategyDefault {
 			log.info("Change field type of 't011_obj_geo.datasource_uuid' from TEXT to VARCHAR(255) ...");
 		}
 		jdbc.getDBLogic().modifyColumn("datasource_uuid", ColumnType.VARCHAR255, "t011_obj_geo", false, jdbc);
-		
+
+		if (log.isInfoEnabled()) {
+			log.info("Add column 'entry_id' to table 'searchterm_value'...");
+		}
+		jdbc.getDBLogic().addColumn("entry_id", ColumnType.INTEGER, "searchterm_value", false, null, jdbc);
+
+		if (log.isInfoEnabled()) {
+			log.info("Add column 'gemet_id' to table 'searchterm_sns'...");
+		}
+		jdbc.getDBLogic().addColumn("gemet_id", ColumnType.VARCHAR50, "searchterm_sns", false, null, jdbc);
 
 		if (log.isInfoEnabled()) {
 			log.info("Extending datastructure... done");
