@@ -37,6 +37,7 @@ public interface IDCStrategy {
 		VALUE_IDC_FIX_SYSLIST,
 		VALUE_IDC_VERSION_102_SNS_SPATIAL_TYPE,
 		VALUE_IDC_VERSION_103,
+		// Syslist csv have to be imported till version 104 ! since 104 (including) syslists are updated via java code
 		VALUE_IDC_VERSION_104,
 	};
 		

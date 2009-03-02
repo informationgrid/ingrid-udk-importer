@@ -135,6 +135,7 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 
 		jdbc.commit();
 		System.out.println("Update finished successfully.");
+		System.out.println("REMEMBER: full sys_lists (including full localization) have to be imported via csv (in case not yet done).");
 	}
 
 	protected void extendDataStructure() throws Exception {

@@ -3,6 +3,9 @@
  */
 package de.ingrid.importer.udk.strategy;
 
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -24,6 +27,9 @@ public class IDCStrategy1_0_4 extends IDCStrategyDefault {
 	}
 
 	public void execute() throws Exception {
+		System.out.println("REMEMBER: sys_list update via csv NOT supported anymore ! " +
+			"Assure syslists csv were imported before executing 104 update !");
+
 		jdbc.setAutoCommit(false);
 
 		// SPECIAL: first update structure of generic key table !!! has changed !
@@ -41,6 +47,16 @@ public class IDCStrategy1_0_4 extends IDCStrategyDefault {
 		System.out.println("done.");
 
 		// THEN PERFORM DATA MANIPULATIONS !
+
+// -------------
+		System.out.print("  Updating sys_list...");
+		updateSysList();
+		System.out.println("done.");
+
+		System.out.print("  Updating sys_gui...");
+		updateSysGui();
+		System.out.println("done.");
+// -------------
 
 		// Updating of HI/LO table not necessary anymore ! is checked and updated when fetching next id
 		// via getNextId() ...
@@ -91,6 +107,11 @@ public class IDCStrategy1_0_4 extends IDCStrategyDefault {
 		jdbc.getDBLogic().modifyColumn("datasource_uuid", ColumnType.VARCHAR255, "t011_obj_geo", false, jdbc);
 
 		if (log.isInfoEnabled()) {
+			log.info("Change field type of 't021_communication.comm_value' to VARCHAR(255) ...");
+		}
+		jdbc.getDBLogic().modifyColumn("comm_value", ColumnType.VARCHAR255, "t021_communication", false, jdbc);
+
+		if (log.isInfoEnabled()) {
 			log.info("Add column 'entry_id' to table 'searchterm_value'...");
 		}
 		jdbc.getDBLogic().addColumn("entry_id", ColumnType.INTEGER, "searchterm_value", false, null, jdbc);
@@ -104,7 +125,76 @@ public class IDCStrategy1_0_4 extends IDCStrategyDefault {
 			log.info("Extending datastructure... done");
 		}
 	}
-	
+
+	protected void updateSysList() throws Exception {
+		if (log.isInfoEnabled()) {
+			log.info("Updating sys_list...");
+		}
+/*
+		// --------------------
+
+		int lstId = 6200;
+		if (log.isInfoEnabled()) {
+			log.info("Updating syslist " + lstId +	" (INSPIRE: Themen)...");
+		}
+
+		// clean up, to guarantee no old values !
+		sqlStr = "DELETE FROM sys_list where lst_id = " + lstId;
+		jdbc.executeUpdate(sqlStr);
+
+		// german syslist
+		LinkedHashMap<Integer, String> newSyslist6200_de = new LinkedHashMap<Integer, String>(); 
+//		newSyslist6200_de.put(101, "Katalogdienst (humanCatalogueViewer)");
+
+		// english syslist
+		LinkedHashMap<Integer, String> newSyslist6200_en = new LinkedHashMap<Integer, String>(); 
+//		newSyslist6200_en.put(101, "Catalogue viewer");
+
+		Iterator<Integer> itr = newSyslist6200_de.keySet().iterator();
+		while (itr.hasNext()) {
+			int key = itr.next();
+			// german version
+			jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
+					+ getNextId() + ", " + lstId + ", " + key + ", 'de', '" + newSyslist6200_de.get(key) + "', 0, 'N')");
+			// english version
+			jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
+					+ getNextId() + ", " + lstId + ", " + key + ", 'en', '" + newSyslist6200_en.get(key) + "', 0, 'N')");
+		}
+*/
+		if (log.isInfoEnabled()) {
+			log.info("Updating sys_list... done");
+		}
+	}
+
+	protected void updateSysGui() throws Exception {
+		if (log.isInfoEnabled()) {
+			log.info("Updating sys_gui...");
+		}
+/*
+		if (log.isInfoEnabled()) {
+			log.info("Inserting initial sys_gui entries...");
+		}
+
+		// clean up, to guarantee no old values !
+		sqlStr = "DELETE FROM sys_gui";
+		jdbc.executeUpdate(sqlStr);
+
+		LinkedHashMap<String, Integer> initialSysGuis = new LinkedHashMap<String, Integer>();
+		Integer initialBehaviour = -1;
+		initialSysGuis.put("1130", initialBehaviour);
+		
+		Iterator<String> itr = initialSysGuis.keySet().iterator();
+		while (itr.hasNext()) {
+			String key = itr.next();
+			jdbc.executeUpdate("INSERT INTO sys_gui (id, gui_id, behaviour) VALUES ("
+					+ getNextId() + ", '" + key + "', " + initialSysGuis.get(key) + ")");
+		}
+*/		
+		if (log.isInfoEnabled()) {
+			log.info("Updating sys_gui... done");
+		}
+	}
+
 	protected void cleanUpDataStructure() throws Exception {
 		if (log.isInfoEnabled()) {
 			log.info("Cleaning up datastructure -> CAUSES COMMIT ! ...");
