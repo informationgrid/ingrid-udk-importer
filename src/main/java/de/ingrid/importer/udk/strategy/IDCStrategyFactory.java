@@ -40,6 +40,8 @@ public class IDCStrategyFactory {
 			return new IDCFixTreePathStrategy();
 		} else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_104)) {
 			return new IDCStrategy1_0_4();
+		} else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_104_FIX_INSPIRE_THEMES)) {
+			return new IDCStrategy1_0_4_fixInspireThemes();
 		} else {
 			log.error("Unknown IDC version '" + idcVersion + "'.");
 			throw new IllegalArgumentException("Unknown IDC version '" + idcVersion + "'.");

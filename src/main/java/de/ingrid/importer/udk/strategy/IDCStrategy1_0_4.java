@@ -10,6 +10,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import de.ingrid.importer.udk.jdbc.DBLogic.ColumnType;
+import de.ingrid.importer.udk.util.InspireThemesHelper;
 
 /**
  * IGC Update: IMPORT/EXPORT (sys_job_info) etc. 
@@ -143,80 +144,9 @@ public class IDCStrategy1_0_4 extends IDCStrategyDefault {
 		jdbc.executeUpdate(sqlStr);
 
 		// german syslist
-		LinkedHashMap<Integer, String> newSyslist6100_de = new LinkedHashMap<Integer, String>(); 
-		newSyslist6100_de.put(101, "Koordinatenreferenzsysteme");
-		newSyslist6100_de.put(102, "Geografische Gittersysteme");
-		newSyslist6100_de.put(103, "Geografische Bezeichnungen");
-		newSyslist6100_de.put(104, "Verwaltungseinheiten");
-		newSyslist6100_de.put(105, "Adressen");
-		newSyslist6100_de.put(106, "Flurstücke/Grundstücke (Katasterparzellen)");
-		newSyslist6100_de.put(107, "Verkehrsnetze");
-		newSyslist6100_de.put(108, "Gewässernetz");
-		newSyslist6100_de.put(109, "Schutzgebiete");
-		newSyslist6100_de.put(201, "Höhe");
-		newSyslist6100_de.put(202, "Bodenbedeckung");
-		newSyslist6100_de.put(203, "Orthofotografie");
-		newSyslist6100_de.put(204, "Geologie");
-		newSyslist6100_de.put(301, "Statistische Einheiten");
-		newSyslist6100_de.put(302, "Gebäude");
-		newSyslist6100_de.put(303, "Boden");
-		newSyslist6100_de.put(304, "Bodennutzung");
-		newSyslist6100_de.put(305, "Gesundheit und Sicherheit");
-		newSyslist6100_de.put(306, "Versorgungswirtschaft und staatliche Dienste");
-		newSyslist6100_de.put(307, "Umweltüberwachung");
-		newSyslist6100_de.put(308, "Produktions- und Industrieanlagen");
-		newSyslist6100_de.put(309, "Landwirtschaftliche Anlagen und Aquakulturanlagen");
-		newSyslist6100_de.put(310, "Verteilung der Bevölkerung — Demografie");
-		newSyslist6100_de.put(311, "Bewirtschaftungsgebiete/Schutzgebiete/geregelte Gebiete und Berichterstattungseinheiten");
-		newSyslist6100_de.put(312, "Gebiete mit naturbedingten Risiken");
-		newSyslist6100_de.put(313, "Atmosphärische Bedingungen");
-		newSyslist6100_de.put(314, "Meteorologisch-geografische Kennwerte");
-		newSyslist6100_de.put(315, "Ozeanografisch-geografische Kennwerte");
-		newSyslist6100_de.put(316, "Meeresregionen");
-		newSyslist6100_de.put(317, "Biogeografische Regionen");
-		newSyslist6100_de.put(318, "Lebensräume und Biotope");
-		newSyslist6100_de.put(319, "Verteilung der Arten");
-		newSyslist6100_de.put(320, "Energiequellen");
-		newSyslist6100_de.put(321, "Mineralische Bodenschätze");
-		newSyslist6100_de.put(99999, "Kein INSPIRE-Thema");
-
+		LinkedHashMap<Integer, String> newSyslist6100_de = InspireThemesHelper.inspireThemes_de; 
 		// english syslist
-		LinkedHashMap<Integer, String> newSyslist6100_en = new LinkedHashMap<Integer, String>(); 
-		newSyslist6100_en.put(101, "Coordinate reference systems");
-		newSyslist6100_en.put(102, "Geographical grid systems");
-		newSyslist6100_en.put(103, "Geographical names");
-		newSyslist6100_en.put(104, "Administrative units");
-		newSyslist6100_en.put(105, "Addresses");
-		newSyslist6100_en.put(106, "Cadastral parcels");
-		newSyslist6100_en.put(107, "Transport networks");
-		newSyslist6100_en.put(108, "Hydrography");
-		newSyslist6100_en.put(109, "Protected sites");
-		newSyslist6100_en.put(201, "Elevation");
-		newSyslist6100_en.put(202, "Land cover");
-		newSyslist6100_en.put(203, "Orthoimagery");
-		newSyslist6100_en.put(204, "Geology");
-		newSyslist6100_en.put(301, "Statistical units");
-		newSyslist6100_en.put(302, "Buildings");
-		newSyslist6100_en.put(303, "Soil");
-		newSyslist6100_en.put(304, "Land use");
-		newSyslist6100_en.put(305, "Human health and safety");
-		newSyslist6100_en.put(306, "Utility and governmental services");
-		newSyslist6100_en.put(307, "Environmental monitoring facilities");
-		newSyslist6100_en.put(308, "Production and industrial facilities");
-		newSyslist6100_en.put(309, "Agricultural and aquaculture facilities");
-		newSyslist6100_en.put(310, "Population distribution — demography");
-		newSyslist6100_en.put(311, "Area management/restriction/regulation zones and reporting units");
-		newSyslist6100_en.put(312, "Natural risk zones");
-		newSyslist6100_en.put(313, "Atmospheric conditions");
-		newSyslist6100_en.put(314, "Meteorological geographical features");
-		newSyslist6100_en.put(315, "Oceanographic geographical features");
-		newSyslist6100_en.put(316, "Sea regions");
-		newSyslist6100_en.put(317, "Bio-geographical regions");
-		newSyslist6100_en.put(318, "Habitats and biotopes");
-		newSyslist6100_en.put(319, "Species distribution");
-		newSyslist6100_en.put(320, "Energy resources");
-		newSyslist6100_en.put(321, "Mineral resources");
-		newSyslist6100_en.put(99999, "No INSPIRE Theme");
+		LinkedHashMap<Integer, String> newSyslist6100_en = InspireThemesHelper.inspireThemes_en; 
 
 		Iterator<Integer> itr = newSyslist6100_de.keySet().iterator();
 		while (itr.hasNext()) {
@@ -238,6 +168,9 @@ public class IDCStrategy1_0_4 extends IDCStrategyDefault {
 		if (log.isInfoEnabled()) {
 			log.info("Updating sys_gui...");
 		}
+
+		// TODO: integrate new UI fields !
+
 /*
 		if (log.isInfoEnabled()) {
 			log.info("Inserting initial sys_gui entries...");

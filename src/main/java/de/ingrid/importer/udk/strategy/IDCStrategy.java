@@ -26,8 +26,10 @@ public interface IDCStrategy {
 	static String VALUE_IDC_VERSION_102_SNS_SPATIAL_TYPE = "1.0.2_sns_spatial_type";
 	/** INSPIRE update version/strategy */
 	static String VALUE_IDC_VERSION_103 = "1.0.3";
-	/** NEWEST version/strategy */
+	/** IMPORT/EXPORT etc. version/strategy */
 	static String VALUE_IDC_VERSION_104 = "1.0.4";
+	/** Update INSPIRE themes version/strategy */
+	static String VALUE_IDC_VERSION_104_FIX_INSPIRE_THEMES = "1.0.4_fix_inspire_themes";
 
 	/** Order of strategies to execute to obtain most recent IGC.
 	 * Contains all according versions/strategies in ascending order.
@@ -37,8 +39,9 @@ public interface IDCStrategy {
 		VALUE_IDC_FIX_SYSLIST,
 		VALUE_IDC_VERSION_102_SNS_SPATIAL_TYPE,
 		VALUE_IDC_VERSION_103,
-		// Syslist csv have to be imported till version 104 ! since 104 (including) syslists are updated via java code
+		// Syslist csv have to be imported till version 104 ! in 104 syslists are updated via java code !
 		VALUE_IDC_VERSION_104,
+		VALUE_IDC_VERSION_104_FIX_INSPIRE_THEMES,
 	};
 		
 	public void execute() throws Exception;
