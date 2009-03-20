@@ -1,7 +1,9 @@
 package de.ingrid.importer.udk.util;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.Set;
 
 public class InspireThemesHelper {
 
@@ -9,7 +11,7 @@ public class InspireThemesHelper {
 	// --------------
 	static public int noInspireThemeId = 99999;
 
-	// german syslist
+	// german syslist <ThemeId, german ThemeName>
 	static public LinkedHashMap<Integer, String> inspireThemes_de = new LinkedHashMap<Integer, String>();
 	static {
 		inspireThemes_de.put(101, "Koordinatenreferenzsysteme");
@@ -48,64 +50,96 @@ public class InspireThemesHelper {
 		inspireThemes_de.put(321, "Mineralische Bodenschätze");
 		inspireThemes_de.put(noInspireThemeId, "Kein INSPIRE-Thema");
 	}
-	// german "searchterm" to theme id. LOWERCASE because of comparison
-	static public HashMap<String, Integer[]> termToInspireIds_de = new HashMap<String, Integer[]>(); 
+	// german "searchterm" to theme ids <term, [ThemeIds]>
+	// term is LOWERCASE because of comparison
+	static private HashMap<String, Integer[]> termToThemeIds_de = new HashMap<String, Integer[]>(); 
 	static {
-		// TODO: adapt to KST values !!!
-
-		termToInspireIds_de.put("koordinate", new Integer[]{101});
-		termToInspireIds_de.put("referenzsystem", new Integer[]{101});
-		termToInspireIds_de.put("gittersystem", new Integer[]{102});
-		termToInspireIds_de.put("geografische bezeichnung", new Integer[]{103});
-		termToInspireIds_de.put("verwaltungseinheit", new Integer[]{104});
-		termToInspireIds_de.put("adresse", new Integer[]{105});
-		termToInspireIds_de.put("flurstück", new Integer[]{106});
-		termToInspireIds_de.put("grundstück", new Integer[]{106});
-		termToInspireIds_de.put("katasterparzelle", new Integer[]{106});
-		termToInspireIds_de.put("verkehr", new Integer[]{107});
-		termToInspireIds_de.put("gewässer", new Integer[]{108});
-		termToInspireIds_de.put("schutzgebiet", new Integer[]{109, 311});
-		termToInspireIds_de.put("höhe", new Integer[]{201});
-		termToInspireIds_de.put("bodenbedeckung", new Integer[]{202});
-		termToInspireIds_de.put("orthofotografie", new Integer[]{203});
-		termToInspireIds_de.put("geologie", new Integer[]{204});
-		termToInspireIds_de.put("statistische einheit", new Integer[]{301});
-		termToInspireIds_de.put("gebäude", new Integer[]{302});
-		termToInspireIds_de.put("boden", new Integer[]{303});
-		termToInspireIds_de.put("bodennutzung", new Integer[]{304});
-		termToInspireIds_de.put("gesundheit", new Integer[]{305});
-		termToInspireIds_de.put("sicherheit", new Integer[]{305});
-		termToInspireIds_de.put("versorgungswirtschaft", new Integer[]{306});
-		termToInspireIds_de.put("staatliche dienste", new Integer[]{306});
-		termToInspireIds_de.put("umweltüberwachung", new Integer[]{307});
-		termToInspireIds_de.put("produktion", new Integer[]{308});
-		termToInspireIds_de.put("industrieanlage", new Integer[]{308});
-		termToInspireIds_de.put("landwirtschaft", new Integer[]{309});
-		termToInspireIds_de.put("aquakultur", new Integer[]{309});
-		termToInspireIds_de.put("bevölkerung", new Integer[]{310});
-		termToInspireIds_de.put("demografie", new Integer[]{310});
-		termToInspireIds_de.put("bewirtschaftungsgebiet", new Integer[]{311});
-		termToInspireIds_de.put("geregelte gebiet", new Integer[]{311});
-		termToInspireIds_de.put("geregeltes gebiet", new Integer[]{311});
-		termToInspireIds_de.put("berichterstattungseinheit", new Integer[]{311});
-		termToInspireIds_de.put("naturbedingte risiken", new Integer[]{312});
-		termToInspireIds_de.put("atmosphäre", new Integer[]{313});
-		termToInspireIds_de.put("meteorologie", new Integer[]{314});
-		termToInspireIds_de.put("ozeanografie", new Integer[]{315});
-		termToInspireIds_de.put("meeresregion", new Integer[]{316});
-		termToInspireIds_de.put("biogeografische region", new Integer[]{317});
-		termToInspireIds_de.put("lebensräume", new Integer[]{318});
-		termToInspireIds_de.put("lebensraum", new Integer[]{318});
-		termToInspireIds_de.put("biotop", new Integer[]{318});
-		termToInspireIds_de.put("verteilung der arten", new Integer[]{319});
-		termToInspireIds_de.put("energiequelle", new Integer[]{320});
-		termToInspireIds_de.put("mineral", new Integer[]{321});
-		termToInspireIds_de.put("bodenschätze", new Integer[]{321});
-		termToInspireIds_de.put("bodenschatz", new Integer[]{321});
+		termToThemeIds_de.put("koordinatenreferenzsystem", new Integer[]{101});
+		termToThemeIds_de.put("geografische gittersystem", new Integer[]{102});
+		termToThemeIds_de.put("geografische bezeichnung", new Integer[]{103});
+		termToThemeIds_de.put("verwaltungseinheit", new Integer[]{104});
+		termToThemeIds_de.put("adresse", new Integer[]{105});
+		termToThemeIds_de.put("flurstück", new Integer[]{106});
+		termToThemeIds_de.put("grundstück", new Integer[]{106});
+		termToThemeIds_de.put("katasterparzelle", new Integer[]{106});
+		termToThemeIds_de.put("verkehrsnetz", new Integer[]{107});
+		termToThemeIds_de.put("gewässernetz", new Integer[]{108});
+		termToThemeIds_de.put("schutzgebiet", new Integer[]{109, 311});
+		termToThemeIds_de.put("höhe", new Integer[]{201});
+		termToThemeIds_de.put("bodenbedeckung", new Integer[]{202});
+		termToThemeIds_de.put("orthofotografie", new Integer[]{203});
+		termToThemeIds_de.put("geologie", new Integer[]{204});
+		termToThemeIds_de.put("statistische einheit", new Integer[]{301});
+		termToThemeIds_de.put("gebäude", new Integer[]{302});
+		termToThemeIds_de.put("boden", new Integer[]{303});
+		termToThemeIds_de.put("bodennutzung", new Integer[]{304});
+		termToThemeIds_de.put("gesundheit", new Integer[]{305});
+		termToThemeIds_de.put("sicherheit", new Integer[]{305});
+		termToThemeIds_de.put("versorgungswirtschaft", new Integer[]{306});
+		termToThemeIds_de.put("staatlicher dienst", new Integer[]{306});
+		termToThemeIds_de.put("umweltüberwachung", new Integer[]{307});
+		termToThemeIds_de.put("produktionsanlage", new Integer[]{308});
+		termToThemeIds_de.put("industrieanlage", new Integer[]{308});
+		termToThemeIds_de.put("landwirtschaftliche anlage", new Integer[]{309});
+		termToThemeIds_de.put("aquakulturanlage", new Integer[]{309});
+		termToThemeIds_de.put("verteilung der bevölkerung", new Integer[]{310});
+		termToThemeIds_de.put("demografie", new Integer[]{310});
+		termToThemeIds_de.put("bewirtschaftungsgebiet", new Integer[]{311});
+		termToThemeIds_de.put("geregeltes gebiet", new Integer[]{311});
+		termToThemeIds_de.put("berichterstattungseinheit", new Integer[]{311});
+		termToThemeIds_de.put("gebiet mit naturbedingten risiken", new Integer[]{312});
+		termToThemeIds_de.put("atmosphärische bedingung", new Integer[]{313});
+		termToThemeIds_de.put("meteorologisch-geografische kennwert", new Integer[]{314});
+		termToThemeIds_de.put("ozeanografisch-geografische kennwert", new Integer[]{315});
+		termToThemeIds_de.put("meeresregion", new Integer[]{316});
+		termToThemeIds_de.put("biogeografische region", new Integer[]{317});
+		termToThemeIds_de.put("lebensraum", new Integer[]{318});
+		termToThemeIds_de.put("biotop", new Integer[]{318});
+		termToThemeIds_de.put("verteilung der arten", new Integer[]{319});
+		termToThemeIds_de.put("energiequelle", new Integer[]{320});
+		termToThemeIds_de.put("mineralischer bodenschatz", new Integer[]{321});
 	}
 
+	/** Determine Ids of INSPIRE Themes fitting to passed term.
+	 * @param term the searchterm
+	 * @param language the language of the term, pass null to use default language (de)
+	 * @return ids of INSPIRE themes or empty set if no theme found.
+	 * 		Then use const InspireThemesHelper.noInspireThemeId
+	 */
+	static public Set<Integer> getThemeIdsOfTerm(String term, String language) {
+		Set<Integer> ids = new HashSet<Integer>();
+		if (term == null || term.trim().length() == 0) {
+			return ids;
+		}
+		if (language == null) {
+			language = "de";
+		}
+
+		// get terms of themes in according language
+		Set<String> themeTerms = null;
+		if (language.equals("de")) {
+			themeTerms = InspireThemesHelper.termToThemeIds_de.keySet();
+		}
+		if (themeTerms == null) {
+			return ids;
+		}
+
+		// analyze passed term. contains theme term ?
+		for (String themeTerm : themeTerms) {
+			if (term.toLowerCase().contains(themeTerm)) {
+				// yes ! fetch according theme Ids
+				Integer[] themeIds = InspireThemesHelper.termToThemeIds_de.get(themeTerm);
+				// add new themes (Set)
+				for (Integer themeId : themeIds) {
+					ids.add(themeId);
+				}
+			}
+		}
+		
+		return ids;
+	}
 	
-	// english syslist
+	// english syslist <ThemeId, english ThemeName>
 	static public LinkedHashMap<Integer, String> inspireThemes_en = new LinkedHashMap<Integer, String>(); 
 	static {
 		inspireThemes_en.put(101, "Coordinate reference systems");

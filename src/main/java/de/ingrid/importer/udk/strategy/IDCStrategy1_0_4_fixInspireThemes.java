@@ -2,9 +2,8 @@ package de.ingrid.importer.udk.strategy;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.commons.logging.Log;
@@ -50,11 +49,11 @@ public class IDCStrategy1_0_4_fixInspireThemes extends IDCStrategyDefault {
 		// here we store the mapping of INSPIRE ids to the according searchterm id ("searchterm_value").
 		// NOTICE: only one entry in searchterm_value per theme. Will be assigned to multiple entities
 		// via searchterm_obj
-		HashMap<Integer, Long> inspireIdToSearchtermId = getInspireIdToSearchtermIdMap();
+		HashMap<Integer, Long> themeIdToSearchtermId = getThemeIdToSearchtermIdMap();
 
 		// update objects
 		numObjThemesAdded = 0;
-		updateInspireThemesOfObjects(inspireIdToSearchtermId);
+		updateInspireThemesOfObjects(themeIdToSearchtermId);
 		log.info("Added " + numObjThemesAdded + " INSPIRE Themes to objects");
 
 		// NO INSPIRE Themes in addresses !
@@ -65,7 +64,7 @@ public class IDCStrategy1_0_4_fixInspireThemes extends IDCStrategyDefault {
 	}
 
 	/** analyze all object searchterms and assign fitting INSPIRE themes */
-	private void updateInspireThemesOfObjects(HashMap<Integer, Long> inspireIdToSearchtermId) throws Exception {
+	private void updateInspireThemesOfObjects(HashMap<Integer, Long> themeIdToSearchtermId) throws Exception {
 		if (log.isInfoEnabled()) {
 			log.info("Updating INSPIRE Themes of objects...");
 		}
@@ -100,13 +99,11 @@ public class IDCStrategy1_0_4_fixInspireThemes extends IDCStrategyDefault {
 		PreparedStatement psRemoveTermObj = jdbc.prepareStatement(psSql);
 
 		// here we track ids of assigned INSPIRE themes of current object
-		List<Integer> currInspireIds = new ArrayList<Integer>();
+		Set<Integer> currThemeIds = new HashSet<Integer>();
 		int currLine = 0;
 		long currObjId = -1;
 		String currObjUuid = null;
 		String currObjWorkState = null;
-		// all terms to compare with searchterms
-		Set<String> inspireTerms = InspireThemesHelper.termToInspireIds_de.keySet();
 
 		// iterate over all searchterms applied to objects ordered by object
 		String sqlAllObjTerms = "SELECT termObj.obj_id, val.term, obj.obj_uuid, obj.work_state " +
@@ -125,18 +122,18 @@ public class IDCStrategy1_0_4_fixInspireThemes extends IDCStrategyDefault {
 				// "finish" former object
 				if (currObjId != -1) {
 					// remove former "NO INSPIRE THEME" if new theme was added !
-					if (currInspireIds.size() > 1 &&
-							currInspireIds.contains(InspireThemesHelper.noInspireThemeId)) {
+					if (currThemeIds.size() > 1 &&
+							currThemeIds.contains(InspireThemesHelper.noInspireThemeId)) {
 						removeInspireThemeFromObject(InspireThemesHelper.noInspireThemeId, currObjId,
-								inspireIdToSearchtermId, psRemoveTermObj, currInspireIds,
+								themeIdToSearchtermId, psRemoveTermObj, currThemeIds,
 								currObjUuid, currObjWorkState);
 					}
 					// check whether former object has INSPIRE Theme, else add "NO INSPIRE THEME"
-					if (currInspireIds.isEmpty()) {
+					if (currThemeIds.isEmpty()) {
 						addInspireThemeToObject(InspireThemesHelper.noInspireThemeId, currObjId, 1,
-								inspireIdToSearchtermId, psInsertTerm, psInsertTermObj,
-								currInspireIds,
-								null, currObjUuid, currObjUuid);
+								themeIdToSearchtermId, psInsertTerm, psInsertTermObj,
+								currThemeIds,
+								null, currObjUuid, currObjWorkState);
 					}
 				}
 
@@ -146,7 +143,7 @@ public class IDCStrategy1_0_4_fixInspireThemes extends IDCStrategyDefault {
 				currObjUuid = rs.getString("obj_uuid");
 				currObjWorkState = rs.getString("work_state");
 				currLine = 0;
-				currInspireIds.clear();
+				currThemeIds.clear();
 
 				// fetch all assigned INSPIRE themes and max line
 				psReadObjInspireTerms.setLong(1, currObjId);
@@ -154,9 +151,7 @@ public class IDCStrategy1_0_4_fixInspireThemes extends IDCStrategyDefault {
 				while (rsObjInspireTerms.next()) {
 					currLine = rsObjInspireTerms.getInt("line");
 					Integer entryId = rsObjInspireTerms.getInt("entry_id");
-					if (!currInspireIds.contains(entryId)) {
-						currInspireIds.add(entryId);
-					}
+					currThemeIds.add(entryId);
 				}
 				rsObjInspireTerms.close();
 			}
@@ -165,22 +160,14 @@ public class IDCStrategy1_0_4_fixInspireThemes extends IDCStrategyDefault {
 			// add according INSPIRE themes if not added yet !
 
 			// read searchterm, lower case for comparison
-			String searchTerm = rs.getString("term").toLowerCase();
-			
-			// analyze term. contains INSPIRE term ?
-			for (String inspireTerm : inspireTerms) {
-				if (searchTerm.contains(inspireTerm)) {
-					// yes ! fetch according theme Ids
-					Integer[] inspireIds = InspireThemesHelper.termToInspireIds_de.get(inspireTerm);
-					// add new themes if not assigned yet
-					for (Integer inspireId : inspireIds) {
-						if (!currInspireIds.contains(inspireId)) {
-							addInspireThemeToObject(inspireId, currObjId, ++currLine,
-									inspireIdToSearchtermId, psInsertTerm, psInsertTermObj,
-									currInspireIds,
-									searchTerm, currObjUuid, currObjWorkState);
-						}
-					}
+			String searchTerm = rs.getString("term");
+			Set<Integer> newThemeIds = InspireThemesHelper.getThemeIdsOfTerm(searchTerm, null);
+			for (Integer newThemeId : newThemeIds) {
+				if (!currThemeIds.contains(newThemeId)) {
+					addInspireThemeToObject(newThemeId, currObjId, ++currLine,
+							themeIdToSearchtermId, psInsertTerm, psInsertTermObj,
+							currThemeIds,
+							searchTerm, currObjUuid, currObjWorkState);
 				}
 			}
 		}
@@ -196,7 +183,7 @@ public class IDCStrategy1_0_4_fixInspireThemes extends IDCStrategyDefault {
 	}
 
 	/** Get mapping of INSPIRE theme ids to according searchtermValues. */
-	private HashMap<Integer,Long> getInspireIdToSearchtermIdMap() throws Exception {
+	private HashMap<Integer,Long> getThemeIdToSearchtermIdMap() throws Exception {
 		HashMap<Integer,Long> map = new HashMap<Integer,Long>();
 
 		String sql = "SELECT id, entry_id " +
@@ -205,10 +192,10 @@ public class IDCStrategy1_0_4_fixInspireThemes extends IDCStrategyDefault {
 		ResultSet rs = jdbc.executeQuery(sql);
 
 		while (rs.next()) {
-			int inspireId = rs.getInt("entry_id");
+			int themeId = rs.getInt("entry_id");
 			long searchtermId = rs.getLong("id");
 
-			map.put(inspireId, searchtermId);
+			map.put(themeId, searchtermId);
 		}
 		rs.close();
 
@@ -216,26 +203,26 @@ public class IDCStrategy1_0_4_fixInspireThemes extends IDCStrategyDefault {
 	}
 
 	/** Create "searchterm_value" of INSPIRE theme if not present and assign to object via "searchterm_obj". */
-	private void addInspireThemeToObject(int inspireId, long objectId, int line,
-			HashMap<Integer,Long> inspireIdToSearchtermId,
+	private void addInspireThemeToObject(int themeIdToAdd, long objectId, int line,
+			HashMap<Integer,Long> themeIdToSearchtermId,
 			PreparedStatement psInsertTerm, PreparedStatement psInsertTermObj,
-			List<Integer> currInspireIds,
+			Set<Integer> currThemeIds,
 			String searchtermForLog, String objUuidForLog, String workStateForLog) throws Exception {
 
-		String inspireTheme = InspireThemesHelper.inspireThemes_de.get(inspireId);
+		String themeName = InspireThemesHelper.inspireThemes_de.get(themeIdToAdd);
 
 		// first add inspire term to searchterms if not present yet !
-		Long searchtermId = inspireIdToSearchtermId.get(inspireId);
+		Long searchtermId = themeIdToSearchtermId.get(themeIdToAdd);
 		if (searchtermId == null) {
 			int cnt = 1;
 
 			searchtermId = getNextId();
 			psInsertTerm.setLong(cnt++, searchtermId); // searchterm_value.id
-			psInsertTerm.setString(cnt++, inspireTheme); // searchterm_value.term
-			psInsertTerm.setInt(cnt++, inspireId); // searchterm_value.entry_id
+			psInsertTerm.setString(cnt++, themeName); // searchterm_value.term
+			psInsertTerm.setInt(cnt++, themeIdToAdd); // searchterm_value.entry_id
 			psInsertTerm.executeUpdate();
 
-			inspireIdToSearchtermId.put(inspireId, searchtermId);
+			themeIdToSearchtermId.put(themeIdToAdd, searchtermId);
 		}
 		
 		// assign searchterm to object
@@ -246,12 +233,12 @@ public class IDCStrategy1_0_4_fixInspireThemes extends IDCStrategyDefault {
 		psInsertTermObj.setLong(cnt++, searchtermId); // searchterm_obj.searchterm_id
 		psInsertTermObj.executeUpdate();
 
-		// also update our list !
-		currInspireIds.add(inspireId);			
+		// also update our set !
+		currThemeIds.add(themeIdToAdd);			
 		numObjThemesAdded++;
 
 		if (log.isDebugEnabled()) {
-			String msg = "Added INSPIRE Theme: '" + inspireTheme + "'";
+			String msg = "Added INSPIRE Theme: '" + themeName + "'";
 			if (searchtermForLog != null) {
 				msg = msg + ", Searchterm: '" + searchtermForLog + "'";
 			}
@@ -262,13 +249,13 @@ public class IDCStrategy1_0_4_fixInspireThemes extends IDCStrategyDefault {
 	}
 
 	/** Remove INSPIRE theme from object via "searchterm_obj". */
-	private void removeInspireThemeFromObject(int inspireId, long objectId,
-			HashMap<Integer,Long> inspireIdToSearchtermId,
+	private void removeInspireThemeFromObject(int themeIdToRemove, long objectId,
+			HashMap<Integer,Long> themeIdToSearchtermId,
 			PreparedStatement psRemoveTermObj,
-			List<Integer> currInspireIds,
+			Set<Integer> currThemeIds,
 			String objUuidForLog, String workStateForLog) throws Exception {
 
-		Long searchtermId = inspireIdToSearchtermId.get(inspireId);
+		Long searchtermId = themeIdToSearchtermId.get(themeIdToRemove);
 		
 		// remove only, if term exists
 		if (searchtermId != null) {
@@ -277,13 +264,11 @@ public class IDCStrategy1_0_4_fixInspireThemes extends IDCStrategyDefault {
 			psRemoveTermObj.setLong(cnt++, searchtermId); // searchterm_obj.searchterm_id
 			psRemoveTermObj.executeUpdate();
 			
-			// also update our list !
-			while (currInspireIds.contains((Object)inspireId)) {
-				currInspireIds.remove((Object)inspireId);
-			}
+			// also update our set !
+			currThemeIds.remove(themeIdToRemove);
 
 			if (log.isDebugEnabled()) {
-				String inspireTheme = InspireThemesHelper.inspireThemes_de.get(inspireId);
+				String inspireTheme = InspireThemesHelper.inspireThemes_de.get(themeIdToRemove);
 				String msg = "Removed INSPIRE Theme: '" + inspireTheme + "'";
 				msg = msg + ", Obj-UUUID: " + objUuidForLog + ", workState: '" + workStateForLog + "'";
 
