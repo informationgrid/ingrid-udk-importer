@@ -234,11 +234,8 @@ public class IDCStrategy1_0_4 extends IDCStrategyDefault {
 			log.info("Updating sys_gui...");
 		}
 
-		// TODO: integrate new UI fields !
-
-/*
 		if (log.isInfoEnabled()) {
-			log.info("Inserting initial sys_gui entries...");
+			log.info("Updating sys_gui entries (including Clean Up !)...");
 		}
 
 		// clean up, to guarantee no old values !
@@ -247,7 +244,90 @@ public class IDCStrategy1_0_4 extends IDCStrategyDefault {
 
 		LinkedHashMap<String, Integer> initialSysGuis = new LinkedHashMap<String, Integer>();
 		Integer initialBehaviour = -1;
+		Integer mandatory = 1;
+
 		initialSysGuis.put("1130", initialBehaviour);
+		initialSysGuis.put("1140", initialBehaviour);
+		initialSysGuis.put("1220", initialBehaviour);
+		initialSysGuis.put("1230", initialBehaviour);
+		initialSysGuis.put("1240", initialBehaviour);
+		initialSysGuis.put("1250", initialBehaviour);
+		initialSysGuis.put("1310", initialBehaviour);
+		initialSysGuis.put("1320", initialBehaviour);
+		initialSysGuis.put("1350", initialBehaviour);
+		initialSysGuis.put("1409", mandatory);
+		initialSysGuis.put("1410", mandatory);
+		initialSysGuis.put("3100", initialBehaviour);
+		initialSysGuis.put("3110", initialBehaviour);
+		initialSysGuis.put("3120", initialBehaviour);
+		initialSysGuis.put("3200", initialBehaviour);
+		initialSysGuis.put("3210", initialBehaviour);
+		initialSysGuis.put("3230", initialBehaviour);
+		initialSysGuis.put("3240", initialBehaviour);
+		initialSysGuis.put("3250", initialBehaviour);
+		initialSysGuis.put("3300", initialBehaviour);
+		initialSysGuis.put("3310", initialBehaviour);
+		initialSysGuis.put("3320", initialBehaviour);
+		initialSysGuis.put("3330", initialBehaviour);
+		initialSysGuis.put("3340", initialBehaviour);
+		initialSysGuis.put("3345", initialBehaviour);
+		initialSysGuis.put("3350", initialBehaviour);
+		initialSysGuis.put("3355", initialBehaviour);
+		initialSysGuis.put("3360", initialBehaviour);
+		initialSysGuis.put("3365", initialBehaviour);
+		initialSysGuis.put("3370", initialBehaviour);
+		initialSysGuis.put("3375", initialBehaviour);
+		initialSysGuis.put("3380", initialBehaviour);
+		initialSysGuis.put("3385", initialBehaviour);
+		initialSysGuis.put("3400", initialBehaviour);
+		initialSysGuis.put("3410", initialBehaviour);
+		initialSysGuis.put("3420", initialBehaviour);
+		initialSysGuis.put("3500", initialBehaviour);
+		initialSysGuis.put("3515", initialBehaviour);
+		initialSysGuis.put("3520", initialBehaviour);
+		initialSysGuis.put("3530", initialBehaviour);
+		initialSysGuis.put("3535", initialBehaviour);
+		initialSysGuis.put("3555", initialBehaviour);
+		initialSysGuis.put("3565", initialBehaviour);
+		initialSysGuis.put("3570", initialBehaviour);
+		initialSysGuis.put("4400", initialBehaviour);
+		initialSysGuis.put("4405", initialBehaviour);
+		initialSysGuis.put("4410", initialBehaviour);
+		initialSysGuis.put("4415", initialBehaviour);
+		initialSysGuis.put("4420", initialBehaviour);
+		initialSysGuis.put("4425", initialBehaviour);
+		initialSysGuis.put("4435", initialBehaviour);
+		initialSysGuis.put("4440", initialBehaviour);
+		initialSysGuis.put("4510", mandatory);
+		initialSysGuis.put("5000", initialBehaviour);
+		initialSysGuis.put("5020", initialBehaviour);
+		initialSysGuis.put("5021", initialBehaviour);
+		initialSysGuis.put("5022", initialBehaviour);
+		initialSysGuis.put("5040", initialBehaviour);
+		initialSysGuis.put("5052", initialBehaviour);
+		initialSysGuis.put("5062", initialBehaviour);
+		initialSysGuis.put("5063", initialBehaviour);
+		initialSysGuis.put("5069", initialBehaviour);
+		initialSysGuis.put("5070", initialBehaviour);
+		initialSysGuis.put("N001", initialBehaviour);
+		initialSysGuis.put("N002", initialBehaviour);
+		initialSysGuis.put("N003", initialBehaviour);
+		initialSysGuis.put("N004", initialBehaviour);
+		initialSysGuis.put("N005", initialBehaviour);
+		initialSysGuis.put("N007", initialBehaviour);
+		initialSysGuis.put("N009", initialBehaviour);
+		initialSysGuis.put("N010", initialBehaviour);
+		initialSysGuis.put("N011", initialBehaviour);
+		initialSysGuis.put("N012", initialBehaviour);
+		initialSysGuis.put("N013", initialBehaviour);
+		initialSysGuis.put("N014", initialBehaviour);
+		initialSysGuis.put("N015", initialBehaviour);
+		initialSysGuis.put("N016", initialBehaviour);
+		initialSysGuis.put("N017", initialBehaviour);
+		initialSysGuis.put("N018", initialBehaviour);
+		initialSysGuis.put("N019", mandatory);
+		initialSysGuis.put("N020", initialBehaviour);
+		initialSysGuis.put("N023", initialBehaviour);
 		
 		Iterator<String> itr = initialSysGuis.keySet().iterator();
 		while (itr.hasNext()) {
@@ -255,7 +335,7 @@ public class IDCStrategy1_0_4 extends IDCStrategyDefault {
 			jdbc.executeUpdate("INSERT INTO sys_gui (id, gui_id, behaviour) VALUES ("
 					+ getNextId() + ", '" + key + "', " + initialSysGuis.get(key) + ")");
 		}
-*/		
+		
 		if (log.isInfoEnabled()) {
 			log.info("Updating sys_gui... done");
 		}
