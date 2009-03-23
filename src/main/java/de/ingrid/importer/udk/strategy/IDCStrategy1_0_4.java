@@ -134,6 +134,7 @@ public class IDCStrategy1_0_4 extends IDCStrategyDefault {
 			log.info("Updating sys_list...");
 		}
 
+// ---------------------------
 		int lstId = 6100;
 		if (log.isInfoEnabled()) {
 			log.info("Updating syslist " + lstId +	" (INSPIRE Themen für Verschlagwortung)...");
@@ -157,6 +158,70 @@ public class IDCStrategy1_0_4 extends IDCStrategyDefault {
 			// english version
 			jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
 					+ getNextId() + ", " + lstId + ", " + key + ", 'en', '" + newSyslist6100_en.get(key) + "', 0, 'N')");
+		}
+
+// ---------------------------
+		lstId = 527;
+		if (log.isInfoEnabled()) {
+			log.info("Updating syslist " + lstId +	" (ISO)Themenkategorie-Codeliste (ISO B.5.27 MD_TopicCategoryCode)...");
+		}
+
+		// clean up, to guarantee no old values !
+		sqlStr = "DELETE FROM sys_list where lst_id = " + lstId;
+		jdbc.executeUpdate(sqlStr);
+
+		// german syslist
+		LinkedHashMap<Integer, String> newSyslist527_de = new LinkedHashMap<Integer, String>();
+		newSyslist527_de.put(1, "Landwirtschaft");
+		newSyslist527_de.put(2, "Biologie");
+		newSyslist527_de.put(3, "Grenzen");
+		newSyslist527_de.put(4, "Atmosphäre");
+		newSyslist527_de.put(5, "Wirtschaft");
+		newSyslist527_de.put(6, "Höhenangaben");
+		newSyslist527_de.put(7, "Umwelt");
+		newSyslist527_de.put(8, "Geowissenschaften");
+		newSyslist527_de.put(9, "Gesundheitswesen");
+		newSyslist527_de.put(10, "Oberflächenbeschreibung");
+		newSyslist527_de.put(11, "Militär und Aufklärung");
+		newSyslist527_de.put(12, "Binnengewässer");
+		newSyslist527_de.put(13, "Ortsangaben");
+		newSyslist527_de.put(14, "Meere");
+		newSyslist527_de.put(15, "Planungsunterlagen, Kataster");
+		newSyslist527_de.put(16, "Gesellschaft");
+		newSyslist527_de.put(17, "Bauwerke");
+		newSyslist527_de.put(18, "Verkehrswesen");
+		newSyslist527_de.put(19, "Ver- und Entsorgung, Kommunikation");
+		// english syslist
+		LinkedHashMap<Integer, String> newSyslist527_en = new LinkedHashMap<Integer, String>(); 
+		newSyslist527_en.put(1, "farming");
+		newSyslist527_en.put(2, "biota");
+		newSyslist527_en.put(3, "boundaries");
+		newSyslist527_en.put(4, "climatologyMeteorologyAtmosphere");
+		newSyslist527_en.put(5, "economy");
+		newSyslist527_en.put(6, "elevation");
+		newSyslist527_en.put(7, "environment");
+		newSyslist527_en.put(8, "geoscientificInformation");
+		newSyslist527_en.put(9, "health");
+		newSyslist527_en.put(10, "imageryBaseMapsEarthCover");
+		newSyslist527_en.put(11, "intelligenceMilitary");
+		newSyslist527_en.put(12, "inlandWaters");
+		newSyslist527_en.put(13, "location");
+		newSyslist527_en.put(14, "oceans");
+		newSyslist527_en.put(15, "planningCadastre");
+		newSyslist527_en.put(16, "society");
+		newSyslist527_en.put(17, "structure");
+		newSyslist527_en.put(18, "transportation");
+		newSyslist527_en.put(19, "utilitiesCommunication");
+
+		itr = newSyslist527_de.keySet().iterator();
+		while (itr.hasNext()) {
+			int key = itr.next();
+			// german version
+			jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
+					+ getNextId() + ", " + lstId + ", " + key + ", 'de', '" + newSyslist527_de.get(key) + "', 0, 'N')");
+			// english version
+			jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
+					+ getNextId() + ", " + lstId + ", " + key + ", 'en', '" + newSyslist527_en.get(key) + "', 0, 'N')");
 		}
 
 		if (log.isInfoEnabled()) {
