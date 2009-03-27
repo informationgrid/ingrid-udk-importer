@@ -125,6 +125,11 @@ public class IDCStrategy1_0_4 extends IDCStrategyDefault {
 		jdbc.getDBLogic().addColumn("gemet_id", ColumnType.VARCHAR50, "searchterm_sns", false, null, jdbc);
 
 		if (log.isInfoEnabled()) {
+			log.info("Add column 'gemet_term' to table 'searchterm_value'...");
+		}
+		jdbc.getDBLogic().addColumn("gemet_term", ColumnType.TEXT, "searchterm_value", false, null, jdbc);
+
+		if (log.isInfoEnabled()) {
 			log.info("Extending datastructure... done");
 		}
 	}
