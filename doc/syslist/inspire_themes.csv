@@ -1,0 +1,71 @@
+id;version;lst_id;entry_id;lang_id;name;description;maintainable;is_default;line
+2000;0;6100;101;de;Koordinatenreferenzsysteme;NULL;0;N;0
+2001;0;6100;101;en;Coordinate reference systems;NULL;0;N;0
+2002;0;6100;102;de;Geografische Gittersysteme;NULL;0;N;0
+2003;0;6100;102;en;Geographical grid systems;NULL;0;N;0
+2004;0;6100;103;de;Geografische Bezeichnungen;NULL;0;N;0
+2005;0;6100;103;en;Geographical names;NULL;0;N;0
+2006;0;6100;104;de;Verwaltungseinheiten;NULL;0;N;0
+2007;0;6100;104;en;Administrative units;NULL;0;N;0
+2008;0;6100;105;de;Adressen;NULL;0;N;0
+2009;0;6100;105;en;Addresses;NULL;0;N;0
+2010;0;6100;106;de;Flurstücke/Grundstücke (Katasterparzellen);NULL;0;N;0
+2011;0;6100;106;en;Cadastral parcels;NULL;0;N;0
+2012;0;6100;107;de;Verkehrsnetze;NULL;0;N;0
+2013;0;6100;107;en;Transport networks;NULL;0;N;0
+2014;0;6100;108;de;Gewässernetz;NULL;0;N;0
+2015;0;6100;108;en;Hydrography;NULL;0;N;0
+2016;0;6100;109;de;Schutzgebiete;NULL;0;N;0
+2017;0;6100;109;en;Protected sites;NULL;0;N;0
+2018;0;6100;201;de;Höhe;NULL;0;N;0
+2019;0;6100;201;en;Elevation;NULL;0;N;0
+2020;0;6100;202;de;Bodenbedeckung;NULL;0;N;0
+2021;0;6100;202;en;Land cover;NULL;0;N;0
+2022;0;6100;203;de;Orthofotografie;NULL;0;N;0
+2023;0;6100;203;en;Orthoimagery;NULL;0;N;0
+2024;0;6100;204;de;Geologie;NULL;0;N;0
+2025;0;6100;204;en;Geology;NULL;0;N;0
+2026;0;6100;301;de;Statistische Einheiten;NULL;0;N;0
+2027;0;6100;301;en;Statistical units;NULL;0;N;0
+2028;0;6100;302;de;Gebäude;NULL;0;N;0
+2029;0;6100;302;en;Buildings;NULL;0;N;0
+2030;0;6100;303;de;Boden;NULL;0;N;0
+2031;0;6100;303;en;Soil;NULL;0;N;0
+2032;0;6100;304;de;Bodennutzung;NULL;0;N;0
+2033;0;6100;304;en;Land use;NULL;0;N;0
+2034;0;6100;305;de;Gesundheit und Sicherheit;NULL;0;N;0
+2035;0;6100;305;en;Human health and safety;NULL;0;N;0
+2036;0;6100;306;de;Versorgungswirtschaft und staatliche Dienste;NULL;0;N;0
+2037;0;6100;306;en;Utility and governmental services;NULL;0;N;0
+2038;0;6100;307;de;Umweltüberwachung;NULL;0;N;0
+2039;0;6100;307;en;Environmental monitoring facilities;NULL;0;N;0
+2040;0;6100;308;de;Produktions- und Industrieanlagen;NULL;0;N;0
+2041;0;6100;308;en;Production and industrial facilities;NULL;0;N;0
+2042;0;6100;309;de;Landwirtschaftliche Anlagen und Aquakulturanlagen;NULL;0;N;0
+2043;0;6100;309;en;Agricultural and aquaculture facilities;NULL;0;N;0
+2044;0;6100;310;de;Verteilung der Bevölkerung — Demografie;NULL;0;N;0
+2045;0;6100;310;en;Population distribution — demography;NULL;0;N;0
+2046;0;6100;311;de;Bewirtschaftungsgebiete/Schutzgebiete/geregelte Gebiete und Berichterstattungseinheiten;NULL;0;N;0
+2047;0;6100;311;en;Area management/restriction/regulation zones and reporting units;NULL;0;N;0
+2048;0;6100;312;de;Gebiete mit naturbedingten Risiken;NULL;0;N;0
+2049;0;6100;312;en;Natural risk zones;NULL;0;N;0
+2050;0;6100;313;de;Atmosphärische Bedingungen;NULL;0;N;0
+2051;0;6100;313;en;Atmospheric conditions;NULL;0;N;0
+2052;0;6100;314;de;Meteorologisch-geografische Kennwerte;NULL;0;N;0
+2053;0;6100;314;en;Meteorological geographical features;NULL;0;N;0
+2054;0;6100;315;de;Ozeanografisch-geografische Kennwerte;NULL;0;N;0
+2055;0;6100;315;en;Oceanographic geographical features;NULL;0;N;0
+2056;0;6100;316;de;Meeresregionen;NULL;0;N;0
+2057;0;6100;316;en;Sea regions;NULL;0;N;0
+2058;0;6100;317;de;Biogeografische Regionen;NULL;0;N;0
+2059;0;6100;317;en;Bio-geographical regions;NULL;0;N;0
+2060;0;6100;318;de;Lebensräume und Biotope;NULL;0;N;0
+2061;0;6100;318;en;Habitats and biotopes;NULL;0;N;0
+2062;0;6100;319;de;Verteilung der Arten;NULL;0;N;0
+2063;0;6100;319;en;Species distribution;NULL;0;N;0
+2064;0;6100;320;de;Energiequellen;NULL;0;N;0
+2065;0;6100;320;en;Energy resources;NULL;0;N;0
+2066;0;6100;321;de;Mineralische Bodenschätze;NULL;0;N;0
+2067;0;6100;321;en;Mineral resources;NULL;0;N;0
+2068;0;6100;99999;de;Kein INSPIRE-Thema;NULL;0;N;0
+2069;0;6100;99999;en;No INSPIRE Theme;NULL;0;N;0
