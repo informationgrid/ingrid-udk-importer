@@ -19,12 +19,13 @@ Um einen korrekten Syslisten Zustand nach dem Upgrade auf die version 1.0.3 zu g
 
 Import csv via phpMyAdmin:
 --------------------------
-mit phpMyAdmin in sys_list Tabelle importieren !
--> Tabelle "sys_list" auswählen und Tab "Importieren"
 
+- Tabelle "sys_list" auswählen und Tab "Leeren"
+
+- Tabelle "sys_list" auswählen und Tab "Importieren"
+	csv-Datei auswählen
 Von Default abweichend:
 	Anzahl der am Anfang zu überspringenden Einträge (Abfragen): 1
-
 Default:
 	Zeichencodierung der Datei: utf8
 
