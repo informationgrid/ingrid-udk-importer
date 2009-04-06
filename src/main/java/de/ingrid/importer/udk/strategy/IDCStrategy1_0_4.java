@@ -13,7 +13,7 @@ import de.ingrid.importer.udk.jdbc.DBLogic.ColumnType;
 import de.ingrid.importer.udk.util.InspireThemesHelper;
 
 /**
- * IGC Update: IMPORT/EXPORT (sys_job_info) etc. 
+ * IGC Update: IMPORT/EXPORT (sys_job_info) etc. -> InGrid 2.0 Release version
  * 
  * @author martin
  */
