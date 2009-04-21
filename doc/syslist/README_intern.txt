@@ -6,6 +6,12 @@ hier auch noch mal als csv Datei, WERDEN ABER VOM IMPORTER IN DER VERSION 1.0.4 
 
 Syslisten
 =========
+
+- ISO 639-2 Language Code List - Codes for the representation of names of languages (Library of Congress).doc
+Komplett Sprachliste von Kst aus email "Länder und Sprachlisten", 17.04.2009 10:29.
+Als Basis für die entsprechende Sysliste im IGC.
+
+
 - sys_list_erw.csv
 ursprüngliche Gesamt-Syslist Datei aus NI, diese enthält jedoch länderspezifische Syslisten (z.B. Rechtsgrundlagen 1350)
 - sys_list_erw_nur_local.csv
