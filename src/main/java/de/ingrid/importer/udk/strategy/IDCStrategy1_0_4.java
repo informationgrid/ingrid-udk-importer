@@ -10,7 +10,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import de.ingrid.importer.udk.jdbc.DBLogic.ColumnType;
-import de.ingrid.importer.udk.util.InspireThemesHelper;
+import de.ingrid.utils.udk.UtilsInspireThemes;
 
 /**
  * IGC Update: IMPORT/EXPORT (sys_job_info) etc. -> InGrid 2.0 Release version
@@ -150,9 +150,9 @@ public class IDCStrategy1_0_4 extends IDCStrategyDefault {
 		jdbc.executeUpdate(sqlStr);
 
 		// german syslist
-		LinkedHashMap<Integer, String> newSyslist6100_de = InspireThemesHelper.inspireThemes_de; 
+		LinkedHashMap<Integer, String> newSyslist6100_de = UtilsInspireThemes.inspireThemes_de; 
 		// english syslist
-		LinkedHashMap<Integer, String> newSyslist6100_en = InspireThemesHelper.inspireThemes_en; 
+		LinkedHashMap<Integer, String> newSyslist6100_en = UtilsInspireThemes.inspireThemes_en; 
 
 		Iterator<Integer> itr = newSyslist6100_de.keySet().iterator();
 		while (itr.hasNext()) {

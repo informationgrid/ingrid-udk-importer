@@ -9,7 +9,7 @@ import java.util.Set;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import de.ingrid.importer.udk.util.InspireThemesHelper;
+import de.ingrid.utils.udk.UtilsInspireThemes;
 
 /**
  * Assign INSPIRE themes to objects/addresses according to assigned searchterms. 
@@ -123,14 +123,14 @@ public class IDCStrategy1_0_4_fixInspireThemes extends IDCStrategyDefault {
 				if (currObjId != -1) {
 					// remove former "NO INSPIRE THEME" if new theme was added !
 					if (currThemeIds.size() > 1 &&
-							currThemeIds.contains(InspireThemesHelper.noInspireThemeId)) {
-						removeInspireThemeFromObject(InspireThemesHelper.noInspireThemeId, currObjId,
+							currThemeIds.contains(UtilsInspireThemes.noInspireThemeId)) {
+						removeInspireThemeFromObject(UtilsInspireThemes.noInspireThemeId, currObjId,
 								themeIdToSearchtermId, psRemoveTermObj, currThemeIds,
 								currObjUuid, currObjWorkState);
 					}
 					// check whether former object has INSPIRE Theme, else add "NO INSPIRE THEME"
 					if (currThemeIds.isEmpty()) {
-						addInspireThemeToObject(InspireThemesHelper.noInspireThemeId, currObjId, 1,
+						addInspireThemeToObject(UtilsInspireThemes.noInspireThemeId, currObjId, 1,
 								themeIdToSearchtermId, psInsertTerm, psInsertTermObj,
 								currThemeIds,
 								null, currObjUuid, currObjWorkState);
@@ -161,7 +161,7 @@ public class IDCStrategy1_0_4_fixInspireThemes extends IDCStrategyDefault {
 
 			// read searchterm, lower case for comparison
 			String searchTerm = rs.getString("term");
-			Set<Integer> newThemeIds = InspireThemesHelper.getThemeIdsOfTerm(searchTerm, null);
+			Set<Integer> newThemeIds = UtilsInspireThemes.getThemeIdsOfTerm(searchTerm, null);
 			for (Integer newThemeId : newThemeIds) {
 				if (!currThemeIds.contains(newThemeId)) {
 					addInspireThemeToObject(newThemeId, currObjId, ++currLine,
@@ -209,7 +209,7 @@ public class IDCStrategy1_0_4_fixInspireThemes extends IDCStrategyDefault {
 			Set<Integer> currThemeIds,
 			String searchtermForLog, String objUuidForLog, String workStateForLog) throws Exception {
 
-		String themeName = InspireThemesHelper.inspireThemes_de.get(themeIdToAdd);
+		String themeName = UtilsInspireThemes.inspireThemes_de.get(themeIdToAdd);
 
 		// first add inspire term to searchterms if not present yet !
 		Long searchtermId = themeIdToSearchtermId.get(themeIdToAdd);
@@ -268,7 +268,7 @@ public class IDCStrategy1_0_4_fixInspireThemes extends IDCStrategyDefault {
 			currThemeIds.remove(themeIdToRemove);
 
 			if (log.isDebugEnabled()) {
-				String inspireTheme = InspireThemesHelper.inspireThemes_de.get(themeIdToRemove);
+				String inspireTheme = UtilsInspireThemes.inspireThemes_de.get(themeIdToRemove);
 				String msg = "Removed INSPIRE Theme: '" + inspireTheme + "'";
 				msg = msg + ", Obj-UUUID: " + objUuidForLog + ", workState: '" + workStateForLog + "'";
 
