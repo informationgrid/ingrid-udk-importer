@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.Set;
 
 import org.apache.commons.logging.Log;
@@ -15,6 +14,7 @@ import org.apache.commons.logging.LogFactory;
 
 import de.ingrid.importer.udk.jdbc.JDBCHelper;
 import de.ingrid.importer.udk.jdbc.DBLogic.ColumnType;
+import de.ingrid.importer.udk.util.UtilsCountryCodelist;
 import de.ingrid.importer.udk.util.UtilsLanguageCodelist;
 
 /**
@@ -29,11 +29,11 @@ public class IDCStrategy1_0_5 extends IDCStrategyDefault {
 
 	private static final String MY_VERSION = VALUE_IDC_VERSION_105;
 
-	private static final String OLD_COUNTRY_CODE_GERMANY = "de";
-	private static final String OLD_COUNTRY_ZIP_CODE_GERMANY = "D";
-
-	private static final Integer NEW_COUNTRY_KEY_GERMANY = 276;
-	private static final String NEW_COUNTRY_VALUE_GERMANY_DE = "Deutschland";
+	private final String OLD_COUNTRY_CODE_GERMANY = "de";
+	private final String OLD_COUNTRY_ZIP_CODE_GERMANY = "D";
+	
+	// catalog language: will be determined. Default is "de".
+	private String catalogLanguageShortcut = "de";
 
 	public String getIDCVersion() {
 		return MY_VERSION;
@@ -58,6 +58,7 @@ public class IDCStrategy1_0_5 extends IDCStrategyDefault {
 		updateSysList();
 		System.out.println("done.");
 
+		// FIRST UPDATE CATALOG ! ALSO DETERMINES CATALOG LANGUAGE accessed from following methods !
 		System.out.print("  Updating t03_catalogue...");
 		updateT03Catalogue();
 		System.out.println("done.");
@@ -120,7 +121,7 @@ public class IDCStrategy1_0_5 extends IDCStrategyDefault {
 
 		// ---------------------------------------------
 
-		int lstId = 6200;
+		int lstId = UtilsCountryCodelist.COUNTRY_SYSLIST_ID;
 		if (log.isInfoEnabled()) {
 			log.info("Updating syslist " + lstId +	" Country ...");
 		}
@@ -130,111 +131,19 @@ public class IDCStrategy1_0_5 extends IDCStrategyDefault {
 		jdbc.executeUpdate(sqlStr);
 
 		// german syslist
-		LinkedHashMap<Integer, String> newSyslistCountry_de = new LinkedHashMap<Integer, String>();
-		newSyslistCountry_de.put(new Integer("008"), "Albanien");
-		newSyslistCountry_de.put(new Integer("020"), "Andorra");
-		newSyslistCountry_de.put(new Integer("040"), "Österreich");
-		newSyslistCountry_de.put(new Integer("112"), "Weißrussland");
-		newSyslistCountry_de.put(new Integer("056"), "Belgien");
-		newSyslistCountry_de.put(new Integer("070"), "Bosnien und Herzegowina");
-		newSyslistCountry_de.put(new Integer("100"), "Bulgarien");
-		newSyslistCountry_de.put(new Integer("191"), "Kroatien");
-		newSyslistCountry_de.put(new Integer("196"), "Zypern");
-		newSyslistCountry_de.put(new Integer("203"), "Tschechische Republik");
-		newSyslistCountry_de.put(new Integer("208"), "Dänemark");
-		newSyslistCountry_de.put(new Integer("233"), "Estland");
-		newSyslistCountry_de.put(new Integer("246"), "Finnland");
-		newSyslistCountry_de.put(new Integer("250"), "Frankreich");
-		newSyslistCountry_de.put(NEW_COUNTRY_KEY_GERMANY, NEW_COUNTRY_VALUE_GERMANY_DE);
-		newSyslistCountry_de.put(new Integer("292"), "Gibraltar");
-		newSyslistCountry_de.put(new Integer("300"), "Griechenland");
-		newSyslistCountry_de.put(new Integer("348"), "Ungarn");
-		newSyslistCountry_de.put(new Integer("352"), "Island");
-		newSyslistCountry_de.put(new Integer("372"), "Irland");
-		newSyslistCountry_de.put(new Integer("380"), "Italien");
-		newSyslistCountry_de.put(new Integer("428"), "Lettland");
-		newSyslistCountry_de.put(new Integer("438"), "Liechtenstein");
-		newSyslistCountry_de.put(new Integer("440"), "Litauen");
-		newSyslistCountry_de.put(new Integer("442"), "Luxemburg");
-		newSyslistCountry_de.put(new Integer("807"), "Mazedonien");
-		newSyslistCountry_de.put(new Integer("450"), "Madagaskar");
-		newSyslistCountry_de.put(new Integer("470"), "Malta");
-		newSyslistCountry_de.put(new Integer("498"), "Moldawien");
-		newSyslistCountry_de.put(new Integer("492"), "Monaco");
-		newSyslistCountry_de.put(new Integer("499"), "Montenegro");
-		newSyslistCountry_de.put(new Integer("528"), "Niederlande");
-		newSyslistCountry_de.put(new Integer("578"), "Norwegen");
-		newSyslistCountry_de.put(new Integer("616"), "Polen");
-		newSyslistCountry_de.put(new Integer("620"), "Portugal");
-		newSyslistCountry_de.put(new Integer("642"), "Rumänien");
-		newSyslistCountry_de.put(new Integer("643"), "Russische Föderation");
-		newSyslistCountry_de.put(new Integer("688"), "Serbien");
-		newSyslistCountry_de.put(new Integer("703"), "Slowakei");
-		newSyslistCountry_de.put(new Integer("705"), "Slowenien");
-		newSyslistCountry_de.put(new Integer("724"), "Spanien");
-		newSyslistCountry_de.put(new Integer("752"), "Schweden");
-		newSyslistCountry_de.put(new Integer("756"), "Schweiz");
-		newSyslistCountry_de.put(new Integer("792"), "Türkei");
-		newSyslistCountry_de.put(new Integer("804"), "Ukraine");
-		newSyslistCountry_de.put(new Integer("826"), "Vereinigtes Königreich");
+		HashMap<Integer, String> newSyslistCountry_de = UtilsCountryCodelist.countryCodelist_de;
 		// english syslist
-		LinkedHashMap<Integer, String> newSyslistCountry_en = new LinkedHashMap<Integer, String>(); 
-		newSyslistCountry_en.put(new Integer("008"), "Albania");
-		newSyslistCountry_en.put(new Integer("020"), "Andorra");
-		newSyslistCountry_en.put(new Integer("040"), "Austria");
-		newSyslistCountry_en.put(new Integer("112"), "Belarus");
-		newSyslistCountry_en.put(new Integer("056"), "Belgium");
-		newSyslistCountry_en.put(new Integer("070"), "Bosnia and Herzegovina");
-		newSyslistCountry_en.put(new Integer("100"), "Bulgaria");
-		newSyslistCountry_en.put(new Integer("191"), "Croatia");
-		newSyslistCountry_en.put(new Integer("196"), "Cyprus");
-		newSyslistCountry_en.put(new Integer("203"), "Czech Republic");
-		newSyslistCountry_en.put(new Integer("208"), "Denmark");
-		newSyslistCountry_en.put(new Integer("233"), "Estonia");
-		newSyslistCountry_en.put(new Integer("246"), "Finland");
-		newSyslistCountry_en.put(new Integer("250"), "France");
-		newSyslistCountry_en.put(NEW_COUNTRY_KEY_GERMANY, "Germany");
-		newSyslistCountry_en.put(new Integer("292"), "Gibraltar");
-		newSyslistCountry_en.put(new Integer("300"), "Greece");
-		newSyslistCountry_en.put(new Integer("348"), "Hungary");
-		newSyslistCountry_en.put(new Integer("352"), "Iceland");
-		newSyslistCountry_en.put(new Integer("372"), "Ireland");
-		newSyslistCountry_en.put(new Integer("380"), "Italy");
-		newSyslistCountry_en.put(new Integer("428"), "Latvia");
-		newSyslistCountry_en.put(new Integer("438"), "Liechtenstein");
-		newSyslistCountry_en.put(new Integer("440"), "Lithuania");
-		newSyslistCountry_en.put(new Integer("442"), "Luxembourg");
-		newSyslistCountry_en.put(new Integer("807"), "Macedonia");
-		newSyslistCountry_en.put(new Integer("450"), "Madagascar");
-		newSyslistCountry_en.put(new Integer("470"), "Malta");
-		newSyslistCountry_en.put(new Integer("498"), "Moldova, Republic of");
-		newSyslistCountry_en.put(new Integer("492"), "Monaco");
-		newSyslistCountry_en.put(new Integer("499"), "Montenegro");
-		newSyslistCountry_en.put(new Integer("528"), "Netherlands");
-		newSyslistCountry_en.put(new Integer("578"), "Norway");
-		newSyslistCountry_en.put(new Integer("616"), "Poland");
-		newSyslistCountry_en.put(new Integer("620"), "Portugal");
-		newSyslistCountry_en.put(new Integer("642"), "Romania");
-		newSyslistCountry_en.put(new Integer("643"), "Russian Federation");
-		newSyslistCountry_en.put(new Integer("688"), "Serbia");
-		newSyslistCountry_en.put(new Integer("703"), "Slovakia");
-		newSyslistCountry_en.put(new Integer("705"), "Slovenia");
-		newSyslistCountry_en.put(new Integer("724"), "Spain");
-		newSyslistCountry_en.put(new Integer("752"), "Sweden");
-		newSyslistCountry_en.put(new Integer("756"), "Switzerland");
-		newSyslistCountry_en.put(new Integer("792"), "Turkey");
-		newSyslistCountry_en.put(new Integer("804"), "Ukraine");
-		newSyslistCountry_en.put(new Integer("826"), "United Kingdom");
+		HashMap<Integer, String> newSyslistCountry_en = UtilsCountryCodelist.countryCodelist_en;
 
 		Iterator<Integer> itr = newSyslistCountry_de.keySet().iterator();
 		while (itr.hasNext()) {
 			Integer key = itr.next();
 			// german version
-			String isDefault = (key.equals(NEW_COUNTRY_KEY_GERMANY)) ? "'Y'" : "'N'";
+			String isDefault = (key.equals(UtilsCountryCodelist.NEW_COUNTRY_KEY_GERMANY)) ? "'Y'" : "'N'";
 			jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
 				+ getNextId() + ", " + lstId + ", " + key + ", 'de', '" + newSyslistCountry_de.get(key) + "', 0, " + isDefault + ")");
 			// english version
-			isDefault = (key == 826) ? "'Y'" : "'N'";
+			isDefault = (key.equals(UtilsCountryCodelist.NEW_COUNTRY_KEY_GBR)) ? "'Y'" : "'N'";
 			jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
 				+ getNextId() + ", " + lstId + ", " + key + ", 'en', '" + newSyslistCountry_en.get(key) + "', 0, " + isDefault + ")");
 		}
@@ -290,16 +199,16 @@ public class IDCStrategy1_0_5 extends IDCStrategyDefault {
 			long catId = rs.getLong("id");
 			String catName = rs.getString("cat_name");
 //			String catCountryShortcut = rs.getString("country_code");
-			String catLanguageShortcut = rs.getString("language_code");
+			catalogLanguageShortcut = rs.getString("language_code");
 
 			// determine country
 			// we always set "germany". All catalogs are created with "de" ! Can be edited via IGE.
-			Integer newCountryCode = NEW_COUNTRY_KEY_GERMANY;
-			String newCountryName = NEW_COUNTRY_VALUE_GERMANY_DE;
+			Integer newCountryCode = UtilsCountryCodelist.NEW_COUNTRY_KEY_GERMANY;
+			String newCountryName = UtilsCountryCodelist.NEW_COUNTRY_VALUE_GERMANY_DE;
 			
 			// determine language
-			Integer newLangCode = UtilsLanguageCodelist.getLanguageCodeFromShortcut(catLanguageShortcut);
-			String newLangName = UtilsLanguageCodelist.getLanguageNameFromCode(newLangCode, catLanguageShortcut);
+			Integer newLangCode = UtilsLanguageCodelist.getLanguageCodeFromShortcut(catalogLanguageShortcut);
+			String newLangName = UtilsLanguageCodelist.getLanguageNameFromCode(newLangCode, catalogLanguageShortcut);
 
 			// update
 			jdbc.executeUpdate("UPDATE t03_catalogue SET " +
@@ -368,8 +277,8 @@ public class IDCStrategy1_0_5 extends IDCStrategyDefault {
 
 			// determine country
 			// we always set "germany". All other languages are lost from initial migration and are skipped (see above).
-			Integer newCountryCode = NEW_COUNTRY_KEY_GERMANY;
-			String newCountryName = NEW_COUNTRY_VALUE_GERMANY_DE;
+			Integer newCountryCode = UtilsCountryCodelist.NEW_COUNTRY_KEY_GERMANY;
+			String newCountryName = UtilsCountryCodelist.NEW_COUNTRY_VALUE_GERMANY_DE;
 			
 
 			jdbc.executeUpdate("UPDATE t02_address SET " +
@@ -436,9 +345,9 @@ public class IDCStrategy1_0_5 extends IDCStrategyDefault {
 
 			// determine languages
 			Integer newDataLanguageCode = UtilsLanguageCodelist.getLanguageCodeFromShortcut(oldDataLanguageShortcut);
-			String newDataLanguageName = UtilsLanguageCodelist.getLanguageNameFromCode(newDataLanguageCode, oldDataLanguageShortcut);
+			String newDataLanguageName = UtilsLanguageCodelist.getLanguageNameFromCode(newDataLanguageCode, catalogLanguageShortcut);
 			Integer newMetadataLanguageCode = UtilsLanguageCodelist.getLanguageCodeFromShortcut(oldMetadataLanguageShortcut);
-			String newMetadataLanguageName = UtilsLanguageCodelist.getLanguageNameFromCode(newMetadataLanguageCode, oldMetadataLanguageShortcut);
+			String newMetadataLanguageName = UtilsLanguageCodelist.getLanguageNameFromCode(newMetadataLanguageCode, catalogLanguageShortcut);
 
 			jdbc.executeUpdate("UPDATE t01_object SET " +
 				"data_language_key = " + newDataLanguageCode +
