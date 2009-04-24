@@ -10,7 +10,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import de.ingrid.importer.udk.jdbc.DBLogic.ColumnType;
-import de.ingrid.utils.udk.UtilsInspireThemes;
+import de.ingrid.importer.udk.util.UtilsInspireThemes;
 
 /**
  * IGC Update: IMPORT/EXPORT (sys_job_info) etc. -> InGrid 2.0 Release version

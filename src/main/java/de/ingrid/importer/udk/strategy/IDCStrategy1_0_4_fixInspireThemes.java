@@ -9,7 +9,7 @@ import java.util.Set;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import de.ingrid.utils.udk.UtilsInspireThemes;
+import de.ingrid.importer.udk.util.UtilsInspireThemes;
 
 /**
  * Assign INSPIRE themes to objects/addresses according to assigned searchterms. 
