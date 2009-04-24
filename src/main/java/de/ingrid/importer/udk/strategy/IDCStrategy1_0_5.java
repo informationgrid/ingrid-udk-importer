@@ -4,6 +4,7 @@
 package de.ingrid.importer.udk.strategy;
 
 import java.sql.ResultSet;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -14,9 +15,13 @@ import org.apache.commons.logging.LogFactory;
 
 import de.ingrid.importer.udk.jdbc.JDBCHelper;
 import de.ingrid.importer.udk.jdbc.DBLogic.ColumnType;
+import de.ingrid.importer.udk.util.UtilsLanguageCodelist;
 
 /**
  * IGC Update: Post InGrid 2.0 release
+ * introduce:
+ * - country syslist (country_key/_value)
+ * - language syslist (language_key/_value)
  */
 public class IDCStrategy1_0_5 extends IDCStrategyDefault {
 
@@ -61,6 +66,10 @@ public class IDCStrategy1_0_5 extends IDCStrategyDefault {
 		updateT02Address();
 		System.out.println("done.");
 
+		System.out.print("  Updating t01_object...");
+		updateT01Object();
+		System.out.println("done.");
+
 
 		// FINALLY EXECUTE ALL "DROPPING" DDL OPERATIONS ! These ones may cause commit (e.g. on MySQL)
 		// ---------------------------------
@@ -72,32 +81,44 @@ public class IDCStrategy1_0_5 extends IDCStrategyDefault {
 		System.out.println("Update finished successfully.");
 	}
 
-	protected void extendDataStructure() throws Exception {
+	private void extendDataStructure() throws Exception {
 		if (log.isInfoEnabled()) {
 			log.info("Extending datastructure -> CAUSES COMMIT ! ...");
 		}
 
 		if (log.isInfoEnabled()) {
-			log.info("Add columns 'country_key', 'country_value' to table 't03_catalogue' ...");
+			log.info("Add columns country_key/_value, language_key/_value to table 't03_catalogue' ...");
 		}
 		jdbc.getDBLogic().addColumn("country_key", ColumnType.INTEGER, "t03_catalogue", false, null, jdbc);
 		jdbc.getDBLogic().addColumn("country_value", ColumnType.VARCHAR255, "t03_catalogue", false, null, jdbc);
+		jdbc.getDBLogic().addColumn("language_key", ColumnType.INTEGER, "t03_catalogue", false, null, jdbc);
+		jdbc.getDBLogic().addColumn("language_value", ColumnType.VARCHAR255, "t03_catalogue", false, null, jdbc);
 
 		if (log.isInfoEnabled()) {
-			log.info("Add columns 'country_key', 'country_value' to table 't02_address' ...");
+			log.info("Add columns country_key/_value to table 't02_address' ...");
 		}
 		jdbc.getDBLogic().addColumn("country_key", ColumnType.INTEGER, "t02_address", false, null, jdbc);
 		jdbc.getDBLogic().addColumn("country_value", ColumnType.VARCHAR255, "t02_address", false, null, jdbc);
+
+		if (log.isInfoEnabled()) {
+			log.info("Add columns data_language_key/_value, metadata_language_key/_value to table 't01_object' ...");
+		}
+		jdbc.getDBLogic().addColumn("data_language_key", ColumnType.INTEGER, "t01_object", false, null, jdbc);
+		jdbc.getDBLogic().addColumn("data_language_value", ColumnType.VARCHAR255, "t01_object", false, null, jdbc);
+		jdbc.getDBLogic().addColumn("metadata_language_key", ColumnType.INTEGER, "t01_object", false, null, jdbc);
+		jdbc.getDBLogic().addColumn("metadata_language_value", ColumnType.VARCHAR255, "t01_object", false, null, jdbc);
 
 		if (log.isInfoEnabled()) {
 			log.info("Extending datastructure... done");
 		}
 	}
 
-	protected void updateSysList() throws Exception {
+	private void updateSysList() throws Exception {
 		if (log.isInfoEnabled()) {
 			log.info("Updating sys_list...");
 		}
+
+		// ---------------------------------------------
 
 		int lstId = 6200;
 		if (log.isInfoEnabled()) {
@@ -218,33 +239,91 @@ public class IDCStrategy1_0_5 extends IDCStrategyDefault {
 				+ getNextId() + ", " + lstId + ", " + key + ", 'en', '" + newSyslistCountry_en.get(key) + "', 0, " + isDefault + ")");
 		}
 
+		// ---------------------------------------------
+
+		lstId = UtilsLanguageCodelist.LANGUAGE_SYSLIST_ID;
+		if (log.isInfoEnabled()) {
+			log.info("Updating syslist " + lstId +	" Language ...");
+		}
+
+		// clean up, to guarantee no old values !
+		sqlStr = "DELETE FROM sys_list where lst_id = " + lstId;
+		jdbc.executeUpdate(sqlStr);
+
+		// german syslist
+		HashMap<Integer, String> newSyslistLanguage_de = UtilsLanguageCodelist.languageCodelist_de;
+		// english syslist
+		HashMap<Integer, String> newSyslistLanguage_en = UtilsLanguageCodelist.languageCodelist_en;
+
+		itr = newSyslistLanguage_de.keySet().iterator();
+		while (itr.hasNext()) {
+			Integer key = itr.next();
+			// german version
+			String isDefault = (key.equals(UtilsLanguageCodelist.IGC_CODE_GERMAN)) ? "'Y'" : "'N'";
+			jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
+				+ getNextId() + ", " + lstId + ", " + key + ", 'de', '" + newSyslistLanguage_de.get(key) + "', 0, " + isDefault + ")");
+			// english version
+			isDefault = (key.equals(UtilsLanguageCodelist.IGC_CODE_ENGLISH)) ? "'Y'" : "'N'";
+			jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
+				+ getNextId() + ", " + lstId + ", " + key + ", 'en', '" + newSyslistLanguage_en.get(key) + "', 0, " + isDefault + ")");
+		}
+
 		if (log.isInfoEnabled()) {
 			log.info("Updating sys_list... done");
 		}
 	}
 
-	protected void updateT03Catalogue() throws Exception {
+	private void updateT03Catalogue() throws Exception {
 		if (log.isInfoEnabled()) {
 			log.info("Updating t03_catalogue...");
 		}
 
 		if (log.isInfoEnabled()) {
-			log.info("Map old 'country_code' to new 'country_key'/'country_value'...");
+			log.info("Map old country_code, language_code to new country_key/_value, language_key/_value ...");
 		}
 
-		// we always set "germany". All catalogs were created with "de" ! Can be edited via IGE. 
-		int numUpdated = jdbc.executeUpdate("UPDATE t03_catalogue SET " +
-			"country_key = " + NEW_COUNTRY_KEY_GERMANY +
-			", country_value = '" + NEW_COUNTRY_VALUE_GERMANY_DE + "'");
+		// then add entries for ALL t01_objects (no matter whether working or published version) 
+		String sql = "select distinct id, cat_name, country_code, language_code from t03_catalogue";
+
+		ResultSet rs = jdbc.executeQuery(sql);
+		while (rs.next()) {
+			long catId = rs.getLong("id");
+			String catName = rs.getString("cat_name");
+//			String catCountryShortcut = rs.getString("country_code");
+			String catLanguageShortcut = rs.getString("language_code");
+
+			// determine country
+			// we always set "germany". All catalogs are created with "de" ! Can be edited via IGE.
+			Integer newCountryCode = NEW_COUNTRY_KEY_GERMANY;
+			String newCountryName = NEW_COUNTRY_VALUE_GERMANY_DE;
+			
+			// determine language
+			Integer newLangCode = UtilsLanguageCodelist.getLanguageCodeFromShortcut(catLanguageShortcut);
+			String newLangName = UtilsLanguageCodelist.getLanguageNameFromCode(newLangCode, catLanguageShortcut);
+
+			// update
+			jdbc.executeUpdate("UPDATE t03_catalogue SET " +
+					"country_key = " + newCountryCode +
+					", country_value = '" + newCountryName + "'" +
+					", language_key = " + newLangCode +
+					", language_value = '" + newLangName + "' " +
+					" WHERE id = " + catId);
+
+
+			if (log.isInfoEnabled()) {
+				log.info("Updated catalog " + catName + " to " +
+					"country: '" + newCountryCode + "'/'" + newCountryName + "'" +
+					", language:" + newLangCode + "'/'" + newLangName + "'");
+			}
+		}
+		rs.close();
 
 		if (log.isInfoEnabled()) {
-			log.info("Updated " + numUpdated + " catalog(s) to '" +
-					NEW_COUNTRY_KEY_GERMANY + "'/'" + NEW_COUNTRY_VALUE_GERMANY_DE + "'");
 			log.info("Updating t03_catalogue... done");
 		}
 	}
 
-	protected void updateT02Address() throws Exception {
+	private void updateT02Address() throws Exception {
 		if (log.isInfoEnabled()) {
 			log.info("Updating t02_address...");
 		}
@@ -264,6 +343,7 @@ public class IDCStrategy1_0_5 extends IDCStrategyDefault {
 		int numProcessed = 0;
 		while (rs.next()) {
 			String countryCode = rs.getString("country_code");
+			// NOTICE: all other countries were lost during initial migration of data !
 			if (!OLD_COUNTRY_CODE_GERMANY.equals(countryCode)) {
 				continue;
 			}
@@ -286,17 +366,23 @@ public class IDCStrategy1_0_5 extends IDCStrategyDefault {
 				sqlUpdatePlz += "postbox_pc = '" + newPostboxPostcode + "', ";
 			}
 
+			// determine country
+			// we always set "germany". All other languages are lost from initial migration and are skipped (see above).
+			Integer newCountryCode = NEW_COUNTRY_KEY_GERMANY;
+			String newCountryName = NEW_COUNTRY_VALUE_GERMANY_DE;
+			
+
 			jdbc.executeUpdate("UPDATE t02_address SET " +
 				sqlUpdatePlz +
-				"country_key = " + NEW_COUNTRY_KEY_GERMANY +
-				", country_value = '" + NEW_COUNTRY_VALUE_GERMANY_DE + "'" +
+				"country_key = " + newCountryCode +
+				", country_value = '" + newCountryName + "'" +
 				" WHERE id = " + addrId);
 			
 			// Node may contain different object versions, then we receive nodeId multiple times.
 			// Write Index only once (index contains data of working version!) !
 			if (!processedNodeIds.contains(addrNodeId)) {
-				JDBCHelper.updateAddressIndex(addrNodeId, NEW_COUNTRY_KEY_GERMANY.toString(), jdbc);
-				JDBCHelper.updateAddressIndex(addrNodeId, NEW_COUNTRY_VALUE_GERMANY_DE, jdbc);
+				JDBCHelper.updateAddressIndex(addrNodeId, newCountryCode.toString(), jdbc);
+				JDBCHelper.updateAddressIndex(addrNodeId, newCountryName, jdbc);
 				if (newPostcode != null) {
 					JDBCHelper.updateAddressIndex(addrNodeId, newPostcode, jdbc);					
 				}
@@ -310,7 +396,7 @@ public class IDCStrategy1_0_5 extends IDCStrategyDefault {
 			numProcessed++;
 			if (log.isDebugEnabled()) {
 				log.debug("Address " + addrUuid + " updated from '" + countryCode +	"' to '" +
-					NEW_COUNTRY_KEY_GERMANY + "'/'" + NEW_COUNTRY_VALUE_GERMANY_DE + "'" +
+					newCountryCode + "'/'" + newCountryName + "'" +
 					((newPostcode != null) ? (", postcode '" + newPostcode + "'") : "") +
 					((newPostboxPostcode != null) ? (", postbox_pc '" + newPostboxPostcode + "'") : ""));
 			}
@@ -323,16 +409,91 @@ public class IDCStrategy1_0_5 extends IDCStrategyDefault {
 		}
 	}
 
-	protected void cleanUpDataStructure() throws Exception {
+	private void updateT01Object() throws Exception {
+		if (log.isInfoEnabled()) {
+			log.info("Updating t01_object...");
+		}
+
+		if (log.isInfoEnabled()) {
+			log.info("Map old data_language_code, metadata_language_code to new data_language_key/_value, metadata_language_key/_value ...");
+		}
+
+		// then add entries for ALL t01_objects (no matter whether working or published version) 
+		String sql = "select distinct objNode.id as objNodeId, " +
+			"obj.id as objId, obj.data_language_code, obj.metadata_language_code, obj.obj_uuid " +
+			"from t01_object obj, object_node objNode " +
+			"where obj.obj_uuid = objNode.obj_uuid";
+
+		ResultSet rs = jdbc.executeQuery(sql);
+		Set<Long> processedNodeIds = new HashSet<Long>();
+		int numProcessed = 0;
+		while (rs.next()) {
+			long objNodeId = rs.getLong("objNodeId");
+			long objId = rs.getLong("objId");
+			String objUuid = rs.getString("obj_uuid");
+			String oldDataLanguageShortcut = rs.getString("data_language_code");
+			String oldMetadataLanguageShortcut = rs.getString("metadata_language_code");
+
+			// determine languages
+			Integer newDataLanguageCode = UtilsLanguageCodelist.getLanguageCodeFromShortcut(oldDataLanguageShortcut);
+			String newDataLanguageName = UtilsLanguageCodelist.getLanguageNameFromCode(newDataLanguageCode, oldDataLanguageShortcut);
+			Integer newMetadataLanguageCode = UtilsLanguageCodelist.getLanguageCodeFromShortcut(oldMetadataLanguageShortcut);
+			String newMetadataLanguageName = UtilsLanguageCodelist.getLanguageNameFromCode(newMetadataLanguageCode, oldMetadataLanguageShortcut);
+
+			jdbc.executeUpdate("UPDATE t01_object SET " +
+				"data_language_key = " + newDataLanguageCode +
+				", data_language_value = '" + newDataLanguageName + "'" +
+				", metadata_language_key = " + newMetadataLanguageCode +
+				", metadata_language_value = '" + newMetadataLanguageName + "'" +
+				" WHERE id = " + objId);
+			
+			// Node may contain different object versions, then we receive nodeId multiple times.
+			// Write Index only once (index contains data of working version!) !
+			if (!processedNodeIds.contains(objNodeId)) {
+				JDBCHelper.updateObjectIndex(objNodeId, newDataLanguageCode.toString(), jdbc);
+				JDBCHelper.updateObjectIndex(objNodeId, newDataLanguageName, jdbc);
+				JDBCHelper.updateObjectIndex(objNodeId, newMetadataLanguageCode.toString(), jdbc);
+				JDBCHelper.updateObjectIndex(objNodeId, newMetadataLanguageName, jdbc);
+				
+				processedNodeIds.add(objNodeId);
+			}
+
+			numProcessed++;
+			if (log.isDebugEnabled()) {
+				log.debug("Object " + objUuid + " updated " +
+					"DataLanguage: '" + oldDataLanguageShortcut + "' --> '" + newDataLanguageCode + "'/'" + newDataLanguageName + "'" +
+					", MetadataLanguage: '" + oldMetadataLanguageShortcut + "' --> '" + newMetadataLanguageCode + "'/'" + newMetadataLanguageName + "'");
+			}
+		}
+		rs.close();
+
+		if (log.isInfoEnabled()) {
+			log.info("Updated " + numProcessed + " objects... done");
+			log.info("Updating t01_object... done");
+		}
+	}
+
+	private void cleanUpDataStructure() throws Exception {
 		if (log.isInfoEnabled()) {
 			log.info("Cleaning up datastructure -> CAUSES COMMIT ! ...");
 		}
 
 		if (log.isInfoEnabled()) {
-			log.info("Drop column 'country_code' from tables 't03_catalogue', 't02_address' ...");
+			log.info("Drop columns country_code, language_code from table 't03_catalogue' ...");
 		}
 		jdbc.getDBLogic().dropColumn("country_code", "t03_catalogue", jdbc);
+		jdbc.getDBLogic().dropColumn("language_code", "t03_catalogue", jdbc);
+
+		if (log.isInfoEnabled()) {
+			log.info("Drop column country_code from table 't02_address' ...");
+		}
 		jdbc.getDBLogic().dropColumn("country_code", "t02_address", jdbc);
+
+		if (log.isInfoEnabled()) {
+			log.info("Drop columns data_language_code, metadata_language_code from table 't01_object' ...");
+		}
+		jdbc.getDBLogic().dropColumn("data_language_code", "t01_object", jdbc);
+		jdbc.getDBLogic().dropColumn("metadata_language_code", "t01_object", jdbc);
 
 		if (log.isInfoEnabled()) {
 			log.info("Cleaning up datastructure... done");
