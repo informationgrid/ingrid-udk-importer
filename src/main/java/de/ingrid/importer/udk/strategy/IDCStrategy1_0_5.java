@@ -140,7 +140,7 @@ public class IDCStrategy1_0_5 extends IDCStrategyDefault {
 		newSyslistCountry_de.put(new Integer("100"), "Bulgarien");
 		newSyslistCountry_de.put(new Integer("191"), "Kroatien");
 		newSyslistCountry_de.put(new Integer("196"), "Zypern");
-		newSyslistCountry_de.put(new Integer("203"), "Tschechien");
+		newSyslistCountry_de.put(new Integer("203"), "Tschechische Republik");
 		newSyslistCountry_de.put(new Integer("208"), "Dänemark");
 		newSyslistCountry_de.put(new Integer("233"), "Estland");
 		newSyslistCountry_de.put(new Integer("246"), "Finnland");
@@ -167,7 +167,7 @@ public class IDCStrategy1_0_5 extends IDCStrategyDefault {
 		newSyslistCountry_de.put(new Integer("616"), "Polen");
 		newSyslistCountry_de.put(new Integer("620"), "Portugal");
 		newSyslistCountry_de.put(new Integer("642"), "Rumänien");
-		newSyslistCountry_de.put(new Integer("643"), "Russland");
+		newSyslistCountry_de.put(new Integer("643"), "Russische Föderation");
 		newSyslistCountry_de.put(new Integer("688"), "Serbien");
 		newSyslistCountry_de.put(new Integer("703"), "Slowakei");
 		newSyslistCountry_de.put(new Integer("705"), "Slowenien");
