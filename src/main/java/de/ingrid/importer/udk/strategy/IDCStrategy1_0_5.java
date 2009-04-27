@@ -207,8 +207,8 @@ public class IDCStrategy1_0_5 extends IDCStrategyDefault {
 			String newCountryName = UtilsCountryCodelist.NEW_COUNTRY_VALUE_GERMANY_DE;
 			
 			// determine language
-			Integer newLangCode = UtilsLanguageCodelist.getLanguageCodeFromShortcut(catalogLanguageShortcut);
-			String newLangName = UtilsLanguageCodelist.getLanguageNameFromCode(newLangCode, catalogLanguageShortcut);
+			Integer newLangCode = UtilsLanguageCodelist.getCodeFromShortcut(catalogLanguageShortcut);
+			String newLangName = UtilsLanguageCodelist.getNameFromCode(newLangCode, catalogLanguageShortcut);
 
 			// update
 			jdbc.executeUpdate("UPDATE t03_catalogue SET " +
@@ -344,10 +344,10 @@ public class IDCStrategy1_0_5 extends IDCStrategyDefault {
 			String oldMetadataLanguageShortcut = rs.getString("metadata_language_code");
 
 			// determine languages
-			Integer newDataLanguageCode = UtilsLanguageCodelist.getLanguageCodeFromShortcut(oldDataLanguageShortcut);
-			String newDataLanguageName = UtilsLanguageCodelist.getLanguageNameFromCode(newDataLanguageCode, catalogLanguageShortcut);
-			Integer newMetadataLanguageCode = UtilsLanguageCodelist.getLanguageCodeFromShortcut(oldMetadataLanguageShortcut);
-			String newMetadataLanguageName = UtilsLanguageCodelist.getLanguageNameFromCode(newMetadataLanguageCode, catalogLanguageShortcut);
+			Integer newDataLanguageCode = UtilsLanguageCodelist.getCodeFromShortcut(oldDataLanguageShortcut);
+			String newDataLanguageName = UtilsLanguageCodelist.getNameFromCode(newDataLanguageCode, catalogLanguageShortcut);
+			Integer newMetadataLanguageCode = UtilsLanguageCodelist.getCodeFromShortcut(oldMetadataLanguageShortcut);
+			String newMetadataLanguageName = UtilsLanguageCodelist.getNameFromCode(newMetadataLanguageCode, catalogLanguageShortcut);
 
 			jdbc.executeUpdate("UPDATE t01_object SET " +
 				"data_language_key = " + newDataLanguageCode +

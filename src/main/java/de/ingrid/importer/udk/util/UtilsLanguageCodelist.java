@@ -45,7 +45,7 @@ public class UtilsLanguageCodelist {
 	 * @param languageShortcut e.g. "de" or "en"
 	 * @return IGC language code or null if not found
 	 */
-	static public Integer getLanguageCodeFromShortcut(String languageShortcut) {
+	static public Integer getCodeFromShortcut(String languageShortcut) {
 		return languageShortcutToCode.get(languageShortcut);
 	}
 
@@ -54,7 +54,7 @@ public class UtilsLanguageCodelist {
 	 * @param languageShortcut in which language should the name be returned, e.g. "de" for german name
 	 * @return language name of IGC language code or null if not found !
 	 */
-	static public String getLanguageNameFromCode(Integer languageCode, String languageShortcut) {
+	static public String getNameFromCode(Integer languageCode, String languageShortcut) {
 		String langName = null;
 
 		if ("de".equals(languageShortcut)) {
