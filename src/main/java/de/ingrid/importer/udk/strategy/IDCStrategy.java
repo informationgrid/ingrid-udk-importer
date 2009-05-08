@@ -26,11 +26,11 @@ public interface IDCStrategy {
 	static String VALUE_IDC_VERSION_102_SNS_SPATIAL_TYPE = "1.0.2_sns_spatial_type";
 	/** INSPIRE update version/strategy */
 	static String VALUE_IDC_VERSION_103 = "1.0.3";
-	/** IMPORT/EXPORT etc. version/strategy -> InGrid 2.0 release ! */
+	/** IMPORT/EXPORT etc. version/strategy -> InGrid 2.0 internal release ! */
 	static String VALUE_IDC_VERSION_104 = "1.0.4";
-	/** Update INSPIRE themes version/strategy -> InGrid 2.0 release ! can be executed on its own ! */
+	/** Update INSPIRE themes version/strategy -> can be executed on its own ! */
 	static String VALUE_IDC_VERSION_104_FIX_INSPIRE_THEMES = "1.0.4_fix_inspire_themes";
-	/** "Post" InGrid 2.0 release with fixes, addons */
+	/** Official InGrid 2.0 release with fixes, addons */
 	static String VALUE_IDC_VERSION_105 = "1.0.5";
 
 	/** Order of strategies to execute to obtain most recent IGC.
@@ -41,11 +41,11 @@ public interface IDCStrategy {
 		VALUE_IDC_FIX_SYSLIST,
 		VALUE_IDC_VERSION_102_SNS_SPATIAL_TYPE,
 		VALUE_IDC_VERSION_103,
-		// Syslist csv have to be imported till version 104 ! in 104 syslists are updated via java code !
+
+		// Syslist csv have to be imported till version 104 ! in 104 and afterwards syslists are updated via java code !
+
 		VALUE_IDC_VERSION_104,
-		// can be executed on its own ! remove from workflow if already executed !?
-		// (for performance issues, strategy itself can be executed multiple times !
-//		VALUE_IDC_VERSION_104_FIX_INSPIRE_THEMES,
+		VALUE_IDC_VERSION_104_FIX_INSPIRE_THEMES,
 		// InGrid 2.0 Release (including post fixes, addons)
 		VALUE_IDC_VERSION_105,
 	};
