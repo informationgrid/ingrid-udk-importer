@@ -6,7 +6,7 @@
 	<groupId>ingrid</groupId>
 	<artifactId>ingrid-udk-importer</artifactId>
 	<name>ingrid-udk-importer</name>
-	<version>1.2.0</version>
+	<version>1.2.1-SNAPSHOT</version>
 	<url>http://maven.apache.org</url>
 	<build>
 		<resources>
