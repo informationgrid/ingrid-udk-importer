@@ -32,6 +32,8 @@ public interface IDCStrategy {
 	static String VALUE_IDC_VERSION_104_FIX_INSPIRE_THEMES = "1.0.4_fix_inspire_themes";
 	/** Official InGrid 2.0 release with fixes, addons */
 	static String VALUE_IDC_VERSION_105 = "1.0.5";
+	/** ArcGIS Import etc. */
+	static String VALUE_IDC_VERSION_106 = "1.0.6";
 
 	/** Order of strategies to execute to obtain most recent IGC.
 	 * Contains all according versions/strategies in ascending order.
@@ -48,6 +50,7 @@ public interface IDCStrategy {
 		VALUE_IDC_VERSION_104_FIX_INSPIRE_THEMES,
 		// InGrid 2.0 Release (including post fixes, addons)
 		VALUE_IDC_VERSION_105,
+		VALUE_IDC_VERSION_106,
 	};
 		
 	public void execute() throws Exception;
