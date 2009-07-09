@@ -1,0 +1,74 @@
+id;version;lst_id;entry_id;lang_id;name;description;maintainable;is_default;line
+1875;0;1100;1;de;NRW;NULL;1;N;0
+1897;0;1350;1;de;Abfallgesetz (AbfG);NULL;1;N;0
+1898;0;1350;2;de;Abfallklärschlammverordnung (AbfKlärV);NULL;1;N;0
+1899;0;1350;3;de;Abgrabungsgesetz (AbgrG);NULL;1;N;0
+1900;0;1350;4;de;Abwasserabgabengesetz (AbwAG);NULL;1;N;0
+1901;0;1350;5;de;Agrarstatistikgesetz (AgrStatG);NULL;1;N;0
+1902;0;1350;7;de;Amtsleiterkonferenz;NULL;1;N;0
+1903;0;1350;8;de;Arbeitsschutzgesetz (ArbSchG);NULL;1;N;0
+1904;0;1350;9;de;Atomgesetz (AtG);NULL;1;N;0
+1905;0;1350;10;de;Auftrag;NULL;1;N;0
+1906;0;1350;11;de;Ausbildungsverordnung (AusbV);NULL;1;N;0
+1907;0;1350;13;de;Berufsbildungsgesetz (BBiG);NULL;1;N;0
+1908;0;1350;14;de;Betriebssatzung;NULL;1;N;0
+1909;0;1350;15;de;Bevölkerungsstatistikgesetz (BevStatG);NULL;1;N;0
+1910;0;1350;16;de;Bund-Länder-Konzept;NULL;1;N;0
+1911;0;1350;17;de;Bundes-Bodenschutz- und Altlastverordnung (BBodSchV);NULL;1;N;0
+1912;0;1350;18;de;BundesBodenschutzgesetz (BBodSchG));NULL;1;N;0
+1913;0;1350;19;de;Bundesimmissionsschutzgesetz (BImSchG);NULL;1;N;0
+1914;0;1350;20;de;Bundesjagdgesetz (BJagdG);NULL;1;N;0
+1915;0;1350;21;de;Bundesnaturschutzgesetz (BNatSchG);NULL;1;N;0
+1916;0;1350;22;de;Bundeswaldgesetz (BwaldG);NULL;1;N;0
+1917;0;1350;23;de;Bundeswaldinventurverordnung (BWIV);NULL;1;N;0
+1918;0;1350;24;de;Bundeswasserstraßengesetz (WaStrG);NULL;1;N;0
+1919;0;1350;25;de;Bürgerl. Gesetzbuch (BGB);NULL;1;N;0
+1920;0;1350;26;de;Chemikaliengesetz (ChemG);NULL;1;N;0
+1921;0;1350;27;de;Denkmalschutzgesetz (DSchG);NULL;1;N;0
+1922;0;1350;29;de;Erlass;NULL;1;N;0
+1923;0;1350;30;de;Europäische Richtlinie;NULL;1;N;0
+1924;0;1350;31;de;Europäische Verordnung;NULL;1;N;0
+1925;0;1350;32;de;Flurbereinigungsgesetz (FlurbG);NULL;1;N;0
+1926;0;1350;33;de;Forstliches Saat- und Pflanzgutgesetz (FSaatG);NULL;1;N;0
+1927;0;1350;34;de;Gentechnikgesetz (GenTG);NULL;1;N;0
+1928;0;1350;35;de;Gewässerqualitätsverordnung (GewQV);NULL;1;N;0
+1929;0;1350;36;de;Kabinettbeschluss;NULL;1;N;0
+1930;0;1350;38;de;Lagerstättengesetz (LagerstG);NULL;1;N;0
+1931;0;1350;39;de;LandesBodenschutzgesetz (LbodSchG);NULL;1;N;0
+1932;0;1350;40;de;Landesabfallgesetz (LAbfG);NULL;1;N;0
+1933;0;1350;41;de;Landesabfallwirtschaftsgesetz (LAbfWG);NULL;1;N;0
+1934;0;1350;42;de;Landesforstgesetz (LFoG);NULL;1;N;0
+1935;0;1350;43;de;Landesjagdgesetz (LJG);NULL;1;N;0
+1936;0;1350;45;de;Landeswassergesetz (LWG);NULL;1;N;0
+1937;0;1350;46;de;Landschaftsgesetz (LG);NULL;1;N;0
+1938;0;1350;47;de;Mikrozensusgesetz (MikrozensusG);NULL;1;N;0
+1939;0;1350;48;de;Nachweisverordnung (NachwV);NULL;1;N;0
+1940;0;1350;49;de;Pflanzenschutzgesetz (PflSchG));NULL;1;N;0
+1941;0;1350;50;de;Preisstatistikgesetz (PreisStatG);NULL;1;N;0
+1942;0;1350;51;de;Rahmenempfehlung;NULL;1;N;0
+1943;0;1350;52;de;Raumordnungsgesetz (ROG);NULL;1;N;0
+1944;0;1350;53;de;Richtlinie;NULL;1;N;0
+1945;0;1350;54;de;Sozialgesetzbuch (SGB);NULL;1;N;0
+1946;0;1350;55;de;Strahlenschutzverordnung (StrlSchVO);NULL;1;N;0
+1947;0;1350;56;de;Strahlenschutzvorsorgegesetz (StrVG);NULL;1;N;0
+1948;0;1350;57;de;Tierschutzgesetz (TierSchG);NULL;1;N;0
+1949;0;1350;58;de;Trinkwasserverordnung (TrinkwV);NULL;1;N;0
+1950;0;1350;59;de;Umwelthaftungsgesetz (UmweltHG);NULL;1;N;0
+1951;0;1350;60;de;Umweltinformationsgesetz (UIG);NULL;1;N;0
+1952;0;1350;61;de;Umweltstatistikgesetz (UStatG);NULL;1;N;0
+1953;0;1350;62;de;Umweltverträglichkeitsprüfungsgesetz (UVPG);NULL;1;N;0
+1954;0;1350;44;de;Landesraumordnungsprogramm (LROP);NULL;1;N;0
+1955;0;1350;37;de;Kreislaufwirtschafts- u. Abfallgesetz (KrW-/AbfG);NULL;1;N;0
+1956;0;1350;28;de;Deponieselbstüberwachungsverordnung (DepSüVO);NULL;1;N;0
+1957;0;1350;12;de;Aussenhandelsstatistikgesetz ( AHStatGes);NULL;1;N;0
+1958;0;1350;6;de;Allgemeine Güteanforderung (AGA);NULL;1;N;0
+1959;0;1370;1;de;CDS;NULL;1;N;0
+1974;0;3535;1;de;von Drachenfels 94;NULL;1;N;0
+1975;0;3555;1;de;Ganzflächige Biotopkartierung 94;NULL;1;N;0
+1976;0;3561;1;de;Nienburg (Weser);NULL;1;N;0
+1977;0;3561;2;de;Damme (Dümmer);NULL;1;N;0
+1995;0;1350;63;de;Vermerk;NULL;1;N;0
+1997;0;1350;64;de;Vermessungs- und Katastergesetz (VermKatG);NULL;1;N;0
+1998;0;1350;65;de;Verwaltungsverfahrensgesetz (VwVfG);NULL;1;N;0
+1999;0;1350;66;de;Wasserhaushaltsgesetz (WHG);NULL;1;N;0
+2000;0;1350;67;de;Zuständigkeitsverordnung (ZustV);NULL;1;N;0

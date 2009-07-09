@@ -1,0 +1,303 @@
+id;version;lst_id;entry_id;lang_id;name;description;maintainable;is_default;line
+3460;0;1350;50;de;BImSchG §47a;NULL;1;N;0
+3461;0;1350;51;de;Arbeitsschutzgesetz;NULL;1;N;0
+3462;0;1350;52;de;Anleitung zur Berechnung von Fluglärm;NULL;1;N;0
+3463;0;1350;53;de;Agrarstatistikgesetz (AgrStatG);NULL;1;N;0
+3464;0;1350;54;de;Abfallklärschlammverordnung (AbfKlärV);NULL;1;N;0
+3465;0;1350;55;de;Bundesimmissionsschutzverordnung, 23.;NULL;1;N;0
+3466;0;1350;56;de;Abwasserabgabengesetz (AbwAG);NULL;1;N;0
+3467;0;1350;57;de;Wasserhaushaltsgesetz (WHG) § 7a;NULL;1;N;0
+3468;0;1350;58;de;§ 152 NWG (Abwasserbeseitigungspläne);NULL;1;N;0
+3469;0;1350;59;de;§ 52 Nieders. Wassergesetz (NWG);NULL;1;N;0
+3470;0;1350;60;de;§ 67 NWG;NULL;1;N;0
+3471;0;1350;61;de;23. Bundesimmissionsschutzverordnung;NULL;1;N;0
+3472;0;1350;62;de;Abfallgesetz (AbfG);NULL;1;N;0
+3473;0;1350;63;de;AdV-Plenumsbeschluß von 1994;NULL;1;N;0
+3474;0;1350;64;de;AdV-Plenumsbeschluß von1994;NULL;1;N;0
+3475;0;1350;65;de;Agrarstatistikgesetz AgrStatG;NULL;1;N;0
+3476;0;1350;67;de;Betriebssatzung der LGN v. 7.7.1997;NULL;1;N;0
+3477;0;1350;68;de;Bundesimmissionsschutzverordnung;NULL;1;N;0
+3478;0;1370;1;de;CDS;NULL;1;N;0
+3493;0;3535;1;de;von Drachenfels 94;NULL;1;N;0
+3494;0;3555;1;de;Ganzflächige Biotopkartierung 94;NULL;1;N;0
+3495;0;3561;1;de;Nienburg (Weser);NULL;1;N;0
+3496;0;3561;2;de;Damme (Dümmer);NULL;1;N;0
+3516;0;1370;2;de;Test;NULL;1;N;0
+3517;0;1350;69;de;Zoorichtlinie M-V;NULL;NULL;N;0
+3518;0;1350;70;de;Zoorichtlinie;NULL;NULL;N;0
+3519;0;1350;71;de;Wasserzuständigkeitsverordnung;NULL;NULL;N;0
+3520;0;1350;72;de;Wasserhaushaltsgesetz;NULL;NULL;N;0
+3521;0;1350;73;de;Wassergesetz M-V;NULL;NULL;N;0
+3522;0;1350;74;de;Wassergesetz der DDR;NULL;NULL;N;0
+3523;0;1350;75;de;Wassergesetz  M-V;NULL;NULL;N;0
+3524;0;1350;76;de;Wassergesetz;NULL;NULL;N;0
+3525;0;1350;77;de;Waldgesetz Mecklenburg-Vorpommern;NULL;NULL;N;0
+3526;0;1350;78;de;Waldbrandrunderlass des LM und des IM des Landes ;NULL;NULL;N;0
+3527;0;1350;79;de;VV Wasserbuch;NULL;NULL;N;0
+3528;0;1350;80;de;VOB/VOL;NULL;NULL;N;0
+3529;0;1350;81;de;VOB, VOL, VOF;NULL;NULL;N;0
+3530;0;1350;82;de;VO über die Eisenbahnstatistik;NULL;NULL;N;0
+3531;0;1350;83;de;VO brennbare Flüssigkeiten (VbF);NULL;NULL;N;0
+3532;0;1350;84;de;VHB;NULL;NULL;N;0
+3533;0;1350;85;de;Verwaltungsvorschrift wassergef. Stoffe (VVAwS);NULL;NULL;N;0
+3534;0;1350;86;de;Verwaltungsvereinbarung V/1/1999 (Umweltministeri;NULL;NULL;N;0
+3535;0;1350;87;de;Verwaltungsvereinbarung;NULL;NULL;N;0
+3536;0;1350;88;de;Verpackungsverordnung  (VerpackVO);NULL;NULL;N;0
+3537;0;1350;89;de;Verord. z. Umgang m. wassergef. Stoffen (VAwS);NULL;NULL;N;0
+3538;0;1350;90;de;Vermögenszuordnungsgesetz;NULL;NULL;N;0
+3539;0;1350;91;de;Vermessungsgebührenverordnung M-V (VermGebVO);NULL;NULL;N;0
+3540;0;1350;92;de;Vermessungs- Katastergesetz M-V;NULL;NULL;N;0
+3541;0;1350;93;de;UVP-Richtlinie der EU;NULL;NULL;N;0
+3542;0;1350;94;de;UVP-Gesetz;NULL;NULL;N;0
+3543;0;1350;95;de;URG;NULL;NULL;N;0
+3544;0;1350;96;de;Umweltstatistikgesetz;NULL;NULL;N;0
+3545;0;1350;97;de;Umweltschutz-Abk. BRD-POLEN;NULL;NULL;N;0
+3546;0;1350;98;de;Umweltrahmengesetz;NULL;NULL;N;0
+3547;0;1350;99;de;Umweltinformationserlaß (UIE);NULL;NULL;N;0
+3548;0;1350;100;de;TWSZ- Beschlüsse;NULL;NULL;N;0
+3549;0;1350;101;de;Transportgenehmigungs VO;NULL;NULL;N;0
+3550;0;1350;102;de;TÖB-Erlaß des BLUM M-V;NULL;NULL;N;0
+3551;0;1350;103;de;TLW;NULL;NULL;N;0
+3552;0;1350;104;de;Technische Regeln Behälter;NULL;NULL;N;0
+3553;0;1350;105;de;Techn. Regeln f. brennbare Flüssigk. (TRbF);NULL;NULL;N;0
+3554;0;1350;106;de;TA Luft;NULL;NULL;N;0
+3555;0;1350;107;de;TA Lärm;NULL;NULL;N;0
+3556;0;1350;108;de;Strahlenschutzverordnung (StrSchV);NULL;NULL;N;0
+3557;0;1350;109;de;Störfallverordnung (StFV);NULL;NULL;N;0
+3558;0;1350;110;de;Sondervermögensgesetz in M-V;NULL;NULL;N;0
+3559;0;1350;111;de;Seenprojekt MV;NULL;NULL;N;0
+3560;0;1350;112;de;Richtlinien zur Überwachung kernt. Anlagen;NULL;NULL;N;0
+3561;0;1350;113;de;Richtlinien zur Förderung wasserwirtschaftlicher ;NULL;NULL;N;0
+3562;0;1350;114;de;Richtlinie zur Förderung wasserwirtschaftlicher V;NULL;NULL;N;0
+3563;0;1350;115;de;Richtlinie zur Förderung wasserwirtschaftlicher V;NULL;NULL;N;0
+3564;0;1350;116;de;Richtlinie zur Förderung von Maßnahmen des Arten-;NULL;NULL;N;0
+3565;0;1350;117;de;Richtlinie z.Gewährung v.Zuwendungen d.Landes M-V;NULL;NULL;N;0
+3566;0;1350;118;de;Richtlinie für die Förderung von Untersuchungen u;NULL;NULL;N;0
+3567;0;1350;119;de;Richtlinie 96/62/EG;NULL;NULL;N;0
+3568;0;1350;120;de;Richtlinie 92/72/EWG;NULL;NULL;N;0
+3569;0;1350;121;de;Richtlinie 89/427/EWG;NULL;NULL;N;0
+3570;0;1350;122;de;Richtlinie 85/203/EWG;NULL;NULL;N;0
+3571;0;1350;123;de;Richtlinie 82/884/EWG;NULL;NULL;N;0
+3572;0;1350;124;de;Richtlinie 2000/69/EWG;NULL;NULL;N;0
+3573;0;1350;125;de;Richtlinie 1999/30/EWG;NULL;NULL;N;0
+3574;0;1350;126;de;Richtlinie 1999/30/EG;NULL;NULL;N;0
+3575;0;1350;127;de;Richtlinie 1997/101/EG;NULL;NULL;N;0
+3576;0;1350;128;de;Richtlinie 1996/62/EG;NULL;NULL;N;0
+3577;0;1350;129;de;Richtlinie 1992/72/EWG;NULL;NULL;N;0
+3578;0;1350;130;de;Richtl. zur Förderung von Unterhaltungsmaßnahmen ;NULL;NULL;N;0
+3579;0;1350;131;de;Richtl. z. Förderung von Maßnahmen der Wasservers;NULL;NULL;N;0
+3580;0;1350;132;de;Rechtsverordnungen des Umweltministeriums;NULL;NULL;N;0
+3581;0;1350;133;de;Raumordnungsgesetz;NULL;NULL;N;0
+3582;0;1350;134;de;Rahmenempfehlungen für die Fernüberwachung von KK;NULL;NULL;N;0
+3583;0;1350;135;de;Rahmenempfehlungen f.d. Fernüberwach. von KKW;NULL;NULL;N;0
+3584;0;1350;136;de;Rahmenabwasser VwV;NULL;NULL;N;0
+3585;0;1350;137;de;Pflanzenschutzmittelverordnung;NULL;NULL;N;0
+3586;0;1350;138;de;Objektschlüsselkatalog M-V (OSKA);NULL;NULL;N;0
+3587;0;1350;139;de;Objektabbildungskatalog M-V (OBAK);NULL;NULL;N;0
+3588;0;1350;140;de;Naturschutzgesetz (NatSchG);NULL;NULL;N;0
+3589;0;1350;141;de;Naturschutzgesetz;NULL;NULL;N;0
+3590;0;1350;142;de;Nachweisverordnung (NachwV);NULL;NULL;N;0
+3591;0;1350;143;de;Nachweisverordnung (NachweisV);NULL;NULL;N;0
+3592;0;1350;144;de;Meßnetzkonzeption M-V (Erlaß);NULL;NULL;N;0
+3593;0;1350;145;de;Meßnetzkonzeption M-V;NULL;NULL;N;0
+3594;0;1350;146;de;Messnetzkonzeption M-V;NULL;NULL;N;0
+3595;0;1350;147;de;Meßnetzkonzeption MV;NULL;NULL;N;0
+3596;0;1350;148;de;Meßnetzkonzeption;NULL;NULL;N;0
+3597;0;1350;149;de;Meßnetzkonzept Hydrologie;NULL;NULL;N;0
+3598;0;1350;150;de;LAWA-Richtlinie "Gewässerbewertung - Stehende Bin;NULL;NULL;N;0
+3599;0;1350;151;de;LAWA-Richtlinie;NULL;NULL;N;0
+3600;0;1350;152;de;LAWA-Empfehlung für die Untersuchung, Bewertung u;NULL;NULL;N;0
+3601;0;1350;153;de;Landeswassergesetz M-V (LWaG);NULL;NULL;N;0
+3602;0;1350;154;de;Landeswassergesetz MV;NULL;NULL;N;0
+3603;0;1350;155;de;Landeswassergesetz Mecklenburg-Vorpommern;NULL;NULL;N;0
+3604;0;1350;156;de;Landeswassergesetz des Landes M-V LWaG M-V;NULL;NULL;N;0
+3605;0;1350;157;de;Landeswassergesetz (LWaG);NULL;NULL;N;0
+3606;0;1350;158;de;Landeswassergesetz (LaWG);NULL;NULL;N;0
+3607;0;1350;159;de;Landeswassergesetz;NULL;NULL;N;0
+3608;0;1350;160;de;Landeswaldgesetz(LWaldG);NULL;NULL;N;0
+3609;0;1350;161;de;Landeswaldgesetz M-V;NULL;NULL;N;0
+3610;0;1350;162;de;Landeswaldgesetz (LWaldG);NULL;NULL;N;0
+3611;0;1350;163;de;Landeswaldgesetz;NULL;NULL;N;0
+3612;0;1350;164;de;Landesverordnungen über die Verbindlichkeit der R;NULL;NULL;N;0
+3613;0;1350;165;de;LandesUmweltVerträglichkeitsPrüfungsGesetz;NULL;NULL;N;0
+3614;0;1350;166;de;Landesraumordnungsprogramm (LROP);NULL;NULL;N;0
+3615;0;1350;167;de;Landesraumordnungsgesetz (LROG);NULL;NULL;N;0
+3616;0;1350;168;de;Landesplanungsgesetz (LPlG);NULL;NULL;N;0
+3617;0;1350;169;de;Landesplanungsgesetz;NULL;NULL;N;0
+3618;0;1350;170;de;Landesnaturschutzgesetz (LNatSchG);NULL;NULL;N;0
+3619;0;1350;171;de;Landeskatastrophenschutzgesetz (LKatSG);NULL;NULL;N;0
+3620;0;1350;172;de;Landeshaushaltsverordnung (LHO);NULL;NULL;N;0
+3621;0;1350;173;de;Landesbauordnung;NULL;NULL;N;0
+3622;0;1350;174;de;Lagerstättengesetz (BGBL.T. III 750-1-1);NULL;NULL;N;0
+3623;0;1350;175;de;Ladeswald- und -jagdgesetz;NULL;NULL;N;0
+3624;0;1350;176;de;KrW-/AbfG;NULL;NULL;N;0
+3625;0;1350;177;de;Kreislaufwirtschaftsgesetz (KrWG) §49;NULL;NULL;N;0
+3626;0;1350;178;de;Kreislaufwirtschaftsgesetz (KrWG);NULL;NULL;N;0
+3627;0;1350;179;de;Kreislaufwirtschaft- und Abfallgesetz;NULL;NULL;N;0
+3628;0;1350;180;de;Klärschlamm-Verordnung;NULL;NULL;N;0
+3629;0;1350;181;de;Jagdgesetz des Landes Mecklenburg-Vorpommern (LJa;NULL;NULL;N;0
+3630;0;1350;182;de;Hochwassermeldedienstverordnung;NULL;NULL;N;0
+3631;0;1350;183;de;Hochwassermelddienstverordnung;NULL;NULL;N;0
+3632;0;1350;184;de;Hochbaustatistikgesetz;NULL;NULL;N;0
+3633;0;1350;185;de;HOAI;NULL;NULL;N;0
+3634;0;1350;186;de;Hemmnisbeseitigungsgesetz;NULL;NULL;N;0
+3635;0;1350;187;de;HELCOM;NULL;NULL;N;0
+3636;0;1350;188;de;GVBl. M-V 1999, S.200;NULL;NULL;N;0
+3637;0;1350;189;de;GVBl. M-V 1997, S. 508;NULL;NULL;N;0
+3638;0;1350;190;de;GIRL;NULL;NULL;N;0
+3639;0;1350;191;de;Gewässerüberwachungserlaß v. 1994;NULL;NULL;N;0
+3640;0;1350;192;de;Gewässerüberwachungserlaß M-V v. 1993;NULL;NULL;N;0
+3641;0;1350;193;de;Gewässerüberwachungserlass M-V i. d. j. g. F.;NULL;NULL;N;0
+3642;0;1350;194;de;Gewässerüberwachungserlaß MV 1993;NULL;NULL;N;0
+3643;0;1350;195;de;Gewässerüberwachungserlass M-V;NULL;NULL;N;0
+3644;0;1350;196;de;Gewässerüberwachungserlaß MV;NULL;NULL;N;0
+3645;0;1350;197;de;Gewässerüberwachungserlass;NULL;NULL;N;0
+3646;0;1350;198;de;Gewässerüberwachungserlaß;NULL;NULL;N;0
+3647;0;1350;199;de;Gesetz zum Übereinkommen über die biologischen Vi;NULL;NULL;N;0
+3648;0;1350;200;de;Gesetz z. Neuordn. d. Statistik. d. Schifffahrt u;NULL;NULL;N;0
+3649;0;1350;201;de;Gesetz über Statistik im Produzierenden Gewerbe;NULL;NULL;N;0
+3650;0;1350;202;de;Gesetz über Energiestatistik;NULL;NULL;N;0
+3651;0;1350;203;de;Gesetz über die UVP (UVPG);NULL;NULL;N;0
+3652;0;1350;204;de;Gesetz über die Statistik der Straßenverkehrsunfä;NULL;NULL;N;0
+3653;0;1350;205;de;Gesetz über die Preisstatistik;NULL;NULL;N;0
+3654;0;1350;206;de;Gesetz über die Landesvermessung und das Liegensc;NULL;NULL;N;0
+3655;0;1350;207;de;Gesetz über die Landesvermessung und das Liegensc;NULL;NULL;N;0
+3656;0;1350;208;de;Gesetz ü. d. Luftfahrtstatistik;NULL;NULL;N;0
+3657;0;1350;209;de;Geruchsimmissionsrichtlinie (GIRL);NULL;NULL;N;0
+3658;0;1350;210;de;Forstvermehrungsgutgesetz;NULL;NULL;N;0
+3659;0;1350;211;de;Fördg. v. Maßnahmen d. Arten- u. Biotopschutz;NULL;NULL;N;0
+3660;0;1350;212;de;Förderrichtlinie;NULL;NULL;N;0
+3661;0;1350;213;de;Fauna-Flora-Habitat-Richtlinie (92/43/EWG);NULL;NULL;N;0
+3662;0;1350;214;de;EU-Vogelschutzrichtlinie (79/409/EWG);NULL;NULL;N;0
+3663;0;1350;215;de;EU-Richtlinie 1999/30/EG;NULL;NULL;N;0
+3664;0;1350;216;de;Errichtungsgesetz des Umweltbundesamtes;NULL;NULL;N;0
+3665;0;1350;217;de;Erlaß zur Anwend. im Geschäftsbereich A3;NULL;NULL;N;0
+3666;0;1350;218;de;Erlaß des Ministeriums;NULL;NULL;N;0
+3667;0;1350;219;de;Erlaß d. BLUM 1994;NULL;NULL;N;0
+3668;0;1350;220;de;Erlaß;NULL;NULL;N;0
+3669;0;1350;221;de;Entsorgungsfachberiebe VO;NULL;NULL;N;0
+3670;0;1350;222;de;Entsorgergemeinschaftenrichtlinie;NULL;NULL;N;0
+3671;0;1350;223;de;Entscheide d. Regierungsrates (SOG);NULL;NULL;N;0
+3672;0;1350;224;de;Energiewirtschaftsgesetz;NULL;NULL;N;0
+3673;0;1350;225;de;ENatSchG M-V § 10;NULL;NULL;N;0
+3674;0;1350;226;de;Einf. d. Europäischen Abfallkatalogs (EAK-VO);NULL;NULL;N;0
+3675;0;1350;227;de;EG-Verordnung 259/93;NULL;NULL;N;0
+3676;0;1350;228;de;EG-Verbringungsverordnung 259/93;NULL;NULL;N;0
+3677;0;1350;229;de;EG-Richtlinien;NULL;NULL;N;0
+3678;0;1350;230;de;EG-Abfallverbringungsverordnung;NULL;NULL;N;0
+3679;0;1350;231;de;Düngemittelverordnung;NULL;NULL;N;0
+3680;0;1350;232;de;Druckbehälterverordnung (DruckbehV);NULL;NULL;N;0
+3681;0;1350;233;de;DIN-Vorschriften;NULL;NULL;N;0
+3682;0;1350;234;de;DIN;NULL;NULL;N;0
+3683;0;1350;235;de;Bundeswaldgesetz;NULL;NULL;N;0
+3684;0;1350;236;de;Bundesnaturs;NULL;NULL;N;0
+3685;0;1350;237;de;Bundeslagerstättengesetz (BGBL.T. III 750-1-1);NULL;NULL;N;0
+3686;0;1350;238;de;Bundeslagerstättengesetz  (BGBL.T. III 750-1-1);NULL;NULL;N;0
+3687;0;1350;239;de;Bundesinformationsgesetz;NULL;NULL;N;0
+3688;0;1350;240;de;Bundesimmissionsschutzverordnung (BImSchV);NULL;NULL;N;0
+3689;0;1350;241;de;Bundesimmissionsschutzgesetz (BlmSchG) §§ 44, 46;NULL;NULL;N;0
+3690;0;1350;242;de;Bundesimmissionsschutzgesetz;NULL;NULL;N;0
+3691;0;1350;243;de;Bundes-Immissionschutzgesetz;NULL;NULL;N;0
+3692;0;1350;244;de;Bundesbodenschutzverordnung (BBodSchV);NULL;NULL;N;0
+3693;0;1350;245;de;Bundesbodenschutzgesetz(BBodSchG);NULL;NULL;N;0
+3694;0;1350;246;de;Bundesbodenschutzgesetz (BBodSchG);NULL;NULL;N;0
+3695;0;1350;247;de;Bundesbodenschutzgesetz;NULL;NULL;N;0
+3696;0;1350;248;de;Bundes- und Landesnaturschutzgesetz;NULL;NULL;N;0
+3697;0;1350;249;de;BLMP (Bund-Länder-Messprogramm Ostsee);NULL;NULL;N;0
+3698;0;1350;250;de;BG "Verbesesseung der Agrarstruktur und des Küste;NULL;NULL;N;0
+3699;0;1350;251;de;BG "Gemeinschaftsaufgabe Verbesserung der Agrarst;NULL;NULL;N;0
+3700;0;1350;252;de;Bestimmungsverordnung überwachungsbedürftiger Abf;NULL;NULL;N;0
+3701;0;1350;253;de;Beschlußprotokolle der Land- und Stadtkreise;NULL;NULL;N;0
+3702;0;1350;254;de;Benzinbleigesetz;NULL;NULL;N;0
+3703;0;1350;255;de;Beherbergungsstatistikgesetz;NULL;NULL;N;0
+3704;0;1350;256;de;Bau,-Landespl.-u. Umweltrechtsregulierungsgesetz;NULL;NULL;N;0
+3705;0;1350;257;de;Bau- und Raumordnungsgesetz (BauROG);NULL;NULL;N;0
+3706;0;1350;258;de;Altlastengesetz;NULL;NULL;N;0
+3707;0;1350;259;de;Altlastenfinanzierungsrichtlinie für kommunale Al;NULL;NULL;N;0
+3708;0;1350;260;de;Altautoverordnung;NULL;NULL;N;0
+3709;0;1350;261;de;Agrarstatistikgesetz (AgrStatG) v. 25.06.98;NULL;NULL;N;0
+3710;0;1350;262;de;Abwasserverordnung (AbwV);NULL;NULL;N;0
+3711;0;1350;263;de;Abwasserverordnung;NULL;NULL;N;0
+3712;0;1350;264;de;Abwasserüberwachungserlaß v. 1994;NULL;NULL;N;0
+3713;0;1350;265;de;Abwasserüberwachungserlaß M-V v.1996;NULL;NULL;N;0
+3714;0;1350;266;de;Abwasserüberwachungserlaß MV 1996;NULL;NULL;N;0
+3715;0;1350;267;de;Abwasserabgabengesetz;NULL;NULL;N;0
+3716;0;1350;268;de;Abkommen z. gem. Sich. d. wiss. Vogelbering.;NULL;NULL;N;0
+3717;0;1350;269;de;Abfallwirtschaftsplan;NULL;NULL;N;0
+3718;0;1350;270;de;Abfallwirtschaftskonzept- und Bilanzverordnung;NULL;NULL;N;0
+3719;0;1350;271;de;Abfallwirtschaftsgesetz (AbfG);NULL;NULL;N;0
+3720;0;1350;272;de;Abfallwirtschafts- und Altlastengesetz für Meckle;NULL;NULL;N;0
+3721;0;1350;273;de;Abfallwirtsch.- u. Altlastengesetz (AbfAIG MV);NULL;NULL;N;0
+3722;0;1350;274;de;Abfallverbringungsgesetz;NULL;NULL;N;0
+3723;0;1350;275;de;Abfallablagerungsverordnung;NULL;NULL;N;0
+3724;0;1350;276;de;Abfall- und Reststoffüberwachungsverordnung;NULL;NULL;N;0
+3725;0;1350;277;de;Abfall- und Bodenschutz-Zuständigkeitsverordnung ;NULL;NULL;N;0
+3726;0;1350;278;de;4. Bundesimmissionsschutzverordnung (BImSchV);NULL;NULL;N;0
+3727;0;1350;279;de;33. Bundesimmissionsschutzverordnung (BlmSchV);NULL;NULL;N;0
+3728;0;1350;280;de;33. Bundesimmissionsschutzverordnung (BImSchV);NULL;NULL;N;0
+3729;0;1350;281;de;23. Bundesimmissionsschutzverordnung (BlmSchV);NULL;NULL;N;0
+3730;0;1350;282;de;22. Bundesimmissionsschutzverordnung (BImSchV);NULL;NULL;N;0
+3731;0;1350;283;de;22. Bundesimmissionsschutzverordnung ( BImSchV);NULL;NULL;N;0
+3732;0;1350;284;de;11. Bundesimmissionsschutzverordnung (BImSchV);NULL;NULL;N;0
+3733;0;1350;285;de;1. Bundesimmissionsschutzverordnung (BImSchV);NULL;NULL;N;0
+3734;0;1350;286;de;§ 2 Strahlenschutzvorsorgegesetz;NULL;NULL;N;0
+3735;0;1350;287;de;§ 19 WHG i. V. m. § 19 LWaG;NULL;NULL;N;0
+3744;0;1100;1;de;Harz;NULL;1;N;0
+3745;0;1100;2;de;Harzvorland;NULL;1;N;0
+3746;0;1100;3;de;Hildesheimer Börde;NULL;1;N;0
+3747;0;1100;4;de;Lüneburger Heide;NULL;1;N;0
+3748;0;1100;5;de;Nordseeküste;NULL;1;N;0
+3749;0;1100;6;de;Oldenburger Münsterland;NULL;1;N;0
+3750;0;1100;7;de;Ostseeküste;NULL;1;N;0
+3751;0;1100;8;de;Teutoburger Wald;NULL;1;N;0
+3752;0;1100;9;de;Weserbergland;NULL;1;N;0
+3753;0;1100;10;de;Wesermarsch;NULL;1;N;0
+3754;0;1100;11;de;Solling;NULL;1;N;0
+3755;0;1100;12;de;Elbe-Weser-Dreieck;NULL;1;N;0
+3756;0;1100;13;de;Großraum Hannover;NULL;1;N;0
+3757;0;1100;14;de;Großraum Braunschweig;NULL;1;N;0
+3758;0;1100;15;de;Schutzgebietssystem Elbetal;NULL;1;N;0
+3780;0;1350;1;de;Atomgesetz (AtG);NULL;1;N;0
+3781;0;1350;2;de;Baugesetzbuch (BauGB);NULL;1;N;0
+3782;0;1350;3;de;Bürgerl. Gesetzbuch (BGB);NULL;1;N;0
+3783;0;1350;4;de;Bodenschutzgesetz (BodSchG);NULL;1;N;0
+3784;0;1350;5;de;Bundesberggesetz (BBergG);NULL;1;N;0
+3785;0;1350;7;de;Bundesnaturschutzgesetz (BNatSchG);NULL;1;N;0
+3786;0;1350;8;de;Bundeswaldgesetz (BundeswaldG);NULL;1;N;0
+3787;0;1350;9;de;Chemikaliengesetz (ChemG);NULL;1;N;0
+3788;0;1350;10;de;Flurbereinigungsgesetz (FlurbG);NULL;1;N;0
+3789;0;1350;11;de;Gentechnikgesetz (GenTG);NULL;1;N;0
+3790;0;1350;13;de;Kreislaufwirtschafts- u. Abfallgesetz (KrW-/AbfG);NULL;1;N;0
+3791;0;1350;14;de;Landesabfallgesetz (LAbfG);NULL;1;N;0
+3792;0;1350;15;de;Landesabfallwirtschaftsgesetz (LAbfWG);NULL;1;N;0
+3793;0;1350;16;de;Landschaftsgesetz (LG);NULL;1;N;0
+3794;0;1350;17;de;Pflanzenschutzgesetz (PflSchG);NULL;1;N;0
+3795;0;1350;18;de;Raumordnungsgesetz (ROG);NULL;1;N;0
+3796;0;1350;19;de;Strahlenschutzvorsorgegesetz (StrVG);NULL;1;N;0
+3797;0;1350;20;de;Tierschutzgesetz (TierSchG);NULL;1;N;0
+3798;0;1350;21;de;Umwelthaftungsgesetz (UmweltHG);NULL;1;N;0
+3799;0;1350;22;de;Umweltinformationsgesetz (UIG);NULL;1;N;0
+3800;0;1350;23;de;Verwaltungsverfahrensgesetz (VwVfG);NULL;1;N;0
+3801;0;1350;24;de;Bundeswasserstraßengesetz (WaStrG);NULL;1;N;0
+3802;0;1350;25;de;Wasserhaushaltsgesetz (WHG);NULL;1;N;0
+3803;0;1350;26;de;Umweltstatistikgesetz (Fass. 21.06.1994);NULL;1;N;0
+3804;0;1350;27;de;Umweltstatistikgesetz (Fass. 14.03.1980);NULL;1;N;0
+3805;0;1350;29;de;Trinkwasserverordnung (TrinkwV);NULL;1;N;0
+3806;0;1350;30;de;TA Siedlungsabfall;NULL;1;N;0
+3807;0;1350;31;de;TA Abfall;NULL;1;N;0
+3808;0;1350;32;de;Strahlenschutzverordnung (StrlSchVO);NULL;1;N;0
+3809;0;1350;33;de;Richtl. Em.- u. Im.-Überwachung. kerntech. Anl.;NULL;1;N;0
+3810;0;1350;34;de;RdErl. d. ML v. 16.1.1986, GültL 10/66;NULL;1;N;0
+3811;0;1350;35;de;Nieders. Wassergesetz (NWG);NULL;1;N;0
+3812;0;1350;36;de;Nieders. Naturschutzgesetz (NNatG);NULL;1;N;0
+3813;0;1350;38;de;Nieders. Abfallgesetz (NAbfG);NULL;1;N;0
+3814;0;1350;39;de;Nieders. Deichgesetz (NDG);NULL;1;N;0
+3815;0;1350;40;de;Nieders. Abfallgesetz. 6. Teil "Altlasten";NULL;1;N;0
+3816;0;1350;41;de;Nieders. Abfallabgabengesetz;NULL;1;N;0
+3817;0;1350;42;de;Landesraumordnungsprogramm LROP;NULL;1;N;0
+3818;0;1350;43;de;KTA 1508;NULL;1;N;0
+3819;0;1350;45;de;Gesetz über eine Holzstatistik;NULL;1;N;0
+3820;0;1350;46;de;Ges. Statistik im Produzierenden Gewerbe;NULL;1;N;0
+3821;0;1350;47;de;Gesetz ü. d. Umweltverträglichkeitsprüfung (UVPG);NULL;1;N;0
+3822;0;1350;48;de;Erlaß Nds. Umweltministerium vom 16.10.1992;NULL;1;N;0
+3823;0;1350;49;de;Bundesimmissionsschutzgesetz (BImSchG);NULL;1;N;0

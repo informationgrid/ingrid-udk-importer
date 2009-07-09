@@ -1,0 +1,781 @@
+id;version;lst_id;entry_id;lang_id;name;description;maintainable;is_default;line
+1;0;100;3068;de;EPSG 3068: DHDN / Soldner Berlin;NULL;0;N;0
+2;0;100;3068;en;EPSG 3068: DHDN / Soldner Berlin;NULL;0;N;0
+3;0;100;4178;de;EPSG 4178: Pulkovo 1942(83) / geographisch;NULL;0;N;0
+4;0;100;4178;en;EPSG 4178: Pulkovo 1942(83) / geographisch;NULL;0;N;0
+5;0;100;4230;de;EPSG 4230: ED50 / geographisch;NULL;0;N;0
+6;0;100;4230;en;EPSG 4230: ED50 / geographisch;NULL;0;N;0
+7;0;100;4258;de;EPSG 4258: ETRS89 / geographisch;NULL;0;N;0
+8;0;100;4258;en;EPSG 4258: ETRS89 / geographisch;NULL;0;N;0
+9;0;100;4284;de;EPSG 4284: Pulkovo 1942 / geographisch;NULL;0;N;0
+10;0;100;4284;en;EPSG 4284: Pulkovo 1942 / geographisch;NULL;0;N;0
+11;0;100;4314;de;EPSG 4314: DHDN / geographisch;NULL;0;N;0
+12;0;100;4314;en;EPSG 4314: DHDN / geographisch;NULL;0;N;0
+13;0;100;4326;de;EPSG 4326: WGS 84 / geographisch;NULL;0;N;0
+14;0;100;4326;en;EPSG 4326: WGS 84 / geographisch;NULL;0;N;0
+15;0;100;23031;de;EPSG 23031: ED50 / UTM Zone 31N;NULL;0;N;0
+16;0;100;23031;en;EPSG 23031: ED50 / UTM Zone 31N;NULL;0;N;0
+17;0;100;23032;de;EPSG 23032: ED50 / UTM Zone 32N;NULL;0;N;0
+18;0;100;23032;en;EPSG 23032: ED50 / UTM Zone 32N;NULL;0;N;0
+19;0;100;23033;de;EPSG 23033: ED50 / UTM Zone 33N;NULL;0;N;0
+20;0;100;23033;en;EPSG 23033: ED50 / UTM Zone 33N;NULL;0;N;0
+21;0;100;32631;de;EPSG 32631: WGS 84 / UTM Zone 31N;NULL;0;N;0
+22;0;100;32631;en;EPSG 32631: WGS 84 / UTM Zone 31N;NULL;0;N;0
+23;0;100;32632;de;EPSG 32632: WGS 84 / UTM Zone 32N;NULL;0;N;0
+24;0;100;32632;en;EPSG 32632: WGS 84 / UTM Zone 32N;NULL;0;N;0
+25;0;100;32633;de;EPSG 32633: WGS 84 / UTM Zone 33N;NULL;0;N;0
+26;0;100;32633;en;EPSG 32633: WGS 84 / UTM Zone 33N;NULL;0;N;0
+27;0;100;25831;de;EPSG 25831: ETRS89 / UTM Zone 31N;NULL;0;N;0
+28;0;100;25831;en;EPSG 25831: ETRS89 / UTM Zone 31N;NULL;0;N;0
+29;0;100;25832;de;EPSG 25832: ETRS89 / UTM Zone 32N;NULL;0;N;0
+30;0;100;25832;en;EPSG 25832: ETRS89 / UTM Zone 32N;NULL;0;N;0
+31;0;100;25833;de;EPSG 25833: ETRS89 / UTM Zone 33N;NULL;0;N;0
+32;0;100;25833;en;EPSG 25833: ETRS89 / UTM Zone 33N;NULL;0;N;0
+33;0;100;25834;de;EPSG 25834: ETRS89 / UTM Zone 34N;NULL;0;N;0
+34;0;100;25834;en;EPSG 25834: ETRS89 / UTM Zone 34N;NULL;0;N;0
+35;0;100;28462;de;EPSG 28462: Pulkovo 1942 / Gauss-Krüger 2N;NULL;0;N;0
+36;0;100;28462;en;EPSG 28462: Pulkovo 1942 / Gauss-Krüger 2N;NULL;0;N;0
+37;0;100;28463;de;EPSG 28463: Pulkovo 1942 / Gauss-Krüger 3N;NULL;0;N;0
+38;0;100;28463;en;EPSG 28463: Pulkovo 1942 / Gauss-Krüger 3N;NULL;0;N;0
+39;0;100;31466;de;EPSG 31466: DHDN / Gauss-Krüger Zone 2;NULL;0;N;0
+40;0;100;31466;en;EPSG 31466: DHDN / Gauss-Krüger Zone 2;NULL;0;N;0
+41;0;100;31467;de;EPSG 31467: DHDN / Gauss-Krüger Zone 3;NULL;0;N;0
+42;0;100;31467;en;EPSG 31467: DHDN / Gauss-Krüger Zone 3;NULL;0;N;0
+43;0;100;31468;de;EPSG 31468: DHDN / Gauss-Krüger Zone 4;NULL;0;N;0
+44;0;100;31468;en;EPSG 31468: DHDN / Gauss-Krüger Zone 4;NULL;0;N;0
+45;0;100;31469;de;EPSG 31469: DHDN / Gauss-Krüger Zone 5;NULL;0;N;0
+46;0;100;31469;en;EPSG 31469: DHDN / Gauss-Krüger Zone 5;NULL;0;N;0
+47;0;100;9000001;de;DE_42/83 / GK_3;NULL;0;N;0
+48;0;100;9000001;en;DE_42/83 / GK_3;NULL;0;N;0
+49;0;100;9000002;de;DE_DHDN / GK_3;NULL;0;N;0
+50;0;100;9000002;en;DE_DHDN / GK_3;NULL;0;N;0
+51;0;100;9000007;de;DE_DHDN / GK_3_RDN;NULL;0;N;0
+52;0;100;9000007;en;DE_DHDN / GK_3_RDN;NULL;0;N;0
+53;0;100;9000008;de;DE_DHDN / GK_3_RP101;NULL;0;N;0
+54;0;100;9000008;en;DE_DHDN / GK_3_RP101;NULL;0;N;0
+55;0;100;9000009;de;DE_DHDN / GK_3_RP180;NULL;0;N;0
+56;0;100;9000009;en;DE_DHDN / GK_3_RP180;NULL;0;N;0
+57;0;100;9000010;de;DE_DHDN / GK_3_NW177;NULL;0;N;0
+58;0;100;9000010;en;DE_DHDN / GK_3_NW177;NULL;0;N;0
+59;0;100;9000011;de;DE_DHDN / GK_3_HE100;NULL;0;N;0
+60;0;100;9000011;en;DE_DHDN / GK_3_HE100;NULL;0;N;0
+61;0;100;9000012;de;DE_DHDN / GK_3_BW100;NULL;0;N;0
+62;0;100;9000012;en;DE_DHDN / GK_3_BW100;NULL;0;N;0
+63;0;100;9000003;de;DE_ETRS89 / UTM;NULL;0;N;0
+64;0;100;9000003;en;DE_ETRS89 / UTM;NULL;0;N;0
+65;0;100;9000005;de;DE_PD/83 / GK_3;NULL;0;N;0
+66;0;100;9000005;en;DE_PD/83 / GK_3;NULL;0;N;0
+67;0;100;9000006;de;DE_RD/83 / GK_3;NULL;0;N;0
+68;0;100;9000006;en;DE_RD/83 / GK_3;NULL;0;N;0
+69;0;100;9000013;de;DE_PD/83 / GK_9-15, Bezug 12. Meridian (BY);NULL;0;N;0
+70;0;100;9000013;en;DE_PD/83 / GK_9-15, Bezug 12. Meridian (BY);NULL;0;N;0
+71;0;101;900002;de;DE_AMST / NH;NULL;0;N;0
+72;0;101;900002;en;DE_AMST / NH;NULL;0;N;0
+73;0;101;900003;de;DE_AMST / NOH;NULL;0;N;0
+74;0;101;900003;en;DE_AMST / NOH;NULL;0;N;0
+75;0;101;900005;de;DE_DHHN12_NOH;NULL;0;N;0
+76;0;101;900005;en;DE_DHHN12_NOH;NULL;0;N;0
+77;0;101;900006;de;DE_DHHN12_RP120;NULL;0;N;0
+78;0;101;900006;en;DE_DHHN12_RP120;NULL;0;N;0
+79;0;101;900007;de;DE_DHHN85_NOH;NULL;0;N;0
+80;0;101;900007;en;DE_DHHN85_NOH;NULL;0;N;0
+81;0;101;900008;de;DE_DHHN92_NH;NULL;0;N;0
+82;0;101;900008;en;DE_DHHN92_NH;NULL;0;N;0
+83;0;101;900004;de;DE_KRON / NH;NULL;0;N;0
+84;0;101;900004;en;DE_KRON / NH;NULL;0;N;0
+85;0;101;900009;de;Horizont 74_NOH;NULL;0;N;0
+86;0;101;900009;en;Horizont 74_NOH;NULL;0;N;0
+87;0;101;5129;de;European Vertical Reference Frame 2000;NULL;0;N;0
+88;0;101;5129;en;European Vertical Reference Frame 2000;NULL;0;N;0
+89;0;101;5105;de;Baltic Sea;NULL;0;N;0
+90;0;101;5105;en;Baltic Sea;NULL;0;N;0
+91;0;101;900010;de;Höhe über GRS80 Ellipsoid;NULL;0;N;0
+92;0;101;900010;en;Höhe über GRS80 Ellipsoid;NULL;0;N;0
+93;0;102;4;de;Inch;Inch;0;N;0
+94;0;102;4;en;Zoll;Zoll;0;N;0
+95;0;102;9001;de;Meter;Meter;0;N;0
+96;0;102;9001;en;Metre;Metre;0;N;0
+97;0;102;9002;de;Fuss;Fuss;0;N;0
+98;0;102;9002;en;Foot;Foot;0;N;0
+99;0;102;9036;de;Kilometer;Kilometer;0;N;0
+100;0;102;9036;en;Kilometre;Kilometre;0;N;0
+101;0;502;1;de;Erstellung;Datum, wann die Quelle geschaffen wurde;0;N;0
+102;0;502;1;en;creation;date identifies when the resource was brought into existence;0;N;0
+103;0;502;2;de;Publikation;Dateum, wann die Quelle publiziert wurde;0;N;0
+104;0;502;2;en;publication;date identifies when the resource was issued;0;N;0
+105;0;502;3;de;letzte Änderung;Datum, wann eine Revision durchgeführt wurde;0;N;0
+106;0;502;3;en;revision;date identifies when the resource was examined or re-examined and improved or amended;0;N;0
+107;0;505;1;de;Anbieter;Anbieter der Datenquelle;0;N;0
+108;0;505;1;en;Provider;Party that supplies the resource;0;N;0
+109;0;505;2;de;Datenverantwortung;Verantworlicher für die Datenquelle und deren Pflege;0;N;0
+110;0;505;2;en;Custodian;Party that accepts accountability and responsibility for the data and ensures appropriate care and maintenance of the resource;0;N;0
+111;0;505;3;de;Halter;Halter der Datenquelle;0;N;0
+112;0;505;3;en;Owner;Party that owns the resource;0;N;0
+113;0;505;4;de;Benutzer;Benutzer der Datenquelle;0;N;0
+114;0;505;4;en;User;Party who uses the resource;0;N;0
+115;0;505;5;de;Vertrieb;Vertreiber der Datenquelle;0;N;0
+116;0;505;5;en;Distributor;Party who distributes the resource;0;N;0
+117;0;505;6;de;Herkunft;Ersteller der Datenquelle;0;N;0
+118;0;505;6;en;Originator;Party who created the resource;0;N;0
+119;0;505;7;de;Auskunft;Kontaktperson, die Informationen über die Datenqulle geben kann;0;N;0
+120;0;505;7;en;Point of Contact;Party who can be contacted for acquiring knowledge about or acquisition of the resource;0;N;0
+121;0;505;8;de;Datenerfassung;Verantworlicher für die Zusammenstellung der Informationen und Durchführung von Forschung;0;N;0
+122;0;505;8;en;Principal Investigator;Key party responsible for gathering information and conducting research;0;N;0
+123;0;505;9;de;Auswertung;Bearbeiter der Daten in einer Art, dass die Quelle modifiziert wurde.;0;N;0
+124;0;505;9;en;Processor;Party who has processed the data in a manner such that the resource has been modified;0;N;0
+125;0;505;10;de;Herausgeber;Phblizierer der Datenquelle;0;N;0
+126;0;505;10;en;Publisher;Party who published the resource;0;N;0
+127;0;510;1;de;ucs2;16-bit fixierte Größe Universal Character Set, basierend auf ISO/IEC 10646;0;N;0
+128;0;510;1;en;ucs2;16-bit fixed size Universal Character Set, based on ISO/IEC 10646;0;N;0
+129;0;510;2;de;ucs4;32-bit fixierte Größe Universal Character Set, basierend auf ISO/IEC 10646;0;N;0
+130;0;510;2;en;ucs4;32-bit fixed size Universal Character Set, based on ISO/IEC 10646;0;N;0
+131;0;510;3;de;utf7;7-bit variable Größe UCS Transfer Format, basierend auf ISO/IEC 10646;0;N;0
+132;0;510;3;en;utf7;7-bit variable size UCS Transfer Format, based on ISO/IEC 10646;0;N;0
+133;0;510;4;de;utf8;8-bit variable Größe UCS Transfer Format, basierend auf ISO/IEC 10646;0;N;0
+134;0;510;4;en;utf8;8-bit variable size UCS Transfer Format, based on ISO/IEC 10646;0;N;0
+135;0;510;5;de;utf16;16-bit variable Größe UCS Transfer Format, basierend auf ISO/IEC 10646;0;N;0
+136;0;510;5;en;utf16;16-bit variable size UCS Transfer Format, based on ISO/IEC 10646;0;N;0
+137;0;510;6;de;8859part1;latin-1, Westeuropäischer;0;N;0
+138;0;510;6;en;8859part1;latin-1, west European;0;N;0
+139;0;510;7;de;8859part2;latin-2, Zentraleuropäischer;0;N;0
+140;0;510;7;en;8859part2;latin-2, central European;0;N;0
+141;0;510;8;de;8859part3;latin-3, Südeuropäischer;0;N;0
+142;0;510;8;en;8859part3;latin-3, south European;0;N;0
+143;0;510;9;de;8859part4;latin-4, Nordeuropäischer;0;N;0
+144;0;510;9;en;8859part4;latin-4, north European;0;N;0
+145;0;510;10;de;8859part5;Cyrillisch;0;N;0
+146;0;510;10;en;8859part5;cyrillic code set;0;N;0
+147;0;510;11;de;8859part6;Arabisch;0;N;0
+148;0;510;11;en;8859part6;arabic code set;0;N;0
+149;0;510;12;de;8859part7;Griechisch;0;N;0
+150;0;510;12;en;8859part7;greek code set;0;N;0
+151;0;510;13;de;8859part8;Hebräisch;0;N;0
+152;0;510;13;en;8859part8;hebrew code set;0;N;0
+153;0;510;14;de;8859part9;latin-5, Türkisch;0;N;0
+154;0;510;14;en;8859part9;latin-5, Turkish code set;0;N;0
+155;0;510;15;de;8859part11;Tailändisch;0;N;0
+156;0;510;15;en;8859part11;thai code set;0;N;0
+157;0;510;16;de;8859part14;latin-8;0;N;0
+158;0;510;16;en;8859part14;latin-8 code set;0;N;0
+159;0;510;17;de;8859part15;latin-9;0;N;0
+160;0;510;17;en;8859part15;latin-9 code set;0;N;0
+161;0;510;18;de;Jis;Japanisch;0;N;0
+162;0;510;18;en;Jis;japanese code set used for electronic transmission;0;N;0
+163;0;510;19;de;ShiftJIS;Japanisch (MS-DOS);0;N;0
+164;0;510;19;en;ShiftJIS;japanese code set used on MS-DOS based machines;0;N;0
+165;0;510;20;de;EucJP;Japanisch (UNIX);0;N;0
+166;0;510;20;en;EucJP;japanese code set used on UNIX based machines;0;N;0
+167;0;510;21;de;UsAscii;USA ASCII;0;N;0
+168;0;510;21;en;UsAscii;united states ASCII code set (ISO 646 US);0;N;0
+169;0;510;22;de;Ebcdic;IBM Mainfraime;0;N;0
+170;0;510;22;en;Ebcdic;ibm mainframe code set;0;N;0
+171;0;510;23;de;EucKR;Koreanisch;0;N;0
+172;0;510;23;en;EucKR;korean code set;0;N;0
+173;0;510;24;de;big5;Tawainesisch;0;N;0
+174;0;510;24;en;big5;taiwanese code set;0;N;0
+175;0;515;1;de;Komplex;Satz geometrischer Primitiver, wobei deren Grenzen durch ein Zusammenschluss anderer Primitiver gebildet werden können;0;N;0
+176;0;515;1;en;complexes;set of geometric primitives such that their boundaries can be represented as a union of other primitives;0;N;0
+177;0;515;2;de;Verbund;verbundener Satz von Kurven, Körpern oder Oberflächen;0;N;0
+178;0;515;2;en;composites;connected set of curves, solids or surfaces;0;N;0
+179;0;515;3;de;Kurve;beschränkte, 1-D geometrische Primitive, die ein continuierliches Bild einer Linie darstellt;0;N;0
+180;0;515;3;en;curve;bounded, 1-dimensional geometric primitive, representing the continuous image of a line;0;N;0
+181;0;515;4;de;Punkt;0-D geometrische Primitive, welche eine Position beschreibt ohne eine Ausdehnung zu haben;0;N;0
+182;0;515;4;en;point;zero-dimensional geometric primitive, representing a position but not having an extent;0;N;0
+183;0;515;5;de;Körper;begrenzte, verbundene 3-D geometrische Primitive, welche ein kontinuierliches Bild eines Raumes beschreibt;0;N;0
+184;0;515;5;en;solid;bounded, connected 3-dimensional geometric primitive, representing the continuous image of a region of space;0;N;0
+185;0;515;6;de;Oberfläche;begrenzte, verbundene 2-D geometrische Primitive, welche ein kontinuierliches Bild einer Ebene oder Region beschreibt;0;N;0
+186;0;515;6;en;surface;bounded, connected 2-dimensional geometric, representing the continuous image of a region of a plane;0;N;0
+187;0;517;1;de;Wissenszweig;Zweig einer Ausbildung oder spezialisierten Lernens;0;N;0
+188;0;517;1;en;Discipline;keyword identifies a branch of instruction or specialized learning;0;N;0
+189;0;517;2;de;Ortsangabe;Ortsangabe;0;N;0
+190;0;517;2;en;Place;keyword identifies a location;0;N;0
+191;0;517;3;de;Schicht;Schichten einer hinterlegten Substanz;0;N;0
+192;0;517;3;en;Stratum;keyword identifies the layer(s) of any deposited substance;0;N;0
+193;0;517;4;de;Zeitraum;Zeitraum in Bezug auf den Datensatz;0;N;0
+194;0;517;4;en;Temporal;keyword identifies a time period related to the dataset;0;N;0
+195;0;517;5;de;Themenbereich;Spezielles Fachgebiet oder Thema;0;N;0
+196;0;517;5;en;Theme;keyword identifies a particular subject or topic;0;N;0
+197;0;518;1;de;kontinuierlich;Datenupdate  häufig;0;N;0
+198;0;518;1;en;continual;data is repeatedly and frequently updated;0;N;0
+199;0;518;2;de;täglich;Datenupdate täglich;0;N;0
+200;0;518;2;en;daily;Data is updated each day;0;N;0
+201;0;518;3;de;wöchentlich;Datenupdate wöchentlich;0;N;0
+202;0;518;3;en;weekly;Ddata is updated on a weekly basis;0;N;0
+203;0;518;4;de;vierzehntägig;Datenupdate alle 2 Wochen;0;N;0
+204;0;518;4;en;fortnightly;Data is updated every two weeks;0;N;0
+205;0;518;5;de;monatlich;Datenupdate monatlich;0;N;0
+206;0;518;5;en;monthly;Data is updated each month;0;N;0
+207;0;518;6;de;vierteljährlich;Datenupdate alle 3 Monate;0;N;0
+208;0;518;6;en;quarterly;Data is updated every three months;0;N;0
+209;0;518;7;de;halbjährlich;Datenupdate halbjährlich;0;N;0
+210;0;518;7;en;biannually;Data is updated twice each year;0;N;0
+211;0;518;8;de;jährlich;Datenupdate jährlich;0;N;0
+212;0;518;8;en;annually;Data is updated every year;0;N;0
+213;0;518;9;de;bei Bedarf;Datenupdate wenn nötig;0;N;0
+214;0;518;9;en;as Needed;Data is updated as deemed necessary;0;N;0
+215;0;518;10;de;unregelmäßig;Datenupdate in unregelmäßigen Abständen;0;N;0
+216;0;518;10;en;irregular;Data is updated in intervals that are uneven in duration;0;N;0
+217;0;518;11;de;einmalig;Datenupdate nicht geplant;0;N;0
+218;0;518;11;en;notPlanned;There are no plans to update the data;0;N;0
+219;0;518;12;de;unbekannt;Datenupdate unbekannt;0;N;0
+220;0;518;12;en;unknown;Frequency of maintenance for the data is not known;0;N;0
+221;0;520;1;de;CD-ROM;CD-ROM;0;N;0
+222;0;520;1;en;CD Rom;CD Rom;0;N;0
+223;0;520;2;de;DVD;DVD;0;N;0
+224;0;520;2;en;dvd;dvd;0;N;0
+225;0;520;3;de;DVD-ROM;DVD-ROM;0;N;0
+226;0;520;3;en;dvd Rom;dvd Rom;0;N;0
+227;0;520;4;de;3,5-Zoll Diskette;3’’ Floppy;0;N;0
+228;0;520;4;en;3.5-inch diskette;3'' Floppy;0;N;0
+229;0;520;5;de;5,25-Zoll Diskette;5 ¼’’ Floppy;0;N;0
+230;0;520;5;en;5.25-inch diskette;5 ¼’’ Floppy;0;N;0
+231;0;520;6;de;7 Spur Band;7 Spur Tape;0;N;0
+232;0;520;6;en;7 trackTape;7 trackTape;0;N;0
+233;0;520;7;de;9 Spur Band;9 Spur Tape;0;N;0
+234;0;520;7;en;9 track Tape;9 track Tape;0;N;0
+235;0;520;8;de;3480 Bandkassette;3480 Cartridge;0;N;0
+236;0;520;8;en;3480 Cartridge;3480Cartridge;0;N;0
+237;0;520;9;de;3490 Bandkassette;3490 Cartridge;0;N;0
+238;0;520;9;en;3490 Cartridge;3490 Cartridge;0;N;0
+239;0;520;10;de;3580 Bandkassette;3580 Cartridge;0;N;0
+240;0;520;10;en;3580 Cartridge;3580Cartridge;0;N;0
+241;0;520;11;de;4mm Bandkassette;4mm Cartridge Tape;0;N;0
+242;0;520;11;en;4mm Cartridge Tape;4mm Cartridge Tape;0;N;0
+243;0;520;12;de;8mm Bandkassette;8mm Cartridge Tape;0;N;0
+244;0;520;12;en;8mm Cartridge Tape;8mm Cartridge Tape;0;N;0
+245;0;520;13;de;1/4-Zoll Bandkassette;¼ ‘’ Cartridge Tape;0;N;0
+246;0;520;13;en;0.25-inch Cartridge Tape;¼ ‘’ Cartridge Tape;0;N;0
+247;0;520;14;de;Digitales Band;Digitales Tape;0;N;0
+248;0;520;14;en;Digital Linear Tape;digital Linear Tape;0;N;0
+249;0;520;15;de;Online Link;Online Link;0;N;0
+250;0;520;15;en;Online;online;0;N;0
+251;0;520;16;de;Satellitenverbindung;Satellitenverbindung;0;N;0
+252;0;520;16;en;Satellite;Satellite;0;N;0
+253;0;520;17;de;Telefon;Telefonverbindung;0;N;0
+254;0;520;17;en;Telephone Link;telephone Link;0;N;0
+255;0;520;18;de;Papier;Kopie (Papier), Druckerzeugnisse usw.;0;N;0
+256;0;520;18;en;Hardcopy;hardcopy;0;N;0
+257;0;520;900001;de;unbekannt (*);für Altdatenübernahme;0;N;0
+258;0;520;900001;en;unknown;-;0;N;0
+259;0;520;900002;de;Faxabruf;Faxabruf;0;N;0
+260;0;520;900002;en;faxback;faxback;0;N;0
+261;0;520;900003;de;Mobilfunk;Mobilfunk;0;N;0
+262;0;520;900003;en;mobile radio;mobile radio;0;N;0
+263;0;520;900004;de;Rundfunk;Rundfunk und Fernsehen;0;N;0
+264;0;520;900004;en;broadcast;broadcast;0;N;0
+265;0;520;900005;de;Videotext;Videotext;0;N;0
+266;0;520;900005;en;video text;video text;0;N;0
+267;0;520;900006;de;analoge Fotografie;-;0;N;0
+268;0;520;900006;en;Analog Photography;-;0;N;0
+269;0;520;900007;de;Mikrofilm;-;0;N;0
+270;0;520;900007;en;microfilm;-;0;N;0
+271;0;520;900008;de;ZIP-Laufwerk;-;0;N;0
+272;0;520;900008;en;Zip Drive;-;0;N;0
+273;0;520;900009;de;E-Mail;-;0;N;0
+274;0;520;900009;en;e-mail;-;0;N;0
+275;0;520;900010;de;Infokiosk;-;0;N;0
+276;0;520;900010;en;Info Kiosk;-;0;N;0
+277;0;523;1;de;abgeschlossen;Datenproduktion ist abgeschlossen;0;N;0
+278;0;523;1;en;completed;production of the data has been completed;0;N;0
+279;0;523;2;de;archiviert;Die Daten sind in einem Archiv abgelegt;0;N;0
+280;0;523;2;en;historicalArchive;Data has been stored in an offline storage facility;0;N;0
+281;0;523;3;de;obsolet;Die Daten sind nicht mehr länger relevant;0;N;0
+282;0;523;3;en;obsolete;Data is no longer relevant;0;N;0
+283;0;523;4;de;kontinuierlich;Daten werden kontinuierlich erneuert;0;N;0
+284;0;523;4;en;onGoing;Data is continually being updated;0;N;0
+285;0;523;5;de;geplant;Ein Zeitpunkt wurde festgelegt, an dem die Daten kreiert werden;0;N;0
+286;0;523;5;en;planned;fixed date has been established upon or by which the data will be created or updated;0;N;0
+287;0;523;6;de;benötigt;Die Daten müssen generiert bzw. erneuert werden;0;N;0
+288;0;523;6;en;required;Data needs to be generated or updated;0;N;0
+289;0;523;7;de;in Erstellung;Die Daten werden gerade kreiert;0;N;0
+290;0;523;7;en;under development;Data is currently in the process of being created;0;N;0
+291;0;523;900001;de;in Produktion;Informationssystem als produktiv genutztes System;0;N;0
+292;0;523;900001;en;in operation;-;0;N;0
+293;0;525;5;de;Datensatz;Information zu dem Datensatz;0;N;0
+294;0;525;5;en;Dataset;information applies to the dataset;0;N;0
+295;0;525;6;de;Datenserie;Information zu der Datenserie;0;N;0
+296;0;525;6;en;Dataseries;information applies to the series;0;N;0
+297;0;526;1;de;Vektor;Geographische Daten werden mittels Verktordaten präsentiert;0;N;0
+298;0;526;1;en;vector;vector data is used to represent geographic data;0;N;0
+299;0;526;2;de;Rasterdaten;Geographische Daten werden mittels Rasterdaten dargestellt;0;N;0
+300;0;526;2;en;grid;grid data is used to represent geographic data;0;N;0
+301;0;526;3;de;Texttabelle;Geographische Daten werden mittels Texttabellen dargestellt;0;N;0
+302;0;526;3;en;textTable;textual or tabular data is used to represent geographic data;0;N;0
+303;0;526;4;de;TIN;Geographische Daten werden mittels eines trinangulären irregulären Netzes dargestellt dargestellt;0;N;0
+304;0;526;4;en;TIN;triangulated irregular network;0;N;0
+305;0;526;5;de;Stereomodell;Geographische Daten werden mittels eines stereosehenden Models dargestellt;0;N;0
+306;0;526;5;en;stereoModel;three-dimensional view formed by the intersecting homologous rays of an overlapping pair of images;0;N;0
+307;0;526;6;de;Video;Geographische Daten werden mittels einer Videoaufnahme dargestellt;0;N;0
+308;0;526;6;en;video;scene from a video recording;0;N;0
+309;0;527;1;de;Landwirtschaft;Landwirtschaft (Tierzucht oder Pflanzenanbau);0;N;0
+310;0;527;1;en;Farming;rearing of animals and/or cultivation of plants;0;N;0
+311;0;527;2;de;Flora, Fauna, Habitate;Flora und Fauna in der natürlichen Umwelt;0;N;0
+312;0;527;2;en;Biota;flora and/or fauna in natural environment. Examples: wildlife, vegetation, biological sciences, ecology, wilderness, sealife, wetlands, habitat;0;N;0
+313;0;527;3;de;Grenzen;Rechtl. Beschreibungen und Grenzen von Land;0;N;0
+314;0;527;3;en;Boundaries;legal land descriptions. Examples: political and administrative boundaries;0;N;0
+315;0;527;4;de;Klima und Atmosphäre;Prozesse und Phänomene der Atmosphäre;0;N;0
+316;0;527;4;en;Climatology MeteorologyAtmosphere;processes and phenomena of the atmosphere. Examples: cloud cover, weather, climate, atmospheric conditions, climate change, precipitation;0;N;0
+317;0;527;5;de;Ökonomie;Ökonomische Aktivitäten, Konditionen und beschäftigung;0;N;0
+318;0;527;5;en;Economy;economic activities, conditions and employment. Examples: production, labour, revenue, commerce, industry, tourism and ecotourism, forestry, fisheries, commercial or subsistence hunting, etc.;0;N;0
+319;0;527;6;de;Höhe;Höhe über oder unter NN;0;N;0
+320;0;527;6;en;Elevation;height above or below sea level. Examples: altitude, bathymetry, digital elevation models, slope, derived products;0;N;0
+321;0;527;7;de;Umwelt;Umweltresourcen, -schutz und -erhaltung;0;N;0
+322;0;527;7;en;Environment;environmental resources, protection and conservation. Examples: environmental pollution, waste storage and treatment, environmental impact assessment, monitoring environmental risk, nature reserves, landscape;0;N;0
+323;0;527;8;de;Geowissenschaft;Information die Geowissenshaften betreffend;0;N;0
+324;0;527;8;en;Geoscientific Information;information pertaining to earth sciences. Examples: geophysical features and processes, geology, minerals, sciences dealing with the composition, structure and origin of the earth’s rocks, risks of earthquakes;0;N;0
+325;0;527;9;de;Gesundheit;Gesundheit, Gesundheitsservices, Humanökologie und Sicherheit;0;N;0
+326;0;527;9;en;Health;health, health services, human ecology, and safety. Examples: disease and illness, factors affecting health, hygiene, substance abuse, mental and physical health, health services;0;N;0
+327;0;527;10;de;Karten;Karten;0;N;0
+328;0;527;10;en;Imagery Base Maps EarthCover;base maps. Examples: land cover, topographic maps, imagery, unclassified images, annotations;0;N;0
+329;0;527;11;de;Militär;Militärische Stützpunkte, Strikturen und Aktivitäten;0;N;0
+330;0;527;11;en;Intelligence Military;military bases, structures, activities. Examples: barracks, training grounds, military transportation, information;0;N;0
+331;0;527;12;de;Binnengewässer;Inlandwasser, Abflüsse und deren Eigenschaften und Charakteristika;0;N;0
+332;0;527;12;en;Inland Waters;inland water features, drainage systems and their characteristics. Examples: rivers and glaciers, salt lakes, water utilization plans, dams, currents, floods, water quality, hydrographic charts;0;N;0
+333;0;527;13;de;Ortsangabe;Ortsangaben und -services;0;N;0
+334;0;527;13;en;Location;positional information and services. Examples: addresses, geodetic networks, control points, postal zones and services, place names;0;N;0
+335;0;527;14;de;Ozeane;Ozeane und deren Charakteristika und Eigenschaften;0;N;0
+336;0;527;14;en;Oceans;features and characteristics of salt water bodies (excluding inland waters): Examples: tides, tidal waves, coastal information, reefs;0;N;0
+337;0;527;15;de;Kataster;Informationen zu angemessenem Handeln für die zukünftige Nutzung des Landes;0;N;0
+338;0;527;15;en;PlanningCadastre;information used for appropriate actions for future use of the land Examples: land use maps, zoning maps, cadastral surveys, land ownership;0;N;0
+339;0;527;16;de;Gesellschaft;Charakteristika von Gesellschaft und Kulturen;0;N;0
+340;0;527;16;en;Society;characteristics of society and cultures. Examples: settlements, anthropology, archaeology, education, traditionalbeliefs, manners and customs, demographic data, recreational areas and activities,;0;N;0
+341;0;527;17;de;Bau;Kontsruktionen (von Menschen geshaffen);0;N;0
+342;0;527;17;en;Structure;man-made construction. Examples: buildings, museums, churches, factories, housing, monuments, shops, towers;0;N;0
+343;0;527;18;de;Transport;Hilfsmittel und Geräte zum Befördern von Personen und/oder Gütern;0;N;0
+344;0;527;18;en;Transportation;means and aids for conveying persons and/or goods. Examples: roads, airports/airstrips, shipping routes, tunnels, nautical charts, vehicle or vessel location, aeronautical charts, railways;0;N;0
+345;0;527;19;de;Energie und Kommunikation;Energie-, Wasser- und Abfallsysteme sowie Kommunikationsinfrastruktur und Services.;0;N;0
+346;0;527;19;en;Utilities Communication;energy, water and waste systems and communications infrastructure and services. Examples: hydroelectricity, geothermal, solar and nuclear sources of energy, water purification and distribution, sewage collection and disposal, etc.;0;N;0
+347;0;528;1;de;geometrisch;Geometrisch Objekte ohn jegliche Struktur, die die Topologie beschreibt;0;N;0
+348;0;528;1;en;geometryOnly;geometry objects without any additional structure which describes topology;0;N;0
+349;0;528;2;de;Topologie (1D);1-dimensionaler topologischer Komplex;0;N;0
+350;0;528;2;en;topology1D;1-dimensional topological complex;0;N;0
+351;0;528;3;de;Planar (1D);1-dimensionaler topologischer Komplex, der eine Fläche ist;0;N;0
+352;0;528;3;en;planarGraph;1-dimensional topological complex which is planar;0;N;0
+353;0;528;4;de;Planar (2D);2-dimensionaler topologischer Komplex, der eine Fläche ist;0;N;0
+354;0;528;4;en;fullPlanarGraph;2-dimensional topological complex which is planar;0;N;0
+355;0;528;5;de;Oberflächengraph (1D);1-dimensionaler topologischer Komplex, der isomorph zu einer Untermenge einer Oberfläche ist;0;N;0
+356;0;528;5;en;surfaceGraph;1-dimensional topological complex which is isomorphic to a subset of a surface;0;N;0
+357;0;528;6;de;Oberfläche(2D);2-dimensionaler topologischer Komplex, der isomorph zu einer Untermenge einer Oberfläche ist;0;N;0
+358;0;528;6;en;fullSurfaceGraph;2-dimensional topological complex which is isomorphic to a subset of a surface;0;N;0
+359;0;528;7;de;Topologie (3D);3-dimensionaler topologischer Komplex;0;N;0
+360;0;528;7;en;topology3D;3-dimensional topological complex;0;N;0
+361;0;528;8;de;Raum (3D);Komplette Abdeckung eines 3-D Koordinatenraumes;0;N;0
+362;0;528;8;en;fullTopology3D;complete coverage of a 3D coordinate space;0;N;0
+363;0;528;9;de;Abstrakte Topologie;Topologischer Komplex ohne jegliche spezifische geometrische Realisierung;0;N;0
+364;0;528;9;en;abstract;topological complex without any specified geometric realization;0;N;0
+395;0;1200;1;de;von;NULL;0;N;0
+396;0;1200;1;en;from;NULL;0;N;0
+397;0;1200;2;de;seit;NULL;0;N;0
+398;0;1200;2;en;since;NULL;0;N;0
+399;0;1200;3;de;am;NULL;0;N;0
+400;0;1200;3;en;at;NULL;0;N;0
+401;0;1230;1;de;Sekunden;NULL;0;N;0
+402;0;1230;1;en;seconds;NULL;0;N;0
+403;0;1230;2;de;Minuten;NULL;0;N;0
+404;0;1230;2;en;minutes;NULL;0;N;0
+405;0;1230;3;de;Stunden;NULL;0;N;0
+406;0;1230;3;en;hours;NULL;0;N;0
+407;0;1230;4;de;Tage;NULL;0;N;0
+408;0;1230;4;en;days;NULL;0;N;0
+409;0;1230;5;de;Monate;NULL;0;N;0
+410;0;1230;5;en;months;NULL;0;N;0
+411;0;1230;6;de;Jahre;NULL;0;N;0
+412;0;1230;6;en;years;NULL;0;N;0
+413;0;1320;1;de;WinWord;NULL;1;N;0
+414;0;1320;1;en;WinWord;NULL;1;N;0
+415;0;1320;2;de;ASCII;NULL;1;N;0
+416;0;1320;2;en;ASCII;NULL;1;N;0
+417;0;1320;3;de;Excel;NULL;1;N;0
+418;0;1320;3;en;Excel;NULL;1;N;0
+419;0;1320;4;de;TIFF;NULL;1;N;0
+420;0;1320;4;en;TIFF;NULL;1;N;0
+421;0;1320;5;de;Bitmap;NULL;1;N;0
+422;0;1320;5;en;Bitmap;NULL;1;N;0
+423;0;1320;6;de;GIF;NULL;1;N;0
+424;0;1320;6;en;GIF;NULL;1;N;0
+425;0;1320;7;de;Shapefiles;NULL;1;N;0
+426;0;1320;7;en;Shapefiles;NULL;1;N;0
+427;0;1320;8;de;DXF;NULL;1;N;0
+428;0;1320;8;en;DXF;NULL;1;N;0
+429;0;1320;9;de;HTML;NULL;1;N;0
+430;0;1320;9;en;HTML;NULL;1;N;0
+431;0;1320;10;de;ARC/INFO-Coverage;NULL;1;N;0
+432;0;1320;10;en;ARC/INFO-Coverage;NULL;1;N;0
+433;0;1320;11;de;EDBS;NULL;1;N;0
+434;0;1320;11;en;EDBS;NULL;1;N;0
+435;0;1320;12;de;E00-Austauschformat;NULL;1;N;0
+436;0;1320;12;en;E00 Exchange Format;NULL;1;N;0
+567;0;1400;1;de;Daten und Karten;NULL;0;N;0
+568;0;1400;1;en;Data and Maps;NULL;0;N;0
+569;0;1400;2;de;Konzeptionelles;NULL;0;N;0
+570;0;1400;2;en;Concepts;NULL;0;N;0
+571;0;1400;3;de;Rechtliches;NULL;0;N;0
+572;0;1400;3;en;Legislation;NULL;0;N;0
+573;0;1400;4;de;Risikobewertungen;NULL;0;N;0
+574;0;1400;4;en;Risk-Assessment;NULL;0;N;0
+575;0;1400;5;de;Statusberichte;NULL;0;N;0
+576;0;1400;5;en;Reports;NULL;0;N;0
+577;0;1400;6;de;Umweltzustand;NULL;0;N;0
+578;0;1400;6;en;Stat-of-the-Environment;NULL;0;N;0
+579;0;1410;1;de;Abfall;NULL;0;N;0
+580;0;1410;1;en;Waste;NULL;0;N;0
+581;0;1410;2;de;Altlasten;NULL;0;N;0
+582;0;1410;2;en;Soil Pollution;NULL;0;N;0
+583;0;1410;3;de;Bauen;NULL;0;N;0
+584;0;1410;3;en;Construction;NULL;0;N;0
+585;0;1410;4;de;Boden;NULL;0;N;0
+586;0;1410;4;en;Soil;NULL;0;N;0
+587;0;1410;5;de;Chemikalien;NULL;0;N;0
+588;0;1410;5;en;Chemicals;NULL;0;N;0
+589;0;1410;6;de;Energie;NULL;0;N;0
+590;0;1410;6;en;Energy;NULL;0;N;0
+591;0;1410;7;de;Forstwirtschaft;NULL;0;N;0
+592;0;1410;7;en;Forestry;NULL;0;N;0
+593;0;1410;8;de;Gentechnik;NULL;0;N;0
+594;0;1410;8;en;Gene-Technology;NULL;0;N;0
+595;0;1410;9;de;Geologie;NULL;0;N;0
+596;0;1410;9;en;Geology;NULL;0;N;0
+597;0;1410;10;de;Gesundheit;NULL;0;N;0
+598;0;1410;10;en;Health;NULL;0;N;0
+599;0;1410;11;de;Lärm und Erschütterungen;NULL;0;N;0
+600;0;1410;11;en;Noise;NULL;0;N;0
+601;0;1410;12;de;Landwirtschaft;NULL;0;N;0
+602;0;1410;12;en;Agriculture;NULL;0;N;0
+603;0;1410;13;de;Luft und Klima;NULL;0;N;0
+604;0;1410;13;en;Air and Climate;NULL;0;N;0
+605;0;1410;14;de;Nachhaltige Entwicklung;NULL;0;N;0
+606;0;1410;14;en;Sustainable Development;NULL;0;N;0
+607;0;1410;15;de;Natur und Landschaft;NULL;0;N;0
+608;0;1410;15;en;Nature and Landscape;NULL;0;N;0
+609;0;1410;16;de;Strahlung;NULL;0;N;0
+610;0;1410;16;en;Radiation;NULL;0;N;0
+611;0;1410;17;de;Tierschutz;NULL;0;N;0
+612;0;1410;17;en;Animal Health;NULL;0;N;0
+613;0;1410;18;de;Umweltinformationen;NULL;0;N;0
+614;0;1410;18;en;Environmental Information;NULL;0;N;0
+615;0;1410;19;de;Umweltwirtschaft;NULL;0;N;0
+616;0;1410;19;en;Environmental Economy;NULL;0;N;0
+617;0;1410;20;de;Verkehr;NULL;0;N;0
+618;0;1410;20;en;Traffic;NULL;0;N;0
+619;0;1410;21;de;Wasser;NULL;0;N;0
+620;0;1410;21;en;Water;NULL;0;N;0
+621;0;2000;3100;de;Methode / Datengrundlage;NULL;0;N;0
+622;0;2000;3100;en;Method / Base Data;NULL;0;N;0
+623;0;2000;3210;de;Basisdaten;NULL;0;N;0
+624;0;2000;3210;en;Basic Data;NULL;0;N;0
+625;0;2000;3345;de;Basisdaten;NULL;0;N;0
+626;0;2000;3345;en;Basic Data;NULL;0;N;0
+627;0;2000;3515;de;Herstellungsprozess;NULL;0;N;0
+628;0;2000;3515;en;Process of Production;NULL;0;N;0
+629;0;2000;3520;de;Fachliche Grundlage;NULL;0;N;0
+630;0;2000;3520;en;Functional Base;NULL;0;N;0
+631;0;2000;3535;de;Schlüsselkatalog;NULL;0;N;0
+632;0;2000;3535;en;Key Catalog;NULL;0;N;0
+633;0;2000;3555;de;Symbolkatalog;NULL;0;N;0
+634;0;2000;3555;en;Icon Catalog;NULL;0;N;0
+635;0;2000;3570;de;Datengrundlage;NULL;0;N;0
+636;0;2000;3570;en;Base Data;NULL;0;N;0
+637;0;2000;5066;de;Verweis zu Dienst;NULL;0;N;0
+638;0;2000;5066;en;Link to Service;NULL;0;N;0
+639;0;2010;3360;de;Standort;NULL;0;N;0
+640;0;2010;3360;en;Location;NULL;0;N;0
+641;0;2010;3400;de;Projektleiter;NULL;0;N;0
+642;0;2010;3400;en;Project Manager;NULL;0;N;0
+643;0;2010;3410;de;Beteiligte;NULL;0;N;0
+644;0;2010;3410;en;Participants;NULL;0;N;0
+645;0;2240;1;de;HTML;NULL;0;N;0
+646;0;2240;1;en;HTML;NULL;0;N;0
+647;0;2240;2;de;JPG;NULL;0;N;0
+648;0;2240;2;en;JPG;NULL;0;N;0
+649;0;2240;3;de;PNG;NULL;0;N;0
+650;0;2240;3;en;PNG;NULL;0;N;0
+651;0;2240;4;de;GIF;NULL;0;N;0
+652;0;2240;4;en;GIF;NULL;0;N;0
+653;0;2240;5;de;PDF;NULL;0;N;0
+654;0;2240;5;en;PDF;NULL;0;N;0
+655;0;2240;6;de;DOC;NULL;0;N;0
+656;0;2240;6;en;DOC;NULL;0;N;0
+657;0;2240;7;de;PPT;NULL;0;N;0
+658;0;2240;7;en;PPT;NULL;0;N;0
+659;0;2240;8;de;XLS;NULL;0;N;0
+660;0;2240;8;en;XLS;NULL;0;N;0
+661;0;2240;9;de;ASCII/Text;NULL;0;N;0
+662;0;2240;9;en;ASCII/Text;NULL;0;N;0
+663;0;2251;1;de;Internet;NULL;1;N;0
+664;0;2251;1;en;internet;NULL;1;N;0
+665;0;2251;2;de;Intranet;NULL;1;N;0
+666;0;2251;2;en;intranet;NULL;1;N;0
+667;0;3230;1;de;Fachinformationssystem;NULL;1;N;0
+668;0;3230;1;en;Expert System;NULL;1;N;0
+669;0;3230;2;de;Metainformationssystem;NULL;1;N;0
+670;0;3230;2;en;Meta Information System;NULL;1;N;0
+671;0;3230;3;de;Geographisches Informationssystem;NULL;1;N;0
+672;0;3230;3;en;Geographic Information System;NULL;1;N;0
+673;0;3385;1;de;Aufsatz/Artikel/Tagungsbeitrag;NULL;1;N;0
+674;0;3385;1;en;Article/Conference Contribution;NULL;1;N;0
+675;0;3385;2;de;Broschüre/Bericht;NULL;1;N;0
+676;0;3385;2;en;Brochure/Bulletin;NULL;1;N;0
+677;0;3385;3;de;Zeitschrift;NULL;1;N;0
+678;0;3385;3;en;Journal;NULL;1;N;0
+679;0;3385;4;de;Buch/Monographie/Reihe;NULL;1;N;0
+680;0;3385;4;en;Book/Monograph/Series;NULL;1;N;0
+681;0;3385;5;de;Tagungsband/Sammelwerk;NULL;1;N;0
+682;0;3385;5;en;Proceedings/Compilation;NULL;1;N;0
+683;0;3385;6;de;Fachgutachten;NULL;1;N;0
+684;0;3385;6;en;Expert Report;NULL;1;N;0
+693;0;3571;1;de;Internet;NULL;1;Y;0
+694;0;3571;1;en;internet;NULL;1;Y;0
+695;0;3571;2;de;Intranet;NULL;1;N;0
+696;0;3571;2;en;intranet;NULL;1;N;0
+697;0;3571;3;de;amtsintern;NULL;1;N;0
+698;0;3571;3;en;internal;NULL;1;N;0
+699;0;4300;1;de;Frau;NULL;1;N;0
+700;0;4300;1;en;Ms;NULL;1;N;0
+701;0;4300;2;de;Herr;NULL;1;N;0
+702;0;4300;2;en;Mr;NULL;1;N;0
+703;0;4305;1;de;Dr.;NULL;1;N;0
+704;0;4305;1;en;Dr.;NULL;1;N;0
+705;0;4305;2;de;Prof.;NULL;1;N;0
+706;0;4305;2;en;Prof.;NULL;1;N;0
+707;0;4305;3;de;Prof. Dr.;NULL;1;N;0
+708;0;4305;3;en;Prof. Dr.;NULL;1;N;0
+709;0;4430;1;de;Telefon;NULL;1;N;0
+710;0;4430;1;en;telephone;NULL;1;N;0
+711;0;4430;2;de;Fax;NULL;1;N;0
+712;0;4430;2;en;ax;NULL;1;N;0
+713;0;4430;3;de;E-Mail;NULL;1;N;0
+714;0;4430;3;en;e-mail;NULL;1;N;0
+715;0;4430;4;de;URL;NULL;1;N;0
+716;0;4430;4;en;URL;NULL;1;N;0
+717;0;4430;5;de;X.400;NULL;1;N;0
+718;0;4430;5;en;X.400;NULL;1;N;0
+719;0;4430;6;de;Telex;NULL;1;N;0
+720;0;4430;6;en;telex;NULL;1;N;0
+721;0;5000;1;de;Administrator;NULL;1;N;0
+722;0;5000;1;en;Administrator;NULL;1;N;0
+723;0;5000;2;de;Standardnutzer;NULL;1;N;0
+724;0;5000;2;en;Default User;NULL;1;N;0
+725;0;5100;1;de;Suchdienste (CSW);NULL;0;N;0
+726;0;5100;1;en;Discovery Service;NULL;0;N;0
+727;0;5100;2;de;Visualisierungsdienste (WMS);NULL;0;N;0
+728;0;5100;2;en;View Service;NULL;0;N;0
+729;0;5100;3;de;Zugriffsdienste (WFS);NULL;0;N;0
+730;0;5100;3;en;Download Service;NULL;0;N;0
+731;0;5100;4;de;Transformationsdienste (WCTS);NULL;0;N;0
+732;0;5100;4;en;Transformation Service;NULL;0;N;0
+733;0;5100;5;de;Verkettete Geodatendienste;NULL;0;N;0
+734;0;5100;5;en;Invoke Spatial Data Service;NULL;0;N;0
+735;0;5100;6;de;Andere Dienste;NULL;0;N;0
+736;0;5100;6;en;Other Service;NULL;0;N;0
+737;0;5105;1;de;GetCapabilities;NULL;0;N;0
+738;0;5105;1;en;GetCapabilities;NULL;0;N;0
+739;0;5105;2;de;GetRecords;NULL;0;N;0
+740;0;5105;2;en;GetRecords;NULL;0;N;0
+741;0;5105;3;de;GetRecordById;NULL;0;N;0
+742;0;5105;3;en;GetRecordById;NULL;0;N;0
+743;0;5105;4;de;DescribeRecord;NULL;0;N;0
+744;0;5105;4;en;DescribeRecord;NULL;0;N;0
+745;0;5105;5;de;GetDomain;NULL;0;N;0
+746;0;5105;5;en;GetDomain;NULL;0;N;0
+747;0;5105;6;de;Transaction;NULL;0;N;0
+748;0;5105;6;en;Transaction;NULL;0;N;0
+749;0;5105;7;de;Harvest;NULL;0;N;0
+750;0;5105;7;en;Harvest;NULL;0;N;0
+751;0;5110;1;de;GetCapabilities;NULL;0;N;0
+752;0;5110;1;en;GetCapabilities;NULL;0;N;0
+753;0;5110;2;de;GetMap;NULL;0;N;0
+754;0;5110;2;en;GetMap;NULL;0;N;0
+755;0;5110;3;de;GetFeatureInfo;NULL;0;N;0
+756;0;5110;3;en;GetFeatureInfo;NULL;0;N;0
+757;0;5120;1;de;GetCapabilities;NULL;0;N;0
+758;0;5120;1;en;GetCapabilities;NULL;0;N;0
+759;0;5120;2;de;DescribeFeatureType;NULL;0;N;0
+760;0;5120;2;en;DescribeFeatureType;NULL;0;N;0
+761;0;5120;3;de;GetFeature;NULL;0;N;0
+762;0;5120;3;en;GetFeature;NULL;0;N;0
+763;0;5120;4;de;LockFeature;NULL;0;N;0
+764;0;5120;4;en;LockFeature;NULL;0;N;0
+765;0;5120;5;de;Transaction;NULL;0;N;0
+766;0;5120;5;en;Transaction;NULL;0;N;0
+767;0;5130;1;de;GetCapabilities;NULL;0;N;0
+768;0;5130;1;en;GetCapabilities;NULL;0;N;0
+769;0;5130;2;de;Transform;NULL;0;N;0
+770;0;5130;2;en;Transform;NULL;0;N;0
+771;0;5130;3;de;IsTransformable;NULL;0;N;0
+772;0;5130;3;en;IsTransformable;NULL;0;N;0
+773;0;5130;4;de;GetTransformation;NULL;0;N;0
+774;0;5130;4;en;GetTransformation;NULL;0;N;0
+775;0;5130;5;de;GetResourceById;NULL;0;N;0
+776;0;5130;5;en;GetResourceById;NULL;0;N;0
+777;0;5200;101;de;Katalogdienst (humanCatalogueViewer);NULL;0;N;0
+778;0;5200;101;en;Catalogue viewer;NULL;0;N;0
+779;0;5200;102;de;Dienst für geografische Visualisierung;NULL;0;N;0
+780;0;5200;102;en;Geographic viewer;NULL;0;N;0
+781;0;5200;103;de;Dienst für geografische Tabellenkalkulation;NULL;0;N;0
+782;0;5200;103;en;Geographic spreadsheet viewer;NULL;0;N;0
+783;0;5200;104;de;Editor für Verarbeitungsdienste;NULL;0;N;0
+784;0;5200;104;en;Service editor;NULL;0;N;0
+785;0;5200;105;de;Editor für die Definition von Bearbeitungsketten;NULL;0;N;0
+786;0;5200;105;en;Chain definition editor;NULL;0;N;0
+787;0;5200;106;de;Aufrufprogramm für Bearbeitungsketten;NULL;0;N;0
+788;0;5200;106;en;Workflow enactment manager;NULL;0;N;0
+789;0;5200;107;de;Editor für geografische Objekte;NULL;0;N;0
+790;0;5200;107;en;Geographic feature editor;NULL;0;N;0
+791;0;5200;108;de;Editor für geografische Symbole;NULL;0;N;0
+792;0;5200;108;en;Geographic symbol editor;NULL;0;N;0
+793;0;5200;109;de;Editor für die Objektgeneralisierung;NULL;0;N;0
+794;0;5200;109;en;Feature generalization editor;NULL;0;N;0
+795;0;5200;110;de;Betrachter für geografische Datenstrukturen;NULL;0;N;0
+796;0;5200;110;en;Geographic data-structure viewer;NULL;0;N;0
+797;0;5200;201;de;Dienst für den Zugriff auf Objekte;NULL;0;N;0
+798;0;5200;201;en;Feature access service;NULL;0;N;0
+799;0;5200;202;de;Dienst für den Zugriff auf grafische Darstellungen;NULL;0;N;0
+800;0;5200;202;en;Map access service;NULL;0;N;0
+801;0;5200;203;de;Dienst für den Zugriff auf Rasterdaten;NULL;0;N;0
+802;0;5200;203;en;Coverage access service;NULL;0;N;0
+803;0;5200;204;de;Dienst für die Beschreibung von Sensoren;NULL;0;N;0
+804;0;5200;204;en;Sensor description service;NULL;0;N;0
+805;0;5200;205;de;Dienst für den Zugriff auf Produkte;NULL;0;N;0
+806;0;5200;205;en;Product access service;NULL;0;N;0
+807;0;5200;206;de;Dienst für den Zugriff auf Objektarten;NULL;0;N;0
+808;0;5200;206;en;Feature type service;NULL;0;N;0
+809;0;5200;207;de;Katalogdienst (infoCatalogueService);NULL;0;N;0
+810;0;5200;207;en;Catalogue service;NULL;0;N;0
+811;0;5200;208;de;Registerdienst;NULL;0;N;0
+812;0;5200;208;en;Registry Service;NULL;0;N;0
+813;0;5200;209;de;Gazetteerdienst;NULL;0;N;0
+814;0;5200;209;en;Gazetteer service;NULL;0;N;0
+815;0;5200;210;de;Auftragsdienst;NULL;0;N;0
+816;0;5200;210;en;Order handling service;NULL;0;N;0
+817;0;5200;211;de;Dauerauftragsdienst;NULL;0;N;0
+818;0;5200;211;en;Standing order service;NULL;0;N;0
+819;0;5200;301;de;Dienst für die Definition von Bearbeitungsketten;NULL;0;N;0
+820;0;5200;301;en;Chain definition service;NULL;0;N;0
+821;0;5200;302;de;Dienst für die Ausführung von Bearbeitungsketten;NULL;0;N;0
+822;0;5200;302;en;Workflow enactment service;NULL;0;N;0
+823;0;5200;303;de;Abonnementdienst;NULL;0;N;0
+824;0;5200;303;en;Subscription service;NULL;0;N;0
+825;0;5200;401;de;Dienst für die Konversion von Koordinaten;NULL;0;N;0
+826;0;5200;401;en;Coordinate conversion service;NULL;0;N;0
+827;0;5200;402;de;Dienst für die Transformation von Koordinaten;NULL;0;N;0
+828;0;5200;402;en;Coordinate transformation service;NULL;0;N;0
+829;0;5200;403;de;Dienst für die Umwandlung zwischen Raster- und Vektordaten;NULL;0;N;0
+830;0;5200;403;en;Coverage/vector conversion service;NULL;0;N;0
+831;0;5200;404;de;Dienst für die Konversion von Bildkoordinaten;NULL;0;N;0
+832;0;5200;404;en;Image coordinate conversion service;NULL;0;N;0
+833;0;5200;405;de;Entzerrungsdienst;NULL;0;N;0
+834;0;5200;405;en;Rectification service;NULL;0;N;0
+835;0;5200;406;de;Ortho-Entzerrungsdienst;NULL;0;N;0
+836;0;5200;406;en;Orthorectification service;NULL;0;N;0
+837;0;5200;407;de;Dienst für die Justierung von Geometriemodellen von Sensoren;NULL;0;N;0
+838;0;5200;407;en;Sensor geometry model adjustment service;NULL;0;N;0
+839;0;5200;408;de;Dienst für die Konversion von Geometriemodellen;NULL;0;N;0
+840;0;5200;408;en;Image geometry model conversion service;NULL;0;N;0
+841;0;5200;409;de;Geografischer Ausschnittsdienst;NULL;0;N;0
+842;0;5200;409;en;Subsetting service (spatial);NULL;0;N;0
+843;0;5200;410;de;Raumbezogener Auswahldienst;NULL;0;N;0
+844;0;5200;410;en;Sampling service (spatial);NULL;0;N;0
+845;0;5200;411;de;Kachelungsdienst;NULL;0;N;0
+846;0;5200;411;en;Tiling change service;NULL;0;N;0
+847;0;5200;412;de;Messungsdienst;NULL;0;N;0
+848;0;5200;412;en;Dimension measurement service;NULL;0;N;0
+849;0;5200;413;de;Objektbearbeitungsdienste;NULL;0;N;0
+850;0;5200;413;en;Feature manipulation services;NULL;0;N;0
+851;0;5200;414;de;Vergleichsdienst;NULL;0;N;0
+852;0;5200;414;en;Feature matching service;NULL;0;N;0
+853;0;5200;415;de;Generalisierungsdienst;NULL;0;N;0
+854;0;5200;415;en;Feature generalization service (spatial);NULL;0;N;0
+855;0;5200;416;de;Routensuchdienst;NULL;0;N;0
+856;0;5200;416;en;Route determination service;NULL;0;N;0
+857;0;5200;417;de;Positionierungsdienst;NULL;0;N;0
+858;0;5200;417;en;Positioning service;NULL;0;N;0
+859;0;5200;418;de;Analysedienst für räumliche Nachbarschaftsbeziehungen;NULL;0;N;0
+860;0;5200;418;en;Proximity analysis service;NULL;0;N;0
+861;0;5200;501;de;Berechnungsdienst für Geoparameter;NULL;0;N;0
+862;0;5200;501;en;Geoparameter calculation service;NULL;0;N;0
+863;0;5200;502;de;Dienst für die thematische Klassifizierung;NULL;0;N;0
+864;0;5200;502;en;Thematic classification service;NULL;0;N;0
+865;0;5200;503;de;Generalisierungsdienst für Objektarten;NULL;0;N;0
+866;0;5200;503;en;Feature generalization service (thematic);NULL;0;N;0
+867;0;5200;504;de;Themenbezogener Ausschnittsdienst;NULL;0;N;0
+868;0;5200;504;en;Subsetting service (thematic);NULL;0;N;0
+869;0;5200;505;de;Zähldienst;NULL;0;N;0
+870;0;5200;505;en;Spatial counting service;NULL;0;N;0
+871;0;5200;506;de;Erkennungsdienst für Veränderungen;NULL;0;N;0
+872;0;5200;506;en;Change detection service;NULL;0;N;0
+873;0;5200;507;de;Auszugsdienste für geografische Informationen;NULL;0;N;0
+874;0;5200;507;en;Geographic information extraction services;NULL;0;N;0
+875;0;5200;508;de;Themenbezogener Bildverarbeitungsdienst;NULL;0;N;0
+876;0;5200;508;en;Image processing service;NULL;0;N;0
+877;0;5200;509;de;Auflösungsreduzierungsdienst;NULL;0;N;0
+878;0;5200;509;en;Reduced resolution generation service;NULL;0;N;0
+879;0;5200;510;de;Bildbearbeitungsdienste;NULL;0;N;0
+880;0;5200;510;en;Image Manipulation Services;NULL;0;N;0
+881;0;5200;511;de;Interpretationsdienste für Bilder;NULL;0;N;0
+882;0;5200;511;en;Image understanding services;NULL;0;N;0
+883;0;5200;512;de;Bildsynthesedienste;NULL;0;N;0
+884;0;5200;512;en;Image synthesis services;NULL;0;N;0
+885;0;5200;513;de;Multiband-Bildbearbeitung;NULL;0;N;0
+886;0;5200;513;en;Multi-band image manipulation;NULL;0;N;0
+887;0;5200;514;de;Objekterkennungsdienst;NULL;0;N;0
+888;0;5200;514;en;Object detection service;NULL;0;N;0
+889;0;5200;515;de;Geoparserdienst;NULL;0;N;0
+890;0;5200;515;en;Geoparsing service;NULL;0;N;0
+891;0;5200;516;de;Geocodierungsdienst;NULL;0;N;0
+892;0;5200;516;en;Geocoding service;NULL;0;N;0
+893;0;5200;601;de;Transformationsdienst für den Zeitbezug;NULL;0;N;0
+894;0;5200;601;en;Temporal reference system transformation service;NULL;0;N;0
+895;0;5200;602;de;Zeitbezogener Ausschnittsdienst;NULL;0;N;0
+896;0;5200;602;en;Subsetting service (temporal);NULL;0;N;0
+897;0;5200;603;de;Zeitbezogener Auswahldienst;NULL;0;N;0
+898;0;5200;603;en;Sampling service (temporal);NULL;0;N;0
+899;0;5200;604;de;Analysedienst für zeitbezogene Nachbarschaftsbeziehungen;NULL;0;N;0
+900;0;5200;604;en;Temporal proximity analysis service;NULL;0;N;0
+901;0;5200;701;de;Dienst für statistische Berechnungen;NULL;0;N;0
+902;0;5200;701;en;Statistical calculation service;NULL;0;N;0
+903;0;5200;702;de;Ergänzungsdienste für Geodaten;NULL;0;N;0
+904;0;5200;702;en;Geographic annotation services;NULL;0;N;0
+905;0;5200;801;de;Codierungsdienst;NULL;0;N;0
+906;0;5200;801;en;Encoding service;NULL;0;N;0
+907;0;5200;802;de;Übertragungsdienst;NULL;0;N;0
+908;0;5200;802;en;Transfer service;NULL;0;N;0
+909;0;5200;803;de;Kompressionsdienst für Geodaten;NULL;0;N;0
+910;0;5200;803;en;Geographic compression service;NULL;0;N;0
+911;0;5200;804;de;Umformatierungsdienst für Geodaten;NULL;0;N;0
+912;0;5200;804;en;Geographic format conversion service;NULL;0;N;0
+913;0;5200;805;de;Nachrichtenübermittlungsdienst;NULL;0;N;0
+914;0;5200;805;en;Messaging service;NULL;0;N;0
+915;0;5200;806;de;Dienst für den Zugriff auf externe Daten und Programme;NULL;0;N;0
+916;0;5200;806;en;Remote file and executable management;NULL;0;N;0
+917;0;5200;901;de;Kein geografischer Dienst;NULL;0;N;0
+918;0;5200;901;en;Non Geographic Service;NULL;0;N;0
+919;0;6000;1;de;konform;NULL;0;N;0
+920;0;6000;1;en;conformant;NULL;0;N;0
+921;0;6000;2;de;nicht konform;NULL;0;N;0
+922;0;6000;2;en;not conformant;NULL;0;N;0
+923;0;6000;3;de;nicht evaluiert;NULL;0;Y;0
+924;0;6000;3;en;not evaluated;NULL;0;Y;0
+925;0;6010;1;de;keine;NULL;0;Y;0
+926;0;6010;1;en;no conditions apply;NULL;0;Y;0
+927;0;6010;2;de;aufgrund der Vertraulichkeit der Verfahren von Behörden;NULL;0;N;0
+928;0;6010;2;en;the confidentiality of the proceedings of public authorities;NULL;0;N;0
+929;0;6010;3;de;aufgrund internationaler Beziehungen, der öffentliche Sicherheit oder der Landesverteidigung;NULL;0;N;0
+930;0;6010;3;en;international relations, public security or national defence;NULL;0;N;0
+931;0;6010;4;de;aufgrund laufender Gerichtsverfahren;NULL;0;N;0
+932;0;6010;4;en;the course of justice;NULL;0;N;0
+933;0;6010;5;de;aufgrund der Vertraulichkeit von Geschäfts- oder Betriebsinformationen;NULL;0;N;0
+934;0;6010;5;en;the confidentiality of commercial or industrial information;NULL;0;N;0
+935;0;6010;6;de;aufgrund der Rechte des geistigen Eigentums;NULL;0;N;0
+936;0;6010;6;en;intellectual property rights;NULL;0;N;0
+937;0;6010;7;de;aufgrund der Vertraulichkeit personenbezogener Daten;NULL;0;N;0
+938;0;6010;7;en;the confidentiality of personal data and/or files;NULL;0;N;0
+939;0;6010;8;de;aufgrund des Schutzes einer Person;NULL;0;N;0
+940;0;6010;8;en;the interests or protection of any person;NULL;0;N;0
+941;0;6010;9;de;aufgrund des Schutzes von Umweltbereichen;NULL;0;N;0
+942;0;6010;9;en;the protection of the environment;NULL;0;N;0
+943;0;6010;10;de;unbekannt;NULL;0;N;0
+944;0;6010;10;en;conditions unknown;NULL;0;N;0
+945;0;99999999;94;de;Englisch;-;0;N;0
+946;0;99999999;94;en;English;-;0;N;0
+947;0;99999999;121;de;Deutsch;-;0;Y;0
+948;0;99999999;121;en;German;-;0;Y;0

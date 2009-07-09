@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<assembly>
+<!-- DO NOT USE id (e.g. "bin") to avoid garbage assembly "*-bin.tar.gz" when packaging ! -->
+<!-- (this assembly-descriptor is also executed in package phase where appendAssemblyId is true due to jar-with-dependencies execution) -->
+  <id></id>
+  <formats>
+    <format>tar.gz</format>
+  </formats>
+  <includeBaseDirectory>false</includeBaseDirectory>
+  <fileSets>
+    <fileSet>
+      <directory>src/main/release</directory>
+      <outputDirectory>/</outputDirectory>
+    </fileSet>
+    <fileSet>
+      <directory>target</directory>
+      <includes>
+        <include>*jar-with-dependencies.jar</include>
+      </includes>
+      <outputDirectory>/</outputDirectory>
+    </fileSet>
+  </fileSets>
+</assembly>
