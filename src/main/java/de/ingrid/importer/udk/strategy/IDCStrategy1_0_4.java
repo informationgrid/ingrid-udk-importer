@@ -142,7 +142,7 @@ public class IDCStrategy1_0_4 extends IDCStrategyDefault {
 // ---------------------------
 		int lstId = 6100;
 		if (log.isInfoEnabled()) {
-			log.info("Updating syslist " + lstId +	" (INSPIRE Themen f¸r Verschlagwortung)...");
+			log.info("Updating syslist " + lstId +	" (INSPIRE Themen f√ºr Verschlagwortung)...");
 		}
 
 		// clean up, to guarantee no old values !
@@ -180,15 +180,15 @@ public class IDCStrategy1_0_4 extends IDCStrategyDefault {
 		newSyslist527_de.put(1, "Landwirtschaft");
 		newSyslist527_de.put(2, "Biologie");
 		newSyslist527_de.put(3, "Grenzen");
-		newSyslist527_de.put(4, "Atmosph‰re");
+		newSyslist527_de.put(4, "Atmosph√§re");
 		newSyslist527_de.put(5, "Wirtschaft");
-		newSyslist527_de.put(6, "Hˆhenangaben");
+		newSyslist527_de.put(6, "H√∂henangaben");
 		newSyslist527_de.put(7, "Umwelt");
 		newSyslist527_de.put(8, "Geowissenschaften");
 		newSyslist527_de.put(9, "Gesundheitswesen");
-		newSyslist527_de.put(10, "Oberfl‰chenbeschreibung");
-		newSyslist527_de.put(11, "Milit‰r und Aufkl‰rung");
-		newSyslist527_de.put(12, "Binnengew‰sser");
+		newSyslist527_de.put(10, "Oberfl√§chenbeschreibung");
+		newSyslist527_de.put(11, "Milit√§r und Aufkl√§rung");
+		newSyslist527_de.put(12, "Binnengew√§sser");
 		newSyslist527_de.put(13, "Ortsangaben");
 		newSyslist527_de.put(14, "Meere");
 		newSyslist527_de.put(15, "Planungsunterlagen, Kataster");

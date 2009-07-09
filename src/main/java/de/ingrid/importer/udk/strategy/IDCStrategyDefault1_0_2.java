@@ -63,11 +63,11 @@ public abstract class IDCStrategyDefault1_0_2 extends IDCStrategyDefault {
 		mapOldValueToNewKeyList100.put("EPSG:25831 / ETRS89 / UTM Zone 31N ", 25831);
 		mapOldValueToNewKeyList100.put("EPSG:25832 / ETRS89 / UTM Zone 32N", 25832);
 		mapOldValueToNewKeyList100.put("EPSG:25833 / ETRS89 / UTM Zone 33N", 25833);
-		mapOldValueToNewKeyList100.put("EPSG:28463 / Pulkovo 1942 / Gauss-Krüger 2N/3N ", 28463);
-		mapOldValueToNewKeyList100.put("EPSG:31466 / DHDN / Gauss-Krüger Zone 2", 31466);
-		mapOldValueToNewKeyList100.put("EPSG:31467 /DHDN / Gauss-Krüger Zone 3", 31467);
-		mapOldValueToNewKeyList100.put("EPSG:31468 / DHDN / Gauss-Krüger Zone 4", 31468);
-		mapOldValueToNewKeyList100.put("EPSG:31469 / DHDN / Gauss-Krüger Zone 5", 31469);
+		mapOldValueToNewKeyList100.put("EPSG:28463 / Pulkovo 1942 / Gauss-KrÃ¼ger 2N/3N ", 28463);
+		mapOldValueToNewKeyList100.put("EPSG:31466 / DHDN / Gauss-KrÃ¼ger Zone 2", 31466);
+		mapOldValueToNewKeyList100.put("EPSG:31467 /DHDN / Gauss-KrÃ¼ger Zone 3", 31467);
+		mapOldValueToNewKeyList100.put("EPSG:31468 / DHDN / Gauss-KrÃ¼ger Zone 4", 31468);
+		mapOldValueToNewKeyList100.put("EPSG:31469 / DHDN / Gauss-KrÃ¼ger Zone 5", 31469);
 		mapOldValueToNewKeyList100.put("EPSG:31492 /DHDN / Germany zone 2", 31466);
 		mapOldValueToNewKeyList100.put("EPSG:31493 / DHDN / Germany zone 3", 31467);
 		mapOldValueToNewKeyList100.put("EPSG:31494 / DHDN / Germany zone 4", 31468);
@@ -83,7 +83,7 @@ public abstract class IDCStrategyDefault1_0_2 extends IDCStrategyDefault {
 		mapOldValueToNewKeyList101.put("Baltic Sea", 5105);
 		mapOldValueToNewKeyList101.put("Normaal Amsterdams Peil", 900002);
 		mapOldValueToNewKeyList101.put("European Vertical Reference Frame 2000", 5129);
-		mapOldValueToNewKeyList101.put("Kronstädter Pegel (HN)", 900004);
+		mapOldValueToNewKeyList101.put("KronstÃ¤dter Pegel (HN)", 900004);
 		mapOldValueToNewKeyList101.put("DE_AMST / NH", 900002);
 		mapOldValueToNewKeyList101.put("DE_AMST / NOH", 900003);
 		mapOldValueToNewKeyList101.put("DE_KRON / NH", 900004);
@@ -231,7 +231,7 @@ public abstract class IDCStrategyDefault1_0_2 extends IDCStrategyDefault {
 				+ dataProvider.getId() + ", 1410, 10, 'de', 'Gesundheit', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 1410, 11, 'de', 'Lärm und Erschütterungen', 0);");
+				+ dataProvider.getId() + ", 1410, 11, 'de', 'LÃ¤rm und ErschÃ¼tterungen', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
 				+ dataProvider.getId() + ", 1410, 12, 'de', 'Landwirtschaft', 0);");
@@ -280,7 +280,7 @@ public abstract class IDCStrategyDefault1_0_2 extends IDCStrategyDefault {
 				+ dataProvider.getId() + ", 2000, 3520, 'de', 'Fachliche Grundlage', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 2000, 3535, 'de', 'Schlüsselkatalog', 0);");
+				+ dataProvider.getId() + ", 2000, 3535, 'de', 'SchlÃ¼sselkatalog', 0);");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
 				+ dataProvider.getId() + ", 2000, 3555, 'de', 'Symbolkatalog', 0);");

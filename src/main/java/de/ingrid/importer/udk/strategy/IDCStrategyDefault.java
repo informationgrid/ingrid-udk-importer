@@ -73,12 +73,12 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		mapNewKeyToNewValueList100.put(25832, "EPSG 25832: ETRS89 / UTM Zone 32N");
 		mapNewKeyToNewValueList100.put(25833, "EPSG 25833: ETRS89 / UTM Zone 33N");
 		mapNewKeyToNewValueList100.put(25834, "EPSG 25834: ETRS89 / UTM Zone 34N");
-		mapNewKeyToNewValueList100.put(28462, "EPSG 28462: Pulkovo 1942 / Gauss-Krüger 2N");
-		mapNewKeyToNewValueList100.put(28463, "EPSG 28463: Pulkovo 1942 / Gauss-Krüger 3N");
-		mapNewKeyToNewValueList100.put(31466, "EPSG 31466: DHDN / Gauss-Krüger Zone 2");
-		mapNewKeyToNewValueList100.put(31467, "EPSG 31467: DHDN / Gauss-Krüger Zone 3");
-		mapNewKeyToNewValueList100.put(31468, "EPSG 31468: DHDN / Gauss-Krüger Zone 4");
-		mapNewKeyToNewValueList100.put(31469, "EPSG 31469: DHDN / Gauss-Krüger Zone 5");
+		mapNewKeyToNewValueList100.put(28462, "EPSG 28462: Pulkovo 1942 / Gauss-KrÃ¼ger 2N");
+		mapNewKeyToNewValueList100.put(28463, "EPSG 28463: Pulkovo 1942 / Gauss-KrÃ¼ger 3N");
+		mapNewKeyToNewValueList100.put(31466, "EPSG 31466: DHDN / Gauss-KrÃ¼ger Zone 2");
+		mapNewKeyToNewValueList100.put(31467, "EPSG 31467: DHDN / Gauss-KrÃ¼ger Zone 3");
+		mapNewKeyToNewValueList100.put(31468, "EPSG 31468: DHDN / Gauss-KrÃ¼ger Zone 4");
+		mapNewKeyToNewValueList100.put(31469, "EPSG 31469: DHDN / Gauss-KrÃ¼ger Zone 5");
 		mapNewKeyToNewValueList100.put(9000001, "DE_42/83 / GK_3");
 		mapNewKeyToNewValueList100.put(9000002, "DE_DHDN / GK_3");
 		mapNewKeyToNewValueList100.put(9000007, "DE_DHDN / GK_3_RDN");
@@ -105,7 +105,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		mapNewKeyToNewValueList101.put(900009, "Horizont 74_NOH");
 		mapNewKeyToNewValueList101.put(5129, "European Vertical Reference Frame 2000");
 		mapNewKeyToNewValueList101.put(5105, "Baltic Sea");
-		mapNewKeyToNewValueList101.put(900010, "Höhe über GRS80 Ellipsoid");
+		mapNewKeyToNewValueList101.put(900010, "HÃ¶he Ã¼ber GRS80 Ellipsoid");
 	}
 
 	public void setDataProvider(DataProvider data) {

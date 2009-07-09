@@ -2314,14 +2314,14 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 		mapOldValueToNewValuesList527.put("ua", new String[] {"umwelt"});
 		mapOldValueToNewValuesList527.put("bo", new String[] {"umwelt"});
 		mapOldValueToNewValuesList527.put("le", new String[] {"umwelt"});
-		mapOldValueToNewValuesList527.put("lu", new String[] {"umwelt", "klima und atmosphäre"});
+		mapOldValueToNewValuesList527.put("lu", new String[] {"umwelt", "klima und atmosphÃ¤re"});
 		mapOldValueToNewValuesList527.put("nl", new String[] {"umwelt"});
-		mapOldValueToNewValuesList527.put("sr", new String[] {"umwelt", "gesundheit", "klima und atmosphäre"});
+		mapOldValueToNewValuesList527.put("sr", new String[] {"umwelt", "gesundheit", "klima und atmosphÃ¤re"});
 		mapOldValueToNewValuesList527.put("lf", new String[] {"umwelt", "landwirtschaft"});
 		mapOldValueToNewValuesList527.put("gt", new String[] {"umwelt", "gesundheit"});
-		mapOldValueToNewValuesList527.put("en", new String[] {"umwelt", "ökonomie", "energie und kommunikation"});
+		mapOldValueToNewValuesList527.put("en", new String[] {"umwelt", "Ã¶konomie", "energie und kommunikation"});
 		mapOldValueToNewValuesList527.put("ch", new String[] {"umwelt", "gesundheit"});
-		mapOldValueToNewValuesList527.put("uw", new String[] {"umwelt", "ökonomie"});
+		mapOldValueToNewValuesList527.put("uw", new String[] {"umwelt", "Ã¶konomie"});
 		mapOldValueToNewValuesList527.put("ur", new String[] {"umwelt", "gesellschaft"});
 		mapOldValueToNewValuesList527.put("wa", new String[] {"umwelt"});
 

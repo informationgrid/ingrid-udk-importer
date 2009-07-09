@@ -216,7 +216,7 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 
 		int lstId = 6000;
 		if (log.isInfoEnabled()) {
-			log.info("Inserting new syslist " + lstId +	" (Grad der Konformität)...");
+			log.info("Inserting new syslist " + lstId +	" (Grad der KonformitÃ¤t)...");
 		}
 
 		// clean up, to guarantee no old values !
@@ -236,7 +236,7 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 
 		lstId = 6010;
 		if (log.isInfoEnabled()) {
-			log.info("Inserting new syslist " + lstId +	" (Zugangsbeschränkungen)...");
+			log.info("Inserting new syslist " + lstId +	" (ZugangsbeschrÃ¤nkungen)...");
 		}
 
 		// clean up, to guarantee no old values !
@@ -248,13 +248,13 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 			+ getNextId() + ", " + lstId + ", " + noData_Syslist6010EntryId + ", 'de', '" + noData_Syslist6010EntryValue 
 			+ "', 0, 'Y');");
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
-			+ getNextId() + ", " + lstId + ", 2, 'de', 'aufgrund der Vertraulichkeit der Verfahren von Behörden', 0, 'N');");
+			+ getNextId() + ", " + lstId + ", 2, 'de', 'aufgrund der Vertraulichkeit der Verfahren von BehÃ¶rden', 0, 'N');");
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
-			+ getNextId() + ", " + lstId + ", 3, 'de', 'aufgrund internationaler Beziehungen, der öffentliche Sicherheit oder der Landesverteidigung', 0, 'N');");
+			+ getNextId() + ", " + lstId + ", 3, 'de', 'aufgrund internationaler Beziehungen, der Ã¶ffentliche Sicherheit oder der Landesverteidigung', 0, 'N');");
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
 			+ getNextId() + ", " + lstId + ", 4, 'de', 'aufgrund laufender Gerichtsverfahren', 0, 'N');");
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
-			+ getNextId() + ", " + lstId + ", 5, 'de', 'aufgrund der Vertraulichkeit von Geschäfts- oder Betriebsinformationen', 0, 'N');");
+			+ getNextId() + ", " + lstId + ", 5, 'de', 'aufgrund der Vertraulichkeit von GeschÃ¤fts- oder Betriebsinformationen', 0, 'N');");
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
 			+ getNextId() + ", " + lstId + ", " + existingData_Syslist6010EntryId + ", 'de', '" + existingData_Syslist6010EntryValue
 			+ "', 0, 'N');");
@@ -396,37 +396,37 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 
 		// german syslist
 		newSyslist5200_de.put(101, "Katalogdienst (humanCatalogueViewer)");
-		newSyslist5200_de.put(102, "Dienst für geografische Visualisierung");
-		newSyslist5200_de.put(103, "Dienst für geografische Tabellenkalkulation");
-		newSyslist5200_de.put(104, "Editor für Verarbeitungsdienste");
-		newSyslist5200_de.put(105, "Editor für die Definition von Bearbeitungsketten");
-		newSyslist5200_de.put(106, "Aufrufprogramm für Bearbeitungsketten");
-		newSyslist5200_de.put(107, "Editor für geografische Objekte");
-		newSyslist5200_de.put(108, "Editor für geografische Symbole");
-		newSyslist5200_de.put(109, "Editor für die Objektgeneralisierung");
-		newSyslist5200_de.put(110, "Betrachter für geografische Datenstrukturen");
-		newSyslist5200_de.put(201, "Dienst für den Zugriff auf Objekte");
-		newSyslist5200_de.put(202, "Dienst für den Zugriff auf grafische Darstellungen");
-		newSyslist5200_de.put(203, "Dienst für den Zugriff auf Rasterdaten");
-		newSyslist5200_de.put(204, "Dienst für die Beschreibung von Sensoren");
-		newSyslist5200_de.put(205, "Dienst für den Zugriff auf Produkte");
-		newSyslist5200_de.put(206, "Dienst für den Zugriff auf Objektarten");
+		newSyslist5200_de.put(102, "Dienst fÃ¼r geografische Visualisierung");
+		newSyslist5200_de.put(103, "Dienst fÃ¼r geografische Tabellenkalkulation");
+		newSyslist5200_de.put(104, "Editor fÃ¼r Verarbeitungsdienste");
+		newSyslist5200_de.put(105, "Editor fÃ¼r die Definition von Bearbeitungsketten");
+		newSyslist5200_de.put(106, "Aufrufprogramm fÃ¼r Bearbeitungsketten");
+		newSyslist5200_de.put(107, "Editor fÃ¼r geografische Objekte");
+		newSyslist5200_de.put(108, "Editor fÃ¼r geografische Symbole");
+		newSyslist5200_de.put(109, "Editor fÃ¼r die Objektgeneralisierung");
+		newSyslist5200_de.put(110, "Betrachter fÃ¼r geografische Datenstrukturen");
+		newSyslist5200_de.put(201, "Dienst fÃ¼r den Zugriff auf Objekte");
+		newSyslist5200_de.put(202, "Dienst fÃ¼r den Zugriff auf grafische Darstellungen");
+		newSyslist5200_de.put(203, "Dienst fÃ¼r den Zugriff auf Rasterdaten");
+		newSyslist5200_de.put(204, "Dienst fÃ¼r die Beschreibung von Sensoren");
+		newSyslist5200_de.put(205, "Dienst fÃ¼r den Zugriff auf Produkte");
+		newSyslist5200_de.put(206, "Dienst fÃ¼r den Zugriff auf Objektarten");
 		newSyslist5200_de.put(207, "Katalogdienst (infoCatalogueService)");
 		newSyslist5200_de.put(208, "Registerdienst");
 		newSyslist5200_de.put(209, "Gazetteerdienst");
 		newSyslist5200_de.put(210, "Auftragsdienst");
 		newSyslist5200_de.put(211, "Dauerauftragsdienst");
-		newSyslist5200_de.put(301, "Dienst für die Definition von Bearbeitungsketten");
-		newSyslist5200_de.put(302, "Dienst für die Ausführung von Bearbeitungsketten ");
+		newSyslist5200_de.put(301, "Dienst fÃ¼r die Definition von Bearbeitungsketten");
+		newSyslist5200_de.put(302, "Dienst fÃ¼r die AusfÃ¼hrung von Bearbeitungsketten ");
 		newSyslist5200_de.put(303, "Abonnementdienst");
-		newSyslist5200_de.put(401, "Dienst für die Konversion von Koordinaten");
-		newSyslist5200_de.put(402, "Dienst für die Transformation von Koordinaten");
-		newSyslist5200_de.put(403, "Dienst für die Umwandlung zwischen Raster- und Vektordaten");
-		newSyslist5200_de.put(404, "Dienst für die Konversion von Bildkoordinaten");
+		newSyslist5200_de.put(401, "Dienst fÃ¼r die Konversion von Koordinaten");
+		newSyslist5200_de.put(402, "Dienst fÃ¼r die Transformation von Koordinaten");
+		newSyslist5200_de.put(403, "Dienst fÃ¼r die Umwandlung zwischen Raster- und Vektordaten");
+		newSyslist5200_de.put(404, "Dienst fÃ¼r die Konversion von Bildkoordinaten");
 		newSyslist5200_de.put(405, "Entzerrungsdienst");
 		newSyslist5200_de.put(406, "Ortho-Entzerrungsdienst");
-		newSyslist5200_de.put(407, "Dienst für die Justierung von Geometriemodellen von Sensoren");
-		newSyslist5200_de.put(408, "Dienst für die Konversion von Geometriemodellen");
+		newSyslist5200_de.put(407, "Dienst fÃ¼r die Justierung von Geometriemodellen von Sensoren");
+		newSyslist5200_de.put(408, "Dienst fÃ¼r die Konversion von Geometriemodellen");
 		newSyslist5200_de.put(409, "Geografischer Ausschnittsdienst");
 		newSyslist5200_de.put(410, "Raumbezogener Auswahldienst");
 		newSyslist5200_de.put(411, "Kachelungsdienst");
@@ -436,35 +436,35 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		newSyslist5200_de.put(415, "Generalisierungsdienst");
 		newSyslist5200_de.put(416, "Routensuchdienst");
 		newSyslist5200_de.put(417, "Positionierungsdienst");
-		newSyslist5200_de.put(418, "Analysedienst für räumliche Nachbarschaftsbeziehungen");
-		newSyslist5200_de.put(501, "Berechnungsdienst für Geoparameter");
-		newSyslist5200_de.put(502, "Dienst für die thematische Klassifizierung");
-		newSyslist5200_de.put(503, "Generalisierungsdienst für Objektarten");
+		newSyslist5200_de.put(418, "Analysedienst fÃ¼r rÃ¤umliche Nachbarschaftsbeziehungen");
+		newSyslist5200_de.put(501, "Berechnungsdienst fÃ¼r Geoparameter");
+		newSyslist5200_de.put(502, "Dienst fÃ¼r die thematische Klassifizierung");
+		newSyslist5200_de.put(503, "Generalisierungsdienst fÃ¼r Objektarten");
 		newSyslist5200_de.put(504, "Themenbezogener Ausschnittsdienst");
-		newSyslist5200_de.put(505, "Zähldienst");
-		newSyslist5200_de.put(506, "Erkennungsdienst für Veränderungen");
-		newSyslist5200_de.put(507, "Auszugsdienste für geografische Informationen");
+		newSyslist5200_de.put(505, "ZÃ¤hldienst");
+		newSyslist5200_de.put(506, "Erkennungsdienst fÃ¼r VerÃ¤nderungen");
+		newSyslist5200_de.put(507, "Auszugsdienste fÃ¼r geografische Informationen");
 		newSyslist5200_de.put(508, "Themenbezogener Bildverarbeitungsdienst");
-		newSyslist5200_de.put(509, "Auflösungsreduzierungsdienst");
+		newSyslist5200_de.put(509, "AuflÃ¶sungsreduzierungsdienst");
 		newSyslist5200_de.put(510, "Bildbearbeitungsdienste");
-		newSyslist5200_de.put(511, "Interpretationsdienste für Bilder");
+		newSyslist5200_de.put(511, "Interpretationsdienste fÃ¼r Bilder");
 		newSyslist5200_de.put(512, "Bildsynthesedienste");
 		newSyslist5200_de.put(513, "Multiband-Bildbearbeitung");
 		newSyslist5200_de.put(514, "Objekterkennungsdienst");
 		newSyslist5200_de.put(515, "Geoparserdienst");
 		newSyslist5200_de.put(516, "Geocodierungsdienst");
-		newSyslist5200_de.put(601, "Transformationsdienst für den Zeitbezug");
+		newSyslist5200_de.put(601, "Transformationsdienst fÃ¼r den Zeitbezug");
 		newSyslist5200_de.put(602, "Zeitbezogener Ausschnittsdienst");
 		newSyslist5200_de.put(603, "Zeitbezogener Auswahldienst");
-		newSyslist5200_de.put(604, "Analysedienst für zeitbezogene Nachbarschaftsbeziehungen");
-		newSyslist5200_de.put(701, "Dienst für statistische Berechnungen");
-		newSyslist5200_de.put(702, "Ergänzungsdienste für Geodaten");
+		newSyslist5200_de.put(604, "Analysedienst fÃ¼r zeitbezogene Nachbarschaftsbeziehungen");
+		newSyslist5200_de.put(701, "Dienst fÃ¼r statistische Berechnungen");
+		newSyslist5200_de.put(702, "ErgÃ¤nzungsdienste fÃ¼r Geodaten");
 		newSyslist5200_de.put(801, "Codierungsdienst");
-		newSyslist5200_de.put(802, "Übertragungsdienst");
-		newSyslist5200_de.put(803, "Kompressionsdienst für Geodaten");
-		newSyslist5200_de.put(804, "Umformatierungsdienst für Geodaten");
-		newSyslist5200_de.put(805, "Nachrichtenübermittlungsdienst");
-		newSyslist5200_de.put(806, "Dienst für den Zugriff auf externe Daten und Programme");
+		newSyslist5200_de.put(802, "Ãœbertragungsdienst");
+		newSyslist5200_de.put(803, "Kompressionsdienst fÃ¼r Geodaten");
+		newSyslist5200_de.put(804, "Umformatierungsdienst fÃ¼r Geodaten");
+		newSyslist5200_de.put(805, "NachrichtenÃ¼bermittlungsdienst");
+		newSyslist5200_de.put(806, "Dienst fÃ¼r den Zugriff auf externe Daten und Programme");
 		newSyslist5200_de.put(901, "Kein geografischer Dienst");
 
 		// english syslist
@@ -685,7 +685,7 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 				// default: NO access data set in object
 				int syslist6010EntryId = noData_Syslist6010EntryId;
 				String syslist6010EntryValue = noData_Syslist6010EntryValue;
-				String termsOfUse = "keine Einschränkungen";
+				String termsOfUse = "keine EinschrÃ¤nkungen";
 
 				// values when access data set in object
 				if (availAccessNote.length() > 0 || fees.length() > 0) {
@@ -918,7 +918,7 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		if (defaultEmail == null || defaultEmail.trim().length() == 0) {
 			throw new Exception("Default email missing for updating t021_communication, email is now mandatory");
 		}
-		String defaultEmailDescr = "Migration INSPIRE: Email hinzugefügt";
+		String defaultEmailDescr = "Migration INSPIRE: Email hinzugefÃ¼gt";
 
 		if (log.isInfoEnabled()) {
 			log.info("Check every object for email address and add if missing ...");
