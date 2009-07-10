@@ -1,23 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <assembly>
-<!-- DO NOT USE id (e.g. "bin") to avoid garbage assembly "*-bin.tar.gz" when packaging ! -->
-<!-- (this assembly-descriptor is also executed in package phase where appendAssemblyId is true due to jar-with-dependencies execution) -->
-  <id></id>
-  <formats>
-    <format>tar.gz</format>
-  </formats>
-  <includeBaseDirectory>false</includeBaseDirectory>
-  <fileSets>
-    <fileSet>
-      <directory>src/main/release</directory>
-      <outputDirectory>/</outputDirectory>
-    </fileSet>
-    <fileSet>
-      <directory>target</directory>
-      <includes>
-        <include>*jar-with-dependencies.jar</include>
-      </includes>
-      <outputDirectory>/</outputDirectory>
-    </fileSet>
-  </fileSets>
+    <id>installer</id>
+    <formats>
+        <format>jar</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <fileSets>
+        <fileSet>
+            <directory>src/main/release</directory>
+            <outputDirectory>${project.artifactId}-${project.version}/</outputDirectory>
+            <includes>
+                <include>descriptor.properties</include>
+                <include>ingrid-igc-schema_102.sql</include>
+                <include>syslist_import</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>target</directory>
+            <includes>
+                <include>*jar-with-dependencies.jar</include>
+            </includes>
+            <outputDirectory>${project.artifactId}-${project.version}/</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>src/main/release/ant-installer</directory>
+            <outputDirectory>/</outputDirectory>
+            <filtered>true</filtered>
+        </fileSet>
+        <fileSet>
+            <directory>target/installer</directory>
+            <outputDirectory>/</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>target/site</directory>
+            <outputDirectory>${project.artifactId}-${project.version}/doc</outputDirectory>
+        </fileSet>
+    </fileSets>
 </assembly>

@@ -1,0 +1,55 @@
+<project name="PortalU Installation">
+    <description>UDK-IGC Importer/IGC-Updater Installation Script</description>
+    <!-- set global properties for this build -->
+    <property name="componentName" value="${project.artifactId}-${project.version}" />
+    <property name="descriptor-properties" value="${installDir}/descriptor.properties" />
+
+    <target name="extract" description="Extract all files to the installation directory.">
+        <unzip src="${antinstaller.jar}" dest="${installDir}">
+            <patternset>
+                <include name="${componentName}/**/*.*" />
+            </patternset>
+        </unzip>
+
+        <move toDir="${installDir}">
+            <fileset dir="${installDir}/${componentName}" />
+        </move>
+    </target>
+
+    <target name="database" description="Configure the mySQL database.">
+        <echo>Schreiben der DB-Konfiguration in descriptor.properties</echo>
+        <replace file="${descriptor-properties}" token="@DB_USER@" value="${dbUser}" />
+        <replace file="${descriptor-properties}" token="@DB_PASSWORD@" value="${dbPassword}" />
+        <replace file="${descriptor-properties}" token="@DB_ALIAS@" value="${dbAlias}" />
+    </target>
+
+    <target name="igc" description="Set IGC properties.">
+        <echo>Schreiben der IGC Konfiguration in descriptor.properties</echo>
+        <replace file="${descriptor-properties}" token="@IGC_LANGUAGE@" value="${igcLanguage}" />
+        <replace file="${descriptor-properties}" token="@IGC_CATADMIN_EMAIL@" value="${igcCatadminEmail}" />
+    </target>
+
+    <target name="startComponent">
+        <echo>
+            ================= Weiteres Vorgehen =================
+
+        </echo>
+        <echo>
+            Gehen Sie ins Verzeichnis:
+            ${installDir}
+            und setzen Sie Ihre gewünschte IGC Version in der
+            Datei descriptor.properties.
+            Starten Sie anschließend den UDK Importer/IGC
+            Updater je nach Anwendungsfall.
+
+            ACHTUNG:
+            Das Vorgehen bei der Migration von UDK Daten (Import)
+            bzw. dem Aktualisieren einer IGC Version (Update)
+            ist unter
+            http://www.kst.portalu.de/wiki/index.php/UDK_-_IGC_Importer
+            detailliert beschrieben. Bitte gemäß diesen
+            Schritten vorgehen.
+        </echo>
+    </target>
+
+</project>
