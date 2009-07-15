@@ -26,7 +26,7 @@
     </page>
 
     <page type="input" name="properties" displayText="Benoetigte Installationsoptionen">
-        <directory property="installDir" defaultValue="/usr/local/${project.artifactId}-${project.version}" defaultValueWin="${env.ProgramFiles}\${project.artifactId}-${project.version}" displayText="Installationsverzeichnis" create="true" />
+        <directory property="installDir" defaultValue="/opt/ingrid/${project.artifactId}-${project.version}" defaultValueWin="${env.ProgramFiles}\${project.artifactId}-${project.version}" displayText="Installationsverzeichnis" create="true" />
     </page>
 
     <page type="progress" name="progress" displayText="Installationsfortschritt" showTargets="true" target="startComponent"></page>
