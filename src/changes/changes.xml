@@ -4,6 +4,15 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
+    <release version="1.2.1" date="2009-07-17" description="Release Maven2 + Installer">
+      <action type="update">
+        Installationsassistent und Maven2 Kompatibilität
+      </action>
+      <action type="add">
+        Strategy 1.0.6 hinzugefügt: erhöht Länge von Datenbankfeld t01_object.dataset_alternate_name
+      </action>
+    </release>
+
     <release version="1.2.0" date="2009-06-03" description="Initial-Release">
       <action type="add">
         erste Distribution: migriert/updated auf IGC Datenkatalog Version 1.0.5 (Basis für IGE-iPlug Version 1.2.0)
