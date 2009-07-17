@@ -12,13 +12,13 @@
             <includes>
                 <include>descriptor.properties</include>
                 <include>ingrid-igc-schema_102.sql</include>
-                <include>syslist_import</include>
+                <include>syslist_import/**/*</include>
             </includes>
         </fileSet>
         <fileSet>
             <directory>target</directory>
             <includes>
-                <include>*jar-with-dependencies.jar</include>
+                <include>*with-dependencies.jar</include>
             </includes>
             <outputDirectory>${project.artifactId}-${project.version}/</outputDirectory>
         </fileSet>
