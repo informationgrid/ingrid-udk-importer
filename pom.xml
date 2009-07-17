@@ -98,4 +98,11 @@
       </exclusions>
     </dependency>
   </dependencies>
+  <repositories>
+    <repository>
+      <id>de.ingrid.m2</id>
+      <name>Maven2 Repo InGrid</name>
+      <url>http://harrison.its-technidata.de/ingrid/maven2</url>
+    </repository>
+  </repositories>
 </project>
