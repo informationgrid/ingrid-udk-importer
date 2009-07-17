@@ -117,7 +117,7 @@
   </repositories>
 
   <scm>
-    <connection>scm:svn:https://harrison.its-technidata.de:444/svn/ingrid/ingrid-releases-pom/tags/ingrid-udk-importer-1.2.1</connection>
-    <developerConnection>scm:svn:https://harrison.its-technidata.de:444/svn/ingrid/ingrid-releases-pom/tags/ingrid-udk-importer-1.2.1</developerConnection>
+    <connection>scm:svn:https://harrison.its-technidata.de:444/svn/ingrid/ingrid-udk-importer/trunk</connection>
+    <developerConnection>scm:svn:https://harrison.its-technidata.de:444/svn/ingrid/ingrid-udk-importer/trunk</developerConnection>
   </scm>
 </project>
