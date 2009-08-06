@@ -1,31 +1,31 @@
 
 Syslisten
 =========
-Nach dem Import/Upgrade der UDK-Daten auf die IGC Version 1.0.3 müssen die Syslisten aktualisiert
-werden, um vor der IGC Version 1.0.4 einen konsistenten Zustand herbei zu führen.
-Ab IGC Version 1.0.4 können die Syslisten im IGE editiert/exportiert/importiert werden, sind dann
+Nach dem Import/Upgrade der UDK-Daten auf die IGC Version 1.0.3 mÃ¼ssen die Syslisten aktualisiert
+werden, um vor der IGC Version 1.0.4 einen konsistenten Zustand herbei zu fÃ¼hren.
+Ab IGC Version 1.0.4 kÃ¶nnen die Syslisten im IGE editiert/exportiert/importiert werden, sind dann
 also individuell pflegbar !
-ACHTUNG: Es existieren allgemeingültige und länderspezifische Syslisten, weshalb die Syslisten NICHT
+ACHTUNG: Es existieren allgemeingÃ¼ltige und lÃ¤nderspezifische Syslisten, weshalb die Syslisten NICHT
 einheitlich vom Importer geschrieben werden, sondern per csv-Dateien in den entsprechenden IGC Katalog
-importiert werden müssen.
+importiert werden mÃ¼ssen.
 
 Import csv-Dateien in IGC Katalog:
 ---------------------------------
 
-Um einen korrekten Syslisten Zustand nach dem Upgrade auf die version 1.0.3 zu gewährleisten, folgendes Vorgehen:
+Um einen korrekten Syslisten Zustand nach dem Upgrade auf die version 1.0.3 zu gewÃ¤hrleisten, folgendes Vorgehen:
 1. sys_list Tabelle leeren
-2. globale länderübergreifende Syslisten importieren (sys_list_global.csv)
-3. lokale länderspezifische Syslisten importieren (z.B. sys_list_local_ni.csv).
+2. globale lÃ¤nderÃ¼bergreifende Syslisten importieren (sys_list_global.csv)
+3. lokale lÃ¤nderspezifische Syslisten importieren (z.B. sys_list_local_ni.csv).
 
 Import csv via phpMyAdmin:
 --------------------------
 
-- Tabelle "sys_list" auswählen und Tab "Leeren"
+- Tabelle "sys_list" auswÃ¤hlen und Tab "Leeren"
 
-- Tabelle "sys_list" auswählen und Tab "Importieren"
-	csv-Datei auswählen
+- Tabelle "sys_list" auswÃ¤hlen und Tab "Importieren"
+	csv-Datei auswÃ¤hlen
 Von Default abweichend:
-	Anzahl der am Anfang zu überspringenden Einträge (Abfragen): 1
+	Anzahl der am Anfang zu Ã¼berspringenden EintrÃ¤ge (Abfragen): 1
 Default:
 	Zeichencodierung der Datei: utf8
 
