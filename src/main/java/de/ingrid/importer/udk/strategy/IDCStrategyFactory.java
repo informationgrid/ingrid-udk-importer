@@ -44,6 +44,8 @@ public class IDCStrategyFactory {
 			return new IDCStrategy1_0_4_fixInspireThemes();
 		} else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_105)) {
 			return new IDCStrategy1_0_5();
+		} else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_105_FIX_COUNTRY_CODELIST)) {
+			return new IDCStrategy1_0_5_fixCountryCodelist();
 		} else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_106)) {
 			return new IDCStrategy1_0_6();
 		} else {

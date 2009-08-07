@@ -1,9 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <document>
   <properties>
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
+    <release version="?.?.?" date="????-??-??" description="???">
+      <action type="add">
+        Strategy 1.0.5_fixCountryCodelist hinzugefügt: aktualisiert Länder-Sysliste auf ALLE Länder gemäß ISO-3166-1
+      </action>
+    </release>
+
     <release version="1.2.1" date="2009-07-17" description="Release Maven2 + Installer">
       <action type="update">
         Installationsassistent und Maven2 Kompatibilität
