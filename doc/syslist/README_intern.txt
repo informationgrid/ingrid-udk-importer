@@ -11,6 +11,9 @@ Syslisten
 Komplett Sprachliste von Kst aus email "Länder und Sprachlisten", 17.04.2009 10:29.
 Als Basis für die entsprechende Sysliste im IGC.
 
+- ISO-3166-1-Codeliste (alle Länder, deutsch-englisch).txt
+Aufbereitete komplette Länderliste gemäß Liste von Kst, s. email "Auswahlliste der Länder unter Adressen", 06.08.2009 11:43.
+Als Basis für die entsprechende Sysliste im IGC.
 
 - sys_list_erw.csv
 ursprüngliche Gesamt-Syslist Datei aus NI, diese enthält jedoch länderspezifische Syslisten (z.B. Rechtsgrundlagen 1350)
