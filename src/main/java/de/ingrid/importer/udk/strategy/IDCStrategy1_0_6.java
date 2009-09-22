@@ -3,19 +3,10 @@
  */
 package de.ingrid.importer.udk.strategy;
 
-import java.sql.ResultSet;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import de.ingrid.importer.udk.jdbc.JDBCHelper;
 import de.ingrid.importer.udk.jdbc.DBLogic.ColumnType;
-import de.ingrid.importer.udk.util.UtilsCountryCodelist;
-import de.ingrid.importer.udk.util.UtilsLanguageCodelist;
 
 /**
  * IGC Update:
