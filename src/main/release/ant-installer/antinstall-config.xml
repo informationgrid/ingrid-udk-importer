@@ -20,7 +20,7 @@
     <page type="input" name="igcOptions" displayText="Einstellungen fuer den InGridCatalog (IGC)" target="igc">
 
         <text property="igcLanguage" displayText="Sprache des Katalogs:" defaultValue="de" />
-        <text property="igcCatadminEmail" displayText="Email des Katalog-Administrators:" defaultValue="" />
+        <text property="igcCatadminEmail" displayText="Email des Katalog-Administrators:" defaultValue="udk_admin@portalu.de" />
 
         <comment bold="false" displayText="" explanatoryText="Diese Daten werden für die Neuanlage/Aktualisierung eines InGridCatalog (IGC) benötigt." />
     </page>

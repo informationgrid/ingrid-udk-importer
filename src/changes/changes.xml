@@ -5,6 +5,9 @@
   </properties>
   <body>
     <release version="?.?.?" date="????-??-??" description="???">
+      <action type="update">
+        Installer: Email des Katalog-Administrators hat jetzt Default Wert
+      </action>
       <action type="add">
         Strategy 1.0.5_fixCountryCodelist hinzugefügt: aktualisiert Länder-Sysliste auf ALLE Länder gemäß ISO-3166-1
       </action>
