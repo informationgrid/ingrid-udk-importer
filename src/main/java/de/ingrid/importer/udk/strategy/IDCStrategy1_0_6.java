@@ -57,6 +57,11 @@ public class IDCStrategy1_0_6 extends IDCStrategyDefault {
 		jdbc.getDBLogic().modifyColumn("dataset_alternate_name", ColumnType.VARCHAR255, "t01_object", false, jdbc);
 
 		if (log.isInfoEnabled()) {
+			log.info("Change field type of 't015_legist.legist_value' to VARCHAR(255) ...");
+		}
+		jdbc.getDBLogic().modifyColumn("legist_value", ColumnType.VARCHAR255, "t015_legist", false, jdbc);
+
+		if (log.isInfoEnabled()) {
 			log.info("Extending datastructure... done");
 		}
 	}
