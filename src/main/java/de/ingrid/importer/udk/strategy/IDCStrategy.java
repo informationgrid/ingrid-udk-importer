@@ -34,7 +34,7 @@ public interface IDCStrategy {
 	static String VALUE_IDC_VERSION_105 = "1.0.5";
 	/** Update country codelist to all countries -> can be executed on its own ! */
 	static String VALUE_IDC_VERSION_105_FIX_COUNTRY_CODELIST = "1.0.5_fixCountryCodelist";
-	/** ArcGIS Import etc. */
+	/** Extend all VARCHAR to 255 */
 	static String VALUE_IDC_VERSION_106 = "1.0.6";
 
 	/** Order of strategies to execute to obtain most recent IGC.
@@ -52,7 +52,10 @@ public interface IDCStrategy {
 		VALUE_IDC_VERSION_104_FIX_INSPIRE_THEMES,
 		// InGrid 2.0 Release (including post fixes, addons)
 		VALUE_IDC_VERSION_105,
-		VALUE_IDC_VERSION_105_FIX_COUNTRY_CODELIST,
+		// AT THE MOMENT do not execute this one in workflow to avoid execution when 106 is executed.
+		// This way we avoid conflicts with possible user changes of country list (may have been executed in between via IGE).
+		// MAY BE ADDED AGAIN when 106 was executed on all IGCs to be part of FULL workflow again.
+//		VALUE_IDC_VERSION_105_FIX_COUNTRY_CODELIST,
 		VALUE_IDC_VERSION_106,
 	};
 		

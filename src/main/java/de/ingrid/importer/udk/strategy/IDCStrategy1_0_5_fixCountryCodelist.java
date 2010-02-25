@@ -17,7 +17,7 @@ public class IDCStrategy1_0_5_fixCountryCodelist extends IDCStrategyDefault {
 
 	/**
 	 * Deliver NO Version, this strategy should NOT trigger a strategy workflow and
-	 * can be executed on its own ! NOTICE: BUT is executed in workflow (part of workflow array) !
+	 * can be executed on its own ! NOTICE: BUT may be executed in workflow (part of workflow array) !
 	 * @see de.ingrid.importer.udk.strategy.IDCStrategy#getIDCVersion()
 	 */
 	public String getIDCVersion() {
