@@ -4,7 +4,10 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
-    <release version="?.?.?" date="????-??-??" description="???">
+    <release version="1.2.2" date="2010-02-25" description="Bug Fix Release">
+      <action type="add">
+        Strategy 1.0.6 finalisiert: Erweiterung aller VARCHAR Felder auf 255 (um Längen-Probleme beim Speichern zu vermeiden)
+      </action>
       <action type="update">
         Installer: Email des Katalog-Administrators hat jetzt Default Wert
       </action>
