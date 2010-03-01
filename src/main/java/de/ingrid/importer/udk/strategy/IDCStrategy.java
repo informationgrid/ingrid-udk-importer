@@ -52,9 +52,8 @@ public interface IDCStrategy {
 		VALUE_IDC_VERSION_104_FIX_INSPIRE_THEMES,
 		// InGrid 2.0 Release (including post fixes, addons)
 		VALUE_IDC_VERSION_105,
-		// AT THE MOMENT do not execute this one in workflow to avoid execution when 106 is executed.
-		// This way we avoid conflicts with possible user changes of country list (may have been executed in between via IGE).
-		// MAY BE ADDED AGAIN when 106 was executed on all IGCs to be part of FULL workflow again.
+		// At the moment strategy VALUE_IDC_VERSION_105_FIX_COUNTRY_CODELIST is NOT part of workflow !
+		// So default is Europe and NOT all countries. The strategy can be executed on its own if all countries needed !
 //		VALUE_IDC_VERSION_105_FIX_COUNTRY_CODELIST,
 		VALUE_IDC_VERSION_106,
 	};

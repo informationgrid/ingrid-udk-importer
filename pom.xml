@@ -15,6 +15,15 @@
     <plugins>
       <plugin>
         <artifactId>maven-assembly-plugin</artifactId>
+        <version>2.2-beta-4</version>
+        <!-- Add Type of Component to be added to Manifest of Installer for Upgrade Server -->
+        <configuration>
+            <archive>
+              <manifestEntries>
+                  <ingridComponentType>UDK_IMPORTER_UPDATER</ingridComponentType>
+            </manifestEntries>
+            </archive>
+        </configuration>
         <executions>
           <execution>
             <id>make-jar-with-dependencies</id>
@@ -32,11 +41,6 @@
                   <mainClass>de.ingrid.importer.udk.Importer</mainClass>
                   <packageName>de.ingrid.importer.udk</packageName>
                 </manifest>
-                <manifestEntries>
-                  <Implementation-Version>${version}</Implementation-Version>
-                  <Implementation-Build>${buildNumber}</Implementation-Build>
-                  <Build-Timestamp>${timestamp}</Build-Timestamp>
-                </manifestEntries>
               </archive>
             </configuration>
           </execution>
