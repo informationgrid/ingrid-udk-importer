@@ -113,9 +113,13 @@ public class IDCStrategy1_0_6 extends IDCStrategyDefault {
 			if (log.isInfoEnabled()) {
 				log.info("Change field type of '" + tC[0] + "." + tC[1] + "' to VARCHAR(255) ...");
 			}
-
 			jdbc.getDBLogic().modifyColumn(tC[1], ColumnType.VARCHAR255, tC[0], false, jdbc);
 		}
+
+		if (log.isInfoEnabled()) {
+			log.info("Change field type of 't011_obj_serv.base' to TEXT ...");
+		}
+		jdbc.getDBLogic().modifyColumn("base", ColumnType.TEXT, "t011_obj_serv", false, jdbc);
 
 		if (log.isInfoEnabled()) {
 			log.info("Extending datastructure... done");

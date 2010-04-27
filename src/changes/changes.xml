@@ -6,7 +6,10 @@
   <body>
     <release version="1.3.0" date="????-??-??" description="Optimierung Schema, Inhalte">
       <action type="add">
-        Strategy 1.0.6 finalisiert: Erweiterung aller VARCHAR Felder auf 255 (um Längen-Probleme beim Speichern zu vermeiden)
+        Strategy 1.0.6: Dienst -> Fachbezug -> Basisdaten auf Type TEXT geändert (Textarea in IGE)
+      </action>
+      <action type="add">
+        Strategy 1.0.6: Erweiterung aller VARCHAR Felder auf 255 (um Längen-Probleme beim Speichern zu vermeiden)
       </action>
       <action type="update">
         Installer: Email des Katalog-Administrators hat jetzt Default Wert
