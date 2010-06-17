@@ -4,6 +4,7 @@
 package de.ingrid.importer.udk.strategy;
 
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -48,7 +49,8 @@ public class IDCFixTreePathStrategy extends IDCStrategyDefault {
 
 		// first set up map representing tree structure
 		HashMap<String, String> nodeToParentMap = new HashMap<String, String>();
-		ResultSet rs = jdbc.executeQuery("select obj_uuid, fk_obj_uuid from object_node");
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery("select obj_uuid, fk_obj_uuid from object_node", st);
 		while (rs.next()) {
 			String uuid = rs.getString("obj_uuid");
 			String parentUuid = rs.getString("fk_obj_uuid");
@@ -56,6 +58,7 @@ public class IDCFixTreePathStrategy extends IDCStrategyDefault {
 			nodeToParentMap.put(uuid, parentUuid);
 		}
 		rs.close();
+		st.close();
 
 		// then process all nodes and write their path !
 		int numNodes = 0;
@@ -91,7 +94,8 @@ public class IDCFixTreePathStrategy extends IDCStrategyDefault {
 
 		// first set up map representing tree structure
 		nodeToParentMap = new HashMap<String, String>();
-		rs = jdbc.executeQuery("select addr_uuid, fk_addr_uuid from address_node");
+		st = jdbc.createStatement();
+		rs = jdbc.executeQuery("select addr_uuid, fk_addr_uuid from address_node", st);
 		while (rs.next()) {
 			String uuid = rs.getString("addr_uuid");
 			String parentUuid = rs.getString("fk_addr_uuid");
@@ -99,6 +103,7 @@ public class IDCFixTreePathStrategy extends IDCStrategyDefault {
 			nodeToParentMap.put(uuid, parentUuid);
 		}
 		rs.close();
+		st.close();
 
 		// then process all nodes and write their path !
 		numNodes = 0;

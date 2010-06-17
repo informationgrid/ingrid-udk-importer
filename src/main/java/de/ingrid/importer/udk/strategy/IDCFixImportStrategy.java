@@ -5,6 +5,7 @@ package de.ingrid.importer.udk.strategy;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -81,7 +82,8 @@ public class IDCFixImportStrategy extends IDCStrategyDefault {
 		psSql = "UPDATE spatial_reference SET spatial_ref_id = ? WHERE id = ?";
 		PreparedStatement psUpdateSpRef = jdbc.prepareStatement(psSql);
 
-		ResultSet rs = jdbc.executeQuery(sql);
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
 			long spRefValId = rs.getLong("id");
 			String spRefValNameValue = rs.getString("name_value");
@@ -144,6 +146,7 @@ public class IDCFixImportStrategy extends IDCStrategyDefault {
 			rsSpRefs.close();
 		}
 		rs.close();
+		st.close();
 		
 		if (log.isInfoEnabled()) {
 			log.info("Fixing spatial_ref_value... done");

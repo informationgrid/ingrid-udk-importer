@@ -99,16 +99,21 @@ public class JDBCConnectionProxy {
 
 	public int executeUpdate(String sql) throws SQLException {
 		Statement statement = fConnection.createStatement();
-		return statement.executeUpdate(sql);
+		int result = statement.executeUpdate(sql);
+		statement.close();
+		return result;
 	}
 
-	public ResultSet executeQuery(String sql) throws SQLException {
-		Statement statement = fConnection.createStatement();
+	public ResultSet executeQuery(String sql, Statement statement) throws SQLException {
 		return statement.executeQuery(sql);
 	}
 	
 	public PreparedStatement prepareStatement(String sql) throws SQLException {
 		return fConnection.prepareStatement(sql);
+	}
+	
+	public Statement createStatement() throws SQLException {
+		return fConnection.createStatement();
 	}
 
 	public DBLogic getDBLogic() {

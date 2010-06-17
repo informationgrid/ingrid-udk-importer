@@ -119,7 +119,13 @@ public class IDCStrategy1_0_6 extends IDCStrategyDefault {
 		if (log.isInfoEnabled()) {
 			log.info("Change field type of 't011_obj_serv.base' to TEXT ...");
 		}
-		jdbc.getDBLogic().modifyColumn("base", ColumnType.TEXT, "t011_obj_serv", false, jdbc);
+		// can't convert VARCHAR to CLOB on oracle, workaround: copy data
+		jdbc.getDBLogic().addColumn("base_temp", ColumnType.TEXT, "t011_obj_serv", false, null, jdbc);
+		jdbc.executeUpdate("UPDATE t011_obj_serv SET base_temp = base");
+		jdbc.getDBLogic().dropColumn("base", "t011_obj_serv", jdbc);
+		jdbc.getDBLogic().addColumn("base", ColumnType.TEXT, "t011_obj_serv", false, null, jdbc);
+		jdbc.executeUpdate("UPDATE t011_obj_serv SET base = base_temp");
+		jdbc.getDBLogic().dropColumn("base_temp", "t011_obj_serv", jdbc);
 
 		if (log.isInfoEnabled()) {
 			log.info("Extending datastructure... done");

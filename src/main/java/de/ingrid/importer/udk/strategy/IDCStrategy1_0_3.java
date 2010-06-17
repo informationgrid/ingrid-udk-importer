@@ -5,6 +5,7 @@ package de.ingrid.importer.udk.strategy;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -57,7 +58,7 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 
 	/** REDEFINE ! OLDER VERSION, no ID column yet ! */
 	protected void setGenericKey(String key, String value) throws SQLException {
-		jdbc.executeUpdate("DELETE FROM sys_generic_key WHERE key_name='" + key + "';");
+		jdbc.executeUpdate("DELETE FROM sys_generic_key WHERE key_name='" + key + "'");
 
 		sqlStr = "INSERT INTO sys_generic_key (key_name, value_string) " +
 			"VALUES ('" + key + "', '" + value + "')";
@@ -188,9 +189,9 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 			log.info("Add metadata association to object/address tables (FKey and index)...");
 		}
 		jdbc.getDBLogic().addColumn("obj_metadata_id", ColumnType.BIGINT, "t01_object", false, null, jdbc);
-		jdbc.getDBLogic().addIndex("obj_metadata_id", "t01_object", "idxObj_ObjMeta", jdbc);
+		jdbc.getDBLogic().addIndex("obj_metadata_id", "t01_object", "idx_ObjMeta", jdbc);
 		jdbc.getDBLogic().addColumn("addr_metadata_id", ColumnType.BIGINT, "t02_address", false, null, jdbc);
-		jdbc.getDBLogic().addIndex("addr_metadata_id", "t02_address", "idxAddr_AddrMeta", jdbc);
+		jdbc.getDBLogic().addIndex("addr_metadata_id", "t02_address", "idx_AddrMeta", jdbc);
 
 		if (log.isInfoEnabled()) {
 			log.info("Add column 'line' to tables 'object_comment', 'address_comment'...");
@@ -225,12 +226,12 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 
 		// insert new syslist
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
-			+ getNextId() + ", " + lstId + ", 1, 'de', 'konform', 0, 'N');");
+			+ getNextId() + ", " + lstId + ", 1, 'de', 'konform', 0, 'N')");
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
-			+ getNextId() + ", " + lstId + ", 2, 'de', 'nicht konform', 0, 'N');");
+			+ getNextId() + ", " + lstId + ", 2, 'de', 'nicht konform', 0, 'N')");
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
 			+ getNextId() + ", " + lstId + ", " + defaultSyslist6000EntryId + ", 'de', '"
-			+ defaultSyslist6000EntryValue + "', 0, 'Y');");
+			+ defaultSyslist6000EntryValue + "', 0, 'Y')");
 
 		// --------------------
 
@@ -246,24 +247,24 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		// insert new syslist
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
 			+ getNextId() + ", " + lstId + ", " + noData_Syslist6010EntryId + ", 'de', '" + noData_Syslist6010EntryValue 
-			+ "', 0, 'Y');");
+			+ "', 0, 'Y')");
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
-			+ getNextId() + ", " + lstId + ", 2, 'de', 'aufgrund der Vertraulichkeit der Verfahren von Behörden', 0, 'N');");
+			+ getNextId() + ", " + lstId + ", 2, 'de', 'aufgrund der Vertraulichkeit der Verfahren von Behörden', 0, 'N')");
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
-			+ getNextId() + ", " + lstId + ", 3, 'de', 'aufgrund internationaler Beziehungen, der öffentliche Sicherheit oder der Landesverteidigung', 0, 'N');");
+			+ getNextId() + ", " + lstId + ", 3, 'de', 'aufgrund internationaler Beziehungen, der öffentliche Sicherheit oder der Landesverteidigung', 0, 'N')");
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
-			+ getNextId() + ", " + lstId + ", 4, 'de', 'aufgrund laufender Gerichtsverfahren', 0, 'N');");
+			+ getNextId() + ", " + lstId + ", 4, 'de', 'aufgrund laufender Gerichtsverfahren', 0, 'N')");
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
-			+ getNextId() + ", " + lstId + ", 5, 'de', 'aufgrund der Vertraulichkeit von Geschäfts- oder Betriebsinformationen', 0, 'N');");
+			+ getNextId() + ", " + lstId + ", 5, 'de', 'aufgrund der Vertraulichkeit von Geschäfts- oder Betriebsinformationen', 0, 'N')");
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
 			+ getNextId() + ", " + lstId + ", " + existingData_Syslist6010EntryId + ", 'de', '" + existingData_Syslist6010EntryValue
-			+ "', 0, 'N');");
+			+ "', 0, 'N')");
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
-			+ getNextId() + ", " + lstId + ", 7, 'de', 'aufgrund der Vertraulichkeit personenbezogener Daten', 0, 'N');");
+			+ getNextId() + ", " + lstId + ", 7, 'de', 'aufgrund der Vertraulichkeit personenbezogener Daten', 0, 'N')");
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
-			+ getNextId() + ", " + lstId + ", 8, 'de', 'aufgrund des Schutzes einer Person', 0, 'N');");
+			+ getNextId() + ", " + lstId + ", 8, 'de', 'aufgrund des Schutzes einer Person', 0, 'N')");
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
-			+ getNextId() + ", " + lstId + ", 9, 'de', 'aufgrund des Schutzes von Umweltbereichen', 0, 'N');");
+			+ getNextId() + ", " + lstId + ", 9, 'de', 'aufgrund des Schutzes von Umweltbereichen', 0, 'N')");
 
 		// --------------------
 
@@ -278,29 +279,29 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 
 		// insert new syslist
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
-				+ getNextId() + ", " + lstId + ", 1, 'de', 'Suchdienste (CSW)', 0, 'N');");
+				+ getNextId() + ", " + lstId + ", 1, 'de', 'Suchdienste (CSW)', 0, 'N')");
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
-				+ getNextId() + ", " + lstId + ", 1, 'en', 'Discovery Service', 0, 'N');");
+				+ getNextId() + ", " + lstId + ", 1, 'en', 'Discovery Service', 0, 'N')");
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
-				+ getNextId() + ", " + lstId + ", " + wmsSyslist5100EntryId + ", 'de', '" + wmsSyslist5100EntryValue + "', 0, 'N');");
+				+ getNextId() + ", " + lstId + ", " + wmsSyslist5100EntryId + ", 'de', '" + wmsSyslist5100EntryValue + "', 0, 'N')");
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("					
-				+ getNextId() + ", " + lstId + ", " + wmsSyslist5100EntryId + ", 'en', 'View Service', 0, 'N');");
+				+ getNextId() + ", " + lstId + ", " + wmsSyslist5100EntryId + ", 'en', 'View Service', 0, 'N')");
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
-				+ getNextId() + ", " + lstId + ", " + wfsSyslist5100EntryId + ", 'de', '" + wfsSyslist5100EntryValue + "', 0, 'N');");
+				+ getNextId() + ", " + lstId + ", " + wfsSyslist5100EntryId + ", 'de', '" + wfsSyslist5100EntryValue + "', 0, 'N')");
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("					
-				+ getNextId() + ", " + lstId + ", " + wfsSyslist5100EntryId + ", 'en', 'Download Service', 0, 'N');");
+				+ getNextId() + ", " + lstId + ", " + wfsSyslist5100EntryId + ", 'en', 'Download Service', 0, 'N')");
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
-				+ getNextId() + ", " + lstId + ", 4, 'de', 'Transformationsdienste (WCTS)', 0, 'N');");
+				+ getNextId() + ", " + lstId + ", 4, 'de', 'Transformationsdienste (WCTS)', 0, 'N')");
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("					
-				+ getNextId() + ", " + lstId + ", 4, 'en', 'Transformation Service', 0, 'N');");
+				+ getNextId() + ", " + lstId + ", 4, 'en', 'Transformation Service', 0, 'N')");
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
-				+ getNextId() + ", " + lstId + ", 5, 'de', 'Verkettete Geodatendienste', 0, 'N');");
+				+ getNextId() + ", " + lstId + ", 5, 'de', 'Verkettete Geodatendienste', 0, 'N')");
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("					
-				+ getNextId() + ", " + lstId + ", 5, 'en', 'Invoke Spatial Data Service', 0, 'N');");
+				+ getNextId() + ", " + lstId + ", 5, 'en', 'Invoke Spatial Data Service', 0, 'N')");
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
-				+ getNextId() + ", " + lstId + ", " + defaultSyslist5100EntryId + ", 'de', '" + defaultSyslist5100EntryValue + "', 0, 'N');");
+				+ getNextId() + ", " + lstId + ", " + defaultSyslist5100EntryId + ", 'de', '" + defaultSyslist5100EntryValue + "', 0, 'N')");
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("					
-				+ getNextId() + ", " + lstId + ", " + defaultSyslist5100EntryId + ", 'en', 'Other Service', 0, 'N');");
+				+ getNextId() + ", " + lstId + ", " + defaultSyslist5100EntryId + ", 'en', 'Other Service', 0, 'N')");
 
 		// --------------------
 
@@ -315,19 +316,19 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 
 		// insert new syslist
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
-				+ getNextId() + ", " + lstId + ", 1, 'de', 'GetCapabilities', 0, 'N');");
+				+ getNextId() + ", " + lstId + ", 1, 'de', 'GetCapabilities', 0, 'N')");
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
-				+ getNextId() + ", " + lstId + ", 2, 'de', 'GetRecords', 0, 'N');");
+				+ getNextId() + ", " + lstId + ", 2, 'de', 'GetRecords', 0, 'N')");
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
-				+ getNextId() + ", " + lstId + ", 3, 'de', 'GetRecordById', 0, 'N');");
+				+ getNextId() + ", " + lstId + ", 3, 'de', 'GetRecordById', 0, 'N')");
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
-				+ getNextId() + ", " + lstId + ", 4, 'de', 'DescribeRecord', 0, 'N');");
+				+ getNextId() + ", " + lstId + ", 4, 'de', 'DescribeRecord', 0, 'N')");
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
-				+ getNextId() + ", " + lstId + ", 5, 'de', 'GetDomain', 0, 'N');");
+				+ getNextId() + ", " + lstId + ", 5, 'de', 'GetDomain', 0, 'N')");
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
-				+ getNextId() + ", " + lstId + ", 6, 'de', 'Transaction', 0, 'N');");
+				+ getNextId() + ", " + lstId + ", 6, 'de', 'Transaction', 0, 'N')");
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
-				+ getNextId() + ", " + lstId + ", 7, 'de', 'Harvest', 0, 'N');");
+				+ getNextId() + ", " + lstId + ", 7, 'de', 'Harvest', 0, 'N')");
 
 		// --------------------
 
@@ -342,15 +343,15 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 
 		// insert new syslist
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
-				+ getNextId() + ", " + lstId + ", 1, 'de', 'GetCapabilities', 0, 'N');");
+				+ getNextId() + ", " + lstId + ", 1, 'de', 'GetCapabilities', 0, 'N')");
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
-				+ getNextId() + ", " + lstId + ", 2, 'de', 'Transform', 0, 'N');");
+				+ getNextId() + ", " + lstId + ", 2, 'de', 'Transform', 0, 'N')");
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
-				+ getNextId() + ", " + lstId + ", 3, 'de', 'IsTransformable', 0, 'N');");
+				+ getNextId() + ", " + lstId + ", 3, 'de', 'IsTransformable', 0, 'N')");
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
-				+ getNextId() + ", " + lstId + ", 4, 'de', 'GetTransformation', 0, 'N');");
+				+ getNextId() + ", " + lstId + ", 4, 'de', 'GetTransformation', 0, 'N')");
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
-				+ getNextId() + ", " + lstId + ", 5, 'de', 'GetResourceById', 0, 'N');");
+				+ getNextId() + ", " + lstId + ", 5, 'de', 'GetResourceById', 0, 'N')");
 
 		// --------------------
 
@@ -576,7 +577,8 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 			"from t01_object obj, object_node objNode " +
 			"where obj.obj_uuid = objNode.obj_uuid";
 
-		ResultSet rs = jdbc.executeQuery(sql);
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(sql, st);
 		HashMap<Long, Boolean> processedNodeIds = new HashMap<Long,Boolean>();
 		while (rs.next()) {
 			long objNodeId = rs.getLong("objNodeId");
@@ -588,7 +590,7 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 
 			jdbc.executeUpdate("INSERT INTO object_conformity (id, obj_id, line, specification, degree_key, degree_value, publication_date) " +
 				"VALUES (" + getNextId() + ", " + objId + ", 1, '" + defaultSpecification + "', "
-				+ defaultSyslist6000EntryId + ", '" + defaultSyslist6000EntryValue + "', '" + defaultPubDate + "');");
+				+ defaultSyslist6000EntryId + ", '" + defaultSyslist6000EntryValue + "', '" + defaultPubDate + "')");
 			
 			// Node may contain different object versions, then we receive nodeId multiple times.
 			// Write Index only once (index contains data of working version!) !
@@ -600,6 +602,7 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 			}
 		}
 		rs.close();
+		st.close();
 
 		if (log.isInfoEnabled()) {
 			log.info("Updating object_conformity... done");
@@ -617,20 +620,23 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 
 		// get catalog name and create prefix for unique datasource_uuid
 		String sql = "select cat_name from t03_catalogue";
-		ResultSet rs = jdbc.executeQuery(sql);
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(sql, st);
 		rs.next();
 		String catName = rs.getString("cat_name");
 		rs.close();
+		st.close();
 		
 		String datasourceUuidPrefix = catName.replace(' ', '_');
 		datasourceUuidPrefix += ":";
 
 		// then add default data for ALL t011_obj_geo 
-		sql = "select distinct objGeo.id as objGeoId, objGeo.special_base, obj.obj_uuid as objUuid " +
+		sql = "select objGeo.id as objGeoId, objGeo.special_base, obj.obj_uuid as objUuid " +
 			"from t011_obj_geo objGeo, t01_object obj " +
 			"where objGeo.obj_id = obj.id";
 
-		rs = jdbc.executeQuery(sql);
+		st = jdbc.createStatement();
+		rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
 			long objGeoId = rs.getLong("objGeoId");
 			String objUuid = rs.getString("objUuid");
@@ -647,6 +653,7 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 			}
 		}
 		rs.close();
+		st.close();
 
 		if (log.isInfoEnabled()) {
 			log.info("Updating t011_obj_geo... done");
@@ -662,7 +669,7 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 			log.info("Migrate obj.avail_access_note, obj.fees to table object_access...");
 		}
 
-		String sql = "select distinct objNode.id as objNodeId, objNode.obj_id as objWorkId, obj.id as objId, obj.avail_access_note, obj.fees " +
+		String sql = "select objNode.id as objNodeId, objNode.obj_id as objWorkId, obj.id as objId, obj.avail_access_note, obj.fees " +
 			"from t01_object obj, object_node objNode " +
 			"where obj.obj_uuid = objNode.obj_uuid";
 
@@ -670,7 +677,8 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		// we track written data in hash maps to avoid multiple writing for same object (or should we trust upper sql ;)
 		HashMap<Long, Boolean> processedObjIds = new HashMap<Long,Boolean>();
 
-		ResultSet rs = jdbc.executeQuery(sql);
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
 			long objNodeId = rs.getLong("objNodeId");
 			long objWorkId = rs.getLong("objWorkId");
@@ -705,7 +713,7 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 
 				jdbc.executeUpdate("INSERT INTO object_access (id, obj_id, line, restriction_key, restriction_value, terms_of_use) "
 					+ "VALUES (" + getNextId() + ", " + objId + ", 1, " + syslist6010EntryId + ", '" + syslist6010EntryValue
-					+ "', '" + termsOfUse + "');");
+					+ "', '" + termsOfUse + "')");
 				
 				processedObjIds.put(objId, true);
 
@@ -717,6 +725,7 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 			}
 		}
 		rs.close();
+		st.close();
 
 		if (log.isInfoEnabled()) {
 			log.info("Updating object_access... done");
@@ -732,7 +741,7 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 			log.info("Migrate type_key, type_value to new syslist (Service-Klassifikation) ...");
 		}
 
-		String sql = "select distinct objNode.id as objNodeId, objNode.obj_id as objWorkId, obj.id as objId, " +
+		String sql = "select objNode.id as objNodeId, objNode.obj_id as objWorkId, obj.id as objId, " +
 			"objServ.id as objServId, objServ.type_key, objServ.type_value, objServ.description " +
 			"from t011_obj_serv objServ, t01_object obj, object_node objNode " +
 			"where objServ.obj_id = obj.id " +
@@ -742,7 +751,8 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		// we track written data in hash maps to avoid multiple writing for same object (or should we trust upper sql ;)
 		HashMap<Long, Boolean> processedObjIds = new HashMap<Long,Boolean>();
 
-		ResultSet rs = jdbc.executeQuery(sql);
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
 			long objNodeId = rs.getLong("objNodeId");
 			long objWorkId = rs.getLong("objWorkId");
@@ -792,6 +802,7 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 			}
 		}
 		rs.close();
+		st.close();
 
 		if (log.isInfoEnabled()) {
 			log.info("Updating t011_obj_serv... done");
@@ -815,7 +826,8 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 
 		HashMap<Long, Boolean> processedServOpIds = new HashMap<Long,Boolean>();
 
-		ResultSet rs = jdbc.executeQuery(sql);
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
 			long objServOpId = rs.getLong("objServOpId");
 
@@ -843,6 +855,7 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 			}
 		}
 		rs.close();
+		st.close();
 
 		if (log.isInfoEnabled()) {
 			log.info("Updating t011_obj_serv... done");
@@ -868,7 +881,8 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		// we track written data in hash maps to avoid multiple writing for same object (or should we trust upper sql ;)
 		HashMap<Long, Boolean> processedObjIds = new HashMap<Long,Boolean>();
 
-		ResultSet rs = jdbc.executeQuery(sql);
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
 			long objNodeId = rs.getLong("objNodeId");
 			long objWorkId = rs.getLong("objWorkId");
@@ -884,7 +898,7 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 
 				jdbc.executeUpdate("INSERT INTO t011_obj_serv_type (id, obj_serv_id, line, serv_type_key, serv_type_value) "
 					+ "VALUES (" + getNextId() + ", " + objServId + ", 1, " + syslist5200EntryId + ", '"
-					+ syslist5200EntryValue	+ "');");
+					+ syslist5200EntryValue	+ "')");
 
 				if (log.isDebugEnabled()) {
 					log.debug("Obj-Service id(" + objServId+ "), wrote type " + syslist5200EntryId + "/" + syslist5200EntryValue);
@@ -903,6 +917,7 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 			}
 		}
 		rs.close();
+		st.close();
 
 		if (log.isInfoEnabled()) {
 			log.info("Updating t011_obj_serv_type... done");
@@ -935,7 +950,8 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		// we track written data in hash maps to avoid multiple writing for same address (or should we trust upper sql ;)
 		HashMap<Long, Boolean> processedAddrIds = new HashMap<Long,Boolean>();
 
-		ResultSet rs = jdbc.executeQuery(sql);
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
 			long addrNodeId = rs.getLong("addrNodeId");
 
@@ -948,11 +964,11 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 			// already processed ?
 			if (!processedAddrIds.containsKey(addrId)) {
 				// check whether address has email
-				HashMap returnData = new HashMap();
+				HashMap<String, Integer> returnData = new HashMap<String, Integer>();
 				String email = getAddressEmail(addrId, returnData);
 				if (email == null) {
 					// this is the line number the new email is added with
-					int line = ((Integer) returnData.get("MAX_LINE")) + 1;
+					int line = returnData.get("MAX_LINE") + 1;
 					
 					// get email from parent(s), use default email if no email set
 					String emailToAdd = getParentAddressEmail(parentAddrUuid, isWorkingVersion);				
@@ -961,7 +977,7 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 					jdbc.executeUpdate(
 						"INSERT INTO t021_communication (id, adr_id, line, commtype_key, commtype_value, comm_value, descr) "
 						+ "VALUES (" + getNextId() + ", " + addrId + ", " + line + ", " + COMMUNICATION_TYPE_EMAIL_KEY + ", '"
-						+ COMMUNICATION_TYPE_EMAIL_VALUE + "', '" + emailToAdd + "', '" + defaultEmailDescr+ "');");					
+						+ COMMUNICATION_TYPE_EMAIL_VALUE + "', '" + emailToAdd + "', '" + defaultEmailDescr+ "')");					
 
 					if (log.isDebugEnabled()) {
 						log.debug("Updated Address id(" + addrId + ") with email '" + emailToAdd + "'");
@@ -982,20 +998,22 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 			}
 		}
 		rs.close();
+		st.close();
 
 		if (log.isInfoEnabled()) {
 			log.info("Updating t021_communication... done");
 		}
 	}
 	
-	private String getAddressEmail(long addrId, HashMap returnData) throws Exception {
+	private String getAddressEmail(long addrId, HashMap<String, Integer> returnData) throws Exception {
 		// select all communication values of address
 		String sql = "select commtype_key, comm_value, line " +
 		"from t021_communication " +
 		"where adr_id = " + addrId + " order by line";
 
 		String email = null;
-		ResultSet rs = jdbc.executeQuery(sql);
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(sql, st);
 		int maxLine = 0;
 		while (rs.next()) {
 			if (COMMUNICATION_TYPE_EMAIL_KEY.equals(rs.getInt("commtype_key"))) {
@@ -1004,6 +1022,7 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 			maxLine = rs.getInt("line");
 		}
 		rs.close();
+		st.close();
 		
 		if (returnData != null) {
 			returnData.put("MAX_LINE", maxLine);
@@ -1029,12 +1048,14 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 
 		String email = null;
 		String parentUuid = null;
-		ResultSet rs = jdbc.executeQuery(sql);
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(sql, st);
 		if (rs.next()) {
 			parentUuid = rs.getString("parentUuid");
 			email = getAddressEmail(rs.getLong("addrId"), null);
 		}
 		rs.close();
+		st.close();
 		
 		// recursive call to parent if no email yet 
 		if (email == null) {
@@ -1160,15 +1181,17 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		if (log.isInfoEnabled()) {
 			log.info("Updating object_metadata...");
 		}
-		ResultSet rs = jdbc.executeQuery("select id from t01_object");
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery("select id from t01_object", st);
 		while (rs.next()) {
 			long id = rs.getLong("id");
 			long metaId = getNextId();
 
-			jdbc.executeUpdate("INSERT INTO object_metadata (id) "	+ "VALUES (" + metaId + ");");
+			jdbc.executeUpdate("INSERT INTO object_metadata (id) "	+ "VALUES (" + metaId + ")");
 			jdbc.executeUpdate("UPDATE t01_object SET obj_metadata_id = " + metaId + " where id = " + id);
 		}
 		rs.close();
+		st.close();
 		if (log.isInfoEnabled()) {
 			log.info("Updating object_metadata... done");
 		}
@@ -1178,15 +1201,17 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		if (log.isInfoEnabled()) {
 			log.info("Updating address_metadata...");
 		}
-		rs = jdbc.executeQuery("select id from t02_address");
+		st = jdbc.createStatement();
+		rs = jdbc.executeQuery("select id from t02_address", st);
 		while (rs.next()) {
 			long id = rs.getLong("id");
 			long metaId = getNextId();
 
-			jdbc.executeUpdate("INSERT INTO address_metadata (id) "	+ "VALUES (" + metaId + ");");
+			jdbc.executeUpdate("INSERT INTO address_metadata (id) "	+ "VALUES (" + metaId + ")");
 			jdbc.executeUpdate("UPDATE t02_address SET addr_metadata_id = " + metaId + " where id = " + id);
 		}
 		rs.close();
+		st.close();
 		if (log.isInfoEnabled()) {
 			log.info("Updating address_metadata... done");
 		}
@@ -1197,8 +1222,9 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		if (log.isInfoEnabled()) {
 			log.info("Updating object_comment new line attribute...");
 		}
+		Statement st = jdbc.createStatement();
 		ResultSet rs = jdbc.executeQuery(
-				"select id, obj_id from object_comment order by obj_id, create_time");
+				"select id, obj_id from object_comment order by obj_id, create_time", st);
 		int currLine = 1;
 		long currEntityId = -1;
 		while (rs.next()) {
@@ -1214,6 +1240,7 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 			currLine++;
 		}
 		rs.close();
+		st.close();
 		if (log.isInfoEnabled()) {
 			log.info("Updating object_comment... done");
 		}
@@ -1223,8 +1250,9 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		if (log.isInfoEnabled()) {
 			log.info("Updating address_comment new line attribute...");
 		}
+		st = jdbc.createStatement();
 		rs = jdbc.executeQuery(
-				"select id, addr_id from address_comment order by addr_id, create_time");
+				"select id, addr_id from address_comment order by addr_id, create_time", st);
 		currEntityId = -1;
 		while (rs.next()) {
 			long id = rs.getLong("id");
@@ -1239,6 +1267,7 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 			currLine++;
 		}
 		rs.close();
+		st.close();
 		if (log.isInfoEnabled()) {
 			log.info("Updating address_comment... done");
 		}
@@ -1254,7 +1283,8 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 
 		// first set up map representing tree structure
 		HashMap<String, String> nodeToParentMap = new HashMap<String, String>();
-		ResultSet rs = jdbc.executeQuery("select obj_uuid, fk_obj_uuid from object_node");
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery("select obj_uuid, fk_obj_uuid from object_node", st);
 		while (rs.next()) {
 			String uuid = rs.getString("obj_uuid");
 			String parentUuid = rs.getString("fk_obj_uuid");
@@ -1277,6 +1307,7 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 			nodeToParentMap.put(uuid, parentUuid);
 		}
 		rs.close();
+		st.close();
 
 		// then process all nodes and write their path !
 		Iterator<String> nodeIt = nodeToParentMap.keySet().iterator();
@@ -1323,7 +1354,8 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 
 		// first set up map representing tree structure
 		nodeToParentMap = new HashMap<String, String>();
-		rs = jdbc.executeQuery("select addr_uuid, fk_addr_uuid from address_node");
+		st = jdbc.createStatement();
+		rs = jdbc.executeQuery("select addr_uuid, fk_addr_uuid from address_node", st);
 		while (rs.next()) {
 			String uuid = rs.getString("addr_uuid");
 			String parentUuid = rs.getString("fk_addr_uuid");
@@ -1346,6 +1378,7 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 			nodeToParentMap.put(uuid, parentUuid);
 		}
 		rs.close();
+		st.close();
 
 		// then process all nodes and write their path !
 		nodeIt = nodeToParentMap.keySet().iterator();

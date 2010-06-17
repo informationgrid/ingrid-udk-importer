@@ -118,6 +118,10 @@
         </exclusion>
       </exclusions>
     </dependency>
+    <dependency>
+	    <groupId>ojdbc</groupId>
+	    <artifactId>ojdbc</artifactId>
+	</dependency>
   </dependencies>
   <!-- NEVER DELETE: InGrid repo needed for download of parent pom if not present ! -->
   <repositories>
@@ -131,4 +135,13 @@
     <connection>scm:svn:https://harrison.its-technidata.de:444/svn/ingrid/ingrid-udk-importer/trunk</connection>
     <developerConnection>scm:svn:https://harrison.its-technidata.de:444/svn/ingrid/ingrid-udk-importer/trunk</developerConnection>
   </scm>
+  <dependencyManagement>
+    <dependencies>
+	    <dependency>
+		    <groupId>ojdbc</groupId>
+		    <artifactId>ojdbc</artifactId>
+		    <version>14</version>
+		</dependency>
+	</dependencies>
+  </dependencyManagement>
 </project>

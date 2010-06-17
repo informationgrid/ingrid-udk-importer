@@ -6,6 +6,7 @@ package de.ingrid.importer.udk.strategy;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -32,7 +33,7 @@ public abstract class IDCStrategyDefault1_0_2 extends IDCStrategyDefault {
 
 	/** REDEFINE ! OLDER VERSION, no ID column yet ! */
 	protected void setGenericKey(String key, String value) throws SQLException {
-		jdbc.executeUpdate("DELETE FROM sys_generic_key WHERE key_name='" + key + "';");
+		jdbc.executeUpdate("DELETE FROM sys_generic_key WHERE key_name='" + key + "'");
 
 		sqlStr = "INSERT INTO sys_generic_key (key_name, value_string) " +
 			"VALUES ('" + key + "', '" + value + "')";
@@ -89,7 +90,7 @@ public abstract class IDCStrategyDefault1_0_2 extends IDCStrategyDefault {
 		mapOldValueToNewKeyList101.put("DE_KRON / NH", 900004);
 
 		pSqlStr = "INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, description, maintainable) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?);";
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -183,184 +184,184 @@ public abstract class IDCStrategyDefault1_0_2 extends IDCStrategyDefault {
 		}
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 1400, 1, 'de', 'Daten und Karten', 0);");
+				+ dataProvider.getId() + ", 1400, 1, 'de', 'Daten und Karten', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 1400, 2, 'de', 'Konzeptionelles', 0);");
+				+ dataProvider.getId() + ", 1400, 2, 'de', 'Konzeptionelles', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 1400, 3, 'de', 'Rechtliches', 0);");
+				+ dataProvider.getId() + ", 1400, 3, 'de', 'Rechtliches', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 1400, 4, 'de', 'Risikobewertungen', 0);");
+				+ dataProvider.getId() + ", 1400, 4, 'de', 'Risikobewertungen', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 1400, 5, 'de', 'Statusberichte', 0);");
+				+ dataProvider.getId() + ", 1400, 5, 'de', 'Statusberichte', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 1400, 6, 'de', 'Umweltzustand', 0);");
+				+ dataProvider.getId() + ", 1400, 6, 'de', 'Umweltzustand', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 1410, 1, 'de', 'Abfall', 0);");
+				+ dataProvider.getId() + ", 1410, 1, 'de', 'Abfall', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 1410, 2, 'de', 'Altlasten', 0);");
+				+ dataProvider.getId() + ", 1410, 2, 'de', 'Altlasten', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 1410, 3, 'de', 'Bauen', 0);");
+				+ dataProvider.getId() + ", 1410, 3, 'de', 'Bauen', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 1410, 4, 'de', 'Boden', 0);");
+				+ dataProvider.getId() + ", 1410, 4, 'de', 'Boden', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 1410, 5, 'de', 'Chemikalien', 0);");
+				+ dataProvider.getId() + ", 1410, 5, 'de', 'Chemikalien', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 1410, 6, 'de', 'Energie', 0);");
+				+ dataProvider.getId() + ", 1410, 6, 'de', 'Energie', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 1410, 7, 'de', 'Forstwirtschaft', 0);");
+				+ dataProvider.getId() + ", 1410, 7, 'de', 'Forstwirtschaft', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 1410, 8, 'de', 'Gentechnik', 0);");
+				+ dataProvider.getId() + ", 1410, 8, 'de', 'Gentechnik', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 1410, 9, 'de', 'Geologie', 0);");
+				+ dataProvider.getId() + ", 1410, 9, 'de', 'Geologie', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 1410, 10, 'de', 'Gesundheit', 0);");
+				+ dataProvider.getId() + ", 1410, 10, 'de', 'Gesundheit', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 1410, 11, 'de', 'Lärm und Erschütterungen', 0);");
+				+ dataProvider.getId() + ", 1410, 11, 'de', 'Lärm und Erschütterungen', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 1410, 12, 'de', 'Landwirtschaft', 0);");
+				+ dataProvider.getId() + ", 1410, 12, 'de', 'Landwirtschaft', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 1410, 13, 'de', 'Luft und Klima', 0);");
+				+ dataProvider.getId() + ", 1410, 13, 'de', 'Luft und Klima', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 1410, 14, 'de', 'Nachhaltige Entwicklung', 0);");
+				+ dataProvider.getId() + ", 1410, 14, 'de', 'Nachhaltige Entwicklung', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 1410, 15, 'de', 'Natur und Landschaft', 0);");
+				+ dataProvider.getId() + ", 1410, 15, 'de', 'Natur und Landschaft', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 1410, 16, 'de', 'Strahlung', 0);");
+				+ dataProvider.getId() + ", 1410, 16, 'de', 'Strahlung', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 1410, 17, 'de', 'Tierschutz', 0);");
+				+ dataProvider.getId() + ", 1410, 17, 'de', 'Tierschutz', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 1410, 18, 'de', 'Umweltinformationen', 0);");
+				+ dataProvider.getId() + ", 1410, 18, 'de', 'Umweltinformationen', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 1410, 19, 'de', 'Umweltwirtschaft', 0);");
+				+ dataProvider.getId() + ", 1410, 19, 'de', 'Umweltwirtschaft', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 1410, 20, 'de', 'Verkehr', 0);");
+				+ dataProvider.getId() + ", 1410, 20, 'de', 'Verkehr', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 1410, 21, 'de', 'Wasser', 0);");
+				+ dataProvider.getId() + ", 1410, 21, 'de', 'Wasser', 0)");
 
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 2000, 3100, 'de', 'Methode / Datengrundlage', 0);");
+				+ dataProvider.getId() + ", 2000, 3100, 'de', 'Methode / Datengrundlage', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 2000, 3210, 'de', 'Basisdaten', 0);");
+				+ dataProvider.getId() + ", 2000, 3210, 'de', 'Basisdaten', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 2000, 3345, 'de', 'Basisdaten', 0);");
+				+ dataProvider.getId() + ", 2000, 3345, 'de', 'Basisdaten', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 2000, 3515, 'de', 'Herstellungsprozess', 0);");
+				+ dataProvider.getId() + ", 2000, 3515, 'de', 'Herstellungsprozess', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 2000, 3520, 'de', 'Fachliche Grundlage', 0);");
+				+ dataProvider.getId() + ", 2000, 3520, 'de', 'Fachliche Grundlage', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 2000, 3535, 'de', 'Schlüsselkatalog', 0);");
+				+ dataProvider.getId() + ", 2000, 3535, 'de', 'Schlüsselkatalog', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 2000, 3555, 'de', 'Symbolkatalog', 0);");
+				+ dataProvider.getId() + ", 2000, 3555, 'de', 'Symbolkatalog', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 2000, 3570, 'de', 'Datengrundlage', 0);");
+				+ dataProvider.getId() + ", 2000, 3570, 'de', 'Datengrundlage', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 2000, 5066, 'de', 'Verweis zu Dienst', 0);");
+				+ dataProvider.getId() + ", 2000, 5066, 'de', 'Verweis zu Dienst', 0)");
 
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 2010, 3360, 'de', 'Standort', 0);");
+				+ dataProvider.getId() + ", 2010, 3360, 'de', 'Standort', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 2010, 3400, 'de', 'Projektleiter', 0);");
+				+ dataProvider.getId() + ", 2010, 3400, 'de', 'Projektleiter', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 2010, 3410, 'de', 'Beteiligte', 0);");
+				+ dataProvider.getId() + ", 2010, 3410, 'de', 'Beteiligte', 0)");
 
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 5100, 1, 'de', 'WMS', 0);");
+				+ dataProvider.getId() + ", 5100, 1, 'de', 'WMS', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 5100, 2, 'de', 'WFS', 0);");
+				+ dataProvider.getId() + ", 5100, 2, 'de', 'WFS', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 5110, 1, 'de', 'GetCapabilities', 0);");
+				+ dataProvider.getId() + ", 5110, 1, 'de', 'GetCapabilities', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 5110, 2, 'de', 'GetMap', 0);");
+				+ dataProvider.getId() + ", 5110, 2, 'de', 'GetMap', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 5110, 3, 'de', 'GetFeatureInfo', 0);");
+				+ dataProvider.getId() + ", 5110, 3, 'de', 'GetFeatureInfo', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 5120, 1, 'de', 'DescribeFeatureType', 0);");
+				+ dataProvider.getId() + ", 5120, 1, 'de', 'DescribeFeatureType', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 5120, 2, 'de', 'GetFeature', 0);");
+				+ dataProvider.getId() + ", 5120, 2, 'de', 'GetFeature', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 5120, 3, 'de', 'GetFeature', 0);");
+				+ dataProvider.getId() + ", 5120, 3, 'de', 'GetFeature', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 5120, 4, 'de', 'LockFeature', 0);");
+				+ dataProvider.getId() + ", 5120, 4, 'de', 'LockFeature', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 5120, 5, 'de', 'Transaction', 0);");
+				+ dataProvider.getId() + ", 5120, 5, 'de', 'Transaction', 0)");
 
 		// remove old values
-		jdbc.executeUpdate("DELETE FROM sys_list WHERE lst_id=2240;");
+		jdbc.executeUpdate("DELETE FROM sys_list WHERE lst_id=2240");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 2240, 1, 'de', 'HTML', 0);");
+				+ dataProvider.getId() + ", 2240, 1, 'de', 'HTML', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 2240, 2, 'de', 'JPG', 0);");
+				+ dataProvider.getId() + ", 2240, 2, 'de', 'JPG', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 2240, 3, 'de', 'PNG', 0);");
+				+ dataProvider.getId() + ", 2240, 3, 'de', 'PNG', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 2240, 4, 'de', 'GIF', 0);");
+				+ dataProvider.getId() + ", 2240, 4, 'de', 'GIF', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 2240, 5, 'de', 'PDF', 0);");
+				+ dataProvider.getId() + ", 2240, 5, 'de', 'PDF', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 2240, 6, 'de', 'DOC', 0);");
+				+ dataProvider.getId() + ", 2240, 6, 'de', 'DOC', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 2240, 7, 'de', 'PPT', 0);");
+				+ dataProvider.getId() + ", 2240, 7, 'de', 'PPT', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 2240, 8, 'de', 'XLS', 0);");
+				+ dataProvider.getId() + ", 2240, 8, 'de', 'XLS', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
-				+ dataProvider.getId() + ", 2240, 9, 'de', 'ASCII/Text', 0);");
+				+ dataProvider.getId() + ", 2240, 9, 'de', 'ASCII/Text', 0)");
 
 		if (log.isInfoEnabled()) {
 			log.info("Importing special values... done.");
@@ -374,10 +375,10 @@ public abstract class IDCStrategyDefault1_0_2 extends IDCStrategyDefault {
 		    Object value = mapNewKeyToNewValueList100.get(key);
 			dataProvider.setId(dataProvider.getId() + 1);
 			jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name) VALUES ("
-					+ dataProvider.getId() + ", 100, " + key + ", 'de', '" + value + "');");
+					+ dataProvider.getId() + ", 100, " + key + ", 'de', '" + value + "')");
 			dataProvider.setId(dataProvider.getId() + 1);
 			jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name) VALUES ("
-					+ dataProvider.getId() + ", 100, " + key + ", 'en', '" + value + "');");
+					+ dataProvider.getId() + ", 100, " + key + ", 'en', '" + value + "')");
 		}
 
 		// syslist 101 !
@@ -385,10 +386,10 @@ public abstract class IDCStrategyDefault1_0_2 extends IDCStrategyDefault {
 		    Object value = mapNewKeyToNewValueList101.get(key);
 			dataProvider.setId(dataProvider.getId() + 1);
 			jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name) VALUES ("
-					+ dataProvider.getId() + ", 101, " + key + ", 'de', '" + value + "');");
+					+ dataProvider.getId() + ", 101, " + key + ", 'de', '" + value + "')");
 			dataProvider.setId(dataProvider.getId() + 1);
 			jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name) VALUES ("
-					+ dataProvider.getId() + ", 101, " + key + ", 'en', '" + value + "');");
+					+ dataProvider.getId() + ", 101, " + key + ", 'en', '" + value + "')");
 		}
 		if (log.isInfoEnabled()) {
 			log.info("Importing new syslist 100 (Raumbezugsystem), 101 (Vertikaldaten)... done");
@@ -416,47 +417,47 @@ public abstract class IDCStrategyDefault1_0_2 extends IDCStrategyDefault {
 			+ "( " + dataProvider.getId() + ", '" + getCatalogAdminUuid() + "', NULL, 3, NULL, 'admin', 'admin', 'Frau', -1, 'Dr.', -1, "
 			+ "NULL, NULL, NULL, NULL, NULL, NULL, 'Administrator of this catalog.', "
 			+ "'Administrator of this catalog.', NULL, NULL, 'V', 0, "
-			+ "'N', NULL, NULL, NULL, NULL);";
+			+ "'N', NULL, NULL, NULL, NULL)";
 		jdbc.executeUpdate(sqlStr);
 		
 		dataProvider.setId(dataProvider.getId() + 1);
-		sqlStr = "INSERT INTO `address_node` ( `id` , `addr_uuid` , `addr_id` , `addr_id_published` , `fk_addr_uuid` ) VALUES ( " + dataProvider.getId() + ", '" + getCatalogAdminUuid() + "', "+adrId+", "+adrId+", NULL )"; 
+		sqlStr = "INSERT INTO address_node ( id , addr_uuid , addr_id , addr_id_published , fk_addr_uuid ) VALUES ( " + dataProvider.getId() + ", '" + getCatalogAdminUuid() + "', "+adrId+", "+adrId+", NULL )"; 
 		jdbc.executeUpdate(sqlStr);
 
 		// import default admin group
 		dataProvider.setId(dataProvider.getId() + 1);
 		long groupId = dataProvider.getId();
-		sqlStr = "INSERT INTO idc_group ( id, name) VALUES (" + groupId + ", 'administrators');";
+		sqlStr = "INSERT INTO idc_group ( id, name) VALUES (" + groupId + ", 'administrators')";
 		jdbc.executeUpdate(sqlStr);
 		
 		// import default admin user
 		dataProvider.setId(dataProvider.getId() + 1);
 		long userId = dataProvider.getId();
-		sqlStr = "INSERT INTO idc_user ( id, addr_uuid, idc_group_id, idc_role) VALUES (" + userId + ", '"+getCatalogAdminUuid()+"', "+groupId+", "+ROLE_CATALOG_ADMINISTRATOR+" );";
+		sqlStr = "INSERT INTO idc_user ( id, addr_uuid, idc_group_id, idc_role) VALUES (" + userId + ", '"+getCatalogAdminUuid()+"', "+groupId+", "+ROLE_CATALOG_ADMINISTRATOR+" )";
 		jdbc.executeUpdate(sqlStr);
 		
 		// import permissions
 		dataProvider.setId(dataProvider.getId() + 1);
-		sqlStr = "INSERT INTO permission ( id , class_name , name , action ) VALUES ( " + dataProvider.getId() + ", 'IdcEntityPermission', 'entity', 'write');";
+		sqlStr = "INSERT INTO permission ( id , class_name , name , action ) VALUES ( " + dataProvider.getId() + ", 'IdcEntityPermission', 'entity', 'write')";
 		jdbc.executeUpdate(sqlStr);
 		dataProvider.setId(dataProvider.getId() + 1);
-		sqlStr = "INSERT INTO permission ( id , class_name , name , action ) VALUES ( " + dataProvider.getId() + ", 'IdcEntityPermission', 'entity', 'write-tree');";
+		sqlStr = "INSERT INTO permission ( id , class_name , name , action ) VALUES ( " + dataProvider.getId() + ", 'IdcEntityPermission', 'entity', 'write-tree')";
 		jdbc.executeUpdate(sqlStr);
 		dataProvider.setId(dataProvider.getId() + 1);
 		long permissionCreateCatalodId = dataProvider.getId();
-		sqlStr = "INSERT INTO permission ( id , class_name , name , action ) VALUES ( " + dataProvider.getId() + ", 'IdcUserPermission', 'catalog', 'create-root');";
+		sqlStr = "INSERT INTO permission ( id , class_name , name , action ) VALUES ( " + dataProvider.getId() + ", 'IdcUserPermission', 'catalog', 'create-root')";
 		jdbc.executeUpdate(sqlStr);
 		dataProvider.setId(dataProvider.getId() + 1);
 		long permissionCreateQaId = dataProvider.getId();
-		sqlStr = "INSERT INTO permission ( id , class_name , name , action ) VALUES ( " + dataProvider.getId() + ", 'IdcUserPermission', 'catalog', 'qa');";
+		sqlStr = "INSERT INTO permission ( id , class_name , name , action ) VALUES ( " + dataProvider.getId() + ", 'IdcUserPermission', 'catalog', 'qa')";
 		jdbc.executeUpdate(sqlStr);
 		
 		// import user permissions
 		dataProvider.setId(dataProvider.getId() + 1);
-		sqlStr = "INSERT INTO idc_user_permission ( id , permission_id , idc_group_id ) VALUES ( " + dataProvider.getId() + ", "+permissionCreateCatalodId+", "+groupId+");";
+		sqlStr = "INSERT INTO idc_user_permission ( id , permission_id , idc_group_id ) VALUES ( " + dataProvider.getId() + ", "+permissionCreateCatalodId+", "+groupId+")";
 		jdbc.executeUpdate(sqlStr);
 		dataProvider.setId(dataProvider.getId() + 1);
-		sqlStr = "INSERT INTO idc_user_permission ( id , permission_id , idc_group_id ) VALUES ( " + dataProvider.getId() + ", "+permissionCreateQaId+", "+groupId+");";
+		sqlStr = "INSERT INTO idc_user_permission ( id , permission_id , idc_group_id ) VALUES ( " + dataProvider.getId() + ", "+permissionCreateQaId+", "+groupId+")";
 		jdbc.executeUpdate(sqlStr);
 	}
 
@@ -476,12 +477,14 @@ public abstract class IDCStrategyDefault1_0_2 extends IDCStrategyDefault {
 			if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
 				String sql = "SELECT id FROM object_node WHERE obj_id="
 					+ row.getInteger("primary_key");
-				ResultSet rs = jdbc.executeQuery(sql);
+				Statement st = jdbc.createStatement();
+				ResultSet rs = jdbc.executeQuery(sql, st);
 				if (rs.next()) {
 					jdbc.executeUpdate("UPDATE full_index_obj SET obj_node_id = " + rs.getLong("id") + " WHERE obj_node_id="
-							+ row.getInteger("primary_key") + ";");
+							+ row.getInteger("primary_key"));
 				}
 				rs.close();
+				st.close();
 			}
 		}
 		
@@ -496,12 +499,14 @@ public abstract class IDCStrategyDefault1_0_2 extends IDCStrategyDefault {
 			if (row.get("mod_type") != null && !invalidModTypes.contains(row.get("mod_type"))) {
 				String sql = "SELECT id FROM address_node WHERE addr_id="
 					+ row.getInteger("primary_key");
-				ResultSet rs = jdbc.executeQuery(sql);
+				Statement st = jdbc.createStatement();
+				ResultSet rs = jdbc.executeQuery(sql, st);
 				if (rs.next()) {
 					jdbc.executeUpdate("UPDATE full_index_addr SET addr_node_id = " + rs.getLong("id") + " WHERE addr_node_id="
-							+ row.getInteger("primary_key") + ";");
+							+ row.getInteger("primary_key"));
 				}
 				rs.close();
+				st.close();
 			}
 		}		
 
@@ -512,11 +517,13 @@ public abstract class IDCStrategyDefault1_0_2 extends IDCStrategyDefault {
 		}
 		String catAdminUuid = null;
 		String sql = "SELECT addr_uuid FROM idc_user WHERE idc_role=" + ROLE_CATALOG_ADMINISTRATOR;
-		ResultSet rs = jdbc.executeQuery(sql);
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(sql, st);
 		if (rs.next()) {
 			catAdminUuid = rs.getString("addr_uuid");
 		}
 		rs.close();
+		st.close();
 		
 		if (catAdminUuid == null) {
 			if (log.isInfoEnabled()) {
@@ -524,8 +531,8 @@ public abstract class IDCStrategyDefault1_0_2 extends IDCStrategyDefault {
 			}			
 		}
 
-		jdbc.executeUpdate("UPDATE t01_object SET responsible_uuid = '" + catAdminUuid + "';");
-		jdbc.executeUpdate("UPDATE t02_address SET responsible_uuid = '" + catAdminUuid + "';");			
+		jdbc.executeUpdate("UPDATE t01_object SET responsible_uuid = '" + catAdminUuid + "'");
+		jdbc.executeUpdate("UPDATE t02_address SET responsible_uuid = '" + catAdminUuid + "'");			
 
 		
 		// set entities mod-user to cat-admin if address non existent (in objects, addresses, catalogue)
@@ -540,16 +547,18 @@ public abstract class IDCStrategyDefault1_0_2 extends IDCStrategyDefault {
 			"where aNode.addr_uuid is null " +
 			"ORDER BY obj.obj_uuid, obj.id, obj.mod_uuid";
 
-		rs = jdbc.executeQuery(sql);
+		st = jdbc.createStatement();
+		rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
 			long objId = rs.getLong("id");
 
 			log.info("Invalid entry in t01_object found: mod_uuid not found, we set catadmin as mod_uuid !!! " +
 				"objId('" + objId + "'), obj_uuid('" + rs.getString("obj_uuid") + "'), invalid mod_uuid('" + rs.getString("mod_uuid") + "').");
 			
-			jdbc.executeUpdate("UPDATE t01_object SET mod_uuid = '" + catAdminUuid + "' where id=" + objId + ";");
+			jdbc.executeUpdate("UPDATE t01_object SET mod_uuid = '" + catAdminUuid + "' where id=" + objId);
 		}
 		rs.close();
+		st.close();
 
 		// ADDRESSES
 		sql = "select distinct addr.adr_uuid, addr.id, addr.mod_uuid " +
@@ -557,16 +566,18 @@ public abstract class IDCStrategyDefault1_0_2 extends IDCStrategyDefault {
 			"where aNode.addr_uuid is null " +
 			"ORDER BY addr.adr_uuid, addr.id, addr.mod_uuid";
 
-		rs = jdbc.executeQuery(sql);
+		st = jdbc.createStatement();
+		rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
 			long addrId = rs.getLong("id");
 
 			log.info("Invalid entry in t02_address found: mod_uuid not found, we set catadmin as mod_uuid !!! " +
 				"addrId('" + addrId + "'), adr_uuid('" + rs.getString("adr_uuid") + "'), invalid mod_uuid('" + rs.getString("mod_uuid") + "').");
 			
-			jdbc.executeUpdate("UPDATE t02_address SET mod_uuid = '" + catAdminUuid + "' where id=" + addrId + ";");
+			jdbc.executeUpdate("UPDATE t02_address SET mod_uuid = '" + catAdminUuid + "' where id=" + addrId);
 		}
 		rs.close();
+		st.close();
 
 		// CATALOGUE
 		sql = "select distinct cat.cat_uuid, cat.id, cat.mod_uuid " +
@@ -574,16 +585,18 @@ public abstract class IDCStrategyDefault1_0_2 extends IDCStrategyDefault {
 			"where aNode.addr_uuid is null " +
 			"ORDER BY cat.cat_uuid";
 
-		rs = jdbc.executeQuery(sql);
+		st = jdbc.createStatement();
+		rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
 			long catId = rs.getLong("id");
 
 			log.info("Invalid entry in t03_catalogue found: mod_uuid not found, we set catadmin as mod_uuid !!! " +
 				"cat_uuid('" + rs.getString("cat_uuid") + "'), invalid mod_uuid('" + rs.getString("mod_uuid") + "').");
 			
-			jdbc.executeUpdate("UPDATE t03_catalogue SET mod_uuid = '" + catAdminUuid + "' where id=" + catId + ";");
+			jdbc.executeUpdate("UPDATE t03_catalogue SET mod_uuid = '" + catAdminUuid + "' where id=" + catId);
 		}
 		rs.close();
+		st.close();
 
 
 		// set default object "Themenkategorie" if none set
@@ -593,7 +606,7 @@ public abstract class IDCStrategyDefault1_0_2 extends IDCStrategyDefault {
 				log.info("set default \"Themenkategorie\" in objects not categorized ...");
 			}
 			
-			pSqlStr = "INSERT INTO t011_obj_topic_cat (id, obj_id, line, topic_category) VALUES ( ?, ?, ?, ?);";
+			pSqlStr = "INSERT INTO t011_obj_topic_cat (id, obj_id, line, topic_category) VALUES ( ?, ?, ?, ?)";
 			PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
 			sql = "select distinct obj.id " +
@@ -601,7 +614,8 @@ public abstract class IDCStrategyDefault1_0_2 extends IDCStrategyDefault {
 				"where topicCat.obj_id is null " +
 				"ORDER BY obj.id";
 
-			rs = jdbc.executeQuery(sql);
+			st = jdbc.createStatement();
+			rs = jdbc.executeQuery(sql, st);
 			while (rs.next()) {
 				long objId = rs.getLong("id");
 
@@ -623,6 +637,7 @@ public abstract class IDCStrategyDefault1_0_2 extends IDCStrategyDefault {
 			}
 			p.close();
 			rs.close();
+			st.close();
 		}
 
 		// set default entries in sys_lists
@@ -634,23 +649,27 @@ public abstract class IDCStrategyDefault1_0_2 extends IDCStrategyDefault {
 		// set default language of metadata entities (=default entry in sys_list 99999999)
 
 		// first check whether defaults set -> ignore localization !
-		rs = jdbc.executeQuery("SELECT id FROM sys_list WHERE lst_id=99999999 AND is_default = 'Y'");
+		st = jdbc.createStatement();
+		rs = jdbc.executeQuery("SELECT id FROM sys_list WHERE lst_id=99999999 AND is_default = 'Y'", st);
 		boolean hasDefaults = rs.next();
 		rs.close();
+		st.close();
 		if (!hasDefaults) {
 			// default is german (=121) ! set in all localized versions as default (lang_id='de' -> "Deutsch", lang_id='en' -> "German", ...)
-			jdbc.executeUpdate("UPDATE sys_list SET is_default = 'Y' WHERE lst_id=99999999 AND entry_id=121;");
+			jdbc.executeUpdate("UPDATE sys_list SET is_default = 'Y' WHERE lst_id=99999999 AND entry_id=121");
 		}
 		
 		// set default publication condition INTERNET (=default entry in sys_list 3571)
 
 		// first check whether defaults set -> ignore localization !
-		rs = jdbc.executeQuery("SELECT id FROM sys_list WHERE lst_id=3571 AND is_default = 'Y'");
+		st = jdbc.createStatement();
+		rs = jdbc.executeQuery("SELECT id FROM sys_list WHERE lst_id=3571 AND is_default = 'Y'", st);
 		hasDefaults = rs.next();
 		rs.close();
+		st.close();
 		if (!hasDefaults) {
 			// default is Internet (=1) ! set in all localized versions as default
-			jdbc.executeUpdate("UPDATE sys_list SET is_default = 'Y' WHERE lst_id=3571 AND entry_id=1;");
+			jdbc.executeUpdate("UPDATE sys_list SET is_default = 'Y' WHERE lst_id=3571 AND entry_id=1");
 		}
 		
 		if (log.isInfoEnabled()) {

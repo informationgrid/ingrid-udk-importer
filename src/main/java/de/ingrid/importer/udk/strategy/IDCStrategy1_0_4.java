@@ -107,7 +107,13 @@ public class IDCStrategy1_0_4 extends IDCStrategyDefault {
 		if (log.isInfoEnabled()) {
 			log.info("Change field type of 't011_obj_geo.datasource_uuid' from TEXT to VARCHAR(255) ...");
 		}
-		jdbc.getDBLogic().modifyColumn("datasource_uuid", ColumnType.VARCHAR255, "t011_obj_geo", false, jdbc);
+		// can't convert CLOB to VARCHAR on oracle, workaround: copy data
+		jdbc.getDBLogic().addColumn("datasource_uuid_temp", ColumnType.VARCHAR255, "t011_obj_geo", false, null, jdbc);
+		jdbc.executeUpdate("UPDATE t011_obj_geo SET datasource_uuid_temp = datasource_uuid");
+		jdbc.getDBLogic().dropColumn("datasource_uuid", "t011_obj_geo", jdbc);
+		jdbc.getDBLogic().addColumn("datasource_uuid", ColumnType.VARCHAR255, "t011_obj_geo", false, null, jdbc);
+		jdbc.executeUpdate("UPDATE t011_obj_geo SET datasource_uuid = datasource_uuid_temp");
+		jdbc.getDBLogic().dropColumn("datasource_uuid_temp", "t011_obj_geo", jdbc);
 
 		if (log.isInfoEnabled()) {
 			log.info("Change field type of 't021_communication.comm_value' to VARCHAR(255) ...");

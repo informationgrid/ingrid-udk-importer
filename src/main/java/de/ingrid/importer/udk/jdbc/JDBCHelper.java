@@ -6,6 +6,7 @@ package de.ingrid.importer.udk.jdbc;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Types;
 
 import org.apache.commons.logging.Log;
@@ -58,6 +59,7 @@ public class JDBCHelper {
 		
 		try {
 			p.executeUpdate();
+			p.close();
 		} catch (Exception e) {
 			log.error("Error executing SQL: " + p.toString(), e);
 			throw e;
@@ -81,6 +83,7 @@ public class JDBCHelper {
 		
 		try {
 			p.executeUpdate();
+			p.close();
 		} catch (Exception e) {
 			log.error("Error executing SQL: " + p.toString(), e);
 			throw e;
@@ -98,6 +101,7 @@ public class JDBCHelper {
 		
 		try {
 			p.executeUpdate();
+			p.close();
 		} catch (Exception e) {
 			log.error("Error executing SQL: " + p.toString(), e);
 			throw e;
@@ -116,11 +120,16 @@ public class JDBCHelper {
 		}
 		String pSqlStr = "UPDATE full_index_addr SET idx_value = concat(idx_value, ?) WHERE addr_node_id = ? AND idx_name = '" + idxName + "'";
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
-		p.setString(1, IDX_TOKEN_SEPARATOR + token + IDX_TOKEN_SEPARATOR);
+		if (token.length() > 3998 && jdbc.getDBLogic() instanceof OracleLogic) {
+			p.setString(1, IDX_TOKEN_SEPARATOR + token.substring(0, 3998) + IDX_TOKEN_SEPARATOR);
+		} else {
+			p.setString(1, IDX_TOKEN_SEPARATOR + token + IDX_TOKEN_SEPARATOR);
+		}
 		p.setLong(2, addrNodeId);
 		
 		try {
 			p.executeUpdate();
+			p.close();
 		} catch (Exception e) {
 			log.error("Error executing SQL: " + p.toString(), e);
 			throw e;
@@ -139,11 +148,13 @@ public class JDBCHelper {
 
 		String sql = "SELECT value_string FROM sys_generic_key WHERE key_name='" + IDCStrategy.KEY_IDC_VERSION + "'";
 		try {
-			ResultSet rs = jdbc.executeQuery(sql);
+			Statement st = jdbc.createStatement();
+			ResultSet rs = jdbc.executeQuery(sql, st);
 			if (rs.next()) {
 				currentVersion = rs.getString(1);
 			}
 			rs.close();
+			st.close();
 		} catch (SQLException e) {
 			log.error("Error executing SQL: " + sql, e);
 			throw e;

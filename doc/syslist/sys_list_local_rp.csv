@@ -1,0 +1,83 @@
+id;version;lst_id;entry_id;lang_id;name;description;maintainable;is_default;line
+1647;0;1100;1;de;Harz;NULL;1;N;0
+1648;0;1100;2;de;Harzvorland;NULL;1;N;0
+1649;0;1100;3;de;Hildesheimer Börde;NULL;1;N;0
+1650;0;1100;4;de;Lüneburger Heide;NULL;1;N;0
+1651;0;1100;5;de;Nordseeküste;NULL;1;N;0
+1652;0;1100;6;de;Oldenburger Münsterland;NULL;1;N;0
+1653;0;1100;7;de;Ostseeküste;NULL;1;N;0
+1654;0;1100;8;de;Teutoburger Wald;NULL;1;N;0
+1655;0;1100;9;de;Weserbergland;NULL;1;N;0
+1656;0;1100;10;de;Wesermarsch;NULL;1;N;0
+1657;0;1100;11;de;Solling;NULL;1;N;0
+1658;0;1100;12;de;Elbe-Weser-Dreieck;NULL;1;N;0
+1659;0;1100;13;de;Großraum Hannover;NULL;1;N;0
+1660;0;1100;14;de;Großraum Braunschweig;NULL;1;N;0
+1661;0;1100;15;de;Schutzgebietssystem Elbetal;NULL;1;N;0
+1683;0;1350;1;de;Atomgesetz (AtG);NULL;1;N;0
+1684;0;1350;2;de;Baugesetzbuch (BauGB);NULL;1;N;0
+1685;0;1350;3;de;Bürgerl. Gesetzbuch (BGB);NULL;1;N;0
+1686;0;1350;4;de;Bodenschutzgesetz (BodSchG);NULL;1;N;0
+1687;0;1350;5;de;Bundesberggesetz (BBergG);NULL;1;N;0
+1688;0;1350;7;de;Bundesnaturschutzgesetz (BNatSchG);NULL;1;N;0
+1689;0;1350;8;de;Bundeswaldgesetz (BundeswaldG);NULL;1;N;0
+1690;0;1350;9;de;Chemikaliengesetz (ChemG);NULL;1;N;0
+1691;0;1350;10;de;Flurbereinigungsgesetz (FlurbG);NULL;1;N;0
+1692;0;1350;11;de;Gentechnikgesetz (GenTG);NULL;1;N;0
+1693;0;1350;13;de;Kreislaufwirtschafts- u. Abfallgesetz (KrW-/AbfG);NULL;1;N;0
+1694;0;1350;14;de;Landesabfallgesetz (LAbfG);NULL;1;N;0
+1695;0;1350;15;de;Landesabfallwirtschaftsgesetz (LAbfWG);NULL;1;N;0
+1696;0;1350;16;de;Landschaftsgesetz (LG);NULL;1;N;0
+1697;0;1350;17;de;Pflanzenschutzgesetz (PflSchG);NULL;1;N;0
+1698;0;1350;18;de;Raumordnungsgesetz (ROG);NULL;1;N;0
+1699;0;1350;19;de;Strahlenschutzvorsorgegesetz (StrVG);NULL;1;N;0
+1700;0;1350;20;de;Tierschutzgesetz (TierSchG);NULL;1;N;0
+1701;0;1350;21;de;Umwelthaftungsgesetz (UmweltHG);NULL;1;N;0
+1702;0;1350;22;de;Umweltinformationsgesetz (UIG);NULL;1;N;0
+1703;0;1350;23;de;Verwaltungsverfahrensgesetz (VwVfG);NULL;1;N;0
+1704;0;1350;24;de;Bundeswasserstraßengesetz (WaStrG);NULL;1;N;0
+1705;0;1350;25;de;Wasserhaushaltsgesetz (WHG);NULL;1;N;0
+1706;0;1350;26;de;Umweltstatistikgesetz (Fass. 21.06.1994);NULL;1;N;0
+1707;0;1350;27;de;Umweltstatistikgesetz (Fass. 14.03.1980);NULL;1;N;0
+1708;0;1350;29;de;Trinkwasserverordnung (TrinkwV);NULL;1;N;0
+1709;0;1350;30;de;TA Siedlungsabfall;NULL;1;N;0
+1710;0;1350;31;de;TA Abfall;NULL;1;N;0
+1711;0;1350;32;de;Strahlenschutzverordnung (StrlSchVO);NULL;1;N;0
+1712;0;1350;33;de;Richtl. Em.- u. Im.-Überwachung. kerntech. Anl.;NULL;1;N;0
+1713;0;1350;34;de;RdErl. d. ML v. 16.1.1986, GültL 10/66;NULL;1;N;0
+1714;0;1350;35;de;Nieders. Wassergesetz (NWG);NULL;1;N;0
+1715;0;1350;36;de;Nieders. Naturschutzgesetz (NNatG);NULL;1;N;0
+1716;0;1350;38;de;Nieders. Abfallgesetz (NAbfG);NULL;1;N;0
+1717;0;1350;39;de;Nieders. Deichgesetz (NDG);NULL;1;N;0
+1718;0;1350;40;de;Nieders. Abfallgesetz. 6. Teil "Altlasten";NULL;1;N;0
+1719;0;1350;41;de;Nieders. Abfallabgabengesetz;NULL;1;N;0
+1720;0;1350;42;de;Landesraumordnungsprogramm LROP;NULL;1;N;0
+1721;0;1350;43;de;KTA 1508;NULL;1;N;0
+1722;0;1350;45;de;Gesetz über eine Holzstatistik;NULL;1;N;0
+1723;0;1350;46;de;Ges. Statistik im Produzierenden Gewerbe;NULL;1;N;0
+1724;0;1350;47;de;Gesetz ü. d. Umweltverträglichkeitsprüfung (UVPG);NULL;1;N;0
+1725;0;1350;48;de;Erlaß Nds. Umweltministerium vom 16.10.1992;NULL;1;N;0
+1726;0;1350;49;de;Bundesimmissionsschutzgesetz (BImSchG);NULL;1;N;0
+1727;0;1350;50;de;BImSchG §47a;NULL;1;N;0
+1728;0;1350;51;de;Arbeitsschutzgesetz;NULL;1;N;0
+1729;0;1350;52;de;Anleitung zur Berechnung von Fluglärm;NULL;1;N;0
+1730;0;1350;53;de;Agrarstatistikgesetz (AgrStatG);NULL;1;N;0
+1731;0;1350;54;de;Abfallklärschlammverordnung (AbfKlärV);NULL;1;N;0
+1732;0;1350;55;de;Bundesimmissionsschutzverordnung, 23.;NULL;1;N;0
+1733;0;1350;56;de;Abwasserabgabengesetz (AbwAG);NULL;1;N;0
+1734;0;1350;57;de;Wasserhaushaltsgesetz (WHG) § 7a;NULL;1;N;0
+1735;0;1350;58;de;§ 152 NWG (Abwasserbeseitigungspläne);NULL;1;N;0
+1736;0;1350;59;de;§ 52 Nieders. Wassergesetz (NWG);NULL;1;N;0
+1737;0;1350;60;de;§ 67 NWG;NULL;1;N;0
+1738;0;1350;61;de;23. Bundesimmissionsschutzverordnung;NULL;1;N;0
+1739;0;1350;62;de;Abfallgesetz (AbfG);NULL;1;N;0
+1740;0;1350;63;de;AdV-Plenumsbeschluß von 1994;NULL;1;N;0
+1741;0;1350;64;de;AdV-Plenumsbeschluß von1994;NULL;1;N;0
+1742;0;1350;65;de;Agrarstatistikgesetz AgrStatG;NULL;1;N;0
+1743;0;1350;67;de;Betriebssatzung der LGN v. 7.7.1997;NULL;1;N;0
+1744;0;1350;68;de;Bundesimmissionsschutzverordnung;NULL;1;N;0
+1745;0;1370;1;de;CDS;NULL;1;N;0
+1760;0;3535;1;de;von Drachenfels 94;NULL;1;N;0
+1761;0;3555;1;de;Ganzflächige Biotopkartierung 94;NULL;1;N;0
+1762;0;3561;1;de;Nienburg (Weser);NULL;1;N;0
+1763;0;3561;2;de;Damme (Dümmer);NULL;1;N;0

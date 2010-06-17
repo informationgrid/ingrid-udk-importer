@@ -5,6 +5,7 @@ package de.ingrid.importer.udk.strategy;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -319,7 +320,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 
 		pSqlStr = "INSERT INTO t03_catalogue (id, cat_uuid, cat_name, country_code,"
 				+ "workflow_control, expiry_duration, create_time, mod_uuid, mod_time, language_code) VALUES "
-				+ "( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+				+ "( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -577,6 +578,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 					JDBCHelper.updateObjectIndex(row.getInteger("primary_key"), row.get("metadata_standard_version"), jdbc); // T01Object.metadataStandardVersion
 					JDBCHelper.updateObjectIndex(row.getInteger("primary_key"), row.get("fees"), jdbc); // T01Object.fees
 					JDBCHelper.updateObjectIndex(row.getInteger("primary_key"), row.get("ordering_instructions"), jdbc); // T01Object.orderingInstructions
+					
 				}
 
 			} else {
@@ -589,6 +591,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 				row.clear();
 			}
 		}
+		p.close();
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
@@ -608,7 +611,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 				+ "street, postcode, postbox, postbox_pc, city, country_code, job, "
 				+ "descr, lastexport_time, expiry_time, work_state, work_version, "
 				+ "mark_deleted, create_time, mod_time, mod_uuid, responsible_uuid) VALUES "
-				+ "( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+				+ "( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -622,8 +625,9 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 		final List<String> allowedSpecialRefTitleEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefTitleEntryNamesLowerCase = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=4305 and lang_id='" + getCatalogLanguage() + "';";
-		ResultSet rs = jdbc.executeQuery(sql);
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=4305 and lang_id='" + getCatalogLanguage() + "'";
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
 				allowedSpecialRefTitleEntryNames.add(rs.getString("name"));
@@ -632,12 +636,14 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			}
 		}
 		rs.close();
+		st.close();
 		final List<String> allowedSpecialRefAddressEntries = new ArrayList<String>();
 		final List<String> allowedSpecialRefAddressEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefAddressEntryNamesLowerCase = new ArrayList<String>();
 
-		sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=4300 and lang_id='" + getCatalogLanguage() + "';";
-		rs = jdbc.executeQuery(sql);
+		sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=4300 and lang_id='" + getCatalogLanguage() + "'";
+		st = jdbc.createStatement();
+		rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
 				allowedSpecialRefAddressEntryNames.add(rs.getString("name"));
@@ -646,6 +652,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			}
 		}
 		rs.close();
+		st.close();
 		
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
@@ -800,6 +807,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			}
 
 		}
+		p.close();
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
@@ -813,7 +821,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO address_node (id, addr_uuid, addr_id, addr_id_published, fk_addr_uuid) VALUES (?, ?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO address_node (id, addr_uuid, addr_id, addr_id_published, fk_addr_uuid) VALUES (?, ?, ?, ?, ?)";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -884,7 +892,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			}
 
 		}
-
+		p.close();
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
@@ -898,7 +906,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t021_communication (id, adr_id, line, commtype_value, commtype_key, comm_value, descr) VALUES (?, ?, ?, ?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO t021_communication (id, adr_id, line, commtype_value, commtype_key, comm_value, descr) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -909,8 +917,9 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=4430 and lang_id='" + getCatalogLanguage() + "';";
-		ResultSet rs = jdbc.executeQuery(sql);
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=4430 and lang_id='" + getCatalogLanguage() + "'";
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
 				allowedSpecialRefEntryNames.add(rs.getString("name"));
@@ -919,6 +928,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			}
 		}
 		rs.close();
+		st.close();
 		
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
@@ -964,6 +974,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 				
 			}
 		}
+		p.close();
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
@@ -978,9 +989,9 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 		}
 
 		String pSqlStrObjectNode = "INSERT INTO object_node (id, obj_uuid, obj_id, obj_id_published, fk_obj_uuid) VALUES "
-				+ "(?, ?, ?, ?, ?);";
+				+ "(?, ?, ?, ?, ?)";
 		String pSqlStrObjectReference = "INSERT INTO object_reference (id, obj_from_id, obj_to_uuid, line, special_ref, special_name, descr) VALUES "
-				+ "(?, ?, ?, ?, ?, ?, ?);";
+				+ "(?, ?, ?, ?, ?, ?, ?)";
 
 		PreparedStatement pSqlObjectNode = jdbc.prepareStatement(pSqlStrObjectNode);
 		PreparedStatement pSqlObjectReference = jdbc.prepareStatement(pSqlStrObjectReference);
@@ -997,8 +1008,9 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 
 		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=2000 " +
 				"AND entry_id IN (3100, 3210, 3345, 3515, 3520, 3535, 3555, 3570, 5066) " +
-				"and lang_id='" + getCatalogLanguage() + "';";
-		ResultSet rs = jdbc.executeQuery(sql);
+				"and lang_id='" + getCatalogLanguage() + "'";
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
 				allowedSpecialRefEntryNames.add(rs.getString("name"));
@@ -1007,6 +1019,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			}
 		}
 		rs.close();
+		st.close();
 
 		boolean skipRecord = false;
 
@@ -1172,6 +1185,8 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 				}
 			}
 		}
+		pSqlObjectNode.close();
+		pSqlObjectReference.close();
 
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
@@ -1187,7 +1202,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 		}
 
 		pSqlStr = "INSERT INTO t012_obj_adr (id, obj_id, adr_uuid, type, line, "
-				+ "special_ref, special_name, mod_time) VALUES " + "( ?, ?, ?, ?, ?, ?, ?, ?);";
+				+ "special_ref, special_name, mod_time) VALUES " + "( ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -1197,8 +1212,9 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 		final List<String> allowedSpecialRefEntries505 = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNames505 = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=505 and lang_id='" + getCatalogLanguage() + "';";
-		ResultSet rs = jdbc.executeQuery(sql);
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=505 and lang_id='" + getCatalogLanguage() + "'";
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
 				allowedSpecialRefEntryNames505.add(rs.getString("name"));
@@ -1206,6 +1222,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			}
 		}
 		rs.close();
+		st.close();
 
 		final List<String> allowedSpecialRefEntries2010 = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNames2010 = new ArrayList<String>();
@@ -1213,8 +1230,9 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 
 		sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=2010 " +
 				"AND entry_id IN (3360, 3400, 3410) " +
-				"and lang_id='" + getCatalogLanguage() + "';";
-		rs = jdbc.executeQuery(sql);
+				"and lang_id='" + getCatalogLanguage() + "'";
+		st = jdbc.createStatement();
+		rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
 				allowedSpecialRefEntryNames2010.add(rs.getString("name"));
@@ -1223,6 +1241,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			}
 		}
 		rs.close();
+		st.close();
 
 		// for tracking duplicate entries in udk !
 		HashMap<String, String> writtenUniqueKeys = new HashMap<String, String>();
@@ -1367,7 +1386,8 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 		sql = "select distinct obj.id, oa.type, oa.special_ref, oa.line " +
 			"from t01_object obj left outer join t012_obj_adr oa on obj.id =oa.obj_id " +
 			"ORDER BY obj.id, oa.special_ref, oa.type ASC";
-		rs = jdbc.executeQuery(sql);
+		st = jdbc.createStatement();
+		rs = jdbc.executeQuery(sql, st);
 
 		// process, if an object has no auskunft add it !
 		boolean hasAuskunft = true;
@@ -1417,6 +1437,8 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			}
 		}
 		rs.close();
+		st.close();
+		p.close();
 
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
@@ -1431,10 +1453,10 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			log.info("Importing " + entityName + "...");
 		}
 
-		String pSqlStrSearchtermObj = "INSERT INTO searchterm_obj (id, obj_id, line, searchterm_id) VALUES ( ?, ?, ?, ?);";
-		String pSqlStrSearchtermAdr = "INSERT INTO searchterm_adr (id, adr_id, line, searchterm_id) VALUES ( ?, ?, ?, ?);";
-		String pSqlStrSearchtermValue = "INSERT INTO searchterm_value (id, type, term, searchterm_sns_id) VALUES ( ?, ?, ?, ?);";
-		String pSqlStrSearchtermSns = "INSERT INTO searchterm_sns (id, sns_id, expired_at) VALUES ( ?, ?, ?);";
+		String pSqlStrSearchtermObj = "INSERT INTO searchterm_obj (id, obj_id, line, searchterm_id) VALUES ( ?, ?, ?, ?)";
+		String pSqlStrSearchtermAdr = "INSERT INTO searchterm_adr (id, adr_id, line, searchterm_id) VALUES ( ?, ?, ?, ?)";
+		String pSqlStrSearchtermValue = "INSERT INTO searchterm_value (id, type, term, searchterm_sns_id) VALUES ( ?, ?, ?, ?)";
+		String pSqlStrSearchtermSns = "INSERT INTO searchterm_sns (id, sns_id, expired_at) VALUES ( ?, ?, ?)";
 
 		PreparedStatement pSearchtermObj = jdbc.prepareStatement(pSqlStrSearchtermObj);
 		PreparedStatement pSearchtermAdr = jdbc.prepareStatement(pSqlStrSearchtermAdr);
@@ -1763,6 +1785,10 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 				}
 			}
 		}
+		pSearchtermObj.close();
+		pSearchtermAdr.close();
+		pSearchtermValue.close();
+		pSearchtermSns.close();
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
@@ -1776,7 +1802,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t011_obj_project (id, obj_id, leader, member, description) VALUES ( ?, ?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO t011_obj_project (id, obj_id, leader, member, description) VALUES ( ?, ?, ?, ?, ?)";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -1812,6 +1838,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 				JDBCHelper.updateObjectIndex(objId, row.get("description"), jdbc); // T011ObjProject.description
 			}
 		}
+		p.close();
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
@@ -1827,7 +1854,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 
 		pSqlStr = "INSERT INTO t011_obj_literature (id, obj_id, author, publisher, type_value, type_key, publish_in, "
 				+ "volume, sides, publish_year, publish_loc, loc, doc_info, base, isbn, publishing, "
-				+ "description) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+				+ "description) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -1838,8 +1865,9 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=3385 and lang_id='" + getCatalogLanguage() + "';";
-		ResultSet rs = jdbc.executeQuery(sql);
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=3385 and lang_id='" + getCatalogLanguage() + "'";
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
 				allowedSpecialRefEntryNames.add(rs.getString("name"));
@@ -1848,6 +1876,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			}
 		}
 		rs.close();
+		st.close();
 		
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
@@ -1914,6 +1943,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 				JDBCHelper.updateObjectIndex(objId, row.get("description"), jdbc); // T011ObjLiterature.description
 			}
 		}
+		p.close();
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
@@ -1927,7 +1957,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t011_obj_data (id, obj_id, base, description) VALUES ( ?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO t011_obj_data (id, obj_id, base, description) VALUES ( ?, ?, ?, ?)";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -1962,6 +1992,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 
 			}
 		}
+		p.close();
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
@@ -1975,7 +2006,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t011_obj_data_para (id, obj_id, line, parameter, unit) VALUES ( ?, ?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO t011_obj_data_para (id, obj_id, line, parameter, unit) VALUES ( ?, ?, ?, ?, ?)";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -2010,6 +2041,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 				JDBCHelper.updateObjectIndex(objId, row.get("unit"), jdbc); // T011ObjDataPara.unit
 			}
 		}
+		p.close();
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
@@ -2025,7 +2057,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 
 		pSqlStr = "INSERT INTO t011_obj_geo (id, obj_id, special_base, data_base, method, referencesystem_value, rec_exact, rec_grade, hierarchy_level, "
 				+ "vector_topology_level, referencesystem_key, pos_accuracy_vertical, keyc_incl_w_dataset) "
-				+ "VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+				+ "VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -2128,6 +2160,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 				row.clear();
 			}
 		}
+		p.close();
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
@@ -2141,7 +2174,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t011_obj_geo_vector (id, obj_geo_id, line, geometric_object_type, geometric_object_count) VALUES ( ?, ?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO t011_obj_geo_vector (id, obj_geo_id, line, geometric_object_type, geometric_object_count) VALUES ( ?, ?, ?, ?, ?)";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -2171,6 +2204,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 				}
 			}
 		}
+		p.close();
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
@@ -2184,7 +2218,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t011_obj_geo_symc (id, obj_geo_id, line, symbol_cat_value, symbol_cat_key, symbol_date, edition) VALUES ( ?, ?, ?, ?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO t011_obj_geo_symc (id, obj_geo_id, line, symbol_cat_value, symbol_cat_key, symbol_date, edition) VALUES ( ?, ?, ?, ?, ?, ?, ?)";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -2195,8 +2229,9 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=3555 and lang_id='" + getCatalogLanguage() + "';";
-		ResultSet rs = jdbc.executeQuery(sql);
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=3555 and lang_id='" + getCatalogLanguage() + "'";
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
 				allowedSpecialRefEntryNames.add(rs.getString("name"));
@@ -2205,6 +2240,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			}
 		}
 		rs.close();
+		st.close();
 		
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
@@ -2250,6 +2286,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 				JDBCHelper.updateObjectIndex(objId, row.get("edition"), jdbc); // T011ObjGeoSymc.edition
 			}
 		}
+		p.close();
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
@@ -2263,7 +2300,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t011_obj_topic_cat (id, obj_id, line, topic_category) VALUES ( ?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO t011_obj_topic_cat (id, obj_id, line, topic_category) VALUES ( ?, ?, ?, ?)";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -2292,6 +2329,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 				}
 			}
 		}
+		p.close();
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
@@ -2329,8 +2367,9 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 		final List<Integer> allowedSpecialRefEntries = new ArrayList<Integer>();
 		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=527 and lang_id='" + getCatalogLanguage() + "';";
-		ResultSet rs = jdbc.executeQuery(sql);
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=527 and lang_id='" + getCatalogLanguage() + "'";
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
 				allowedSpecialRefEntryNamesLowerCase.add(rs.getString("name").toLowerCase());
@@ -2338,6 +2377,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			}
 		}
 		rs.close();
+		st.close();
 
 		// remember key for "Umwelt", is used in postprocessing !
 		int indxDefault = allowedSpecialRefEntryNamesLowerCase.indexOf("umwelt");
@@ -2345,7 +2385,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			defaultThemenkategorieEntryId = allowedSpecialRefEntries.get(indxDefault);
 		}
 
-		pSqlStr = "INSERT INTO t011_obj_topic_cat (id, obj_id, line, topic_category) VALUES ( ?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO t011_obj_topic_cat (id, obj_id, line, topic_category) VALUES ( ?, ?, ?, ?)";
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
@@ -2386,8 +2426,9 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 					// we have new "themenkategorien" to add, add only the ones not added yet
 
 					// fetch the ones already added !
-					sql = "SELECT topic_category, line FROM t011_obj_topic_cat WHERE obj_id=" + objId + ";";
-					rs = jdbc.executeQuery(sql);
+					sql = "SELECT topic_category, line FROM t011_obj_topic_cat WHERE obj_id=" + objId + "";
+					st = jdbc.createStatement();
+					rs = jdbc.executeQuery(sql, st);
 					int lastLine = 0;
 					List<Integer> existingKeys = new ArrayList<Integer>();
 					while (rs.next()) {
@@ -2396,6 +2437,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 						lastLine = line > lastLine ? line : lastLine; 
 					}
 					rs.close();
+					st.close();
 					
 					// add new ones
 					for (Integer newKey : newKeys) {
@@ -2432,7 +2474,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t011_obj_geo_supplinfo (id, obj_geo_id, line, feature_type) VALUES ( ?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO t011_obj_geo_supplinfo (id, obj_geo_id, line, feature_type) VALUES ( ?, ?, ?, ?)";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -2461,6 +2503,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 				}
 			}
 		}
+		p.close();
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
@@ -2474,7 +2517,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t011_obj_geo_spatial_rep (id, obj_geo_id, line, type) VALUES ( ?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO t011_obj_geo_spatial_rep (id, obj_geo_id, line, type) VALUES ( ?, ?, ?, ?)";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -2503,6 +2546,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 				}
 			}
 		}
+		p.close();
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
@@ -2516,7 +2560,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t011_obj_geo_scale (id, obj_geo_id, line, scale, resolution_ground, resolution_scan) VALUES ( ?, ?, ?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO t011_obj_geo_scale (id, obj_geo_id, line, scale, resolution_ground, resolution_scan) VALUES ( ?, ?, ?, ?, ?, ?)";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -2547,6 +2591,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 				}
 			}
 		}
+		p.close();
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
@@ -2560,7 +2605,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t011_obj_geo_keyc (id, obj_geo_id, line, keyc_value, keyc_key, key_date, edition) VALUES ( ?, ?, ?, ?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO t011_obj_geo_keyc (id, obj_geo_id, line, keyc_value, keyc_key, key_date, edition) VALUES ( ?, ?, ?, ?, ?, ?, ?)";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -2571,8 +2616,9 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=3535 and lang_id='" + getCatalogLanguage() + "';";
-		ResultSet rs = jdbc.executeQuery(sql);
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=3535 and lang_id='" + getCatalogLanguage() + "'";
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
 				allowedSpecialRefEntryNames.add(rs.getString("name"));
@@ -2581,6 +2627,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			}
 		}
 		rs.close();
+		st.close();
 		
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
@@ -2626,6 +2673,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 				JDBCHelper.updateObjectIndex(objId, row.get("edition"), jdbc); // T011ObjGeoKeyc.edition
 			}
 		}
+		p.close();
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
@@ -2640,7 +2688,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 		}
 
 		pSqlStr = "INSERT INTO t011_obj_serv (id, obj_id, type_value, type_key, history, environment, base, description) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -2651,8 +2699,9 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=5100 and lang_id='" + getCatalogLanguage() + "';";
-		ResultSet rs = jdbc.executeQuery(sql);
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=5100 and lang_id='" + getCatalogLanguage() + "'";
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
 				allowedSpecialRefEntryNames.add(rs.getString("name"));
@@ -2661,6 +2710,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			}
 		}
 		rs.close();
+		st.close();
 		
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
@@ -2718,6 +2768,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 				row.clear();
 			}
 		}
+		p.close();
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
@@ -2731,7 +2782,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t011_obj_serv_version (id, obj_serv_id, line, serv_version) VALUES ( ?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO t011_obj_serv_version (id, obj_serv_id, line, serv_version) VALUES ( ?, ?, ?, ?)";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -2765,6 +2816,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 
 			}
 		}
+		p.close();
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
@@ -2778,7 +2830,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t011_obj_serv_operation (id, obj_serv_id, line, name_value, name_key, descr, invocation_name) VALUES ( ?, ?, ?, ?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO t011_obj_serv_operation (id, obj_serv_id, line, name_value, name_key, descr, invocation_name) VALUES ( ?, ?, ?, ?, ?, ?, ?)";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -2789,8 +2841,9 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 		final List<String> allowedSpecialWMSRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialWMSRefEntryNamesLowerCase = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=5110 and lang_id='" + getCatalogLanguage() + "';";
-		ResultSet rs = jdbc.executeQuery(sql);
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=5110 and lang_id='" + getCatalogLanguage() + "'";
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
 				allowedSpecialWMSRefEntryNames.add(rs.getString("name"));
@@ -2799,12 +2852,14 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			}
 		}
 		rs.close();
+		st.close();
 		final List<String> allowedSpecialWFSRefEntries = new ArrayList<String>();
 		final List<String> allowedSpecialWFSRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialWFSRefEntryNamesLowerCase = new ArrayList<String>();
 
-		sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=5120 and lang_id='" + getCatalogLanguage() + "';";
-		rs = jdbc.executeQuery(sql);
+		sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=5120 and lang_id='" + getCatalogLanguage() + "'";
+		st = jdbc.createStatement();
+		rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
 				allowedSpecialWFSRefEntryNames.add(rs.getString("name"));
@@ -2813,6 +2868,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			}
 		}
 		rs.close();
+		st.close();
 		
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
@@ -2888,6 +2944,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 				row.clear();
 			}
 		}
+		p.close();
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
@@ -2901,7 +2958,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t011_obj_serv_op_platform (id, obj_serv_op_id, line, platform) VALUES (?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO t011_obj_serv_op_platform (id, obj_serv_op_id, line, platform) VALUES (?, ?, ?, ?)";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -2942,6 +2999,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 				JDBCHelper.updateObjectIndex(objId, row.get("platform"), jdbc); // T011ObjServOpPlatform.platform
 			}
 		}
+		p.close();
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
@@ -2955,7 +3013,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t011_obj_serv_op_para (id, obj_serv_op_id, line, name, direction, descr, optional, repeatability) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO t011_obj_serv_op_para (id, obj_serv_op_id, line, name, direction, descr, optional, repeatability) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -3002,6 +3060,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 				JDBCHelper.updateObjectIndex(objId, row.get("descr"), jdbc); // T011ObjServOpPara.descr
 			}
 		}
+		p.close();
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
@@ -3015,7 +3074,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t011_obj_serv_op_depends (id, obj_serv_op_id, line, depends_on) VALUES (?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO t011_obj_serv_op_depends (id, obj_serv_op_id, line, depends_on) VALUES (?, ?, ?, ?)";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -3056,6 +3115,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 				JDBCHelper.updateObjectIndex(objId, row.get("depends_on"), jdbc); // T011ObjServOpDepends.dependsOn
 			}
 		}
+		p.close();
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
@@ -3069,7 +3129,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t011_obj_serv_op_connpoint (id, obj_serv_op_id, line, connect_point) VALUES (?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO t011_obj_serv_op_connpoint (id, obj_serv_op_id, line, connect_point) VALUES (?, ?, ?, ?)";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -3111,6 +3171,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 				
 			}
 		}
+		p.close();
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
@@ -3124,7 +3185,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t015_legist (id, obj_id, line, legist_value, legist_key) VALUES (?, ?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO t015_legist (id, obj_id, line, legist_value, legist_key) VALUES (?, ?, ?, ?, ?)";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -3135,8 +3196,9 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1350 and lang_id='" + getCatalogLanguage() + "';";
-		ResultSet rs = jdbc.executeQuery(sql);
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1350 and lang_id='" + getCatalogLanguage() + "'";
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
 				allowedSpecialRefEntryNames.add(rs.getString("name"));
@@ -3145,6 +3207,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			}
 		}
 		rs.close();
+		st.close();
 
 		
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
@@ -3189,6 +3252,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 				}
 			}
 		}
+		p.close();
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
@@ -3202,7 +3266,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t0113_dataset_reference (id, obj_id, line, reference_date, type) VALUES (?, ?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO t0113_dataset_reference (id, obj_id, line, reference_date, type) VALUES (?, ?, ?, ?, ?)";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -3232,6 +3296,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 				}
 			}
 		}
+		p.close();
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
@@ -3245,7 +3310,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t0110_avail_format (id, obj_id, line, format_value, format_key, ver, file_decompression_technique, specification) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO t0110_avail_format (id, obj_id, line, format_value, format_key, ver, file_decompression_technique, specification) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -3256,8 +3321,9 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1320 and lang_id='" + getCatalogLanguage() + "';";
-		ResultSet rs = jdbc.executeQuery(sql);
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1320 and lang_id='" + getCatalogLanguage() + "'";
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
 				allowedSpecialRefEntryNames.add(rs.getString("name"));
@@ -3266,6 +3332,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			}
 		}
 		rs.close();
+		st.close();
 		
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
@@ -3313,6 +3380,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 				JDBCHelper.updateObjectIndex(objId, row.get("specification"), jdbc); // T0110AvailFormat.specification
 			}
 		}
+		p.close();
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
@@ -3326,7 +3394,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t0112_media_option (id, obj_id, line, medium_note, medium_name, transfer_size) VALUES (?, ?, ?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO t0112_media_option (id, obj_id, line, medium_note, medium_name, transfer_size) VALUES (?, ?, ?, ?, ?, ?)";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -3361,6 +3429,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 				JDBCHelper.updateObjectIndex(objId, row.get("medium_name"), jdbc); // T0112MediaOption.mediumName
 			}
 		}
+		p.close();
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
@@ -3375,7 +3444,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 		}
 
 		pSqlStr = "INSERT INTO t017_url_ref (id, obj_id, line, url_link, special_ref, special_name, content, datatype_value, datatype_key, volume, icon, icon_text, descr, url_type) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -3386,8 +3455,9 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 		final List<String> allowedDatatypeValuesLowerCase = new ArrayList<String>();
 		final List<String> allowedDatatypeKeys = new ArrayList<String>();
 
-		String sql = "SELECT name, entry_id FROM sys_list WHERE LST_ID=2240 and lang_id='" + getCatalogLanguage() + "';";
-		ResultSet rs = jdbc.executeQuery(sql);
+		String sql = "SELECT name, entry_id FROM sys_list WHERE LST_ID=2240 and lang_id='" + getCatalogLanguage() + "'";
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
 				allowedDatatypeValues.add(rs.getString("name"));
@@ -3396,6 +3466,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			}
 		}
 		rs.close();
+		st.close();
 		
 		final List<String> allowedSpecialRefEntries = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
@@ -3403,8 +3474,9 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 
 		sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=2000 " +
 				"AND entry_id IN (3100, 3210, 3345, 3515, 3520, 3535, 3555, 3570, 5066) " +
-				"and lang_id='" + getCatalogLanguage() + "';";
-		rs = jdbc.executeQuery(sql);
+				"and lang_id='" + getCatalogLanguage() + "'";
+		st = jdbc.createStatement();
+		rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
 				allowedSpecialRefEntryNames.add(rs.getString("name"));
@@ -3413,7 +3485,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			}
 		}
 		rs.close();
-
+		st.close();
 		
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
 			Row row = i.next();
@@ -3489,6 +3561,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 				JDBCHelper.updateObjectIndex(objId, row.get("descr"), jdbc); // T017UrlRef.descr
 			}
 		}
+		p.close();
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
@@ -3502,7 +3575,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			log.info("Importing " + entityName + "...");
 		}
 
-		String pSqlStrSpatialRefSns = "INSERT INTO spatial_ref_sns (id, sns_id, expired_at) " + "VALUES (?, ?, ?);";
+		String pSqlStrSpatialRefSns = "INSERT INTO spatial_ref_sns (id, sns_id, expired_at) " + "VALUES (?, ?, ?)";
 		PreparedStatement psInsertSpatialRefSns = jdbc.prepareStatement(pSqlStrSpatialRefSns);
 
 		// NOTICE: executed before importing free spatialReferences, so we CLEAR ALL REFERENCES !
@@ -3628,6 +3701,12 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 				}
 			}
 		}
+		psInsertSpatialRefSns.close();
+		psInsertSpatialReference.close();
+		psInsertSpatialRefValue.close();
+		psInsertSpatialReference = null;
+		psInsertSpatialRefValue = null;
+		
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
@@ -3646,11 +3725,11 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 		// create Prepared Statements for insert if not created yet
 		if (psInsertSpatialReference == null) {
 			String pSqlStrSpatialReference = "INSERT INTO spatial_reference (id, obj_id, line, spatial_ref_id) "
-				+ "VALUES (?, ?, ?, ?);";
+				+ "VALUES (?, ?, ?, ?)";
 			psInsertSpatialReference = jdbc.prepareStatement(pSqlStrSpatialReference);
 
 			String pSqlStrSpatialRefValue = "INSERT INTO spatial_ref_value (id, type, spatial_ref_sns_id, name_value, name_key, nativekey, x1, x2, y1, y2) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			psInsertSpatialRefValue = jdbc.prepareStatement(pSqlStrSpatialRefValue);
 		}
 		
@@ -3660,8 +3739,9 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			freeSpatialReferenceEntryNames = new ArrayList<String>();
 			freeSpatialReferenceEntryNamesLowerCase = new ArrayList<String>();
 
-			String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1100 and lang_id='" + getCatalogLanguage() + "';";
-			ResultSet rs = jdbc.executeQuery(sql);
+			String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1100 and lang_id='" + getCatalogLanguage() + "'";
+			Statement st = jdbc.createStatement();
+			ResultSet rs = jdbc.executeQuery(sql, st);
 			while (rs.next()) {
 				if (rs.getString("name") != null) {
 					freeSpatialReferenceEntryNames.add(rs.getString("name"));
@@ -3670,6 +3750,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 				}
 			}
 			rs.close();
+			st.close();
 		}
 
 		int cnt = 1;
@@ -3755,11 +3836,11 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 		// create Prepared Statements for insert if not created yet
 		if (psInsertSpatialReference == null) {
 			String pSqlStrSpatialReference = "INSERT INTO spatial_reference (id, obj_id, line, spatial_ref_id) "
-				+ "VALUES (?, ?, ?, ?);";
+				+ "VALUES (?, ?, ?, ?)";
 			psInsertSpatialReference = jdbc.prepareStatement(pSqlStrSpatialReference);
 
 			String pSqlStrSpatialRefValue = "INSERT INTO spatial_ref_value (id, type, spatial_ref_sns_id, name_value, name_key, nativekey, x1, x2, y1, y2) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			psInsertSpatialRefValue = jdbc.prepareStatement(pSqlStrSpatialRefValue);
 		}
 		
@@ -3918,6 +3999,10 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 					row.getInteger("line"),
 					null);
 		}
+		psInsertSpatialReference.close();
+		psInsertSpatialRefValue.close();
+		psInsertSpatialReference = null;
+		psInsertSpatialRefValue = null;
 
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
@@ -3931,7 +4016,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "...");
 		}
-		pSqlStr = "INSERT INTO t08_attr_type (id, name, length, type) " + "VALUES (?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO t08_attr_type (id, name, length, type) " + "VALUES (?, ?, ?, ?)";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -3960,6 +4045,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 				}
 			}
 		}
+		p.close();
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
@@ -3974,7 +4060,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 		}
 
 		pSqlStr = "INSERT INTO t08_attr_list (id, attr_type_id, type, listitem_line, listitem_value, lang_code) "
-				+ "VALUES (?, ?, ?, ?, ?, ?);";
+				+ "VALUES (?, ?, ?, ?, ?, ?)";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -4005,6 +4091,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 				}
 			}
 		}
+		p.close();
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
@@ -4018,7 +4105,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t08_attr (id, attr_type_id, obj_id, data) " + "VALUES (?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO t08_attr (id, attr_type_id, obj_id, data) " + "VALUES (?, ?, ?, ?)";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -4056,6 +4143,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 				JDBCHelper.updateObjectIndex(objId, row.get("data"), jdbc); // T08Attr.data
 			}
 		}
+		p.close();
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
@@ -4069,7 +4157,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t014_info_impart (id, obj_id, line, impart_value, impart_key) " + "VALUES (?, ?, ?, ?, ?);";
+		pSqlStr = "INSERT INTO t014_info_impart (id, obj_id, line, impart_value, impart_key) " + "VALUES (?, ?, ?, ?, ?)";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -4080,8 +4168,9 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1370 and lang_id='" + getCatalogLanguage() + "';";
-		ResultSet rs = jdbc.executeQuery(sql);
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1370 and lang_id='" + getCatalogLanguage() + "'";
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
 			if (rs.getString("name") != null) {
 				allowedSpecialRefEntryNames.add(rs.getString("name"));
@@ -4090,6 +4179,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			}
 		}
 		rs.close();
+		st.close();
 		
 		
 		for (Iterator<Row> i = dataProvider.getRowIterator(entityName); i.hasNext();) {
@@ -4132,6 +4222,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 				JDBCHelper.updateObjectIndex(objId, valueWritten, jdbc); // T014InfoImpart.impartValue
 			}
 		}
+		p.close();
 		if (log.isInfoEnabled()) {
 			log.info("Importing " + entityName + "... done.");
 		}
@@ -4162,16 +4253,18 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 
 				} else {
 					String sql = "SELECT id FROM spatial_ref_value WHERE nativekey='" + fullAGS + "'";
-					ResultSet rs = jdbc.executeQuery(sql);
+					Statement st = jdbc.createStatement();
+					ResultSet rs = jdbc.executeQuery(sql, st);
 					if (rs.next()) {
 						Long id = rs.getLong("id");
 						if (id != null && id.longValue() > 0) {
 							jdbc.executeUpdate("UPDATE t03_catalogue SET spatial_ref_id = " + id + " WHERE id="
-									+ row.getInteger("primary_key") + ";");
+									+ row.getInteger("primary_key") + "");
 							spatialRefWritten = true;
 						}
 						rs.close();
 					}
+					st.close();
 				}
 			}
 		}

@@ -5,6 +5,7 @@ package de.ingrid.importer.udk.strategy;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashMap;
 
 import org.apache.commons.logging.Log;
@@ -30,7 +31,7 @@ public class IDCSNSSpatialTypeStrategy extends IDCStrategyDefault {
 
 	/** REDEFINE ! OLDER VERSION, no ID column yet ! */
 	protected void setGenericKey(String key, String value) throws SQLException {
-		jdbc.executeUpdate("DELETE FROM sys_generic_key WHERE key_name='" + key + "';");
+		jdbc.executeUpdate("DELETE FROM sys_generic_key WHERE key_name='" + key + "'");
 
 		sqlStr = "INSERT INTO sys_generic_key (key_name, value_string) " +
 			"VALUES ('" + key + "', '" + value + "')";
@@ -81,7 +82,8 @@ public class IDCSNSSpatialTypeStrategy extends IDCStrategyDefault {
 		// we track written data in hash maps to avoid multiple writing for same spatial reference values
 		HashMap<Long, Boolean> processedSpatialRefIds = new HashMap<Long,Boolean>();
 
-		ResultSet rs = jdbc.executeQuery(sql);
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
 			long objNodeId = rs.getLong("objNodeId");
 			long objWorkId = rs.getLong("objWorkId");
@@ -116,6 +118,7 @@ public class IDCSNSSpatialTypeStrategy extends IDCStrategyDefault {
 			}
 		}
 		rs.close();
+		st.close();
 		
 		if (log.isInfoEnabled()) {
 			log.info("Updating spatial_ref_value... done");

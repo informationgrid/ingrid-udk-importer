@@ -71,7 +71,7 @@ public class IDCHelpImporterStrategy implements IDCStrategy {
 		
 		pSqlStr = "INSERT INTO help_messages (id, help_id, entity_class, language,"
 			+ "name, help_text, sample) VALUES "
-			+ "( ?, ?, ?, ?, ?, ?, ?);";
+			+ "( ?, ?, ?, ?, ?, ?, ?)";
 		
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 

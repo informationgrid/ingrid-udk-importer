@@ -1,18 +1,11 @@
 package de.ingrid.importer.udk;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * UDK HELP Text importer
  * 
  */
 public class HelpImporter {
-
-	/**
-	 * The logging object
-	 */
-	private static Log log = LogFactory.getLog(HelpImporter.class);
 
 	public static void main(String[] args) {
 

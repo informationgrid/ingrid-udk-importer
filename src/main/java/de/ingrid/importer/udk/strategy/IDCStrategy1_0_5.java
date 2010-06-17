@@ -4,6 +4,7 @@
 package de.ingrid.importer.udk.strategy;
 
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -194,7 +195,8 @@ public class IDCStrategy1_0_5 extends IDCStrategyDefault {
 		// then add entries for ALL t01_objects (no matter whether working or published version) 
 		String sql = "select distinct id, cat_name, country_code, language_code from t03_catalogue";
 
-		ResultSet rs = jdbc.executeQuery(sql);
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
 			long catId = rs.getLong("id");
 			String catName = rs.getString("cat_name");
@@ -226,6 +228,7 @@ public class IDCStrategy1_0_5 extends IDCStrategyDefault {
 			}
 		}
 		rs.close();
+		st.close();
 
 		if (log.isInfoEnabled()) {
 			log.info("Updating t03_catalogue... done");
@@ -247,7 +250,8 @@ public class IDCStrategy1_0_5 extends IDCStrategyDefault {
 			"from t02_address addr, address_node addrNode " +
 			"where addr.adr_uuid = addrNode.addr_uuid";
 
-		ResultSet rs = jdbc.executeQuery(sql);
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(sql, st);
 		Set<Long> processedNodeIds = new HashSet<Long>();
 		int numProcessed = 0;
 		while (rs.next()) {
@@ -311,6 +315,7 @@ public class IDCStrategy1_0_5 extends IDCStrategyDefault {
 			}
 		}
 		rs.close();
+		st.close();
 
 		if (log.isInfoEnabled()) {
 			log.info("Updated " + numProcessed + " addresses... done");
@@ -333,7 +338,8 @@ public class IDCStrategy1_0_5 extends IDCStrategyDefault {
 			"from t01_object obj, object_node objNode " +
 			"where obj.obj_uuid = objNode.obj_uuid";
 
-		ResultSet rs = jdbc.executeQuery(sql);
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(sql, st);
 		Set<Long> processedNodeIds = new HashSet<Long>();
 		int numProcessed = 0;
 		while (rs.next()) {
@@ -375,6 +381,7 @@ public class IDCStrategy1_0_5 extends IDCStrategyDefault {
 			}
 		}
 		rs.close();
+		st.close();
 
 		if (log.isInfoEnabled()) {
 			log.info("Updated " + numProcessed + " objects... done");

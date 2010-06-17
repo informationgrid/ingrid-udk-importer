@@ -51,7 +51,7 @@ public class IDCStrategy1_0_5_fixCountryCodelist extends IDCStrategyDefault {
 		jdbc.executeUpdate(sqlStr);
 
 		pSqlStr = "INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) " +
-			"VALUES ( ?, " + UtilsCountryCodelist.COUNTRY_SYSLIST_ID + ", ?, ?, ?, 0, ?);";
+			"VALUES ( ?, " + UtilsCountryCodelist.COUNTRY_SYSLIST_ID + ", ?, ?, ?, 0, ?)";
 
 		PreparedStatement pS = jdbc.prepareStatement(pSqlStr);
 

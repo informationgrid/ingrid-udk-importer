@@ -2,6 +2,7 @@ package de.ingrid.importer.udk.strategy;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
@@ -111,7 +112,8 @@ public class IDCStrategy1_0_4_fixInspireThemes extends IDCStrategyDefault {
 			"WHERE obj.id = termObj.obj_id " +
 			"and termObj.searchterm_id = val.id " +
 			"order by termObj.obj_id";
-		ResultSet rs = jdbc.executeQuery(sqlAllObjTerms);
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(sqlAllObjTerms, st);
 		while (rs.next()) {
 			long readObjId = rs.getLong("obj_id");
 
@@ -172,6 +174,7 @@ public class IDCStrategy1_0_4_fixInspireThemes extends IDCStrategyDefault {
 			}
 		}
 		rs.close();
+		st.close();
 		psReadObjInspireTerms.close();
 		psInsertTerm.close();
 		psInsertTermObj.close();
@@ -189,7 +192,8 @@ public class IDCStrategy1_0_4_fixInspireThemes extends IDCStrategyDefault {
 		String sql = "SELECT id, entry_id " +
 			"FROM searchterm_value " +
 			"WHERE type = 'I' ";
-		ResultSet rs = jdbc.executeQuery(sql);
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(sql, st);
 
 		while (rs.next()) {
 			int themeId = rs.getInt("entry_id");
@@ -198,6 +202,7 @@ public class IDCStrategy1_0_4_fixInspireThemes extends IDCStrategyDefault {
 			map.put(themeId, searchtermId);
 		}
 		rs.close();
+		st.close();
 
 		return map;
 	}

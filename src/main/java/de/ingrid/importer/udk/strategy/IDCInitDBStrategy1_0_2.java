@@ -5,6 +5,7 @@ package de.ingrid.importer.udk.strategy;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.sql.Types;
 import java.util.Date;
 
@@ -70,7 +71,7 @@ public class IDCInitDBStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 
 		pSqlStr = "INSERT INTO t03_catalogue (id, cat_uuid, cat_name, country_code,"
 				+ "workflow_control, expiry_duration, create_time, mod_uuid, mod_time, language_code) VALUES "
-				+ "( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+				+ "( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -92,8 +93,9 @@ public class IDCInitDBStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 		String modId = null;
 		String modTime = null;
 		
-		String sql = "SELECT adr_uuid FROM t02_address;";
-		ResultSet rs = jdbc.executeQuery(sql);
+		String sql = "SELECT adr_uuid FROM t02_address";
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(sql, st);
 		if (rs.next()) {
 			modId = rs.getString("adr_uuid");
 			if (modId != null) {
@@ -101,6 +103,7 @@ public class IDCInitDBStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			}
 		}
 		rs.close();
+		st.close();
 		
 		p.setString(cnt++, modId); // mod_uuid,
 		p.setString(cnt++, modTime); // mod_time
