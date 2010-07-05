@@ -1292,7 +1292,7 @@ CREATE TABLE spatial_ref_value (
   type CHAR(1 CHAR),
   spatial_ref_sns_id NUMBER(24,0),
   name_key NUMBER(10,0),
-  name_value CLOB,
+  name_value VARCHAR2(4000 CHAR),
   nativekey VARCHAR2(255 CHAR),
   x1 FLOAT,
   y1 FLOAT,
@@ -1732,7 +1732,7 @@ CREATE TABLE searchterm_value (
   version NUMBER(10,0) DEFAULT '0' NOT NULL,
   type CHAR(1 CHAR),
   searchterm_sns_id NUMBER(24,0),
-  term CLOB
+  term VARCHAR2(4000 CHAR)
 );
 
 

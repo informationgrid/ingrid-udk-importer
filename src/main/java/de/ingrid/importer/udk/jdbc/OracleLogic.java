@@ -58,6 +58,21 @@ public class OracleLogic implements DBLogic {
 		jdbc.commit();
 	}
 
+	public void renameColumn(String oldColName, String newColName, ColumnType colType, 
+			String tableName, boolean notNull, JDBCConnectionProxy jdbc) throws SQLException {
+		// TODO !
+
+		if (log.isWarnEnabled()) {
+			log.warn("ORACLE renameColumn not implemented yet !!!");
+		}
+		
+		// NOTICE: Only used on MySQL to adapt Column to Oracle name.
+		// In Oracle column names are "correct" with initial schema of tables !
+		// Implement if needed on Oracle ;)
+		
+		throw new SQLException("ORACLE renameColumn not implemented yet !!!");
+	}
+
 	public void modifyColumn(String colName, ColumnType colType, String tableName, boolean notNull,
 			JDBCConnectionProxy jdbc) throws SQLException {
 		String sql = "ALTER TABLE " + tableName + " MODIFY " + colName + " " + mapColumnTypeToSQL(colType);
@@ -203,6 +218,8 @@ public class OracleLogic implements DBLogic {
 
 		if (colType == ColumnType.TEXT) {
 			sql = "CLOB";
+		} else if (colType == ColumnType.TEXT_NO_CLOB) {
+			sql = "VARCHAR2(4000 CHAR)";
 		} else if (colType == ColumnType.MEDIUMTEXT) {
 			sql = "CLOB";
 		} else if (colType == ColumnType.VARCHAR50) {

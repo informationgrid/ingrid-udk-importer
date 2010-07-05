@@ -36,6 +36,8 @@ public interface IDCStrategy {
 	static String VALUE_IDC_VERSION_105_FIX_COUNTRY_CODELIST = "1.0.5_fixCountryCodelist";
 	/** Extend all VARCHAR to 255 */
 	static String VALUE_IDC_VERSION_106 = "1.0.6";
+	/** Changes for Running on Oracle */
+	static String VALUE_IDC_VERSION_107 = "1.0.7";
 
 	/** Order of strategies to execute to obtain most recent IGC.
 	 * Contains all according versions/strategies in ascending order.
@@ -56,6 +58,7 @@ public interface IDCStrategy {
 		// So default is Europe and NOT all countries. The strategy can be executed on its own if all countries needed !
 //		VALUE_IDC_VERSION_105_FIX_COUNTRY_CODELIST,
 		VALUE_IDC_VERSION_106,
+		VALUE_IDC_VERSION_107,
 	};
 		
 	public void execute() throws Exception;

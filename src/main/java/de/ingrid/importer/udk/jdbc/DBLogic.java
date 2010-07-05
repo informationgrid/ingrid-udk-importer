@@ -12,6 +12,7 @@ public interface DBLogic {
 	
 	public static enum ColumnType {
 		TEXT,
+		TEXT_NO_CLOB,
 		MEDIUMTEXT,
 		VARCHAR50,
 		VARCHAR255,
@@ -31,12 +32,20 @@ public interface DBLogic {
 		boolean notNull, Object defaultValue, JDBCConnectionProxy jdbc) throws SQLException;
 
 	/**
-	 * DDL Operation ! CAUSES COMMIT ON MySQL ! Modify a column (new type or constraint)
-	 * @param notNull pass true if value cannot be null.
+	 * Modify column type or constraint (NOT NULL).
+	 * DDL Operation ! CAUSES COMMIT ON MySQL ! 
+	 * @param notNull pass true if column value cannot be null.
 	 * 		NOTICE: if true the default value is set per jdbc automatically ? (at least when type string)
 	 */
 	void modifyColumn(String colName, ColumnType colType, String tableName, 
 		boolean notNull, JDBCConnectionProxy jdbc) throws SQLException;
+
+	/**
+	 * Rename a column. You have to pass full definition of column (also if type not changed)
+	 * DDL Operation ! CAUSES COMMIT ON MySQL ! 
+	 */
+	void renameColumn(String oldColName, String newColName, ColumnType colType, 
+		String tableName, boolean notNull, JDBCConnectionProxy jdbc) throws SQLException;
 
 	void addIndex(String colName, String tableName, String indexName,
 		JDBCConnectionProxy jdbc) throws SQLException;

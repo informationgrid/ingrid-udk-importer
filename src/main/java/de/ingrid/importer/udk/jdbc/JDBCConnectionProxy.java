@@ -119,4 +119,8 @@ public class JDBCConnectionProxy {
 	public DBLogic getDBLogic() {
 		return dbLogic;
 	}
+
+	public boolean isOracle() {
+		return OracleLogic.class.isAssignableFrom(getDBLogic().getClass());
+	}
 }

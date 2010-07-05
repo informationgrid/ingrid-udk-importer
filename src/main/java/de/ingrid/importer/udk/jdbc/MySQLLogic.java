@@ -41,6 +41,20 @@ public class MySQLLogic implements DBLogic {
 		jdbc.executeUpdate(sql);
 	}
 
+	public void renameColumn(String oldColName, String newColName, ColumnType colType, 
+			String tableName, boolean notNull, JDBCConnectionProxy jdbc) throws SQLException {
+		String sql = "ALTER TABLE " + tableName	+ 
+			" CHANGE " + oldColName + " " + newColName +  
+			" " + mapColumnTypeToSQL(colType);
+
+		if (notNull) {
+			sql += " NOT NULL";
+			// NOTICE: adding default value causes ERROR ! is added by jdbc automatically !
+		}
+
+		jdbc.executeUpdate(sql);
+	}
+
 	public void dropColumn(String colName, String tableName, JDBCConnectionProxy jdbc) throws SQLException {
 		String sql = "ALTER TABLE " + tableName	+ " DROP COLUMN " + colName;
 		jdbc.executeUpdate(sql);
@@ -183,7 +197,7 @@ public class MySQLLogic implements DBLogic {
 	private String mapColumnTypeToSQL(ColumnType colType) {
 		String sql = "";
 
-		if (colType == ColumnType.TEXT) {
+		if (colType == ColumnType.TEXT || colType == ColumnType.TEXT_NO_CLOB) {
 			sql = "TEXT";
 		} else if (colType == ColumnType.MEDIUMTEXT) {
 			sql = "MEDIUMTEXT";

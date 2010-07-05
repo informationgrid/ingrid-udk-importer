@@ -29,6 +29,11 @@ public class MSSQLLogic implements DBLogic {
 		// TODO !
 	}
 
+	public void renameColumn(String oldColName, String newColName, ColumnType colType, 
+			String tableName, boolean notNull, JDBCConnectionProxy jdbc) throws SQLException {
+		// TODO !
+	}
+
 	public void dropColumn(String colName, String tableName, JDBCConnectionProxy jdbc) throws SQLException {
 		// TODO
 	}

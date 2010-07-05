@@ -133,7 +133,7 @@ public class IDCStrategy1_0_4 extends IDCStrategyDefault {
 		if (log.isInfoEnabled()) {
 			log.info("Add column 'alternate_term' to table 'searchterm_value'...");
 		}
-		jdbc.getDBLogic().addColumn("alternate_term", ColumnType.TEXT, "searchterm_value", false, null, jdbc);
+		jdbc.getDBLogic().addColumn("alternate_term", ColumnType.TEXT_NO_CLOB, "searchterm_value", false, null, jdbc);
 
 		if (log.isInfoEnabled()) {
 			log.info("Extending datastructure... done");

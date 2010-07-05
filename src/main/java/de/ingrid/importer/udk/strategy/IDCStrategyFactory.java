@@ -48,6 +48,8 @@ public class IDCStrategyFactory {
 			return new IDCStrategy1_0_5_fixCountryCodelist();
 		} else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_106)) {
 			return new IDCStrategy1_0_6();
+		} else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_107)) {
+			return new IDCStrategy1_0_7();
 		} else {
 			log.error("Unknown IDC version '" + idcVersion + "'.");
 			throw new IllegalArgumentException("Unknown IDC version '" + idcVersion + "'.");

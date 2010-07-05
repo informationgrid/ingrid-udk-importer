@@ -120,7 +120,7 @@ public class JDBCHelper {
 		}
 		String pSqlStr = "UPDATE full_index_addr SET idx_value = concat(idx_value, ?) WHERE addr_node_id = ? AND idx_name = '" + idxName + "'";
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
-		if (token.length() > 3998 && jdbc.getDBLogic() instanceof OracleLogic) {
+		if (token.length() > 3998 && jdbc.isOracle()) {
 			p.setString(1, IDX_TOKEN_SEPARATOR + token.substring(0, 3998) + IDX_TOKEN_SEPARATOR);
 		} else {
 			p.setString(1, IDX_TOKEN_SEPARATOR + token + IDX_TOKEN_SEPARATOR);

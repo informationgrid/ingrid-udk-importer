@@ -4,15 +4,12 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
-    <release version="1.3.1" date="xxxx-xx-xx" description="Oracle support added.">
+    <release version="1.4.0" date="xxxx-xx-xx" description="Oracle support added. ENFORCES UPDATE OF IGE iPlug !">
       <action type="add">
-        Oracle support added.
+        Oracle support added (all Strategies + new Strategy 1.0.7) -> New IGC Schema Version 1.0.7 ENFORCES UPDATE OF IGE iPlug !
       </action>
       <action type="add">
-        RLP specific syslist data added.
-      </action>
-      <action type="add">
-        Delete script for global syslist data added.
+        RLP specific syslist data (csv) and Delete script for global syslist data added.
       </action>
     </release>
     <release version="1.3.0" date="2010-06-16" description="Optimierung Schema, Inhalte">

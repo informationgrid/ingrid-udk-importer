@@ -17,8 +17,13 @@ Um einen korrekten Syslisten Zustand nach dem Upgrade auf die version 1.0.3 zu g
 2. globale länderübergreifende Syslisten importieren (sys_list_global.csv)
 3. lokale länderspezifische Syslisten importieren (z.B. sys_list_local_ni.csv).
 
-Import csv via phpMyAdmin:
---------------------------
+OPTIONAL:
+Mit dem Skript delete_global_sys_list.sql werden nur die globalen Syslisten gelöscht, falls nötig.
+ACHTUNG: Beim Import der globalen Syslisten muß IMMER gewährleistet sein, dass die IDs 1-1000 noch nicht vergeben sind !
+
+
+Import csv via phpMyAdmin (MySQL):
+----------------------------------
 
 - Tabelle "sys_list" auswählen und Tab "Leeren"
 
@@ -36,3 +41,9 @@ Default:
 	Felder escaped von: \
 	Zeilen getrennt mit: auto
 	Spaltennamen:
+
+
+Import Oracle:
+--------------
+
+- csv Dateien u.U. nach ANSI konvertieren, um Sonderzeichen korrekt zu übernehmen
