@@ -32,6 +32,9 @@ public class UuidGenerator {
 			idcUuid.append("0");
 		}
 
+		if (LOG.isDebugEnabled()) {
+			LOG.debug("Generated new UUID: " + idcUuid);
+		}
 		return idcUuid.toString();
 	}
 

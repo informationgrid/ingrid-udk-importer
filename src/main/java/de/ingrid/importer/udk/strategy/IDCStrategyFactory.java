@@ -30,13 +30,13 @@ public class IDCStrategyFactory {
 			return new IDCStrategy1_0_2();
 		} else if (idcVersion.equals("1.0.2_fix_import")) {
 			return new IDCFixImportStrategy();
-		} else if (idcVersion.equals(IDCStrategy.VALUE_IDC_FIX_SYSLIST)) {
+		} else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_102_FIX_SYSLIST)) {
 			return new IDCFixSysList100_101Strategy();
 		} else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_102_SNS_SPATIAL_TYPE)) {
 			return new IDCSNSSpatialTypeStrategy();
 		} else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_103)) {
 			return new IDCStrategy1_0_3();
-		} else if (idcVersion.equals("1.0.3_fix_tree_path")) {
+		} else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_103_FIX_TREE_PATH)) {
 			return new IDCFixTreePathStrategy();
 		} else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_104)) {
 			return new IDCStrategy1_0_4();
@@ -48,6 +48,8 @@ public class IDCStrategyFactory {
 			return new IDCStrategy1_0_5_fixCountryCodelist();
 		} else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_106)) {
 			return new IDCStrategy1_0_6();
+		} else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_106_FIX_SYSLIST_INSPIRE)) {
+			return new IDCStrategy1_0_6_fixSysListInspire();
 		} else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_107)) {
 			return new IDCStrategy1_0_7();
 		} else {
