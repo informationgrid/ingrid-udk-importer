@@ -21,11 +21,13 @@ public interface IDCStrategy {
 	/** initial version/strategy */
 	static String VALUE_IDC_VERSION_102 = "1.0.2";
 	/** FIX strategy (writes NO version) for fixing wrong syslists. ALSO INTEGRATED IN STRATEGY WORKFLOW */
-	static String VALUE_IDC_FIX_SYSLIST = "1.0.2_fix_syslist_100_101";
+	static String VALUE_IDC_VERSION_102_FIX_SYSLIST = "1.0.2_fix_syslist_100_101";
 	/** SNS Spatial Type Update */
 	static String VALUE_IDC_VERSION_102_SNS_SPATIAL_TYPE = "1.0.2_sns_spatial_type";
 	/** INSPIRE update version/strategy */
 	static String VALUE_IDC_VERSION_103 = "1.0.3";
+	/** Single Strategy for fixing tree path attribute in object/address nodes ! */
+	static String VALUE_IDC_VERSION_103_FIX_TREE_PATH = "1.0.3_fix_tree_path";
 	/** IMPORT/EXPORT etc. version/strategy -> InGrid 2.0 internal release ! */
 	static String VALUE_IDC_VERSION_104 = "1.0.4";
 	/** Update INSPIRE themes version/strategy -> can be executed on its own ! */
@@ -36,6 +38,8 @@ public interface IDCStrategy {
 	static String VALUE_IDC_VERSION_105_FIX_COUNTRY_CODELIST = "1.0.5_fixCountryCodelist";
 	/** Extend all VARCHAR to 255 */
 	static String VALUE_IDC_VERSION_106 = "1.0.6";
+	/** FIX strategy (writes NO version) for fixing syslists. ALSO INTEGRATED IN STRATEGY WORKFLOW */
+	static String VALUE_IDC_VERSION_106_FIX_SYSLIST_INSPIRE = "1.0.6_fixSyslistInspire";
 	/** Changes for Running on Oracle */
 	static String VALUE_IDC_VERSION_107 = "1.0.7";
 
@@ -44,7 +48,7 @@ public interface IDCStrategy {
 	 * NOTICE: THESE VERSIONS ARE MAPPED TO STRATEGIES IN STRATEGY FACTORY !!! */
 	static String[] STRATEGY_WORKFLOW = new String[] {
 		VALUE_IDC_VERSION_102,
-		VALUE_IDC_FIX_SYSLIST,
+		VALUE_IDC_VERSION_102_FIX_SYSLIST,
 		VALUE_IDC_VERSION_102_SNS_SPATIAL_TYPE,
 		VALUE_IDC_VERSION_103,
 
@@ -58,6 +62,7 @@ public interface IDCStrategy {
 		// So default is Europe and NOT all countries. The strategy can be executed on its own if all countries needed !
 //		VALUE_IDC_VERSION_105_FIX_COUNTRY_CODELIST,
 		VALUE_IDC_VERSION_106,
+		VALUE_IDC_VERSION_106_FIX_SYSLIST_INSPIRE,
 		VALUE_IDC_VERSION_107,
 	};
 		
