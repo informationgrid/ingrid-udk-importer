@@ -4,7 +4,7 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
-    <release version="1.4.0" date="2010-08-11" description="Oracle support added. NOTICE: New IGC Schema Version 1.0.7 ENFORCES UPDATE OF IGE iPlug !">
+    <release version="1.4.0" date="2010-08-12" description="Oracle support added. NOTICE: New IGC Schema Version 1.0.7 ENFORCES UPDATE OF IGE iPlug !">
       <action type="add">
         Oracle support added (in all Strategies + new Strategy 1.0.7) -> New IGC Schema Version 1.0.7 ENFORCES UPDATE OF IGE iPlug !
       </action>
