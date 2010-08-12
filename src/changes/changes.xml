@@ -9,7 +9,7 @@
         Oracle support added (in all Strategies + new Strategy 1.0.7) -> New IGC Schema Version 1.0.7 ENFORCES UPDATE OF IGE iPlug !
       </action>
       <action type="add">
-        Added strategy for fixing INSPIRE syslists (1.0.6_fixSyslistInspire). Can be called on its own (independent from other strategies).
+        Added strategy for fixing INSPIRE and other syslists (1.0.6_fixSyslistInspire). Can be called on its own (independent from other strategies).
       </action>
       <action type="add">
         Added RLP specific syslist data (csv) +  Delete script for global syslist data (see directory syslist_import).
