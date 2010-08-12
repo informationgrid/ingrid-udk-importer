@@ -16,8 +16,8 @@ import org.apache.commons.logging.LogFactory;
 import de.ingrid.utils.udk.UtilsLanguageCodelist;
 
 /**
- * Independent Strategy for fixing wrong INSPIRE syslist VALUES.
- * NOTICE: Also updates according values in object data !
+ * Independent Strategy for fixing wrong syslist VALUES (INSPIRE syslists etc.)
+ * NOTICE: Also updates according values in object data if present !
  * see http://dev.wemove.com/jira/browse/INGRID-1860
  */
 public class IDCStrategy1_0_6_fixSysListInspire extends IDCStrategyDefault {
@@ -42,13 +42,15 @@ public class IDCStrategy1_0_6_fixSysListInspire extends IDCStrategyDefault {
 		System.out.print("  Fixing syslist 5200 values ...");
 		fixSysList5200();
 		System.out.println("done.");
+		System.out.print("  Fixing syslist 528 values ...");
+		fixSysList528();
+		System.out.println("done.");
 
 		jdbc.commit();
 		System.out.println("Update finished successfully.");
 	}
 
 	protected void fixSysList5100() throws Exception {
-		// fix keys and values in sys_list and t011_obj_geo
 		if (log.isInfoEnabled()) {
 			log.info("Fixing syslist 5100 values in sys_list and t011_obj_serv ...");
 		}
@@ -95,7 +97,6 @@ public class IDCStrategy1_0_6_fixSysListInspire extends IDCStrategyDefault {
 	}
 
 	protected void fixSysList5200() throws Exception {
-		// fix keys and values in sys_list and t011_obj_geo
 		if (log.isInfoEnabled()) {
 			log.info("Fixing syslist 5200 values in sys_list and t011_obj_serv_type ...");
 		}
@@ -143,11 +144,49 @@ public class IDCStrategy1_0_6_fixSysListInspire extends IDCStrategyDefault {
 							"where " +
 								"serv_type_key = " + entry.getKey());
 					if (log.isDebugEnabled()) {
-						log.debug("t011_obj_serv_type: updated " + numUpdated + " rows -> existing type_key(" + entry.getKey() + "), " +
-							"new type_value(" +	entry.getValue() + ")");
+						log.debug("t011_obj_serv_type: updated " + numUpdated + " rows -> existing serv_type_key(" + entry.getKey() + "), " +
+							"new serv_type_value(" +	entry.getValue() + ")");
 					}				
 				}
 			}
+		}
+	}
+
+	protected void fixSysList528() throws Exception {
+		if (log.isInfoEnabled()) {
+			log.info("Fixing syslist 528 values in sys_list ...");
+		}
+
+		HashMap<Integer, String> mapKeyToNewValueListDE = new HashMap<Integer, String>();
+		mapKeyToNewValueListDE.put(1, "Geometrie ohne Topologie");
+		mapKeyToNewValueListDE.put(2, "Linien");
+		mapKeyToNewValueListDE.put(3, "geschlossene Linien eben");
+		mapKeyToNewValueListDE.put(4, "Flächen");
+		mapKeyToNewValueListDE.put(5, "geschlossene Linien flächendeckend");
+		mapKeyToNewValueListDE.put(6, "Flächen flächendeckend");
+		mapKeyToNewValueListDE.put(7, "Körper");
+		mapKeyToNewValueListDE.put(8, "3D-Oberfläche");
+		mapKeyToNewValueListDE.put(9, "topologisches Gebilde ohne geometrischen Raumbezug");
+
+		Iterator<Entry<Integer,String>> entryIt = mapKeyToNewValueListDE.entrySet().iterator();
+
+		while (entryIt.hasNext()) {
+			Entry<Integer,String> entry = entryIt.next();
+
+			// fix sys_list
+			int numUpdated = jdbc.executeUpdate(
+				"UPDATE sys_list SET " +
+					"name = '" + entry.getValue() + "' " +
+				"where " +
+					"lst_id = 528" +
+					" and lang_id = 'de'" +
+					" and entry_id = " + entry.getKey());
+			if (log.isDebugEnabled()) {
+				log.debug("sys_list 528: updated " + numUpdated + " rows -> entry_id(" + entry.getKey() + "), " +
+					"new name(" +	entry.getValue() + ")");
+			}
+			
+			// NO fixing of data values. In object data only entry id is stored !
 		}
 	}
 
