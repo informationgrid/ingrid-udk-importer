@@ -72,4 +72,7 @@ public interface DBLogic {
 	void createTableSysJobInfo(JDBCConnectionProxy jdbc) throws SQLException;
 	/** DDL Operation ! CAUSES COMMIT ON MySQL ! */
 	void createTableSysGenericKey(JDBCConnectionProxy jdbc) throws SQLException;
+
+	/** DDL Operation ! CAUSES COMMIT ON MySQL ! */
+	void createTableObjectUse(JDBCConnectionProxy jdbc) throws SQLException;
 }

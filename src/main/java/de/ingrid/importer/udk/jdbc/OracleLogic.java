@@ -213,6 +213,18 @@ public class OracleLogic implements DBLogic {
 		jdbc.commit();
 	}
 
+	public void createTableObjectUse(JDBCConnectionProxy jdbc) throws SQLException {
+		String sql = "CREATE TABLE object_use ( id NUMBER(24,0) NOT NULL, " +
+			"version NUMBER(10,0) DEFAULT '0' NOT NULL, obj_id NUMBER(24,0), " +
+			"line NUMBER(10,0) DEFAULT '0', terms_of_use CLOB )";
+		jdbc.executeUpdate(sql);
+		sql = "ALTER TABLE object_use ADD CONSTRAINT PRIMARY_OBJECT_USE PRIMARY KEY ( id ) ENABLE";
+		jdbc.executeUpdate(sql);
+		sql = "CREATE INDEX idxObjUse_ObjId ON object_use ( obj_id )";
+		jdbc.executeUpdate(sql);
+		jdbc.commit();
+	}
+
 	private String mapColumnTypeToSQL(ColumnType colType) {
 		String sql = "";
 
@@ -234,5 +246,4 @@ public class OracleLogic implements DBLogic {
 
 		return sql;
 	}
-
 }

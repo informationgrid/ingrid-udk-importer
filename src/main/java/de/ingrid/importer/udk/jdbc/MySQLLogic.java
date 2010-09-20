@@ -194,6 +194,19 @@ public class MySQLLogic implements DBLogic {
 		jdbc.executeUpdate(sql);
 	}
 
+	public void createTableObjectUse(JDBCConnectionProxy jdbc) throws SQLException {
+		String sql = "CREATE TABLE object_use(" +
+			"id BIGINT NOT NULL, " +
+			"version INTEGER NOT NULL DEFAULT 0, " +
+			"obj_id BIGINT, " +
+			"line INTEGER DEFAULT 0, " +
+			"terms_of_use TEXT, " +
+			"PRIMARY KEY (id), " +
+			"INDEX idxObjUse_ObjId (obj_id ASC)) " +
+			"TYPE=InnoDB;";
+		jdbc.executeUpdate(sql);
+	}
+
 	private String mapColumnTypeToSQL(ColumnType colType) {
 		String sql = "";
 

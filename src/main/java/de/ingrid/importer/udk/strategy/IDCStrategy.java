@@ -42,6 +42,8 @@ public interface IDCStrategy {
 	static String VALUE_IDC_VERSION_106_FIX_SYSLIST_INSPIRE = "1.0.6_fixSyslistInspire";
 	/** Changes for Running on Oracle */
 	static String VALUE_IDC_VERSION_107 = "1.0.7";
+	/** InGrid 2.3: static changes, e.g. separate object_access and object_use */
+	static String VALUE_IDC_VERSION_108 = "1.0.8";
 
 	/** Order of strategies to execute to obtain most recent IGC.
 	 * Contains all according versions/strategies in ascending order.
@@ -64,6 +66,7 @@ public interface IDCStrategy {
 		VALUE_IDC_VERSION_106,
 		VALUE_IDC_VERSION_106_FIX_SYSLIST_INSPIRE,
 		VALUE_IDC_VERSION_107,
+		VALUE_IDC_VERSION_108,
 	};
 		
 	public void execute() throws Exception;
