@@ -206,6 +206,19 @@ public class MySQLLogic implements DBLogic {
 			"TYPE=InnoDB;";
 		jdbc.executeUpdate(sql);
 	}
+	public void createTableT011ObjServUrl(JDBCConnectionProxy jdbc) throws SQLException {
+		String sql = "CREATE TABLE t011_obj_serv_url(" +
+			"id BIGINT NOT NULL, " +
+			"version INTEGER NOT NULL DEFAULT 0, " +
+			"obj_serv_id BIGINT, " +
+			"line INTEGER DEFAULT 0, " +
+			"url VARCHAR(1024), " +
+			"description VARCHAR(4000), " +
+			"PRIMARY KEY (id), " +
+			"INDEX idxOSerUrl_OSerId (obj_serv_id ASC)) " +
+			"TYPE=InnoDB;";
+		jdbc.executeUpdate(sql);
+	}
 
 	private String mapColumnTypeToSQL(ColumnType colType) {
 		String sql = "";
@@ -214,6 +227,8 @@ public class MySQLLogic implements DBLogic {
 			sql = "TEXT";
 		} else if (colType == ColumnType.MEDIUMTEXT) {
 			sql = "MEDIUMTEXT";
+		} else if (colType == ColumnType.VARCHAR1) {
+			sql = "VARCHAR(1)";
 		} else if (colType == ColumnType.VARCHAR50) {
 			sql = "VARCHAR(50)";
 		} else if (colType == ColumnType.VARCHAR255) {

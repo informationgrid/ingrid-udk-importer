@@ -14,6 +14,7 @@ public interface DBLogic {
 		TEXT,
 		TEXT_NO_CLOB,
 		MEDIUMTEXT,
+		VARCHAR1,
 		VARCHAR50,
 		VARCHAR255,
 		INTEGER,
@@ -75,4 +76,6 @@ public interface DBLogic {
 
 	/** DDL Operation ! CAUSES COMMIT ON MySQL ! */
 	void createTableObjectUse(JDBCConnectionProxy jdbc) throws SQLException;
+	/** DDL Operation ! CAUSES COMMIT ON MySQL ! */
+	void createTableT011ObjServUrl(JDBCConnectionProxy jdbc) throws SQLException;
 }

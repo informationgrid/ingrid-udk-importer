@@ -224,6 +224,22 @@ public class OracleLogic implements DBLogic {
 		jdbc.executeUpdate(sql);
 		jdbc.commit();
 	}
+	public void createTableT011ObjServUrl(JDBCConnectionProxy jdbc) throws SQLException {
+		String sql = "CREATE TABLE t011_obj_serv_url ( " +
+			"id NUMBER(24,0) NOT NULL, " +
+			"version NUMBER(10,0) DEFAULT '0' NOT NULL, " +
+			"obj_serv_id NUMBER(24,0), " +
+			"line NUMBER(10,0) DEFAULT '0', " +
+			"url VARCHAR2(1024 CHAR), " +
+			"description VARCHAR2(4000 CHAR))";
+		jdbc.executeUpdate(sql);
+		sql = "ALTER TABLE t011_obj_serv_url ADD CONSTRAINT PRIMARY_T011ObjServUrl PRIMARY KEY ( id ) ENABLE";
+		jdbc.executeUpdate(sql);
+		sql = "CREATE INDEX idxOSerUrl_OSerId ON t011_obj_serv_url ( obj_serv_id )";
+		jdbc.executeUpdate(sql);
+		jdbc.commit();
+	}
+
 
 	private String mapColumnTypeToSQL(ColumnType colType) {
 		String sql = "";
@@ -234,6 +250,8 @@ public class OracleLogic implements DBLogic {
 			sql = "VARCHAR2(4000 CHAR)";
 		} else if (colType == ColumnType.MEDIUMTEXT) {
 			sql = "CLOB";
+		} else if (colType == ColumnType.VARCHAR1) {
+			sql = "VARCHAR2(1 CHAR)";
 		} else if (colType == ColumnType.VARCHAR50) {
 			sql = "VARCHAR2(50 CHAR)";
 		} else if (colType == ColumnType.VARCHAR255) {
