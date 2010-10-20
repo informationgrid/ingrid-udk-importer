@@ -212,6 +212,7 @@ public class MySQLLogic implements DBLogic {
 			"version INTEGER NOT NULL DEFAULT 0, " +
 			"obj_serv_id BIGINT, " +
 			"line INTEGER DEFAULT 0, " +
+			"name VARCHAR(1024), " +
 			"url VARCHAR(1024), " +
 			"description VARCHAR(4000), " +
 			"PRIMARY KEY (id), " +

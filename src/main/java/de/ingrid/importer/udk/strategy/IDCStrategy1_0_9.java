@@ -81,10 +81,9 @@ public class IDCStrategy1_0_9 extends IDCStrategyDefault {
 		// InGrid 2.3: "Erstellung einer eigenen Klasse für geographische Services"
 
 		if (log.isInfoEnabled()) {
-			log.info("Add columns 'has_access_constraint' + 'name' to table 't011_obj_serv' ...");
+			log.info("Add columns 'has_access_constraint' to table 't011_obj_serv' ...");
 		}
 		jdbc.getDBLogic().addColumn("has_access_constraint", ColumnType.VARCHAR1, "t011_obj_serv", false, "'N'", jdbc);
-		jdbc.getDBLogic().addColumn("name", ColumnType.VARCHAR255, "t011_obj_serv", false, null, jdbc);
 
 		if (log.isInfoEnabled()) {
 			log.info("Create table 't011_obj_serv_url'...");
@@ -306,11 +305,12 @@ public class IDCStrategy1_0_9 extends IDCStrategyDefault {
 			// migrate URLs from operations if present
 			int line = 1;
 			for (ServiceOperation op : currentObj.operations.values()) {
-				String description = op.name + " : " + op.description;
+				String name = op.name;
+				String description = op.description;
 				for (String url : op.urls) {
-					jdbc.executeUpdate("INSERT INTO t011_obj_serv_url (id, obj_serv_id, line, url, description) "
+					jdbc.executeUpdate("INSERT INTO t011_obj_serv_url (id, obj_serv_id, line, name, url, description) "
 						+ "VALUES (" + getNextId() + ", " + currentObj.objServId + ", " + line + ", '" 
-						+ url + "', '" + description + "')");							
+						+ name + ", '" + url + "', '" + description + "')");							
 					line++;
 					if (log.isInfoEnabled()) {
 						log.info("Migrated former operation to URL '" + url + "' with description '" + description + "'");

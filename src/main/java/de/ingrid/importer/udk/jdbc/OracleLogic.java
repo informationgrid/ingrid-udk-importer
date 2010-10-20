@@ -230,6 +230,7 @@ public class OracleLogic implements DBLogic {
 			"version NUMBER(10,0) DEFAULT '0' NOT NULL, " +
 			"obj_serv_id NUMBER(24,0), " +
 			"line NUMBER(10,0) DEFAULT '0', " +
+			"name VARCHAR2(1024 CHAR), " +
 			"url VARCHAR2(1024 CHAR), " +
 			"description VARCHAR2(4000 CHAR))";
 		jdbc.executeUpdate(sql);
