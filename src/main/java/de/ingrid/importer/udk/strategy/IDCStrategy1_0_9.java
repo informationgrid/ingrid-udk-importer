@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -26,6 +27,7 @@ public class IDCStrategy1_0_9 extends IDCStrategyDefault {
 
 	final public static int TYPE_KEY_OTHER_SERVICE = 6;
 	final public static int CLASSIFIC_KEY_NON_GEO_SERVICE = 901;
+	final public static String WORK_STATE_IN_BEARBEITUNG = "B";
 
 	final public static int NEW_OBJ_CLASS_INFORMATIONSSYSTEM = 6;
 
@@ -36,7 +38,7 @@ public class IDCStrategy1_0_9 extends IDCStrategyDefault {
 	public void execute() throws Exception {
 		jdbc.setAutoCommit(false);
 
-		// then write version of IGC structure !
+		// write version of IGC structure !
 		setGenericKey(KEY_IDC_VERSION, MY_VERSION);
 
 		// THEN EXECUTE ALL "CREATING" DDL OPERATIONS ! NOTICE: causes commit (e.g. on MySQL)
@@ -173,20 +175,23 @@ public class IDCStrategy1_0_9 extends IDCStrategyDefault {
 		}
 
 		String sql = "select " +
-			"obj.id as objId, obj.obj_name, " + // object
+			"oNode.id as oNodeId, oNode.obj_id, oNode.obj_id_published, " + // object node
+			"obj.obj_name, " + // object
 			"objServ.id as objServId, objServ.type_key as typeKey, objServ.type_value as typeValue, " + // type
 			"objServType.serv_type_key as classificKey, " + // classification
 			"objServOp.id as opId, objServOp.name_value as opName, objServOp.descr as opDescr, " + // operation
 			"objServOpConn.connect_point as opUrl " + // operation url
 			"from " +
-			"t01_object obj " +
+			"object_node oNode " +
+			// always join "working version" ! equals published version, if no working version
+			"left join t01_object obj on (oNode.obj_id = obj.id) " +
 			"left outer join t011_obj_serv objServ on (obj.id = objServ.obj_id) " +
 			"left outer join t011_obj_serv_type objServType on (objServ.id = objServType.obj_serv_id) " +
 			"left outer join t011_obj_serv_operation objServOp on (objServ.id = objServOp.obj_serv_id) " +
 			"left outer join t011_obj_serv_op_connpoint objServOpConn on (objServOp.id = objServOpConn.obj_serv_op_id) " +
 			"where " +
 			"obj.obj_class = 3 " +
-			"order by objId, objServId, objServType.line, objServOp.line, objServOpConn.line";
+			"order by obj_id, objServId, objServType.line, objServOp.line, objServOpConn.line";
 
 		MigrationStatistics stats = new MigrationStatistics();
 		ServiceObject currentObj = null;
@@ -194,7 +199,7 @@ public class IDCStrategy1_0_9 extends IDCStrategyDefault {
 		Statement st = jdbc.createStatement();
 		ResultSet rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
-			long nextObjId = rs.getLong("objId");
+			long nextObjId = rs.getLong("obj_id");
 			
 			// check whether all data of an object is read, then do migration !
 			boolean objChange = false;
@@ -206,8 +211,8 @@ public class IDCStrategy1_0_9 extends IDCStrategyDefault {
 			
 			if (currentObj == null || objChange) {
 				// set up next object
-				currentObj = new ServiceObject(nextObjId, rs.getString("obj_name"),
-					rs.getLong("objServId"), rs.getInt("typeKey"), rs.getString("typeValue"));
+				currentObj = new ServiceObject(rs.getLong("oNodeId"), nextObjId, rs.getLong("obj_id_published"), 
+					rs.getString("obj_name"), rs.getLong("objServId"), rs.getInt("typeKey"), rs.getString("typeValue"));
 			}
 
 			// pass new stuff
@@ -227,13 +232,23 @@ public class IDCStrategy1_0_9 extends IDCStrategyDefault {
 			log.info("Migrated " + stats.numGeo + " objects to class 'Geodatendienst'");
 			log.info("Migrated " + stats.numNonGeo + " objects to class 'Informationssystem/Dienst/Anwendung'");
 		}
+		if (stats.objNamesUnpublishedGeo.size() > 0) {
+			log.warn("The following " + stats.objNamesUnpublishedGeo.size() +
+				" objects have been migrated to 'Geodatendienst' and put to WORKING STATE due to missing classification ! Please edit manually and publish again !\n\n" +
+				stats.getObjNamesUnpublishedAsString(true));
+		}
+		if (stats.objNamesUnpublishedNonGeo.size() > 0) {
+			log.warn("The following " + stats.objNamesUnpublishedNonGeo.size() +
+				" objects have been migrated to 'Informationssystem/Dienst/Anwendung' and put to WORKING STATE ! Please choose NEW service type manually and publish again !\n\n" +
+				stats.getObjNamesUnpublishedAsString(false));
+		}
 
 		if (log.isInfoEnabled()) {
 			log.info("Migrate 'Dienst/Anwendung/Informationssystem' to new classes 'Geodatendienst' / 'Informationssystem/Dienst/Anwendung'... done");
 		}
 	}
 
-	/** Migrate the given object. Pass Integer for counting. 
+	/** Migrate the given object. Pass stats for counting. 
 	 * @param currentObj obj to migrate
 	 * @param stats statistics object, will be updated
 	 * @throws Exception
@@ -241,113 +256,261 @@ public class IDCStrategy1_0_9 extends IDCStrategyDefault {
 	protected void migrateObject(ServiceObject currentObj, MigrationStatistics stats) throws Exception {
 		if (currentObj.isGeoService()) {
 			// migrate to 'Geodatendienst'
-			stats.numGeo++;
-
-			if (log.isInfoEnabled()) {
-				log.info("Start Migration: object '" + currentObj.name + "' of service type '" + currentObj.typeValue +
-					"' and classification keys '" + currentObj.getClassificationKeysAsString() +
-					"' to new class 'Geodatendienst'");
-			}
-
-			// check whether classification contains 'Non Geographic Service' !
-			// may occur if type IS GEO-type and classification is NON-GEO, then we log WARNING !
-			if (currentObj.classificKeys.contains(CLASSIFIC_KEY_NON_GEO_SERVICE)) {
-
-				log.warn("!!! object '" + currentObj.name + "' of service type '" + currentObj.typeValue +
-					"' and classification keys '" + currentObj.getClassificationKeysAsString() +
-					"' is classified as 'Non Geographic Service' (901)! We delete this classification and migrate to new class 'Geodatendienst' !");
-
-				int numDeleted = jdbc.executeUpdate("DELETE FROM t011_obj_serv_type where obj_serv_id = " + currentObj.objServId +
-					" AND serv_type_key = " + CLASSIFIC_KEY_NON_GEO_SERVICE);
-				if (log.isDebugEnabled()) {
-					log.debug("Removed " + numDeleted +	" entries from t011_obj_serv_type.");
-				}
-			}
-
-			// TODO: Check whether classification is present ! If not move object into working state, NO published object !!!?
-
-			// NOTHING TO CHANGE, class number and data stays the same :) !
-			// NOTICE: may still have classification entry 901 WHICH IS REMOVED FROM SYSLIST ('Non Geographic Service')!
+			migrateToGeoService(currentObj, stats);
 
 		} else {
 			// migrate to 'Informationssystem/Dienst/Anwendung'
-			stats.numNonGeo++;
-
-			if (log.isInfoEnabled()) {
-				log.info("Start Migration: object '" + currentObj.name + "' of service type '" + currentObj.typeValue +
-					"' and classification keys '" + currentObj.getClassificationKeysAsString() +
-					"' to new class 'Informationssystem/Dienst/Anwendung'");
-			}
-
-			// reset service type
-			int numProcessed = jdbc.executeUpdate("UPDATE t011_obj_serv SET " +
-				"type_key = NULL, type_value = NULL where id = " + currentObj.objServId);
-			if (numProcessed != 1) {
-				log.warn("Multiple resetting of former service type, NO single record (found " + numProcessed + " records in 't011_obj_serv') !");						
-			} else {
-				if (log.isDebugEnabled()) {
-					log.debug("Reset former service type '" + currentObj.typeValue + "', set t011_obj_serv.type to NULL.");
-				}
-			}
-
-			// remove classification (= "Service-Klassifikation") !
-			numProcessed = jdbc.executeUpdate("DELETE FROM t011_obj_serv_type where obj_serv_id = " + currentObj.objServId);
-			if (numProcessed > 0 && log.isDebugEnabled()) {
-				log.debug("Removed former classification entries -> " + numProcessed + " entries from t011_obj_serv_type.");
-			}
-
-			// remove scale (= "Erstellungsmassstab") !
-			numProcessed = jdbc.executeUpdate("DELETE FROM t011_obj_serv_scale where obj_serv_id = " + currentObj.objServId);
-			if (numProcessed > 0 && log.isDebugEnabled()) {
-				log.debug("Removed former scale entries -> " + numProcessed + " entries from t011_obj_serv_scale.");
-			}
-
-			// migrate URLs from operations if present
-			int line = 1;
-			for (ServiceOperation op : currentObj.operations.values()) {
-				String name = op.name;
-				String description = op.description;
-				for (String url : op.urls) {
-					jdbc.executeUpdate("INSERT INTO t011_obj_serv_url (id, obj_serv_id, line, name, url, description) "
-						+ "VALUES (" + getNextId() + ", " + currentObj.objServId + ", " + line + ", '" 
-						+ name + ", '" + url + "', '" + description + "')");							
-					line++;
-					if (log.isInfoEnabled()) {
-						log.info("Migrated former operation to URL '" + url + "' with description '" + description + "'");
-					}
-				}
-			}
-
-			// remove operations
-			for (ServiceOperation op : currentObj.getOperations()) {
-				numProcessed = jdbc.executeUpdate("DELETE FROM t011_obj_serv_operation where id = " + op.objServOpId);
-				if (numProcessed > 0 && log.isDebugEnabled()) {
-					log.debug("Removed former operation '" + op.name + "' -> " + numProcessed + " entries from t011_obj_serv_operation.");
-				}
-				numProcessed = jdbc.executeUpdate("DELETE FROM t011_obj_serv_op_connpoint where obj_serv_op_id = " + op.objServOpId);
-				if (numProcessed > 0 && log.isDebugEnabled()) {
-					log.debug("Removed operation connections -> " + numProcessed + " entries from t011_obj_serv_op_connpoint.");
-				}
-				numProcessed = jdbc.executeUpdate("DELETE FROM t011_obj_serv_op_depends where obj_serv_op_id = " + op.objServOpId);
-				if (numProcessed > 0 && log.isDebugEnabled()) {
-					log.debug("Removed operation depends -> " + numProcessed + " entries from t011_obj_serv_op_depends.");
-				}
-				numProcessed = jdbc.executeUpdate("DELETE FROM t011_obj_serv_op_para where obj_serv_op_id = " + op.objServOpId);
-				if (numProcessed > 0 && log.isDebugEnabled()) {
-					log.debug("Removed operation params -> " + numProcessed + " entries from t011_obj_serv_op_para.");
-				}
-				numProcessed = jdbc.executeUpdate("DELETE FROM t011_obj_serv_op_platform where obj_serv_op_id = " + op.objServOpId);
-				if (numProcessed > 0 && log.isDebugEnabled()) {
-					log.debug("Removed operation platforms -> " + numProcessed + " entries from t011_obj_serv_op_platform.");
-				}
-			}
-
-			// change class type
-			jdbc.executeUpdate("UPDATE t01_object SET obj_class = " + NEW_OBJ_CLASS_INFORMATIONSSYSTEM +
-				" where id = " + currentObj.objId);
-
-			// TODO: No service type set ! Move object into working state, NO published object !!!?
+			migrateToNonGeoService(currentObj, stats);
 		}
+	}
+
+	/** Migrate the given object to 'Geodatendienst'
+	 * @param currentObj obj to migrate
+	 * @param stats statistics object, will be updated
+	 * @throws Exception
+	 */
+	protected void migrateToGeoService(ServiceObject currentObj, MigrationStatistics stats) throws Exception {
+		// migrate to 'Geodatendienst'
+		stats.numGeo++;
+
+		if (log.isInfoEnabled()) {
+			log.info("Start Migration: object '" + currentObj.name + "' of service type '" + currentObj.typeValue +
+				"' and classification keys '" + currentObj.getClassificationKeysAsString() +
+				"' to new class 'Geodatendienst'");
+		}
+
+		// check whether classification contains 'Non Geographic Service' !
+		// may occur if type IS GEO-type and classification is NON-GEO, then we log WARNING !
+		if (currentObj.classificKeys.contains(CLASSIFIC_KEY_NON_GEO_SERVICE)) {
+
+			log.warn("!!! object '" + currentObj.name + "' of service type '" + currentObj.typeValue +
+				"' and classification keys '" + currentObj.getClassificationKeysAsString() +
+				"' is classified as 'Non Geographic Service' (901)! We delete this classification and migrate to new class 'Geodatendienst' !");
+
+			int numDeleted = jdbc.executeUpdate("DELETE FROM t011_obj_serv_type where obj_serv_id = " + currentObj.objServId +
+				" AND serv_type_key = " + CLASSIFIC_KEY_NON_GEO_SERVICE);
+			currentObj.classificKeys.remove((Integer)CLASSIFIC_KEY_NON_GEO_SERVICE);
+
+			if (log.isDebugEnabled()) {
+				log.debug("Removed " + numDeleted +	" entries from t011_obj_serv_type.");
+			}
+		}
+
+		// check whether classification was removed, then we have to put object in working state !
+		if (currentObj.classificKeys.size() == 0) {
+			// if only published version we have to put object in working state !
+			// if published version different from working version we have to delete published version !
+			if (currentObj.isPublished()) {
+				log.warn("!!! object '" + currentObj.name + "' of service type '" + currentObj.typeValue +
+				"' has NO classification and IS PUBLISHED ! WE PUT OBJECT INTO WORKING STATE AND REMOVE PUBLISHED VERSION !");
+				if (currentObj.hasWorkingVersion()) {
+					log.warn("!!! object '" + currentObj.name + "' has separate WORKING VERSION, WE DELETE PUBLISHED VERSION !");
+
+					// delete published version
+					deleteObject(currentObj.objIdPublished);
+
+				} else {
+					log.warn("!!! object '" + currentObj.name + "' has NO WORKING VERSION, WE MOVE PUBLISHED TO WORKING VERSION !");
+
+					// put published version in working state
+					setObjectWorkingState(currentObj.objIdPublished);
+				}
+				
+				// update object node (reset published id)
+				setObjectNodeUnpublished(currentObj.objNodeId);
+				stats.addObjNameUnpublished(currentObj.name, true);
+			}
+		}
+
+		// NOTHING TO CHANGE, class number and data stays the same !
+	}
+
+	/** Migrate the given object to 'Informationssystem/Dienst/Anwendung'.
+	 * @param currentObj obj to migrate
+	 * @param stats statistics object, will be updated
+	 * @throws Exception
+	 */
+	protected void migrateToNonGeoService(ServiceObject currentObj, MigrationStatistics stats) throws Exception {
+		// migrate to 'Informationssystem/Dienst/Anwendung'
+		stats.numNonGeo++;
+
+		if (log.isInfoEnabled()) {
+			log.info("Start Migration: object '" + currentObj.name + "' of service type '" + currentObj.typeValue +
+				"' and classification keys '" + currentObj.getClassificationKeysAsString() +
+				"' to new class 'Informationssystem/Dienst/Anwendung'");
+		}
+
+		// reset service type
+		int numProcessed = jdbc.executeUpdate("UPDATE t011_obj_serv SET " +
+			"type_key = NULL, type_value = NULL where id = " + currentObj.objServId);
+		if (numProcessed != 1) {
+			log.warn("Multiple resetting of former service type, NO single record (found " + numProcessed + " records in 't011_obj_serv') !");						
+		} else {
+			if (log.isDebugEnabled()) {
+				log.debug("Reset former service type '" + currentObj.typeValue + "', set t011_obj_serv.type to NULL.");
+			}
+		}
+
+		// remove classification (= "Service-Klassifikation") !
+		numProcessed = jdbc.executeUpdate("DELETE FROM t011_obj_serv_type where obj_serv_id = " + currentObj.objServId);
+		if (numProcessed > 0 && log.isDebugEnabled()) {
+			log.debug("Removed former classification entries -> " + numProcessed + " entries from t011_obj_serv_type.");
+		}
+
+		// remove scale (= "Erstellungsmassstab") !
+		numProcessed = jdbc.executeUpdate("DELETE FROM t011_obj_serv_scale where obj_serv_id = " + currentObj.objServId);
+		if (numProcessed > 0 && log.isDebugEnabled()) {
+			log.debug("Removed former scale entries -> " + numProcessed + " entries from t011_obj_serv_scale.");
+		}
+
+		// migrate URLs from operations if present
+		int line = 1;
+		for (ServiceOperation op : currentObj.operations.values()) {
+			String name = op.name;
+			String description = op.description;
+			for (String url : op.urls) {
+				String sql = "INSERT INTO t011_obj_serv_url (id, obj_serv_id, line, name, url, description) "
+					+ "VALUES (" + getNextId() + ", " + currentObj.objServId + ", " + line + ", '" 
+					+ name + "', '" + url + "', '" + description + "')";
+				jdbc.executeUpdate(sql);							
+				line++;
+				if (log.isInfoEnabled()) {
+					log.info("Migrated former operation to URL '" + url + "' with description '" + description + "'");
+				}
+			}
+		}
+
+		// remove operations
+		for (ServiceOperation op : currentObj.getOperations()) {
+			numProcessed = jdbc.executeUpdate("DELETE FROM t011_obj_serv_operation where id = " + op.objServOpId);
+			if (numProcessed > 0 && log.isDebugEnabled()) {
+				log.debug("Removed former operation '" + op.name + "' -> " + numProcessed + " entries from t011_obj_serv_operation.");
+			}
+			numProcessed = jdbc.executeUpdate("DELETE FROM t011_obj_serv_op_connpoint where obj_serv_op_id = " + op.objServOpId);
+			if (numProcessed > 0 && log.isDebugEnabled()) {
+				log.debug("Removed operation connections -> " + numProcessed + " entries from t011_obj_serv_op_connpoint.");
+			}
+			numProcessed = jdbc.executeUpdate("DELETE FROM t011_obj_serv_op_depends where obj_serv_op_id = " + op.objServOpId);
+			if (numProcessed > 0 && log.isDebugEnabled()) {
+				log.debug("Removed operation depends -> " + numProcessed + " entries from t011_obj_serv_op_depends.");
+			}
+			numProcessed = jdbc.executeUpdate("DELETE FROM t011_obj_serv_op_para where obj_serv_op_id = " + op.objServOpId);
+			if (numProcessed > 0 && log.isDebugEnabled()) {
+				log.debug("Removed operation params -> " + numProcessed + " entries from t011_obj_serv_op_para.");
+			}
+			numProcessed = jdbc.executeUpdate("DELETE FROM t011_obj_serv_op_platform where obj_serv_op_id = " + op.objServOpId);
+			if (numProcessed > 0 && log.isDebugEnabled()) {
+				log.debug("Removed operation platforms -> " + numProcessed + " entries from t011_obj_serv_op_platform.");
+			}
+		}
+
+		// change class type
+		jdbc.executeUpdate("UPDATE t01_object SET obj_class = " + NEW_OBJ_CLASS_INFORMATIONSSYSTEM +
+			" where id = " + currentObj.objId);
+
+
+		// No service type set ! Move object into working state, NO published object !!!
+
+		// if published version different from working version we have to delete published version !
+		if (currentObj.isPublished()) {
+			log.warn("!!! Migrated object '" + currentObj.name + "' SET TO WORKING STATE ! PLEASE EDIT service type and publish again !");
+
+			if (currentObj.hasWorkingVersion()) {
+				log.warn("!!! object '" + currentObj.name + "' has separate WORKING VERSION, WE DELETE PUBLISHED VERSION !");
+
+				// delete published version
+				deleteObject(currentObj.objIdPublished);
+
+			} else {
+				// put published version in working state
+				setObjectWorkingState(currentObj.objIdPublished);
+			}
+			
+			// update object node (reset published id)
+			setObjectNodeUnpublished(currentObj.objNodeId);
+			stats.addObjNameUnpublished(currentObj.name, false);
+		}
+	}
+
+	protected int setObjectWorkingState(long objId) throws Exception {
+		int numUpdated = jdbc.executeUpdate("UPDATE t01_object " +
+			"SET work_state = '" + WORK_STATE_IN_BEARBEITUNG +
+			"' where id = " + objId);
+		return numUpdated;
+	}
+	protected int setObjectNodeUnpublished(long objNodeId) throws Exception {
+		int numUpdated = jdbc.executeUpdate("UPDATE object_node " +
+			"SET obj_id_published = NULL where id = " + objNodeId);
+		return numUpdated;
+	}
+	protected void deleteObject(long objId) throws Exception {
+		// for tracking in debugger !
+		int numDeleted;
+
+		numDeleted = jdbc.executeUpdate("DELETE FROM object_access where obj_id = " + objId);
+		numDeleted = jdbc.executeUpdate("DELETE FROM object_comment where obj_id = " + objId);
+		numDeleted = jdbc.executeUpdate("DELETE FROM object_conformity where obj_id = " + objId);
+		numDeleted = jdbc.executeUpdate("DELETE FROM object_reference where obj_from_id = " + objId);
+		numDeleted = jdbc.executeUpdate("DELETE FROM object_use where obj_id = " + objId);
+		numDeleted = jdbc.executeUpdate("DELETE FROM searchterm_obj where obj_id = " + objId);
+		numDeleted = jdbc.executeUpdate("DELETE FROM spatial_reference where obj_id = " + objId);
+		numDeleted = jdbc.executeUpdate("DELETE FROM t011_obj_topic_cat where obj_id = " + objId);
+		numDeleted = jdbc.executeUpdate("DELETE FROM t0110_avail_format where obj_id = " + objId);
+		numDeleted = jdbc.executeUpdate("DELETE FROM t0112_media_option where obj_id = " + objId);
+		numDeleted = jdbc.executeUpdate("DELETE FROM t0113_dataset_reference where obj_id = " + objId);
+		numDeleted = jdbc.executeUpdate("DELETE FROM t0114_env_category where obj_id = " + objId);
+		numDeleted = jdbc.executeUpdate("DELETE FROM t0114_env_topic where obj_id = " + objId);
+		numDeleted = jdbc.executeUpdate("DELETE FROM t012_obj_adr where obj_id = " + objId);
+		numDeleted = jdbc.executeUpdate("DELETE FROM t014_info_impart where obj_id = " + objId);
+		numDeleted = jdbc.executeUpdate("DELETE FROM t015_legist where obj_id = " + objId);
+		numDeleted = jdbc.executeUpdate("DELETE FROM t017_url_ref where obj_id = " + objId);
+		numDeleted = jdbc.executeUpdate("DELETE FROM t08_attr where obj_id = " + objId);
+		
+		// ignore Objektklasse 1 t011_obj_geo...
+		// ignore Objektklasse 2 t011_obj_literature
+		// ignore Objektklasse 4 t011_obj_project
+		// ignore Objektklasse 5 t011_obj_data...
+
+		// delete Objektklasse 3 data !
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery("select id from t011_obj_serv where obj_id = " + objId, st);
+		while (rs.next()) {
+			long servId = rs.getLong("id");
+			numDeleted = jdbc.executeUpdate("DELETE FROM t011_obj_serv_scale where obj_serv_id = " + servId);
+			numDeleted = jdbc.executeUpdate("DELETE FROM t011_obj_serv_type where obj_serv_id = " + servId);
+			numDeleted = jdbc.executeUpdate("DELETE FROM t011_obj_serv_url where obj_serv_id = " + servId);
+			numDeleted = jdbc.executeUpdate("DELETE FROM t011_obj_serv_version where obj_serv_id = " + servId);
+
+			Statement st2 = jdbc.createStatement();
+			ResultSet rs2 = jdbc.executeQuery("select id from t011_obj_serv_operation where obj_serv_id = " + servId, st2);
+			while (rs2.next()) {
+				long servOpId = rs2.getLong("id");
+				numDeleted = jdbc.executeUpdate("DELETE FROM t011_obj_serv_op_connpoint where obj_serv_op_id = " + servOpId);
+				numDeleted = jdbc.executeUpdate("DELETE FROM t011_obj_serv_op_depends where obj_serv_op_id = " + servOpId);
+				numDeleted = jdbc.executeUpdate("DELETE FROM t011_obj_serv_op_para where obj_serv_op_id = " + servOpId);
+				numDeleted = jdbc.executeUpdate("DELETE FROM t011_obj_serv_op_platform where obj_serv_op_id = " + servOpId);
+			}
+			rs2.close();
+			st2.close();
+
+			numDeleted = jdbc.executeUpdate("DELETE FROM t011_obj_serv_operation where obj_serv_id = " + servId);
+		}
+		rs.close();
+		st.close();
+
+		numDeleted = jdbc.executeUpdate("DELETE FROM t011_obj_serv where obj_id = " + objId);
+
+		// delete 1:1 associations (id in t01_object) !
+		st = jdbc.createStatement();
+		rs = jdbc.executeQuery("select obj_metadata_id from t01_object where id = " + objId, st);
+		while (rs.next()) {
+			long objMetadataId = rs.getLong("obj_metadata_id");
+			numDeleted = jdbc.executeUpdate("DELETE FROM object_metadata where id = " + objMetadataId);
+		}
+		rs.close();
+		st.close();
+
+		numDeleted = jdbc.executeUpdate("DELETE FROM t01_object where id = " + objId);
 	}
 /*	
 	protected void cleanUpDataStructure() throws Exception {
@@ -363,11 +526,36 @@ public class IDCStrategy1_0_9 extends IDCStrategyDefault {
 	/** Helper class encapsulating statistics */
 	class MigrationStatistics {
 		int numGeo = 0;
-		int numNonGeo = 0;		
+		ArrayList<String> objNamesUnpublishedGeo = new ArrayList<String>();
+		int numNonGeo = 0;
+		ArrayList<String> objNamesUnpublishedNonGeo = new ArrayList<String>();
+
+		void addObjNameUnpublished(String objNameUnpublished, boolean isGeoService) {
+			List<String> myList = objNamesUnpublishedGeo;
+			if (!isGeoService) {
+				myList = objNamesUnpublishedNonGeo;				
+			}
+			if (!myList.contains(objNameUnpublished)) {
+				myList.add(objNameUnpublished);				
+			}
+		}
+		String getObjNamesUnpublishedAsString(boolean geoServiceList) {
+			List<String> myList = objNamesUnpublishedGeo;
+			if (!geoServiceList) {
+				myList = objNamesUnpublishedNonGeo;				
+			}
+			String names = "";
+			for (String name : myList) {
+				names = names + name + ",\n";
+			}
+			return names;
+		}
 	}
 	/** Helper class encapsulating all needed data of an object of former class 3 ("Dienst/Anwendung/Informationssystem") */
 	class ServiceObject {
+		long objNodeId;
 		long objId;
+		long objIdPublished;
 		String name;
 		long objServId;
 		int typeKey;
@@ -376,8 +564,11 @@ public class IDCStrategy1_0_9 extends IDCStrategyDefault {
 		/** key = operation ID */
 		HashMap<Long, ServiceOperation> operations;
 
-		ServiceObject(long objId, String name, long objServId, int typeKey, String typeValue) {
+		ServiceObject(long objNodeId, long objId, long objIdPublished,
+				String name, long objServId, int typeKey, String typeValue) {
+			this.objNodeId = objNodeId;
 			this.objId = objId;
+			this.objIdPublished = objIdPublished;
 			this.name = name;
 			this.objServId = objServId;
 			this.typeKey = typeKey;
@@ -409,7 +600,6 @@ public class IDCStrategy1_0_9 extends IDCStrategyDefault {
 			for (Integer key : classificKeys) {
 				classKeys = classKeys + key + ",";
 			}
-			
 			return classKeys;
 		}
 		boolean isGeoService() {
@@ -445,6 +635,20 @@ public class IDCStrategy1_0_9 extends IDCStrategyDefault {
 */
 				}
 			}
+		}
+		boolean isPublished() {
+			// if obj_id_published = null then jdbc returns 0 !
+			if (objIdPublished == 0) {
+				return false;
+			}
+			return true;
+		}
+		boolean hasWorkingVersion() {
+			// NOTICE: objId always set, never 0 (null) !
+			if (objId == objIdPublished) {
+				return false;
+			}
+			return true;
 		}
 	}
 	/** Helper class encapsulating all needed data of a former service operation (url and description) */
