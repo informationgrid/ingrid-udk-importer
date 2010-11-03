@@ -111,7 +111,9 @@ public class IDCStrategy1_0_9 extends IDCStrategyDefault {
 		sqlStr = "DELETE FROM sys_list where lst_id = " + lstId;
 		int numDeleted = jdbc.executeUpdate(sqlStr);
 		if (numDeleted > 0) {
-			log.warn("New Syslist " + lstId +	" EXISTED ! We deleted old values !");			
+			String msg = "New Syslist " + lstId +	" EXISTED ! We deleted old values !";
+			System.out.println("\n" + msg + " See also log file (WARN).");
+			log.warn(msg);			
 		}
 
 		// insert new syslist
@@ -228,19 +230,29 @@ public class IDCStrategy1_0_9 extends IDCStrategyDefault {
 		rs.close();
 		st.close();
 
-		if (log.isInfoEnabled()) {
-			log.info("Migrated " + stats.numGeo + " objects to class 'Geodatendienst'");
-			log.info("Migrated " + stats.numNonGeo + " objects to class 'Informationssystem/Dienst/Anwendung'");
-		}
+		// Protocol also to System.out !
+
+		String msg = "Migrated " + stats.numGeo + " objects to class 'Geodatendienst'.";
+		System.out.println("\n" + msg + " See also log file (INFO).");
+		log.info(msg);
+		
+		msg = "Migrated " + stats.numNonGeo + " objects to class 'Informationssystem/Dienst/Anwendung'.";
+		System.out.println("\n" + msg + " See also log file (INFO).");
+		log.info(msg);
+		
 		if (stats.objNamesUnpublishedGeo.size() > 0) {
-			log.warn("The following " + stats.objNamesUnpublishedGeo.size() +
+			msg = "The following " + stats.objNamesUnpublishedGeo.size() +
 				" objects have been migrated to 'Geodatendienst' and put to WORKING STATE due to missing classification ! Please edit manually and publish again !\n\n" +
-				stats.getObjNamesUnpublishedAsString(true));
+				stats.getObjNamesUnpublishedAsString(true);
+			System.out.println("\n" + msg + "See also log file (WARN).");
+			log.warn(msg);
 		}
 		if (stats.objNamesUnpublishedNonGeo.size() > 0) {
-			log.warn("The following " + stats.objNamesUnpublishedNonGeo.size() +
-				" objects have been migrated to 'Informationssystem/Dienst/Anwendung' and put to WORKING STATE ! Please choose NEW service type manually and publish again !\n\n" +
-				stats.getObjNamesUnpublishedAsString(false));
+			msg = "The following " + stats.objNamesUnpublishedNonGeo.size() +
+				" objects have been migrated to 'Informationssystem/Dienst/Anwendung' and put to WORKING STATE ! Please choose NEW type of service manually and publish again !\n\n" +
+				stats.getObjNamesUnpublishedAsString(false);
+			System.out.println("\n" + msg + "See also log file (WARN).");
+			log.warn(msg);
 		}
 
 		if (log.isInfoEnabled()) {
@@ -304,7 +316,9 @@ public class IDCStrategy1_0_9 extends IDCStrategyDefault {
 				log.warn("!!! object '" + currentObj.name + "' of service type '" + currentObj.typeValue +
 				"' has NO classification and IS PUBLISHED ! WE PUT OBJECT INTO WORKING STATE AND REMOVE PUBLISHED VERSION !");
 				if (currentObj.hasWorkingVersion()) {
-					log.warn("!!! object '" + currentObj.name + "' has separate WORKING VERSION, WE DELETE PUBLISHED VERSION !");
+					String msg = "!!! object '" + currentObj.name + "' has separate WORKING VERSION, WE DELETE PUBLISHED VERSION !";
+					System.out.println("\n" + msg + " See also log file (WARN).");
+					log.warn(msg);
 
 					// delete published version
 					deleteObject(currentObj.objIdPublished);
@@ -416,7 +430,9 @@ public class IDCStrategy1_0_9 extends IDCStrategyDefault {
 			log.warn("!!! Migrated object '" + currentObj.name + "' SET TO WORKING STATE ! PLEASE EDIT service type and publish again !");
 
 			if (currentObj.hasWorkingVersion()) {
-				log.warn("!!! object '" + currentObj.name + "' has separate WORKING VERSION, WE DELETE PUBLISHED VERSION !");
+				String msg = "!!! object '" + currentObj.name + "' has separate WORKING VERSION, WE DELETE PUBLISHED VERSION !";
+				System.out.println("\n" + msg + " See also log file (WARN).");
+				log.warn(msg);
 
 				// delete published version
 				deleteObject(currentObj.objIdPublished);
