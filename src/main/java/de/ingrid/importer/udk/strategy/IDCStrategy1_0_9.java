@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -62,6 +64,10 @@ public class IDCStrategy1_0_9 extends IDCStrategyDefault {
 
 		System.out.print("  Clean up sys_list...");
 		cleanUpSysList();
+		System.out.println("done.");
+
+		System.out.print("  Updating sys_gui...");
+		updateSysGui();
 		System.out.println("done.");
 
 		// FINALLY EXECUTE ALL "DROPPING" DDL OPERATIONS ! These ones may cause commit (e.g. on MySQL)
@@ -168,6 +174,41 @@ public class IDCStrategy1_0_9 extends IDCStrategyDefault {
 		
 		if (log.isInfoEnabled()) {
 			log.info("Clean up sys_list... done");
+		}
+	}
+
+	/** Add gui ids of all NEW OPTIONAL fields to sys_gui table ! (mandatory fields not added, behavior not changeable) */
+	protected void updateSysGui() throws Exception {
+		if (log.isInfoEnabled()) {
+			log.info("Updating sys_gui...");
+		}
+
+		if (log.isInfoEnabled()) {
+			log.info("Add ids of new OPTIONAL fields !...");
+		}
+
+		LinkedHashMap<String, Integer> newSysGuis = new LinkedHashMap<String, Integer>();
+		Integer initialBehaviour = -1; // default behaviour, optional field only shown if section expanded ! 
+//		Integer remove = 0; // do NOT show if section reduced (use case for optional fields ? never used) !
+//		Integer mandatory = 1; // do also show if section reduced (even if field optional) !
+
+		newSysGuis.put("3260", initialBehaviour);
+		newSysGuis.put("3630", initialBehaviour);
+		newSysGuis.put("3600", initialBehaviour);
+		newSysGuis.put("3640", initialBehaviour);
+		newSysGuis.put("3645", initialBehaviour);
+		newSysGuis.put("3650", initialBehaviour);
+		newSysGuis.put("3670", initialBehaviour);
+		
+		Iterator<String> itr = newSysGuis.keySet().iterator();
+		while (itr.hasNext()) {
+			String key = itr.next();
+			jdbc.executeUpdate("INSERT INTO sys_gui (id, gui_id, behaviour) VALUES ("
+					+ getNextId() + ", '" + key + "', " + newSysGuis.get(key) + ")");
+		}
+		
+		if (log.isInfoEnabled()) {
+			log.info("Updating sys_gui... done");
 		}
 	}
 

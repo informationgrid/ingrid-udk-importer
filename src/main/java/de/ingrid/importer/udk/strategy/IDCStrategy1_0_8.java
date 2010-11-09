@@ -45,6 +45,12 @@ public class IDCStrategy1_0_8 extends IDCStrategyDefault {
 		updateObjectUse();
 		System.out.println("done.");
 
+/*
+// NOT needed, only optional fields have to be added to sys_gui, we have only new MANDATORY field !
+		System.out.print("  Updating sys_gui...");
+		updateSysGui();
+		System.out.println("done.");
+*/
 		// FINALLY EXECUTE ALL "DROPPING" DDL OPERATIONS ! These ones may cause commit (e.g. on MySQL)
 		// ---------------------------------
 		System.out.print("  Clean up datastructure...");
