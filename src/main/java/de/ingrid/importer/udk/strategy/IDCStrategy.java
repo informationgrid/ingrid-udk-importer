@@ -46,8 +46,14 @@ public interface IDCStrategy {
 	static String VALUE_IDC_VERSION_108 = "1.0.8";
 	/** InGrid 2.3: split class 3 (services) into geographic services and non geographic services */
 	static String VALUE_IDC_VERSION_109 = "1.0.9";
-	/** InGrid 2.3: INSPIRE theme affects fields of Geoinformation/Karte. SWITCH OF STRATEGY VERSION !
-	 * Strategy Version (first two digits) correlates now with InGrid project version !!! */
+	/** CHECK strategy (writes NO version). ALSO INTEGRATED IN STRATEGY WORKFLOW !
+	 * <br>InGrid 2.3: Check INSPIRE Objects on missing data and do protocol -> can be executed on its own !
+	 * <br>SWITCH OF STRATEGY VERSION ! Strategy Version (first two digits) correlates now with InGrid 
+	 * project version !!! */
+	static String VALUE_IDC_VERSION_2_3_0_CHECK_INSPIRE_OBJECTS = "2.3.0_checkInspireObjects";
+	/** InGrid 2.3: INSPIRE theme affects fields of Geoinformation/Karte.
+	 * <br>SWITCH OF STRATEGY VERSION ! Strategy Version (first two digits) correlates now with InGrid 
+	 * project version !!! */
 	static String VALUE_IDC_VERSION_2_3_0 = "2.3.0";
 
 	/** Order of strategies to execute to obtain most recent IGC.
@@ -69,10 +75,11 @@ public interface IDCStrategy {
 		// So default is Europe and NOT all countries. The strategy can be executed on its own if all countries needed !
 //		VALUE_IDC_VERSION_105_FIX_COUNTRY_CODELIST,
 		VALUE_IDC_VERSION_106,
-		VALUE_IDC_VERSION_106_FIX_SYSLIST_INSPIRE,
+		VALUE_IDC_VERSION_106_FIX_SYSLIST_INSPIRE, // writes no Version
 		VALUE_IDC_VERSION_107,
 		VALUE_IDC_VERSION_108,
 		VALUE_IDC_VERSION_109,
+		VALUE_IDC_VERSION_2_3_0_CHECK_INSPIRE_OBJECTS, // writes no Version !
 		VALUE_IDC_VERSION_2_3_0,
 	};
 		
