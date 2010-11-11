@@ -58,7 +58,7 @@ public class IDCStrategy1_0_9 extends IDCStrategyDefault {
 		extendSysList();
 		System.out.println("done.");
 
-		System.out.print("  Migrate services to new classes 'Geodatendienst' / 'Informationssystem/Dienst/Anwendung'...");
+		System.out.println("  Migrate services to new classes 'Geodatendienst' / 'Informationssystem/Dienst/Anwendung'...");
 		migrateServices();
 		System.out.println("done.");
 
@@ -218,7 +218,7 @@ public class IDCStrategy1_0_9 extends IDCStrategyDefault {
 		}
 
 		String sql = "select " +
-			"oNode.id as oNodeId, oNode.obj_id, oNode.obj_id_published, " + // object node
+			"oNode.id as oNodeId, oNode.obj_uuid, oNode.obj_id, oNode.obj_id_published, " + // object node
 			"obj.obj_name, " + // object
 			"objServ.id as objServId, objServ.type_key as typeKey, objServ.type_value as typeValue, " + // type
 			"objServType.serv_type_key as classificKey, " + // classification
@@ -254,7 +254,7 @@ public class IDCStrategy1_0_9 extends IDCStrategyDefault {
 			
 			if (currentObj == null || objChange) {
 				// set up next object
-				currentObj = new ServiceObject(rs.getLong("oNodeId"), nextObjId, rs.getLong("obj_id_published"), 
+				currentObj = new ServiceObject(rs.getLong("oNodeId"), rs.getString("obj_uuid"), nextObjId, rs.getLong("obj_id_published"), 
 					rs.getString("obj_name"), rs.getLong("objServId"), rs.getInt("typeKey"), rs.getString("typeValue"));
 			}
 
@@ -336,7 +336,7 @@ public class IDCStrategy1_0_9 extends IDCStrategyDefault {
 		// may occur if type IS GEO-type and classification is NON-GEO, then we log WARNING !
 		if (currentObj.classificKeys.contains(CLASSIFIC_KEY_NON_GEO_SERVICE)) {
 
-			log.warn("!!! object '" + currentObj.name + "' of service type '" + currentObj.typeValue +
+			log.warn("!!! object '" + currentObj.uuid + ":" + currentObj.name + "' of service type '" + currentObj.typeValue +
 				"' and classification keys '" + currentObj.getClassificationKeysAsString() +
 				"' is classified as 'Non Geographic Service' (901)! We delete this classification and migrate to new class 'Geodatendienst' !");
 
@@ -354,10 +354,10 @@ public class IDCStrategy1_0_9 extends IDCStrategyDefault {
 			// if only published version we have to put object in working state !
 			// if published version different from working version we have to delete published version !
 			if (currentObj.isPublished()) {
-				log.warn("!!! object '" + currentObj.name + "' of service type '" + currentObj.typeValue +
+				log.warn("!!! object '" + currentObj.uuid + ":" + currentObj.name + "' of service type '" + currentObj.typeValue +
 				"' has NO classification and IS PUBLISHED ! WE PUT OBJECT INTO WORKING STATE AND REMOVE PUBLISHED VERSION !");
 				if (currentObj.hasWorkingVersion()) {
-					String msg = "!!! object '" + currentObj.name + "' has separate WORKING VERSION, WE DELETE PUBLISHED VERSION !";
+					String msg = "!!! object '" + currentObj.uuid + ":" + currentObj.name + "' has separate WORKING VERSION, WE DELETE PUBLISHED VERSION !";
 					System.out.println("\n" + msg + " See also log file (WARN).");
 					log.warn(msg);
 
@@ -365,15 +365,15 @@ public class IDCStrategy1_0_9 extends IDCStrategyDefault {
 					deleteObject(currentObj.objIdPublished);
 
 				} else {
-					log.warn("!!! object '" + currentObj.name + "' has NO WORKING VERSION, WE MOVE PUBLISHED TO WORKING VERSION !");
+					log.warn("!!! object '" + currentObj.uuid + ":" + currentObj.name + "' has NO WORKING VERSION, WE MOVE PUBLISHED TO WORKING VERSION !");
 
 					// put published version in working state
 					setObjectWorkingState(currentObj.objIdPublished);
 				}
 				
-				// update object node (reset published id)
+				// UNPUBLISH ! update object node (reset published id)
 				setObjectNodeUnpublished(currentObj.objNodeId);
-				stats.addObjNameUnpublished(currentObj.name, true);
+				stats.addObjNameUnpublished(currentObj.uuid + ":" + currentObj.name, true);
 			}
 		}
 
@@ -468,10 +468,10 @@ public class IDCStrategy1_0_9 extends IDCStrategyDefault {
 
 		// if published version different from working version we have to delete published version !
 		if (currentObj.isPublished()) {
-			log.warn("!!! Migrated object '" + currentObj.name + "' SET TO WORKING STATE ! PLEASE EDIT service type and publish again !");
+			log.warn("!!! Migrated object '" + currentObj.uuid + ":" + currentObj.name + "' SET TO WORKING STATE ! PLEASE EDIT service type and publish again !");
 
 			if (currentObj.hasWorkingVersion()) {
-				String msg = "!!! object '" + currentObj.name + "' has separate WORKING VERSION, WE DELETE PUBLISHED VERSION !";
+				String msg = "!!! object '" + currentObj.uuid + ":" + currentObj.name + "' has separate WORKING VERSION, WE DELETE PUBLISHED VERSION !";
 				System.out.println("\n" + msg + " See also log file (WARN).");
 				log.warn(msg);
 
@@ -483,9 +483,9 @@ public class IDCStrategy1_0_9 extends IDCStrategyDefault {
 				setObjectWorkingState(currentObj.objIdPublished);
 			}
 			
-			// update object node (reset published id)
+			// UNPUBLISH ! update object node (reset published id)
 			setObjectNodeUnpublished(currentObj.objNodeId);
-			stats.addObjNameUnpublished(currentObj.name, false);
+			stats.addObjNameUnpublished(currentObj.uuid + ":" + currentObj.name, false);
 		}
 	}
 
@@ -611,6 +611,7 @@ public class IDCStrategy1_0_9 extends IDCStrategyDefault {
 	/** Helper class encapsulating all needed data of an object of former class 3 ("Dienst/Anwendung/Informationssystem") */
 	class ServiceObject {
 		long objNodeId;
+		String uuid;
 		long objId;
 		long objIdPublished;
 		String name;
@@ -621,9 +622,10 @@ public class IDCStrategy1_0_9 extends IDCStrategyDefault {
 		/** key = operation ID */
 		HashMap<Long, ServiceOperation> operations;
 
-		ServiceObject(long objNodeId, long objId, long objIdPublished,
+		ServiceObject(long objNodeId, String objUuid, long objId, long objIdPublished,
 				String name, long objServId, int typeKey, String typeValue) {
 			this.objNodeId = objNodeId;
+			this.uuid = objUuid;
 			this.objId = objId;
 			this.objIdPublished = objIdPublished;
 			this.name = name;

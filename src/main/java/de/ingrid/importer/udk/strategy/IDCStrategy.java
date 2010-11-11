@@ -46,6 +46,9 @@ public interface IDCStrategy {
 	static String VALUE_IDC_VERSION_108 = "1.0.8";
 	/** InGrid 2.3: split class 3 (services) into geographic services and non geographic services */
 	static String VALUE_IDC_VERSION_109 = "1.0.9";
+	/** InGrid 2.3: INSPIRE theme affects fields of Geoinformation/Karte. SWITCH OF STRATEGY VERSION !
+	 * Strategy Version (first two digits) correlates now with InGrid project version !!! */
+	static String VALUE_IDC_VERSION_2_3_0 = "2.3.0";
 
 	/** Order of strategies to execute to obtain most recent IGC.
 	 * Contains all according versions/strategies in ascending order.
@@ -70,6 +73,7 @@ public interface IDCStrategy {
 		VALUE_IDC_VERSION_107,
 		VALUE_IDC_VERSION_108,
 		VALUE_IDC_VERSION_109,
+		VALUE_IDC_VERSION_2_3_0,
 	};
 		
 	public void execute() throws Exception;
