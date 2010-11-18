@@ -74,4 +74,7 @@ public class MSSQLLogic implements DBLogic {
 	public void createTableT011ObjServUrl(JDBCConnectionProxy jdbc) throws SQLException {
 		// TODO !
 	}
+	public void createTableObjectDataQuality(JDBCConnectionProxy jdbc) throws SQLException {
+		// TODO !
+	}
 }

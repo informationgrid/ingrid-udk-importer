@@ -354,10 +354,12 @@ public class IDCStrategy1_0_9 extends IDCStrategyDefault {
 			// if only published version we have to put object in working state !
 			// if published version different from working version we have to delete published version !
 			if (currentObj.isPublished()) {
-				log.warn("!!! object '" + currentObj.uuid + ":" + currentObj.name + "' of service type '" + currentObj.typeValue +
-				"' has NO classification and IS PUBLISHED ! WE PUT OBJECT INTO WORKING STATE AND REMOVE PUBLISHED VERSION !");
+				String msg = "!!! object '" + currentObj.uuid + ":" + currentObj.name + "' of service type '" + currentObj.typeValue +
+					"' has NO classification and IS PUBLISHED ! WE PUT OBJECT INTO WORKING STATE AND REMOVE PUBLISHED VERSION !";
+//				System.out.println("\n" + msg + " See also log file (WARN).");
+				log.warn(msg);
 				if (currentObj.hasWorkingVersion()) {
-					String msg = "!!! object '" + currentObj.uuid + ":" + currentObj.name + "' has separate WORKING VERSION, WE DELETE PUBLISHED VERSION !";
+					msg = "!!! object '" + currentObj.uuid + ":" + currentObj.name + "' has to be unpublished and has separate WORKING VERSION, WE DELETE PUBLISHED VERSION !";
 					System.out.println("\n" + msg + " See also log file (WARN).");
 					log.warn(msg);
 
@@ -471,7 +473,7 @@ public class IDCStrategy1_0_9 extends IDCStrategyDefault {
 			log.warn("!!! Migrated object '" + currentObj.uuid + ":" + currentObj.name + "' SET TO WORKING STATE ! PLEASE EDIT service type and publish again !");
 
 			if (currentObj.hasWorkingVersion()) {
-				String msg = "!!! object '" + currentObj.uuid + ":" + currentObj.name + "' has separate WORKING VERSION, WE DELETE PUBLISHED VERSION !";
+				String msg = "!!! object '" + currentObj.uuid + ":" + currentObj.name + "' has to be unpublished and has separate WORKING VERSION, WE DELETE PUBLISHED VERSION !";
 				System.out.println("\n" + msg + " See also log file (WARN).");
 				log.warn(msg);
 

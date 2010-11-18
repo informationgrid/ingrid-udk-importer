@@ -221,6 +221,23 @@ public class MySQLLogic implements DBLogic {
 		jdbc.executeUpdate(sql);
 	}
 
+	public void createTableObjectDataQuality(JDBCConnectionProxy jdbc) throws SQLException {
+		String sql = "CREATE TABLE object_data_quality(" +
+			"id BIGINT NOT NULL, " +
+			"version INTEGER NOT NULL DEFAULT 0, " +
+			"obj_id BIGINT, " +
+			"dq_element_id INTEGER, " +
+			"line INTEGER DEFAULT 0, " +
+			"name_of_measure_key INTEGER, " +
+			"name_of_measure_value VARCHAR(255), " +
+			"value VARCHAR(255), " +
+			"measure_description VARCHAR(4000), " +
+			"PRIMARY KEY (id), " +
+			"INDEX idxObjDq_ObjId (obj_id ASC)) " +
+			"TYPE=InnoDB;";
+		jdbc.executeUpdate(sql);
+	}
+
 	private String mapColumnTypeToSQL(ColumnType colType) {
 		String sql = "";
 

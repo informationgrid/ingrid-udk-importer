@@ -33,17 +33,17 @@ public class IDCStrategy2_3_0_checkInspireObjects extends IDCStrategyDefault {
 	public void execute() throws Exception {
 		jdbc.setAutoCommit(false);
 
-		System.out.println("  Check all objects for INSPIRE compatibility (-> PROTOCOL of objects with missing data)...");
-		checkObjectsInspireConformity();
+		System.out.println("  Check objects with INSPIRE themes for INSPIRE compatibility (-> PROTOCOL of objects with missing data)...");
+		checkInspireObjectsConformity();
 		System.out.println("done.");
 
 		jdbc.commit();
 		System.out.println("Check finished successfully.");
 	}
 
-	protected void checkObjectsInspireConformity() throws Exception {
+	protected void checkInspireObjectsConformity() throws Exception {
 		if (log.isInfoEnabled()) {
-			log.info("Check all objects for INSPIRE compatibility (-> PROTOCOL of objects with missing data)...");
+			log.info("Check objects with INSPIRE themes for INSPIRE compatibility (-> PROTOCOL of objects with missing data)...");
 		}
 
 		String sql = "select " +
@@ -122,7 +122,7 @@ public class IDCStrategy2_3_0_checkInspireObjects extends IDCStrategyDefault {
 		}
 
 		if (log.isInfoEnabled()) {
-			log.info("Check all objects for INSPIRE compatibility (-> PROTOCOL of objects with missing data)... done");
+			log.info("Check objects with INSPIRE themes for INSPIRE compatibility (-> PROTOCOL of objects with missing data)... done");
 		}
 	}
 

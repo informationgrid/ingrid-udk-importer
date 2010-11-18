@@ -241,6 +241,24 @@ public class OracleLogic implements DBLogic {
 		jdbc.commit();
 	}
 
+	public void createTableObjectDataQuality(JDBCConnectionProxy jdbc) throws SQLException {
+		String sql = "CREATE TABLE object_data_quality ( " +
+			"id NUMBER(24,0) NOT NULL, " +
+			"version NUMBER(10,0) DEFAULT '0' NOT NULL, " +
+			"obj_id NUMBER(24,0), " +
+			"dq_element_id NUMBER(10,0), " +
+			"line NUMBER(10,0) DEFAULT '0', " +
+			"name_of_measure_key NUMBER(10,0), " +
+			"name_of_measure_value VARCHAR2(255 CHAR), " +
+			"value VARCHAR2(255 CHAR), " +
+			"measure_description VARCHAR2(4000 CHAR))";
+		jdbc.executeUpdate(sql);
+		sql = "ALTER TABLE object_data_quality ADD CONSTRAINT PRIMARY_ObjectDataQuality PRIMARY KEY ( id ) ENABLE";
+		jdbc.executeUpdate(sql);
+		sql = "CREATE INDEX idxObjDq_ObjId ON object_data_quality ( obj_id )";
+		jdbc.executeUpdate(sql);
+		jdbc.commit();
+	}
 
 	private String mapColumnTypeToSQL(ColumnType colType) {
 		String sql = "";
