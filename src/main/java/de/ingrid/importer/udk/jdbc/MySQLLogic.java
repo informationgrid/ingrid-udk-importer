@@ -230,7 +230,7 @@ public class MySQLLogic implements DBLogic {
 			"line INTEGER DEFAULT 0, " +
 			"name_of_measure_key INTEGER, " +
 			"name_of_measure_value VARCHAR(255), " +
-			"value VARCHAR(255), " +
+			"result_value VARCHAR(255), " +
 			"measure_description VARCHAR(4000), " +
 			"PRIMARY KEY (id), " +
 			"INDEX idxObjDq_ObjId (obj_id ASC)) " +

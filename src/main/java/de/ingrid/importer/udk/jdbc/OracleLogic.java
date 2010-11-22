@@ -250,7 +250,7 @@ public class OracleLogic implements DBLogic {
 			"line NUMBER(10,0) DEFAULT '0', " +
 			"name_of_measure_key NUMBER(10,0), " +
 			"name_of_measure_value VARCHAR2(255 CHAR), " +
-			"value VARCHAR2(255 CHAR), " +
+			"result_value VARCHAR2(255 CHAR), " +
 			"measure_description VARCHAR2(4000 CHAR))";
 		jdbc.executeUpdate(sql);
 		sql = "ALTER TABLE object_data_quality ADD CONSTRAINT PRIMARY_ObjectDataQuality PRIMARY KEY ( id ) ENABLE";
