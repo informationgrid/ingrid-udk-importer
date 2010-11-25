@@ -331,7 +331,7 @@ public class IDCStrategy2_3_0 extends IDCStrategyDefault {
 		}
 
 		if (log.isInfoEnabled()) {
-			log.info("Add ids of new OPTIONAL fields !...");
+			log.info("Add ids of new DataQuality Tables (OPTIONAL by default) !...");
 		}
 
 		LinkedHashMap<String, Integer> newSysGuis = new LinkedHashMap<String, Integer>();
@@ -339,9 +339,18 @@ public class IDCStrategy2_3_0 extends IDCStrategyDefault {
 //		Integer remove = 0; // do NOT show if section reduced (use case for optional fields ? never used) !
 //		Integer mandatory = 1; // do also show if section reduced (even if field optional) !
 
-		// TODO
-		System.out.println("!!! TODO: add SysGuiIds of new \"optional fields\"");
-//		newSysGuis.put("3260", initialBehaviour);
+		// add  new sysgui Ids (dq tables)
+		newSysGuis.put("7509", initialBehaviour);
+		newSysGuis.put("7510", initialBehaviour);
+		newSysGuis.put("7512", initialBehaviour);
+		newSysGuis.put("7513", initialBehaviour);
+		newSysGuis.put("7514", initialBehaviour);
+		newSysGuis.put("7515", initialBehaviour);
+		newSysGuis.put("7517", initialBehaviour);
+		newSysGuis.put("7520", initialBehaviour);
+		newSysGuis.put("7525", initialBehaviour);
+		newSysGuis.put("7526", initialBehaviour);
+		newSysGuis.put("7527", initialBehaviour);
 		
 		Iterator<String> itr = newSysGuis.keySet().iterator();
 		while (itr.hasNext()) {
