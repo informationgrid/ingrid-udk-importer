@@ -4,13 +4,15 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
-    <release version="?" date="?" description="InGrid 2.3 Release. NOTICE: New IGC Schema = 1.0.9, ENFORCES UPDATE OF IGE iPlug !">
-      <action type="add" dev="wemove" issue="INGRID23-22">
-        InGrid 2.3: Erstellung eigene Klasse für geographische Services -> Migration "Dienst/Anwendung/Informationssystem" auf neue Klassen 
-        "Geodatendienst" / "Informationssystem/Dienst/Anwendung" (Updates IGC Version to 1.0.9)
+    <release version="2.3.0-SNAPSHOT" date="?" description="Release InGrid 2.3 static changes. New IGC Schema 2.3.0, ENFORCES UPDATE OF IGE iPlug !">
+      <action type="add" dev="wemove" issue="INGRID23-35">
+        InGrid 2.3: Introduce Data Quality input for "Geoinformation/Karte" (IGC Schema 2.3.0).
+      </action>
+      <action type="add" dev="wemove" issue="INGRID23-25">
+        InGrid 2.3: Split object class "Dienst/Anwendung/Informationssystem" into classes "Geodatendienst" and "Informationssystem/Dienst/Anwendung" (IGC Schema 1.0.9).
       </action>
       <action type="add" dev="wemove" issue="INGRID23-6">
-        InGrid 2.3: Trennung der Felder Zugangsbeschränkung und Nutzungsbedingung (Updates IGC Version to 1.0.8)
+        InGrid 2.3: Separate "Access Constraints" and "Usage Limitations" into different tables (Trennung "Zugangsbeschränkungen" / "Nutzungsbedingungen") (IGC Schema 1.0.8).
       </action>
     </release>
 
