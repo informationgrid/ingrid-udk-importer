@@ -238,6 +238,17 @@ public class MySQLLogic implements DBLogic {
 		jdbc.executeUpdate(sql);
 	}
 
+	public void createTableIdcUserGroup(JDBCConnectionProxy jdbc) throws SQLException {
+		String sql = "CREATE TABLE idc_user_group(" +
+			"id BIGINT NOT NULL, " +
+			"version INTEGER NOT NULL DEFAULT 0, " +
+			"idc_user_id BIGINT, " +
+			"idc_group_id BIGINT, " +
+			"PRIMARY KEY (id)) " +
+			"TYPE=InnoDB;";
+		jdbc.executeUpdate(sql);
+	}
+
 	private String mapColumnTypeToSQL(ColumnType colType) {
 		String sql = "";
 

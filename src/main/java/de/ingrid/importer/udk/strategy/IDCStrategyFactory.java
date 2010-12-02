@@ -60,6 +60,8 @@ public class IDCStrategyFactory {
 			return new IDCStrategy2_3_0_checkInspireObjects();
 		} else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_2_3_0)) {
 			return new IDCStrategy2_3_0();
+		} else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_2_3_1)) {
+			return new IDCStrategy2_3_1();
 		} else {
 			log.error("Unknown IDC version '" + idcVersion + "'.");
 			throw new IllegalArgumentException("Unknown IDC version '" + idcVersion + "'.");

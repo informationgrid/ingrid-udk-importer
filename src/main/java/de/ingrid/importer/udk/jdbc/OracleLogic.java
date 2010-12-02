@@ -260,6 +260,18 @@ public class OracleLogic implements DBLogic {
 		jdbc.commit();
 	}
 
+	public void createTableIdcUserGroup(JDBCConnectionProxy jdbc) throws SQLException {
+		String sql = "CREATE TABLE idc_user_group ( " +
+			"id NUMBER(24,0) NOT NULL, " +
+			"version NUMBER(10,0) DEFAULT '0' NOT NULL, " +
+			"idc_user_id NUMBER(24,0), " +
+			"idc_group_id NUMBER(24,0))";
+		jdbc.executeUpdate(sql);
+		sql = "ALTER TABLE idc_user_group ADD CONSTRAINT PRIMARY_IdcUserGroup PRIMARY KEY ( id ) ENABLE";
+		jdbc.executeUpdate(sql);
+		jdbc.commit();
+	}
+
 	private String mapColumnTypeToSQL(ColumnType colType) {
 		String sql = "";
 
