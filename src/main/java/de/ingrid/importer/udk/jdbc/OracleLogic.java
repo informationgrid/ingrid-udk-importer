@@ -260,6 +260,22 @@ public class OracleLogic implements DBLogic {
 		jdbc.commit();
 	}
 
+	public void createTableObjectFormatInspire(JDBCConnectionProxy jdbc) throws SQLException {
+		String sql = "CREATE TABLE object_format_inspire ( " +
+			"id NUMBER(24,0) NOT NULL, " +
+			"version NUMBER(10,0) DEFAULT '0' NOT NULL, " +
+			"obj_id NUMBER(24,0), " +
+			"line NUMBER(10,0) DEFAULT '0', " +
+			"format_key NUMBER(10,0), " +
+			"format_value VARCHAR2(255 CHAR))";
+		jdbc.executeUpdate(sql);
+		sql = "ALTER TABLE object_format_inspire ADD CONSTRAINT PRIMARY_ObjectFormatInspire PRIMARY KEY ( id ) ENABLE";
+		jdbc.executeUpdate(sql);
+		sql = "CREATE INDEX idxObjFormatInsp_ObjId ON object_format_inspire ( obj_id )";
+		jdbc.executeUpdate(sql);
+		jdbc.commit();
+	}
+
 	public void createTableIdcUserGroup(JDBCConnectionProxy jdbc) throws SQLException {
 		String sql = "CREATE TABLE idc_user_group ( " +
 			"id NUMBER(24,0) NOT NULL, " +

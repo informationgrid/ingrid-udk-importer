@@ -19,6 +19,8 @@ import org.apache.commons.logging.LogFactory;
  * "Steuerung der Klasse Geoinformation/Karte anhand des INSPIRE-Themas"<ul>
  *   <li> new table for data quality elements
  *   <li> new syslists for "name of measure"
+ *   <li> new table for INSPIRE encoding (dataformat)
+ *   <li> new syslist for INSPIRE encoding (dataformat)
  * </ul>
  */
 public class IDCStrategy2_3_0 extends IDCStrategyDefault {
@@ -83,6 +85,11 @@ public class IDCStrategy2_3_0 extends IDCStrategyDefault {
 		jdbc.getDBLogic().createTableObjectDataQuality(jdbc);
 
 		if (log.isInfoEnabled()) {
+			log.info("Create table 'object_format_inspire'...");
+		}
+		jdbc.getDBLogic().createTableObjectFormatInspire(jdbc);
+
+		if (log.isInfoEnabled()) {
 			log.info("Manipulate datastructure... done");
 		}
 	}
@@ -124,6 +131,20 @@ public class IDCStrategy2_3_0 extends IDCStrategyDefault {
 		rs.close();
 		st.close();
 // ---------------------------
+		lstId = 510;
+		if (log.isInfoEnabled()) {
+			log.info("Changing syslist " + lstId +	"(datasetCharacterSet): make UTF8 the default...");
+		}
+
+		int numUpdated = jdbc.executeUpdate("UPDATE sys_list" +
+				" SET is_default = 'Y'" +  
+				" WHERE lst_id = " + lstId + 
+				" AND name = 'utf8'");
+
+		if (log.isDebugEnabled()) {
+			log.debug("Updated " + numUpdated +	" entries in syslist " + lstId + " (de + en)...");
+		}
+// ---------------------------
 
 		if (log.isInfoEnabled()) {
 			log.info("Updating sys_list... done");
@@ -136,17 +157,65 @@ public class IDCStrategy2_3_0 extends IDCStrategyDefault {
 		}
 
 // ---------------------------
-		int lstId = 7109;
+		int lstId = 6300;
+		if (log.isInfoEnabled()) {
+			log.info("Inserting new syslist " + lstId +	" = \"INSPIRE Dataformat (Encoding)\"...");
+		}
+
+		// german syslist
+		LinkedHashMap<Integer, String> newSyslistMap_de = new LinkedHashMap<Integer, String>();
+		newSyslistMap_de.put(1, "Geographic Markup Language (GML)");
+		newSyslistMap_de.put(2, "Hydrography GML application schema");
+		newSyslistMap_de.put(3, "\"Hydro ­ base\" GML Application Schema");
+		newSyslistMap_de.put(4, "\"Hydro ­ Physical Waters\" GML Application Schema");
+		newSyslistMap_de.put(5, "\"Hydro ­ Network\" GML Application Schema");
+		newSyslistMap_de.put(6, "\"Hydro ­ Reporting\" GML Application Schema");
+		newSyslistMap_de.put(7, "Common Transport Elements GML Application Schema");
+		newSyslistMap_de.put(8, "Road Transport Networks GML Application Schema");
+		newSyslistMap_de.put(9, "Rail Transport Networks GML Application Schema");
+		newSyslistMap_de.put(10, "Cable Transport Networks GML Application Schema");
+		newSyslistMap_de.put(11, "Water Transport Networks GML Application Schema");
+		newSyslistMap_de.put(12, "Air Transport Networks GML Application Schema");
+		newSyslistMap_de.put(13, "Protected Sites - Simple GML Application Schema");
+		newSyslistMap_de.put(14, "Protected Sites - Full GML Application Schema");
+		newSyslistMap_de.put(15, "Addresses GML application schema");
+		newSyslistMap_de.put(16, "Administrative units GML application schema");
+		newSyslistMap_de.put(17, "Cadastral Parcels GML Application Schema");
+		newSyslistMap_de.put(18, "Geographical names GML Application Schema");
+		// english syslist
+		LinkedHashMap<Integer, String> newSyslistMap_en = new LinkedHashMap<Integer, String>(); 
+		newSyslistMap_en.put(1, "Geographic Markup Language (GML)");
+		newSyslistMap_en.put(2, "Hydrography GML application schema");
+		newSyslistMap_en.put(3, "\"Hydro ­ base\" GML Application Schema");
+		newSyslistMap_en.put(4, "\"Hydro ­ Physical Waters\" GML Application Schema");
+		newSyslistMap_en.put(5, "\"Hydro ­ Network\" GML Application Schema");
+		newSyslistMap_en.put(6, "\"Hydro ­ Reporting\" GML Application Schema");
+		newSyslistMap_en.put(7, "Common Transport Elements GML Application Schema");
+		newSyslistMap_en.put(8, "Road Transport Networks GML Application Schema");
+		newSyslistMap_en.put(9, "Rail Transport Networks GML Application Schema");
+		newSyslistMap_en.put(10, "Cable Transport Networks GML Application Schema");
+		newSyslistMap_en.put(11, "Water Transport Networks GML Application Schema");
+		newSyslistMap_en.put(12, "Air Transport Networks GML Application Schema");
+		newSyslistMap_en.put(13, "Protected Sites - Simple GML Application Schema");
+		newSyslistMap_en.put(14, "Protected Sites - Full GML Application Schema");
+		newSyslistMap_en.put(15, "Addresses GML application schema");
+		newSyslistMap_en.put(16, "Administrative units GML application schema");
+		newSyslistMap_en.put(17, "Cadastral Parcels GML Application Schema");
+		newSyslistMap_en.put(18, "Geographical names GML Application Schema");
+
+		writeNewSyslist(lstId, newSyslistMap_de, newSyslistMap_en, 1);
+// ---------------------------
+		lstId = 7109;
 		if (log.isInfoEnabled()) {
 			log.info("Inserting new syslist " + lstId +	" (\"Name of measure\" for 109. DQ_CompletenessComission)...");
 		}
 
 		// german syslist
-		LinkedHashMap<Integer, String> newSyslistMap_de = new LinkedHashMap<Integer, String>();
+		newSyslistMap_de = new LinkedHashMap<Integer, String>();
 		newSyslistMap_de.put(1, "Rate of excess items");
 		newSyslistMap_de.put(2, "Number of duplicate feature instances");
 		// english syslist
-		LinkedHashMap<Integer, String> newSyslistMap_en = new LinkedHashMap<Integer, String>(); 
+		newSyslistMap_en = new LinkedHashMap<Integer, String>(); 
 		newSyslistMap_en.put(1, "Rate of excess items");
 		newSyslistMap_en.put(2, "Number of duplicate feature instances");
 

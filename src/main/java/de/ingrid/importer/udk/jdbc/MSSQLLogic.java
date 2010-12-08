@@ -77,6 +77,9 @@ public class MSSQLLogic implements DBLogic {
 	public void createTableObjectDataQuality(JDBCConnectionProxy jdbc) throws SQLException {
 		// TODO !
 	}
+	public void createTableObjectFormatInspire(JDBCConnectionProxy jdbc) throws SQLException {
+		// TODO !
+	}
 	public void createTableIdcUserGroup(JDBCConnectionProxy jdbc) throws SQLException {
 		// TODO !
 	}

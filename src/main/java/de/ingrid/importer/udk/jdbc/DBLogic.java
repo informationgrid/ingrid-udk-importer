@@ -82,5 +82,7 @@ public interface DBLogic {
 	/** DDL Operation ! CAUSES COMMIT ON MySQL ! */
 	void createTableObjectDataQuality(JDBCConnectionProxy jdbc) throws SQLException;
 	/** DDL Operation ! CAUSES COMMIT ON MySQL ! */
+	void createTableObjectFormatInspire(JDBCConnectionProxy jdbc) throws SQLException;
+	/** DDL Operation ! CAUSES COMMIT ON MySQL ! */
 	void createTableIdcUserGroup(JDBCConnectionProxy jdbc) throws SQLException;
 }

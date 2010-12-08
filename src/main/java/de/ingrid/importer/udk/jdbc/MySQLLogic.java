@@ -238,6 +238,20 @@ public class MySQLLogic implements DBLogic {
 		jdbc.executeUpdate(sql);
 	}
 
+	public void createTableObjectFormatInspire(JDBCConnectionProxy jdbc) throws SQLException {
+		String sql = "CREATE TABLE object_format_inspire(" +
+			"id BIGINT NOT NULL, " +
+			"version INTEGER NOT NULL DEFAULT 0, " +
+			"obj_id BIGINT, " +
+			"line INTEGER DEFAULT 0, " +
+			"format_key INTEGER, " +
+			"format_value VARCHAR(255), " +
+			"PRIMARY KEY (id), " +
+			"INDEX idxObjFormatInsp_ObjId (obj_id ASC)) " +
+			"TYPE=InnoDB;";
+		jdbc.executeUpdate(sql);
+	}
+
 	public void createTableIdcUserGroup(JDBCConnectionProxy jdbc) throws SQLException {
 		String sql = "CREATE TABLE idc_user_group(" +
 			"id BIGINT NOT NULL, " +
