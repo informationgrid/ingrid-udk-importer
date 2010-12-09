@@ -5,11 +5,14 @@ package de.ingrid.importer.udk.strategy;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import de.ingrid.importer.udk.jdbc.JDBCHelper;
 
 /**
  * 2.3.0 = SWITCH OF STRATEGY VERSION ! First two digits correlate now with InGrid project version !
@@ -30,6 +33,8 @@ public class IDCStrategy2_3_0 extends IDCStrategyDefault {
 	private static final String MY_VERSION = VALUE_IDC_VERSION_2_3_0;
 
 	int SYSLIST_ENTRY_ID_NO_INSPIRE_THEME = 99999;
+	int INSPIRE_ENCODING_DEFAULT_KEY;
+	String INSPIRE_ENCODING_DEFAULT_VALUE;
 
 	public String getIDCVersion() {
 		return MY_VERSION;
@@ -57,6 +62,10 @@ public class IDCStrategy2_3_0 extends IDCStrategyDefault {
 
 		System.out.print("  Extending sys_list (new ones)...");
 		extendSysList();
+		System.out.println("done.");
+
+		System.out.print("  Updating object_format_inspire...");
+		updateObjectFormatInspire();
 		System.out.println("done.");
 
 		System.out.print("  Updating sys_gui...");
@@ -164,7 +173,9 @@ public class IDCStrategy2_3_0 extends IDCStrategyDefault {
 
 		// german syslist
 		LinkedHashMap<Integer, String> newSyslistMap_de = new LinkedHashMap<Integer, String>();
-		newSyslistMap_de.put(1, "Geographic Markup Language (GML)");
+		INSPIRE_ENCODING_DEFAULT_KEY = 1;
+		INSPIRE_ENCODING_DEFAULT_VALUE = "Geographic Markup Language (GML)";
+		newSyslistMap_de.put(INSPIRE_ENCODING_DEFAULT_KEY, INSPIRE_ENCODING_DEFAULT_VALUE);
 		newSyslistMap_de.put(2, "Hydrography GML application schema");
 		newSyslistMap_de.put(3, "\"Hydro ­ base\" GML Application Schema");
 		newSyslistMap_de.put(4, "\"Hydro ­ Physical Waters\" GML Application Schema");
@@ -184,7 +195,7 @@ public class IDCStrategy2_3_0 extends IDCStrategyDefault {
 		newSyslistMap_de.put(18, "Geographical names GML Application Schema");
 		// english syslist
 		LinkedHashMap<Integer, String> newSyslistMap_en = new LinkedHashMap<Integer, String>(); 
-		newSyslistMap_en.put(1, "Geographic Markup Language (GML)");
+		newSyslistMap_en.put(INSPIRE_ENCODING_DEFAULT_KEY, "Geographic Markup Language (GML)");
 		newSyslistMap_en.put(2, "Hydrography GML application schema");
 		newSyslistMap_en.put(3, "\"Hydro ­ base\" GML Application Schema");
 		newSyslistMap_en.put(4, "\"Hydro ­ Physical Waters\" GML Application Schema");
@@ -203,7 +214,7 @@ public class IDCStrategy2_3_0 extends IDCStrategyDefault {
 		newSyslistMap_en.put(17, "Cadastral Parcels GML Application Schema");
 		newSyslistMap_en.put(18, "Geographical names GML Application Schema");
 
-		writeNewSyslist(lstId, newSyslistMap_de, newSyslistMap_en, 1);
+		writeNewSyslist(lstId, newSyslistMap_de, newSyslistMap_en, INSPIRE_ENCODING_DEFAULT_KEY);
 // ---------------------------
 		lstId = 7109;
 		if (log.isInfoEnabled()) {
@@ -459,6 +470,59 @@ public class IDCStrategy2_3_0 extends IDCStrategyDefault {
 			// english version
 			jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
 					+ getNextId() + ", " + listId + ", " + key + ", 'en', '" + syslistMap_en.get(key) + "', 0, '" + isDefault + "')");
+		}
+	}
+
+	protected void updateObjectFormatInspire() throws Exception {
+		if (log.isInfoEnabled()) {
+			log.info("Updating object_format_inspire...");
+		}
+
+		if (log.isInfoEnabled()) {
+			log.info("Set default INSPIRE encoding for Objects with INSPIRE Theme...");
+		}
+
+		// add entries for ALL t01_objects (no matter whether working or published version) 
+		String sql = "select distinct oNode.id as oNodeId, obj.id as oId " +
+			"from " +
+			"object_node oNode, t01_object obj, searchterm_obj stO, searchterm_value stV " +
+			"where " +
+			"oNode.obj_uuid = obj.obj_uuid " +
+			"AND obj.id = stO.obj_id " +
+			"AND stO.searchterm_id = stV.id " +
+			"AND stV.type = 'I' " +
+			"AND stV.entry_id != " + SYSLIST_ENTRY_ID_NO_INSPIRE_THEME;
+
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(sql, st);
+		int numMigrated = 0;
+		HashMap<Long, Boolean> processedNodeIds = new HashMap<Long,Boolean>();
+		while (rs.next()) {
+			long objNodeId = rs.getLong("oNodeId");
+			long objId = rs.getLong("oId");
+
+			jdbc.executeUpdate("INSERT INTO object_format_inspire (id, obj_id, line, format_key, format_value) "
+					+ "VALUES (" + getNextId() + ", " + objId + ", " + 1 + ", " +
+					INSPIRE_ENCODING_DEFAULT_KEY + ", '" + INSPIRE_ENCODING_DEFAULT_VALUE + "')");
+			numMigrated++;
+
+			// extend object index
+			// Node may contain different object versions, then we receive nodeId multiple times.
+			// Write Index only once (index contains data of working version!) !
+			if (!processedNodeIds.containsKey(objNodeId)) {
+				JDBCHelper.updateObjectIndex(objNodeId, INSPIRE_ENCODING_DEFAULT_VALUE, jdbc);
+				processedNodeIds.put(objNodeId, true);
+			}
+		}
+		rs.close();
+		st.close();
+
+		if (log.isInfoEnabled()) {
+			log.info("Updated " + numMigrated + " objects with default INSPIRE encoding");
+		}
+
+		if (log.isInfoEnabled()) {
+			log.info("Updating object_format_inspire... done");
 		}
 	}
 }
