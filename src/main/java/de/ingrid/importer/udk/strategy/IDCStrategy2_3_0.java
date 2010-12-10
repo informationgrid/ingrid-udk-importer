@@ -154,6 +154,20 @@ public class IDCStrategy2_3_0 extends IDCStrategyDefault {
 			log.debug("Updated " + numUpdated +	" entries in syslist " + lstId + " (de + en)...");
 		}
 // ---------------------------
+		lstId = 525;
+		if (log.isInfoEnabled()) {
+			log.info("Changing syslist " + lstId +	"(Datensatz/Datenserie): make Datensatz the default...");
+		}
+
+		numUpdated = jdbc.executeUpdate("UPDATE sys_list" +
+				" SET is_default = 'Y'" +  
+				" WHERE lst_id = " + lstId + 
+				" AND entry_id = 5");
+
+		if (log.isDebugEnabled()) {
+			log.debug("Updated " + numUpdated +	" entries in syslist " + lstId + " (de + en)...");
+		}
+// ---------------------------
 
 		if (log.isInfoEnabled()) {
 			log.info("Updating sys_list... done");
@@ -255,10 +269,12 @@ public class IDCStrategy2_3_0 extends IDCStrategyDefault {
 		newSyslistMap_de = new LinkedHashMap<Integer, String>();
 		newSyslistMap_de.put(1, "Number of invalid overlaps of surfaces");
 		newSyslistMap_de.put(2, "Conceptual Schema compliance");
+		newSyslistMap_de.put(3, "Compliance rate with the rules of the conceptual schema");
 		// english syslist
 		newSyslistMap_en = new LinkedHashMap<Integer, String>(); 
 		newSyslistMap_en.put(1, "Number of invalid overlaps of surfaces");
 		newSyslistMap_en.put(2, "Conceptual Schema compliance");
+		newSyslistMap_en.put(3, "Compliance rate with the rules of the conceptual schema");
 
 		writeNewSyslist(lstId, newSyslistMap_de, newSyslistMap_en, -1);
 // ---------------------------
@@ -269,10 +285,10 @@ public class IDCStrategy2_3_0 extends IDCStrategyDefault {
 
 		// german syslist
 		newSyslistMap_de = new LinkedHashMap<Integer, String>();
-		newSyslistMap_de.put(1, "Value domain conformance rate");
+		newSyslistMap_de.put(1, "Value domain non conformance rate");
 		// english syslist
 		newSyslistMap_en = new LinkedHashMap<Integer, String>(); 
-		newSyslistMap_en.put(1, "Value domain conformance rate");
+		newSyslistMap_en.put(1, "Value domain non conformance rate");
 
 		writeNewSyslist(lstId, newSyslistMap_de, newSyslistMap_en, 1);
 // ---------------------------
@@ -377,10 +393,12 @@ public class IDCStrategy2_3_0 extends IDCStrategyDefault {
 
 		// german syslist
 		newSyslistMap_de = new LinkedHashMap<Integer, String>();
-		newSyslistMap_de.put(1, "Rate of incorrect attributes names values");
+		newSyslistMap_de.put(1, "Number of incorrect attribute values");
+		newSyslistMap_de.put(2, "Rate of incorrect classification for national identifier");
 		// english syslist
 		newSyslistMap_en = new LinkedHashMap<Integer, String>(); 
-		newSyslistMap_en.put(1, "Rate of incorrect attributes names values");
+		newSyslistMap_en.put(1, "Number of incorrect attribute values");
+		newSyslistMap_en.put(2, "Rate of incorrect classification for national identifier");
 
 		writeNewSyslist(lstId, newSyslistMap_de, newSyslistMap_en, 1);
 // ---------------------------
