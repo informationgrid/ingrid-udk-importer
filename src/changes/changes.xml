@@ -4,7 +4,16 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
-    <release version="2.3.0-SNAPSHOT" date="?" description="Release InGrid 2.3 static changes. New IGC Schema 2.3.0, ENFORCES UPDATE OF IGE iPlug !">
+    <release version="2.3.1-SNAPSHOT" date="?" description="Release InGrid 2.3 static changes. New IGC Schema 2.3.1, ENFORCES UPDATE OF IGE iPlug !">
+      <action type="add" dev="wemove" issue="INGRID23-46">
+        InGrid 2.3 NI: Add new permission write-subtree which gives permission to create entities but not to change the original entity (IGC Schema 2.3.1).
+      </action>
+      <action type="add" dev="wemove" issue="INGRID23-48">
+        InGrid 2.3 NI: Introduce MULTIPLE GROUPS per User (IGC Schema 2.3.1).
+      </action>
+      <action type="add" dev="wemove" issue="INGRID23-52">
+        InGrid 2.3: Introduce input of INSPIRE Encoding (data format) (IGC Schema 2.3.0).
+      </action>
       <action type="add" dev="wemove" issue="INGRID23-35">
         InGrid 2.3: Introduce Data Quality input for "Geoinformation/Karte" (IGC Schema 2.3.0).
       </action>
