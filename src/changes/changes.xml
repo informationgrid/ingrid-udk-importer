@@ -4,7 +4,7 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
-    <release version="2.3.1-SNAPSHOT" date="?" description="Release InGrid 2.3 static changes. New IGC Schema 2.3.0 OR 2.3.1, ENFORCES UPDATE OF IGE iPlug !">
+    <release version="2.3.1" date="2010-12-14" description="Release InGrid 2.3 static changes. New IGC Schema 2.3.0 (INSPIRE editor)  OR  2.3.1 (additional user groups + permission), ENFORCES UPDATE OF IGE iPlug !">
       <action type="add" dev="wemove" issue="INGRID23-46">
         InGrid 2.3 NI: Add new permission write-subtree which gives permission to create entities but not to change the original entity (IGC Schema 2.3.1).
       </action>
