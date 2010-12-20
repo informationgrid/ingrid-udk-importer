@@ -14,9 +14,9 @@ import org.apache.commons.logging.LogFactory;
  * Changes InGrid 2.3 for NI:<p>
  * - Add new subtree permission type
  */
-public class IDCStrategy2_3_1_add_subtree_permission extends IDCStrategyDefault {
+public class IDCStrategy2_3_1_add_subnode_permission extends IDCStrategyDefault {
 
-	private static Log log = LogFactory.getLog(IDCStrategy2_3_1_add_subtree_permission.class);
+	private static Log log = LogFactory.getLog(IDCStrategy2_3_1_add_subnode_permission.class);
 
     /**
      * Deliver NO Version, this strategy should NOT trigger a strategy workflow and
@@ -40,7 +40,7 @@ public class IDCStrategy2_3_1_add_subtree_permission extends IDCStrategyDefault 
 
 	private void addTreewritePermission() throws Exception {
         jdbc.executeUpdate("INSERT INTO permission (id, class_name, name, action) VALUES ("
-                + getNextId() + ", 'IdcEntityPermission', 'entity', 'write-subtree')");
+                + getNextId() + ", 'IdcEntityPermission', 'entity', 'write-subnode')");
 	}
 
 }

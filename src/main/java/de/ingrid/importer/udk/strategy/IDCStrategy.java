@@ -56,7 +56,7 @@ public interface IDCStrategy {
 	 * project version !!! */
 	static String VALUE_IDC_VERSION_2_3_0 = "2.3.0";
 	/** InGrid 2.3 NI: new write_subtree permission */
-    static String VALUE_IDC_VERSION_2_3_1_ADD_SUBTREE_PERMISSION = "2.3.1_addSubtreePermission";
+    static String VALUE_IDC_VERSION_2_3_1_ADD_SUBNODE_PERMISSION = "2.3.1_addSubnodePermission";
 	/** InGrid 2.3 NI: connect user with multiple groups */
 	static String VALUE_IDC_VERSION_2_3_1 = "2.3.1";
 	
@@ -86,7 +86,7 @@ public interface IDCStrategy {
 		VALUE_IDC_VERSION_109,
 		VALUE_IDC_VERSION_2_3_0_CHECK_INSPIRE_OBJECTS, // writes no Version !
 		VALUE_IDC_VERSION_2_3_0,
-        VALUE_IDC_VERSION_2_3_1_ADD_SUBTREE_PERMISSION,
+        VALUE_IDC_VERSION_2_3_1_ADD_SUBNODE_PERMISSION,
 		VALUE_IDC_VERSION_2_3_1,
 	};
 
