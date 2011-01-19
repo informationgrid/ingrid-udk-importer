@@ -4,9 +4,9 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
-    <release version="2.3.1.1-SNAPSHOT" date="" description="Bugfix Release InGrid 2.3.1">
+    <release version="2.3.1.1-SNAPSHOT" date="" description="Bugfix Release InGrid 2.3.1. New IGC Schema 2.3.1.1">
       <action type="add" dev="wemove" issue="INGRID23-46">
-        InGrid 2.3 NI: Fix permission in database for writing subnodes (not subtree !).
+        Fix permission in database for writing subnodes -> rename permission to 'write-subnode' (IGC Schema 2.3.1.1).
       </action>
     </release>
 

@@ -60,10 +60,12 @@ public class IDCStrategyFactory {
 			return new IDCStrategy2_3_0_checkInspireObjects();
 		} else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_2_3_0)) {
 			return new IDCStrategy2_3_0();
-        } else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_2_3_1_ADD_SUBNODE_PERMISSION)) {
-            return new IDCStrategy2_3_1_add_subnode_permission();
+        } else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_2_3_1_ADD_SUBTREE_PERMISSION)) {
+            return new IDCStrategy2_3_1_add_subtree_permission();
 		} else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_2_3_1)) {
 			return new IDCStrategy2_3_1();
+        } else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_2_3_1_1_FIX_SUBNODE_PERMISSION)) {
+            return new IDCStrategy2_3_1_1_fix_subnode_permission();
 		} else {
 			log.error("Unknown IDC version '" + idcVersion + "'.");
 			throw new IllegalArgumentException("Unknown IDC version '" + idcVersion + "'.");
