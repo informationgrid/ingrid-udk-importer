@@ -263,6 +263,21 @@ public class MySQLLogic implements DBLogic {
 		jdbc.executeUpdate(sql);
 	}
 
+	public void createTableAdditionalFieldData(JDBCConnectionProxy jdbc) throws SQLException {
+		String sql = "CREATE TABLE additional_field_data(" +
+			"id BIGINT NOT NULL, " +
+			"version INTEGER NOT NULL DEFAULT 0, " +
+			"obj_id BIGINT, " +
+			"sort INTEGER DEFAULT 0, " +
+			"field_key VARCHAR(255), " +
+			"data MEDIUMTEXT, " +
+			"parent_field_id BIGINT, " +
+			"PRIMARY KEY (id), " +
+			"INDEX idxAddField_ObjId (obj_id ASC)) " +
+			"TYPE=InnoDB;";
+		jdbc.executeUpdate(sql);
+	}
+
 	private String mapColumnTypeToSQL(ColumnType colType) {
 		String sql = "";
 

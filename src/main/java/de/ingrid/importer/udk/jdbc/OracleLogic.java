@@ -70,20 +70,47 @@ public class OracleLogic implements DBLogic {
 		// In Oracle column names are "correct" with initial schema of tables !
 		// Implement if needed on Oracle ;)
 		
+		// see sql = "ALTER TABLE " + tableName + " RENAME COLUMN " + tmpColName + " TO " + colName;
+		// below in modifyColumn
+		
 		throw new SQLException("ORACLE renameColumn not implemented yet !!!");
 	}
 
 	public void modifyColumn(String colName, ColumnType colType, String tableName, boolean notNull,
 			JDBCConnectionProxy jdbc) throws SQLException {
-		String sql = "ALTER TABLE " + tableName + " MODIFY " + colName + " " + mapColumnTypeToSQL(colType);
+		String newColTypeOracle = mapColumnTypeToSQL(colType);
+		
+		// CLOB needs different handling !
+		if ("CLOB".equals(newColTypeOracle)) {
+			String tmpColName = colName + "2";
+			String sql = "ALTER TABLE " + tableName + " ADD " + tmpColName + " CLOB";
+			if (notNull) {
+				sql += " NOT NULL";
+				// NOTICE: adding default value causes ERROR ! is added by jdbc
+				// automatically !
+			}
+			jdbc.executeUpdate(sql);
 
-		if (notNull) {
-			sql += " NOT NULL";
-			// NOTICE: adding default value causes ERROR ! is added by jdbc
-			// automatically !
+			sql = "UPDATE " + tableName + " SET " + tmpColName + " = " + colName;
+			jdbc.executeUpdate(sql);
+
+			sql = "ALTER TABLE " + tableName + " DROP COLUMN " + colName;
+			jdbc.executeUpdate(sql);
+
+			sql = "ALTER TABLE " + tableName + " RENAME COLUMN " + tmpColName + " TO " + colName;
+			jdbc.executeUpdate(sql);
+
+		} else {
+			String sql = "ALTER TABLE " + tableName + " MODIFY " + colName + " " + mapColumnTypeToSQL(colType);
+			if (notNull) {
+				sql += " NOT NULL";
+				// NOTICE: adding default value causes ERROR ! is added by jdbc
+				// automatically !
+			}
+			jdbc.executeUpdate(sql);
 		}
 
-		jdbc.executeUpdate(sql);
+
 		jdbc.commit();
 	}
 
@@ -284,6 +311,23 @@ public class OracleLogic implements DBLogic {
 			"idc_group_id NUMBER(24,0))";
 		jdbc.executeUpdate(sql);
 		sql = "ALTER TABLE idc_user_group ADD CONSTRAINT PRIMARY_IdcUserGroup PRIMARY KEY ( id ) ENABLE";
+		jdbc.executeUpdate(sql);
+		jdbc.commit();
+	}
+
+	public void createTableAdditionalFieldData(JDBCConnectionProxy jdbc) throws SQLException {
+		String sql = "CREATE TABLE additional_field_data ( " +
+			"id NUMBER(24,0) NOT NULL, " +
+			"version NUMBER(10,0) DEFAULT '0' NOT NULL, " +
+			"obj_id NUMBER(24,0), " +
+			"sort NUMBER(10,0) DEFAULT '0', " +
+			"field_key VARCHAR2(255 CHAR), " +
+			"data CLOB, " +
+			"parent_field_id NUMBER(24,0))";
+		jdbc.executeUpdate(sql);
+		sql = "ALTER TABLE additional_field_data ADD CONSTRAINT PRIMARY_AddFieldData PRIMARY KEY ( id ) ENABLE";
+		jdbc.executeUpdate(sql);
+		sql = "CREATE INDEX idxAddFieldData_ObjId ON additional_field_data ( obj_id )";
 		jdbc.executeUpdate(sql);
 		jdbc.commit();
 	}

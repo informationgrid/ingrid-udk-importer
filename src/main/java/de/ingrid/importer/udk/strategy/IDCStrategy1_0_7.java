@@ -54,13 +54,14 @@ public class IDCStrategy1_0_7 extends IDCStrategyDefault {
 		if (!jdbc.isOracle()) {
 			if (log.isInfoEnabled()) {
 				log.info("Rename 'object_comment.comment' column to 'comment_' ...");
-				jdbc.getDBLogic().renameColumn("comment", "comment_", ColumnType.TEXT, "object_comment", false, jdbc);
 			}
+			jdbc.getDBLogic().renameColumn("comment", "comment_", ColumnType.TEXT, "object_comment", false, jdbc);
 
 			if (log.isInfoEnabled()) {
 				log.info("Rename 'address_comment.comment' column to 'comment_' ...");
-				jdbc.getDBLogic().renameColumn("comment", "comment_", ColumnType.TEXT, "address_comment", false, jdbc);
 			}
+			jdbc.getDBLogic().renameColumn("comment", "comment_", ColumnType.TEXT, "address_comment", false, jdbc);
+
 		} else {
 			if (log.isInfoEnabled()) {
 				log.info("Oracle database ! no renaming of columns, already in base schema");

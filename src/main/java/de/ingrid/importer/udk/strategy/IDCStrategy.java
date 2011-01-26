@@ -61,6 +61,8 @@ public interface IDCStrategy {
 	static String VALUE_IDC_VERSION_2_3_1 = "2.3.1";
 	/** InGrid 2.3 NI: fix write_subtree permission ! Rename Permission to write_subnode ! */
     static String VALUE_IDC_VERSION_2_3_1_1_FIX_SUBNODE_PERMISSION = "2.3.1.1";
+	/** InGrid 3.0: flexible data model */
+	static String VALUE_IDC_VERSION_3_0_0 = "3.0.0";
 	
 
 	/** Order of strategies to execute to obtain most recent IGC.
@@ -79,7 +81,8 @@ public interface IDCStrategy {
 		// InGrid 2.0 Release (including post fixes, addons)
 		VALUE_IDC_VERSION_105,
 		// At the moment strategy VALUE_IDC_VERSION_105_FIX_COUNTRY_CODELIST is NOT part of workflow !
-		// So default is Europe and NOT all countries. The strategy can be executed on its own if all countries needed !
+		// So default is only countries in europe and NOT all countries. The strategy can be executed on
+		// its own if all countries needed !
 //		VALUE_IDC_VERSION_105_FIX_COUNTRY_CODELIST,
 		VALUE_IDC_VERSION_106,
 		VALUE_IDC_VERSION_106_FIX_SYSLIST_INSPIRE, // writes no Version
@@ -92,6 +95,7 @@ public interface IDCStrategy {
 		VALUE_IDC_VERSION_2_3_1,
 		// WRITES VERSION !!!
 		VALUE_IDC_VERSION_2_3_1_1_FIX_SUBNODE_PERMISSION,
+		VALUE_IDC_VERSION_3_0_0,
 	};
 
 		

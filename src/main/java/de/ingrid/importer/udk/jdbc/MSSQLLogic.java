@@ -83,4 +83,7 @@ public class MSSQLLogic implements DBLogic {
 	public void createTableIdcUserGroup(JDBCConnectionProxy jdbc) throws SQLException {
 		// TODO !
 	}
+	public void createTableAdditionalFieldData(JDBCConnectionProxy jdbc) throws SQLException {
+		// TODO !
+	}
 }

@@ -66,6 +66,8 @@ public class IDCStrategyFactory {
 			return new IDCStrategy2_3_1();
         } else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_2_3_1_1_FIX_SUBNODE_PERMISSION)) {
             return new IDCStrategy2_3_1_1_fix_subnode_permission();
+		} else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_3_0_0)) {
+			return new IDCStrategy3_0_0();
 		} else {
 			log.error("Unknown IDC version '" + idcVersion + "'.");
 			throw new IllegalArgumentException("Unknown IDC version '" + idcVersion + "'.");
