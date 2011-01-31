@@ -3,6 +3,13 @@
  */
 package de.ingrid.importer.udk.strategy;
 
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -90,36 +97,110 @@ public class IDCStrategy3_0_0 extends IDCStrategyDefault {
 
 	private void migrateAdditionalFields() throws Exception {
 		if (log.isInfoEnabled()) {
-			log.info("Migrate Additional Fields to Profile...");
+			log.info("Migrate Additional Fields to Profile / additional_field_data...");
 		}
-/*
-		String sql = "select distinct id, idc_group_id " +
-			"from idc_user";
+
+		// first migrate field definitions
+		String sql = "select " +
+			"attrType.id, attrType.name, attrType.type, " + // field
+			//"attrType.length, " +
+			"attrList.type as listType, attrList.listitem_line, attrList.listitem_value, attrList.lang_code " + // field list
+			"from " +
+			"t08_attr_type attrType " +
+			"left outer join t08_attr_list attrList on (attrType.id = attrList.attr_type_id) " +
+			"order by attrType.id, attrList.attr_type_id, attrList.lang_code, attrList.listitem_line";
+
+		AdditionalField currentField = null;
+		MigrationStatistics stats = new MigrationStatistics();
 
 		Statement st = jdbc.createStatement();
 		ResultSet rs = jdbc.executeQuery(sql, st);
-		int numMigrated = 0;
 		while (rs.next()) {
-			long userId = rs.getLong("id");
-			long groupId = rs.getLong("idc_group_id");
-			sql = "INSERT INTO idc_user_group (id, idc_user_id, idc_group_id) "
-				+ "VALUES (" + getNextId() + ", " + userId + ", " + groupId + ")";
-			jdbc.executeUpdate(sql);
-			numMigrated++;
+			long nextFieldId = rs.getLong("id");
 
-			if (log.isDebugEnabled()) {
-				log.debug("Migrated user (id:" + userId + ") with group (id:" + groupId + ").");
+			// check whether all data of an object is read, then do migration !
+			boolean fieldChange = false;
+			if (currentField != null && currentField.id != nextFieldId) {
+				// field changed, process finished field
+				fieldChange = true;
+				migrateAdditionalField(currentField, stats);
 			}
+
+			if (currentField == null || fieldChange) {
+				// set up next field
+				currentField = new AdditionalField(nextFieldId, rs.getString("name"),
+						rs.getString("type"), rs.getString("listType"));
+			}
+
+			// pass new stuff
+			if (currentField.listType != null) {
+				currentField.addListItem(rs.getString("lang_code"), rs.getString("listitem_value"));
+			}
+		}
+		// also migrate last field ! not done in loop due to end of loop !
+		if (currentField != null) {
+			migrateAdditionalField(currentField, stats);
+		}
+
+		rs.close();
+		st.close();
+
+		if (log.isInfoEnabled()) {
+			log.info("Migrated " + stats.numMigrated + " additional fields.");
+		}
+
+		if (log.isInfoEnabled()) {
+			log.info("Migrate Additional Fields to Profile / additional_field_data...done");
+		}
+	}
+
+	protected void migrateAdditionalField(AdditionalField field, MigrationStatistics stats) throws Exception {
+		if (log.isInfoEnabled()) {
+			log.info("Migrate additionalField id='" + field.id + "', name='" + field.name + "', type='" + field.type + "'");
+		}
+
+		// add to profile
+		
+		// TODO
+
+		// migrate data
+		migrateAdditionalFieldData(field);
+		
+		stats.numMigrated++;
+	}
+
+	protected void migrateAdditionalFieldData(AdditionalField field) throws Exception {
+		if (log.isInfoEnabled()) {
+			log.info("Migrate DATA of additionalField id='" + field.id + "', name='" + field.name + "', type='" + field.type + "'");
+		}
+
+		String sql = "select * from t08_attr where attr_type_id = " + field.id;
+
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(sql, st);
+		int numData = 0;
+		while (rs.next()) {
+			String fieldKey = "additionalField" + field.id;
+			String data = rs.getString("data");
+			if (data == null || data.trim().length() == 0) {
+				continue;
+			}
+			
+			// determine list item id if selection list is set
+			String listItemId = field.getListItemIdFromValue(data);
+			if (listItemId != null) {
+				listItemId = "'" + listItemId + "'";
+			}
+			sql = "INSERT INTO additional_field_data (id, obj_id, field_key, list_item_id, data) "
+				+ "VALUES (" + getNextId() + ", " + rs.getLong("obj_id") + ", '" + fieldKey + "', " + listItemId + ", '" + data + "')";
+			jdbc.executeUpdate(sql);
+			numData++;
 		}
 		rs.close();
 		st.close();
 
 		if (log.isDebugEnabled()) {
-			log.debug("Migrated " + numMigrated + " user group associations.");
-		}
-*/
-		if (log.isInfoEnabled()) {
-			log.info("Migrate Additional Fields to Profile... done");
+			log.debug("Migrated " + numData + " data records to table additional_field_data.");
 		}
 	}
 
@@ -146,5 +227,83 @@ public class IDCStrategy3_0_0 extends IDCStrategyDefault {
 		if (log.isInfoEnabled()) {
 			log.info("Cleaning up datastructure... done");
 		}
+	}
+
+	/** Helper class encapsulating all needed data of a field DEFINITION ! */
+	class AdditionalField {
+		long id;
+		String name;
+		String type;
+		String listType;
+		/** key = language code */
+		HashMap<String, List<ListItem>> listsLocalized ;
+
+		AdditionalField(long id, String name, String type, String listType) {
+			this.id = id;
+			this.name = name;
+			this.type = type;
+			this.listType = listType;
+			this.listsLocalized = new HashMap<String, List<ListItem>>();
+		}
+		void addListItem(String locale, String itemValue) {
+			List<ListItem> list = listsLocalized.get(locale);
+			if (list == null) {
+				list = new ArrayList<ListItem>();
+				listsLocalized.put(locale, list);
+			}
+			String listItemId = new Integer(list.size()+1).toString();
+			list.add(new ListItem(listItemId, itemValue));
+		}
+		/** Checks all lists beginning with default localized list
+		 * returns -1 if lists are present and item not found. Returns null if no list present ! */
+		String getListItemIdFromValue(String listItemValue) {
+			String itemId = null;
+			if (!listsLocalized.isEmpty()) {				
+				// first check default locale
+				String locale = getCatalogLanguage();
+				itemId = getListItemIdFromValue(listsLocalized.get(locale), listItemValue);
+				
+				if (itemId == null) {
+					// check all lists, maybe value in different language
+					Iterator<List<ListItem>> itr = listsLocalized.values().iterator();
+					while(itr.hasNext()) {
+						itemId = getListItemIdFromValue(itr.next(), listItemValue);
+						if (itemId != null) {
+							break;
+						}
+					}
+				}
+				if (itemId == null) {
+					// free Entry from ComboBox
+					itemId = "-1";
+				}
+			}
+			
+			return itemId;
+		}
+		/** Checks passed list */
+		String getListItemIdFromValue(List<ListItem> list, String listItemValue) {
+			if (list != null) {
+				for (ListItem item : list) {
+					if (item.value.equals(listItemValue)) {
+						return item.id;
+					}
+				}
+			}
+			return null;
+		}
+	}
+	class ListItem {
+		String id;
+		String value;
+
+		ListItem(String id, String value) {
+			this.id = id;
+			this.value = value;
+		}
+	}
+	/** Helper class encapsulating statistics */
+	class MigrationStatistics {
+		int numMigrated = 0;
 	}
 }

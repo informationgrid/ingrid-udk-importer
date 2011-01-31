@@ -270,6 +270,7 @@ public class MySQLLogic implements DBLogic {
 			"obj_id BIGINT, " +
 			"sort INTEGER DEFAULT 0, " +
 			"field_key VARCHAR(255), " +
+			"list_item_id VARCHAR(255), " +
 			"data MEDIUMTEXT, " +
 			"parent_field_id BIGINT, " +
 			"PRIMARY KEY (id), " +

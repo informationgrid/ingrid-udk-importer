@@ -322,6 +322,7 @@ public class OracleLogic implements DBLogic {
 			"obj_id NUMBER(24,0), " +
 			"sort NUMBER(10,0) DEFAULT '0', " +
 			"field_key VARCHAR2(255 CHAR), " +
+			"list_item_id VARCHAR2(255 CHAR), " +
 			"data CLOB, " +
 			"parent_field_id NUMBER(24,0))";
 		jdbc.executeUpdate(sql);
