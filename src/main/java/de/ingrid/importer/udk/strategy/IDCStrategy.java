@@ -15,6 +15,8 @@ public interface IDCStrategy {
 	
 	/** Key for sys_generic_key table to set/extract version of idc schema. */
 	static String KEY_IDC_VERSION = "IDC_VERSION";
+	/** Key for sys_generic_key table to set/extract Profile of catalog (flexible datamodel). */
+	static String KEY_PROFILE_XML = "profileXML";
 
 	// ALL VERSIONS/STRATEGIES EXECUTED IN STRATEGY WORKFLOW ! 
 

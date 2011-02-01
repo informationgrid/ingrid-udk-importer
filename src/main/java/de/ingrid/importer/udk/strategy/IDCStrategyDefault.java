@@ -3,6 +3,13 @@
  */
 package de.ingrid.importer.udk.strategy;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -202,4 +209,36 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		jdbc.executeUpdate(sqlStr);
 	}
 
+    /** Convert InputStream to String.
+     * @param is the stream
+     * @param charsetName pass null to use default "UTF-8"
+     * @return String ore "" if passed InputStream is null
+     * @throws IOException
+     */
+    public String convertStreamToString(InputStream is, String charsetName) throws IOException {
+    	/*
+    	 * To convert the InputStream to String we use the
+    	 * Reader.read(char[] buffer) method. We iterate until the
+    	 * Reader return -1 which means there's no more data to
+    	 * read. We use the StringWriter class to produce the string.
+    	 */
+    	if (is != null) {
+    	    Writer writer = new StringWriter();
+
+    	    char[] buffer = new char[1024];
+    	    try {
+    	        Reader reader = new BufferedReader(
+    	                new InputStreamReader(is, (charsetName == null ? "UTF-8" : charsetName)));
+    	        int n;
+    	        while ((n = reader.read(buffer)) != -1) {
+    	            writer.write(buffer, 0, n);
+    	        }
+    	    } finally {
+    	        is.close();
+    	    }
+    	    return writer.toString();
+    	} else {        
+    	    return "";
+    	}
+    }
 }

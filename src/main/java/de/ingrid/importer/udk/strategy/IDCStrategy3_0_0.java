@@ -9,11 +9,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import de.ingrid.importer.udk.jdbc.DBLogic.ColumnType;
+import de.ingrid.mdek.beans.ProfileBean;
+import de.ingrid.mdek.beans.Rubric;
+import de.ingrid.mdek.beans.controls.ExtendedControls;
+import de.ingrid.mdek.beans.controls.OptionEntry;
+import de.ingrid.mdek.beans.controls.SelectControl;
+import de.ingrid.mdek.beans.controls.TextControl;
+import de.ingrid.mdek.profile.ProfileMapper;
 
 /**
  * <p>
@@ -25,6 +33,11 @@ public class IDCStrategy3_0_0 extends IDCStrategyDefault {
 	private static Log log = LogFactory.getLog(IDCStrategy3_0_0.class);
 
 	private static final String MY_VERSION = VALUE_IDC_VERSION_3_0_0;
+	
+	String profileXml = null;
+    ProfileMapper profileMapper;
+	ProfileBean profileBean = null;
+    Rubric additionalFieldRubric = null;;
 
 	public String getIDCVersion() {
 		return MY_VERSION;
@@ -89,6 +102,11 @@ public class IDCStrategy3_0_0 extends IDCStrategyDefault {
 		if (log.isInfoEnabled()) {
 			log.info("Store default Profile in database...");
 		}
+		
+		profileXml = convertStreamToString(getClass().getResourceAsStream("/3_0_0_coreProfile.xml"), null);
+
+		// write Profile !
+		setGenericKey(KEY_PROFILE_XML, profileXml);
 
 		if (log.isInfoEnabled()) {
 			log.info("Store default Profile in database... done");
@@ -100,7 +118,15 @@ public class IDCStrategy3_0_0 extends IDCStrategyDefault {
 			log.info("Migrate Additional Fields to Profile / additional_field_data...");
 		}
 
-		// first migrate field definitions
+        // initialize profile stuff
+		if (profileXml == null) {
+			throw new Exception("igcProfile not set !");
+		}
+        profileMapper = new ProfileMapper();
+		profileBean = profileMapper.mapStringToBean(profileXml);			
+
+
+		// sql for field definitions
 		String sql = "select " +
 			"attrType.id, attrType.name, attrType.type, " + // field
 			//"attrType.length, " +
@@ -145,6 +171,10 @@ public class IDCStrategy3_0_0 extends IDCStrategyDefault {
 		rs.close();
 		st.close();
 
+		// write Profile !
+        profileXml = profileMapper.mapBeanToXmlString(profileBean);
+		setGenericKey(KEY_PROFILE_XML, profileXml);
+
 		if (log.isInfoEnabled()) {
 			log.info("Migrated " + stats.numMigrated + " additional fields.");
 		}
@@ -160,13 +190,69 @@ public class IDCStrategy3_0_0 extends IDCStrategyDefault {
 		}
 
 		// add to profile
-		
-		// TODO
+		addToProfile(field);
 
 		// migrate data
 		migrateAdditionalFieldData(field);
 		
 		stats.numMigrated++;
+	}
+
+	protected void addToProfile(AdditionalField field) throws Exception {
+		if (log.isInfoEnabled()) {
+			log.info("Add to Profile: additionalField id='" + field.id + "', name='" + field.name + "', type='" + field.type + "'");
+		}
+
+        // Add rubric for additional fields to profile
+		if (additionalFieldRubric == null) {
+			additionalFieldRubric = new Rubric();
+			additionalFieldRubric.setId("additionalFields");
+			additionalFieldRubric.setIsLegacy(false);
+			Map<String, String> label = new HashMap<String, String>();
+			label.put("de", "Zusatzfelder");
+			label.put("en", "Additional Fields");
+			additionalFieldRubric.setLabel(label);
+			Map<String, String> helpMessage = new HashMap<String, String>();
+			helpMessage.put("de", "Zusatzfelder##Die Zusatzfelder gelten nur katalogweit und werden vom jeweiligen Katalogadministrator zusätzlich zu den Standardfelder des InGridCatalog hinzugefügt.");
+			helpMessage.put("en", "Zusatzfelder##Die Zusatzfelder gelten nur katalogweit und werden vom jeweiligen Katalogadministrator zusätzlich zu den Standardfelder des InGridCatalog hinzugefügt.");
+			additionalFieldRubric.setHelpMessage(helpMessage);
+			profileBean.getRubrics().add(additionalFieldRubric);
+		}
+
+		// add control
+		ExtendedControls ctrl;
+		if (field.listType != null) {
+			ctrl = new SelectControl();
+			
+			// list for each language !
+			Map<String,List<OptionEntry>> options = new HashMap<String, List<OptionEntry>>();
+	        for (String lang : field.listsLocalized.keySet()) {
+	            List<OptionEntry> list = new ArrayList<OptionEntry>();
+	            List<ListItem> items = field.listsLocalized.get(lang);
+	            for (ListItem item : items) {
+	                list.add(new OptionEntry(item.id, item.value));
+	            }
+	            options.put(lang, list);
+	        }
+
+	        ((SelectControl)ctrl).setOptions(options);
+
+		} else {
+			ctrl = new TextControl();
+			((TextControl)ctrl).setNumLines(1);
+		}
+		ctrl.setWidth("100");
+		ctrl.setId(field.fieldKey);
+		ctrl.setIsMandatory(false);
+		ctrl.setIsVisible(ProfileMapper.IsVisible.OPTIONAL.getDbValue());
+		ctrl.setIsLegacy(false);
+		Map<String, String> labelMap = new HashMap<String, String>();
+		labelMap.put(getCatalogLanguage(), field.name);
+		ctrl.setLabel(labelMap);
+		// no Help
+		ctrl.setHelpMessage(new HashMap<String, String>());
+
+		additionalFieldRubric.getControls().add(ctrl);
 	}
 
 	protected void migrateAdditionalFieldData(AdditionalField field) throws Exception {
@@ -180,7 +266,6 @@ public class IDCStrategy3_0_0 extends IDCStrategyDefault {
 		ResultSet rs = jdbc.executeQuery(sql, st);
 		int numData = 0;
 		while (rs.next()) {
-			String fieldKey = "additionalField" + field.id;
 			String data = rs.getString("data");
 			if (data == null || data.trim().length() == 0) {
 				continue;
@@ -192,7 +277,7 @@ public class IDCStrategy3_0_0 extends IDCStrategyDefault {
 				listItemId = "'" + listItemId + "'";
 			}
 			sql = "INSERT INTO additional_field_data (id, obj_id, field_key, list_item_id, data) "
-				+ "VALUES (" + getNextId() + ", " + rs.getLong("obj_id") + ", '" + fieldKey + "', " + listItemId + ", '" + data + "')";
+				+ "VALUES (" + getNextId() + ", " + rs.getLong("obj_id") + ", '" + field.fieldKey + "', " + listItemId + ", '" + data + "')";
 			jdbc.executeUpdate(sql);
 			numData++;
 		}
@@ -232,14 +317,16 @@ public class IDCStrategy3_0_0 extends IDCStrategyDefault {
 	/** Helper class encapsulating all needed data of a field DEFINITION ! */
 	class AdditionalField {
 		long id;
+		String fieldKey;
 		String name;
 		String type;
 		String listType;
 		/** key = language code */
-		HashMap<String, List<ListItem>> listsLocalized ;
+		Map<String, List<ListItem>> listsLocalized ;
 
 		AdditionalField(long id, String name, String type, String listType) {
 			this.id = id;
+			this.fieldKey = "additionalField" + id;
 			this.name = name;
 			this.type = type;
 			this.listType = listType;

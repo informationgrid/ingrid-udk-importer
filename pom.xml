@@ -47,7 +47,37 @@
       </plugin>
     </plugins>
   </build>
+
+  <!-- ==================== DEPENDENCY MANAGEMENT ==================== -->
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>ojdbc</groupId>
+        <artifactId>ojdbc</artifactId>
+        <version>14</version>
+      </dependency>
+      <dependency>
+        <groupId>de.ingrid.portal</groupId>
+        <artifactId>ingrid-portal-mdek-application</artifactId>
+        <version>3.0.0-BRANCH-SNAPSHOT</version>
+        <classifier>classes</classifier>
+      </dependency>
+      <dependency>
+        <groupId>de.ingrid</groupId>
+        <artifactId>ingrid-utils</artifactId>
+        <version>3.0.0-SNAPSHOT</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <!-- ==================== DEPENDENCIES ==================== -->
   <dependencies>
+    <dependency>
+      <!-- Needed for Mapping of Profile -->
+      <groupId>de.ingrid.portal</groupId>
+      <artifactId>ingrid-portal-mdek-application</artifactId>
+      <classifier>classes</classifier>
+    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -134,13 +164,4 @@
     <connection>scm:svn:https://harrison.its-technidata.de:444/svn/ingrid/ingrid-udk-importer/trunk</connection>
     <developerConnection>scm:svn:https://harrison.its-technidata.de:444/svn/ingrid/ingrid-udk-importer/trunk</developerConnection>
   </scm>
-  <dependencyManagement>
-    <dependencies>
-	    <dependency>
-		    <groupId>ojdbc</groupId>
-		    <artifactId>ojdbc</artifactId>
-		    <version>14</version>
-		</dependency>
-	</dependencies>
-  </dependencyManagement>
 </project>
