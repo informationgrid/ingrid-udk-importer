@@ -223,7 +223,7 @@ public class IDCStrategy3_0_0 extends IDCStrategyDefault {
 		ExtendedControls ctrl;
 		if (field.listType != null) {
 			ctrl = new SelectControl();
-			
+
 			// list for each language !
 			Map<String,List<OptionEntry>> options = new HashMap<String, List<OptionEntry>>();
 	        for (String lang : field.listsLocalized.keySet()) {
@@ -234,8 +234,8 @@ public class IDCStrategy3_0_0 extends IDCStrategyDefault {
 	            }
 	            options.put(lang, list);
 	        }
-
 	        ((SelectControl)ctrl).setOptions(options);
+	        ((SelectControl)ctrl).setAllowFreeEntries(true);
 
 		} else {
 			ctrl = new TextControl();
