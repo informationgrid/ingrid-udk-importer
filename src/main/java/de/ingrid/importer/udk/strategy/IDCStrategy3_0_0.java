@@ -22,6 +22,7 @@ import de.ingrid.mdek.beans.controls.OptionEntry;
 import de.ingrid.mdek.beans.controls.SelectControl;
 import de.ingrid.mdek.beans.controls.TextControl;
 import de.ingrid.mdek.profile.ProfileMapper;
+import de.ingrid.utils.tool.StringUtil;
 
 /**
  * <p>
@@ -327,7 +328,8 @@ public class IDCStrategy3_0_0 extends IDCStrategyDefault {
 		AdditionalField(long id, String name, String type, String listType) {
 			this.id = id;
 			this.fieldKey = "additionalField" + id;
-			this.name = name;
+			// remove new line etc. from label
+			this.name = StringUtil.replaceLineFeeds(name, " ");
 			this.type = type;
 			this.listType = listType;
 			this.listsLocalized = new HashMap<String, List<ListItem>>();
