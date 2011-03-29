@@ -4,6 +4,12 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
+    <release version="3.0.0-SNAPSHOT" date="????-??-??" description="Release InGrid 3.0. New IGC Schema 3.0.0">
+      <action type="add" dev="wemove">
+        Flexible data model: Migrate IGC to default profile (xml) and migrate t08* additional fields (definition and data).
+      </action>
+    </release>
+
     <release version="2.3.1.1" date="2011-01-20" description="Bugfix Release InGrid 2.3.1. New IGC Schema 2.3.1.1">
       <action type="add" dev="wemove" issue="INGRID23-46">
         Fix permission in database for writing subnodes -> rename permission to 'write-subnode' (IGC Schema 2.3.1.1).

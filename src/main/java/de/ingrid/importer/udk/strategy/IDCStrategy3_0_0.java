@@ -252,6 +252,7 @@ public class IDCStrategy3_0_0 extends IDCStrategyDefault {
 		ctrl.setLabel(labelMap);
 		// no Help
 		ctrl.setHelpMessage(new HashMap<String, String>());
+		ctrl.setScriptedCswMapping("IDF.addAdditionalData(sourceRecord, idfDoc, igcProfileControlNode);");
 
 		additionalFieldRubric.getControls().add(ctrl);
 	}
