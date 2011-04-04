@@ -28,6 +28,7 @@ import de.ingrid.utils.tool.StringUtil;
  * <p>
  * Changes InGrid 3.0:<p>
  * - Flexible data model: store default profile (xml) in IGC and migrate Additional Fields
+ * - migrate assigned "Kein INSPIRE-Thema" to new checkbox column 'is_inspire_relevant' (class 1 and 3)
  */
 public class IDCStrategy3_0_0 extends IDCStrategyDefault {
 
@@ -68,6 +69,14 @@ public class IDCStrategy3_0_0 extends IDCStrategyDefault {
 		migrateAdditionalFields();
 		System.out.println("done.");
 
+		System.out.print("  Migrate to new 'is_inspire_relevant' column...");
+		migrateIsInspireRelevant();
+		System.out.println("done.");
+
+		System.out.print("  Clean up sys_list...");
+		cleanUpSysList();
+		System.out.println("done.");
+
 		// FINALLY EXECUTE ALL "DROPPING" DDL OPERATIONS ! These ones may cause commit (e.g. on MySQL)
 		// ---------------------------------
 
@@ -95,7 +104,120 @@ public class IDCStrategy3_0_0 extends IDCStrategyDefault {
 		jdbc.getDBLogic().createTableAdditionalFieldData(jdbc);
 
 		if (log.isInfoEnabled()) {
+			log.info("Add column 'is_inspire_relevant' to table 't011_obj_geo' ...");
+		}
+		jdbc.getDBLogic().addColumn("is_inspire_relevant", ColumnType.VARCHAR1, "t011_obj_geo", false, "'N'", jdbc);
+
+		if (log.isInfoEnabled()) {
+			log.info("Add column 'is_inspire_relevant' to table 't011_obj_serv' ...");
+		}
+		jdbc.getDBLogic().addColumn("is_inspire_relevant", ColumnType.VARCHAR1, "t011_obj_serv", false, "'N'", jdbc);
+
+		if (log.isInfoEnabled()) {
 			log.info("Manipulate datastructure... done");
+		}
+	}
+
+	private void migrateIsInspireRelevant() throws Exception {
+		if (log.isInfoEnabled()) {
+			log.info("Migrate to new 'is_inspire_relevant' column...");
+		}
+
+		// sql for selecting current object INSPIRE themes
+		String sql = "select " +
+			"obj.id as objId, obj.obj_class, stObj.id as stObjId, stValue.id as stValueId, stValue.entry_id, stValue.term " +
+			"from " +
+			"searchterm_obj stObj, searchterm_value stValue, t01_object obj " +
+			"where " +
+			"stObj.searchterm_id = stValue.id " +
+			"AND stValue.type = 'I'" + // INSPIRE Theme
+			"AND stObj.obj_id = obj.id";
+
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(sql, st);
+		int numNotINSPIRE = 0;
+		int numWrongClass = 0;
+		int numINSPIREClass1 = 0;
+		int numINSPIREClass3 = 0;
+		while (rs.next()) {
+			long objId = rs.getLong("objId");
+			int objClass = rs.getInt("obj_class");
+			long stObjId = rs.getLong("stObjId");
+//			long stValueId = rs.getLong("stValueId");
+			int entry_id = rs.getInt("entry_id");
+			String term = rs.getString("term");
+
+			boolean deleteObjAssoc = false;
+			if (entry_id == 99999 || entry_id == 0) {
+				// "Kein INSPIRE-Thema" or null (?)
+				if (log.isDebugEnabled()) {
+					log.debug("'NO INSPIRE THEME' set in object with id " + objId + " -> we delete theme-object association !");
+				}
+				deleteObjAssoc = true;
+				numNotINSPIRE++;
+				
+			} else {
+				if (objClass == 1) {
+					int numUpdated = jdbc.executeUpdate(
+						"UPDATE t011_obj_geo SET is_inspire_relevant = 'Y' WHERE obj_id = " + objId);
+					numINSPIREClass1++;
+					if (log.isDebugEnabled()) {
+						log.debug("Set " + numUpdated + " t011_obj_geo.is_inspire_relevant to 'Y', obj_id = " + objId);
+					}
+					
+				} else if (objClass == 3) {
+					int numUpdated = jdbc.executeUpdate(
+							"UPDATE t011_obj_serv SET is_inspire_relevant = 'Y' WHERE obj_id = " + objId);
+					numINSPIREClass3++;
+					if (log.isDebugEnabled()) {
+						log.debug("Set " + numUpdated + " t011_obj_serv.is_inspire_relevant to 'Y', obj_id = " + objId);
+					}
+
+				} else {
+					// different object class ? only 1 and 3 has inspire themes, delete the theme !
+					if (log.isDebugEnabled()) {
+						log.debug("Assigned INSPIRE Theme '" + term + "'(" + entry_id + ") to object of class '" + objClass +
+								"', object id = " + objId + ". WRONG CLASS -> we delete theme-object association !");
+					}
+					deleteObjAssoc = true;
+					numWrongClass++;
+				}
+			}
+			
+			// delete Theme object association
+			if (deleteObjAssoc) {
+				int numDeleted = jdbc.executeUpdate("DELETE FROM searchterm_obj where id = " + stObjId);
+				if (log.isDebugEnabled()) {
+					log.debug("Deleted " + numDeleted + " searchterm_obj record (id=" + stObjId + ") where obj_id = " + objId);
+				}
+			}
+		}
+
+
+		// finally delete the "Kein INSPIRE-Thema" entry
+		int numDeleted = jdbc.executeUpdate("DELETE FROM searchterm_value where type = 'I' AND entry_id = 99999");
+		if (log.isDebugEnabled()) {
+			log.debug("Deleted " + numDeleted + " searchterm_value record(s) ('Kein INSPIRE-Thema', theme_id=99999).");
+		}				
+
+		rs.close();
+		st.close();
+
+		if (log.isInfoEnabled()) {
+			log.info("Removed " + numNotINSPIRE + " \"Kein INSPIRE-Thema\" associations.");
+		}
+		if (log.isInfoEnabled()) {
+			log.info("Removed " + numWrongClass + " Inspire Theme Associations to objects NOT class 1 or 3.");
+		}
+		if (log.isInfoEnabled()) {
+			log.info("Set " + numINSPIREClass1 + " times t011_obj_geo.is_inspire_relevant to 'Y' (GEO-INFORMATION/KARTE, class 1).");
+		}
+		if (log.isInfoEnabled()) {
+			log.info("Set " + numINSPIREClass3 + " times t011_obj_serv.is_inspire_relevant to 'Y' (GEODATENDIENST, class 3).");
+		}
+
+		if (log.isInfoEnabled()) {
+			log.info("Migrate to new 'is_inspire_relevant' column...done");
 		}
 	}
 
@@ -185,7 +307,7 @@ public class IDCStrategy3_0_0 extends IDCStrategyDefault {
 		}
 	}
 
-	protected void migrateAdditionalField(AdditionalField field, MigrationStatistics stats) throws Exception {
+	private void migrateAdditionalField(AdditionalField field, MigrationStatistics stats) throws Exception {
 		if (log.isInfoEnabled()) {
 			log.info("Migrate additionalField id='" + field.id + "', name='" + field.name + "', type='" + field.type + "'");
 		}
@@ -199,7 +321,7 @@ public class IDCStrategy3_0_0 extends IDCStrategyDefault {
 		stats.numMigrated++;
 	}
 
-	protected void addToProfile(AdditionalField field) throws Exception {
+	private void addToProfile(AdditionalField field) throws Exception {
 		if (log.isInfoEnabled()) {
 			log.info("Add to Profile: additionalField id='" + field.id + "', name='" + field.name + "', type='" + field.type + "'");
 		}
@@ -257,7 +379,7 @@ public class IDCStrategy3_0_0 extends IDCStrategyDefault {
 		additionalFieldRubric.getControls().add(ctrl);
 	}
 
-	protected void migrateAdditionalFieldData(AdditionalField field) throws Exception {
+	private void migrateAdditionalFieldData(AdditionalField field) throws Exception {
 		if (log.isInfoEnabled()) {
 			log.info("Migrate DATA of additionalField id='" + field.id + "', name='" + field.name + "', type='" + field.type + "'");
 		}
@@ -288,6 +410,28 @@ public class IDCStrategy3_0_0 extends IDCStrategyDefault {
 
 		if (log.isDebugEnabled()) {
 			log.debug("Migrated " + numData + " data records to table additional_field_data.");
+		}
+	}
+
+	private void cleanUpSysList() throws Exception {
+		if (log.isInfoEnabled()) {
+			log.info("Clean up sys_list...");
+		}
+		
+		int numDeleted;
+		if (log.isInfoEnabled()) {
+			log.info("Remove entry 99999 ('No INSPIRE Theme') from syslist 6100 (Inspire Themen)...");
+		}
+
+		// clean up, to guarantee no old values !
+		sqlStr = "DELETE FROM sys_list where lst_id = 6100 and entry_id = 99999";
+		numDeleted = jdbc.executeUpdate(sqlStr);
+		if (log.isDebugEnabled()) {
+			log.debug("Removed " + numDeleted +	" entries (all languages).");
+		}
+		
+		if (log.isInfoEnabled()) {
+			log.info("Clean up sys_list... done");
 		}
 	}
 
