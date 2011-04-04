@@ -5,6 +5,9 @@
   </properties>
   <body>
     <release version="3.0.0-SNAPSHOT" date="????-??-??" description="Release InGrid 3.0. New IGC Schema 3.0.0">
+      <action type="add" dev="wemove" issue="INGRID23-138">
+        Added checkbox "INSPIRE relevant" to object class 1 and 3 and removing "NO Inspire Theme" from theme list.
+      </action>
       <action type="add" dev="wemove">
         Flexible data model: Migrate IGC to default profile (xml) and migrate t08* additional fields (definition and data).
       </action>
