@@ -28,7 +28,7 @@ import de.ingrid.utils.tool.StringUtil;
  * <p>
  * Changes InGrid 3.0:<p>
  * - Flexible data model: store default profile (xml) in IGC and migrate Additional Fields
- * - migrate assigned "Kein INSPIRE-Thema" to new checkbox column 'is_inspire_relevant' (class 1 and 3)
+ * - migrate assigned "Kein INSPIRE-Thema" to new checkbox column 'is_inspire_relevant' (class 1 and 3), see https://dev.wemove.com/jira/browse/INGRID23-138
  */
 public class IDCStrategy3_0_0 extends IDCStrategyDefault {
 
