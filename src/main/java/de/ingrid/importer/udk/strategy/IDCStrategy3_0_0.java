@@ -27,7 +27,7 @@ import de.ingrid.utils.tool.StringUtil;
 /**
  * <p>
  * Changes InGrid 3.0:<p>
- * - Flexible data model: store default profile (xml) in IGC and migrate Additional Fields
+ * - Flexible data model: store default profile (xml) in IGC and migrate Additional Fields (also remove sys_gui table)
  * - migrate assigned "Kein INSPIRE-Thema" to new checkbox column 'is_inspire_relevant' (class 1 and 3), see https://dev.wemove.com/jira/browse/INGRID23-138
  */
 public class IDCStrategy3_0_0 extends IDCStrategyDefault {
@@ -458,6 +458,11 @@ public class IDCStrategy3_0_0 extends IDCStrategyDefault {
 		if (log.isInfoEnabled()) {
 			log.info("Cleaning up datastructure... done");
 		}
+		if (log.isInfoEnabled()) {
+			log.info("Drop table 'sys_gui' ...");
+		}
+		jdbc.getDBLogic().dropTable("sys_gui", jdbc);
+
 	}
 
 	/** Helper class encapsulating all needed data of a field DEFINITION ! */
