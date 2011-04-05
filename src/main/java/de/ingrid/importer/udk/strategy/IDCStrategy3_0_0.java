@@ -104,14 +104,9 @@ public class IDCStrategy3_0_0 extends IDCStrategyDefault {
 		jdbc.getDBLogic().createTableAdditionalFieldData(jdbc);
 
 		if (log.isInfoEnabled()) {
-			log.info("Add column 'is_inspire_relevant' to table 't011_obj_geo' ...");
+			log.info("Add column 'is_inspire_relevant' to table 't01_object' ...");
 		}
-		jdbc.getDBLogic().addColumn("is_inspire_relevant", ColumnType.VARCHAR1, "t011_obj_geo", false, "'N'", jdbc);
-
-		if (log.isInfoEnabled()) {
-			log.info("Add column 'is_inspire_relevant' to table 't011_obj_serv' ...");
-		}
-		jdbc.getDBLogic().addColumn("is_inspire_relevant", ColumnType.VARCHAR1, "t011_obj_serv", false, "'N'", jdbc);
+		jdbc.getDBLogic().addColumn("is_inspire_relevant", ColumnType.VARCHAR1, "t01_object", false, "'N'", jdbc);
 
 		if (log.isInfoEnabled()) {
 			log.info("Manipulate datastructure... done");
@@ -125,7 +120,7 @@ public class IDCStrategy3_0_0 extends IDCStrategyDefault {
 
 		// sql for selecting current object INSPIRE themes
 		String sql = "select " +
-			"obj.id as objId, obj.obj_class, stObj.id as stObjId, stValue.id as stValueId, stValue.entry_id, stValue.term " +
+			"obj.id as objId, obj.obj_class, stObj.id as stObjId, stValue.entry_id, stValue.term " +
 			"from " +
 			"searchterm_obj stObj, searchterm_value stValue, t01_object obj " +
 			"where " +
@@ -136,18 +131,20 @@ public class IDCStrategy3_0_0 extends IDCStrategyDefault {
 		Statement st = jdbc.createStatement();
 		ResultSet rs = jdbc.executeQuery(sql, st);
 		int numNotINSPIRE = 0;
-		int numWrongClass = 0;
 		int numINSPIREClass1 = 0;
 		int numINSPIREClass3 = 0;
+		int numINSPIREOtherClass = 0;
+		int numINSPIRERelevant = 0;
+		int numAssocDeleted = 0;
 		while (rs.next()) {
 			long objId = rs.getLong("objId");
 			int objClass = rs.getInt("obj_class");
 			long stObjId = rs.getLong("stObjId");
-//			long stValueId = rs.getLong("stValueId");
 			int entry_id = rs.getInt("entry_id");
 			String term = rs.getString("term");
 
 			boolean deleteObjAssoc = false;
+			boolean isInspireRelevant = false;
 			if (entry_id == 99999 || entry_id == 0) {
 				// "Kein INSPIRE-Thema" or null (?)
 				if (log.isDebugEnabled()) {
@@ -158,29 +155,26 @@ public class IDCStrategy3_0_0 extends IDCStrategyDefault {
 				
 			} else {
 				if (objClass == 1) {
-					int numUpdated = jdbc.executeUpdate(
-						"UPDATE t011_obj_geo SET is_inspire_relevant = 'Y' WHERE obj_id = " + objId);
+					// never set checkbox ! but we keep it, may change again ...
+//					isInspireRelevant = true;
 					numINSPIREClass1++;
-					if (log.isDebugEnabled()) {
-						log.debug("Set " + numUpdated + " t011_obj_geo.is_inspire_relevant to 'Y', obj_id = " + objId);
-					}
 					
 				} else if (objClass == 3) {
-					int numUpdated = jdbc.executeUpdate(
-							"UPDATE t011_obj_serv SET is_inspire_relevant = 'Y' WHERE obj_id = " + objId);
+					// never set checkbox ! but we keep it, may change again ...
+//					isInspireRelevant = true;
 					numINSPIREClass3++;
-					if (log.isDebugEnabled()) {
-						log.debug("Set " + numUpdated + " t011_obj_serv.is_inspire_relevant to 'Y', obj_id = " + objId);
-					}
 
 				} else {
+					// KEEP ASSOCIATION !
+/*
 					// different object class ? only 1 and 3 has inspire themes, delete the theme !
 					if (log.isDebugEnabled()) {
 						log.debug("Assigned INSPIRE Theme '" + term + "'(" + entry_id + ") to object of class '" + objClass +
 								"', object id = " + objId + ". WRONG CLASS -> we delete theme-object association !");
 					}
 					deleteObjAssoc = true;
-					numWrongClass++;
+*/
+					numINSPIREOtherClass++;
 				}
 			}
 			
@@ -190,6 +184,14 @@ public class IDCStrategy3_0_0 extends IDCStrategyDefault {
 				if (log.isDebugEnabled()) {
 					log.debug("Deleted " + numDeleted + " searchterm_obj record (id=" + stObjId + ") where obj_id = " + objId);
 				}
+				numAssocDeleted++;
+			}
+			if (isInspireRelevant) {
+				int numUpdated = jdbc.executeUpdate("UPDATE t01_object SET is_inspire_relevant = 'Y' WHERE id = " + objId);
+				if (log.isDebugEnabled()) {
+					log.debug("Set " + numUpdated + " t01_object.is_inspire_relevant to 'Y', object id = " + objId);
+				}
+				numINSPIRERelevant++;
 			}
 		}
 
@@ -204,16 +206,22 @@ public class IDCStrategy3_0_0 extends IDCStrategyDefault {
 		st.close();
 
 		if (log.isInfoEnabled()) {
-			log.info("Removed " + numNotINSPIRE + " \"Kein INSPIRE-Thema\" associations.");
+			log.info("Counted " + numNotINSPIRE + " \"Kein INSPIRE-Thema\" associations.");
 		}
 		if (log.isInfoEnabled()) {
-			log.info("Removed " + numWrongClass + " Inspire Theme Associations to objects NOT class 1 or 3.");
+			log.info("Removed " + numAssocDeleted + " \"INSPIRE\" associations (\"Kein INSPIRE-Thema\").");
 		}
 		if (log.isInfoEnabled()) {
-			log.info("Set " + numINSPIREClass1 + " times t011_obj_geo.is_inspire_relevant to 'Y' (GEO-INFORMATION/KARTE, class 1).");
+			log.info("Kept " + numINSPIREOtherClass + " Inspire Theme Associations of objects NOT class 1 or 3.");
 		}
 		if (log.isInfoEnabled()) {
-			log.info("Set " + numINSPIREClass3 + " times t011_obj_serv.is_inspire_relevant to 'Y' (GEODATENDIENST, class 3).");
+			log.info("Kept " + numINSPIREClass1 + " Inspire Theme Associations of objects class 1 (GEO-INFORMATION/KARTE).");
+		}
+		if (log.isInfoEnabled()) {
+			log.info("Kept " + numINSPIREClass3 + " Inspire Theme Associations of objects class 3 (GEODATENDIENST).");
+		}
+		if (log.isInfoEnabled()) {
+			log.info("Set " + numINSPIRERelevant + " object to Inspire relevant (t01_object.is_inspire_relevant).");
 		}
 
 		if (log.isInfoEnabled()) {
