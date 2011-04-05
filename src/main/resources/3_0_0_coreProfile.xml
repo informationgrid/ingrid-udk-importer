@@ -22,32 +22,25 @@
                 <isVisible>optional</isVisible>
                 <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
-        </controls>
-    </layoutRubric>
-    <layoutRubric isLegacy="true">
-        <id>refClass1</id>
-        <controls>
+            <legacyControl>
+                <id>uiElement5064</id><!-- thesaurusInspire -->
+                <isMandatory>false</isMandatory>
+                <isVisible>optional</isVisible>
+                <scriptedProperties><![CDATA[]]></scriptedProperties>
+            </legacyControl>
             <legacyControl>
                 <id>uiElement6000</id><!-- Inspire relevante Daten -->
                 <isMandatory>false</isMandatory>
                 <isVisible>show</isVisible>
                 <scriptedProperties>
-                    <![CDATA[var toggleInspireTopicsRef1 = function(checked) {
-                        if (checked) {
-                            dojo.removeClass("uiElement5064", "hide");
-                        } else {
-                            dojo.addClass("uiElement5064", "hide");
-                        }
-                    };
-                    dojo.connect(dijit.byId("ref1InspireRelevant"), "onChange", toggleInspireTopicsRef1);]]>
+                    <![CDATA[]]>
                 </scriptedProperties>
             </legacyControl>
-            <legacyControl>
-                <id>uiElement5064</id><!-- thesaurusInspire -->
-                <isMandatory>false</isMandatory>
-                <isVisible>show</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
-            </legacyControl>
+        </controls>
+    </layoutRubric>
+    <layoutRubric isLegacy="true">
+        <id>refClass1</id>
+        <controls>
             <legacyControl>
                 <id>uiElement3520</id><!-- Fachliche Grundlage* -->
                 <isMandatory>true</isMandatory>
@@ -309,27 +302,6 @@
     <layoutRubric isLegacy="true">
         <id>refClass3</id>
         <controls>
-            <legacyControl>
-                <id>uiElement6001</id><!-- Inspire relevante Daten -->
-                <isMandatory>false</isMandatory>
-                <isVisible>show</isVisible>
-                <scriptedProperties><![CDATA[
-                    var toggleInspireTopicsRef3 = function(checked) {
-                        if (checked) {
-                            dojo.removeClass("uiElement6064", "hide");
-                        } else {
-                            dojo.addClass("uiElement6064", "hide");
-                        }
-                    };
-                    dojo.connect(dijit.byId("ref3InspireRelevant"), "onChange", toggleInspireTopicsRef3);]]>
-                </scriptedProperties>
-            </legacyControl>
-            <legacyControl>
-                <id>uiElement6064</id><!-- thesaurusInspire -->
-                <isMandatory>false</isMandatory>
-                <isVisible>show</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
-            </legacyControl>
             <legacyControl>
                 <id>uiElementN022</id><!-- Klassifikation des Dienstes* -->
                 <isMandatory>true</isMandatory>
