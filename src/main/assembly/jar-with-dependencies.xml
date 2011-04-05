@@ -5,6 +5,16 @@
         <format>jar</format>
     </formats>
     <includeBaseDirectory>false</includeBaseDirectory>
+	<!-- Use our own log4j.properties ! IS NOT COPIED AUTOMATICALLY ! due to exclude below ??? -->
+    <fileSets>
+        <fileSet>
+            <directory>src/main/resources</directory>
+            <outputDirectory>/</outputDirectory>
+            <includes>
+                <include>log4j.properties</include>
+            </includes>
+        </fileSet>
+    </fileSets>
     <dependencySets>
         <dependencySet>
             <outputDirectory>/</outputDirectory>
@@ -13,6 +23,12 @@
             <excludes>
                 <exclude>de.ingrid:ingrid-installer</exclude>
             </excludes>
+			<!-- Use our own log4j.properties ! Not from jar in dependencies ! -->
+            <unpackOptions>
+				<excludes>
+					<exclude>log4j.properties</exclude>
+				</excludes>
+            </unpackOptions>
         </dependencySet>
     </dependencySets>
 </assembly>

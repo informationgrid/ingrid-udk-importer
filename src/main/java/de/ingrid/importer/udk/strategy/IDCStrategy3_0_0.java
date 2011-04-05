@@ -464,13 +464,13 @@ public class IDCStrategy3_0_0 extends IDCStrategyDefault {
 		jdbc.getDBLogic().dropTable("t08_attr_type", jdbc);
 
 		if (log.isInfoEnabled()) {
-			log.info("Cleaning up datastructure... done");
-		}
-		if (log.isInfoEnabled()) {
 			log.info("Drop table 'sys_gui' ...");
 		}
 		jdbc.getDBLogic().dropTable("sys_gui", jdbc);
 
+		if (log.isInfoEnabled()) {
+			log.info("Cleaning up datastructure... done");
+		}
 	}
 
 	/** Helper class encapsulating all needed data of a field DEFINITION ! */
