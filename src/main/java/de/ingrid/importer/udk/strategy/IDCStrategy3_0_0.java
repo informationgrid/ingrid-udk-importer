@@ -25,10 +25,9 @@ import de.ingrid.mdek.profile.ProfileMapper;
 import de.ingrid.utils.tool.StringUtil;
 
 /**
- * <p>
  * Changes InGrid 3.0:<p>
  * - Flexible data model: store default profile (xml) in IGC and migrate Additional Fields (also remove sys_gui table)
- * - migrate assigned "Kein INSPIRE-Thema" to new checkbox column 'is_inspire_relevant' (class 1 and 3), see https://dev.wemove.com/jira/browse/INGRID23-138
+ * - migrate assigned "Kein INSPIRE-Thema" to new checkbox (t01_object.is_inspire_relevant) in class 1 and 3, see https://dev.wemove.com/jira/browse/INGRID23-138
  */
 public class IDCStrategy3_0_0 extends IDCStrategyDefault {
 
@@ -118,7 +117,7 @@ public class IDCStrategy3_0_0 extends IDCStrategyDefault {
 			log.info("Migrate to new 'is_inspire_relevant' column...");
 		}
 
-		// sql for selecting current object INSPIRE themes
+		// sql for selecting object INSPIRE themes
 		String sql = "select " +
 			"obj.id as objId, obj.obj_class, stObj.id as stObjId, stValue.entry_id, stValue.term " +
 			"from " +
