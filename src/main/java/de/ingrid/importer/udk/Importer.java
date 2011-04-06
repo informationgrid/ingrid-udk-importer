@@ -81,7 +81,7 @@ public class Importer {
 			if (strategy.getIDCVersion() != null) {
 				targetVersionInfo = " (target IDC Version: " + strategy.getIDCVersion() + ")";
 			}
-			String msg = "\nExecuting strategy " + strategy + targetVersionInfo;
+			String msg = "\n\nExecuting strategy " + strategy + targetVersionInfo;
 			System.out.println(msg);
 			log.info(msg);
 

@@ -63,6 +63,9 @@ public interface IDCStrategy {
 	static String VALUE_IDC_VERSION_2_3_1 = "2.3.1";
 	/** InGrid 2.3 NI: fix write_subtree permission ! Rename Permission to write_subnode ! */
     static String VALUE_IDC_VERSION_2_3_1_1_FIX_SUBNODE_PERMISSION = "2.3.1.1";
+	/** InGrid 3.0: fix Erfassungsgrad data -> writes NO version, can be executed on its own !
+	 * see https://dev.wemove.com/jira/browse/INGRID23-147 */
+    static String VALUE_IDC_VERSION_3_0_0_FIX_ERFASSUNGSGRAD = "3.0.0_fixErfassungsgrad";
 	/** InGrid 3.0: flexible data model */
 	static String VALUE_IDC_VERSION_3_0_0 = "3.0.0";
 	
@@ -97,6 +100,7 @@ public interface IDCStrategy {
 		VALUE_IDC_VERSION_2_3_1,
 		// WRITES VERSION !!!
 		VALUE_IDC_VERSION_2_3_1_1_FIX_SUBNODE_PERMISSION,
+		VALUE_IDC_VERSION_3_0_0_FIX_ERFASSUNGSGRAD, // writes no Version
 		VALUE_IDC_VERSION_3_0_0,
 	};
 
