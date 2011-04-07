@@ -62,7 +62,7 @@
             <legacyControl>
                 <id>uiElement3565</id><!-- Erfassungsgrad -->
                 <isMandatory>false</isMandatory>
-                <isVisible>optional</isVisible>
+                <isVisible>show</isVisible>
                 <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
