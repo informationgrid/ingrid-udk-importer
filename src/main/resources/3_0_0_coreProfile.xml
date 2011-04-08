@@ -8,33 +8,27 @@
                 <id>uiElement5000</id><!-- generalShortDesc -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement1010</id><!-- generalDesc -->
                 <isMandatory>true</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement1000</id><!-- generalAddress -->
                 <isMandatory>true</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement5064</id><!-- thesaurusInspire -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
+
             </legacyControl>
             <legacyControl>
                 <id>uiElement6000</id><!-- Inspire relevante Daten -->
                 <isMandatory>false</isMandatory>
                 <isVisible>show</isVisible>
-                <scriptedProperties>
-                    <![CDATA[]]>
-                </scriptedProperties>
             </legacyControl>
         </controls>
     </layoutRubric>
@@ -51,91 +45,76 @@
                 <id>uiElementN021</id><!-- Identifikator der Datenquelle* -->
                 <isMandatory>true</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement5061</id><!-- Datensatz/Datenserie* -->
                 <isMandatory>true</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement3565</id><!-- Erfassungsgrad -->
                 <isMandatory>false</isMandatory>
                 <isVisible>show</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement5062</id><!-- Digitale Repräsentation -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement5063</id><!-- Topologieinformation -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElementN001</id><!-- ref1VFormatDetails -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElementN002</id><!-- ref1Scale -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement5069</id><!-- ref1AltAccuracy -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement3530</id><!-- ref1PosAccuracy -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement3555</id><!-- Symbolkatalog -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement3535</id><!-- Schlüsselkatalog -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElementN003</id><!-- Verweis zu Dienst -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement3570</id><!-- Datengrundlage -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement5070</id><!-- Sachdaten/Attributinformation -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement3515</id><!-- Herstellungsprozess -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
         </controls>
     </layoutRubric>
@@ -146,67 +125,56 @@
                 <id>uiElement7509</id><!-- Datenüberschuss -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement7510</id><!-- Datendefizit -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement7512</id><!-- Konzeptionelle Konsistenz -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement7513</id><!-- Konsistenz des Wertebereichs -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement7514</id><!-- Formatkonsistenz -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement7515</id><!-- Topologische Konsistenz -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement7517</id><!-- Absolute Positionsgenauigkeit -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement7520</id><!-- Zeitliche Genauigkeit -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement7525</id><!-- Korrektheit der thematischen Klassifizierung -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement7526</id><!-- Genauigkeit nicht-quantitativer Attribute -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement7527</id><!-- Genauigkeit quantitativer Attribute -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
         </controls>
     </layoutRubric>
@@ -217,85 +185,71 @@
                 <id>uiElement3355</id><!-- Autor/Verfasser -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement3350</id><!-- Herausgeber -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement3340</id><!-- Erschienen in -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement3310</id><!-- Erscheinungsort -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement3330</id><!-- Band/Heft -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement3320</id><!-- Seiten -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement3300</id><!-- Erscheinungsjahr -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement3365</id><!-- ISBN-Nr. -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement3370</id><!-- Verlag -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement3360</id><!-- Standort -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement3385</id><!-- Dokumententyp -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement3210</id><!-- Basisdaten -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement3380</id><!-- Weitere bibliographische Angaben -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement3375</id><!-- Erläuterungen -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
         </controls>
     </layoutRubric>
@@ -306,61 +260,51 @@
                 <id>uiElementN022</id><!-- Klassifikation des Dienstes* -->
                 <isMandatory>true</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement3220</id><!-- Art des Dienstes* -->
                 <isMandatory>true</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement3230</id><!-- Version -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElementN023</id><!-- Erstellungsmaßstab -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement3200</id><!-- Systemumgebung -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement3240</id><!-- Historie -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement3345</id><!-- Basisdaten -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement3250</id><!-- Erläuterungen -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElementN004</id><!-- Operationen -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement3260</id><!-- Zugang geschützt -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
         </controls>
     </layoutRubric>
@@ -371,19 +315,16 @@
                 <id>uiElement3410</id><!-- Beteiligte -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement3400</id><!-- Projektleiter -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement3420</id><!-- Erläuterungen -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
         </controls>
     </layoutRubric>
@@ -394,19 +335,16 @@
                 <id>uiElement3110</id><!-- Inhalte der Datensammlung/Datenbank -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement3100</id><!-- Methode/Datengrundlage -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement3120</id><!-- Erläuterungen -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
         </controls>
     </layoutRubric>
@@ -417,43 +355,36 @@
                 <id>uiElement3620</id><!-- Art des Dienstes* -->
                 <isMandatory>true</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement3630</id><!-- Version -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement3600</id><!-- Systemumgebung -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement3640</id><!-- Historie -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement3645</id><!-- Basisdaten -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement3650</id><!-- Erläuterungen -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement3670</id><!-- Service-Urls -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
         </controls>
     </layoutRubric>
@@ -464,43 +395,36 @@
                 <id>uiElementN006</id><!-- Geothesaurus-Raumbezug* -->
                 <isMandatory>true</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElementN007</id><!-- Koordinatentransformation -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElementN008</id><!-- Freier Raumbezug -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElementN009</id><!-- Koordinatentransformation -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement3500</id><!-- Raumbezugssystem* -->
                 <isMandatory>true</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElementN010</id><!-- Höhe -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement1140</id><!-- Erläuterungen -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
         </controls>
     </layoutRubric>
@@ -511,37 +435,31 @@
                 <id>uiElement5030</id><!-- Zeitbezug des Datensatzes* -->
                 <isMandatory>true</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement1250</id><!-- Erläuterungen -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElementN011</id><!-- Zeitbezug des Dateninhaltes -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement1220</id><!-- Status -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement1240</id><!-- Periodizität -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement1230</id><!-- Im Intervall -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
         </controls>
     </layoutRubric>
@@ -552,55 +470,46 @@
                 <id>uiElement5041</id><!-- Sprache des Metadatensatzes* -->
                 <isMandatory>true</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement5042</id><!-- Sprache des Datensatzes* -->
                 <isMandatory>true</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement3571</id><!-- Veröffentlichung* -->
                 <isMandatory>true</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement5043</id><!-- Zeichensatz des Datensatzes* -->
                 <isMandatory>true</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElementN024</id><!-- Konformität* -->
                 <isMandatory>true</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElementN012</id><!-- XML-Export-Kriterium -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement1350</id><!-- Rechtliche Grundlagen -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElementN013</id><!-- Herstellungszweck -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement5040</id><!-- Eignung/Nutzung -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
         </controls>
     </layoutRubric>
@@ -611,37 +520,31 @@
                 <id>uiElementN025</id><!-- Zugangsbeschränkungen* -->
                 <isMandatory>true</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElementN026</id><!-- Nutzungsbedingungen* -->
                 <isMandatory>true</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement1315</id><!-- Kodierungsschema der geographischen Daten* -->
                 <isMandatory>true</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement1320</id><!-- Datenformat -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement1310</id><!-- Medienoption -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement5052</id><!-- Bestellinformation -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
         </controls>
     </layoutRubric>
@@ -652,37 +555,31 @@
                 <id>uiElement5060</id><!-- ISO-Themenkategorie* -->
                 <isMandatory>true</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement1409</id><!-- Optionale Schlagworte -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <!-- Freie Schlagworte eintragen -->
             <!-- <legacyControl>
                 <id>uiElement1315</id>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>-->
             <legacyControl>
                 <id>uiElementN014</id><!-- Umweltthemen -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElementN015</id><!-- Themen -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElementN016</id><!-- Kategorien -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
         </controls>
     </layoutRubric>
@@ -693,13 +590,11 @@
                 <id>uiElementN017</id><!-- Verweise zu -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElementN018</id><!-- Verweise von -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
         </controls>
     </layoutRubric>
