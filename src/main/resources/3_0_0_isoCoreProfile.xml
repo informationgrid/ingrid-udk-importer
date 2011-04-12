@@ -1,0 +1,239 @@
+<profile xmlns="http://www.portalu.de/igc-profile" version="1.0.0">
+    <name>IGC_CORE</name>
+    <supportedLanguages>en,de</supportedLanguages>
+    <layoutRubric isLegacy="true">
+        <id>general</id>
+        <controls>
+<!-- Abstract describing the dataset (M) -->
+            <legacyControl>
+                <id>uiElement1010</id><!-- generalDesc -->
+                <isMandatory>true</isMandatory>
+                <isVisible>optional</isVisible>
+            </legacyControl>
+<!-- Metadata point of contact (M) -->
+<!-- Dataset responsible party (O) -->
+            <legacyControl>
+                <id>uiElement1000</id><!-- generalAddress -->
+                <isMandatory>true</isMandatory>
+                <isVisible>optional</isVisible>
+            </legacyControl>
+        </controls>
+    </layoutRubric>
+    <layoutRubric isLegacy="true">
+        <id>refClass1</id>
+        <controls>
+<!-- Lineage (O) -->
+            <legacyControl>
+                <id>uiElement3520</id><!-- Fachliche Grundlage -->
+                <isMandatory>true</isMandatory>
+                <isVisible>optional</isVisible>
+                <scriptedProperties><![CDATA[]]></scriptedProperties>
+            </legacyControl>
+<!-- "gmd:identificationInfo/gmd:MD_DataIdentification@uuid" -->
+            <legacyControl>
+                <id>uiElementN021</id><!-- Identifikator der Datenquelle -->
+                <isMandatory>true</isMandatory>
+                <isVisible>optional</isVisible>
+            </legacyControl>
+<!-- Spatial representation type (O) -->
+            <legacyControl>
+                <id>uiElement5062</id><!-- Digitale Repräsentation -->
+                <isMandatory>false</isMandatory>
+                <isVisible>optional</isVisible>
+            </legacyControl>
+<!-- Spatial resolution of the dataset (O) -->
+            <legacyControl>
+                <id>uiElementN002</id><!-- ref1Scale -->
+                <isMandatory>false</isMandatory>
+                <isVisible>optional</isVisible>
+            </legacyControl>
+<!-- Lineage (O) -->
+            <legacyControl>
+                <id>uiElement3570</id><!-- Datengrundlage -->
+                <isMandatory>false</isMandatory>
+                <isVisible>optional</isVisible>
+            </legacyControl>
+<!-- Lineage (O) -->
+            <legacyControl>
+                <id>uiElement3515</id><!-- Herstellungsprozess -->
+                <isMandatory>false</isMandatory>
+                <isVisible>optional</isVisible>
+            </legacyControl>
+        </controls>
+    </layoutRubric>
+    <layoutRubric isLegacy="true">
+        <id>refClass2</id>
+        <controls>
+<!-- Lineage (O) -->
+            <legacyControl>
+                <id>uiElement3210</id><!-- Basisdaten -->
+                <isMandatory>false</isMandatory>
+                <isVisible>optional</isVisible>
+            </legacyControl>
+        </controls>
+    </layoutRubric>
+    <layoutRubric isLegacy="true">
+        <id>refClass3</id>
+        <controls>
+<!-- Spatial resolution of the dataset (O) -->
+<!-- Abstract describing the dataset (M) -->
+            <legacyControl>
+                <id>uiElementN023</id><!-- Erstellungsmaßstab -->
+                <isMandatory>false</isMandatory>
+                <isVisible>optional</isVisible>
+            </legacyControl>
+<!-- Abstract describing the dataset (M) -->
+            <legacyControl>
+                <id>uiElement3200</id><!-- Systemumgebung -->
+                <isMandatory>false</isMandatory>
+                <isVisible>optional</isVisible>
+            </legacyControl>
+<!-- Lineage (O) -->
+            <legacyControl>
+                <id>uiElement3240</id><!-- Historie -->
+                <isMandatory>false</isMandatory>
+                <isVisible>optional</isVisible>
+            </legacyControl>
+<!-- Lineage (O) -->
+            <legacyControl>
+                <id>uiElement3345</id><!-- Basisdaten -->
+                <isMandatory>false</isMandatory>
+                <isVisible>optional</isVisible>
+            </legacyControl>
+<!-- Abstract describing the dataset (M) -->
+            <legacyControl>
+                <id>uiElement3250</id><!-- Erläuterungen -->
+                <isMandatory>false</isMandatory>
+                <isVisible>optional</isVisible>
+            </legacyControl>
+        </controls>
+    </layoutRubric>
+    <layoutRubric isLegacy="true">
+        <id>refClass5</id>
+        <controls>
+<!-- Lineage (O) -->
+            <legacyControl>
+                <id>uiElement3100</id><!-- Methode/Datengrundlage -->
+                <isMandatory>false</isMandatory>
+                <isVisible>optional</isVisible>
+            </legacyControl>
+        </controls>
+    </layoutRubric>
+    <layoutRubric isLegacy="true">
+        <id>spatialRef</id>
+        <controls>
+<!-- Geographic location of the dataset (by four coordinates or by geographic identifier) (C) -->
+            <legacyControl>
+                <id>uiElementN006</id><!-- Geothesaurus-Raumbezug -->
+                <isMandatory>true</isMandatory>
+                <isVisible>optional</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElementN007</id><!-- Koordinatentransformation -->
+                <isMandatory>false</isMandatory>
+                <isVisible>optional</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElementN008</id><!-- Freier Raumbezug -->
+                <isMandatory>false</isMandatory>
+                <isVisible>optional</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElementN009</id><!-- Koordinatentransformation -->
+                <isMandatory>false</isMandatory>
+                <isVisible>optional</isVisible>
+            </legacyControl>
+<!-- Reference system (O) -->
+            <legacyControl>
+                <id>uiElement3500</id><!-- Raumbezugssystem -->
+                <isMandatory>true</isMandatory>
+                <isVisible>optional</isVisible>
+            </legacyControl>
+<!-- Additional extent information for the dataset (vertical and temporal) (O) -->
+            <legacyControl>
+                <id>uiElementN010</id><!-- Höhe -->
+                <isMandatory>false</isMandatory>
+                <isVisible>optional</isVisible>
+            </legacyControl>
+        </controls>
+    </layoutRubric>
+    <layoutRubric isLegacy="true">
+        <id>timeRef</id>
+        <controls>
+<!-- Dataset reference date (M) -->
+            <legacyControl>
+                <id>uiElement5030</id><!-- Zeitbezug des Datensatzes -->
+                <isMandatory>true</isMandatory>
+                <isVisible>optional</isVisible>
+            </legacyControl>
+<!-- Additional extent information for the dataset (vertical and temporal) (O) -->
+            <legacyControl>
+                <id>uiElementN011</id><!-- Zeitbezug des Dateninhaltes -->
+                <isMandatory>false</isMandatory>
+                <isVisible>optional</isVisible>
+            </legacyControl>
+        </controls>
+    </layoutRubric>
+    <layoutRubric isLegacy="true">
+        <id>extraInfo</id>
+        <controls>
+<!-- Metadata language (C) -->
+            <legacyControl>
+                <id>uiElement5041</id><!-- Sprache des Metadatensatzes -->
+                <isMandatory>true</isMandatory>
+                <isVisible>optional</isVisible>
+            </legacyControl>
+<!-- Dataset language (M) -->
+            <legacyControl>
+                <id>uiElement5042</id><!-- Sprache des Datensatzes -->
+                <isMandatory>true</isMandatory>
+                <isVisible>optional</isVisible>
+            </legacyControl>
+<!-- "IGC needed" -->
+            <legacyControl>
+                <id>uiElement3571</id><!-- Veröffentlichung -->
+                <isMandatory>true</isMandatory>
+                <isVisible>optional</isVisible>
+            </legacyControl>
+<!-- Dataset character set (C) -->
+            <legacyControl>
+                <id>uiElement5043</id><!-- Zeichensatz des Datensatzes -->
+                <isMandatory>true</isMandatory>
+                <isVisible>optional</isVisible>
+            </legacyControl>
+        </controls>
+    </layoutRubric>
+    <layoutRubric isLegacy="true">
+        <id>availability</id>
+        <controls>
+<!-- Distribution format (O) -->
+            <legacyControl>
+                <id>uiElement1320</id><!-- Datenformat -->
+                <isMandatory>false</isMandatory>
+                <isVisible>optional</isVisible>
+            </legacyControl>
+        </controls>
+    </layoutRubric>
+    <layoutRubric isLegacy="true">
+        <id>thesaurus</id>
+        <controls>
+<!-- Dataset topic category (M) -->
+            <legacyControl>
+                <id>uiElement5060</id><!-- ISO-Themenkategorie -->
+                <isMandatory>true</isMandatory>
+                <isVisible>optional</isVisible>
+            </legacyControl>
+        </controls>
+    </layoutRubric>
+    <layoutRubric isLegacy="true">
+        <id>links</id>
+        <controls>
+<!-- On-line resource (O) -->
+            <legacyControl>
+                <id>uiElementN017</id><!-- Verweise zu -->
+                <isMandatory>false</isMandatory>
+                <isVisible>optional</isVisible>
+            </legacyControl>
+        </controls>
+    </layoutRubric>
+</profile>
