@@ -4,6 +4,10 @@
     <layoutRubric isLegacy="true">
         <id>general</id>
         <controls>
+            <legacyControl>
+                <id>uiElement5000</id><!-- generalShortDesc -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
 <!-- Abstract describing the dataset (M) -->
             <legacyControl>
                 <id>uiElement1010</id><!-- generalDesc -->
@@ -17,6 +21,16 @@
                 <isMandatory>true</isMandatory>
                 <isVisible>optional</isVisible>
             </legacyControl>
+            <legacyControl>
+                <id>uiElement5064</id><!-- thesaurusInspire -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElement6000</id><!-- Inspire relevante Daten -->
+                <isVisible>hide</isVisible>
+<!-- HIDE Element per JavaScript ! NOTICE: Element will be set visible in internal workflow ! But this code is executed afterwards. -->
+                <scriptedProperties><![CDATA[dojo.subscribe("/onObjectClassChange", function(c) { dojo.addClass("uiElement6000", "hide"); } );]]></scriptedProperties>
+            </legacyControl>
         </controls>
     </layoutRubric>
     <layoutRubric isLegacy="true">
@@ -24,16 +38,21 @@
         <controls>
 <!-- Lineage (O) -->
             <legacyControl>
-                <id>uiElement3520</id><!-- Fachliche Grundlage -->
-                <isMandatory>true</isMandatory>
+                <id>uiElement3520</id><!-- Fachliche Grundlage* -->
+                <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[]]></scriptedProperties>
             </legacyControl>
-<!-- "gmd:identificationInfo/gmd:MD_DataIdentification@uuid" -->
             <legacyControl>
-                <id>uiElementN021</id><!-- Identifikator der Datenquelle -->
-                <isMandatory>true</isMandatory>
-                <isVisible>optional</isVisible>
+                <id>uiElementN021</id><!-- Identifikator der Datenquelle* -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElement5061</id><!-- Datensatz/Datenserie* -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElement3565</id><!-- Erfassungsgrad -->
+                <isVisible>hide</isVisible>
             </legacyControl>
 <!-- Spatial representation type (O) -->
             <legacyControl>
@@ -41,17 +60,45 @@
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
             </legacyControl>
+            <legacyControl>
+                <id>uiElementN005</id><!-- Vektorformat Rahmen -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
 <!-- Spatial resolution of the dataset (O) -->
             <legacyControl>
                 <id>uiElementN002</id><!-- ref1Scale -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
             </legacyControl>
+            <legacyControl>
+                <id>uiElement5069</id><!-- ref1AltAccuracy -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElement3530</id><!-- ref1PosAccuracy -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElement3555</id><!-- Symbolkatalog -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElement3535</id><!-- Schlüsselkatalog -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElementN003</id><!-- Verweis zu Dienst -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
 <!-- Lineage (O) -->
             <legacyControl>
                 <id>uiElement3570</id><!-- Datengrundlage -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElement5070</id><!-- Sachdaten/Attributinformation -->
+                <isVisible>hide</isVisible>
             </legacyControl>
 <!-- Lineage (O) -->
             <legacyControl>
@@ -64,29 +111,90 @@
     <layoutRubric isLegacy="true">
         <id>refClass2</id>
         <controls>
+            <legacyControl>
+                <id>uiElement3355</id><!-- Autor/Verfasser -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElement3350</id><!-- Herausgeber -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElement3340</id><!-- Erschienen in -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElement3310</id><!-- Erscheinungsort -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElement3330</id><!-- Band/Heft -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElement3320</id><!-- Seiten -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElement3300</id><!-- Erscheinungsjahr -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElement3365</id><!-- ISBN-Nr. -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElement3370</id><!-- Verlag -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElement3360</id><!-- Standort -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElement3385</id><!-- Dokumententyp -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
 <!-- Lineage (O) -->
             <legacyControl>
                 <id>uiElement3210</id><!-- Basisdaten -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
             </legacyControl>
+            <legacyControl>
+                <id>uiElement3380</id><!-- Weitere bibliographische Angaben -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElement3375</id><!-- Erläuterungen -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
         </controls>
     </layoutRubric>
     <layoutRubric isLegacy="true">
         <id>refClass3</id>
         <controls>
+            <legacyControl>
+                <id>uiElementN022</id><!-- Klassifikation des Dienstes* -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElement3220</id><!-- Art des Dienstes* -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElement3230</id><!-- Version -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
 <!-- Spatial resolution of the dataset (O) -->
-<!-- Abstract describing the dataset (M) -->
             <legacyControl>
                 <id>uiElementN023</id><!-- Erstellungsmaßstab -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
             </legacyControl>
-<!-- Abstract describing the dataset (M) -->
             <legacyControl>
                 <id>uiElement3200</id><!-- Systemumgebung -->
-                <isMandatory>false</isMandatory>
-                <isVisible>optional</isVisible>
+                <isVisible>hide</isVisible>
             </legacyControl>
 <!-- Lineage (O) -->
             <legacyControl>
@@ -100,22 +208,58 @@
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
             </legacyControl>
-<!-- Abstract describing the dataset (M) -->
             <legacyControl>
                 <id>uiElement3250</id><!-- Erläuterungen -->
-                <isMandatory>false</isMandatory>
-                <isVisible>optional</isVisible>
+                <isVisible>hide</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElementN004</id><!-- Operationen -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElement3260</id><!-- Zugang geschützt -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
+        </controls>
+    </layoutRubric>
+    <layoutRubric isLegacy="true">
+        <id>refClass4</id>
+        <controls>
+            <legacyControl>
+                <id>uiElement3410</id><!-- Beteiligte -->
+                <isVisible>hide</isVisible>
+<!-- HIDE rubric per JavaScript in first EXISTING control ! -->
+                <scriptedProperties><![CDATA[dojo.subscribe("/onObjectClassChange", function(c) { if (c.objClass == "Class4") dojo.addClass("refClass4", "hide"); } );]]></scriptedProperties>
             </legacyControl>
         </controls>
     </layoutRubric>
     <layoutRubric isLegacy="true">
         <id>refClass5</id>
         <controls>
+            <legacyControl>
+                <id>uiElement3110</id><!-- Inhalte der Datensammlung/Datenbank -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
 <!-- Lineage (O) -->
             <legacyControl>
                 <id>uiElement3100</id><!-- Methode/Datengrundlage -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElement3120</id><!-- Erläuterungen -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
+        </controls>
+    </layoutRubric>
+    <layoutRubric isLegacy="true">
+        <id>refClass6</id>
+        <controls>
+            <legacyControl>
+                <id>uiElement3620</id><!-- Art des Dienstes* -->
+                <isVisible>hide</isVisible>
+<!-- HIDE rubric per JavaScript in first EXISTING control ! -->
+                <scriptedProperties><![CDATA[dojo.subscribe("/onObjectClassChange", function(c) { if (c.objClass == "Class6") dojo.addClass("refClass6", "hide"); } );]]></scriptedProperties>
             </legacyControl>
         </controls>
     </layoutRubric>
@@ -124,7 +268,7 @@
         <controls>
 <!-- Geographic location of the dataset (by four coordinates or by geographic identifier) (C) -->
             <legacyControl>
-                <id>uiElementN006</id><!-- Geothesaurus-Raumbezug -->
+                <id>uiElementN006</id><!-- Geothesaurus-Raumbezug* -->
                 <isMandatory>true</isMandatory>
                 <isVisible>optional</isVisible>
             </legacyControl>
@@ -145,8 +289,8 @@
             </legacyControl>
 <!-- Reference system (O) -->
             <legacyControl>
-                <id>uiElement3500</id><!-- Raumbezugssystem -->
-                <isMandatory>true</isMandatory>
+                <id>uiElement3500</id><!-- Raumbezugssystem* -->
+                <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
             </legacyControl>
 <!-- Additional extent information for the dataset (vertical and temporal) (O) -->
@@ -155,6 +299,10 @@
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
             </legacyControl>
+            <legacyControl>
+                <id>uiElement1140</id><!-- Erläuterungen -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
         </controls>
     </layoutRubric>
     <layoutRubric isLegacy="true">
@@ -162,15 +310,31 @@
         <controls>
 <!-- Dataset reference date (M) -->
             <legacyControl>
-                <id>uiElement5030</id><!-- Zeitbezug des Datensatzes -->
+                <id>uiElement5030</id><!-- Zeitbezug des Datensatzes* -->
                 <isMandatory>true</isMandatory>
                 <isVisible>optional</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElement1250</id><!-- Erläuterungen -->
+                <isVisible>hide</isVisible>
             </legacyControl>
 <!-- Additional extent information for the dataset (vertical and temporal) (O) -->
             <legacyControl>
                 <id>uiElementN011</id><!-- Zeitbezug des Dateninhaltes -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElement1220</id><!-- Status -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElement1240</id><!-- Periodizität -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElement1230</id><!-- Im Intervall -->
+                <isVisible>hide</isVisible>
             </legacyControl>
         </controls>
     </layoutRubric>
@@ -179,38 +343,78 @@
         <controls>
 <!-- Metadata language (C) -->
             <legacyControl>
-                <id>uiElement5041</id><!-- Sprache des Metadatensatzes -->
+                <id>uiElement5041</id><!-- Sprache des Metadatensatzes* -->
                 <isMandatory>true</isMandatory>
                 <isVisible>optional</isVisible>
             </legacyControl>
 <!-- Dataset language (M) -->
             <legacyControl>
-                <id>uiElement5042</id><!-- Sprache des Datensatzes -->
+                <id>uiElement5042</id><!-- Sprache des Datensatzes* -->
                 <isMandatory>true</isMandatory>
                 <isVisible>optional</isVisible>
             </legacyControl>
 <!-- "IGC needed" -->
             <legacyControl>
-                <id>uiElement3571</id><!-- Veröffentlichung -->
+                <id>uiElement3571</id><!-- Veröffentlichung* -->
                 <isMandatory>true</isMandatory>
                 <isVisible>optional</isVisible>
             </legacyControl>
 <!-- Dataset character set (C) -->
             <legacyControl>
-                <id>uiElement5043</id><!-- Zeichensatz des Datensatzes -->
+                <id>uiElement5043</id><!-- Zeichensatz des Datensatzes* -->
                 <isMandatory>true</isMandatory>
                 <isVisible>optional</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElementN024</id><!-- Konformität* -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElementN012</id><!-- XML-Export-Kriterium -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElement1350</id><!-- Rechtliche Grundlagen -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElementN013</id><!-- Herstellungszweck -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElement5040</id><!-- Eignung/Nutzung -->
+                <isVisible>hide</isVisible>
             </legacyControl>
         </controls>
     </layoutRubric>
     <layoutRubric isLegacy="true">
         <id>availability</id>
         <controls>
+            <legacyControl>
+                <id>uiElementN025</id><!-- Zugangsbeschränkungen* -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElementN026</id><!-- Nutzungsbedingungen* -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElement1315</id><!-- Kodierungsschema der geographischen Daten* -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
 <!-- Distribution format (O) -->
             <legacyControl>
                 <id>uiElement1320</id><!-- Datenformat -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElement1310</id><!-- Medienoption -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElement5052</id><!-- Bestellinformation -->
+                <isVisible>hide</isVisible>
             </legacyControl>
         </controls>
     </layoutRubric>
@@ -219,9 +423,30 @@
         <controls>
 <!-- Dataset topic category (M) -->
             <legacyControl>
-                <id>uiElement5060</id><!-- ISO-Themenkategorie -->
+                <id>uiElement5060</id><!-- ISO-Themenkategorie* -->
                 <isMandatory>true</isMandatory>
                 <isVisible>optional</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElement1409</id><!-- Optionale Schlagworte -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
+            
+            <legacyControl>
+                <id>uiElement1410</id><!-- Freie Schlagworte eintragen -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElementN014</id><!-- Umweltthemen -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElementN015</id><!-- Themen -->
+                <isVisible>hide</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElementN016</id><!-- Kategorien -->
+                <isVisible>hide</isVisible>
             </legacyControl>
         </controls>
     </layoutRubric>
@@ -233,6 +458,10 @@
                 <id>uiElementN017</id><!-- Verweise zu -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
+            </legacyControl>
+            <legacyControl>
+                <id>uiElementN018</id><!-- Verweise von -->
+                <isVisible>hide</isVisible>
             </legacyControl>
         </controls>
     </layoutRubric>
