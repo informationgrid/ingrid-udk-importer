@@ -29,6 +29,11 @@
         <replace file="${descriptor-properties}" token="@IGC_CATADMIN_EMAIL@" value="${igcCatadminEmail}" />
     </target>
 
+    <target name="igcProfileFile" description="Set IGC Profile properties.">
+        <echo>Schreiben der IGC Profil Konfiguration in descriptor.properties</echo>
+        <replace file="${descriptor-properties}" token="@IGC_PROFILE_FILE@" value="${profileFile}" />
+    </target>
+
     <target name="startComponent">
         <echo>
             ================= Weiteres Vorgehen =================
