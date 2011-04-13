@@ -34,6 +34,7 @@ public class ImportDescriptor {
 	private String idcVersion = null;
 	private String idcCatalogueLanguage = null;
 	private String idcEmailDefault = null;
+	private String idcProfileFileName = null;
 
 	/**
 	 * ArrayList to store import files
@@ -190,4 +191,10 @@ public class ImportDescriptor {
 		this.idcEmailDefault = idcEmailDefault;
 	}
 
+	public String getIdcProfileFileName() {
+		return idcProfileFileName;
+	}
+	public void setIdcProfileFileName(String idcProfileFileName) {
+		this.idcProfileFileName = idcProfileFileName;
+	}
 }

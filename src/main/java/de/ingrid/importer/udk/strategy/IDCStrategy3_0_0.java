@@ -34,7 +34,6 @@ public class IDCStrategy3_0_0 extends IDCStrategyDefault {
 	private static Log log = LogFactory.getLog(IDCStrategy3_0_0.class);
 
 	private static final String MY_VERSION = VALUE_IDC_VERSION_3_0_0;
-	private static final String IGC_PROFILE_FILE = "/3_0_0_igcInspireProfile.xml";
 	
 	String profileXml = null;
     ProfileMapper profileMapper;
@@ -234,7 +233,11 @@ public class IDCStrategy3_0_0 extends IDCStrategyDefault {
 			log.info("Store default Profile in database...");
 		}
 		
-		profileXml = convertStreamToString(getClass().getResourceAsStream(IGC_PROFILE_FILE), null);
+		String fileName = importDescriptor.getIdcProfileFileName();
+		if (!fileName.startsWith("/")) {
+			fileName = "/" + fileName;
+		}
+		profileXml = convertStreamToString(getClass().getResourceAsStream(fileName), null);
 
 		// write Profile !
 		setGenericKey(KEY_PROFILE_XML, profileXml);

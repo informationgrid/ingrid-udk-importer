@@ -184,6 +184,7 @@ public class ImportDescriptorHelper {
 		descr.setIdcVersion(configuration.getString("idc.version", ""));
 		descr.setIdcCatalogueLanguage(configuration.getString("idc.catalogue.language", ""));
 		descr.setIdcEmailDefault(configuration.getString("idc.email.default", ""));
+		descr.setIdcProfileFileName(configuration.getString("idc.profile.file", ""));
 
 		// set passed command line attributes, have highest prio !
 		if (dbUser != null) {

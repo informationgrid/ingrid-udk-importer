@@ -70,7 +70,7 @@ public class Importer {
 			IDCStrategyFactory idcStrategyFactory = new IDCStrategyFactory();
 			strategiesToExecute = idcStrategyFactory.getIdcStrategiesToExecute(oldIDCVersion, newIDCVersionFromDescriptor);
 		} catch (Exception e) {
-			log.error(e.getMessage());
+			log.error("Problems extracting strategies to execute !", e);
 			System.out.println("\nProblems determining strategies to execute, see log for details.");
 		}
 
