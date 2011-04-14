@@ -18,12 +18,19 @@
                 <id>uiElement1000</id><!-- generalAddress -->
                 <isMandatory>true</isMandatory>
                 <isVisible>optional</isVisible>
+                <scriptedProperties><![CDATA[addressValidation();
+dijit.byId("objectName").validator = function(value) { return dojo.trim(value) !== ""; };
+
+dojo.subscribe("/onBeforeObjectPublish", function(/*Array*/notPublishableIDs) {
+    generalAddressPublishable(notPublishableIDs);
+});]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement5064</id><!-- thesaurusInspire -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-
+                <scriptedProperties><![CDATA[UtilGrid.getTable("thesaurusInspire").onDataChanged.subscribe(applyRule7);
+applyRule7();]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement6000</id><!-- Inspire relevante Daten -->
@@ -60,6 +67,7 @@
                 <id>uiElement5062</id><!-- Digitale Repräsentation -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
+                <scriptedProperties><![CDATA[UtilGrid.getTable("ref1Representation").onDataChanged.subscribe(applyRule1);]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement5063</id><!-- Topologieinformation -->
@@ -90,11 +98,19 @@
                 <id>uiElement3555</id><!-- Symbolkatalog -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
+                <scriptedProperties><![CDATA[var validateFunction = dojo.partial(titleDateValidation, "ref1SymbolsText");
+UtilGrid.getTable("ref1SymbolsText").validate = validateFunction;
+UtilGrid.getTable("ref1SymbolsText").onCellChange.subscribe(validateFunction);
+UtilGrid.getTable("ref1SymbolsText").onAddNewRow.subscribe(validateFunction);]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement3535</id><!-- Schlüsselkatalog -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
+                <scriptedProperties><![CDATA[var validateFunction = dojo.partial(titleDateValidation, "ref1KeysText");
+UtilGrid.getTable("ref1KeysText").validate = validateFunction;
+UtilGrid.getTable("ref1KeysText").onCellChange.subscribe(validateFunction);
+UtilGrid.getTable("ref1KeysText").onAddNewRow.subscribe(validateFunction);]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElementN003</id><!-- Verweis zu Dienst -->
@@ -125,6 +141,9 @@
                 <id>uiElement7509</id><!-- Datenüberschuss -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
+                <scriptedProperties><![CDATA[dojo.subscribe("/onBeforeObjectPublish", function(/*Array*/notPublishableIDs) {
+    dqTablesPublishable(notPublishableIDs);
+});]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement7510</id><!-- Datendefizit -->
@@ -385,6 +404,9 @@
                 <id>uiElement3670</id><!-- Service-Urls -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
+                <scriptedProperties><![CDATA[UtilGrid.getTable("ref6UrlList").validate = applyRef6UrlListValidation;
+UtilGrid.getTable("ref6UrlList").onCellChange.subscribe(addServiceUrlValidation);
+UtilGrid.getTable("ref6UrlList").onAddNewRow.subscribe(addServiceUrlValidation);]]></scriptedProperties>
             </legacyControl>
         </controls>
     </layoutRubric>
@@ -395,6 +417,11 @@
                 <id>uiElementN006</id><!-- Geothesaurus-Raumbezug* -->
                 <isMandatory>true</isMandatory>
                 <isVisible>optional</isVisible>
+                <scriptedProperties><![CDATA[UtilGrid.getTable("spatialRefAdminUnit").onDataChanged.subscribe(applyRule5);
+
+dojo.subscribe("/onBeforeObjectPublish", function(/*Array*/notPublishableIDs) {
+    spatialRefAdminUnitPublishable(notPublishableIDs);
+});]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElementN007</id><!-- Koordinatentransformation -->
@@ -405,6 +432,11 @@
                 <id>uiElementN008</id><!-- Freier Raumbezug -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
+                <scriptedProperties><![CDATA[UtilGrid.getTable("spatialRefLocation").onDataChanged.subscribe(applyRule5);
+// initialize
+applyRule5();
+UtilGrid.getTable("spatialRefLocation").onCellChange.subscribe(minMaxBoundingBoxValidation);
+UtilGrid.getTable("spatialRefLocation").validate = spatialRefLocationValidation;]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElementN009</id><!-- Koordinatentransformation -->
@@ -420,6 +452,13 @@
                 <id>uiElementN010</id><!-- Höhe -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
+                <scriptedProperties><![CDATA[dojo.connect(dijit.byId("spatialRefAltMin"), "onChange", function(val) {applyRule6();});
+dojo.connect(dijit.byId("spatialRefAltMax"), "onChange", function(val) {applyRule6();});
+dojo.connect(dijit.byId("spatialRefAltMeasure"), "onChange", function(val) {applyRule6();});
+dojo.connect(dijit.byId("spatialRefAltVDate"), "onChange", function(val) {applyRule6();});
+applyRule6();
+
+addMinMaxValidation("spatialRefAltMin", "spatialRefAltMax", "Minimum", "Maximum");]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement1140</id><!-- Erläuterungen -->
@@ -435,6 +474,9 @@
                 <id>uiElement5030</id><!-- Zeitbezug des Datensatzes* -->
                 <isMandatory>true</isMandatory>
                 <isVisible>optional</isVisible>
+                <scriptedProperties><![CDATA[dojo.subscribe("/onBeforeObjectPublish", function(/*Array*/notPublishableIDs) {
+    timeRefTablePublishable(notPublishableIDs);
+});]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement1250</id><!-- Erläuterungen -->
@@ -445,6 +487,9 @@
                 <id>uiElementN011</id><!-- Zeitbezug des Dateninhaltes -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
+                <scriptedProperties><![CDATA[dojo.connect(dijit.byId("timeRefType"), "onChange", function(value) {applyRule3(value);});
+// initialize
+applyRule3("");]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement1220</id><!-- Status -->
@@ -460,6 +505,7 @@
                 <id>uiElement1230</id><!-- Im Intervall -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
+                <scriptedProperties><![CDATA[applyTimeRefIntervalValidation();]]></scriptedProperties>
             </legacyControl>
         </controls>
     </layoutRubric>
@@ -490,6 +536,9 @@
                 <id>uiElementN024</id><!-- Konformität* -->
                 <isMandatory>true</isMandatory>
                 <isVisible>optional</isVisible>
+                <scriptedProperties><![CDATA[dojo.subscribe("/onBeforeObjectPublish", function(/*Array*/notPublishableIDs) {
+    extraInfoConformityPublishable(notPublishableIDs);
+});]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElementN012</id><!-- XML-Export-Kriterium -->
@@ -520,11 +569,17 @@
                 <id>uiElementN025</id><!-- Zugangsbeschränkungen* -->
                 <isMandatory>true</isMandatory>
                 <isVisible>optional</isVisible>
+                <scriptedProperties><![CDATA[dojo.subscribe("/onBeforeObjectPublish", function(/*Array*/notPublishableIDs) {
+    availabilityAccessPublishable(notPublishableIDs);
+});]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElementN026</id><!-- Nutzungsbedingungen* -->
                 <isMandatory>true</isMandatory>
                 <isVisible>optional</isVisible>
+                <scriptedProperties><![CDATA[dojo.subscribe("/onBeforeObjectPublish", function(/*Array*/notPublishableIDs) {
+    availabilityUsePublishable(notPublishableIDs);
+});]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement1315</id><!-- Kodierungsschema der geographischen Daten* -->
@@ -570,16 +625,20 @@
                 <id>uiElementN014</id><!-- Umweltthemen -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
+                <scriptedProperties><![CDATA[dojo.connect(dijit.byId("thesaurusEnvExtRes"), "onChange", function(val) {applyRule2();});
+dojo.connect(dijit.byId("thesaurusEnvExtRes"), "onClick", function(obj, field) {applyRule2();});]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElementN015</id><!-- Themen -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
+                <scriptedProperties><![CDATA[UtilGrid.getTable("thesaurusEnvTopics").onDataChanged.subscribe(applyRule2);]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElementN016</id><!-- Kategorien -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
+                <scriptedProperties><![CDATA[UtilGrid.getTable("thesaurusEnvCats").onDataChanged.subscribe(applyRule2);]]></scriptedProperties>
             </legacyControl>
         </controls>
     </layoutRubric>
