@@ -28,7 +28,7 @@
     <page type="input" name="igcProfile" displayText="Profil fuer den InGridCatalog (IGC)" target="igcProfileFile">
 
         <select displayText="Zu verwendendes IGC Profil:" property="profileFile" defaultValue="3_0_0_igcInspireProfile.xml">
-            <option text="UDK-INSPIRE (default)" value="3_0_0_igcInspireProfile.xml"/>
+            <option text="IGC-INSPIRE (default)" value="3_0_0_igcInspireProfile.xml"/>
             <option text="ISO-Core" value="3_0_0_isoCoreProfile.xml"/>
         </select>
 
