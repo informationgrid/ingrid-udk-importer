@@ -29,7 +29,7 @@ dojo.subscribe("/onBeforeObjectPublish", function(/*Array*/notPublishableIDs) {
                 <id>uiElement5064</id><!-- thesaurusInspire -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[UtilGrid.getTable("thesaurusInspire").onDataChanged.subscribe(applyRule7);
+                <scriptedProperties><![CDATA[dojo.connect(UtilGrid.getTable("thesaurusInspire"), "onDataChanged", applyRule7);
 applyRule7();]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
@@ -67,7 +67,7 @@ applyRule7();]]></scriptedProperties>
                 <id>uiElement5062</id><!-- Digitale Repräsentation -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[UtilGrid.getTable("ref1Representation").onDataChanged.subscribe(applyRule1);]]></scriptedProperties>
+                <scriptedProperties><![CDATA[dojo.connect(UtilGrid.getTable("ref1Representation"), "onDataChanged", applyRule1);]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement5063</id><!-- Topologieinformation -->
@@ -100,8 +100,8 @@ applyRule7();]]></scriptedProperties>
                 <isVisible>optional</isVisible>
                 <scriptedProperties><![CDATA[var validateFunction = dojo.partial(titleDateValidation, "ref1SymbolsText");
 UtilGrid.getTable("ref1SymbolsText").validate = validateFunction;
-UtilGrid.getTable("ref1SymbolsText").onCellChange.subscribe(validateFunction);
-UtilGrid.getTable("ref1SymbolsText").onAddNewRow.subscribe(validateFunction);]]></scriptedProperties>
+dojo.connect(UtilGrid.getTable("ref1SymbolsText"), "onCellChange", validateFunction);
+dojo.connect(UtilGrid.getTable("ref1SymbolsText"), "onAddNewRow", validateFunction);]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElement3535</id><!-- Schlüsselkatalog -->
@@ -109,8 +109,8 @@ UtilGrid.getTable("ref1SymbolsText").onAddNewRow.subscribe(validateFunction);]]>
                 <isVisible>optional</isVisible>
                 <scriptedProperties><![CDATA[var validateFunction = dojo.partial(titleDateValidation, "ref1KeysText");
 UtilGrid.getTable("ref1KeysText").validate = validateFunction;
-UtilGrid.getTable("ref1KeysText").onCellChange.subscribe(validateFunction);
-UtilGrid.getTable("ref1KeysText").onAddNewRow.subscribe(validateFunction);]]></scriptedProperties>
+dojo.connect(UtilGrid.getTable("ref1KeysText"), "onCellChange", validateFunction);
+dojo.connect(UtilGrid.getTable("ref1KeysText"), "onAddNewRow", validateFunction);]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElementN003</id><!-- Verweis zu Dienst -->
@@ -405,8 +405,8 @@ UtilGrid.getTable("ref1KeysText").onAddNewRow.subscribe(validateFunction);]]></s
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
                 <scriptedProperties><![CDATA[UtilGrid.getTable("ref6UrlList").validate = applyRef6UrlListValidation;
-UtilGrid.getTable("ref6UrlList").onCellChange.subscribe(addServiceUrlValidation);
-UtilGrid.getTable("ref6UrlList").onAddNewRow.subscribe(addServiceUrlValidation);]]></scriptedProperties>
+dojo.connect(UtilGrid.getTable("ref6UrlList"), "onCellChange", addServiceUrlValidation);
+dojo.connect(UtilGrid.getTable("ref6UrlList"), "onAddNewRow", addServiceUrlValidation);]]></scriptedProperties>
             </legacyControl>
         </controls>
     </layoutRubric>
@@ -417,7 +417,7 @@ UtilGrid.getTable("ref6UrlList").onAddNewRow.subscribe(addServiceUrlValidation);
                 <id>uiElementN006</id><!-- Geothesaurus-Raumbezug* -->
                 <isMandatory>true</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[UtilGrid.getTable("spatialRefAdminUnit").onDataChanged.subscribe(applyRule5);
+                <scriptedProperties><![CDATA[dojo.connect(UtilGrid.getTable("spatialRefAdminUnit"), "onDataChanged", applyRule5);
 
 dojo.subscribe("/onBeforeObjectPublish", function(/*Array*/notPublishableIDs) {
     spatialRefAdminUnitPublishable(notPublishableIDs);
@@ -432,10 +432,10 @@ dojo.subscribe("/onBeforeObjectPublish", function(/*Array*/notPublishableIDs) {
                 <id>uiElementN008</id><!-- Freier Raumbezug -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[UtilGrid.getTable("spatialRefLocation").onDataChanged.subscribe(applyRule5);
+                <scriptedProperties><![CDATA[dojo.connect(UtilGrid.getTable("spatialRefLocation"), "onDataChanged", applyRule5);
 // initialize
 applyRule5();
-UtilGrid.getTable("spatialRefLocation").onCellChange.subscribe(minMaxBoundingBoxValidation);
+dojo.connect(UtilGrid.getTable("spatialRefLocation"), "onCellChange", minMaxBoundingBoxValidation);
 UtilGrid.getTable("spatialRefLocation").validate = spatialRefLocationValidation;]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
@@ -632,13 +632,13 @@ dojo.connect(dijit.byId("thesaurusEnvExtRes"), "onClick", function(obj, field) {
                 <id>uiElementN015</id><!-- Themen -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[UtilGrid.getTable("thesaurusEnvTopics").onDataChanged.subscribe(applyRule2);]]></scriptedProperties>
+                <scriptedProperties><![CDATA[dojo.connect(UtilGrid.getTable("thesaurusEnvTopics"), "onDataChanged", applyRule2);]]></scriptedProperties>
             </legacyControl>
             <legacyControl>
                 <id>uiElementN016</id><!-- Kategorien -->
                 <isMandatory>false</isMandatory>
                 <isVisible>optional</isVisible>
-                <scriptedProperties><![CDATA[UtilGrid.getTable("thesaurusEnvCats").onDataChanged.subscribe(applyRule2);]]></scriptedProperties>
+                <scriptedProperties><![CDATA[dojo.connect(UtilGrid.getTable("thesaurusEnvCats"), "onDataChanged", applyRule2);]]></scriptedProperties>
             </legacyControl>
         </controls>
     </layoutRubric>
