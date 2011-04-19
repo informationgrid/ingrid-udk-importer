@@ -66,6 +66,9 @@ public interface IDCStrategy {
 	/** InGrid 3.0: fix Erfassungsgrad data -> writes NO version, can be executed on its own !
 	 * see https://dev.wemove.com/jira/browse/INGRID23-147 */
     static String VALUE_IDC_VERSION_3_0_0_FIX_ERFASSUNGSGRAD = "3.0.0_fixErfassungsgrad";
+	/** InGrid 3.0: fix Syslist -> writes NO version, can be executed on its own !
+	 * see https://dev.wemove.com/jira/browse/INGRID23-58 */
+    static String VALUE_IDC_VERSION_3_0_0_FIX_SYSLIST = "3.0.0_fixSyslist";
 	/** InGrid 3.0: flexible data model */
 	static String VALUE_IDC_VERSION_3_0_0 = "3.0.0";
 	
@@ -98,9 +101,9 @@ public interface IDCStrategy {
 		VALUE_IDC_VERSION_2_3_0,
         VALUE_IDC_VERSION_2_3_1_ADD_SUBTREE_PERMISSION, // writes no Version !
 		VALUE_IDC_VERSION_2_3_1,
-		// WRITES VERSION !!!
-		VALUE_IDC_VERSION_2_3_1_1_FIX_SUBNODE_PERMISSION,
+		VALUE_IDC_VERSION_2_3_1_1_FIX_SUBNODE_PERMISSION, // WRITES VERSION !!!
 		VALUE_IDC_VERSION_3_0_0_FIX_ERFASSUNGSGRAD, // writes no Version
+		VALUE_IDC_VERSION_3_0_0_FIX_SYSLIST, // writes no Version
 		VALUE_IDC_VERSION_3_0_0,
 	};
 

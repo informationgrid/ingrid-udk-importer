@@ -68,6 +68,8 @@ public class IDCStrategyFactory {
             return new IDCStrategy2_3_1_1_fix_subnode_permission();
         } else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_3_0_0_FIX_ERFASSUNGSGRAD)) {
             return new IDCStrategy3_0_0_fixErfassungsgrad();
+        } else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_3_0_0_FIX_SYSLIST)) {
+            return new IDCStrategy3_0_0_fixSyslist();
 		} else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_3_0_0)) {
 			return new IDCStrategy3_0_0();
 		} else {
