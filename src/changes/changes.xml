@@ -5,11 +5,14 @@
   </properties>
   <body>
     <release version="3.0.0-SNAPSHOT" date="????-??-??" description="Release InGrid 3.0. New IGC Schema 3.0.0">
+      <action type="fix" dev="wemove" issue="INGRID23-58">
+        Fix Codelist 510 (ISO MD_CharacterSetCode), add all ISO entries.
+      </action>
       <action type="fix" dev="wemove" issue="INGRID23-147">
         Migrate data of "Erfassungsgrad" from CompletenessCommission to CompletenessOmission, is now "Datendefizit".
       </action>
       <action type="add" dev="wemove" issue="INGRID23-138">
-        Added checkbox "INSPIRE relevant" to object class 1 and 3 and removing "NO Inspire Theme" from theme list.
+        Adding checkbox "INSPIRE relevant" to object class 1 and 3, removing "NO Inspire Theme" from theme list.
       </action>
       <action type="add" dev="wemove">
         Flexible data model: Migrate IGC to default profile and migrate t08* additional fields (definition and data).
