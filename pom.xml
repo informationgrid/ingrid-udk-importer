@@ -56,17 +56,6 @@
         <artifactId>ojdbc</artifactId>
         <version>14</version>
       </dependency>
-      <dependency>
-        <groupId>de.ingrid.portal</groupId>
-        <artifactId>ingrid-portal-mdek-application</artifactId>
-        <version>3.0.0-BRANCH-SNAPSHOT</version>
-        <classifier>classes</classifier>
-      </dependency>
-      <dependency>
-        <groupId>de.ingrid</groupId>
-        <artifactId>ingrid-utils</artifactId>
-        <version>3.0.0-SNAPSHOT</version>
-      </dependency>
     </dependencies>
   </dependencyManagement>
 
