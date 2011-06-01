@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -204,9 +205,16 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 	protected void setGenericKey(String key, String value) throws Exception {
 		jdbc.executeUpdate("DELETE FROM sys_generic_key WHERE key_name='" + key + "'");
 
+		// use PreparedStatement to avoid problems when value String contains "'" !!!
 		sqlStr = "INSERT INTO sys_generic_key (id, key_name, value_string) " +
-			"VALUES (" + getNextId() + ", '" + key + "', '" + value + "')";
-		jdbc.executeUpdate(sqlStr);
+			"VALUES (" + getNextId() + ", ?, ?)";
+		
+		PreparedStatement p = jdbc.prepareStatement(sqlStr);
+		p.setString(1, key);
+		p.setString(2, value);
+		p.executeUpdate();
+
+		p.close();
 	}
 
     /** Convert InputStream to String.

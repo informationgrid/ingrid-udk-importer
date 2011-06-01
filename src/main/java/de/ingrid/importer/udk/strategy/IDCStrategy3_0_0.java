@@ -307,6 +307,9 @@ public class IDCStrategy3_0_0 extends IDCStrategyDefault {
 
 		// write Profile !
         profileXml = profileMapper.mapBeanToXmlString(profileBean);
+		if (log.isDebugEnabled()) {
+			log.debug("Resulting IGC Profile (including migrated additional fields):" + profileXml);
+		}
 		setGenericKey(KEY_PROFILE_XML, profileXml);
 
 		if (log.isInfoEnabled()) {
