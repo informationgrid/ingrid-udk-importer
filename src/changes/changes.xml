@@ -4,7 +4,7 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
-    <release version="3.0.1-SNAPSHOT" date="2011-?-?" description="Bugfix Release InGrid 3.0">
+    <release version="3.0.0.1" date="2011-06-06" description="Bugfix Release InGrid 3.0.0">
       <action type="fix" dev="wemove" issue="INGRID23-264">
         Fix error when migrating additional fields to IGC profile, now also handles special characters in field labels, lists etc.
       </action>
