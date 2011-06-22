@@ -74,6 +74,8 @@ public interface IDCStrategy {
     static String VALUE_IDC_VERSION_3_0_0_FIX_FREE_ENTRY = "3.0.0_fixFreeEntry";
 	/** InGrid 3.0: flexible data model */
 	static String VALUE_IDC_VERSION_3_0_0 = "3.0.0";
+	/** InGrid 3.0.1: new functionality (+ bugfixes 3.0) */
+	static String VALUE_IDC_VERSION_3_0_1 = "3.0.1";
 	
 
 	/** Order of strategies to execute to obtain most recent IGC.
@@ -109,6 +111,7 @@ public interface IDCStrategy {
 		VALUE_IDC_VERSION_3_0_0_FIX_SYSLIST, // writes no Version
 		VALUE_IDC_VERSION_3_0_0_FIX_FREE_ENTRY, // writes no Version
 		VALUE_IDC_VERSION_3_0_0,
+		VALUE_IDC_VERSION_3_0_1
 	};
 
 		

@@ -333,6 +333,22 @@ public class OracleLogic implements DBLogic {
 		jdbc.commit();
 	}
 
+	public void createTableSpatialSystem(JDBCConnectionProxy jdbc) throws SQLException {
+		String sql = "CREATE TABLE spatial_system (" +
+			"id NUMBER(24,0) NOT NULL, " +
+			"version NUMBER(10,0) DEFAULT '0' NOT NULL, " +
+			"obj_id NUMBER(24,0) NOT NULL, " +
+			"line NUMBER(10,0) DEFAULT '0' NOT NULL, " +
+			"referencesystem_key NUMBER(10,0), " +
+			"referencesystem_value VARCHAR2(255 CHAR))";
+		jdbc.executeUpdate(sql);
+		sql = "ALTER TABLE spatial_system ADD CONSTRAINT PRIMARY_SpatialSystem PRIMARY KEY ( id ) ENABLE";
+		jdbc.executeUpdate(sql);
+		sql = "CREATE INDEX idxSSys_ObjId ON spatial_system ( obj_id )";
+		jdbc.executeUpdate(sql);
+		jdbc.commit();
+	}
+
 	private String mapColumnTypeToSQL(ColumnType colType) {
 		String sql = "";
 

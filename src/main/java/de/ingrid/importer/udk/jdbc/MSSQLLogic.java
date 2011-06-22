@@ -86,4 +86,7 @@ public class MSSQLLogic implements DBLogic {
 	public void createTableAdditionalFieldData(JDBCConnectionProxy jdbc) throws SQLException {
 		// TODO !
 	}
+	public void createTableSpatialSystem(JDBCConnectionProxy jdbc) throws SQLException {
+		// TODO !
+	}
 }

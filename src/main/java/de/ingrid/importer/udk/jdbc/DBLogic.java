@@ -88,4 +88,7 @@ public interface DBLogic {
 
 	/** DDL Operation ! CAUSES COMMIT ON MySQL ! */
 	void createTableAdditionalFieldData(JDBCConnectionProxy jdbc) throws SQLException;
+
+	/** DDL Operation ! CAUSES COMMIT ON MySQL ! */
+	void createTableSpatialSystem(JDBCConnectionProxy jdbc) throws SQLException;
 }

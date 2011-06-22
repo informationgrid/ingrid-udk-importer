@@ -279,6 +279,21 @@ public class MySQLLogic implements DBLogic {
 		jdbc.executeUpdate(sql);
 	}
 
+	public void createTableSpatialSystem(JDBCConnectionProxy jdbc) throws SQLException {
+		String sql = "CREATE TABLE spatial_system (" +
+			"id BIGINT NOT NULL, " +
+			"version INTEGER NOT NULL DEFAULT 0, " +
+			"obj_id BIGINT NOT NULL, " +
+			"line INTEGER NOT NULL DEFAULT 0, " +
+			"referencesystem_key INTEGER, " +
+			"referencesystem_value VARCHAR(255), " +
+			"PRIMARY KEY (id), " +
+			"INDEX idxSSys_ObjId (obj_id ASC)) " +
+			"TYPE=InnoDB;";
+
+		jdbc.executeUpdate(sql);
+	}
+
 	private String mapColumnTypeToSQL(ColumnType colType) {
 		String sql = "";
 
