@@ -4,6 +4,15 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
+    <release version="3.0.1-SNAPSHOT" date="2011-?-?" description="Add-Ons + Bugfixes for InGrid 3.0. New IGC Schema 3.0.1">
+      <action type="fix" dev="wemove" issue="INGRID-1952">
+        Increased length of organisation name of address in database.
+      </action>
+      <action type="add" dev="wemove" issue="INGRID23-60">
+        Spatial reference system ("Raumbezugssystem") is now 1:n association, added new table spatial_system and migration of data.
+      </action>
+    </release>
+
     <release version="3.0.0.1" date="2011-06-06" description="Bugfix Release InGrid 3.0.0">
       <action type="fix" dev="wemove" issue="INGRID23-264">
         Fix error when migrating additional fields to IGC profile, now also handles special characters in field labels, lists etc.
