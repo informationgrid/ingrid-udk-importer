@@ -14,7 +14,8 @@ import de.ingrid.importer.udk.jdbc.DBLogic.ColumnType;
 
 /**
  * Changes InGrid 3.0.1:<p>
- * - change type of t02_address.institution to TEXT
+ * - change type of t02_address.institution to TEXT_NO_CLOB
+ * - change type of t011_obj_project.leader and .member to TEXT_NO_CLOB (free text entry in IGE !)
  * - migrate referencesystem_key, referencesystem_value from t011_obj_geo to new table spatial_system, see https://dev.wemove.com/jira/browse/INGRID23-60
  */
 public class IDCStrategy3_0_1 extends IDCStrategyDefault {
@@ -67,6 +68,12 @@ public class IDCStrategy3_0_1 extends IDCStrategyDefault {
 			log.info("Modify column 't02_address.institution' to \"TEXT_NO_CLOB\" ...");
 		}
 		jdbc.getDBLogic().modifyColumn("institution", ColumnType.TEXT_NO_CLOB, "t02_address", false, jdbc);
+
+		if (log.isInfoEnabled()) {
+			log.info("Modify column 't011_obj_project.leader' and 't011_obj_project.member' to \"TEXT_NO_CLOB\" ...");
+		}
+		jdbc.getDBLogic().modifyColumn("leader", ColumnType.TEXT_NO_CLOB, "t011_obj_project", false, jdbc);
+		jdbc.getDBLogic().modifyColumn("member", ColumnType.TEXT_NO_CLOB, "t011_obj_project", false, jdbc);
 
 		if (log.isInfoEnabled()) {
 			log.info("Create table 'spatial_system'...");

@@ -5,6 +5,9 @@
   </properties>
   <body>
     <release version="3.0.1-SNAPSHOT" date="2011-?-?" description="Add-Ons + Bugfixes for InGrid 3.0. New IGC Schema 3.0.1">
+      <action type="fix" dev="wemove">
+        Increased length of Project Participants and Project Manager of object of class "Project" in database.
+      </action>
       <action type="fix" dev="wemove" issue="INGRID-1952">
         Increased length of organisation name of address in database.
       </action>
