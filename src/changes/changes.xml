@@ -4,7 +4,7 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
-    <release version="3.0.1-SNAPSHOT" date="2011-?-?" description="Add-Ons + Bugfixes for InGrid 3.0. New IGC Schema 3.0.1">
+    <release version="3.0.1" date="2011-07-05" description="Add-Ons + Bugfixes for InGrid 3.0. New IGC Schema 3.0.1">
       <action type="fix" dev="wemove">
         Increased length of Project Participants and Project Manager of object of class "Project" in database.
       </action>
@@ -12,7 +12,7 @@
         Increased length of organisation name of address in database.
       </action>
       <action type="add" dev="wemove" issue="INGRID23-60">
-        Spatial reference system ("Raumbezugssystem") is now 1:n association, added new table spatial_system and migration of data.
+        Spatial reference system ("Raumbezugssystem") is now 1:n association, added new database table spatial_system and migration of data.
       </action>
     </release>
 
