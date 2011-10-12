@@ -217,6 +217,27 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		p.close();
 	}
 
+	/** Read string value of given generic key from database.
+	 * @param key key name to read value from
+	 * @return null if key not found or value of key is null.
+	 */
+	protected String readGenericKey(String key) throws Exception {
+		String retValue = null;
+
+		sqlStr = "SELECT value_string FROM sys_generic_key WHERE key_name = ?";
+		PreparedStatement ps = jdbc.prepareStatement(sqlStr);
+		ps.setString(1, key);
+
+		ResultSet rs = ps.executeQuery();
+		while (rs.next()) {
+			retValue = rs.getString("value_string");
+		}
+		rs.close();
+		ps.close();
+
+		return retValue;
+	}
+
     /** Convert InputStream to String.
      * @param is the stream
      * @param charsetName pass null to use default "UTF-8"

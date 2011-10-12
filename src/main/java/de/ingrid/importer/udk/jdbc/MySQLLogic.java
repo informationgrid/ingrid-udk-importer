@@ -83,7 +83,7 @@ public class MySQLLogic implements DBLogic {
 			"publication_date VARCHAR(17), " +
 			"PRIMARY KEY (id), " +
 			"INDEX idxObjConf_ObjId (obj_id ASC)) " +
-			"TYPE=InnoDB;";
+			"ENGINE=InnoDB;";
 		jdbc.executeUpdate(sql);
 	}
 
@@ -98,7 +98,7 @@ public class MySQLLogic implements DBLogic {
 			"terms_of_use TEXT,	" +
 			"PRIMARY KEY (id), " +
 			"INDEX idxObjAccess_ObjId (obj_id ASC)) " +
-			"TYPE=InnoDB;";
+			"ENGINE=InnoDB;";
 		jdbc.executeUpdate(sql);
 	}
 
@@ -112,7 +112,7 @@ public class MySQLLogic implements DBLogic {
 			"serv_type_value TEXT, " +
 			"PRIMARY KEY (id), " +
 			"INDEX idxOSerType_OSerId (obj_serv_id ASC)) " +
-			"TYPE=InnoDB;";
+			"ENGINE=InnoDB;";
 		jdbc.executeUpdate(sql);
 	}
 	public void createTableT011ObjServScale(JDBCConnectionProxy jdbc) throws SQLException {
@@ -126,7 +126,7 @@ public class MySQLLogic implements DBLogic {
 			"resolution_scan DOUBLE, " +
 			"PRIMARY KEY (id), " +
 			"INDEX idxOSrvScal_OSrvId (obj_serv_id ASC)) " +
-			"TYPE=InnoDB;";
+			"ENGINE=InnoDB;";
 		jdbc.executeUpdate(sql);
 	}
 	public void createTableSysGui(JDBCConnectionProxy jdbc) throws SQLException {
@@ -137,7 +137,7 @@ public class MySQLLogic implements DBLogic {
 			"behaviour INTEGER NOT NULL DEFAULT -1, " +
 			"PRIMARY KEY (id), " +
 			"UNIQUE (gui_id)) " +
-			"TYPE=InnoDB;";
+			"ENGINE=InnoDB;";
 		jdbc.executeUpdate(sql);
 	}
 	public void createTablesMetadata(JDBCConnectionProxy jdbc) throws SQLException {
@@ -152,7 +152,7 @@ public class MySQLLogic implements DBLogic {
 			"reassigner_uuid VARCHAR(40), " +
 			"reassign_time VARCHAR(17), " +
 			"PRIMARY KEY (id)) " +
-			"TYPE=InnoDB;";
+			"ENGINE=InnoDB;";
 		jdbc.executeUpdate(sql);
 		
 		sql = "CREATE TABLE address_metadata(" +
@@ -166,7 +166,7 @@ public class MySQLLogic implements DBLogic {
 			"reassigner_uuid VARCHAR(40), " +
 			"reassign_time VARCHAR(17), " +
 			"PRIMARY KEY (id)) " +
-			"TYPE=InnoDB;";
+			"ENGINE=InnoDB;";
 		jdbc.executeUpdate(sql);
 	}
 	public void createTableSysJobInfo(JDBCConnectionProxy jdbc) throws SQLException {
@@ -179,7 +179,7 @@ public class MySQLLogic implements DBLogic {
 			"end_time VARCHAR(17)," +
 			"job_details MEDIUMTEXT," +
 			"PRIMARY KEY (id)) " +
-			"TYPE=InnoDB;";
+			"ENGINE=InnoDB;";
 		jdbc.executeUpdate(sql);
 	}
 	public void createTableSysGenericKey(JDBCConnectionProxy jdbc) throws SQLException {
@@ -190,7 +190,7 @@ public class MySQLLogic implements DBLogic {
 			"value_string VARCHAR(255)," +
 			"PRIMARY KEY (id)," +
 			"UNIQUE (key_name)) " +
-			"TYPE=InnoDB;";
+			"ENGINE=InnoDB;";
 		jdbc.executeUpdate(sql);
 	}
 
@@ -203,7 +203,7 @@ public class MySQLLogic implements DBLogic {
 			"terms_of_use TEXT, " +
 			"PRIMARY KEY (id), " +
 			"INDEX idxObjUse_ObjId (obj_id ASC)) " +
-			"TYPE=InnoDB;";
+			"ENGINE=InnoDB;";
 		jdbc.executeUpdate(sql);
 	}
 	public void createTableT011ObjServUrl(JDBCConnectionProxy jdbc) throws SQLException {
@@ -217,7 +217,7 @@ public class MySQLLogic implements DBLogic {
 			"description VARCHAR(4000), " +
 			"PRIMARY KEY (id), " +
 			"INDEX idxOSerUrl_OSerId (obj_serv_id ASC)) " +
-			"TYPE=InnoDB;";
+			"ENGINE=InnoDB;";
 		jdbc.executeUpdate(sql);
 	}
 
@@ -234,7 +234,7 @@ public class MySQLLogic implements DBLogic {
 			"measure_description VARCHAR(4000), " +
 			"PRIMARY KEY (id), " +
 			"INDEX idxObjDq_ObjId (obj_id ASC)) " +
-			"TYPE=InnoDB;";
+			"ENGINE=InnoDB;";
 		jdbc.executeUpdate(sql);
 	}
 
@@ -248,7 +248,7 @@ public class MySQLLogic implements DBLogic {
 			"format_value VARCHAR(255), " +
 			"PRIMARY KEY (id), " +
 			"INDEX idxObjFormatInsp_ObjId (obj_id ASC)) " +
-			"TYPE=InnoDB;";
+			"ENGINE=InnoDB;";
 		jdbc.executeUpdate(sql);
 	}
 
@@ -259,7 +259,7 @@ public class MySQLLogic implements DBLogic {
 			"idc_user_id BIGINT, " +
 			"idc_group_id BIGINT, " +
 			"PRIMARY KEY (id)) " +
-			"TYPE=InnoDB;";
+			"ENGINE=InnoDB;";
 		jdbc.executeUpdate(sql);
 	}
 
@@ -275,7 +275,7 @@ public class MySQLLogic implements DBLogic {
 			"parent_field_id BIGINT, " +
 			"PRIMARY KEY (id), " +
 			"INDEX idxAddField_ObjId (obj_id ASC)) " +
-			"TYPE=InnoDB;";
+			"ENGINE=InnoDB;";
 		jdbc.executeUpdate(sql);
 	}
 
@@ -289,7 +289,7 @@ public class MySQLLogic implements DBLogic {
 			"referencesystem_value VARCHAR(255), " +
 			"PRIMARY KEY (id), " +
 			"INDEX idxSSys_ObjId (obj_id ASC)) " +
-			"TYPE=InnoDB;";
+			"ENGINE=InnoDB;";
 
 		jdbc.executeUpdate(sql);
 	}

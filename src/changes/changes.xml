@@ -6,7 +6,10 @@
   <body>
     <release version="3.1.1-SNAPSHOT" date="????-??-??" description="Add-Ons + Bugfixes for InGrid 3.1. New IGC Schema 3.1.1">
       <action type="update" dev="wemove" issue="INGRID31-22">
-        Remove environmental categories from catalog (t0114_env_category + syslist 1400). Categorization now only via environmental topics.
+        Remove environmental categories from catalog (t0114_env_category + syslist 1400 + legacy control in profile). Categorization now only via environmental topics.
+      </action>
+      <action type="fix" dev="wemove">
+        Fixed compatibility with MySQL 5.5 (changed syntax of InnoDB when creating tables).
       </action>
     </release>
 
