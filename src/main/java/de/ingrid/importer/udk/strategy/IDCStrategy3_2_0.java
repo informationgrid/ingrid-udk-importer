@@ -120,7 +120,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		newSyslistMap_de.put(10, "INSPIRE Durchführungsbestimmung Netzdienste");
 		newSyslistMap_de.put(11, "INSPIRE Durchführungsbestimmung Metadaten");
 		newSyslistMap_de.put(12, "INSPIRE Durchführungsbestimmung Interoperabilität von Geodatensätzen und --diensten");
-		newSyslistMap_de.put(13, "INSPIRE Richtline");
+		newSyslistMap_de.put(13, "INSPIRE Richtlinie");
 		// english syslist
 		LinkedHashMap<Integer, String> newSyslistMap_en = new LinkedHashMap<Integer, String>();
 		newSyslistMap_en.put(1, "INSPIRE Data Specification on Addresses – Guidelines");
@@ -135,7 +135,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		newSyslistMap_en.put(10, "INSPIRE Durchführungsbestimmung Netzdienste");
 		newSyslistMap_en.put(11, "INSPIRE Durchführungsbestimmung Metadaten");
 		newSyslistMap_en.put(12, "INSPIRE Durchführungsbestimmung Interoperabilität von Geodatensätzen und --diensten");
-		newSyslistMap_en.put(13, "INSPIRE Richtline");
+		newSyslistMap_en.put(13, "INSPIRE Richtlinie");
 
 		writeNewSyslist(lstId, newSyslistMap_de, newSyslistMap_en, 13);
 // ---------------------------
