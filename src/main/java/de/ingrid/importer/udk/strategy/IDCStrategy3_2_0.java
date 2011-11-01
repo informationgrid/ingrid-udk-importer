@@ -28,10 +28,6 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 
 	private static final String MY_VERSION = VALUE_IDC_VERSION_3_2_0;
 
-	int SYSLIST_ENTRY_ID_NO_INSPIRE_THEME = 99999;
-	int INSPIRE_ENCODING_DEFAULT_KEY;
-	String INSPIRE_ENCODING_DEFAULT_VALUE;
-
 	public String getIDCVersion() {
 		return MY_VERSION;
 	}
