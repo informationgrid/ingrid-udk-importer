@@ -5,8 +5,11 @@
   </properties>
   <body>
     <release version="3.2.0-SNAPSHOT" date="????-??-??" description="Release InGrid 3.2. New IGC Schema 3.2.0">
+      <action type="update" dev="wemove" issue="INGRID32-43">
+        Change visibility and behaviour of "Sprache der Ressource" and "Zeichensatz des Datensatzes" dependent from object class (via Javascript in Profile).
+      </action>
       <action type="update" dev="wemove" issue="INGRID32-28">
-        Editing of "Spezifikation der Konformität" and "Nutzungsbedingungen" now via combobox and new syslists (6005, 6020), also allowing free entries.
+        "Spezifikation der Konformität" and "Nutzungsbedingungen" now have new syslists (6005, 6020), also allowing free entries.
       </action>
       <action type="update" dev="wemove" issue="INGRID31-22">
         Remove environmental categories from catalog (t0114_env_category + syslist 1400 + legacy control in profile). Categorization now only via environmental topics.

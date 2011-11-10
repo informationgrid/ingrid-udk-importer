@@ -13,6 +13,10 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import de.ingrid.importer.udk.jdbc.DBLogic.ColumnType;
+import de.ingrid.mdek.beans.ProfileBean;
+import de.ingrid.mdek.beans.Rubric;
+import de.ingrid.mdek.beans.controls.Controls;
+import de.ingrid.mdek.profile.ProfileMapper;
 
 /**
  * <p>
@@ -21,12 +25,20 @@ import de.ingrid.importer.udk.jdbc.DBLogic.ColumnType;
  *   <li> adding NEW syslists for "Spezifikation der Konformität" (6005) and "Nutzungsbedingungen"
  *   (6020), modify according tables (add _key/_value), see https://dev.wemove.com/jira/browse/INGRID32-28
  * </ul>
+ * Changes AK-IGE:<p>
+ * <ul>
+ *   <li>Profile: Add Javascript for "Sprache der Ressource" and "Zeichensatz des Datensatzes" handling visisbility and behaviour, see INGRID32-43  
+ * </ul>
  */
 public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 
 	private static Log log = LogFactory.getLog(IDCStrategy3_2_0.class);
 
 	private static final String MY_VERSION = VALUE_IDC_VERSION_3_2_0;
+
+	String profileXml = null;
+    ProfileMapper profileMapper;
+	ProfileBean profileBean = null;
 
 	public String getIDCVersion() {
 		return MY_VERSION;
@@ -58,6 +70,10 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 
 		System.out.print("  Updating object_conformity...");
 		updateObjectConformity();
+		System.out.println("done.");
+
+		System.out.print("  Update Profile in database...");
+		updateProfile();
 		System.out.println("done.");
 
 		// FINALLY EXECUTE ALL "DROPPING" DDL OPERATIONS ! These ones may cause commit (e.g. on MySQL)
@@ -316,6 +332,96 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 			log.info("Updated " + numProcessed + " entries... done");
 			log.info("Updating object_conformity... done");
 		}
+	}
+
+	private void updateProfile() throws Exception {
+		if (log.isInfoEnabled()) {
+			log.info("Update Profile in database...");
+		}
+
+		// tags for marking added javascript code (for later removal)
+		String startTag = "\n//<3.2.0 update\n";
+		String endTag = "\n//3.2.0>\n";
+		
+        // read profile
+		String profileXml = readGenericKey(KEY_PROFILE_XML);
+		if (profileXml == null) {
+			throw new Exception("igcProfile not set !");
+		}
+        profileMapper = new ProfileMapper();
+		profileBean = profileMapper.mapStringToBean(profileXml);			
+
+		// remove env category control from profile (in according rubric)
+		boolean removed = false;
+        for (Rubric rubric : profileBean.getRubrics()) {
+        	if ("extraInfo".equals(rubric.getId())) {
+
+        		if (log.isInfoEnabled()) {
+        			log.info("Rubrik 'Zusatzinformation'(extraInfo):");
+        		}
+
+                for (Controls control : rubric.getControls()) {
+
+                	if ("uiElement5042".equals(control.getId())) {
+                    	if (log.isInfoEnabled()) {
+                			log.info("'Sprache der Ressource'(uiElement5042): hide in 'Geodatendienst' + 'Informationssystem', make optional in classes 'Organisationenseinheit' + 'Vorhaben'");
+                		}
+                		String jsCode = startTag +
+"dojo.subscribe(\"/onObjectClassChange\", function(c) {\n" +
+"// hide in 'Geodatendienst'\n" +
+"if (c.objClass === \"Class3\") {\n" +
+"  dojo.addClass(\"uiElement5042\", \"hide\");\n" +
+"} else {\n" +
+"  dojo.removeClass(\"uiElement5042\", \"hide\");\n" +
+"}\n" +
+"// optional in classes 'Organisationenseinheit' + 'Vorhaben' + 'Informationssystem'\n" +
+"if (c.objClass === \"Class0\" || c.objClass === \"Class4\" || c.objClass === \"Class6\") {\n" +
+"  dojo.removeClass(\"uiElement5042\", \"required\");\n" +
+"  dojo.removeClass(\"uiElement5042\", \"show\");\n" +
+"  dojo.addClass(\"uiElement5042\", \"optional\");\n" +
+"} else {\n" +
+"  dojo.removeClass(\"uiElement5042\", \"optional\");\n" +
+"  dojo.addClass(\"uiElement5042\", \"required\");\n" +
+"}});" + endTag;
+                		updateScriptedProperties(control, jsCode);
+
+                	} else if ("uiElement5043".equals(control.getId())) {
+                    	if (log.isInfoEnabled()) {
+                			log.info("'Zeichensatz des Datensatzes'(uiElement5043): only in 'Geo-Information/Karte' as optional");
+                		}
+                    	control.setIsMandatory(false);
+                    	control.setIsVisible("hide");
+                		String jsCode = startTag +
+"dojo.subscribe(\"/onObjectClassChange\", function(c) {\n" +
+"// optional in 'Geo-Information/Karte'\n" +
+"if (c.objClass === \"Class1\") {\n" +
+"  dojo.removeClass(\"uiElement5043\", \"hide\");\n" +
+"  dojo.addClass(\"uiElement5043\", \"optional\");\n" +
+"} else {\n" +
+"  dojo.addClass(\"uiElement5043\", \"hide\");\n" +
+"  dojo.removeClass(\"uiElement5043\", \"optional\");\n" +
+"}});" + endTag;
+                		updateScriptedProperties(control, jsCode);
+                	}
+                }
+        	}
+        } 
+
+		// write Profile !
+        profileXml = profileMapper.mapBeanToXmlString(profileBean);
+		if (log.isDebugEnabled()) {
+			log.debug("Resulting IGC Profile:" + profileXml);
+		}
+		setGenericKey(KEY_PROFILE_XML, profileXml);        	
+
+		if (log.isInfoEnabled()) {
+			log.info("Update Profile in database... done");
+		}
+	}
+
+	private void updateScriptedProperties(Controls control, String jsToAdd) {
+		String js = control.getScriptedProperties();
+		control.setScriptedProperties(js + jsToAdd);
 	}
 
 	private void cleanUpDataStructure() throws Exception {
