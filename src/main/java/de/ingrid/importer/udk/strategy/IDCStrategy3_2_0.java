@@ -17,6 +17,7 @@ import de.ingrid.mdek.beans.ProfileBean;
 import de.ingrid.mdek.beans.Rubric;
 import de.ingrid.mdek.beans.controls.Controls;
 import de.ingrid.mdek.profile.ProfileMapper;
+import de.ingrid.mdek.util.MdekProfileUtils;
 
 /**
  * <p>
@@ -27,7 +28,9 @@ import de.ingrid.mdek.profile.ProfileMapper;
  * </ul>
  * Changes AK-IGE:<p>
  * <ul>
- *   <li>Profile: Add Javascript for "Sprache der Ressource" and "Zeichensatz des Datensatzes" handling visisbility and behaviour, see INGRID32-43  
+ *   <li>Profile: Move rubric "Verschlagwortung" after rubric "Allgemeines", move table "INSPIRE-Themen" from "Allgemeines" to "Verschlagwortung", see INGRID32-44  
+ *   <li>Profile: Add Javascript for "Sprache der Ressource" and "Zeichensatz des Datensatzes" handling visibility and behaviour, see INGRID32-43  
+ *   <li>Profile: Add Javascript for "ISO-Themenkategorie", "INSPIRE-Themen"/"INSPIRE-relevanter Datensatz" handling visibility and behaviour, see INGRID32-44
  * </ul>
  */
 public class IDCStrategy3_2_0 extends IDCStrategyDefault {
@@ -339,10 +342,6 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 			log.info("Update Profile in database...");
 		}
 
-		// tags for marking added javascript code (for later removal)
-		String startTag = "\n//<3.2.0 update\n";
-		String endTag = "\n//3.2.0>\n";
-		
         // read profile
 		String profileXml = readGenericKey(KEY_PROFILE_XML);
 		if (profileXml == null) {
@@ -351,22 +350,53 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
         profileMapper = new ProfileMapper();
 		profileBean = profileMapper.mapStringToBean(profileXml);			
 
-		// remove env category control from profile (in according rubric)
-		boolean removed = false;
-        for (Rubric rubric : profileBean.getRubrics()) {
-        	if ("extraInfo".equals(rubric.getId())) {
+		moveRubricsAndControls(profileBean);
+		
+		addJavaScriptToControls(profileBean);
 
-        		if (log.isInfoEnabled()) {
-        			log.info("Rubrik 'Zusatzinformation'(extraInfo):");
-        		}
+		// write Profile !
+        profileXml = profileMapper.mapBeanToXmlString(profileBean);
+		if (log.isDebugEnabled()) {
+			log.debug("Resulting IGC Profile:" + profileXml);
+		}
+		setGenericKey(KEY_PROFILE_XML, profileXml);        	
 
-                for (Controls control : rubric.getControls()) {
+		if (log.isInfoEnabled()) {
+			log.info("Update Profile in database... done");
+		}
+	}
 
-                	if ("uiElement5042".equals(control.getId())) {
-                    	if (log.isInfoEnabled()) {
-                			log.info("'Sprache der Ressource'(uiElement5042): hide in 'Geodatendienst' + 'Informationssystem', make optional in classes 'Organisationenseinheit' + 'Vorhaben'");
-                		}
-                		String jsCode = startTag +
+	/**
+	 * Move rubric "Verschlagwortung" after rubric "Allgemeines".
+	 * Move Control "INSPIRE-Themen" from "Allgemeines" to "Verschlagwortung".
+	 */
+	private void moveRubricsAndControls(ProfileBean profileBean) {
+    	if (log.isInfoEnabled()) {
+			log.info("'Move rubric 'Verschlagwortung' after rubric 'Allgemeines'");
+		}
+		int indxRubricAllgemeines = MdekProfileUtils.findRubricIndex(profileBean, "general");
+		Rubric rubric = MdekProfileUtils.removeRubric(profileBean, "thesaurus");
+		MdekProfileUtils.addRubric(profileBean, rubric, indxRubricAllgemeines+1);
+
+    	if (log.isInfoEnabled()) {
+			log.info("'Move control 'INSPIRE-Themen' from 'Allgemeines' to 'Verschlagwortung'");
+		}
+    	Controls control = MdekProfileUtils.removeControl(profileBean, "uiElement5064");
+		rubric = MdekProfileUtils.findRubric(profileBean, "thesaurus");
+		MdekProfileUtils.addControl(profileBean, control, rubric, 0);
+	}
+
+	private void addJavaScriptToControls(ProfileBean profileBean) {
+		// tags for marking newly added javascript code (for later removal)
+		String startTag = "\n//<3.2.0 update\n";
+		String endTag = "\n//3.2.0>\n";
+
+		//------------- 'Sprache der Ressource'
+    	if (log.isInfoEnabled()) {
+			log.info("'Sprache der Ressource'(uiElement5042): hide in 'Geodatendienst' + 'Informationssystem', make optional in classes 'Organisationenseinheit' + 'Vorhaben'");
+		}
+    	Controls control = MdekProfileUtils.findControl(profileBean, "uiElement5042");
+		String jsCode = startTag +
 "dojo.subscribe(\"/onObjectClassChange\", function(c) {\n" +
 "// hide in 'Geodatendienst'\n" +
 "if (c.objClass === \"Class3\") {\n" +
@@ -383,17 +413,18 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 "  dojo.removeClass(\"uiElement5042\", \"optional\");\n" +
 "  dojo.addClass(\"uiElement5042\", \"required\");\n" +
 "}});" + endTag;
-                		updateScriptedProperties(control, jsCode);
+		MdekProfileUtils.updateScriptedProperties(control, jsCode);
 
-                	} else if ("uiElement5043".equals(control.getId())) {
-                    	if (log.isInfoEnabled()) {
-                			log.info("'Zeichensatz des Datensatzes'(uiElement5043): only in 'Geo-Information/Karte' as optional");
-                		}
-                    	control.setIsMandatory(false);
-                    	control.setIsVisible("hide");
-                		String jsCode = startTag +
+		//------------- 'Zeichensatz des Datensatzes'
+    	if (log.isInfoEnabled()) {
+			log.info("'Zeichensatz des Datensatzes'(uiElement5043): only in 'Geo-Information/Karte', then optional");
+		}
+    	control = MdekProfileUtils.findControl(profileBean, "uiElement5043");
+    	control.setIsMandatory(false);
+    	control.setIsVisible("hide");
+		jsCode = startTag +
 "dojo.subscribe(\"/onObjectClassChange\", function(c) {\n" +
-"// optional in 'Geo-Information/Karte'\n" +
+"// only in 'Geo-Information/Karte', then optional\n" +
 "if (c.objClass === \"Class1\") {\n" +
 "  dojo.removeClass(\"uiElement5043\", \"hide\");\n" +
 "  dojo.addClass(\"uiElement5043\", \"optional\");\n" +
@@ -401,27 +432,70 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 "  dojo.addClass(\"uiElement5043\", \"hide\");\n" +
 "  dojo.removeClass(\"uiElement5043\", \"optional\");\n" +
 "}});" + endTag;
-                		updateScriptedProperties(control, jsCode);
-                	}
-                }
-        	}
-        } 
+		MdekProfileUtils.updateScriptedProperties(control, jsCode);
 
-		// write Profile !
-        profileXml = profileMapper.mapBeanToXmlString(profileBean);
-		if (log.isDebugEnabled()) {
-			log.debug("Resulting IGC Profile:" + profileXml);
+		//------------- 'ISO-Themenkategorie'
+    	if (log.isInfoEnabled()) {
+			log.info("'ISO-Themenkategorie'(uiElement5060): only in 'Geo-Information/Karte', then mandatory");
 		}
-		setGenericKey(KEY_PROFILE_XML, profileXml);        	
-
-		if (log.isInfoEnabled()) {
-			log.info("Update Profile in database... done");
+    	control = MdekProfileUtils.findControl(profileBean, "uiElement5060");
+    	control.setIsMandatory(false);
+    	control.setIsVisible("hide");
+		jsCode = startTag +
+"dojo.subscribe(\"/onObjectClassChange\", function(c) {\n" +
+"// only in 'Geo-Information/Karte', then mandatory\n" +
+"if (c.objClass === \"Class1\") {\n" +
+"  dojo.removeClass(\"uiElement5060\", \"hide\");\n" +
+"  dojo.addClass(\"uiElement5060\", \"required\");\n" +
+"} else {\n" +
+"  dojo.addClass(\"uiElement5060\", \"hide\");\n" +
+"  dojo.removeClass(\"uiElement5060\", \"required\");\n" +
+"}});" + endTag;
+		MdekProfileUtils.updateScriptedProperties(control, jsCode);
+		
+		//------------- 'INSPIRE-Themen'
+    	if (log.isInfoEnabled()) {
+			log.info("'INSPIRE-Themen'(uiElement5064): mandatory in 'Geo-Information/Karte', optional in classes 'Geodatendienst' + 'Informationssystem' + 'Datensammlung'");
 		}
-	}
-
-	private void updateScriptedProperties(Controls control, String jsToAdd) {
-		String js = control.getScriptedProperties();
-		control.setScriptedProperties(js + jsToAdd);
+    	control = MdekProfileUtils.findControl(profileBean, "uiElement5064");
+    	control.setIsMandatory(false);
+    	control.setIsVisible("optional");
+		jsCode = startTag +
+"dojo.subscribe(\"/onObjectClassChange\", function(c) {\n" +
+"// hide in 'Organisationseinheit' + 'Dokument' + 'Projekt'\n" +
+"if (c.objClass === \"Class0\" || c.objClass === \"Class2\" || c.objClass === \"Class4\") {\n" +
+"  dojo.addClass(\"uiElement5064\", \"hide\");\n" +
+"} else {\n" +
+"  dojo.removeClass(\"uiElement5064\", \"hide\");\n" +
+"}\n" +
+"// mandatory in class 'Geo-Information/Karte'\n" +
+"if (c.objClass === \"Class1\") {\n" +
+"  dojo.removeClass(\"uiElement5064\", \"optional\");\n" +
+"  dojo.addClass(\"uiElement5064\", \"required\");\n" +
+"} else {\n" +
+"  dojo.removeClass(\"uiElement5064\", \"required\");\n" +
+"  dojo.addClass(\"uiElement5064\", \"optional\");\n" +
+"}});" + endTag;
+		MdekProfileUtils.updateScriptedProperties(control, jsCode);
+		
+		//------------- 'INSPIRE-relevanter Datensatz'
+    	if (log.isInfoEnabled()) {
+			log.info("'INSPIRE-relevanter Datensatz'(uiElement6000): only in 'Geo-Information/Karte' + 'Geodatendienst', then always show");
+		}
+    	control = MdekProfileUtils.findControl(profileBean, "uiElement6000");
+    	control.setIsMandatory(false);
+    	control.setIsVisible("hide");
+		jsCode = startTag +
+"dojo.subscribe(\"/onObjectClassChange\", function(c) {\n" +
+"// only in 'Geo-Information/Karte' + 'Geodatendienst', then always show\n" +
+"if (c.objClass === \"Class1\" || c.objClass === \"Class3\") {\n" +
+"  dojo.removeClass(\"uiElement6000\", \"hide\");\n" +
+"  dojo.addClass(\"uiElement6000\", \"show\");\n" +
+"} else {\n" +
+"  dojo.removeClass(\"uiElement6000\", \"show\");\n" +
+"  dojo.addClass(\"uiElement6000\", \"hide\");\n" +
+"}});" + endTag;
+		MdekProfileUtils.updateScriptedProperties(control, jsCode);
 	}
 
 	private void cleanUpDataStructure() throws Exception {
