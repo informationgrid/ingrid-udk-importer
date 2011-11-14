@@ -30,7 +30,7 @@ import de.ingrid.mdek.util.MdekProfileUtils;
  * <ul>
  *   <li>Profile: Move rubric "Verschlagwortung" after rubric "Allgemeines", move table "INSPIRE-Themen" from "Allgemeines" to "Verschlagwortung", see INGRID32-44  
  *   <li>Profile: Add Javascript for "Sprache der Ressource" and "Zeichensatz des Datensatzes" handling visibility and behaviour, see INGRID32-43  
- *   <li>Profile: Add Javascript for "ISO-Themenkategorie", "INSPIRE-Themen"/"INSPIRE-relevanter Datensatz" handling visibility and behaviour, see INGRID32-44
+ *   <li>Profile: Add Javascript for "ISO-Themenkategorie", "INSPIRE-Themen"/"INSPIRE-relevanter Datensatz" handling visibility and behaviour, see INGRID32-44, INGRID32-49
  * </ul>
  */
 public class IDCStrategy3_2_0 extends IDCStrategyDefault {
@@ -393,25 +393,19 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 
 		//------------- 'Sprache der Ressource'
     	if (log.isInfoEnabled()) {
-			log.info("'Sprache der Ressource'(uiElement5042): hide in 'Geodatendienst' + 'Informationssystem', make optional in classes 'Organisationenseinheit' + 'Vorhaben'");
+			log.info("'Sprache der Ressource'(uiElement5042): hide in 'Geodatendienst', make optional in classes 'Organisationenseinheit' + 'Vorhaben' + 'Informationssystem'");
 		}
     	Controls control = MdekProfileUtils.findControl(profileBean, "uiElement5042");
 		String jsCode = startTag +
 "dojo.subscribe(\"/onObjectClassChange\", function(c) {\n" +
-"// hide in 'Geodatendienst'\n" +
 "if (c.objClass === \"Class3\") {\n" +
-"  dojo.addClass(\"uiElement5042\", \"hide\");\n" +
+"  // hide in 'Geodatendienst'\n" +
+"  UtilUI.setHide(\"uiElement5042\");\n" +
+"} else if (c.objClass === \"Class0\" || c.objClass === \"Class4\" || c.objClass === \"Class6\") {\n" +
+"  // optional in classes 'Organisationenseinheit' + 'Vorhaben' + 'Informationssystem'\n" +
+"  UtilUI.setOptional(\"uiElement5042\");\n" +
 "} else {\n" +
-"  dojo.removeClass(\"uiElement5042\", \"hide\");\n" +
-"}\n" +
-"// optional in classes 'Organisationenseinheit' + 'Vorhaben' + 'Informationssystem'\n" +
-"if (c.objClass === \"Class0\" || c.objClass === \"Class4\" || c.objClass === \"Class6\") {\n" +
-"  dojo.removeClass(\"uiElement5042\", \"required\");\n" +
-"  dojo.removeClass(\"uiElement5042\", \"show\");\n" +
-"  dojo.addClass(\"uiElement5042\", \"optional\");\n" +
-"} else {\n" +
-"  dojo.removeClass(\"uiElement5042\", \"optional\");\n" +
-"  dojo.addClass(\"uiElement5042\", \"required\");\n" +
+"  UtilUI.setMandatory(\"uiElement5042\");\n" +
 "}});" + endTag;
 		MdekProfileUtils.updateScriptedProperties(control, jsCode);
 
@@ -426,11 +420,9 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 "dojo.subscribe(\"/onObjectClassChange\", function(c) {\n" +
 "// only in 'Geo-Information/Karte', then optional\n" +
 "if (c.objClass === \"Class1\") {\n" +
-"  dojo.removeClass(\"uiElement5043\", \"hide\");\n" +
-"  dojo.addClass(\"uiElement5043\", \"optional\");\n" +
+"  UtilUI.setOptional(\"uiElement5043\");\n" +
 "} else {\n" +
-"  dojo.addClass(\"uiElement5043\", \"hide\");\n" +
-"  dojo.removeClass(\"uiElement5043\", \"optional\");\n" +
+"  UtilUI.setHide(\"uiElement5043\");\n" +
 "}});" + endTag;
 		MdekProfileUtils.updateScriptedProperties(control, jsCode);
 
@@ -445,56 +437,59 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 "dojo.subscribe(\"/onObjectClassChange\", function(c) {\n" +
 "// only in 'Geo-Information/Karte', then mandatory\n" +
 "if (c.objClass === \"Class1\") {\n" +
-"  dojo.removeClass(\"uiElement5060\", \"hide\");\n" +
-"  dojo.addClass(\"uiElement5060\", \"required\");\n" +
+"  UtilUI.setMandatory(\"uiElement5060\");\n" +
 "} else {\n" +
-"  dojo.addClass(\"uiElement5060\", \"hide\");\n" +
-"  dojo.removeClass(\"uiElement5060\", \"required\");\n" +
+"  UtilUI.setHide(\"uiElement5060\");\n" +
 "}});" + endTag;
 		MdekProfileUtils.updateScriptedProperties(control, jsCode);
 		
 		//------------- 'INSPIRE-Themen'
     	if (log.isInfoEnabled()) {
-			log.info("'INSPIRE-Themen'(uiElement5064): mandatory in 'Geo-Information/Karte', optional in classes 'Geodatendienst' + 'Informationssystem' + 'Datensammlung'");
+			log.info("'INSPIRE-Themen'(uiElement5064): mandatory in 'Geo-Information/Karte', optional in classes 'Geodatendienst' + 'Informationssystem/Dienst/Anwendung' + 'Datensammlung/Datenbank'");
 		}
     	control = MdekProfileUtils.findControl(profileBean, "uiElement5064");
     	control.setIsMandatory(false);
-    	control.setIsVisible("optional");
+    	control.setIsVisible("hide");
 		jsCode = startTag +
 "dojo.subscribe(\"/onObjectClassChange\", function(c) {\n" +
-"// hide in 'Organisationseinheit' + 'Dokument' + 'Projekt'\n" +
-"if (c.objClass === \"Class0\" || c.objClass === \"Class2\" || c.objClass === \"Class4\") {\n" +
-"  dojo.addClass(\"uiElement5064\", \"hide\");\n" +
+"if (c.objClass === \"Class3\" || c.objClass === \"Class5\" || c.objClass === \"Class6\") {\n" +
+"  // optional in 'Geodatendienst' + 'Datensammlung/Datenbank' + 'Informationssystem/Dienst/Anwendung'\n" +
+"  UtilUI.setOptional(\"uiElement5064\");\n" +
+"} else if (c.objClass === \"Class1\") {\n" +
+"  // mandatory in class 'Geo-Information/Karte'\n" +
+"  UtilUI.setMandatory(\"uiElement5064\");\n" +
 "} else {\n" +
-"  dojo.removeClass(\"uiElement5064\", \"hide\");\n" +
-"}\n" +
-"// mandatory in class 'Geo-Information/Karte'\n" +
-"if (c.objClass === \"Class1\") {\n" +
-"  dojo.removeClass(\"uiElement5064\", \"optional\");\n" +
-"  dojo.addClass(\"uiElement5064\", \"required\");\n" +
-"} else {\n" +
-"  dojo.removeClass(\"uiElement5064\", \"required\");\n" +
-"  dojo.addClass(\"uiElement5064\", \"optional\");\n" +
+"  UtilUI.setHide(\"uiElement5064\");\n" +
 "}});" + endTag;
 		MdekProfileUtils.updateScriptedProperties(control, jsCode);
 		
 		//------------- 'INSPIRE-relevanter Datensatz'
     	if (log.isInfoEnabled()) {
-			log.info("'INSPIRE-relevanter Datensatz'(uiElement6000): only in 'Geo-Information/Karte' + 'Geodatendienst', then always show");
+			log.info("'INSPIRE-relevanter Datensatz'(uiElement6000): only in 'Geo-Information/Karte' + 'Geodatendienst' + 'Dienst/Anwendung/Informationssystem', then always show");
 		}
     	control = MdekProfileUtils.findControl(profileBean, "uiElement6000");
     	control.setIsMandatory(false);
     	control.setIsVisible("hide");
 		jsCode = startTag +
 "dojo.subscribe(\"/onObjectClassChange\", function(c) {\n" +
-"// only in 'Geo-Information/Karte' + 'Geodatendienst', then always show\n" +
-"if (c.objClass === \"Class1\" || c.objClass === \"Class3\") {\n" +
-"  dojo.removeClass(\"uiElement6000\", \"hide\");\n" +
-"  dojo.addClass(\"uiElement6000\", \"show\");\n" +
+"// only in 'Geo-Information/Karte' + 'Geodatendienst' + 'Dienst/Anwendung/Informationssystem', then optional but always show\n" +
+"if (c.objClass === \"Class1\" || c.objClass === \"Class3\" || c.objClass === \"Class6\") {\n" +
+"  UtilUI.setShow(\"uiElement6000\");\n" +
 "} else {\n" +
-"  dojo.removeClass(\"uiElement6000\", \"show\");\n" +
-"  dojo.addClass(\"uiElement6000\", \"hide\");\n" +
-"}});" + endTag;
+"  UtilUI.setHide(\"uiElement6000\");\n" +
+"}});\n" +
+"// make 'INSPIRE-Themen' mandatory when selected\n" +
+"dojo.connect(dijit.byId(\"isInspireRelevant\"), \"onChange\", function(val) {isInspireRelevantHandler();});\n" +
+"dojo.connect(dijit.byId(\"isInspireRelevant\"), \"onClick\", function(obj, field) {isInspireRelevantHandler();});\n" +
+"function isInspireRelevantHandler() {\n" +
+"  if (dijit.byId(\"isInspireRelevant\").checked) {\n" +
+"    UtilUI.setMandatory(\"uiElement5064\");\n" +
+"  } else {\n" +
+"    if (\"Class1\" === dijit.byId(\"objectClass\").getValue())\n" +
+"      UtilUI.setMandatory(\"uiElement5064\");\n" +
+"    else\n" +
+"      UtilUI.setOptional(\"uiElement5064\");\n" +
+"  }}" + endTag;
 		MdekProfileUtils.updateScriptedProperties(control, jsCode);
 	}
 

@@ -5,7 +5,7 @@
   </properties>
   <body>
     <release version="3.2.0-SNAPSHOT" date="????-??-??" description="Release InGrid 3.2. New IGC Schema 3.2.0">
-      <action type="update" dev="wemove" issue="INGRID32-44">
+      <action type="update" dev="wemove" issue="INGRID32-44, INGRID32-49">
         Update behaviour of "ISO-Themenkategorie" and "INSPIRE-Thema"/"INSPIRE-relevanter Datensatz" in Profile. Change positions.
       </action>
       <action type="update" dev="wemove" issue="INGRID32-43">
