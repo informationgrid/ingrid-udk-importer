@@ -7,7 +7,7 @@ CREATE TABLE t011_obj_serv_op_platform
 	platform VARCHAR(120),
 	PRIMARY KEY (id),
 	INDEX idxOSerOPl_OSerOId (obj_serv_op_id ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -24,7 +24,7 @@ CREATE TABLE t011_obj_serv_op_para
 	repeatability INTEGER,
 	PRIMARY KEY (id),
 	INDEX idxOSerOPa_OSerOId (obj_serv_op_id ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -37,7 +37,7 @@ CREATE TABLE t011_obj_serv_op_depends
 	depends_on VARCHAR(120),
 	PRIMARY KEY (id),
 	INDEX idxOserODe_OSerOId (obj_serv_op_id ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -50,7 +50,7 @@ CREATE TABLE t011_obj_serv_op_connpoint
 	connect_point VARCHAR(255),
 	PRIMARY KEY (id),
 	INDEX idxOSerOCP_OSerOId (obj_serv_op_id ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -63,7 +63,7 @@ CREATE TABLE t011_obj_serv_version
 	serv_version VARCHAR(80),
 	PRIMARY KEY (id),
 	INDEX idxOSerVers_OSerId (obj_serv_id ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -79,7 +79,7 @@ CREATE TABLE t011_obj_serv_operation
 	invocation_name VARCHAR(255),
 	PRIMARY KEY (id),
 	INDEX idxOSerOper_OSerId (obj_serv_id ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -93,7 +93,7 @@ CREATE TABLE t011_obj_geo_vector
 	geometric_object_count INTEGER,
 	PRIMARY KEY (id),
 	INDEX idxOGeoVect_OGeoId (obj_geo_id ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -109,7 +109,7 @@ CREATE TABLE t011_obj_geo_symc
 	edition VARCHAR(80),
 	PRIMARY KEY (id),
 	INDEX idxOGeoSymc_OGeoId (obj_geo_id ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -122,7 +122,7 @@ CREATE TABLE t011_obj_geo_supplinfo
 	feature_type VARCHAR(255),
 	PRIMARY KEY (id),
 	INDEX idxOGeoSupp_OGeoId (obj_geo_id ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -135,7 +135,7 @@ CREATE TABLE t011_obj_geo_spatial_rep
 	type INTEGER,
 	PRIMARY KEY (id),
 	INDEX idxOGeoSpat_OGeoId (obj_geo_id ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -150,7 +150,7 @@ CREATE TABLE t011_obj_geo_scale
 	resolution_scan DOUBLE,
 	PRIMARY KEY (id),
 	INDEX idxOGeoScal_OGeoId (obj_geo_id ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -166,7 +166,7 @@ CREATE TABLE t011_obj_geo_keyc
 	edition VARCHAR(80),
 	PRIMARY KEY (id),
 	INDEX idxOGeoKeyc_OGeoId (obj_geo_id ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -179,7 +179,7 @@ CREATE TABLE permission_obj
 	idc_group_id BIGINT,
 	PRIMARY KEY (id),
 	INDEX IDXperm_obj_uuid (uuid ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -195,7 +195,7 @@ CREATE TABLE object_reference
 	descr TEXT,
 	PRIMARY KEY (id),
 	INDEX idxObjRef_OFromId (obj_from_id ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -209,7 +209,7 @@ CREATE TABLE full_index_obj
 	PRIMARY KEY (id),
 	INDEX idxObjIdxName (idx_name ASC),
 	INDEX idxFullObjNodedId (obj_node_id ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -232,7 +232,7 @@ CREATE TABLE t017_url_ref
 	url_type INTEGER,
 	PRIMARY KEY (id),
 	INDEX idxUrlRef_ObjId (obj_id ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -246,7 +246,7 @@ CREATE TABLE t015_legist
 	legist_key INTEGER,
 	PRIMARY KEY (id),
 	INDEX idxLegis_ObjId (obj_id ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -260,7 +260,7 @@ CREATE TABLE t014_info_impart
 	impart_key INTEGER,
 	PRIMARY KEY (id),
 	INDEX idxInfImpart_ObjId (obj_id ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -273,7 +273,7 @@ CREATE TABLE t0114_env_topic
 	topic_key INTEGER,
 	PRIMARY KEY (id),
 	INDEX idxEnvTop_ObjId (obj_id ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -286,7 +286,7 @@ CREATE TABLE t0114_env_category
 	cat_key INTEGER,
 	PRIMARY KEY (id),
 	INDEX idxEnvCat_obj_id (obj_id ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -300,7 +300,7 @@ CREATE TABLE t0113_dataset_reference
 	type INTEGER,
 	PRIMARY KEY (id),
 	INDEX idxDatRef_ObjId (obj_id ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -315,7 +315,7 @@ CREATE TABLE t0112_media_option
 	transfer_size DOUBLE,
 	PRIMARY KEY (id),
 	INDEX idxMediaOp_ObjId (obj_id ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -332,7 +332,7 @@ CREATE TABLE t0110_avail_format
 	specification VARCHAR(80),
 	PRIMARY KEY (id),
 	INDEX idxAvFormat_ObjId (obj_id ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -344,7 +344,7 @@ CREATE TABLE t011_obj_topic_cat
 	line INTEGER DEFAULT 0,
 	topic_category INTEGER,
 	PRIMARY KEY (id)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -361,7 +361,7 @@ CREATE TABLE t011_obj_serv
 	description TEXT,
 	PRIMARY KEY (id),
 	INDEX idxObjServ_ObjId (obj_id ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -375,7 +375,7 @@ CREATE TABLE t011_obj_project
 	description TEXT,
 	PRIMARY KEY (id),
 	INDEX idxOProj_ObjId (obj_id ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -401,7 +401,7 @@ CREATE TABLE t011_obj_literature
 	description TEXT,
 	PRIMARY KEY (id),
 	INDEX idxOLit_ObjId (obj_id ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -423,7 +423,7 @@ CREATE TABLE t011_obj_geo
 	keyc_incl_w_dataset INTEGER DEFAULT 0,
 	PRIMARY KEY (id),
 	INDEX idxOGeo_ObjId (obj_id ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -437,7 +437,7 @@ CREATE TABLE t011_obj_data_para
 	unit VARCHAR(120),
 	PRIMARY KEY (id),
 	INDEX idxODataPara_ObjId (obj_id ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -450,7 +450,7 @@ CREATE TABLE t011_obj_data
 	description TEXT,
 	PRIMARY KEY (id),
 	INDEX idxOData_ObjId (obj_id ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -464,7 +464,7 @@ CREATE TABLE spatial_reference
 	PRIMARY KEY (id),
 	INDEX idxSRef_ObjId (obj_id ASC),
 	INDEX idxSRef_SRefId (spatial_ref_id ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -481,7 +481,7 @@ CREATE TABLE object_node
 	INDEX idxObjN_ObjId (obj_id ASC),
 	INDEX idxObjN_ObjIdPub (obj_id_published ASC),
 	INDEX idxObjN_FObjUuid (fk_obj_uuid ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -495,7 +495,7 @@ CREATE TABLE object_comment
 	create_time VARCHAR(17),
 	PRIMARY KEY (id),
 	INDEX idxObjCom_ObjId (obj_id ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -548,7 +548,7 @@ CREATE TABLE t01_object
 	PRIMARY KEY (id),
 	INDEX idxObj_CatId (cat_id ASC),
 	INDEX idxObjClass (obj_class ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -570,7 +570,7 @@ CREATE TABLE t03_catalogue
 	mod_time VARCHAR(17),
 	PRIMARY KEY (id),
 	INDEX idxCat_SRefId (spatial_ref_id ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -589,7 +589,7 @@ CREATE TABLE t012_obj_adr
 	UNIQUE (obj_id, adr_uuid, type),
 	INDEX idxObjAdr_ObjId (obj_id ASC),
 	INDEX idxObjAdr_AdrUuid (adr_uuid ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -601,7 +601,7 @@ CREATE TABLE searchterm_obj
 	line INTEGER NOT NULL DEFAULT 0,
 	searchterm_id BIGINT,
 	PRIMARY KEY (id)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -614,7 +614,7 @@ CREATE TABLE permission_addr
 	idc_group_id BIGINT,
 	PRIMARY KEY (id),
 	INDEX IDXperm_addr_uuid (uuid ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -631,7 +631,7 @@ CREATE TABLE idc_user
 	idc_role INTEGER,
 	PRIMARY KEY (id),
 	UNIQUE (addr_uuid)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -645,7 +645,7 @@ CREATE TABLE full_index_addr
 	PRIMARY KEY (id),
 	INDEX idxAddrIdxName (idx_name ASC),
 	INDEX idxFullIdxAddrId (addr_node_id ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -660,7 +660,7 @@ CREATE TABLE t08_attr_list
 	lang_code CHAR(2),
 	PRIMARY KEY (id),
 	INDEX idxALst_AttrTypeId (attr_type_id ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -674,7 +674,7 @@ CREATE TABLE t08_attr
 	PRIMARY KEY (id),
 	INDEX idxAttr_AttrTypeId (attr_type_id ASC),
 	INDEX idxAttr_ObjId (obj_id ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -690,7 +690,7 @@ CREATE TABLE t021_communication
 	descr VARCHAR(80),
 	PRIMARY KEY (id),
 	INDEX idxComm_AdrId (adr_id ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -709,7 +709,7 @@ CREATE TABLE spatial_ref_value
 	y2 DOUBLE,
 	PRIMARY KEY (id),
 	INDEX idxSRVal_SRefSNSId (spatial_ref_sns_id ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -722,7 +722,7 @@ CREATE TABLE searchterm_value
 	term TEXT,
 	PRIMARY KEY (id),
 	INDEX idxSTVal_STSNSId (searchterm_sns_id ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -736,7 +736,7 @@ CREATE TABLE searchterm_adr
 	PRIMARY KEY (id),
 	INDEX idxSTAdr_AdrId (adr_id ASC),
 	INDEX idxSTAdr_STId (searchterm_id ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -747,7 +747,7 @@ CREATE TABLE idc_user_permission
 	permission_id BIGINT,
 	idc_group_id BIGINT,
 	PRIMARY KEY (id)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -764,7 +764,7 @@ CREATE TABLE address_node
 	INDEX idxAddrN_AddrId (addr_id ASC),
 	INDEX idxAddrN_AddrIdPub (addr_id_published ASC),
 	INDEX idxAddrN_FAddrUuid (fk_addr_uuid ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -778,7 +778,7 @@ CREATE TABLE address_comment
 	create_time VARCHAR(17),
 	PRIMARY KEY (id),
 	INDEX idxAddrCom_AddrId (addr_id ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -790,7 +790,7 @@ CREATE TABLE t08_attr_type
 	length INTEGER,
 	type CHAR(1),
 	PRIMARY KEY (id)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -826,7 +826,7 @@ CREATE TABLE t02_address
 	mod_uuid VARCHAR(40),
 	responsible_uuid VARCHAR(40),
 	PRIMARY KEY (id)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -834,7 +834,7 @@ CREATE TABLE t011_town_loc_town
 (
 	township_no VARCHAR(12),
 	name VARCHAR(50)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -852,7 +852,7 @@ CREATE TABLE sys_list
 	PRIMARY KEY (id),
 	UNIQUE (entry_id, lst_id, lang_id),
 	INDEX idxSysList_LstId (lst_id ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -861,7 +861,7 @@ CREATE TABLE sys_generic_key
 	key_name VARCHAR(50) NOT NULL,
 	value_string VARCHAR(120),
 	PRIMARY KEY (key_name)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -873,7 +873,7 @@ CREATE TABLE sys_export
 	exporttime VARCHAR(17),
 	PRIMARY KEY (export_id),
 	UNIQUE (exporttime)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -885,7 +885,7 @@ CREATE TABLE spatial_ref_sns
 	expired_at VARCHAR(17),
 	PRIMARY KEY (id),
 	INDEX idxSpatialSnsId (sns_id ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -897,7 +897,7 @@ CREATE TABLE searchterm_sns
 	expired_at VARCHAR(17),
 	PRIMARY KEY (id),
 	INDEX idxTermSnsId (sns_id ASC)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -909,7 +909,7 @@ CREATE TABLE permission
 	name VARCHAR(255),
 	action VARCHAR(255),
 	PRIMARY KEY (id)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
@@ -923,12 +923,12 @@ CREATE TABLE idc_group
 	mod_uuid VARCHAR(40),
 	PRIMARY KEY (id),
 	UNIQUE (name)
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
 
 
 CREATE TABLE hibernate_unique_key
 (
 	next_hi BIGINT
-) TYPE=InnoDB
+) ENGINE=InnoDB
 ;
