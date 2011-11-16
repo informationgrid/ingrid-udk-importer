@@ -125,36 +125,37 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 			log.info("Inserting new syslist " + lstId +	" = \"Spezifikation der Konformität\"...");
 		}
 
+		// NOTICE: SYSLIST contains date at end of syslist value (yyyy-MM-dd), has to be cut off in IGE ! But used for mapping in DSC-Scripted !
 		// german syslist
 		LinkedHashMap<Integer, String> newSyslistMap_de = new LinkedHashMap<Integer, String>();
-		newSyslistMap_de.put(1, "INSPIRE Data Specification on Addresses – Guidelines");
-		newSyslistMap_de.put(2, "INSPIRE Data Specification on Administrative units --Guidelines");
-		newSyslistMap_de.put(3, "INSPIRE Data Specification on Cadastral parcels --Guidelines");
-		newSyslistMap_de.put(4, "INSPIRE Data Specification on Geographical names – Guidelines");
-		newSyslistMap_de.put(5, "INSPIRE Data Specification on Hydrography – Guidelines");
-		newSyslistMap_de.put(6, "INSPIRE Data Specification on Protected Sites – Guidelines");
-		newSyslistMap_de.put(7, "INSPIRE Data Specification on Transport Networks – Guidelines");
-		newSyslistMap_de.put(8, "INSPIRE Specification on Coordinate Reference Systems – Guidelines");
-		newSyslistMap_de.put(9, "INSPIRE Specification on Geographical Grid Systems – Guidelines");
-		newSyslistMap_de.put(10, "INSPIRE Durchführungsbestimmung Netzdienste");
-		newSyslistMap_de.put(11, "INSPIRE Durchführungsbestimmung Metadaten");
-		newSyslistMap_de.put(12, "INSPIRE Durchführungsbestimmung Interoperabilität von Geodatensätzen und --diensten");
-		newSyslistMap_de.put(13, "INSPIRE Richtlinie");
+		newSyslistMap_de.put(1, "INSPIRE Data Specification on Addresses – Guidelines, 2010-05-03");
+		newSyslistMap_de.put(2, "INSPIRE Data Specification on Administrative units --Guidelines, 2010-05-03");
+		newSyslistMap_de.put(3, "INSPIRE Data Specification on Cadastral parcels --Guidelines, 2010-05-03");
+		newSyslistMap_de.put(4, "INSPIRE Data Specification on Geographical names – Guidelines, 2010-05-03");
+		newSyslistMap_de.put(5, "INSPIRE Data Specification on Hydrography – Guidelines, 2010-05-03");
+		newSyslistMap_de.put(6, "INSPIRE Data Specification on Protected Sites – Guidelines, 2010-05-03");
+		newSyslistMap_de.put(7, "INSPIRE Data Specification on Transport Networks – Guidelines, 2010-05-03");
+		newSyslistMap_de.put(8, "INSPIRE Specification on Coordinate Reference Systems – Guidelines, 2010-05-03");
+		newSyslistMap_de.put(9, "INSPIRE Specification on Geographical Grid Systems – Guidelines, 2010-05-03");
+		newSyslistMap_de.put(10, "INSPIRE Durchführungsbestimmung Netzdienste, 2009-10-19");
+		newSyslistMap_de.put(11, "INSPIRE Durchführungsbestimmung Metadaten, 2008-12-03");
+		newSyslistMap_de.put(12, "INSPIRE Durchführungsbestimmung Interoperabilität von Geodatensätzen und --diensten, 2010-11-21");
+		newSyslistMap_de.put(13, "INSPIRE Richtlinie, 2007-03-14");
 		// english syslist
 		LinkedHashMap<Integer, String> newSyslistMap_en = new LinkedHashMap<Integer, String>();
-		newSyslistMap_en.put(1, "INSPIRE Data Specification on Addresses – Guidelines");
-		newSyslistMap_en.put(2, "INSPIRE Data Specification on Administrative units --Guidelines");
-		newSyslistMap_en.put(3, "INSPIRE Data Specification on Cadastral parcels --Guidelines");
-		newSyslistMap_en.put(4, "INSPIRE Data Specification on Geographical names – Guidelines");
-		newSyslistMap_en.put(5, "INSPIRE Data Specification on Hydrography – Guidelines");
-		newSyslistMap_en.put(6, "INSPIRE Data Specification on Protected Sites – Guidelines");
-		newSyslistMap_en.put(7, "INSPIRE Data Specification on Transport Networks – Guidelines");
-		newSyslistMap_en.put(8, "INSPIRE Specification on Coordinate Reference Systems – Guidelines");
-		newSyslistMap_en.put(9, "INSPIRE Specification on Geographical Grid Systems – Guidelines");
-		newSyslistMap_en.put(10, "INSPIRE Durchführungsbestimmung Netzdienste");
-		newSyslistMap_en.put(11, "INSPIRE Durchführungsbestimmung Metadaten");
-		newSyslistMap_en.put(12, "INSPIRE Durchführungsbestimmung Interoperabilität von Geodatensätzen und --diensten");
-		newSyslistMap_en.put(13, "INSPIRE Richtlinie");
+		newSyslistMap_en.put(1, "INSPIRE Data Specification on Addresses – Guidelines, 2010-05-03");
+		newSyslistMap_en.put(2, "INSPIRE Data Specification on Administrative units --Guidelines, 2010-05-03");
+		newSyslistMap_en.put(3, "INSPIRE Data Specification on Cadastral parcels --Guidelines, 2010-05-03");
+		newSyslistMap_en.put(4, "INSPIRE Data Specification on Geographical names – Guidelines, 2010-05-03");
+		newSyslistMap_en.put(5, "INSPIRE Data Specification on Hydrography – Guidelines, 2010-05-03");
+		newSyslistMap_en.put(6, "INSPIRE Data Specification on Protected Sites – Guidelines, 2010-05-03");
+		newSyslistMap_en.put(7, "INSPIRE Data Specification on Transport Networks – Guidelines, 2010-05-03");
+		newSyslistMap_en.put(8, "INSPIRE Specification on Coordinate Reference Systems – Guidelines, 2010-05-03");
+		newSyslistMap_en.put(9, "INSPIRE Specification on Geographical Grid Systems – Guidelines, 2010-05-03");
+		newSyslistMap_en.put(10, "INSPIRE Durchführungsbestimmung Netzdienste, 2009-10-19");
+		newSyslistMap_en.put(11, "INSPIRE Durchführungsbestimmung Metadaten, 2008-12-03");
+		newSyslistMap_en.put(12, "INSPIRE Durchführungsbestimmung Interoperabilität von Geodatensätzen und --diensten, 2010-11-21");
+		newSyslistMap_en.put(13, "INSPIRE Richtlinie, 2007-03-14");
 
 		writeNewSyslist(lstId, newSyslistMap_de, newSyslistMap_en, 13);
 // ---------------------------
