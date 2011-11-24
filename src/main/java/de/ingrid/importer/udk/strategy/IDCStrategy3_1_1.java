@@ -14,7 +14,7 @@ import de.ingrid.mdek.beans.controls.Controls;
 import de.ingrid.mdek.profile.ProfileMapper;
 
 /**
- * Changes InGrid 3.1.1:<p>
+ * Changes InGrid 3.1.1 (only Portal released, backend will go into 3.2.0 release !):<p>
  * - remove table t0114_env_category and according syslist 1400
  * - remove env category legacyControl from profile
  */

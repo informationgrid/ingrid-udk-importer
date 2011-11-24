@@ -76,7 +76,8 @@ public interface IDCStrategy {
 	static String VALUE_IDC_VERSION_3_0_0 = "3.0.0";
 	/** InGrid 3.0.1: new functionality (+ bugfixes 3.0) */
 	static String VALUE_IDC_VERSION_3_0_1 = "3.0.1";
-	/** InGrid 3.1.1: 3.1.0 extensions, e.g. remove environmental categories */
+	/** InGrid 3.1.1: 3.1.0 extensions, e.g. remove environmental categories.
+	 * ONLY PORTAL released in this version, backend goes into 3.2.0 release ! so this backend version not officially */
 	static String VALUE_IDC_VERSION_3_1_1 = "3.1.1";
 	/** InGrid 3.2 changes */
     static String VALUE_IDC_VERSION_3_2_0 = "3.2.0";
