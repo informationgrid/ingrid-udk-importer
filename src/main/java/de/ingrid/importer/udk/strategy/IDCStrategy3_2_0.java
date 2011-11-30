@@ -29,8 +29,10 @@ import de.ingrid.mdek.util.MdekProfileUtils;
  * Changes AK-IGE:<p>
  * <ul>
  *   <li>Profile: Move rubric "Verschlagwortung" after rubric "Allgemeines", move table "INSPIRE-Themen" from "Allgemeines" to "Verschlagwortung", see INGRID32-44  
- *   <li>Profile: Add Javascript for "Sprache der Ressource" and "Zeichensatz des Datensatzes" handling visibility and behaviour, see INGRID32-43  
  *   <li>Profile: Add Javascript for "ISO-Themenkategorie", "INSPIRE-Themen"/"INSPIRE-relevanter Datensatz" handling visibility and behaviour, see INGRID32-44, INGRID32-49
+ *   <li>Profile: Add Javascript for "Sprache der Ressource" and "Zeichensatz des Datensatzes" handling visibility and behaviour, see INGRID32-43  
+ *   <li>Move field "Datendefizit" to rubric "Datenqualität" (Profile), migrate data from table "Datendefizit" to field, remove table/data/syslist 7110, see INGRID32-48
+ *   <li>Move fields "Lagegenauigkeit" and "Höhengenauigkeit" to rubric "Datenqualität" (Profile), see INGRID32-48
  * </ul>
  */
 public class IDCStrategy3_2_0 extends IDCStrategyDefault {
@@ -75,8 +77,16 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		updateObjectConformity();
 		System.out.println("done.");
 
+		System.out.print("  Updating object_data_quality...");
+		updateObjectDataQuality();
+		System.out.println("done.");
+
 		System.out.print("  Update Profile in database...");
 		updateProfile();
+		System.out.println("done.");
+
+		System.out.print("  Clean up sys_list...");
+		cleanUpSysList();
 		System.out.println("done.");
 
 		// FINALLY EXECUTE ALL "DROPPING" DDL OPERATIONS ! These ones may cause commit (e.g. on MySQL)
@@ -111,6 +121,27 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 
 		if (log.isInfoEnabled()) {
 			log.info("Extending datastructure... done");
+		}
+	}
+
+	private void cleanUpSysList() throws Exception {
+		if (log.isInfoEnabled()) {
+			log.info("Clean up sys_list...");
+		}
+		
+		int numDeleted;
+		if (log.isInfoEnabled()) {
+			log.info("Delete syslist 7110 (DQ_110_CompletenessOmission nameOfMeasure)...");
+		}
+
+		sqlStr = "DELETE FROM sys_list where lst_id = 7110";
+		numDeleted = jdbc.executeUpdate(sqlStr);
+		if (log.isDebugEnabled()) {
+			log.debug("Deleted " + numDeleted +	" entries (all languages).");
+		}
+		
+		if (log.isInfoEnabled()) {
+			log.info("Clean up sys_list... done");
 		}
 	}
 
@@ -338,6 +369,88 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		}
 	}
 
+	private void updateObjectDataQuality() throws Exception {
+		if (log.isInfoEnabled()) {
+			log.info("Updating object_data_quality...");
+		}
+
+		if (log.isInfoEnabled()) {
+			log.info("Transfer 'Datendefizit' value from DQ table (object_data_quality) to DQ field (t011_obj_geo.rec_grade) if field is empty ...");
+		}
+
+		// NOTICE: We do NOT update search index due to same values.
+
+		// select all relevant entries in DQ Table
+		String sqlSelectDQTable = "select obj_id, result_value from object_data_quality where dq_element_id = 110";
+
+		// select according value in DQ Field
+		PreparedStatement psSelectDQField = jdbc.prepareStatement(
+				"SELECT rec_grade FROM t011_obj_geo WHERE obj_id = ?");
+
+		// update according value in DQ Field
+		PreparedStatement psUpdateDQField = jdbc.prepareStatement(
+				"UPDATE t011_obj_geo SET " +
+				"rec_grade = ? " +
+				"WHERE obj_id = ?");
+
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(sqlSelectDQTable, st);
+		int numProcessed = 0;
+		while (rs.next()) {
+			long objId = rs.getLong("obj_id");
+			String dqTableValue = rs.getString("result_value");
+
+			if (dqTableValue != null) {
+				// read according value from field
+				psSelectDQField.setLong(1, objId);
+				ResultSet rs2 = psSelectDQField.executeQuery();
+				if (rs2.next()) {
+					// just read it to check if null ! 
+					double tmpDoubleForDebug = rs2.getDouble("rec_grade");
+					if (rs2.wasNull()) {
+						try {
+							psUpdateDQField.setDouble(1, new Double(dqTableValue));
+							psUpdateDQField.setLong(2, objId);
+							psUpdateDQField.executeUpdate();
+							numProcessed++;
+							if (log.isDebugEnabled()) {
+								log.debug("Transferred 'Datendefizit' value '" + dqTableValue +
+									"' from DQ table to field (was empty), obj_id:" + objId);
+							}
+						} catch (Exception ex) {
+							String msg = "Problems transferring 'Datendefizit' value '" + dqTableValue +
+									"' from DQ table as DOUBLE to field, value is lost ! obj_id:" + objId;
+							log.error(msg, ex);
+							System.out.println(msg);
+						}
+					}
+				}
+				rs2.close();
+			}
+		}
+		rs.close();
+		st.close();
+		psSelectDQField.close();
+		psUpdateDQField.close();
+
+		if (log.isInfoEnabled()) {
+			log.info("Transferred " + numProcessed + " entries... done");
+		}
+
+		if (log.isInfoEnabled()) {
+			log.info("Delete 'Datendefizit' values from DQ table (object_data_quality) ...");
+		}
+		sqlStr = "DELETE FROM object_data_quality where dq_element_id = 110";
+		int numDeleted = jdbc.executeUpdate(sqlStr);
+		if (log.isDebugEnabled()) {
+			log.debug("Deleted " + numDeleted +	" entries.");
+		}
+
+		if (log.isInfoEnabled()) {
+			log.info("Updating object_data_quality... done");
+		}
+	}
+
 	private void updateProfile() throws Exception {
 		if (log.isInfoEnabled()) {
 			log.info("Update Profile in database...");
@@ -370,21 +483,43 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 	/**
 	 * Move rubric "Verschlagwortung" after rubric "Allgemeines".
 	 * Move Control "INSPIRE-Themen" from "Allgemeines" to "Verschlagwortung".
+	 * ...
 	 */
 	private void moveRubricsAndControls(ProfileBean profileBean) {
     	if (log.isInfoEnabled()) {
-			log.info("'Move rubric 'Verschlagwortung' after rubric 'Allgemeines'");
+			log.info("Move rubric 'Verschlagwortung' after rubric 'Allgemeines'");
 		}
 		int indxRubricAllgemeines = MdekProfileUtils.findRubricIndex(profileBean, "general");
 		Rubric rubric = MdekProfileUtils.removeRubric(profileBean, "thesaurus");
 		MdekProfileUtils.addRubric(profileBean, rubric, indxRubricAllgemeines+1);
 
     	if (log.isInfoEnabled()) {
-			log.info("'Move control 'INSPIRE-Themen' from 'Allgemeines' to 'Verschlagwortung'");
+			log.info("Move control 'INSPIRE-Themen' from 'Allgemeines' to 'Verschlagwortung'");
 		}
     	Controls control = MdekProfileUtils.removeControl(profileBean, "uiElement5064");
 		rubric = MdekProfileUtils.findRubric(profileBean, "thesaurus");
 		MdekProfileUtils.addControl(profileBean, control, rubric, 0);
+
+		if (log.isInfoEnabled()) {
+			log.info("Move control 'Datendefizit' from 'Fachbezug - Klasse 1' to 'Datenqualität'");
+		}
+    	control = MdekProfileUtils.removeControl(profileBean, "uiElement3565");
+		rubric = MdekProfileUtils.findRubric(profileBean, "refClass1DQ");
+		MdekProfileUtils.addControl(profileBean, control, rubric, 0);
+
+		if (log.isInfoEnabled()) {
+			log.info("Move control 'Höhengenauigkeit' from 'Fachbezug - Klasse 1' to 'Datenqualität'");
+		}
+    	control = MdekProfileUtils.removeControl(profileBean, "uiElement5069");
+		rubric = MdekProfileUtils.findRubric(profileBean, "refClass1DQ");
+		MdekProfileUtils.addControl(profileBean, control, rubric, 1);
+
+		if (log.isInfoEnabled()) {
+			log.info("Move control 'Lagegenauigkeit' from 'Fachbezug - Klasse 1' to 'Datenqualität'");
+		}
+    	control = MdekProfileUtils.removeControl(profileBean, "uiElement3530");
+		rubric = MdekProfileUtils.findRubric(profileBean, "refClass1DQ");
+		MdekProfileUtils.addControl(profileBean, control, rubric, 2);
 	}
 
 	private void addJavaScriptToControls(ProfileBean profileBean) {
