@@ -32,6 +32,7 @@ import de.ingrid.mdek.util.MdekProfileUtils;
  *   <li>Profile: Add Javascript for "ISO-Themenkategorie", "INSPIRE-Themen"/"INSPIRE-relevanter Datensatz" handling visibility and behaviour, see INGRID32-44, INGRID32-49
  *   <li>Profile: Add Javascript for "Sprache der Ressource" and "Zeichensatz des Datensatzes" handling visibility and behaviour, see INGRID32-43  
  *   <li>Move field "Datendefizit" to rubric "Datenqualität" (Profile), migrate data from table "Datendefizit" to field, remove table/data/syslist 7110, see INGRID32-48
+ *   <li>Profile: Add Javascript for "Datendefizit" handling visibility of rubric "Datenqualität", see INGRID32-48  
  *   <li>Move fields "Lagegenauigkeit" and "Höhengenauigkeit" to rubric "Datenqualität" (Profile), see INGRID32-48
  * </ul>
  */
@@ -520,6 +521,11 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
     	control = MdekProfileUtils.removeControl(profileBean, "uiElement3530");
 		rubric = MdekProfileUtils.findRubric(profileBean, "refClass1DQ");
 		MdekProfileUtils.addControl(profileBean, control, rubric, 2);
+		
+		if (log.isInfoEnabled()) {
+			log.info("Remove DQ table control 'Datendefizit' from 'Datenqualität'");
+		}
+    	control = MdekProfileUtils.removeControl(profileBean, "uiElement7510");
 	}
 
 	private void addJavaScriptToControls(ProfileBean profileBean) {
@@ -615,17 +621,34 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 "  UtilUI.setHide(\"uiElement6000\");\n" +
 "}});\n" +
 "// make 'INSPIRE-Themen' mandatory when selected\n" +
-"dojo.connect(dijit.byId(\"isInspireRelevant\"), \"onChange\", function(val) {isInspireRelevantHandler();});\n" +
-"dojo.connect(dijit.byId(\"isInspireRelevant\"), \"onClick\", function(obj, field) {isInspireRelevantHandler();});\n" +
 "function isInspireRelevantHandler() {\n" +
 "  if (dijit.byId(\"isInspireRelevant\").checked) {\n" +
 "    UtilUI.setMandatory(\"uiElement5064\");\n" +
 "  } else {\n" +
-"    if (\"Class1\" === dijit.byId(\"objectClass\").getValue())\n" +
+"    if (\"Class1\" === UtilUdk.getObjectClass()) {\n" +
 "      UtilUI.setMandatory(\"uiElement5064\");\n" +
-"    else\n" +
+"    } else {\n" +
 "      UtilUI.setOptional(\"uiElement5064\");\n" +
-"  }}" + endTag;
+"    }\n" +
+"  }\n" +
+"}\n" +
+"dojo.connect(dijit.byId(\"isInspireRelevant\"), \"onChange\", function(val) {isInspireRelevantHandler();});\n" +
+"dojo.connect(dijit.byId(\"isInspireRelevant\"), \"onClick\", function(obj, field) {isInspireRelevantHandler();});\n" + endTag;
+		MdekProfileUtils.updateScriptedProperties(control, jsCode);
+
+		//------------- Rubrik 'Datenqualität' via JS in first Control 'Datendefizit'
+    	if (log.isInfoEnabled()) {
+			log.info("Rubrik 'Datenqualität'(refClass1DQ) via JS in 'Datendefizit'(uiElement3565): only show rubric when 'Geo-Information/Karte'");
+		}
+    	control = MdekProfileUtils.findControl(profileBean, "uiElement3565");
+		jsCode = startTag +
+"dojo.subscribe(\"/onObjectClassChange\", function(c) {\n" +
+"// show Rubrik 'Datenqualität' only in 'Geo-Information/Karte'\n" +
+"if (c.objClass === \"Class1\") {\n" +
+"  UtilUI.setShow(\"refClass1DQ\");\n" +
+"} else {\n" +
+"  UtilUI.setHide(\"refClass1DQ\");\n" +
+"}});" + endTag;
 		MdekProfileUtils.updateScriptedProperties(control, jsCode);
 	}
 
