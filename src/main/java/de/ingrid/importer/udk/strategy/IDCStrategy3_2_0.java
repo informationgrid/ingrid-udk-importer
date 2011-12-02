@@ -633,7 +633,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 "  }\n" +
 "}\n" +
 "dojo.connect(dijit.byId(\"isInspireRelevant\"), \"onChange\", function(val) {isInspireRelevantHandler();});\n" +
-"dojo.connect(dijit.byId(\"isInspireRelevant\"), \"onClick\", function(obj, field) {isInspireRelevantHandler();});\n" + endTag;
+"dojo.connect(dijit.byId(\"isInspireRelevant\"), \"onClick\", function(obj, field) {isInspireRelevantHandler();});" + endTag;
 		MdekProfileUtils.updateScriptedProperties(control, jsCode);
 
 		//------------- Rubrik 'Datenqualität' via JS in first Control 'Datendefizit'

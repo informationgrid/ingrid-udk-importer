@@ -5,14 +5,19 @@
   </properties>
   <body>
     <release version="3.2.0-SNAPSHOT" date="????-??-??" description="Release InGrid 3.2. New IGC Schema 3.2.0">
+      <action type="update" dev="wemove" issue="INGRID32-48">
+        Move field "Datendefizit" to rubric "Datenqualität" (Profile), migrate data from table "Datendefizit" to field, remove table/data/syslist 7110.
+        Move fields "Lagegenauigkeit" and "Höhengenauigkeit" to rubric "Datenqualität" (Profile). Handle visibility of rubric "Datenqualität" via JS in first control (Profile). 
+      </action>
       <action type="update" dev="wemove" issue="INGRID32-44, INGRID32-49">
         Update behaviour of "ISO-Themenkategorie" and "INSPIRE-Thema"/"INSPIRE-relevanter Datensatz" in Profile. Change positions.
       </action>
       <action type="update" dev="wemove" issue="INGRID32-43">
         Update behaviour of "Sprache der Ressource" and "Zeichensatz des Datensatzes" in Profile.
       </action>
-      <action type="update" dev="wemove" issue="INGRID32-28">
-        "Spezifikation der Konformität" and "Nutzungsbedingungen" now have new syslists (6005, 6020), also allowing free entries.
+      <action type="update" dev="wemove" issue="INGRID32-28, INGRID32-47">
+        "Spezifikation der Konformität" and "Nutzungsbedingungen" now have new syslists (6005, 6020), also allowing free entries. 
+        Syslist entries 6005 contain publication date at end of value, not shown in IGE but used in IDF mapping. 
       </action>
       <action type="update" dev="wemove" issue="INGRID31-22">
         Remove environmental categories from catalog (t0114_env_category + syslist 1400 + legacy control in profile). Categorization now only via environmental topics.
