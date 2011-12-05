@@ -77,8 +77,11 @@ public interface IDCStrategy {
 	/** InGrid 3.0.1: new functionality (+ bugfixes 3.0) */
 	static String VALUE_IDC_VERSION_3_0_1 = "3.0.1";
 	/** InGrid 3.1.1: 3.1.0 extensions, e.g. remove environmental categories.
-	 * ONLY PORTAL released in this version, backend goes into 3.2.0 release ! so this backend version not officially */
+	 * ONLY PORTAL released in this version, backend goes into 3.2.0 release ! so this backend version not official */
 	static String VALUE_IDC_VERSION_3_1_1 = "3.1.1";
+	/** InGrid 3.1.1: fix VARCHAR 255 to TEXT -> writes NO version, can be executed on its own !
+	 * see https://dev.wemove.com/jira/browse/INGRID32-55 */
+    static String VALUE_IDC_VERSION_3_1_1_FIX_VARCHAR = "3.1.1_fixVarchar";
 	/** InGrid 3.2 changes */
     static String VALUE_IDC_VERSION_3_2_0 = "3.2.0";
 	
@@ -118,6 +121,7 @@ public interface IDCStrategy {
 		VALUE_IDC_VERSION_3_0_0,
 		VALUE_IDC_VERSION_3_0_1,
 		VALUE_IDC_VERSION_3_1_1,
+		VALUE_IDC_VERSION_3_1_1_FIX_VARCHAR, // writes no Version
 		VALUE_IDC_VERSION_3_2_0,
 	};
 

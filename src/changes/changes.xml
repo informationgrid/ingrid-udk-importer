@@ -22,6 +22,9 @@
       <action type="update" dev="wemove" issue="INGRID31-22">
         Remove environmental categories from catalog (t0114_env_category + syslist 1400 + legacy control in profile). Categorization now only via environmental topics.
       </action>
+      <action type="update" dev="wemove" issue="INGRID32-55">
+        Change several IGC columns from VARCHAR 255 to TEXT (VARCHAR 4000 on Oracle).
+      </action>
       <action type="fix" dev="wemove">
         Fixed compatibility with MySQL 5.5 (changed syntax of InnoDB when creating tables).
       </action>
