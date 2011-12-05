@@ -52,6 +52,7 @@ public class IDCStrategy3_1_1_fixVarchar extends IDCStrategyDefault {
 		tableColumns.add(new String[] { "t011_obj_geo_supplinfo", "feature_type" });
 		tableColumns.add(new String[] { "t011_obj_literature", "author" });
 		tableColumns.add(new String[] { "t011_obj_literature", "publisher" });
+		tableColumns.add(new String[] { "t011_obj_literature", "publish_in" });
 		tableColumns.add(new String[] { "t011_obj_literature", "publish_loc" });
 		tableColumns.add(new String[] { "t011_obj_literature", "loc" });
 		tableColumns.add(new String[] { "t011_obj_literature", "doc_info" });
