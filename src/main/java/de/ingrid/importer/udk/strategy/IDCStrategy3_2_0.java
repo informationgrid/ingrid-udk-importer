@@ -33,7 +33,8 @@ import de.ingrid.mdek.util.MdekProfileUtils;
  *   <li>Profile: Add Javascript for "Sprache der Ressource" and "Zeichensatz des Datensatzes" handling visibility and behaviour, see INGRID32-43  
  *   <li>Move field "Datendefizit" to rubric "Datenqualität" (Profile), migrate data from table "Datendefizit" to field, remove table/data/syslist 7110, see INGRID32-48
  *   <li>Profile: Add Javascript for "Datendefizit" handling visibility of rubric "Datenqualität", see INGRID32-48  
- *   <li>Move fields "Lagegenauigkeit" and "Höhengenauigkeit" to rubric "Datenqualität" (Profile), see INGRID32-48
+ *   <li>Profile: Move fields "Lagegenauigkeit" and "Höhengenauigkeit" to rubric "Datenqualität", see INGRID32-48
+ *   <li>Profile: Move field "Geoinformation/Karte - Sachdaten/Attributinformation" next to "Schlüsselkatalog", on Input make "Schlüsselkatalog" mandatory, see INGRID32-50
  * </ul>
  */
 public class IDCStrategy3_2_0 extends IDCStrategyDefault {
@@ -490,9 +491,9 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
     	if (log.isInfoEnabled()) {
 			log.info("Move rubric 'Verschlagwortung' after rubric 'Allgemeines'");
 		}
-		int indxRubricAllgemeines = MdekProfileUtils.findRubricIndex(profileBean, "general");
+		int index = MdekProfileUtils.findRubricIndex(profileBean, "general");
 		Rubric rubric = MdekProfileUtils.removeRubric(profileBean, "thesaurus");
-		MdekProfileUtils.addRubric(profileBean, rubric, indxRubricAllgemeines+1);
+		MdekProfileUtils.addRubric(profileBean, rubric, index+1);
 
     	if (log.isInfoEnabled()) {
 			log.info("Move control 'INSPIRE-Themen' from 'Allgemeines' to 'Verschlagwortung'");
@@ -526,6 +527,14 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 			log.info("Remove DQ table control 'Datendefizit' from 'Datenqualität'");
 		}
     	control = MdekProfileUtils.removeControl(profileBean, "uiElement7510");
+
+    	if (log.isInfoEnabled()) {
+			log.info("Move control 'Geo-Information/Karte - Sachdaten/Attributinformation' after 'Schlüsselkatalog'");
+		}
+    	control = MdekProfileUtils.removeControl(profileBean, "uiElement5070");
+		rubric = MdekProfileUtils.findRubric(profileBean, "refClass1");
+		index = MdekProfileUtils.findControlIndex(profileBean, rubric, "uiElement3535");
+		MdekProfileUtils.addControl(profileBean, control, rubric, index+1);
 	}
 
 	private void addJavaScriptToControls(ProfileBean profileBean) {
@@ -621,7 +630,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 "  UtilUI.setHide(\"uiElement6000\");\n" +
 "}});\n" +
 "// make 'INSPIRE-Themen' mandatory when selected\n" +
-"function isInspireRelevantHandler() {\n" +
+"function uiElement6000InputHandler() {\n" +
 "  if (dijit.byId(\"isInspireRelevant\").checked) {\n" +
 "    UtilUI.setMandatory(\"uiElement5064\");\n" +
 "  } else {\n" +
@@ -632,13 +641,13 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 "    }\n" +
 "  }\n" +
 "}\n" +
-"dojo.connect(dijit.byId(\"isInspireRelevant\"), \"onChange\", function(val) {isInspireRelevantHandler();});\n" +
-"dojo.connect(dijit.byId(\"isInspireRelevant\"), \"onClick\", function(obj, field) {isInspireRelevantHandler();});" + endTag;
+"dojo.connect(dijit.byId(\"isInspireRelevant\"), \"onChange\", function(val) {uiElement6000InputHandler();});\n" +
+"dojo.connect(dijit.byId(\"isInspireRelevant\"), \"onClick\", function(obj, field) {uiElement6000InputHandler();});" + endTag;
 		MdekProfileUtils.updateScriptedProperties(control, jsCode);
 
-		//------------- Rubrik 'Datenqualität' via JS in first Control 'Datendefizit'
+		//------------- show/hide Rubrik 'Datenqualität' via JS in first Control 'Datendefizit'
     	if (log.isInfoEnabled()) {
-			log.info("Rubrik 'Datenqualität'(refClass1DQ) via JS in 'Datendefizit'(uiElement3565): only show rubric when 'Geo-Information/Karte'");
+			log.info("show/hide Rubrik 'Datenqualität'(refClass1DQ) via JS in 'Datendefizit'(uiElement3565): only show rubric when 'Geo-Information/Karte'");
 		}
     	control = MdekProfileUtils.findControl(profileBean, "uiElement3565");
 		jsCode = startTag +
@@ -649,6 +658,24 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 "} else {\n" +
 "  UtilUI.setHide(\"refClass1DQ\");\n" +
 "}});" + endTag;
+		MdekProfileUtils.updateScriptedProperties(control, jsCode);
+
+		//------------- 'Geo-Information/Karte - Sachdaten/Attributinformation' on input make 'Schlüsselkatalog' mandatory
+    	if (log.isInfoEnabled()) {
+			log.info("'Sachdaten/Attributinformation'(uiElement5070): on input make 'Schlüsselkatalog'(uiElement3535) mandatory");
+		}
+    	control = MdekProfileUtils.findControl(profileBean, "uiElement5070");
+		jsCode = startTag +
+"// make 'Schlüsselkatalog' mandatory on input 'Sachdaten/Attributinformation'\n" +
+"function uiElement5070InputHandler() {\n" +
+"  if (UtilGrid.getTableData(\"ref1Data\").length !== 0) {\n" +
+"    UtilUI.setMandatory(\"uiElement3535\");\n" +
+"  } else {\n" +
+"    UtilUI.setOptional(\"uiElement3535\");\n" +
+"  }\n" +
+"}\n" +
+"dojo.connect(UtilGrid.getTable(\"ref1Data\"), \"onDataChanged\", uiElement5070InputHandler);\n"
++ endTag;
 		MdekProfileUtils.updateScriptedProperties(control, jsCode);
 	}
 
