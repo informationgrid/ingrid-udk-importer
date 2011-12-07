@@ -540,7 +540,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 	private void addJavaScriptToControls(ProfileBean profileBean) {
 		// tags for marking newly added javascript code (for later removal)
 		String startTag = "\n//<3.2.0 update\n";
-		String endTag = "\n//3.2.0>\n";
+		String endTag = "//3.2.0>\n";
 
 		//------------- 'Sprache der Ressource'
     	if (log.isInfoEnabled()) {
@@ -557,7 +557,8 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 "  UtilUI.setOptional(\"uiElement5042\");\n" +
 "} else {\n" +
 "  UtilUI.setMandatory(\"uiElement5042\");\n" +
-"}});" + endTag;
+"}});\n"
++ endTag;
 		MdekProfileUtils.updateScriptedProperties(control, jsCode);
 
 		//------------- 'Zeichensatz des Datensatzes'
@@ -574,7 +575,8 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 "  UtilUI.setOptional(\"uiElement5043\");\n" +
 "} else {\n" +
 "  UtilUI.setHide(\"uiElement5043\");\n" +
-"}});" + endTag;
+"}});\n"
++ endTag;
 		MdekProfileUtils.updateScriptedProperties(control, jsCode);
 
 		//------------- 'ISO-Themenkategorie'
@@ -591,7 +593,8 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 "  UtilUI.setMandatory(\"uiElement5060\");\n" +
 "} else {\n" +
 "  UtilUI.setHide(\"uiElement5060\");\n" +
-"}});" + endTag;
+"}});\n"
++ endTag;
 		MdekProfileUtils.updateScriptedProperties(control, jsCode);
 		
 		//------------- 'INSPIRE-Themen'
@@ -611,7 +614,8 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 "  UtilUI.setMandatory(\"uiElement5064\");\n" +
 "} else {\n" +
 "  UtilUI.setHide(\"uiElement5064\");\n" +
-"}});" + endTag;
+"}});\n"
++ endTag;
 		MdekProfileUtils.updateScriptedProperties(control, jsCode);
 		
 		//------------- 'INSPIRE-relevanter Datensatz'
@@ -642,7 +646,8 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 "  }\n" +
 "}\n" +
 "dojo.connect(dijit.byId(\"isInspireRelevant\"), \"onChange\", function(val) {uiElement6000InputHandler();});\n" +
-"dojo.connect(dijit.byId(\"isInspireRelevant\"), \"onClick\", function(obj, field) {uiElement6000InputHandler();});" + endTag;
+"dojo.connect(dijit.byId(\"isInspireRelevant\"), \"onClick\", function(obj, field) {uiElement6000InputHandler();});\n"
++ endTag;
 		MdekProfileUtils.updateScriptedProperties(control, jsCode);
 
 		//------------- show/hide Rubrik 'Datenqualität' via JS in first Control 'Datendefizit'
@@ -657,7 +662,8 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 "  UtilUI.setShow(\"refClass1DQ\");\n" +
 "} else {\n" +
 "  UtilUI.setHide(\"refClass1DQ\");\n" +
-"}});" + endTag;
+"}});\n"
++ endTag;
 		MdekProfileUtils.updateScriptedProperties(control, jsCode);
 
 		//------------- 'Geo-Information/Karte - Sachdaten/Attributinformation' on input make 'Schlüsselkatalog' mandatory
