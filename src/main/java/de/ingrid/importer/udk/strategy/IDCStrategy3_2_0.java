@@ -35,6 +35,7 @@ import de.ingrid.mdek.util.MdekProfileUtils;
  *   <li>Profile: Add Javascript for "Datendefizit" handling visibility of rubric "Datenqualität", see INGRID32-48  
  *   <li>Profile: Move fields "Lagegenauigkeit" and "Höhengenauigkeit" to rubric "Datenqualität", see INGRID32-48
  *   <li>Profile: Move field "Geoinformation/Karte - Sachdaten/Attributinformation" next to "Schlüsselkatalog", on Input make "Schlüsselkatalog" mandatory, see INGRID32-50
+ *   <li>Change Syslist 505 (Address Rollenbezeichner), see INGRID32-46
  * </ul>
  */
 public class IDCStrategy3_2_0 extends IDCStrategyDefault {
@@ -67,8 +68,8 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		// THEN PERFORM DATA MANIPULATIONS !
 		// ---------------------------------
 
-		System.out.print("  Extending sys_list (new ones)...");
-		extendSysList();
+		System.out.print("  Updating sys_list...");
+		updateSysList();
 		System.out.println("done.");
 
 		System.out.print("  Updating object_use...");
@@ -85,10 +86,6 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 
 		System.out.print("  Update Profile in database...");
 		updateProfile();
-		System.out.println("done.");
-
-		System.out.print("  Clean up sys_list...");
-		cleanUpSysList();
 		System.out.println("done.");
 
 		// FINALLY EXECUTE ALL "DROPPING" DDL OPERATIONS ! These ones may cause commit (e.g. on MySQL)
@@ -126,30 +123,9 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		}
 	}
 
-	private void cleanUpSysList() throws Exception {
+	protected void updateSysList() throws Exception {
 		if (log.isInfoEnabled()) {
-			log.info("Clean up sys_list...");
-		}
-		
-		int numDeleted;
-		if (log.isInfoEnabled()) {
-			log.info("Delete syslist 7110 (DQ_110_CompletenessOmission nameOfMeasure)...");
-		}
-
-		sqlStr = "DELETE FROM sys_list where lst_id = 7110";
-		numDeleted = jdbc.executeUpdate(sqlStr);
-		if (log.isDebugEnabled()) {
-			log.debug("Deleted " + numDeleted +	" entries (all languages).");
-		}
-		
-		if (log.isInfoEnabled()) {
-			log.info("Clean up sys_list... done");
-		}
-	}
-
-	protected void extendSysList() throws Exception {
-		if (log.isInfoEnabled()) {
-			log.info("Extending sys_list...");
+			log.info("Updating sys_list...");
 		}
 
 // ---------------------------
@@ -190,7 +166,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		newSyslistMap_en.put(12, "INSPIRE Durchführungsbestimmung Interoperabilität von Geodatensätzen und --diensten, 2010-11-21");
 		newSyslistMap_en.put(13, "INSPIRE Richtlinie, 2007-03-14");
 
-		writeNewSyslist(lstId, newSyslistMap_de, newSyslistMap_en, 13);
+		writeNewSyslist(lstId, newSyslistMap_de, newSyslistMap_en, 13, 13, null, null);
 // ---------------------------
 		lstId = 6020;
 		if (log.isInfoEnabled()) {
@@ -204,41 +180,154 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		newSyslistMap_en = new LinkedHashMap<Integer, String>(); 
 		newSyslistMap_en.put(1, "No conditions apply");
 
-		writeNewSyslist(lstId, newSyslistMap_de, newSyslistMap_en, 1);
+		writeNewSyslist(lstId, newSyslistMap_de, newSyslistMap_en, 1, 1, null, null);
 // ---------------------------
+		lstId = 505;
+		if (log.isInfoEnabled()) {
+			log.info("Update syslist " + lstId +	" = \"Address Rollenbezeichner\"...");
+		}
+
+		// german syslist
+		newSyslistMap_de = new LinkedHashMap<Integer, String>();
+		newSyslistMap_de.put(1, "Ressourcenanbieter");
+		newSyslistMap_de.put(2, "Verwalter");
+		newSyslistMap_de.put(3, "Eigentümer");
+		newSyslistMap_de.put(4, "Nutzer");
+		newSyslistMap_de.put(5, "Vertrieb");
+		newSyslistMap_de.put(6, "Urheber");
+		newSyslistMap_de.put(7, "Ansprechpartner");
+		newSyslistMap_de.put(8, "Projektleitung");
+		newSyslistMap_de.put(9, "Bearbeiter");
+		newSyslistMap_de.put(10, "Herausgeber");
+		newSyslistMap_de.put(11, "Autor");
+
+		// english syslist
+		newSyslistMap_en = new LinkedHashMap<Integer, String>(); 
+		newSyslistMap_en.put(1, "Resource Provider");
+		newSyslistMap_en.put(2, "Custodian");
+		newSyslistMap_en.put(3, "Owner");
+		newSyslistMap_en.put(4, "User");
+		newSyslistMap_en.put(5, "Distributor");
+		newSyslistMap_en.put(6, "Originator");
+		newSyslistMap_en.put(7, "Point of Contact");
+		newSyslistMap_en.put(8, "Principal Investigator");
+		newSyslistMap_en.put(9, "Processor");
+		newSyslistMap_en.put(10, "Publisher");
+		newSyslistMap_en.put(11, "Author");
+
+		// DESCRIPTION DE syslist (just for completeness)
+		LinkedHashMap<Integer, String> newSyslistMap_description_de = new LinkedHashMap<Integer, String>();
+		newSyslistMap_description_de.put(1, "Anbieter der Ressource");
+		newSyslistMap_description_de.put(2, "Person/Stelle, welche die Zuständigkeit und Verantwortlichkeit für einen Datensatz " +
+				"übernommen hat und seine sachgerechte Pflege und Wartung sichert");
+		newSyslistMap_description_de.put(3, "Eigentümer der Ressource");
+		newSyslistMap_description_de.put(4, "Nutzer der Ressource");
+		newSyslistMap_description_de.put(5, "Person oder Stelle für den Vertrieb");
+		newSyslistMap_description_de.put(6, "Erzeuger der Ressource");
+		newSyslistMap_description_de.put(7, "Kontakt für Informationen zur Ressource oder deren Bezugsmöglichkeiten");
+		newSyslistMap_description_de.put(8, "Person oder Stelle, die verantwortlich für die Erhebung der Daten und die Untersuchung ist");
+		newSyslistMap_description_de.put(9, "Person oder Stelle, welche die Ressource modifiziert");
+		newSyslistMap_description_de.put(10, "Person oder Stelle, welche die Ressource veröffentlicht");
+		newSyslistMap_description_de.put(11, "Verfasser der Ressource");
+
+		// DESCRIPTION EN syslist (just for completeness)
+		LinkedHashMap<Integer, String> newSyslistMap_description_en = new LinkedHashMap<Integer, String>();
+		newSyslistMap_description_en.put(1, "Party that supplies the resource");
+		newSyslistMap_description_en.put(2, "Party that accepts accountability and responsibility for the data and ensures " +
+				"appropriate care and maintenance of the resource");
+		newSyslistMap_description_en.put(3, "Party that owns the resource");
+		newSyslistMap_description_en.put(4, "Party who uses the resource");
+		newSyslistMap_description_en.put(5, "Party who distributes the resource");
+		newSyslistMap_description_en.put(6, "Party who created the resource");
+		newSyslistMap_description_en.put(7, "Party who can be contacted for acquiring knowledge about or acquisition of the resource");
+		newSyslistMap_description_en.put(8, "Key party responsible for gathering information and conducting research");
+		newSyslistMap_description_en.put(9, "Party who has processed the data in a manner such that the resource has been modified");
+		newSyslistMap_description_en.put(10, "Party who published the resource");
+		newSyslistMap_description_en.put(11, "Party who authored the resource");
+
+		writeNewSyslist(lstId, newSyslistMap_de, newSyslistMap_en, -1, -1, newSyslistMap_description_de, newSyslistMap_description_en);
+// ---------------------------
+		if (log.isInfoEnabled()) {
+			log.info("Delete syslist 7110 (DQ_110_CompletenessOmission nameOfMeasure)...");
+		}
+
+		sqlStr = "DELETE FROM sys_list where lst_id = 7110";
+		int numDeleted = jdbc.executeUpdate(sqlStr);
+		if (log.isDebugEnabled()) {
+			log.debug("Deleted " + numDeleted +	" entries (all languages).");
+		}
 
 		if (log.isInfoEnabled()) {
-			log.info("Extending sys_list... done");
+			log.info("Updating sys_list... done");
 		}
 	}
 
 	/**
-	 * @param defaultEntry pass key of default entry or < 0 if no default entry !
+	 * Also drops all old values (if syslist already exists) !
+	 * @param listId id of syslist
+	 * @param syslistMap_de german entries
+	 * @param syslistMap_en english entries
+	 * @param defaultEntry_de pass key of GERMAN default entry or -1 if no default entry !
+	 * @param defaultEntry_en pass key of ENGLISH default entry or -1 if no default entry !
+	 * @param syslistMap_descr_de pass null if no GERMAN description available
+	 * @param syslistMap_descr_en pass null if no ENGLISH description available
 	 * @throws Exception
 	 */
 	private void writeNewSyslist(int listId,
 			LinkedHashMap<Integer, String> syslistMap_de,
 			LinkedHashMap<Integer, String> syslistMap_en,
-			int defaultEntry) throws Exception {
+			int defaultEntry_de,
+			int defaultEntry_en,
+			LinkedHashMap<Integer, String> syslistMap_descr_de,
+			LinkedHashMap<Integer, String> syslistMap_descr_en) throws Exception {
+		
+		if (syslistMap_descr_de == null) {
+			syslistMap_descr_de = new LinkedHashMap<Integer, String>();
+		}
+		if (syslistMap_descr_en == null) {
+			syslistMap_descr_en = new LinkedHashMap<Integer, String>();
+		}
 
 		// clean up, to guarantee no old values !
 		sqlStr = "DELETE FROM sys_list where lst_id = " + listId;
 		jdbc.executeUpdate(sqlStr);
 
+		String psSql = "INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default, description) " +
+				"VALUES (?,?,?,?,?,?,?,?)";		
+		PreparedStatement psInsert = jdbc.prepareStatement(psSql);
+
 		Iterator<Integer> itr = syslistMap_de.keySet().iterator();
 		while (itr.hasNext()) {
 			int key = itr.next();
+			// german version
 			String isDefault = "N";
-			if (key == defaultEntry) {
+			if (key == defaultEntry_de) {
 				isDefault = "Y";				
 			}
-			// german version
-			jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
-					+ getNextId() + ", " + listId + ", " + key + ", 'de', '" + syslistMap_de.get(key) + "', 0, '" + isDefault + "')");
+			psInsert.setLong(1, getNextId());
+			psInsert.setInt(2, listId);
+			psInsert.setInt(3, key);
+			psInsert.setString(4, "de");
+			psInsert.setString(5, syslistMap_de.get(key));
+			psInsert.setInt(6, 0);
+			psInsert.setString(7, isDefault);
+			psInsert.setString(8, syslistMap_descr_de.get(key));
+			psInsert.executeUpdate();
+
 			// english version
-			jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
-					+ getNextId() + ", " + listId + ", " + key + ", 'en', '" + syslistMap_en.get(key) + "', 0, '" + isDefault + "')");
+			isDefault = "N";
+			if (key == defaultEntry_en) {
+				isDefault = "Y";				
+			}
+			psInsert.setLong(1, getNextId());
+			psInsert.setString(4, "en");
+			psInsert.setString(5, syslistMap_en.get(key));
+			psInsert.setString(7, isDefault);
+			psInsert.setString(8, syslistMap_descr_en.get(key));
+			psInsert.executeUpdate();
 		}
+
+		psInsert.close();
 	}
 
 	private void updateObjectUse() throws Exception {

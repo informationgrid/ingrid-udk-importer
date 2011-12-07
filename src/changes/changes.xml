@@ -5,6 +5,9 @@
   </properties>
   <body>
     <release version="3.2.0-SNAPSHOT" date="????-??-??" description="Release InGrid 3.2. New IGC Schema 3.2.0">
+      <action type="update" dev="wemove" issue="INGRID32-46">
+        Rework and migration of syslist 505 (RESPONSIBLE PARTY ROLE) according to INSPIRE Metadata Regulation Nr 1205/2008.
+      </action>
       <action type="update" dev="wemove" issue="INGRID32-50">
         Move field "Geoinformation/Karte - Sachdaten/Attributinformation" next to "Schlüsselkatalog", on Input make "Schlüsselkatalog" mandatory (Profile). 
       </action>
