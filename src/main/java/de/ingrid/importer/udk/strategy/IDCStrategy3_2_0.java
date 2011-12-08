@@ -5,19 +5,25 @@ package de.ingrid.importer.udk.strategy;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map.Entry;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import de.ingrid.importer.udk.jdbc.DBLogic.ColumnType;
+import de.ingrid.importer.udk.jdbc.JDBCHelper;
 import de.ingrid.mdek.beans.ProfileBean;
 import de.ingrid.mdek.beans.Rubric;
 import de.ingrid.mdek.beans.controls.Controls;
 import de.ingrid.mdek.profile.ProfileMapper;
 import de.ingrid.mdek.util.MdekProfileUtils;
+import de.ingrid.utils.udk.UtilsLanguageCodelist;
 
 /**
  * <p>
@@ -35,7 +41,7 @@ import de.ingrid.mdek.util.MdekProfileUtils;
  *   <li>Profile: Add Javascript for "Datendefizit" handling visibility of rubric "Datenqualität", see INGRID32-48  
  *   <li>Profile: Move fields "Lagegenauigkeit" and "Höhengenauigkeit" to rubric "Datenqualität", see INGRID32-48
  *   <li>Profile: Move field "Geoinformation/Karte - Sachdaten/Attributinformation" next to "Schlüsselkatalog", on Input make "Schlüsselkatalog" mandatory, see INGRID32-50
- *   <li>Change Syslist 505 (Address Rollenbezeichner), see INGRID32-46
+ *   <li>Change Syslist 505 (Address Rollenbezeichner), also migrate data, see INGRID32-46
  * </ul>
  */
 public class IDCStrategy3_2_0 extends IDCStrategyDefault {
@@ -47,6 +53,13 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 	String profileXml = null;
     ProfileMapper profileMapper;
 	ProfileBean profileBean = null;
+
+	/** former "Datenverantwortung" becomes "Verwalter", this is the syslist entry key */
+	int syslist505EntryKeyDatenverantwortung;
+	/** former "Datenverantwortung" becomes "Verwalter", this is the new entry value (in language of catalog) */
+	String syslist505EntryValueVerwalter;
+	/** former "Auskunft" becomes "Ansprechpartner", this is the syslist entry key */
+	int syslist505EntryKeyAuskunft;
 
 	public String getIDCVersion() {
 		return MY_VERSION;
@@ -82,6 +95,10 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 
 		System.out.print("  Updating object_data_quality...");
 		updateObjectDataQuality();
+		System.out.println("done.");
+
+		System.out.print("  Updating t012_obj_adr...");
+		updateT012ObjAdr();
 		System.out.println("done.");
 
 		System.out.print("  Update Profile in database...");
@@ -188,14 +205,16 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		}
 
 		// german syslist
+		syslist505EntryKeyDatenverantwortung = 2;
+		syslist505EntryKeyAuskunft = 7;
 		newSyslistMap_de = new LinkedHashMap<Integer, String>();
 		newSyslistMap_de.put(1, "Ressourcenanbieter");
-		newSyslistMap_de.put(2, "Verwalter");
+		newSyslistMap_de.put(syslist505EntryKeyDatenverantwortung, "Verwalter");
 		newSyslistMap_de.put(3, "Eigentümer");
 		newSyslistMap_de.put(4, "Nutzer");
 		newSyslistMap_de.put(5, "Vertrieb");
 		newSyslistMap_de.put(6, "Urheber");
-		newSyslistMap_de.put(7, "Ansprechpartner");
+		newSyslistMap_de.put(syslist505EntryKeyAuskunft, "Ansprechpartner");
 		newSyslistMap_de.put(8, "Projektleitung");
 		newSyslistMap_de.put(9, "Bearbeiter");
 		newSyslistMap_de.put(10, "Herausgeber");
@@ -204,12 +223,12 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		// english syslist
 		newSyslistMap_en = new LinkedHashMap<Integer, String>(); 
 		newSyslistMap_en.put(1, "Resource Provider");
-		newSyslistMap_en.put(2, "Custodian");
+		newSyslistMap_en.put(syslist505EntryKeyDatenverantwortung, "Custodian");
 		newSyslistMap_en.put(3, "Owner");
 		newSyslistMap_en.put(4, "User");
 		newSyslistMap_en.put(5, "Distributor");
 		newSyslistMap_en.put(6, "Originator");
-		newSyslistMap_en.put(7, "Point of Contact");
+		newSyslistMap_en.put(syslist505EntryKeyAuskunft, "Point of Contact");
 		newSyslistMap_en.put(8, "Principal Investigator");
 		newSyslistMap_en.put(9, "Processor");
 		newSyslistMap_en.put(10, "Publisher");
@@ -218,13 +237,13 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		// DESCRIPTION DE syslist (just for completeness)
 		LinkedHashMap<Integer, String> newSyslistMap_description_de = new LinkedHashMap<Integer, String>();
 		newSyslistMap_description_de.put(1, "Anbieter der Ressource");
-		newSyslistMap_description_de.put(2, "Person/Stelle, welche die Zuständigkeit und Verantwortlichkeit für einen Datensatz " +
+		newSyslistMap_description_de.put(syslist505EntryKeyDatenverantwortung, "Person/Stelle, welche die Zuständigkeit und Verantwortlichkeit für einen Datensatz " +
 				"übernommen hat und seine sachgerechte Pflege und Wartung sichert");
 		newSyslistMap_description_de.put(3, "Eigentümer der Ressource");
 		newSyslistMap_description_de.put(4, "Nutzer der Ressource");
 		newSyslistMap_description_de.put(5, "Person oder Stelle für den Vertrieb");
 		newSyslistMap_description_de.put(6, "Erzeuger der Ressource");
-		newSyslistMap_description_de.put(7, "Kontakt für Informationen zur Ressource oder deren Bezugsmöglichkeiten");
+		newSyslistMap_description_de.put(syslist505EntryKeyAuskunft, "Kontakt für Informationen zur Ressource oder deren Bezugsmöglichkeiten");
 		newSyslistMap_description_de.put(8, "Person oder Stelle, die verantwortlich für die Erhebung der Daten und die Untersuchung ist");
 		newSyslistMap_description_de.put(9, "Person oder Stelle, welche die Ressource modifiziert");
 		newSyslistMap_description_de.put(10, "Person oder Stelle, welche die Ressource veröffentlicht");
@@ -233,19 +252,51 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		// DESCRIPTION EN syslist (just for completeness)
 		LinkedHashMap<Integer, String> newSyslistMap_description_en = new LinkedHashMap<Integer, String>();
 		newSyslistMap_description_en.put(1, "Party that supplies the resource");
-		newSyslistMap_description_en.put(2, "Party that accepts accountability and responsibility for the data and ensures " +
+		newSyslistMap_description_en.put(syslist505EntryKeyDatenverantwortung, "Party that accepts accountability and responsibility for the data and ensures " +
 				"appropriate care and maintenance of the resource");
 		newSyslistMap_description_en.put(3, "Party that owns the resource");
 		newSyslistMap_description_en.put(4, "Party who uses the resource");
 		newSyslistMap_description_en.put(5, "Party who distributes the resource");
 		newSyslistMap_description_en.put(6, "Party who created the resource");
-		newSyslistMap_description_en.put(7, "Party who can be contacted for acquiring knowledge about or acquisition of the resource");
+		newSyslistMap_description_en.put(syslist505EntryKeyAuskunft, "Party who can be contacted for acquiring knowledge about or acquisition of the resource");
 		newSyslistMap_description_en.put(8, "Key party responsible for gathering information and conducting research");
 		newSyslistMap_description_en.put(9, "Party who has processed the data in a manner such that the resource has been modified");
 		newSyslistMap_description_en.put(10, "Party who published the resource");
 		newSyslistMap_description_en.put(11, "Party who authored the resource");
 
 		writeNewSyslist(lstId, newSyslistMap_de, newSyslistMap_en, -1, -1, newSyslistMap_description_de, newSyslistMap_description_en);
+
+		// also fix data in objects (values dependent from catalog language) !
+
+		Iterator<Entry<Integer,String>> entryIt;
+		if ("de".equals(UtilsLanguageCodelist.getShortcutFromCode(readCatalogLanguageKey()))) {
+			entryIt = newSyslistMap_de.entrySet().iterator();
+		} else {
+			entryIt = newSyslistMap_en.entrySet().iterator();
+		}
+
+		String psSql = "UPDATE t012_obj_adr SET special_name = ? " +
+				"WHERE special_ref = 505 AND type = ?";
+		PreparedStatement psUpdate = jdbc.prepareStatement(psSql);
+
+		while (entryIt.hasNext()) {
+			Entry<Integer,String> entry = entryIt.next();
+			
+			if (entry.getKey().equals(syslist505EntryKeyDatenverantwortung)) {
+				syslist505EntryValueVerwalter = entry.getValue();
+			}
+			
+			psUpdate.setString(1, entry.getValue());
+			psUpdate.setInt(2, entry.getKey());
+			int numUpdated = psUpdate.executeUpdate();
+
+			if (log.isDebugEnabled()) {
+				log.debug("t012_obj_adr: updated " + numUpdated + " rows -> type(" + entry.getKey() + "), " +
+					"new value(" +	entry.getValue() + ")");
+			}				
+		}
+		psUpdate.close();
+
 // ---------------------------
 		if (log.isInfoEnabled()) {
 			log.info("Delete syslist 7110 (DQ_110_CompletenessOmission nameOfMeasure)...");
@@ -542,6 +593,166 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		}
 	}
 
+	private void updateT012ObjAdr() throws Exception {
+		if (log.isInfoEnabled()) {
+			log.info("Updating t012_obj_adr...");
+		}
+
+		if (log.isInfoEnabled()) {
+			log.info("Make former 'Auskunft' to new 'Verwalter' if no former 'Datenverantwortung' ...");
+		}
+
+		// NOTICE: we also update object search index, so search in IGE works !
+
+		// We read from node to determine working version to update search index ! 
+		String sql = "select objNode.id as objNodeId, " +
+				"objNode.obj_id as objIdWorking, " +
+				"obj.id as objId, obj.obj_uuid, " +
+				"objAdr.id as objAdrId, objAdr.type, objAdr.special_name " +
+				"from object_node objNode, t01_object obj, t012_obj_adr objAdr " +
+				"where objNode.obj_uuid = obj.obj_uuid " +
+				"and obj.id = objAdr.obj_id " +
+				"and objAdr.special_ref = 505 " +
+				"order by objNodeId, objId, objAdrId";
+
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(sql, st);
+
+		// here is our current object to process, all data encapsulated in this helper class !
+		ObjHelper currentObj = null;
+		int numProcessed = 0;
+
+		while (rs.next()) {
+			long objNodeId = rs.getLong("objNodeId");
+			long objIdWorking = rs.getLong("objIdWorking");
+			long objId = rs.getLong("objId");
+			String objUuid = rs.getString("obj_uuid");
+			long objAdrId = rs.getLong("objAdrId");
+			int type = rs.getInt("type");
+			String typeValue = rs.getString("special_name");
+
+			// check whether all data of an object is read, then do migration !
+			boolean objChange = false;
+			if (currentObj != null && currentObj.id != objId) {
+				// object changed, process finished object
+				objChange = true;
+				numProcessed = numProcessed + processT012ObjAdr(currentObj);
+			}
+
+			// set up new object
+			if (currentObj == null || objChange) {
+				currentObj = new ObjHelper(objId, objUuid, objNodeId, objIdWorking);
+			}
+
+			// pass new stuff
+			currentObj.objAdrs.add(new ObjAdrHelper(objAdrId, type, typeValue));
+		}
+		// also migrate last object ! not done in loop due to end of loop !
+		if (currentObj != null) {
+			numProcessed = numProcessed + processT012ObjAdr(currentObj);
+		}
+
+		rs.close();
+		st.close();
+
+		if (log.isInfoEnabled()) {
+			log.info("Changed " + numProcessed + " former 'Auskunft' relations to 'Verwalter' because no former 'Datenverantwortung' ... done");
+			log.info("Updating t012_obj_adr... done");
+		}
+	}
+
+	/** Helper class encapsulating all needed data of a processed object to process ! */
+	class ObjHelper {
+		long id;
+		long nodeId;
+		boolean isWorkingObjectOfNode;
+		String uuid;
+		List<ObjAdrHelper> objAdrs;
+
+		ObjHelper(long id, String uuid, long nodeId, long objIdWorkingVersion) {
+			this.id = id;
+			this.uuid = uuid;
+			this.nodeId = nodeId;
+			isWorkingObjectOfNode = (objIdWorkingVersion == id);
+			objAdrs = new ArrayList<ObjAdrHelper>();
+		}
+	}
+	/** Helper class encapsulating all needed data of a object address relation ! */
+	class ObjAdrHelper {
+		long id;
+		int type;
+		String typeValue;
+
+		ObjAdrHelper(long id, int type, String typeValue) {
+			this.id = id;
+			this.type = type;
+			this.typeValue = typeValue;
+		}
+	}
+
+	/** Migration: Ist keine Adresse mit der Rolle „Datenverantwortung" hinterlegt, so wird einer vorhandenen Adresse mit der Rolle „Auskunft" die neue Rolle
+	 * „Verwalter" zugewiesen. Andernfalls wird die Adresse in dieser Rolle Auskunft beibehalten und gibt künftig die Auskunftsadresse zu den Daten an 
+	 * (wurde bislang bei der Abgabe der Daten über die CSW-Schnittstelle als Auskunftsadresse für Metadaten verwendet).
+	 * <br>NOTICE: name of address relations already updated to new values (Datenverantwortung -> Verwalter)!
+	 * <b>But not search index, we also update Index !!!</b>
+	 * @param obj the object containing the relations
+	 * @return the number of updated obj adr relations
+	 * @throws Exception
+	 */
+	private int processT012ObjAdr(ObjHelper obj) throws Exception {
+		int numUpdated = 0;
+		
+		// Search for former "Datenverantwortung" and "Auskunft"
+		ObjAdrHelper objAdrDatenverantwortung = null;
+		ObjAdrHelper objAdrAuskunft = null;
+		for (ObjAdrHelper objAdr : obj.objAdrs) {
+			if (objAdr.type == syslist505EntryKeyDatenverantwortung) {
+				objAdrDatenverantwortung = objAdr;
+			}
+			if (objAdr.type == syslist505EntryKeyAuskunft) {
+				objAdrAuskunft = objAdr;
+			}
+		}
+
+		if (objAdrDatenverantwortung == null && objAdrAuskunft != null) {
+			if (log.isInfoEnabled()) {
+				log.info("Object '" + obj.uuid + "': make former 'Auskunft' to new 'Verwalter' because no former 'Datenverantwortung'.");
+			}
+
+			// first bring our 'Auskunft' helper object up to date, will also be written into search index !
+			objAdrAuskunft.type = syslist505EntryKeyDatenverantwortung;
+			objAdrAuskunft.typeValue = syslist505EntryValueVerwalter;
+
+			// use PreparedStatement to avoid problems when value String contains "'" !!!
+			String psSql = "UPDATE t012_obj_adr SET " +
+					"type = ?, " +
+					"special_name = ? " +
+					"WHERE id = ?";		
+			PreparedStatement psUpdate = jdbc.prepareStatement(psSql);
+			
+			psUpdate.setInt(1, objAdrAuskunft.type);
+			psUpdate.setString(2, objAdrAuskunft.typeValue);
+			psUpdate.setLong(3, objAdrAuskunft.id);
+			numUpdated = psUpdate.executeUpdate();
+
+			if (log.isInfoEnabled()) {
+				log.info("Updated " + numUpdated + " t012_obj_adr id:" + objAdrAuskunft.id + " to key/value -> " + objAdrAuskunft.type + "/" + objAdrAuskunft.typeValue);
+			}
+
+			psUpdate.close();
+		}
+
+		// then update search index for IGE search. Values of syslist were changed.
+		// Node may contain different object versions, index contains data of working version!
+		if (obj.isWorkingObjectOfNode) {
+			for (ObjAdrHelper objAdr : obj.objAdrs) {
+				JDBCHelper.updateObjectIndex(obj.nodeId, objAdr.typeValue, jdbc);
+			}
+		}
+		
+		return numUpdated;
+	}
+
 	private void updateProfile() throws Exception {
 		if (log.isInfoEnabled()) {
 			log.info("Update Profile in database...");
@@ -793,5 +1004,27 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		if (log.isInfoEnabled()) {
 			log.info("Cleaning up datastructure... done");
 		}
+	}
+
+	private int readCatalogLanguageKey() throws Exception {
+		int langKey = -1;
+		String sql = "SELECT language_key FROM t03_catalogue";
+		try {
+			Statement st = jdbc.createStatement();
+			ResultSet rs = jdbc.executeQuery(sql, st);
+			// has to be there !!!
+			rs.next();
+
+			langKey = rs.getInt(1);
+			
+			rs.close();
+			st.close();
+
+		} catch (SQLException e) {
+			log.error("Error executing SQL: " + sql, e);
+			throw e;
+		}
+
+		return langKey;
 	}
 }
