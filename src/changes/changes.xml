@@ -12,8 +12,8 @@
         Move field "Geoinformation/Karte - Sachdaten/Attributinformation" next to "Schlüsselkatalog", on Input make "Schlüsselkatalog" mandatory (Profile). 
       </action>
       <action type="update" dev="wemove" issue="INGRID32-48">
-        Move field "Datendefizit" to rubric "Datenqualität" (Profile), migrate data from table "Datendefizit" to field, remove table/data/syslist 7110.
-        Move fields "Lagegenauigkeit" and "Höhengenauigkeit" to rubric "Datenqualität" (Profile). Handle visibility of rubric "Datenqualität" via JS in first control (Profile). 
+        Move fields from "Fachbezug" to rubric "Datenqualität" (Profile) and migrate data from DQ tables. Remove according DQ tables/data/syslists.
+        Handle visibility of rubric "Datenqualität" via JS in first control (Profile). 
       </action>
       <action type="update" dev="wemove" issue="INGRID32-44, INGRID32-49">
         Update behaviour of "ISO-Themenkategorie" and "INSPIRE-Thema"/"INSPIRE-relevanter Datensatz" in Profile. Change positions.

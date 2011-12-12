@@ -38,8 +38,8 @@ import de.ingrid.utils.udk.UtilsLanguageCodelist;
  *   <li>Profile: Add Javascript for "ISO-Themenkategorie", "INSPIRE-Themen"/"INSPIRE-relevanter Datensatz" handling visibility and behaviour, see INGRID32-44, INGRID32-49
  *   <li>Profile: Add Javascript for "Sprache der Ressource" and "Zeichensatz des Datensatzes" handling visibility and behaviour, see INGRID32-43  
  *   <li>Move field "Datendefizit" to rubric "Datenqualität" (Profile), migrate data from table "Datendefizit" to field, remove table/data/syslist 7110, see INGRID32-48
+ *   <li>Move fields "Lagegenauigkeit" and "Höhengenauigkeit" to rubric "Datenqualität" (Profile), migrate data from table "Absoulte Positionsgenauigkeit", remove table/data/syslist 7117, see INGRID32-48
  *   <li>Profile: Add Javascript for "Datendefizit" handling visibility of rubric "Datenqualität", see INGRID32-48  
- *   <li>Profile: Move fields "Lagegenauigkeit" and "Höhengenauigkeit" to rubric "Datenqualität", see INGRID32-48
  *   <li>Profile: Move field "Geoinformation/Karte - Sachdaten/Attributinformation" next to "Schlüsselkatalog", on Input make "Schlüsselkatalog" mandatory, see INGRID32-50
  *   <li>Change Syslist 505 (Address Rollenbezeichner), also migrate data, see INGRID32-46
  * </ul>
@@ -60,6 +60,11 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 	String syslist505EntryValueVerwalter;
 	/** former "Auskunft" becomes "Ansprechpartner", this is the syslist entry key */
 	int syslist505EntryKeyAuskunft;
+
+	/** nameOfMeasureKey 'Mean value of positional uncertainties (1D)' == Lagegenauigkeit */
+	int syslist7117EntryKeyLagegenauigkeit = 1;
+	/** nameOfMeasureKey 'Mean value of positional uncertainties (2D)' == Höhengenauigkeit */
+	int syslist7117EntryKeyHoehegenauigkeit = 2;
 
 	public String getIDCVersion() {
 		return MY_VERSION;
@@ -94,7 +99,8 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		System.out.println("done.");
 
 		System.out.print("  Updating object_data_quality...");
-		updateObjectDataQuality();
+		updateDQDatendefizit();
+		updateDQAbsPosGenauigkeit();
 		System.out.println("done.");
 
 		System.out.print("  Updating t012_obj_adr...");
@@ -299,11 +305,22 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 
 // ---------------------------
 		if (log.isInfoEnabled()) {
-			log.info("Delete syslist 7110 (DQ_110_CompletenessOmission nameOfMeasure)...");
+			log.info("Delete syslist 7110 (DQ_110_CompletenessOmission = nameOfMeasure for DQ Table 'Datendefizit')...");
 		}
 
 		sqlStr = "DELETE FROM sys_list where lst_id = 7110";
 		int numDeleted = jdbc.executeUpdate(sqlStr);
+		if (log.isDebugEnabled()) {
+			log.debug("Deleted " + numDeleted +	" entries (all languages).");
+		}
+
+// ---------------------------
+		if (log.isInfoEnabled()) {
+			log.info("Delete syslist 7117 (DQ_117_AbsoluteExternalPositionalAccuracy = nameOfMeasure for DQ Table 'Absoulte Positionsgenauigkeit')...");
+		}
+
+		sqlStr = "DELETE FROM sys_list where lst_id = 7117";
+		numDeleted = jdbc.executeUpdate(sqlStr);
 		if (log.isDebugEnabled()) {
 			log.debug("Deleted " + numDeleted +	" entries (all languages).");
 		}
@@ -511,9 +528,9 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		}
 	}
 
-	private void updateObjectDataQuality() throws Exception {
+	private void updateDQDatendefizit() throws Exception {
 		if (log.isInfoEnabled()) {
-			log.info("Updating object_data_quality...");
+			log.info("Updating object_data_quality 'Datendefizit'...");
 		}
 
 		if (log.isInfoEnabled()) {
@@ -589,7 +606,122 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		}
 
 		if (log.isInfoEnabled()) {
-			log.info("Updating object_data_quality... done");
+			log.info("Updating object_data_quality 'Datendefizit' ... done");
+		}
+	}
+
+	private void updateDQAbsPosGenauigkeit() throws Exception {
+		if (log.isInfoEnabled()) {
+			log.info("Updating object_data_quality 'Absolute Positionsgenauigkeit'...");
+		}
+
+		if (log.isInfoEnabled()) {
+			log.info("Transfer 'Absolute Positionsgenauigkeit' values from DQ table (object_data_quality) to moved " +
+				"fields 'Höhengenauigkeit' (T011_obj_geo.pos_accuracy_vertical) and 'Lagegenauigkeit (m)' (T011_obj_geo.rec_exact) " +
+				"if fields are empty ...");
+		}
+
+		// NOTICE: We do NOT update search index due to same values.
+
+		// select all relevant entries in DQ Table
+		String sqlSelectDQTable = "select obj_id, name_of_measure_key, result_value from object_data_quality where dq_element_id = 117";
+
+		// select according values in DQ Field
+		PreparedStatement psSelectDQFields = jdbc.prepareStatement(
+				"SELECT pos_accuracy_vertical, rec_exact FROM t011_obj_geo WHERE obj_id = ?");
+
+		// update according value in DQ Field
+		PreparedStatement psUpdateDQFieldLage = jdbc.prepareStatement(
+				"UPDATE t011_obj_geo SET " +
+				"rec_exact = ? " +
+				"WHERE obj_id = ?");
+		PreparedStatement psUpdateDQFieldHoehe = jdbc.prepareStatement(
+				"UPDATE t011_obj_geo SET " +
+				"pos_accuracy_vertical = ? " +
+				"WHERE obj_id = ?");
+
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(sqlSelectDQTable, st);
+		int numProcessed = 0;
+		while (rs.next()) {
+			long objId = rs.getLong("obj_id");
+			int dqTableMeasureKey = rs.getInt("name_of_measure_key");
+			String dqTableValue = rs.getString("result_value");
+
+			if (dqTableValue != null) {
+				// read according value from field
+				psSelectDQFields.setLong(1, objId);
+				ResultSet rs2 = psSelectDQFields.executeQuery();
+				if (rs2.next()) {
+					// read field value where to migrate to and check whether was null 
+					double tmpDouble = rs2.getDouble("rec_exact");
+					boolean lageFieldValueWasNull = rs2.wasNull();
+					tmpDouble = rs2.getDouble("pos_accuracy_vertical");
+					boolean hoeheFieldValueWasNull = rs2.wasNull();
+					
+					// transfer Lagegenauigkeit from table to field if field is null
+					if (dqTableMeasureKey == syslist7117EntryKeyLagegenauigkeit && lageFieldValueWasNull) {
+						try {
+							psUpdateDQFieldLage.setDouble(1, new Double(dqTableValue));
+							psUpdateDQFieldLage.setLong(2, objId);
+							psUpdateDQFieldLage.executeUpdate();
+							numProcessed++;
+							if (log.isDebugEnabled()) {
+								log.debug("Transferred 'Lagegenauigkeit' value '" + dqTableValue +
+									"' from DQ table to field (was empty), obj_id:" + objId);
+							}
+						} catch (Exception ex) {
+							String msg = "Problems transferring 'Lagegenauigkeit' value '" + dqTableValue +
+									"' from DQ table as DOUBLE to field, value is lost ! obj_id:" + objId;
+							log.error(msg, ex);
+							System.out.println(msg);
+						}
+					}
+					
+					
+					// transfer Höhengenauigkeit  from table to field if field is null
+					if (dqTableMeasureKey == syslist7117EntryKeyHoehegenauigkeit && hoeheFieldValueWasNull) {
+						try {
+							psUpdateDQFieldHoehe.setDouble(1, new Double(dqTableValue));
+							psUpdateDQFieldHoehe.setLong(2, objId);
+							psUpdateDQFieldHoehe.executeUpdate();
+							numProcessed++;
+							if (log.isDebugEnabled()) {
+								log.debug("Transferred 'Höhengenauigkeit' value '" + dqTableValue +
+									"' from DQ table to field (was empty), obj_id:" + objId);
+							}
+						} catch (Exception ex) {
+							String msg = "Problems transferring 'Höhengenauigkeit' value '" + dqTableValue +
+									"' from DQ table as DOUBLE to field, value is lost ! obj_id:" + objId;
+							log.error(msg, ex);
+							System.out.println(msg);
+						}
+					}
+				}
+				rs2.close();
+			}
+		}
+		rs.close();
+		st.close();
+		psSelectDQFields.close();
+		psUpdateDQFieldLage.close();
+		psUpdateDQFieldHoehe.close();
+
+		if (log.isInfoEnabled()) {
+			log.info("Transferred " + numProcessed + " entries... done");
+		}
+
+		if (log.isInfoEnabled()) {
+			log.info("Delete 'Absoulte Positionsgenauigkeit' values from DQ table (object_data_quality) ...");
+		}
+		sqlStr = "DELETE FROM object_data_quality where dq_element_id = 117";
+		int numDeleted = jdbc.executeUpdate(sqlStr);
+		if (log.isDebugEnabled()) {
+			log.debug("Deleted " + numDeleted +	" entries.");
+		}
+
+		if (log.isInfoEnabled()) {
+			log.info("Updating object_data_quality 'Absolute Positionsgenauigkeit' ... done");
 		}
 	}
 
@@ -827,6 +959,11 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 			log.info("Remove DQ table control 'Datendefizit' from 'Datenqualität'");
 		}
     	control = MdekProfileUtils.removeControl(profileBean, "uiElement7510");
+
+		if (log.isInfoEnabled()) {
+			log.info("Remove DQ table control 'Absoulte Positionsgenauigkeit' from 'Datenqualität'");
+		}
+    	control = MdekProfileUtils.removeControl(profileBean, "uiElement7517");
 
     	if (log.isInfoEnabled()) {
 			log.info("Move control 'Geo-Information/Karte - Sachdaten/Attributinformation' after 'Schlüsselkatalog'");
