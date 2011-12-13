@@ -565,8 +565,16 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 				ResultSet rs2 = psSelectDQField.executeQuery();
 				if (rs2.next()) {
 					// just read it to check if null ! 
-					double tmpDoubleForDebug = rs2.getDouble("rec_grade");
-					if (rs2.wasNull()) {
+					double fieldValue = rs2.getDouble("rec_grade");
+					boolean fieldValueWasNull = rs2.wasNull();
+
+					if (log.isDebugEnabled()) {
+						log.debug("Object id=" + objId + " -> read DQ table value=" + dqTableValue +
+							" / value in field Datendefizit=" + (fieldValueWasNull? null : fieldValue));
+					}
+
+
+					if (fieldValueWasNull) {
 						try {
 							psUpdateDQField.setDouble(1, new Double(dqTableValue));
 							psUpdateDQField.setLong(2, objId);
@@ -654,11 +662,17 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 				ResultSet rs2 = psSelectDQFields.executeQuery();
 				if (rs2.next()) {
 					// read field value where to migrate to and check whether was null 
-					double tmpDouble = rs2.getDouble("rec_exact");
+					double lageFieldValue = rs2.getDouble("rec_exact");
 					boolean lageFieldValueWasNull = rs2.wasNull();
-					tmpDouble = rs2.getDouble("pos_accuracy_vertical");
+					double hoeheFieldValue = rs2.getDouble("pos_accuracy_vertical");
 					boolean hoeheFieldValueWasNull = rs2.wasNull();
-					
+
+					if (log.isDebugEnabled()) {
+						log.debug("Object id=" + objId + " -> read DQ table value: measureKey=" + dqTableMeasureKey + ", value=" + dqTableValue +
+							" / values in fields: Lagegenauigkeit=" + (lageFieldValueWasNull? null : lageFieldValue) +
+							", Höhengenauigkeit=" + (hoeheFieldValueWasNull ? null : hoeheFieldValue));
+					}
+
 					// transfer Lagegenauigkeit from table to field if field is null
 					if (dqTableMeasureKey == syslist7117EntryKeyLagegenauigkeit && lageFieldValueWasNull) {
 						try {
