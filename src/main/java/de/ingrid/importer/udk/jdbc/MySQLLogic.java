@@ -294,6 +294,23 @@ public class MySQLLogic implements DBLogic {
 		jdbc.executeUpdate(sql);
 	}
 
+	public void createTableObjectTypesCatalogue(JDBCConnectionProxy jdbc) throws SQLException {
+		String sql = "CREATE TABLE object_types_catalogue (" +
+			"id BIGINT NOT NULL, " +
+			"version INTEGER NOT NULL DEFAULT 0, " +
+			"obj_id BIGINT, " +
+			"line INTEGER DEFAULT 0, " +
+			"title_key INTEGER, " +
+			"title_value VARCHAR(255), " +
+			"type_date VARCHAR(17), " +
+			"type_version VARCHAR(255), " +
+			"PRIMARY KEY (id), " +
+			"INDEX idxOTypCat_ObjId (obj_id ASC)) " +
+			"ENGINE=InnoDB;";
+
+		jdbc.executeUpdate(sql);
+	}
+
 	private String mapColumnTypeToSQL(ColumnType colType) {
 		String sql = "";
 

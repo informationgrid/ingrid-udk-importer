@@ -91,4 +91,7 @@ public interface DBLogic {
 
 	/** DDL Operation ! CAUSES COMMIT ON MySQL ! */
 	void createTableSpatialSystem(JDBCConnectionProxy jdbc) throws SQLException;
+
+	/** DDL Operation ! CAUSES COMMIT ON MySQL ! */
+	void createTableObjectTypesCatalogue(JDBCConnectionProxy jdbc) throws SQLException;
 }

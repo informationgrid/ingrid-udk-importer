@@ -41,6 +41,7 @@ import de.ingrid.utils.udk.UtilsLanguageCodelist;
  *   <li>Move fields "Lagegenauigkeit" and "Höhengenauigkeit" to rubric "Datenqualität" (Profile), migrate data from table "Absoulte Positionsgenauigkeit", remove table/data/syslist 7117, see INGRID32-48
  *   <li>Profile: Add Javascript for "Datendefizit" handling visibility of rubric "Datenqualität", see INGRID32-48  
  *   <li>Profile: Move field "Geoinformation/Karte - Sachdaten/Attributinformation" next to "Schlüsselkatalog", on Input make "Schlüsselkatalog" mandatory, see INGRID32-50
+ *   <li>New control "Objektartenkatalog" for "Datensammlung / Datenbank" (db table and Profile), see INGRID32-50
  *   <li>Change Syslist 505 (Address Rollenbezeichner), also migrate data, see INGRID32-46
  * </ul>
  */
@@ -140,6 +141,11 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		jdbc.getDBLogic().addColumn("specification_key", ColumnType.INTEGER, "object_conformity", false, null, jdbc);
 		// we use TEXT_NO_CLOB because free entries may be > 255 !
 		jdbc.getDBLogic().addColumn("specification_value", ColumnType.TEXT_NO_CLOB, "object_conformity", false, null, jdbc);
+
+		if (log.isInfoEnabled()) {
+			log.info("Create table 'object_types_catalogue'...");
+		}
+		jdbc.getDBLogic().createTableObjectTypesCatalogue(jdbc);
 
 		if (log.isInfoEnabled()) {
 			log.info("Extending datastructure... done");
@@ -913,6 +919,8 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		profileBean = profileMapper.mapStringToBean(profileXml);			
 
 		moveRubricsAndControls(profileBean);
+
+		addControls(profileBean);
 		
 		addJavaScriptToControls(profileBean);
 
@@ -932,6 +940,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 	 * Move rubric "Verschlagwortung" after rubric "Allgemeines".
 	 * Move Control "INSPIRE-Themen" from "Allgemeines" to "Verschlagwortung".
 	 * ...
+	 * also removes controls
 	 */
 	private void moveRubricsAndControls(ProfileBean profileBean) {
     	if (log.isInfoEnabled()) {
@@ -986,6 +995,23 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		rubric = MdekProfileUtils.findRubric(profileBean, "refClass1");
 		index = MdekProfileUtils.findControlIndex(profileBean, rubric, "uiElement3535");
 		MdekProfileUtils.addControl(profileBean, control, rubric, index+1);
+	}
+
+	/** Add new controls to Profile */
+	private void addControls(ProfileBean profileBean) {
+    	if (log.isInfoEnabled()) {
+			log.info("Add new LEGACY control 'Datensammlung/Datenbank - Fachbezug - Objektartenkatalog' before 'Inhalte der Datensammlung/Datenbank'");
+		}
+    	Controls ctrl = new Controls();
+        ctrl.setIsLegacy(true);
+        ctrl.setId("uiElement3109");
+        ctrl.setIsMandatory(false);
+        ctrl.setIsVisible("optional");
+
+    	Rubric rubric = MdekProfileUtils.findRubric(profileBean, "refClass5");
+    	// add before 'Inhalte der Datensammlung/Datenbank'
+		int index = MdekProfileUtils.findControlIndex(profileBean, rubric, "uiElement3110");
+		MdekProfileUtils.addControl(profileBean, ctrl, rubric, index);
 	}
 
 	private void addJavaScriptToControls(ProfileBean profileBean) {

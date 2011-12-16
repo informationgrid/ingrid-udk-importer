@@ -349,6 +349,24 @@ public class OracleLogic implements DBLogic {
 		jdbc.commit();
 	}
 
+	public void createTableObjectTypesCatalogue(JDBCConnectionProxy jdbc) throws SQLException {
+		String sql = "CREATE TABLE object_types_catalogue (" +
+			"id  NUMBER(24,0) NOT NULL, " +
+			"version NUMBER(10,0) DEFAULT '0' NOT NULL, " +
+			"obj_id NUMBER(24,0) NOT NULL, " +
+			"line NUMBER(10,0) DEFAULT '0' NOT NULL, " +
+			"title_key NUMBER(10,0), " +
+			"title_value VARCHAR2(255 CHAR), " +
+			"type_date VARCHAR2(17 CHAR), " +
+			"type_version VARCHAR2(255 CHAR))";
+		jdbc.executeUpdate(sql);
+		sql = "ALTER TABLE object_types_catalogue ADD CONSTRAINT PRIMARY_ObjectTypesCatalogue PRIMARY KEY ( id ) ENABLE";
+		jdbc.executeUpdate(sql);
+		sql = "CREATE INDEX idxOTypCat_ObjId ON object_types_catalogue ( obj_id )";
+		jdbc.executeUpdate(sql);
+		jdbc.commit();
+	}
+
 	private String mapColumnTypeToSQL(ColumnType colType) {
 		String sql = "";
 
