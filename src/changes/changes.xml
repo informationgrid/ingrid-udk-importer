@@ -9,9 +9,7 @@
         Rework and migration of syslist 505 (RESPONSIBLE PARTY ROLE) according to INSPIRE Metadata Regulation Nr 1205/2008.
       </action>
       <action type="update" dev="wemove" issue="INGRID32-50">
-        Add new control "Datensammlung/Datenbank - Fachbezug - Objektartenkatalog".
-      </action>
-      <action type="update" dev="wemove" issue="INGRID32-50">
+        Add new control "Datensammlung/Datenbank - Fachbezug - Objektartenkatalog" with new database table, also replacing table of "Geoinformation/Karte - Schlüsselkatalog".
         Move field "Geoinformation/Karte - Fachbezug - Sachdaten/Attributinformation" next to "Schlüsselkatalog", on Input make "Schlüsselkatalog" mandatory (Profile). 
       </action>
       <action type="update" dev="wemove" issue="INGRID32-48">

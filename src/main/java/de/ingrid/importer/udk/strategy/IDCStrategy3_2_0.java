@@ -41,7 +41,7 @@ import de.ingrid.utils.udk.UtilsLanguageCodelist;
  *   <li>Move fields "Lagegenauigkeit" and "Höhengenauigkeit" to rubric "Datenqualität" (Profile), migrate data from table "Absoulte Positionsgenauigkeit", remove table/data/syslist 7117, see INGRID32-48
  *   <li>Profile: Add Javascript for "Datendefizit" handling visibility of rubric "Datenqualität", see INGRID32-48  
  *   <li>Profile: Move field "Geoinformation/Karte - Sachdaten/Attributinformation" next to "Schlüsselkatalog", on Input make "Schlüsselkatalog" mandatory, see INGRID32-50
- *   <li>New control "Objektartenkatalog" for "Datensammlung / Datenbank" (db table and Profile), see INGRID32-50
+ *   <li>New control "Objektartenkatalog" for "Datensammlung / Datenbank" (Profile), new db table "object_types_catalogue" replacing also old "t011_obj_geo table", migrate data ..., see INGRID32-50
  *   <li>Change Syslist 505 (Address Rollenbezeichner), also migrate data, see INGRID32-46
  * </ul>
  */
@@ -108,6 +108,10 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		updateT012ObjAdr();
 		System.out.println("done.");
 
+		System.out.print("  Updating object_types_catalogue...");
+		updateObjectTypesCatalogue();
+		System.out.println("done.");
+
 		System.out.print("  Update Profile in database...");
 		updateProfile();
 		System.out.println("done.");
@@ -124,44 +128,30 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 	}
 
 	private void extendDataStructure() throws Exception {
-		if (log.isInfoEnabled()) {
-			log.info("Extending datastructure -> CAUSES COMMIT ! ...");
-		}
+		log.info("\nExtending datastructure -> CAUSES COMMIT ! ...");
 
-		if (log.isInfoEnabled()) {
-			log.info("Add columns 'terms_of_use_key/_value' to table 'object_use' ...");
-		}
+		log.info("Add columns 'terms_of_use_key/_value' to table 'object_use' ...");
 		jdbc.getDBLogic().addColumn("terms_of_use_key", ColumnType.INTEGER, "object_use", false, null, jdbc);
 		// we use TEXT_NO_CLOB because current free entries ARE > 255 chars !
 		jdbc.getDBLogic().addColumn("terms_of_use_value", ColumnType.TEXT_NO_CLOB, "object_use", false, null, jdbc);
 
-		if (log.isInfoEnabled()) {
-			log.info("Add columns 'specification_key/_value' to table 'object_conformity' ...");
-		}
+		log.info("Add columns 'specification_key/_value' to table 'object_conformity' ...");
 		jdbc.getDBLogic().addColumn("specification_key", ColumnType.INTEGER, "object_conformity", false, null, jdbc);
 		// we use TEXT_NO_CLOB because free entries may be > 255 !
 		jdbc.getDBLogic().addColumn("specification_value", ColumnType.TEXT_NO_CLOB, "object_conformity", false, null, jdbc);
 
-		if (log.isInfoEnabled()) {
-			log.info("Create table 'object_types_catalogue'...");
-		}
+		log.info("Create table 'object_types_catalogue'...");
 		jdbc.getDBLogic().createTableObjectTypesCatalogue(jdbc);
 
-		if (log.isInfoEnabled()) {
-			log.info("Extending datastructure... done");
-		}
+		log.info("Extending datastructure... done\n");
 	}
 
 	protected void updateSysList() throws Exception {
-		if (log.isInfoEnabled()) {
-			log.info("Updating sys_list...");
-		}
+		log.info("\nUpdating sys_list...");
 
 // ---------------------------
 		int lstId = 6005;
-		if (log.isInfoEnabled()) {
-			log.info("Inserting new syslist " + lstId +	" = \"Spezifikation der Konformität\"...");
-		}
+		log.info("Inserting new syslist " + lstId +	" = \"Spezifikation der Konformität\"...");
 
 		// NOTICE: SYSLIST contains date at end of syslist value (yyyy-MM-dd), has to be cut off in IGE ! But used for mapping in DSC-Scripted !
 		// german syslist
@@ -198,9 +188,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		writeNewSyslist(lstId, newSyslistMap_de, newSyslistMap_en, 13, 13, null, null);
 // ---------------------------
 		lstId = 6020;
-		if (log.isInfoEnabled()) {
-			log.info("Inserting new syslist " + lstId +	" = \"Nutzungsbedingungen\"...");
-		}
+		log.info("Inserting new syslist " + lstId +	" = \"Nutzungsbedingungen\"...");
 
 		// german syslist
 		newSyslistMap_de = new LinkedHashMap<Integer, String>();
@@ -212,9 +200,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		writeNewSyslist(lstId, newSyslistMap_de, newSyslistMap_en, 1, 1, null, null);
 // ---------------------------
 		lstId = 505;
-		if (log.isInfoEnabled()) {
-			log.info("Update syslist " + lstId +	" = \"Address Rollenbezeichner\"...");
-		}
+		log.info("Update syslist " + lstId +	" = \"Address Rollenbezeichner\"...");
 
 		// german syslist
 		syslist505EntryKeyDatenverantwortung = 2;
@@ -302,38 +288,26 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 			psUpdate.setInt(2, entry.getKey());
 			int numUpdated = psUpdate.executeUpdate();
 
-			if (log.isDebugEnabled()) {
-				log.debug("t012_obj_adr: updated " + numUpdated + " rows -> type(" + entry.getKey() + "), " +
+			log.debug("t012_obj_adr: updated " + numUpdated + " rows -> type(" + entry.getKey() + "), " +
 					"new value(" +	entry.getValue() + ")");
-			}				
 		}
 		psUpdate.close();
 
 // ---------------------------
-		if (log.isInfoEnabled()) {
-			log.info("Delete syslist 7110 (DQ_110_CompletenessOmission = nameOfMeasure for DQ Table 'Datendefizit')...");
-		}
+		log.info("Delete syslist 7110 (DQ_110_CompletenessOmission = nameOfMeasure for DQ Table 'Datendefizit')...");
 
 		sqlStr = "DELETE FROM sys_list where lst_id = 7110";
 		int numDeleted = jdbc.executeUpdate(sqlStr);
-		if (log.isDebugEnabled()) {
-			log.debug("Deleted " + numDeleted +	" entries (all languages).");
-		}
+		log.debug("Deleted " + numDeleted +	" entries (all languages).");
 
 // ---------------------------
-		if (log.isInfoEnabled()) {
-			log.info("Delete syslist 7117 (DQ_117_AbsoluteExternalPositionalAccuracy = nameOfMeasure for DQ Table 'Absoulte Positionsgenauigkeit')...");
-		}
+		log.info("Delete syslist 7117 (DQ_117_AbsoluteExternalPositionalAccuracy = nameOfMeasure for DQ Table 'Absoulte Positionsgenauigkeit')...");
 
 		sqlStr = "DELETE FROM sys_list where lst_id = 7117";
 		numDeleted = jdbc.executeUpdate(sqlStr);
-		if (log.isDebugEnabled()) {
-			log.debug("Deleted " + numDeleted +	" entries (all languages).");
-		}
+		log.debug("Deleted " + numDeleted +	" entries (all languages).");
 
-		if (log.isInfoEnabled()) {
-			log.info("Updating sys_list... done");
-		}
+		log.info("Updating sys_list... done\n");
 	}
 
 	/**
@@ -405,13 +379,9 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 	}
 
 	private void updateObjectUse() throws Exception {
-		if (log.isInfoEnabled()) {
-			log.info("Updating object_use...");
-		}
+		log.info("\nUpdating object_use...");
 
-		if (log.isInfoEnabled()) {
-			log.info("Transfer old 'terms_of_use' as free entry to new 'terms_of_use_key/_value' ...");
-		}
+		log.info("Transfer old 'terms_of_use' as free entry to new 'terms_of_use_key/_value' ...");
 		
 		// NOTICE: No mapping of former values to new syslists. Every value becomes a free entry !!!
 		// We "keep" type TEXT_NO_CLOB of values, so we do not have to reduce size !
@@ -470,29 +440,21 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 			}
 */
 			numProcessed++;
-			if (log.isDebugEnabled()) {
-//				log.debug("Object " + objUuid + " updated terms_of_use: '" + 
-				log.debug("Updated terms_of_use: '" + termsOfUseText + "' --> '-1'/'" + termsOfUseVarchar + "'");
-			}
+//			log.debug("Object " + objUuid + " updated terms_of_use: '" + 
+			log.debug("Updated terms_of_use: '" + termsOfUseText + "' --> '-1'/'" + termsOfUseVarchar + "'");
 		}
 		rs.close();
 		st.close();
 		psUpdate.close();
 
-		if (log.isInfoEnabled()) {
-			log.info("Updated " + numProcessed + " entries... done");
-			log.info("Updating object_use... done");
-		}
+		log.info("Updated " + numProcessed + " entries... done");
+		log.info("Updating object_use... done\n");
 	}
 
 	private void updateObjectConformity() throws Exception {
-		if (log.isInfoEnabled()) {
-			log.info("Updating object_conformity...");
-		}
+		log.info("\nUpdating object_conformity...");
 
-		if (log.isInfoEnabled()) {
-			log.info("Transfer old 'specification' as free entry to new 'specification_key/_value' ...");
-		}
+		log.info("Transfer old 'specification' as free entry to new 'specification_key/_value' ...");
 
 		// NOTICE: No mapping of former values to new syslists. Every value becomes a free entry !!!
 		// We "keep" type TEXT_NO_CLOB of values, so we do not have to reduce size !
@@ -520,28 +482,20 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 			psUpdate.executeUpdate();
 
 			numProcessed++;
-			if (log.isDebugEnabled()) {
-				log.debug("Updated specification: '" + specification + "' --> '-1'/'" + specification + "'");
-			}
+			log.debug("Updated specification: '" + specification + "' --> '-1'/'" + specification + "'");
 		}
 		rs.close();
 		st.close();
 		psUpdate.close();
 
-		if (log.isInfoEnabled()) {
-			log.info("Updated " + numProcessed + " entries... done");
-			log.info("Updating object_conformity... done");
-		}
+		log.info("Updated " + numProcessed + " entries... done");
+		log.info("Updating object_conformity... done\n");
 	}
 
 	private void updateDQDatendefizit() throws Exception {
-		if (log.isInfoEnabled()) {
-			log.info("Updating object_data_quality 'Datendefizit'...");
-		}
+		log.info("\nUpdating object_data_quality 'Datendefizit'...");
 
-		if (log.isInfoEnabled()) {
-			log.info("Transfer 'Datendefizit' value from DQ table (object_data_quality) to DQ field (t011_obj_geo.rec_grade) if field is empty ...");
-		}
+		log.info("Transfer 'Datendefizit' value from DQ table (object_data_quality) to DQ field (t011_obj_geo.rec_grade) if field is empty ...");
 
 		// NOTICE: We do NOT update search index due to same values.
 
@@ -574,10 +528,8 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 					double fieldValue = rs2.getDouble("rec_grade");
 					boolean fieldValueWasNull = rs2.wasNull();
 
-					if (log.isDebugEnabled()) {
-						log.debug("Object id=" + objId + " -> read DQ table value=" + dqTableValue +
-							" / value in field Datendefizit=" + (fieldValueWasNull? null : fieldValue));
-					}
+					log.debug("Object id=" + objId + " -> read DQ table value=" + dqTableValue +
+						" / value in field Datendefizit=" + (fieldValueWasNull? null : fieldValue));
 
 
 					if (fieldValueWasNull) {
@@ -586,10 +538,8 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 							psUpdateDQField.setLong(2, objId);
 							psUpdateDQField.executeUpdate();
 							numProcessed++;
-							if (log.isDebugEnabled()) {
-								log.debug("Transferred 'Datendefizit' value '" + dqTableValue +
-									"' from DQ table to field (was empty), obj_id:" + objId);
-							}
+							log.debug("Transferred 'Datendefizit' value '" + dqTableValue +
+								"' from DQ table to field (was empty), obj_id:" + objId);
 						} catch (Exception ex) {
 							String msg = "Problems transferring 'Datendefizit' value '" + dqTableValue +
 									"' from DQ table as DOUBLE to field, value is lost ! obj_id:" + objId;
@@ -606,34 +556,22 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		psSelectDQField.close();
 		psUpdateDQField.close();
 
-		if (log.isInfoEnabled()) {
-			log.info("Transferred " + numProcessed + " entries... done");
-		}
+		log.info("Transferred " + numProcessed + " entries... done");
 
-		if (log.isInfoEnabled()) {
-			log.info("Delete 'Datendefizit' values from DQ table (object_data_quality) ...");
-		}
+		log.info("Delete 'Datendefizit' values from DQ table (object_data_quality) ...");
 		sqlStr = "DELETE FROM object_data_quality where dq_element_id = 110";
 		int numDeleted = jdbc.executeUpdate(sqlStr);
-		if (log.isDebugEnabled()) {
-			log.debug("Deleted " + numDeleted +	" entries.");
-		}
+		log.debug("Deleted " + numDeleted +	" entries.");
 
-		if (log.isInfoEnabled()) {
-			log.info("Updating object_data_quality 'Datendefizit' ... done");
-		}
+		log.info("Updating object_data_quality 'Datendefizit' ... done\n");
 	}
 
 	private void updateDQAbsPosGenauigkeit() throws Exception {
-		if (log.isInfoEnabled()) {
-			log.info("Updating object_data_quality 'Absolute Positionsgenauigkeit'...");
-		}
+		log.info("\nUpdating object_data_quality 'Absolute Positionsgenauigkeit'...");
 
-		if (log.isInfoEnabled()) {
-			log.info("Transfer 'Absolute Positionsgenauigkeit' values from DQ table (object_data_quality) to moved " +
-				"fields 'Höhengenauigkeit' (T011_obj_geo.pos_accuracy_vertical) and 'Lagegenauigkeit (m)' (T011_obj_geo.rec_exact) " +
-				"if fields are empty ...");
-		}
+		log.info("Transfer 'Absolute Positionsgenauigkeit' values from DQ table (object_data_quality) to moved " +
+			"fields 'Höhengenauigkeit' (T011_obj_geo.pos_accuracy_vertical) and 'Lagegenauigkeit (m)' (T011_obj_geo.rec_exact) " +
+			"if fields are empty ...");
 
 		// NOTICE: We do NOT update search index due to same values.
 
@@ -673,11 +611,9 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 					double hoeheFieldValue = rs2.getDouble("pos_accuracy_vertical");
 					boolean hoeheFieldValueWasNull = rs2.wasNull();
 
-					if (log.isDebugEnabled()) {
-						log.debug("Object id=" + objId + " -> read DQ table value: measureKey=" + dqTableMeasureKey + ", value=" + dqTableValue +
-							" / values in fields: Lagegenauigkeit=" + (lageFieldValueWasNull? null : lageFieldValue) +
-							", Höhengenauigkeit=" + (hoeheFieldValueWasNull ? null : hoeheFieldValue));
-					}
+					log.debug("Object id=" + objId + " -> read DQ table value: measureKey=" + dqTableMeasureKey + ", value=" + dqTableValue +
+						" / values in fields: Lagegenauigkeit=" + (lageFieldValueWasNull? null : lageFieldValue) +
+						", Höhengenauigkeit=" + (hoeheFieldValueWasNull ? null : hoeheFieldValue));
 
 					// transfer Lagegenauigkeit from table to field if field is null
 					if (dqTableMeasureKey == syslist7117EntryKeyLagegenauigkeit && lageFieldValueWasNull) {
@@ -686,10 +622,8 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 							psUpdateDQFieldLage.setLong(2, objId);
 							psUpdateDQFieldLage.executeUpdate();
 							numProcessed++;
-							if (log.isDebugEnabled()) {
-								log.debug("Transferred 'Lagegenauigkeit' value '" + dqTableValue +
-									"' from DQ table to field (was empty), obj_id:" + objId);
-							}
+							log.debug("Transferred 'Lagegenauigkeit' value '" + dqTableValue +
+								"' from DQ table to field (was empty), obj_id:" + objId);
 						} catch (Exception ex) {
 							String msg = "Problems transferring 'Lagegenauigkeit' value '" + dqTableValue +
 									"' from DQ table as DOUBLE to field, value is lost ! obj_id:" + objId;
@@ -706,10 +640,8 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 							psUpdateDQFieldHoehe.setLong(2, objId);
 							psUpdateDQFieldHoehe.executeUpdate();
 							numProcessed++;
-							if (log.isDebugEnabled()) {
-								log.debug("Transferred 'Höhengenauigkeit' value '" + dqTableValue +
-									"' from DQ table to field (was empty), obj_id:" + objId);
-							}
+							log.debug("Transferred 'Höhengenauigkeit' value '" + dqTableValue +
+								"' from DQ table to field (was empty), obj_id:" + objId);
 						} catch (Exception ex) {
 							String msg = "Problems transferring 'Höhengenauigkeit' value '" + dqTableValue +
 									"' from DQ table as DOUBLE to field, value is lost ! obj_id:" + objId;
@@ -727,32 +659,20 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		psUpdateDQFieldLage.close();
 		psUpdateDQFieldHoehe.close();
 
-		if (log.isInfoEnabled()) {
-			log.info("Transferred " + numProcessed + " entries... done");
-		}
+		log.info("Transferred " + numProcessed + " entries... done");
 
-		if (log.isInfoEnabled()) {
-			log.info("Delete 'Absoulte Positionsgenauigkeit' values from DQ table (object_data_quality) ...");
-		}
+		log.info("Delete 'Absoulte Positionsgenauigkeit' values from DQ table (object_data_quality) ...");
 		sqlStr = "DELETE FROM object_data_quality where dq_element_id = 117";
 		int numDeleted = jdbc.executeUpdate(sqlStr);
-		if (log.isDebugEnabled()) {
-			log.debug("Deleted " + numDeleted +	" entries.");
-		}
+		log.debug("Deleted " + numDeleted +	" entries.");
 
-		if (log.isInfoEnabled()) {
-			log.info("Updating object_data_quality 'Absolute Positionsgenauigkeit' ... done");
-		}
+		log.info("Updating object_data_quality 'Absolute Positionsgenauigkeit' ... done\n");
 	}
 
 	private void updateT012ObjAdr() throws Exception {
-		if (log.isInfoEnabled()) {
-			log.info("Updating t012_obj_adr...");
-		}
+		log.info("\nUpdating t012_obj_adr...");
 
-		if (log.isInfoEnabled()) {
-			log.info("Make former 'Auskunft' to new 'Verwalter' if no former 'Datenverantwortung' ...");
-		}
+		log.info("Make former 'Auskunft' to new 'Verwalter' if no former 'Datenverantwortung' ...");
 
 		// NOTICE: we also update object search index, so search in IGE works !
 
@@ -807,10 +727,8 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		rs.close();
 		st.close();
 
-		if (log.isInfoEnabled()) {
-			log.info("Changed " + numProcessed + " former 'Auskunft' relations to 'Verwalter' because no former 'Datenverantwortung' ... done");
-			log.info("Updating t012_obj_adr... done");
-		}
+		log.info("Changed " + numProcessed + " former 'Auskunft' relations to 'Verwalter' because no former 'Datenverantwortung' ... done");
+		log.info("Updating t012_obj_adr... done\n");
 	}
 
 	/** Helper class encapsulating all needed data of a processed object to process ! */
@@ -867,9 +785,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		}
 
 		if (objAdrDatenverantwortung == null && objAdrAuskunft != null) {
-			if (log.isInfoEnabled()) {
-				log.info("Object '" + obj.uuid + "': make former 'Auskunft' to new 'Verwalter' because no former 'Datenverantwortung'.");
-			}
+			log.info("Object '" + obj.uuid + "': make former 'Auskunft' to new 'Verwalter' because no former 'Datenverantwortung'.");
 
 			// first bring our 'Auskunft' helper object up to date, will also be written into search index !
 			objAdrAuskunft.type = syslist505EntryKeyDatenverantwortung;
@@ -887,9 +803,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 			psUpdate.setLong(3, objAdrAuskunft.id);
 			numUpdated = psUpdate.executeUpdate();
 
-			if (log.isInfoEnabled()) {
-				log.info("Updated " + numUpdated + " t012_obj_adr id:" + objAdrAuskunft.id + " to key/value -> " + objAdrAuskunft.type + "/" + objAdrAuskunft.typeValue);
-			}
+			log.info("Updated " + numUpdated + " t012_obj_adr id:" + objAdrAuskunft.id + " to key/value -> " + objAdrAuskunft.type + "/" + objAdrAuskunft.typeValue);
 
 			psUpdate.close();
 		}
@@ -905,10 +819,120 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		return numUpdated;
 	}
 
-	private void updateProfile() throws Exception {
-		if (log.isInfoEnabled()) {
-			log.info("Update Profile in database...");
+	private void updateObjectTypesCatalogue() throws Exception {
+		log.info("\nUpdating object_types_catalogue...");
+
+		migrateT011ObjGeoKeyc();
+		migrateT011ObjDataPara();
+
+		log.info("Updating object_types_catalogue... done\n");
+	}
+		
+	private void migrateT011ObjGeoKeyc() throws Exception {
+		log.info("\nMigrate data from 't011_obj_geo_keyc' to 'object_types_catalogue'...");
+
+		// NOTICE: We do NOT update search index due to same values.
+
+		// select all data from old tables
+		String sqlSelectOldData = "SELECT obj.id, objGeoKeyc.line, objGeoKeyc.keyc_key, objGeoKeyc.keyc_value, " +
+			"objGeoKeyc.key_date, objGeoKeyc.edition " +
+			"FROM t01_object obj, t011_obj_geo objGeo, t011_obj_geo_keyc objGeoKeyc " +
+			"WHERE obj.id = objGeo.obj_id " +
+			"AND objGeo.id = objGeoKeyc.obj_geo_id " +
+			"ORDER BY obj.id, objGeoKeyc.line";
+		
+		// insert into new table
+		PreparedStatement psInsert = jdbc.prepareStatement(
+				"INSERT INTO object_types_catalogue " +
+				"(id, obj_id, line, title_key, title_value, type_date, type_version) " +
+				"VALUES (?,?,?,?,?,?,?)");
+
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(sqlSelectOldData, st);
+		int numProcessed = 0;
+		while (rs.next()) {
+
+			long objId = rs.getLong("id");
+			int line = rs.getInt("line");
+			int titleKey = rs.getInt("keyc_key");
+			String titleValue = rs.getString("keyc_value");
+			String date = rs.getString("key_date");
+			String version = rs.getString("edition");
+			
+					
+			psInsert.setLong(1, getNextId());
+			psInsert.setLong(2, objId);
+			psInsert.setInt(3, line);
+			psInsert.setInt(4, titleKey);
+			psInsert.setString(5, titleValue);
+			psInsert.setString(6, date);
+			psInsert.setString(7, version);
+			psInsert.executeUpdate();
+
+			numProcessed++;
+			log.debug("Transferred entry from 't011_obj_geo_keyc' to 'object_types_catalogue': " +
+				"objId=" + objId + " -> " + line + "/" + titleKey + "/" + titleValue + "/" + date + "/" + version);
 		}
+		rs.close();
+		st.close();
+		psInsert.close();
+
+		log.info("Transferred " + numProcessed + " entries... done");
+		log.info("Migrate data from 't011_obj_geo_keyc' to 'object_types_catalogue' ... done\n");
+	}
+
+	private void migrateT011ObjDataPara() throws Exception {
+		log.info("\nAdd default entry in 'object_types_catalogue' for data from 't011_obj_data_para'...");
+
+		// NOTICE: We do NOT update search index !!!
+
+		// select all data from old tables
+		String sqlSelectOldData = "SELECT distinct obj.id " +
+			"FROM t01_object obj, t011_obj_data_para objDataPara " +
+			"WHERE obj.id = objDataPara.obj_id " +
+			"ORDER BY obj.id";
+		
+		// insert into new table
+		PreparedStatement psInsert = jdbc.prepareStatement(
+				"INSERT INTO object_types_catalogue " +
+				"(id, obj_id, line, title_key, title_value, type_date, type_version) " +
+				"VALUES (?,?,?,?,?,?,?)");
+
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(sqlSelectOldData, st);
+		int numProcessed = 0;
+		while (rs.next()) {
+
+			long objId = rs.getLong("id");
+			int line = 1;
+			int titleKey = -1;
+			String titleValue = "unknown";
+			String date = "20060501000000000";
+			String version = null;
+					
+			psInsert.setLong(1, getNextId());
+			psInsert.setLong(2, objId);
+			psInsert.setInt(3, line);
+			psInsert.setInt(4, titleKey);
+			psInsert.setString(5, titleValue);
+			psInsert.setString(6, date);
+			psInsert.setString(7, version);
+			psInsert.executeUpdate();
+
+			numProcessed++;
+			log.debug("Added default 'Objektartenkatalog' to 'object_types_catalogue': " +
+				"objId=" + objId + " -> " + line + "/" + titleKey + "/" + titleValue + "/" + date + "/" + version);
+		}
+		rs.close();
+		st.close();
+		psInsert.close();
+
+		log.info("Added " + numProcessed + " entries... done");
+		log.info("Add default entry in 'object_types_catalogue' for data from 't011_obj_data_para' ... done\n");
+	}
+
+	private void updateProfile() throws Exception {
+		log.info("\nUpdate Profile in database...");
 
         // read profile
 		String profileXml = readGenericKey(KEY_PROFILE_XML);
@@ -926,14 +950,10 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 
 		// write Profile !
         profileXml = profileMapper.mapBeanToXmlString(profileBean);
-		if (log.isDebugEnabled()) {
-			log.debug("Resulting IGC Profile:" + profileXml);
-		}
+		log.debug("Resulting IGC Profile:" + profileXml);
 		setGenericKey(KEY_PROFILE_XML, profileXml);        	
 
-		if (log.isInfoEnabled()) {
-			log.info("Update Profile in database... done");
-		}
+		log.info("Update Profile in database... done\n");
 	}
 
 	/**
@@ -943,54 +963,38 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 	 * also removes controls
 	 */
 	private void moveRubricsAndControls(ProfileBean profileBean) {
-    	if (log.isInfoEnabled()) {
-			log.info("Move rubric 'Verschlagwortung' after rubric 'Allgemeines'");
-		}
+		log.info("Move rubric 'Verschlagwortung' after rubric 'Allgemeines'");
 		int index = MdekProfileUtils.findRubricIndex(profileBean, "general");
 		Rubric rubric = MdekProfileUtils.removeRubric(profileBean, "thesaurus");
 		MdekProfileUtils.addRubric(profileBean, rubric, index+1);
 
-    	if (log.isInfoEnabled()) {
-			log.info("Move control 'INSPIRE-Themen' from 'Allgemeines' to 'Verschlagwortung'");
-		}
+		log.info("Move control 'INSPIRE-Themen' from 'Allgemeines' to 'Verschlagwortung'");
     	Controls control = MdekProfileUtils.removeControl(profileBean, "uiElement5064");
 		rubric = MdekProfileUtils.findRubric(profileBean, "thesaurus");
 		MdekProfileUtils.addControl(profileBean, control, rubric, 0);
 
-		if (log.isInfoEnabled()) {
-			log.info("Move control 'Datendefizit' from 'Fachbezug - Klasse 1' to 'Datenqualität'");
-		}
+		log.info("Move control 'Datendefizit' from 'Fachbezug - Klasse 1' to 'Datenqualität'");
     	control = MdekProfileUtils.removeControl(profileBean, "uiElement3565");
 		rubric = MdekProfileUtils.findRubric(profileBean, "refClass1DQ");
 		MdekProfileUtils.addControl(profileBean, control, rubric, 0);
 
-		if (log.isInfoEnabled()) {
-			log.info("Move control 'Höhengenauigkeit' from 'Fachbezug - Klasse 1' to 'Datenqualität'");
-		}
+		log.info("Move control 'Höhengenauigkeit' from 'Fachbezug - Klasse 1' to 'Datenqualität'");
     	control = MdekProfileUtils.removeControl(profileBean, "uiElement5069");
 		rubric = MdekProfileUtils.findRubric(profileBean, "refClass1DQ");
 		MdekProfileUtils.addControl(profileBean, control, rubric, 1);
 
-		if (log.isInfoEnabled()) {
-			log.info("Move control 'Lagegenauigkeit' from 'Fachbezug - Klasse 1' to 'Datenqualität'");
-		}
+		log.info("Move control 'Lagegenauigkeit' from 'Fachbezug - Klasse 1' to 'Datenqualität'");
     	control = MdekProfileUtils.removeControl(profileBean, "uiElement3530");
 		rubric = MdekProfileUtils.findRubric(profileBean, "refClass1DQ");
 		MdekProfileUtils.addControl(profileBean, control, rubric, 2);
 		
-		if (log.isInfoEnabled()) {
-			log.info("Remove DQ table control 'Datendefizit' from 'Datenqualität'");
-		}
+		log.info("Remove DQ table control 'Datendefizit' from 'Datenqualität'");
     	control = MdekProfileUtils.removeControl(profileBean, "uiElement7510");
 
-		if (log.isInfoEnabled()) {
-			log.info("Remove DQ table control 'Absoulte Positionsgenauigkeit' from 'Datenqualität'");
-		}
+		log.info("Remove DQ table control 'Absoulte Positionsgenauigkeit' from 'Datenqualität'");
     	control = MdekProfileUtils.removeControl(profileBean, "uiElement7517");
 
-    	if (log.isInfoEnabled()) {
-			log.info("Move control 'Geo-Information/Karte - Sachdaten/Attributinformation' after 'Schlüsselkatalog'");
-		}
+		log.info("Move control 'Geo-Information/Karte - Sachdaten/Attributinformation' after 'Schlüsselkatalog'");
     	control = MdekProfileUtils.removeControl(profileBean, "uiElement5070");
 		rubric = MdekProfileUtils.findRubric(profileBean, "refClass1");
 		index = MdekProfileUtils.findControlIndex(profileBean, rubric, "uiElement3535");
@@ -999,9 +1003,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 
 	/** Add new controls to Profile */
 	private void addControls(ProfileBean profileBean) {
-    	if (log.isInfoEnabled()) {
-			log.info("Add new LEGACY control 'Datensammlung/Datenbank - Fachbezug - Objektartenkatalog' before 'Inhalte der Datensammlung/Datenbank'");
-		}
+		log.info("Add new LEGACY control 'Datensammlung/Datenbank - Fachbezug - Objektartenkatalog' before 'Inhalte der Datensammlung/Datenbank'");
     	Controls ctrl = new Controls();
         ctrl.setIsLegacy(true);
         ctrl.setId("uiElement3109");
@@ -1020,9 +1022,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		String endTag = "//3.2.0>\n";
 
 		//------------- 'Sprache der Ressource'
-    	if (log.isInfoEnabled()) {
-			log.info("'Sprache der Ressource'(uiElement5042): hide in 'Geodatendienst', make optional in classes 'Organisationenseinheit' + 'Vorhaben' + 'Informationssystem'");
-		}
+		log.info("'Sprache der Ressource'(uiElement5042): hide in 'Geodatendienst', make optional in classes 'Organisationenseinheit' + 'Vorhaben' + 'Informationssystem'");
     	Controls control = MdekProfileUtils.findControl(profileBean, "uiElement5042");
 		String jsCode = startTag +
 "dojo.subscribe(\"/onObjectClassChange\", function(c) {\n" +
@@ -1039,9 +1039,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		MdekProfileUtils.updateScriptedProperties(control, jsCode);
 
 		//------------- 'Zeichensatz des Datensatzes'
-    	if (log.isInfoEnabled()) {
-			log.info("'Zeichensatz des Datensatzes'(uiElement5043): only in 'Geo-Information/Karte', then optional");
-		}
+		log.info("'Zeichensatz des Datensatzes'(uiElement5043): only in 'Geo-Information/Karte', then optional");
     	control = MdekProfileUtils.findControl(profileBean, "uiElement5043");
     	control.setIsMandatory(false);
     	control.setIsVisible("hide");
@@ -1057,9 +1055,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		MdekProfileUtils.updateScriptedProperties(control, jsCode);
 
 		//------------- 'ISO-Themenkategorie'
-    	if (log.isInfoEnabled()) {
-			log.info("'ISO-Themenkategorie'(uiElement5060): only in 'Geo-Information/Karte', then mandatory");
-		}
+		log.info("'ISO-Themenkategorie'(uiElement5060): only in 'Geo-Information/Karte', then mandatory");
     	control = MdekProfileUtils.findControl(profileBean, "uiElement5060");
     	control.setIsMandatory(false);
     	control.setIsVisible("hide");
@@ -1075,9 +1071,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		MdekProfileUtils.updateScriptedProperties(control, jsCode);
 		
 		//------------- 'INSPIRE-Themen'
-    	if (log.isInfoEnabled()) {
-			log.info("'INSPIRE-Themen'(uiElement5064): mandatory in 'Geo-Information/Karte', optional in classes 'Geodatendienst' + 'Informationssystem/Dienst/Anwendung' + 'Datensammlung/Datenbank'");
-		}
+		log.info("'INSPIRE-Themen'(uiElement5064): mandatory in 'Geo-Information/Karte', optional in classes 'Geodatendienst' + 'Informationssystem/Dienst/Anwendung' + 'Datensammlung/Datenbank'");
     	control = MdekProfileUtils.findControl(profileBean, "uiElement5064");
     	control.setIsMandatory(false);
     	control.setIsVisible("hide");
@@ -1096,9 +1090,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		MdekProfileUtils.updateScriptedProperties(control, jsCode);
 		
 		//------------- 'INSPIRE-relevanter Datensatz'
-    	if (log.isInfoEnabled()) {
-			log.info("'INSPIRE-relevanter Datensatz'(uiElement6000): only in 'Geo-Information/Karte' + 'Geodatendienst' + 'Dienst/Anwendung/Informationssystem', then always show");
-		}
+		log.info("'INSPIRE-relevanter Datensatz'(uiElement6000): only in 'Geo-Information/Karte' + 'Geodatendienst' + 'Dienst/Anwendung/Informationssystem', then always show");
     	control = MdekProfileUtils.findControl(profileBean, "uiElement6000");
     	control.setIsMandatory(false);
     	control.setIsVisible("hide");
@@ -1128,9 +1120,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		MdekProfileUtils.updateScriptedProperties(control, jsCode);
 
 		//------------- show/hide Rubrik 'Datenqualität' via JS in first Control 'Datendefizit'
-    	if (log.isInfoEnabled()) {
-			log.info("show/hide Rubrik 'Datenqualität'(refClass1DQ) via JS in 'Datendefizit'(uiElement3565): only show rubric when 'Geo-Information/Karte'");
-		}
+		log.info("show/hide Rubrik 'Datenqualität'(refClass1DQ) via JS in 'Datendefizit'(uiElement3565): only show rubric when 'Geo-Information/Karte'");
     	control = MdekProfileUtils.findControl(profileBean, "uiElement3565");
 		jsCode = startTag +
 "dojo.subscribe(\"/onObjectClassChange\", function(c) {\n" +
@@ -1144,9 +1134,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		MdekProfileUtils.updateScriptedProperties(control, jsCode);
 
 		//------------- 'Geo-Information/Karte - Sachdaten/Attributinformation' on input make 'Schlüsselkatalog' mandatory
-    	if (log.isInfoEnabled()) {
-			log.info("'Sachdaten/Attributinformation'(uiElement5070): on input make 'Schlüsselkatalog'(uiElement3535) mandatory");
-		}
+		log.info("'Sachdaten/Attributinformation'(uiElement5070): on input make 'Schlüsselkatalog'(uiElement3535) mandatory");
     	control = MdekProfileUtils.findControl(profileBean, "uiElement5070");
 		jsCode = startTag +
 "// make 'Schlüsselkatalog' mandatory on input 'Sachdaten/Attributinformation'\n" +
@@ -1160,27 +1148,39 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 "dojo.connect(UtilGrid.getTable(\"ref1Data\"), \"onDataChanged\", uiElement5070InputHandler);\n"
 + endTag;
 		MdekProfileUtils.updateScriptedProperties(control, jsCode);
+
+		//------------- 'Datensammlung/Datenbank - Inhalte der Datensammlung/Datenbank' on input make 'Objektartenkatalog' mandatory
+		log.info("'Inhalte der Datensammlung/Datenbank'(uiElement3110): on input make 'Objektartenkatalog'(uiElement3109) mandatory");
+    	control = MdekProfileUtils.findControl(profileBean, "uiElement3110");
+		jsCode = startTag +
+"// make 'Objektartenkatalog' mandatory on input 'Inhalte der Datensammlung/Datenbank'\n" +
+"function uiElement3110InputHandler() {\n" +
+"  if (UtilGrid.getTableData(\"ref5dbContent\").length !== 0) {\n" +
+"    UtilUI.setMandatory(\"uiElement3109\");\n" +
+"  } else {\n" +
+"    UtilUI.setOptional(\"uiElement3109\");\n" +
+"  }\n" +
+"}\n" +
+"dojo.connect(UtilGrid.getTable(\"ref5dbContent\"), \"onDataChanged\", uiElement3110InputHandler);\n"
++ endTag;
+		MdekProfileUtils.updateScriptedProperties(control, jsCode);
+
 	}
 
 	private void cleanUpDataStructure() throws Exception {
-		if (log.isInfoEnabled()) {
-			log.info("Cleaning up datastructure -> CAUSES COMMIT ! ...");
-		}
+		log.info("\nCleaning up datastructure -> CAUSES COMMIT ! ...");
 
-		if (log.isInfoEnabled()) {
-			log.info("Drop column 'terms_of_use' from table 'object_use' ...");
-		}
+		log.info("Drop column 'terms_of_use' from table 'object_use' ...");
 		jdbc.getDBLogic().dropColumn("terms_of_use", "object_use", jdbc);
 
-		if (log.isInfoEnabled()) {
-			log.info("Drop columns 'specification', 'publication_date' from table 'object_conformity' ...");
-		}
+		log.info("Drop columns 'specification', 'publication_date' from table 'object_conformity' ...");
 		jdbc.getDBLogic().dropColumn("specification", "object_conformity", jdbc);
 		jdbc.getDBLogic().dropColumn("publication_date", "object_conformity", jdbc);
 
-		if (log.isInfoEnabled()) {
-			log.info("Cleaning up datastructure... done");
-		}
+		log.info("Drop table 't011_obj_geo_keyc' ...");
+		jdbc.getDBLogic().dropTable("t011_obj_geo_keyc", jdbc);
+
+		log.info("Cleaning up datastructure... done\n");
 	}
 
 	private int readCatalogLanguageKey() throws Exception {
