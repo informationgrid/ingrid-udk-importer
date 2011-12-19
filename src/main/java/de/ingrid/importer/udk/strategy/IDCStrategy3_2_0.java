@@ -185,7 +185,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		newSyslistMap_en.put(12, "INSPIRE Durchführungsbestimmung Interoperabilität von Geodatensätzen und --diensten, 2010-11-21");
 		newSyslistMap_en.put(13, "INSPIRE Richtlinie, 2007-03-14");
 
-		writeNewSyslist(lstId, newSyslistMap_de, newSyslistMap_en, 13, 13, null, null);
+		writeNewSyslist(lstId, true, newSyslistMap_de, newSyslistMap_en, 13, 13, null, null);
 // ---------------------------
 		lstId = 6020;
 		log.info("Inserting new syslist " + lstId +	" = \"Nutzungsbedingungen\"...");
@@ -197,7 +197,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		newSyslistMap_en = new LinkedHashMap<Integer, String>(); 
 		newSyslistMap_en.put(1, "No conditions apply");
 
-		writeNewSyslist(lstId, newSyslistMap_de, newSyslistMap_en, 1, 1, null, null);
+		writeNewSyslist(lstId, true, newSyslistMap_de, newSyslistMap_en, 1, 1, null, null);
 // ---------------------------
 		lstId = 505;
 		log.info("Update syslist " + lstId +	" = \"Address Rollenbezeichner\"...");
@@ -262,7 +262,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		newSyslistMap_description_en.put(10, "Party who published the resource");
 		newSyslistMap_description_en.put(11, "Party who authored the resource");
 
-		writeNewSyslist(lstId, newSyslistMap_de, newSyslistMap_en, -1, -1, newSyslistMap_description_de, newSyslistMap_description_en);
+		writeNewSyslist(lstId, true, newSyslistMap_de, newSyslistMap_en, -1, -1, newSyslistMap_description_de, newSyslistMap_description_en);
 
 		// also fix data in objects (values dependent from catalog language) !
 
@@ -307,12 +307,26 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		numDeleted = jdbc.executeUpdate(sqlStr);
 		log.debug("Deleted " + numDeleted +	" entries (all languages).");
 
+// ---------------------------
+		lstId = 2000;
+		log.info("Insert new entry \"3109/Objektartenkatalog\" to syslist" + lstId +	" (mapping objectReference type to typeName !)...");
+
+		// german syslist
+		newSyslistMap_de = new LinkedHashMap<Integer, String>();
+		newSyslistMap_de.put(3109, "Objektartenkatalog");
+		// english syslist
+		newSyslistMap_en = new LinkedHashMap<Integer, String>(); 
+		newSyslistMap_en.put(3109, "Key Catalog");
+
+		writeNewSyslist(lstId, false, newSyslistMap_de, newSyslistMap_en, -1, -1, null, null);
+
 		log.info("Updating sys_list... done\n");
 	}
 
 	/**
 	 * Also drops all old values (if syslist already exists) !
 	 * @param listId id of syslist
+	 * @param deleteOldValues pass true if all old syslist values should be deleted before adding new ones !
 	 * @param syslistMap_de german entries
 	 * @param syslistMap_en english entries
 	 * @param defaultEntry_de pass key of GERMAN default entry or -1 if no default entry !
@@ -322,6 +336,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 	 * @throws Exception
 	 */
 	private void writeNewSyslist(int listId,
+			boolean deleteOldValues,
 			LinkedHashMap<Integer, String> syslistMap_de,
 			LinkedHashMap<Integer, String> syslistMap_en,
 			int defaultEntry_de,
@@ -336,9 +351,11 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 			syslistMap_descr_en = new LinkedHashMap<Integer, String>();
 		}
 
-		// clean up, to guarantee no old values !
-		sqlStr = "DELETE FROM sys_list where lst_id = " + listId;
-		jdbc.executeUpdate(sqlStr);
+		if (deleteOldValues) {
+			// clean up, to guarantee no old values !
+			sqlStr = "DELETE FROM sys_list where lst_id = " + listId;
+			jdbc.executeUpdate(sqlStr);
+		}
 
 		String psSql = "INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default, description) " +
 				"VALUES (?,?,?,?,?,?,?,?)";		
