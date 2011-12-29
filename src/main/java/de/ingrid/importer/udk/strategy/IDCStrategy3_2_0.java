@@ -29,8 +29,7 @@ import de.ingrid.utils.udk.UtilsLanguageCodelist;
  * <p>
  * Changes InGrid 3.2:<p>
  * <ul>
- *   <li> adding NEW syslists for "Spezifikation der Konformität" (6005) and "Nutzungsbedingungen"
- *   (6020), modify according tables (add _key/_value), see https://dev.wemove.com/jira/browse/INGRID32-28
+ *   <li> adding NEW syslists for "Spezifikation der Konformität" (6005) and "Nutzungsbedingungen" (6020), modify according tables (add _key/_value), see INGRID32-28
  * </ul>
  * Changes AK-IGE:<p>
  * <ul>
@@ -43,6 +42,7 @@ import de.ingrid.utils.udk.UtilsLanguageCodelist;
  *   <li>Profile: Move field "Geoinformation/Karte - Sachdaten/Attributinformation" next to "Schlüsselkatalog", on Input make "Schlüsselkatalog" mandatory, see INGRID32-50
  *   <li>New control "Objektartenkatalog" for "Datensammlung / Datenbank" (Profile), new db table "object_types_catalogue" replacing also old "t011_obj_geo table", migrate data ..., see INGRID32-50
  *   <li>Change Syslist 505 (Address Rollenbezeichner), also migrate data, see INGRID32-46
+ *   <li>Profile: Remove Publishable JS call from "Nutzungsbedingungen", now textfield, not table anymore, see INGRID32-45
  * </ul>
  */
 public class IDCStrategy3_2_0 extends IDCStrategyDefault {
@@ -959,11 +959,9 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
         profileMapper = new ProfileMapper();
 		profileBean = profileMapper.mapStringToBean(profileXml);			
 
-		moveRubricsAndControls(profileBean);
+		updateRubricsAndControls(profileBean);
 
-		addControls(profileBean);
-		
-		addJavaScriptToControls(profileBean);
+		updateJavaScript(profileBean);
 
 		// write Profile !
         profileXml = profileMapper.mapBeanToXmlString(profileBean);
@@ -973,13 +971,10 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		log.info("Update Profile in database... done\n");
 	}
 
-	/**
-	 * Move rubric "Verschlagwortung" after rubric "Allgemeines".
-	 * Move Control "INSPIRE-Themen" from "Allgemeines" to "Verschlagwortung".
-	 * ...
-	 * also removes controls
+	/** Manipulate structure of rubrics / controls, NO Manipulation of JS.
+	 * Also removes/adds controls
 	 */
-	private void moveRubricsAndControls(ProfileBean profileBean) {
+	private void updateRubricsAndControls(ProfileBean profileBean) {
 		log.info("Move rubric 'Verschlagwortung' after rubric 'Allgemeines'");
 		int index = MdekProfileUtils.findRubricIndex(profileBean, "general");
 		Rubric rubric = MdekProfileUtils.removeRubric(profileBean, "thesaurus");
@@ -1016,24 +1011,21 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		rubric = MdekProfileUtils.findRubric(profileBean, "refClass1");
 		index = MdekProfileUtils.findControlIndex(profileBean, rubric, "uiElement3535");
 		MdekProfileUtils.addControl(profileBean, control, rubric, index+1);
-	}
 
-	/** Add new controls to Profile */
-	private void addControls(ProfileBean profileBean) {
 		log.info("Add new LEGACY control 'Datensammlung/Datenbank - Fachbezug - Objektartenkatalog' before 'Inhalte der Datensammlung/Datenbank'");
-    	Controls ctrl = new Controls();
-        ctrl.setIsLegacy(true);
-        ctrl.setId("uiElement3109");
-        ctrl.setIsMandatory(false);
-        ctrl.setIsVisible("optional");
-
-    	Rubric rubric = MdekProfileUtils.findRubric(profileBean, "refClass5");
+    	control = new Controls();
+        control.setIsLegacy(true);
+        control.setId("uiElement3109");
+        control.setIsMandatory(false);
+        control.setIsVisible("optional");
+    	rubric = MdekProfileUtils.findRubric(profileBean, "refClass5");
     	// add before 'Inhalte der Datensammlung/Datenbank'
-		int index = MdekProfileUtils.findControlIndex(profileBean, rubric, "uiElement3110");
-		MdekProfileUtils.addControl(profileBean, ctrl, rubric, index);
+		index = MdekProfileUtils.findControlIndex(profileBean, rubric, "uiElement3110");
+		MdekProfileUtils.addControl(profileBean, control, rubric, index);
 	}
 
-	private void addJavaScriptToControls(ProfileBean profileBean) {
+	/** Manipulate JS in Controls */
+	private void updateJavaScript(ProfileBean profileBean) {
 		// tags for marking newly added javascript code (for later removal)
 		String startTag = "\n//<3.2.0 update\n";
 		String endTag = "//3.2.0>\n";
@@ -1053,7 +1045,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 "  UtilUI.setMandatory(\"uiElement5042\");\n" +
 "}});\n"
 + endTag;
-		MdekProfileUtils.updateScriptedProperties(control, jsCode);
+		MdekProfileUtils.addToScriptedProperties(control, jsCode);
 
 		//------------- 'Zeichensatz des Datensatzes'
 		log.info("'Zeichensatz des Datensatzes'(uiElement5043): only in 'Geo-Information/Karte', then optional");
@@ -1069,7 +1061,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 "  UtilUI.setHide(\"uiElement5043\");\n" +
 "}});\n"
 + endTag;
-		MdekProfileUtils.updateScriptedProperties(control, jsCode);
+		MdekProfileUtils.addToScriptedProperties(control, jsCode);
 
 		//------------- 'ISO-Themenkategorie'
 		log.info("'ISO-Themenkategorie'(uiElement5060): only in 'Geo-Information/Karte', then mandatory");
@@ -1085,7 +1077,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 "  UtilUI.setHide(\"uiElement5060\");\n" +
 "}});\n"
 + endTag;
-		MdekProfileUtils.updateScriptedProperties(control, jsCode);
+		MdekProfileUtils.addToScriptedProperties(control, jsCode);
 		
 		//------------- 'INSPIRE-Themen'
 		log.info("'INSPIRE-Themen'(uiElement5064): mandatory in 'Geo-Information/Karte', optional in classes 'Geodatendienst' + 'Informationssystem/Dienst/Anwendung' + 'Datensammlung/Datenbank'");
@@ -1104,7 +1096,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 "  UtilUI.setHide(\"uiElement5064\");\n" +
 "}});\n"
 + endTag;
-		MdekProfileUtils.updateScriptedProperties(control, jsCode);
+		MdekProfileUtils.addToScriptedProperties(control, jsCode);
 		
 		//------------- 'INSPIRE-relevanter Datensatz'
 		log.info("'INSPIRE-relevanter Datensatz'(uiElement6000): only in 'Geo-Information/Karte' + 'Geodatendienst' + 'Dienst/Anwendung/Informationssystem', then always show");
@@ -1134,7 +1126,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 "dojo.connect(dijit.byId(\"isInspireRelevant\"), \"onChange\", function(val) {uiElement6000InputHandler();});\n" +
 "dojo.connect(dijit.byId(\"isInspireRelevant\"), \"onClick\", function(obj, field) {uiElement6000InputHandler();});\n"
 + endTag;
-		MdekProfileUtils.updateScriptedProperties(control, jsCode);
+		MdekProfileUtils.addToScriptedProperties(control, jsCode);
 
 		//------------- show/hide Rubrik 'Datenqualität' via JS in first Control 'Datendefizit'
 		log.info("show/hide Rubrik 'Datenqualität'(refClass1DQ) via JS in 'Datendefizit'(uiElement3565): only show rubric when 'Geo-Information/Karte'");
@@ -1148,7 +1140,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 "  UtilUI.setHide(\"refClass1DQ\");\n" +
 "}});\n"
 + endTag;
-		MdekProfileUtils.updateScriptedProperties(control, jsCode);
+		MdekProfileUtils.addToScriptedProperties(control, jsCode);
 
 		//------------- 'Geo-Information/Karte - Sachdaten/Attributinformation' on input make 'Schlüsselkatalog' mandatory
 		log.info("'Sachdaten/Attributinformation'(uiElement5070): on input make 'Schlüsselkatalog'(uiElement3535) mandatory");
@@ -1164,7 +1156,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 "}\n" +
 "dojo.connect(UtilGrid.getTable(\"ref1Data\"), \"onDataChanged\", uiElement5070InputHandler);\n"
 + endTag;
-		MdekProfileUtils.updateScriptedProperties(control, jsCode);
+		MdekProfileUtils.addToScriptedProperties(control, jsCode);
 
 		//------------- 'Datensammlung/Datenbank - Inhalte der Datensammlung/Datenbank' on input make 'Objektartenkatalog' mandatory
 		log.info("'Inhalte der Datensammlung/Datenbank'(uiElement3110): on input make 'Objektartenkatalog'(uiElement3109) mandatory");
@@ -1180,8 +1172,12 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 "}\n" +
 "dojo.connect(UtilGrid.getTable(\"ref5dbContent\"), \"onDataChanged\", uiElement3110InputHandler);\n"
 + endTag;
-		MdekProfileUtils.updateScriptedProperties(control, jsCode);
+		MdekProfileUtils.addToScriptedProperties(control, jsCode);
 
+		//------------- 'Nutzungsbedingungen' - remove Publishable JS call (changed from table to textfield)
+		log.info("'Nutzungsbedingungen' (uiElementN026): remove availabilityUsePublishable JS");
+    	control = MdekProfileUtils.findControl(profileBean, "uiElementN026");
+		MdekProfileUtils.removeAllScriptedProperties(control);
 	}
 
 	private void cleanUpDataStructure() throws Exception {

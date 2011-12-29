@@ -22,8 +22,9 @@
       <action type="update" dev="wemove" issue="INGRID32-43">
         Update behaviour of "Sprache der Ressource" and "Zeichensatz des Datensatzes" in Profile.
       </action>
-      <action type="update" dev="wemove" issue="INGRID32-28, INGRID32-47">
+      <action type="update" dev="wemove" issue="INGRID32-28, INGRID32-47, INGRID32-45">
         "Spezifikation der Konformität" and "Nutzungsbedingungen" now have new syslists (6005, 6020), also allowing free entries. 
+        "Nutzungsbedingungen" changed from table to textarea with separate dialog for selection from syslist.
         Syslist entries 6005 contain publication date at end of value, not shown in IGE but used in IDF mapping. 
       </action>
       <action type="update" dev="wemove" issue="INGRID31-22">
