@@ -197,7 +197,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		newSyslistMap_en = new LinkedHashMap<Integer, String>(); 
 		newSyslistMap_en.put(1, "No conditions apply");
 
-		writeNewSyslist(lstId, true, newSyslistMap_de, newSyslistMap_en, 1, 1, null, null);
+		writeNewSyslist(lstId, true, newSyslistMap_de, newSyslistMap_en, -1, -1, null, null);
 // ---------------------------
 		lstId = 505;
 		log.info("Update syslist " + lstId +	" = \"Address Rollenbezeichner\"...");
