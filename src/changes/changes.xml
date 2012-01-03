@@ -50,13 +50,13 @@
       </action>
     </release>
 
-    <release version="3.0.0.1" date="2011-06-06" description="Bugfix Release InGrid 3.0.0">
+    <release version="3.0.0.1" date="2011-06-06" description="Bugfix Release for InGrid 3.0">
       <action type="fix" dev="wemove" issue="INGRID23-264">
         Fix error when migrating additional fields to IGC profile, now also handles special characters in field labels, lists etc.
       </action>
     </release>
 
-    <release version="3.0.0" date="2011-05-10" description="Release InGrid 3.0">
+    <release version="3.0.0" date="2011-05-10" description="Release InGrid 3.0. New IGC Schema 3.0.0">
       <action type="fix" dev="wemove" issue="INGRID23-59">
         Allow free entries in "Höhe Vertikaldatum" (migrate t01_object.vertical_extent_vdatum to vertical_extent_vdatum_key / value).
       </action>
