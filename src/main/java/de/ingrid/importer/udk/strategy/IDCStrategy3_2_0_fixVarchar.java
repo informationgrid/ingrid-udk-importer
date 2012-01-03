@@ -15,9 +15,9 @@ import de.ingrid.importer.udk.jdbc.DBLogic.ColumnType;
  * Independent Strategy !
  * Change several fields from VARCHAR 255 to TEXT !
  */
-public class IDCStrategy3_1_1_fixVarchar extends IDCStrategyDefault {
+public class IDCStrategy3_2_0_fixVarchar extends IDCStrategyDefault {
 
-	private static Log log = LogFactory.getLog(IDCStrategy3_1_1_fixVarchar.class);
+	private static Log log = LogFactory.getLog(IDCStrategy3_2_0_fixVarchar.class);
 
     /**
      * Deliver NO Version, this strategy should NOT trigger a strategy workflow (of missing former

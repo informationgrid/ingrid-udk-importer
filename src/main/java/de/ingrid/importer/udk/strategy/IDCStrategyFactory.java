@@ -76,10 +76,10 @@ public class IDCStrategyFactory {
 			return new IDCStrategy3_0_0();
 		} else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_3_0_1)) {
 			return new IDCStrategy3_0_1();
-		} else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_3_1_1)) {
-			return new IDCStrategy3_1_1();
-		} else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_3_1_1_FIX_VARCHAR)) {
-			return new IDCStrategy3_1_1_fixVarchar();
+		} else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_3_2_0_a)) {
+			return new IDCStrategy3_2_0_a();
+		} else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_3_2_0_FIX_VARCHAR)) {
+			return new IDCStrategy3_2_0_fixVarchar();
         } else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_3_2_0)) {
             return new IDCStrategy3_2_0();
 		} else {

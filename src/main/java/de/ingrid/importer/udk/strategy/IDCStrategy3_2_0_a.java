@@ -14,15 +14,15 @@ import de.ingrid.mdek.beans.controls.Controls;
 import de.ingrid.mdek.profile.ProfileMapper;
 
 /**
- * Changes InGrid 3.1.1 (only Portal released, backend will go into 3.2.0 release !):<p>
+ * Changes InGrid 3.2.0 first part (a):<p>
  * - remove table t0114_env_category and according syslist 1400
  * - remove env category legacyControl from profile
  */
-public class IDCStrategy3_1_1 extends IDCStrategyDefault {
+public class IDCStrategy3_2_0_a extends IDCStrategyDefault {
 
-	private static Log log = LogFactory.getLog(IDCStrategy3_1_1.class);
+	private static Log log = LogFactory.getLog(IDCStrategy3_2_0_a.class);
 
-	private static final String MY_VERSION = VALUE_IDC_VERSION_3_1_1;
+	private static final String MY_VERSION = VALUE_IDC_VERSION_3_2_0_a;
 	private static final String ID_RUBRIC_ENV_CATEGORIES = "thesaurus";
 	private static final String ID_CONTROL_ENV_CATEGORIES = "uiElementN016";
 	
