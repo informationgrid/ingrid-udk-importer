@@ -28,12 +28,15 @@
         "Nutzungsbedingungen" changed from table to textarea with separate dialog for selection from syslist.
       </action>
       <action type="update" dev="wemove" issue="INGRID32-45">
-      	Changed syslist.name + .description to TEXT to support syslist entries containing text data (e.g. multiple lines from textarea like "Nutzungsbedingungen").
+      	Changed syslist.name + .description to datatype TEXT to support syslist entries containing longer text (e.g. multiple lines from textarea like "Nutzungsbedingungen").
+      </action>
+      <action type="update" dev="wemove" issue="INGRID32-30">
+        Add column "Namespace" to catalogue table used for namespace of MD_Identifier/code ("Identifikator der Datenquelle").
       </action>
       <action type="update" dev="wemove" issue="INGRID31-22">
         Remove environmental categories from catalog (t0114_env_category + syslist 1400 + legacy control in profile). Categorization now only via environmental topics.
       </action>
-      <action type="update" dev="wemove" issue="INGRID32-55">
+      <action type="fix" dev="wemove" issue="INGRID32-55">
         Change several IGC columns from VARCHAR 255 to TEXT (VARCHAR 4000 on Oracle).
       </action>
       <action type="fix" dev="wemove">

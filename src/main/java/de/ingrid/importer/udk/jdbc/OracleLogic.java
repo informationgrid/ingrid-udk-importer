@@ -382,6 +382,8 @@ public class OracleLogic implements DBLogic {
 			sql = "VARCHAR2(50 CHAR)";
 		} else if (colType == ColumnType.VARCHAR255) {
 			sql = "VARCHAR2(255 CHAR)";
+		} else if (colType == ColumnType.VARCHAR1024) {
+			sql = "VARCHAR2(1024 CHAR)";
 		} else if (colType == ColumnType.INTEGER) {
 			sql = "NUMBER(10,0)";
 		} else if (colType == ColumnType.BIGINT) {

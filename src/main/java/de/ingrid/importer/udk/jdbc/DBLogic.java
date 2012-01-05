@@ -17,6 +17,7 @@ public interface DBLogic {
 		VARCHAR1,
 		VARCHAR50,
 		VARCHAR255,
+		VARCHAR1024,
 		INTEGER,
 		BIGINT
 	}

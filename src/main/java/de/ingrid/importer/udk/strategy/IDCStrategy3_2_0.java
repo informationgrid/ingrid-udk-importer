@@ -45,6 +45,7 @@ import de.ingrid.utils.udk.UtilsLanguageCodelist;
  *   <li>Change Syslist 505 (Address Rollenbezeichner), also migrate data, see INGRID32-46
  *   <li>Profile: Remove Publishable JS call from "Nutzungsbedingungen", now textfield, not table anymore, see INGRID32-45
  *   <li>Change syslist.name + .description to TEXT, see INGRID32-45
+ *   <li>Add t03_catalogue.cat_namespace, see INGRID32-30
  * </ul>
  */
 public class IDCStrategy3_2_0 extends IDCStrategyDefault {
@@ -148,6 +149,9 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		log.info("Change column type syslist.name + .description to TEXT ...");
 		jdbc.getDBLogic().modifyColumn("name", ColumnType.TEXT_NO_CLOB, "sys_list", false, jdbc);
 		jdbc.getDBLogic().modifyColumn("description", ColumnType.TEXT_NO_CLOB, "sys_list", false, jdbc);
+
+		log.info("Add column 'cat_namespace' to table 't03_catalogue' ...");
+		jdbc.getDBLogic().addColumn("cat_namespace", ColumnType.VARCHAR1024, "t03_catalogue", false, null, jdbc);
 
 		log.info("Extending datastructure... done\n");
 	}
