@@ -33,6 +33,7 @@ import de.ingrid.utils.udk.UtilsLanguageCodelist;
  * </ul>
  * Changes AK-IGE:<p>
  * <ul>
+ *   <li>Add "publication_date" as metadata to syslist 6005, drop column from object_conformity, see INGRID32-47  
  *   <li>Profile: Move rubric "Verschlagwortung" after rubric "Allgemeines", move table "INSPIRE-Themen" from "Allgemeines" to "Verschlagwortung", see INGRID32-44  
  *   <li>Profile: Add Javascript for "ISO-Themenkategorie", "INSPIRE-Themen"/"INSPIRE-relevanter Datensatz" handling visibility and behaviour, see INGRID32-44, INGRID32-49
  *   <li>Profile: Add Javascript for "Sprache der Ressource" and "Zeichensatz des Datensatzes" handling visibility and behaviour, see INGRID32-43  
@@ -43,6 +44,7 @@ import de.ingrid.utils.udk.UtilsLanguageCodelist;
  *   <li>New control "Objektartenkatalog" for "Datensammlung / Datenbank" (Profile), new db table "object_types_catalogue" replacing also old "t011_obj_geo table", migrate data ..., see INGRID32-50
  *   <li>Change Syslist 505 (Address Rollenbezeichner), also migrate data, see INGRID32-46
  *   <li>Profile: Remove Publishable JS call from "Nutzungsbedingungen", now textfield, not table anymore, see INGRID32-45
+ *   <li>Change syslist.name + .description to TEXT, see INGRID32-45
  * </ul>
  */
 public class IDCStrategy3_2_0 extends IDCStrategyDefault {
@@ -142,6 +144,10 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 
 		log.info("Create table 'object_types_catalogue'...");
 		jdbc.getDBLogic().createTableObjectTypesCatalogue(jdbc);
+
+		log.info("Change column type syslist.name + .description to TEXT ...");
+		jdbc.getDBLogic().modifyColumn("name", ColumnType.TEXT_NO_CLOB, "sys_list", false, jdbc);
+		jdbc.getDBLogic().modifyColumn("description", ColumnType.TEXT_NO_CLOB, "sys_list", false, jdbc);
 
 		log.info("Extending datastructure... done\n");
 	}
