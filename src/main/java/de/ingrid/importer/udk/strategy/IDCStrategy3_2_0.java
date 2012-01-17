@@ -46,6 +46,7 @@ import de.ingrid.utils.udk.UtilsLanguageCodelist;
  *   <li>Profile: Remove Publishable JS call from "Nutzungsbedingungen", now textfield, not table anymore, see INGRID32-45
  *   <li>Change syslist.name + .description to TEXT, see INGRID32-45
  *   <li>Add t03_catalogue.cat_namespace, see INGRID32-30
+ *   <li>Remove columns from t017_url_ref, remove syslist 2240 (url datatype), see INGRID32-27 (Rework dialog "Add/Edit Link")
  * </ul>
  */
 public class IDCStrategy3_2_0 extends IDCStrategyDefault {
@@ -331,6 +332,14 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		writeNewSyslist(lstId, false, newSyslistMap_de, newSyslistMap_en, -1, -1, null, null);
 
 		log.info("Updating sys_list... done\n");
+
+// ---------------------------
+		log.info("Delete syslist 2240 (url datatype for t017_url_ref.datatype_key/.datatype_value...");
+
+		sqlStr = "DELETE FROM sys_list where lst_id = 2240";
+		numDeleted = jdbc.executeUpdate(sqlStr);
+		log.debug("Deleted " + numDeleted +	" entries (all languages).");
+
 	}
 
 	/**
@@ -1202,6 +1211,13 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 
 		log.info("Drop table 't011_obj_geo_keyc' ...");
 		jdbc.getDBLogic().dropTable("t011_obj_geo_keyc", jdbc);
+
+		log.info("Drop columns 'datatype_key', 'datatype_value, 'volume', 'icon', 'icon_text' from table 't017_url_ref' ...");
+		jdbc.getDBLogic().dropColumn("datatype_key", "t017_url_ref", jdbc);
+		jdbc.getDBLogic().dropColumn("datatype_value", "t017_url_ref", jdbc);
+		jdbc.getDBLogic().dropColumn("volume", "t017_url_ref", jdbc);
+		jdbc.getDBLogic().dropColumn("icon", "t017_url_ref", jdbc);
+		jdbc.getDBLogic().dropColumn("icon_text", "t017_url_ref", jdbc);
 
 		log.info("Cleaning up datastructure... done\n");
 	}
