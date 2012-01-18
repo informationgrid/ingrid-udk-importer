@@ -46,7 +46,7 @@ import de.ingrid.utils.udk.UtilsLanguageCodelist;
  *   <li>Profile: Remove Publishable JS call from "Nutzungsbedingungen", now textfield, not table anymore, see INGRID32-45
  *   <li>Change syslist.name + .description to TEXT, see INGRID32-45
  *   <li>Add t03_catalogue.cat_namespace, see INGRID32-30
- *   <li>Remove columns from t017_url_ref, remove syslist 2240 (url datatype), see INGRID32-27 (Rework dialog "Add/Edit Link")
+ *   <li>Remove columns from t017_url_ref, remove syslist 2240 (url datatype), extend syslist 2000,  see INGRID32-27 (Rework dialog "Add/Edit Link")
  * </ul>
  */
 public class IDCStrategy3_2_0 extends IDCStrategyDefault {
@@ -320,14 +320,17 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 
 // ---------------------------
 		lstId = 2000;
-		log.info("Insert new entry \"3109/Objektartenkatalog\" to syslist" + lstId +	" (mapping objectReference type to typeName !)...");
+		log.info("Insert new entries \"3109/Objektartenkatalog\", " +
+				"\"9999/Keine Kopplung\" to syslist" + lstId +	" (mapping reference type to typeName !)...");
 
 		// german syslist
 		newSyslistMap_de = new LinkedHashMap<Integer, String>();
 		newSyslistMap_de.put(3109, "Objektartenkatalog");
+		newSyslistMap_de.put(9999, "Keine Kopplung");
 		// english syslist
 		newSyslistMap_en = new LinkedHashMap<Integer, String>(); 
 		newSyslistMap_en.put(3109, "Key Catalog");
+		newSyslistMap_en.put(9999, "Not attached");
 
 		writeNewSyslist(lstId, false, newSyslistMap_de, newSyslistMap_en, -1, -1, null, null);
 
