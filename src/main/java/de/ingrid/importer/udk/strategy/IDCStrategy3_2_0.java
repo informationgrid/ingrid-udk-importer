@@ -47,6 +47,7 @@ import de.ingrid.utils.udk.UtilsLanguageCodelist;
  *   <li>Change syslist.name + .description to TEXT, see INGRID32-45
  *   <li>Add t03_catalogue.cat_namespace, see INGRID32-30
  *   <li>Remove columns from t017_url_ref, remove syslist 2240 (url datatype), extend syslist 2000,  see INGRID32-27 (Rework dialog "Add/Edit Link")
+ *   <li>Profile: Move table "Geodatendienst - Operationen" before "Erstellungsmaßstab", always visible, see INGRID32-26
  * </ul>
  */
 public class IDCStrategy3_2_0 extends IDCStrategyDefault {
@@ -1043,6 +1044,13 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
     	rubric = MdekProfileUtils.findRubric(profileBean, "refClass5");
     	// add before 'Inhalte der Datensammlung/Datenbank'
 		index = MdekProfileUtils.findControlIndex(profileBean, rubric, "uiElement3110");
+		MdekProfileUtils.addControl(profileBean, control, rubric, index);
+
+		log.info("Move control 'Geodatendienst - Operationen' before 'Erstellungsmaßstab', always show");
+    	control = MdekProfileUtils.removeControl(profileBean, "uiElementN004");
+        control.setIsVisible("show");
+		rubric = MdekProfileUtils.findRubric(profileBean, "refClass3");
+		index = MdekProfileUtils.findControlIndex(profileBean, rubric, "uiElementN023");
 		MdekProfileUtils.addControl(profileBean, control, rubric, index);
 	}
 
