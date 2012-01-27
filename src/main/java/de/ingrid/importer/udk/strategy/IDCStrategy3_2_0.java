@@ -47,7 +47,7 @@ import de.ingrid.utils.udk.UtilsLanguageCodelist;
  *   <li>Change syslist.name + .description to TEXT, see INGRID32-45
  *   <li>Add t03_catalogue.cat_namespace, see INGRID32-30
  *   <li>Remove columns from t017_url_ref, remove syslist 2240 (url datatype), extend syslist 2000,  see INGRID32-27 (Rework dialog "Add/Edit Link")
- *   <li>Profile: Move table "Geodatendienst - Operationen" before "Erstellungsmaßstab", always visible, see INGRID32-26
+ *   <li>Profile: Move table "Geodatendienst - Operationen" before "Erstellungsmaßstab", always visible; add JS onPublish, see INGRID32-26
  * </ul>
  */
 public class IDCStrategy3_2_0 extends IDCStrategyDefault {
@@ -1057,8 +1057,8 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 	/** Manipulate JS in Controls */
 	private void updateJavaScript(ProfileBean profileBean) {
 		// tags for marking newly added javascript code (for later removal)
-		String startTag = "\n//<3.2.0 update\n";
-		String endTag = "//3.2.0>\n";
+		String startTag = "\n// START 3.2.0 update\n";
+		String endTag = "// 3.2.0 END\n";
 
 		//------------- 'Sprache der Ressource'
 		log.info("'Sprache der Ressource'(uiElement5042): hide in 'Geodatendienst', make optional in classes 'Organisationenseinheit' + 'Vorhaben' + 'Informationssystem'");
@@ -1208,6 +1208,18 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		log.info("'Nutzungsbedingungen' (uiElementN026): remove availabilityUsePublishable JS");
     	control = MdekProfileUtils.findControl(profileBean, "uiElementN026");
 		MdekProfileUtils.removeAllScriptedProperties(control);
+
+		//------------- 'Geodatendienst - Operationen' check table before publish
+		log.info("'Geodatendienst - Operationen'(uiElementN004): check table before publish");
+    	control = MdekProfileUtils.findControl(profileBean, "uiElementN004");
+		jsCode = startTag +
+"// check the content of the operation table before publish\n" +
+"dojo.subscribe(\"/onBeforeObjectPublish\", function(/*Array*/notPublishableIDs) {\n" +
+"    ref3OperationPublishable(notPublishableIDs);\n" +
+"});\n"
++ endTag;
+		MdekProfileUtils.addToScriptedProperties(control, jsCode);
+
 	}
 
 	private void cleanUpDataStructure() throws Exception {

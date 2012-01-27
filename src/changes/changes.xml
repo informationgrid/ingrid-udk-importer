@@ -6,7 +6,7 @@
   <body>
     <release version="3.2.0-SNAPSHOT" date="????-??-??" description="Release InGrid 3.2. New IGC Schema 3.2.0">
       <action type="update" dev="wemove" issue="INGRID32-26">
-        Move "Geodatendienst - Operationen" before "Erstellungsmaßstab", now always visible (Profile).
+        Move "Geodatendienst - Operationen" before "Erstellungsmaßstab", now always visible, check table before publish (Profile).
       </action>
       <action type="update" dev="wemove" issue="INGRID32-27">
         Rework "Add/Edit Link" dialog: remove columns from t017_url_ref, remove syslist 2240 (url datatype).
