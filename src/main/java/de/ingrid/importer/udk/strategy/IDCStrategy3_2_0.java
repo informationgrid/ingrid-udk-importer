@@ -48,6 +48,7 @@ import de.ingrid.utils.udk.UtilsLanguageCodelist;
  *   <li>Add t03_catalogue.cat_namespace, see INGRID32-30
  *   <li>Remove columns from t017_url_ref, remove syslist 2240 (url datatype), extend syslist 2000,  see INGRID32-27 (Rework dialog "Add/Edit Link")
  *   <li>Profile: Move table "Geodatendienst - Operationen" before "Erstellungsmaßstab", always visible; add JS onPublish, see INGRID32-26
+ *   <li>Add new syslist 5180 for operation platform, see INGRID32-26
  * </ul>
  */
 public class IDCStrategy3_2_0 extends IDCStrategyDefault {
@@ -117,6 +118,10 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		updateObjectTypesCatalogue();
 		System.out.println("done.");
 
+		System.out.print("  Updating t011_obj_serv_op_platform...");
+		updateT011ObjServOpPlatform();
+		System.out.println("done.");
+
 		System.out.print("  Update Profile in database...");
 		updateProfile();
 		System.out.println("done.");
@@ -154,6 +159,10 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 
 		log.info("Add column 'cat_namespace' to table 't03_catalogue' ...");
 		jdbc.getDBLogic().addColumn("cat_namespace", ColumnType.VARCHAR1024, "t03_catalogue", false, null, jdbc);
+
+		log.info("Add columns 'platform_key/_value' to table 't011_obj_serv_op_platform' ...");
+		jdbc.getDBLogic().addColumn("platform_key", ColumnType.INTEGER, "t011_obj_serv_op_platform", false, null, jdbc);
+		jdbc.getDBLogic().addColumn("platform_value", ColumnType.VARCHAR255, "t011_obj_serv_op_platform", false, null, jdbc);
 
 		log.info("Extending datastructure... done\n");
 	}
@@ -344,6 +353,37 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		numDeleted = jdbc.executeUpdate(sqlStr);
 		log.debug("Deleted " + numDeleted +	" entries (all languages).");
 
+// ---------------------------
+		lstId = 5180;
+		log.info("Inserting new syslist " + lstId +	" = \"Operation - Unterstützte Platformen\"...");
+
+		// german syslist
+		newSyslistMap_de = new LinkedHashMap<Integer, String>();
+		newSyslistMap_de.put(1, "XML");
+		newSyslistMap_de.put(2, "CORBA");
+		newSyslistMap_de.put(3, "JAVA");
+		newSyslistMap_de.put(4, "COM");
+		newSyslistMap_de.put(5, "SQL");
+		newSyslistMap_de.put(6, "WebServices");
+		newSyslistMap_de.put(7, "HTTPGet");
+		newSyslistMap_de.put(8, "HTTPPost");
+		newSyslistMap_de.put(9, "SOAP");
+		// english syslist
+		newSyslistMap_en = new LinkedHashMap<Integer, String>(); 
+		newSyslistMap_en.put(1, "XML");
+		newSyslistMap_en.put(2, "CORBA");
+		newSyslistMap_en.put(3, "JAVA");
+		newSyslistMap_en.put(4, "COM");
+		newSyslistMap_en.put(5, "SQL");
+		newSyslistMap_en.put(6, "WebServices");
+		newSyslistMap_en.put(7, "HTTPGet");
+		newSyslistMap_en.put(8, "HTTPPost");
+		newSyslistMap_en.put(9, "SOAP");
+
+		writeNewSyslist(lstId, true, newSyslistMap_de, newSyslistMap_en, -1, -1, null, null);
+
+// ---------------------------
+		log.info("Updating sys_list... done\n");
 	}
 
 	/**
@@ -530,6 +570,45 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 
 		log.info("Updated " + numProcessed + " entries... done");
 		log.info("Updating object_conformity... done\n");
+	}
+
+	private void updateT011ObjServOpPlatform() throws Exception {
+		log.info("\nUpdating t011_obj_serv_op_platform...");
+
+		log.info("Transfer old 'platform' as free entry to new 'platform_key/_value' ...");
+
+		// NOTICE: No mapping of former values to new syslists. Every value becomes a free entry !!!
+		// We do NOT update search index due to same values.
+
+		String sql = "select id, platform from t011_obj_serv_op_platform";
+
+		// use PreparedStatement to avoid problems when value String contains "'" !!!
+		String psSql = "UPDATE t011_obj_serv_op_platform SET " +
+				"platform_key = -1, " +
+				"platform_value = ? " +
+				"WHERE id = ?";		
+		PreparedStatement psUpdate = jdbc.prepareStatement(psSql);
+
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(sql, st);
+		int numProcessed = 0;
+		while (rs.next()) {
+			long id = rs.getLong("id");
+			String platform = rs.getString("platform");
+
+			psUpdate.setString(1, platform);
+			psUpdate.setLong(2, id);
+			psUpdate.executeUpdate();
+
+			numProcessed++;
+			log.debug("Updated platform: '" + platform + "' --> '-1'/'" + platform + "'");
+		}
+		rs.close();
+		st.close();
+		psUpdate.close();
+
+		log.info("Updated " + numProcessed + " entries... done");
+		log.info("Updating t011_obj_serv_op_platform... done\n");
 	}
 
 	private void updateDQDatendefizit() throws Exception {
@@ -1241,6 +1320,9 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		jdbc.getDBLogic().dropColumn("volume", "t017_url_ref", jdbc);
 		jdbc.getDBLogic().dropColumn("icon", "t017_url_ref", jdbc);
 		jdbc.getDBLogic().dropColumn("icon_text", "t017_url_ref", jdbc);
+
+		log.info("Drop column 'platform' from table 't011_obj_serv_op_platform' ...");
+		jdbc.getDBLogic().dropColumn("platform", "t011_obj_serv_op_platform", jdbc);
 
 		log.info("Cleaning up datastructure... done\n");
 	}
