@@ -8,9 +8,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 
 import org.apache.commons.logging.Log;
@@ -48,7 +50,7 @@ import de.ingrid.utils.udk.UtilsLanguageCodelist;
  *   <li>Add t03_catalogue.cat_namespace, see INGRID32-30
  *   <li>Remove columns from t017_url_ref, remove syslist 2240 (url datatype), extend syslist 2000,  see INGRID32-27 (Rework dialog "Add/Edit Link")
  *   <li>Profile: Move table "Geodatendienst - Operationen" before "Erstellungsmaßstab", always visible; add JS onPublish, see INGRID32-26
- *   <li>Add new syslist 5180 for operation platform, see INGRID32-26
+ *   <li>Add new syslist 5180 for operation platform incl. "Altdatenuebernahme", see INGRID32-26
  * </ul>
  */
 public class IDCStrategy3_2_0 extends IDCStrategyDefault {
@@ -72,6 +74,9 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 	int syslist7117EntryKeyLagegenauigkeit = 1;
 	/** nameOfMeasureKey 'Mean value of positional uncertainties (2D)' == Höhengenauigkeit */
 	int syslist7117EntryKeyHoehegenauigkeit = 2;
+
+	/** ID of operation platform syslist */
+	int SYSLIST_ID_OPERATION_PLATFORM = 5180;
 
 	public String getIDCVersion() {
 		return MY_VERSION;
@@ -354,7 +359,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		log.debug("Deleted " + numDeleted +	" entries (all languages).");
 
 // ---------------------------
-		lstId = 5180;
+		lstId = SYSLIST_ID_OPERATION_PLATFORM;
 		log.info("Inserting new syslist " + lstId +	" = \"Operation - Unterstützte Platformen\"...");
 
 		// german syslist
@@ -575,39 +580,97 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 	private void updateT011ObjServOpPlatform() throws Exception {
 		log.info("\nUpdating t011_obj_serv_op_platform...");
 
-		log.info("Transfer old 'platform' as free entry to new 'platform_key/_value' ...");
+		log.info("Transfer old 'platform' to new 'platform_key/_value' via syslist " +
+				SYSLIST_ID_OPERATION_PLATFORM + "...");
 
-		// NOTICE: No mapping of former values to new syslists. Every value becomes a free entry !!!
-		// We do NOT update search index due to same values.
+		// first read syslist values for mapping old free value to syslist value !
+		Map<String, Integer> compareNameToKeyMap = new HashMap<String, Integer>();
+		Map<Integer, String> platformKeyToNameyMap = new HashMap<Integer, String>();
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=" + SYSLIST_ID_OPERATION_PLATFORM +
+				" and lang_id='" + getCatalogLanguage() + "'";
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(sql, st);
+		while (rs.next()) {
+			if (rs.getString("name") != null) {
+				String myValue = rs.getString("name");
+				Integer myKey = rs.getInt("entry_id");
+				platformKeyToNameyMap.put(myKey, myValue);
+				// for comparison, we use lower case and remove blanks !
+				compareNameToKeyMap.put(myValue.toLowerCase().replace(" ", ""), myKey);
+			}
+		}
+		rs.close();
+		st.close();
+		
+		// Then map former values to new syslist. We do NOT update search index (irgendwann reicht's ;)
 
-		String sql = "select id, platform from t011_obj_serv_op_platform";
+		sql = "select id, platform from t011_obj_serv_op_platform";
 
 		// use PreparedStatement to avoid problems when value String contains "'" !!!
 		String psSql = "UPDATE t011_obj_serv_op_platform SET " +
-				"platform_key = -1, " +
+				"platform_key = ?, " +
 				"platform_value = ? " +
 				"WHERE id = ?";		
 		PreparedStatement psUpdate = jdbc.prepareStatement(psSql);
 
-		Statement st = jdbc.createStatement();
-		ResultSet rs = jdbc.executeQuery(sql, st);
+		st = jdbc.createStatement();
+		rs = jdbc.executeQuery(sql, st);
 		int numProcessed = 0;
+		int numDeleted = 0;
 		while (rs.next()) {
 			long id = rs.getLong("id");
 			String platform = rs.getString("platform");
+			Integer syslistKey = null;
 
-			psUpdate.setString(1, platform);
-			psUpdate.setLong(2, id);
+			if (platform != null) {
+				// map to new syslist value !
+				String platformToCompare = platform.toLowerCase().replaceFirst(" ", "");
+				syslistKey = compareNameToKeyMap.get(platformToCompare);
+				if (syslistKey == null) {
+					// if not found we check whether syslist value contains the old value
+					for (Entry<String,Integer> entry : compareNameToKeyMap.entrySet()) {
+						if (entry.getKey().contains(platformToCompare)) {
+							syslistKey = entry.getValue();
+							break;
+						}
+					}
+				}
+				if (syslistKey == null) {
+					// if not found we check whether the old value contains syslist value
+					for (Entry<String,Integer> entry : compareNameToKeyMap.entrySet()) {
+						if (platformToCompare.contains(entry.getKey())) {
+							syslistKey = entry.getValue();
+							break;
+						}
+					}
+				}
+			}			
+			
+			// NOT FOUND, WE DELETE !
+			if (syslistKey == null) {
+				log.warn("!!! Could not map t011_obj_serv_op_platform.platform '" + platform +
+					"' to new syslist " + SYSLIST_ID_OPERATION_PLATFORM +
+					", WE DELETE THIS PLATFORM RECORD (no free entries possible) !");
+				jdbc.executeUpdate("DELETE FROM t011_obj_serv_op_platform WHERE id=" + id);
+				numDeleted++;
+				continue;
+			}
+
+			// FOUND, we update !
+			psUpdate.setInt(1, syslistKey);
+			psUpdate.setString(2, platformKeyToNameyMap.get(syslistKey));
+			psUpdate.setLong(3, id);
 			psUpdate.executeUpdate();
 
 			numProcessed++;
-			log.debug("Updated platform: '" + platform + "' --> '-1'/'" + platform + "'");
+			log.info("Updated platform: '" + platform + "' --> '" + syslistKey + "'/'" + platformKeyToNameyMap.get(syslistKey) + "'");
 		}
 		rs.close();
 		st.close();
 		psUpdate.close();
 
-		log.info("Updated " + numProcessed + " entries... done");
+		log.info("Updated " + numProcessed + " entries.");
+		log.info("Deleted " + numDeleted + " entries.");
 		log.info("Updating t011_obj_serv_op_platform... done\n");
 	}
 
