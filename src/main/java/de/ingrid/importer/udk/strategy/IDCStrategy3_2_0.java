@@ -38,7 +38,7 @@ import de.ingrid.utils.udk.UtilsLanguageCodelist;
  *   <li>Add "publication_date" as metadata to syslist 6005, drop column from object_conformity, see INGRID32-47  
  *   <li>Profile: Move rubric "Verschlagwortung" after rubric "Allgemeines", move table "INSPIRE-Themen" from "Allgemeines" to "Verschlagwortung", see INGRID32-44  
  *   <li>Profile: Add Javascript for "ISO-Themenkategorie", "INSPIRE-Themen"/"INSPIRE-relevanter Datensatz" handling visibility and behaviour, see INGRID32-44, INGRID32-49
- *   <li>Profile: Add Javascript for "Sprache der Ressource" and "Zeichensatz des Datensatzes" handling visibility and behaviour, see INGRID32-43  
+ *   <li>Profile: Add Javascript for "Sprache der Ressource" and "Zeichensatz des Datensatzes" handling visibility and behaviour, see INGRID32-43
  *   <li>Move field "Datendefizit" to rubric "Datenqualität" (Profile), migrate data from table "Datendefizit" to field, remove table/data/syslist 7110, see INGRID32-48
  *   <li>Move fields "Lagegenauigkeit" and "Höhengenauigkeit" to rubric "Datenqualität" (Profile), migrate data from table "Absoulte Positionsgenauigkeit", remove table/data/syslist 7117, see INGRID32-48
  *   <li>Profile: Add Javascript for "Datendefizit" handling visibility of rubric "Datenqualität", see INGRID32-48  
@@ -51,6 +51,7 @@ import de.ingrid.utils.udk.UtilsLanguageCodelist;
  *   <li>Remove columns from t017_url_ref, remove syslist 2240 (url datatype), extend syslist 2000,  see INGRID32-27 (Rework dialog "Add/Edit Link")
  *   <li>Profile: Move table "Geodatendienst - Operationen" before "Erstellungsmaßstab", always visible; add JS onPublish, see INGRID32-26
  *   <li>Add new syslist 5180 for operation platform incl. "Altdatenuebernahme", see INGRID32-26
+ *   <li>Remove default values from syslist 510 "Zeichensatz des Datensatzes", see INGRID32-43
  * </ul>
  */
 public class IDCStrategy3_2_0 extends IDCStrategyDefault {
@@ -323,15 +324,15 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		log.info("Delete syslist 7110 (DQ_110_CompletenessOmission = nameOfMeasure for DQ Table 'Datendefizit')...");
 
 		sqlStr = "DELETE FROM sys_list where lst_id = 7110";
-		int numDeleted = jdbc.executeUpdate(sqlStr);
-		log.debug("Deleted " + numDeleted +	" entries (all languages).");
+		int numUpdated = jdbc.executeUpdate(sqlStr);
+		log.debug("Deleted " + numUpdated +	" entries (all languages).");
 
 // ---------------------------
 		log.info("Delete syslist 7117 (DQ_117_AbsoluteExternalPositionalAccuracy = nameOfMeasure for DQ Table 'Absoulte Positionsgenauigkeit')...");
 
 		sqlStr = "DELETE FROM sys_list where lst_id = 7117";
-		numDeleted = jdbc.executeUpdate(sqlStr);
-		log.debug("Deleted " + numDeleted +	" entries (all languages).");
+		numUpdated = jdbc.executeUpdate(sqlStr);
+		log.debug("Deleted " + numUpdated +	" entries (all languages).");
 
 // ---------------------------
 		lstId = 2000;
@@ -355,8 +356,8 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		log.info("Delete syslist 2240 (url datatype for t017_url_ref.datatype_key/.datatype_value...");
 
 		sqlStr = "DELETE FROM sys_list where lst_id = 2240";
-		numDeleted = jdbc.executeUpdate(sqlStr);
-		log.debug("Deleted " + numDeleted +	" entries (all languages).");
+		numUpdated = jdbc.executeUpdate(sqlStr);
+		log.debug("Deleted " + numUpdated +	" entries (all languages).");
 
 // ---------------------------
 		lstId = SYSLIST_ID_OPERATION_PLATFORM;
@@ -386,6 +387,13 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		newSyslistMap_en.put(9, "SOAP");
 
 		writeNewSyslist(lstId, true, newSyslistMap_de, newSyslistMap_en, -1, -1, null, null);
+
+// ---------------------------
+		log.info("Remove default values from syslist 510 (\"Zeichensatz des Datensatzes\")...");
+
+		sqlStr = "UPDATE sys_list SET is_default = 'N' WHERE lst_id = 510";
+		numUpdated = jdbc.executeUpdate(sqlStr);
+		log.debug("Set " + numUpdated +	" entries to is_default = 'N' (all languages).");
 
 // ---------------------------
 		log.info("Updating sys_list... done\n");

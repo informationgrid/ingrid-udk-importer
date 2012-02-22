@@ -5,6 +5,9 @@
   </properties>
   <body>
     <release version="3.2.0-SNAPSHOT" date="????-??-??" description="Release InGrid 3.2. New IGC Schema 3.2.0">
+      <action type="update" dev="wemove" issue="INGRID32-43">
+        Remove default entries from syslist 510 "Zeichensatz des Datensatzes", initial value now empty.
+      </action>
       <action type="update" dev="wemove" issue="INGRID32-26">
         Move "Geodatendienst - Operationen" before "Erstellungsmaßstab", now always visible, check table before publish (Profile).
         Add new syslist (5180) for operation platforms.
