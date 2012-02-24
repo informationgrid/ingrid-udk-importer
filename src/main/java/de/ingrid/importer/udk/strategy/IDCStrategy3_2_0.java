@@ -52,6 +52,7 @@ import de.ingrid.utils.udk.UtilsLanguageCodelist;
  *   <li>Profile: Move table "Geodatendienst - Operationen" before "Erstellungsmaßstab", always visible; add JS onPublish, see INGRID32-26
  *   <li>Add new syslist 5180 for operation platform incl. "Altdatenuebernahme", see INGRID32-26
  *   <li>Remove default values from syslist 510 "Zeichensatz des Datensatzes", see INGRID32-43
+ *   <li>Add t02_address.hide_address column, see INGRID32-37
  * </ul>
  */
 public class IDCStrategy3_2_0 extends IDCStrategyDefault {
@@ -169,6 +170,9 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		log.info("Add columns 'platform_key/_value' to table 't011_obj_serv_op_platform' ...");
 		jdbc.getDBLogic().addColumn("platform_key", ColumnType.INTEGER, "t011_obj_serv_op_platform", false, null, jdbc);
 		jdbc.getDBLogic().addColumn("platform_value", ColumnType.VARCHAR255, "t011_obj_serv_op_platform", false, null, jdbc);
+
+		log.info("Add column 'hide_address' to table 't02_address' ...");
+		jdbc.getDBLogic().addColumn("hide_address", ColumnType.VARCHAR1, "t02_address", false, "'N'", jdbc);
 
 		log.info("Extending datastructure... done\n");
 	}
