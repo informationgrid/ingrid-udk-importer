@@ -16,7 +16,7 @@
         Add new syslist (5180) for operation platforms.
       </action>
       <action type="update" dev="wemove" issue="INGRID32-27">
-        Rework "Add/Edit Link" dialog: remove columns from t017_url_ref, remove syslist 2240 (url datatype).
+        Rework "Add/Edit Link" dialog: remove columns from t017_url_ref, remove syslist 2240 (url datatype), add entries to syslist 2000 (link type).
       </action>
       <action type="update" dev="wemove" issue="INGRID32-46">
         Rework and migration of syslist 505 (RESPONSIBLE PARTY ROLE) according to INSPIRE Metadata Regulation Nr 1205/2008.

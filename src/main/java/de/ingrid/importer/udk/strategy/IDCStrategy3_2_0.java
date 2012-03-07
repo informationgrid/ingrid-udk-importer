@@ -340,17 +340,19 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 
 // ---------------------------
 		lstId = 2000;
-		log.info("Insert new entries \"3109/Objektartenkatalog\", " +
-				"\"9999/Keine Kopplung\" to syslist" + lstId +	" (mapping reference type to typeName !)...");
+		log.info("Insert new entries \"3109/Objektartenkatalog\", \"9990/Datendownload\", " +
+				"\"9999/unspezifischer Verweis\" to syslist" + lstId +	" (link type) ...");
 
 		// german syslist
 		newSyslistMap_de = new LinkedHashMap<Integer, String>();
 		newSyslistMap_de.put(3109, "Objektartenkatalog");
-		newSyslistMap_de.put(9999, "Keine Kopplung");
+		newSyslistMap_de.put(9990, "Datendownload");
+		newSyslistMap_de.put(9999, "unspezifischer Verweis");
 		// english syslist
 		newSyslistMap_en = new LinkedHashMap<Integer, String>(); 
 		newSyslistMap_en.put(3109, "Key Catalog");
-		newSyslistMap_en.put(9999, "Not attached");
+		newSyslistMap_en.put(9990, "Download of data");
+		newSyslistMap_en.put(9999, "unspecific Link");
 
 		writeNewSyslist(lstId, false, newSyslistMap_de, newSyslistMap_en, -1, -1, null, null);
 
