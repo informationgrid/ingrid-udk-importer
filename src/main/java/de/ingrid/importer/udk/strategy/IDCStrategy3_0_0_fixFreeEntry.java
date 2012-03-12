@@ -3,6 +3,7 @@
  */
 package de.ingrid.importer.udk.strategy;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.HashSet;
@@ -11,10 +12,8 @@ import java.util.Set;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import de.ingrid.importer.udk.jdbc.JDBCHelper;
 import de.ingrid.importer.udk.jdbc.DBLogic.ColumnType;
-import de.ingrid.utils.udk.UtilsLanguageCodelist;
-import de.ingrid.utils.udk.UtilsUDKCodeLists;
+import de.ingrid.importer.udk.jdbc.JDBCHelper;
 
 /**
  * Changes InGrid 3.0:<p>
@@ -86,7 +85,7 @@ public class IDCStrategy3_0_0_fixFreeEntry extends IDCStrategyDefault {
 			log.info("Map old vertical_extent_vdatum to new vertical_extent_vdatum_key/_value ...");
 		}
 
-		// then add entries for ALL t01_objects (no matter whether working or published version) 
+		// select via node to also update index 
 		String sql = "select distinct objNode.id as objNodeId, objNode.obj_id as objIdWorking, " +
 			"obj.id as objId, obj.vertical_extent_vdatum, obj.obj_uuid " +
 			"from t01_object obj, object_node objNode " +
@@ -97,14 +96,14 @@ public class IDCStrategy3_0_0_fixFreeEntry extends IDCStrategyDefault {
 		Set<Long> processedNodeIds = new HashSet<Long>();
 		int numProcessed = 0;
 		String catalogLanguage = getCatalogLanguage();
-		Integer igcLangCode = UtilsLanguageCodelist.getCodeFromShortcut(catalogLanguage);
+//		Integer igcLangCode = UtilsLanguageCodelist.getCodeFromShortcut(catalogLanguage);
 
 		while (rs.next()) {
 			long objNodeId = rs.getLong("objNodeId");
 			long objIdWorking = rs.getLong("objIdWorking");
 			long objId = rs.getLong("objId");
 			String objUuid = rs.getString("obj_uuid");
-			long verticalExtentVdatumKey = rs.getInt("vertical_extent_vdatum");
+			int verticalExtentVdatumKey = rs.getInt("vertical_extent_vdatum");
 			String verticalExtentVdatumValue = null;
 
 			// determine languages
@@ -112,7 +111,7 @@ public class IDCStrategy3_0_0_fixFreeEntry extends IDCStrategyDefault {
 				continue;
 			}
 
-			verticalExtentVdatumValue = UtilsUDKCodeLists.getCodeListEntryName(101L, verticalExtentVdatumKey, new Long(igcLangCode));				
+			verticalExtentVdatumValue = readSyslistValue(101, verticalExtentVdatumKey, catalogLanguage);				
 
 			jdbc.executeUpdate("UPDATE t01_object SET " +
 				"vertical_extent_vdatum_key = " + verticalExtentVdatumKey +
@@ -156,5 +155,31 @@ public class IDCStrategy3_0_0_fixFreeEntry extends IDCStrategyDefault {
 		if (log.isInfoEnabled()) {
 			log.info("Cleaning up datastructure... done");
 		}
+	}
+
+	/** Read value of syslist entry from database !
+	 * @param listId id of syslist
+	 * @param entryId id of antry
+	 * @param language language of entry
+	 * @return returns null if not found
+	 * @throws Exception
+	 */
+	protected String readSyslistValue(int listId, int entryId, String language) throws Exception {
+		String retValue = null;
+
+		sqlStr = "SELECT name FROM sys_list WHERE lst_id = ? and entry_id = ? and lang_id = ?";
+		PreparedStatement ps = jdbc.prepareStatement(sqlStr);
+		ps.setInt(1, listId);
+		ps.setInt(2, entryId);
+		ps.setString(3, language);
+
+		ResultSet rs = ps.executeQuery();
+		while (rs.next()) {
+			retValue = rs.getString("name");
+		}
+		rs.close();
+		ps.close();
+
+		return retValue;
 	}
 }

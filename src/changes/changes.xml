@@ -8,6 +8,9 @@
       <action type="add" dev="wemove" issue="INGRID32-37">
         Add column 'hide_address' to table 't02_address' for hiding address from search and display.
       </action>
+      <action type="update" dev="wemove" issue="INGRID32-24">
+        Update all strategies to read codelist values direct from IGC database instead of serialized codelists (removed because of new codelist repo).
+      </action>
       <action type="update" dev="wemove" issue="INGRID32-43">
         Remove default entries from syslist 510 "Zeichensatz des Datensatzes", initial value now empty.
       </action>
