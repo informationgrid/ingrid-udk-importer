@@ -44,7 +44,7 @@ import de.ingrid.utils.udk.UtilsLanguageCodelist;
  *   <li>Profile: Add Javascript for "Datendefizit" handling visibility of rubric "Datenqualität", see INGRID32-48  
  *   <li>Profile: Move field "Geoinformation/Karte - Sachdaten/Attributinformation" next to "Schlüsselkatalog", on Input make "Schlüsselkatalog" mandatory, see INGRID32-50
  *   <li>New control "Objektartenkatalog" for "Datensammlung / Datenbank" (Profile), new db table "object_types_catalogue" replacing also old "t011_obj_geo table", migrate data ..., see INGRID32-50
- *   <li>Change Syslist 505 (Address Rollenbezeichner), also migrate data, see INGRID32-46
+ *   <li>Change Syslist 505 (Address Rollenbezeichner), also migrate data, then COMMENTED migration, see INGRID32-46
  *   <li>Profile: Remove Publishable JS call from "Nutzungsbedingungen", now textfield, not table anymore, see INGRID32-45
  *   <li>Change syslist.name + .description to TEXT, see INGRID32-45
  *   <li>Add t03_catalogue.cat_namespace, see INGRID32-30
@@ -117,10 +117,12 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		updateDQAbsPosGenauigkeit();
 		System.out.println("done.");
 
+		// DO NOT MIGRATE ADDRESS roles anymore, see INGRID32-46
+/*
 		System.out.print("  Updating t012_obj_adr...");
 		updateT012ObjAdr();
 		System.out.println("done.");
-
+*/
 		System.out.print("  Updating object_types_catalogue...");
 		updateObjectTypesCatalogue();
 		System.out.println("done.");
@@ -864,7 +866,8 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 
 		log.info("Updating object_data_quality 'Absolute Positionsgenauigkeit' ... done\n");
 	}
-
+	// DO NOT MIGRATE ADDRESS roles anymore, see INGRID32-46
+/*
 	private void updateT012ObjAdr() throws Exception {
 		log.info("\nUpdating t012_obj_adr...");
 
@@ -926,8 +929,9 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		log.info("Changed " + numProcessed + " former 'Auskunft' relations to 'Verwalter' because no former 'Datenverantwortung' ... done");
 		log.info("Updating t012_obj_adr... done\n");
 	}
-
+*/
 	/** Helper class encapsulating all needed data of a processed object to process ! */
+/*
 	class ObjHelper {
 		long id;
 		long nodeId;
@@ -943,7 +947,9 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 			objAdrs = new ArrayList<ObjAdrHelper>();
 		}
 	}
+*/
 	/** Helper class encapsulating all needed data of a object address relation ! */
+/*
 	class ObjAdrHelper {
 		long id;
 		int type;
@@ -955,7 +961,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 			this.typeValue = typeValue;
 		}
 	}
-
+*/
 	/** Migration: Ist keine Adresse mit der Rolle „Datenverantwortung" hinterlegt, so wird einer vorhandenen Adresse mit der Rolle „Auskunft" die neue Rolle
 	 * „Verwalter" zugewiesen. Andernfalls wird die Adresse in dieser Rolle Auskunft beibehalten und gibt künftig die Auskunftsadresse zu den Daten an 
 	 * (wurde bislang bei der Abgabe der Daten über die CSW-Schnittstelle als Auskunftsadresse für Metadaten verwendet).
@@ -965,6 +971,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 	 * @return the number of updated obj adr relations
 	 * @throws Exception
 	 */
+/*
 	private int processT012ObjAdr(ObjHelper obj) throws Exception {
 		int numUpdated = 0;
 		
@@ -1014,7 +1021,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		
 		return numUpdated;
 	}
-
+*/
 	private void updateObjectTypesCatalogue() throws Exception {
 		log.info("\nUpdating object_types_catalogue...");
 
