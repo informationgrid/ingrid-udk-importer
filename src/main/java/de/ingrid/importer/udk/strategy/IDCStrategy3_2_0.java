@@ -53,6 +53,7 @@ import de.ingrid.utils.udk.UtilsLanguageCodelist;
  *   <li>Add new syslist 5180 for operation platform incl. "Altdatenuebernahme", see INGRID32-26
  *   <li>Remove default values from syslist 510 "Zeichensatz des Datensatzes", see INGRID32-43
  *   <li>Add t02_address.hide_address column, see INGRID32-37
+ *   <li>Change sys_list.lang_id to VARCHAR(255), see INGRID32-24
  * </ul>
  */
 public class IDCStrategy3_2_0 extends IDCStrategyDefault {
@@ -162,9 +163,12 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		log.info("Create table 'object_types_catalogue'...");
 		jdbc.getDBLogic().createTableObjectTypesCatalogue(jdbc);
 
-		log.info("Change column type syslist.name + .description to TEXT ...");
+		log.info("Change column type sys_list.name + .description to TEXT ...");
 		jdbc.getDBLogic().modifyColumn("name", ColumnType.TEXT_NO_CLOB, "sys_list", false, jdbc);
 		jdbc.getDBLogic().modifyColumn("description", ColumnType.TEXT_NO_CLOB, "sys_list", false, jdbc);
+
+		log.info("Change column type sys_list.lang_id to VARCHAR(255) ...");
+		jdbc.getDBLogic().modifyColumn("lang_id", ColumnType.VARCHAR255, "sys_list", true, jdbc);
 
 		log.info("Add column 'cat_namespace' to table 't03_catalogue' ...");
 		jdbc.getDBLogic().addColumn("cat_namespace", ColumnType.VARCHAR1024, "t03_catalogue", false, null, jdbc);

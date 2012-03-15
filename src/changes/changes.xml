@@ -10,6 +10,7 @@
       </action>
       <action type="update" dev="wemove" issue="INGRID32-24">
         Update all strategies to read codelist values direct from IGC database instead of serialized codelists (removed because of new codelist repo).
+        Change lang_id of sys_list to VARCHAR(255) to store specific InGrid codes.
       </action>
       <action type="update" dev="wemove" issue="INGRID32-43">
         Remove default entries from syslist 510 "Zeichensatz des Datensatzes", initial value now empty.
