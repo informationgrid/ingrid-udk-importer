@@ -7,7 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -19,7 +18,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import de.ingrid.importer.udk.jdbc.DBLogic.ColumnType;
-import de.ingrid.importer.udk.jdbc.JDBCHelper;
+import de.ingrid.importer.udk.util.UtilsUdkCodelistsSerialized;
 import de.ingrid.mdek.beans.ProfileBean;
 import de.ingrid.mdek.beans.Rubric;
 import de.ingrid.mdek.beans.controls.Controls;
@@ -53,7 +52,7 @@ import de.ingrid.utils.udk.UtilsLanguageCodelist;
  *   <li>Add new syslist 5180 for operation platform incl. "Altdatenuebernahme", see INGRID32-26
  *   <li>Remove default values from syslist 510 "Zeichensatz des Datensatzes", see INGRID32-43
  *   <li>Add t02_address.hide_address column, see INGRID32-37
- *   <li>Change sys_list.lang_id to VARCHAR(255), see INGRID32-24
+ *   <li>Change sys_list.lang_id to VARCHAR(255) + update syslists in catalog from file to match repo, also writes NEW "languages" (iso, req_value), see INGRID32-24
  * </ul>
  */
 public class IDCStrategy3_2_0 extends IDCStrategyDefault {
@@ -103,6 +102,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 
 		System.out.print("  Updating sys_list...");
 		updateSysList();
+		updateSysListsFromFile();
 		System.out.println("done.");
 
 		System.out.print("  Updating object_use...");
@@ -482,6 +482,114 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 
 		psInsert.close();
 	}
+
+    /** Update syslists in IGC catalog from file to match repo. Also writes NEW "languages" (iso, req_value) */
+    private void updateSysListsFromFile() throws Exception {
+		log.info("\nUpdating sys_list from file to match REPO ! ...");
+
+    	String psSql = "SELECT name FROM sys_list WHERE lst_id = ? AND entry_id = ? AND lang_id = ?";
+    	PreparedStatement psSelect = jdbc.prepareStatement(psSql);
+
+    	psSql = "UPDATE sys_list SET name = ? " +
+    			"WHERE lst_id = ? AND entry_id = ? AND lang_id = ?";
+    	PreparedStatement psUpdate = jdbc.prepareStatement(psSql);
+
+		psSql = "INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name) " +
+				"VALUES (?,?,?,?,?)";		
+		PreparedStatement psInsert = jdbc.prepareStatement(psSql);
+
+		Map<Long, String> langMap = new HashMap<Long, String>();
+		langMap.put(150150150L, "iso");
+		langMap.put(8150815L, "req_value");
+		langMap.put(150L, "de");
+		langMap.put(123L, "en");
+
+		UtilsUdkCodelistsSerialized listsSerializedUtil = UtilsUdkCodelistsSerialized.getInstance("3_2_0_udk_codelists_serialized.xml");
+		// remove the syslists not needed anymore (e.g. deleted above ...)
+		listsSerializedUtil.removeUnwantedSyslists(new int[] { 7117, 7110 });
+
+		// then get all remaining syslists (of file) 
+    	Map<Long, List<de.ingrid.utils.udk.CodeListEntry>> allLists = listsSerializedUtil.getAllCodeLists();
+
+        for (Iterator itListIds = allLists.keySet().iterator(); itListIds.hasNext();) {
+        	Long listId = (Long) itListIds.next();
+            List<de.ingrid.utils.udk.CodeListEntry> listEntries =  allLists.get(listId);
+
+            for (de.ingrid.utils.udk.CodeListEntry entry : listEntries) {
+            	String langString = langMap.get(entry.getLangId());
+            	if (langString == null || langString.trim().length() == 0) {
+            		log.error("Wrong language in read Syslist entry: listId/entryId/language = " + 
+            			entry.getCodeListId() + "/" + entry.getDomainId() + "/" + entry.getLangId());
+            		continue;
+            	}
+            	
+            	// first check, whether entry exists
+    			psSelect.setLong(1, entry.getCodeListId());
+    			psSelect.setLong(2, entry.getDomainId());
+    			psSelect.setString(3, langString);
+    			ResultSet rs = psSelect.executeQuery();
+    			int entryCount = 0;
+    			while (rs.next()) {
+    				entryCount++;
+    				if (entryCount > 1) {
+                		log.error("Multiple Entries for entry ! we only process first one !: listId/entryId/language = " + 
+                    			entry.getCodeListId() + "/" + entry.getDomainId() + "/" + entry.getLangId());
+                		break;
+    				}
+    				
+    				String oldValue = rs.getString("name");
+    				String newValue = entry.getValue();
+
+    				if (!oldValue.equals(newValue)) {
+                		log.error("WE UPDATE DIFFERENT VALUE in syslist entry ! entry -> '" + oldValue + "'/'" + newValue + "', "
+                				+ entry.getCodeListId() + "/" + entry.getDomainId() + "/" + entry.getLangId() + " (oldValue/newValue, listId/entryId/language)");
+    				}
+
+    				// UPDATE
+    				psUpdate.setString(1, newValue);
+    				psUpdate.setLong(2, entry.getCodeListId());
+    				psUpdate.setLong(3, entry.getDomainId());
+    				psUpdate.setString(4, langString);
+    				int numUpdated = psUpdate.executeUpdate();
+    				if (numUpdated > 0) {
+                		log.debug("UPDATED " + numUpdated + " entry -> '" + oldValue + "'/'" + newValue + "', "
+                				+ entry.getCodeListId() + "/" + entry.getDomainId() + "/" + entry.getLangId() + " (oldValue/newValue, listId/entryId/language)");
+    				} else {
+                		log.error("PROBLEMS UPDATING " + numUpdated + " entry: " + entry.getCodeListId() + "/" +
+                		entry.getDomainId() + "/" + entry.getLangId() + "/" + entry.getValue() + " (listId/entryId/language/value)");
+    				}
+    			}
+    			rs.close();
+
+    			if (entryCount == 0) {
+    				// INSERT
+    				psInsert.setLong(1, getNextId());
+    				psInsert.setLong(2, entry.getCodeListId());
+    				psInsert.setLong(3, entry.getDomainId());
+    				psInsert.setString(4, langString);
+    				psInsert.setString(5, entry.getValue());
+    				int numInserted = psInsert.executeUpdate();
+    				if (numInserted > 0) {
+    					String msg = "ADDED " + numInserted + " NEW entry: " + entry.getCodeListId() + "/" +
+    	                	entry.getDomainId() + "/" + entry.getLangId() + "/" + entry.getValue() + " (listId/entryId/language/value)";
+    					if ("de".equals(langString) || "en".equals(langString)) {
+                    		log.info("NEW SYSLIST ENTRY -> " + msg);
+    					} else {
+                    		log.debug("NEW LANG (iso, req_value) SYSLIST ENTRY -> " + msg);
+    					}
+    				} else {
+                		log.error("PROBLEMS ADDING NEW entry: listId/entryId/language/value = " + entry.getCodeListId() + "/" +
+                		entry.getDomainId() + "/" + entry.getLangId() + "/" + entry.getValue());
+    				}
+    			}    			
+            }
+        }
+        psSelect.close();
+        psUpdate.close();
+        psInsert.close();
+
+		log.info("Updating sys_list from file to match REPO ! ... done\n");
+    }
 
 	private void updateObjectUse() throws Exception {
 		log.info("\nUpdating object_use...");

@@ -2203,8 +2203,7 @@
 				<map>
 					<entry>
 						<long>150</long>
-						<string>Koordinatenreferenzsysteme
-						</string>
+						<string>Koordinatenreferenzsysteme</string>
 					</entry>
 					<entry>
 						<long>123</long>
@@ -2477,12 +2476,11 @@
 				<map>
 					<entry>
 						<long>150</long>
-						<string>Landwirtschaftliche Anlagen und	Aquakulturanlagen</string>
+						<string>Landwirtschaftliche Anlagen und Aquakulturanlagen</string>
 					</entry>
 					<entry>
 						<long>123</long>
-						<string>Agricultural and aquaculture facilities
-						</string>
+						<string>Agricultural and aquaculture facilities</string>
 					</entry>
 				</map>
 			</entry>
@@ -2491,11 +2489,11 @@
 				<map>
 					<entry>
 						<long>150</long>
-						<string>Verteilung der Bevölkerung — Demografie</string>
+						<string>Verteilung der Bevölkerung - Demografie</string>
 					</entry>
 					<entry>
 						<long>123</long>
-						<string>Population distribution</string>
+						<string>Population distribution - demography</string>
 					</entry>
 				</map>
 			</entry>
@@ -2543,13 +2541,11 @@
 				<map>
 					<entry>
 						<long>150</long>
-						<string>Meteorologisch-geografische
-							Kennwerte</string>
+						<string>Meteorologisch-geografische Kennwerte</string>
 					</entry>
 					<entry>
 						<long>123</long>
-						<string>Meteorological geographical features
-						</string>
+						<string>Meteorological geographical features</string>
 					</entry>
 				</map>
 			</entry>
@@ -2558,8 +2554,7 @@
 				<map>
 					<entry>
 						<long>150</long>
-						<string>Ozeanografisch-geografische
-							Kennwerte</string>
+						<string>Ozeanografisch-geografische Kennwerte</string>
 					</entry>
 					<entry>
 						<long>123</long>
@@ -3097,13 +3092,11 @@
 				<map>
 					<entry>
 						<long>123</long>
-						<string>DE_PD/83 / GK_9-15, Bezug 12. Meridian (BY)
-						</string>
+						<string>DE_PD/83 / GK_9-15, Bezug 12. Meridian (BY)</string>
 					</entry>
 					<entry>
 						<long>150</long>
-						<string>DE_PD/83 / GK_9-15, Bezug 12. Meridian (BY)
-						</string>
+						<string>DE_PD/83 / GK_9-15, Bezug 12. Meridian (BY)</string>
 					</entry>
 				</map>
 			</entry>
@@ -3640,11 +3633,11 @@
 				<map>
 					<entry>
 						<long>150150150</long>
-						<string>usAscii</string>
+						<string>ebcdic</string>
 					</entry>
 					<entry>
 						<long>123</long>
-						<string>ebcdic</string>
+						<string>Ebcdic</string>
 					</entry>
 					<entry>
 						<long>150</long>
@@ -4382,8 +4375,7 @@
 				<map>
 					<entry>
 						<long>150150150</long>
-						<string>1quarterInchCartridgeTape
-						</string>
+						<string>1quarterInchCartridgeTape</string>
 					</entry>
 					<entry>
 						<long>123</long>
@@ -5271,13 +5263,11 @@
 				<map>
 					<entry>
 						<long>150150150</long>
-						<string>climatologyMeteorologyAtmosphere
-						</string>
+						<string>climatologyMeteorologyAtmosphere</string>
 					</entry>
 					<entry>
 						<long>123</long>
-						<string>climatologyMeteorologyAtmosphere
-						</string>
+						<string>climatologyMeteorologyAtmosphere</string>
 					</entry>
 					<entry>
 						<long>150</long>
@@ -5375,13 +5365,11 @@
 				<map>
 					<entry>
 						<long>150150150</long>
-						<string>imageryBaseMapsEarthCover
-						</string>
+						<string>imageryBaseMapsEarthCover</string>
 					</entry>
 					<entry>
 						<long>123</long>
-						<string>imageryBaseMapsEarthCover
-						</string>
+						<string>imageryBaseMapsEarthCover</string>
 					</entry>
 					<entry>
 						<long>150</long>
@@ -5662,7 +5650,7 @@
 					</entry>
 					<entry>
 						<long>123</long>
-						<string>underdevelopment</string>
+						<string>underDevelopment</string>
 					</entry>
 					<entry>
 						<long>150</long>
@@ -5675,7 +5663,7 @@
 				<map>
 					<entry>
 						<long>123</long>
-						<string>inOperation</string>
+						<string>in operation</string>
 					</entry>
 					<entry>
 						<long>150</long>
@@ -6143,8 +6131,7 @@
 				<map>
 					<entry>
 						<long>150150150</long>
-						<string>intellectualPropertyRights
-						</string>
+						<string>intellectualPropertyRights</string>
 					</entry>
 					<entry>
 						<long>123</long>
@@ -7263,11 +7250,11 @@
                 <map>
                     <entry>
                         <long>123</long>
-                        <string>Not attached</string>
+                        <string>unspecific Link</string>
                     </entry>
                     <entry>
                         <long>150</long>
-                        <string>Keine Kopplung</string>
+                        <string>unspezifischer Verweis</string>
                     </entry>
                 </map>
             </entry>
