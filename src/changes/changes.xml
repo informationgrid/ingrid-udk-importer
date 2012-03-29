@@ -54,6 +54,9 @@
       <action type="update" dev="wemove" issue="INGRID31-22">
         Remove environmental categories from catalog (t0114_env_category + syslist 1400 + legacy control in profile). Categorization now only via environmental topics.
       </action>
+      <action type="fix" dev="wemove" issue="INGRID-2110">
+        Change "Feldname/Bezeichnung der Verweisbeziehung*" of URL to VARCHAR 255.
+      </action>
       <action type="fix" dev="wemove" issue="INGRID32-55">
         Change several IGC columns from VARCHAR 255 to TEXT (VARCHAR 4000 on Oracle).
       </action>

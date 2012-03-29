@@ -53,6 +53,7 @@ import de.ingrid.utils.udk.UtilsLanguageCodelist;
  *   <li>Remove default values from syslist 510 "Zeichensatz des Datensatzes", see INGRID32-43
  *   <li>Add t02_address.hide_address column, see INGRID32-37
  *   <li>Change sys_list.lang_id to VARCHAR(255) + update syslists in catalog from file to match repo, also writes NEW "languages" (iso, req_value), see INGRID32-24
+ *   <li>Change column type t017_url_ref.special_name to VARCHAR(255), see https://dev2.wemove.com/jira/browse/INGRID-2110
  * </ul>
  */
 public class IDCStrategy3_2_0 extends IDCStrategyDefault {
@@ -179,6 +180,9 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 
 		log.info("Add column 'hide_address' to table 't02_address' ...");
 		jdbc.getDBLogic().addColumn("hide_address", ColumnType.VARCHAR1, "t02_address", false, "'N'", jdbc);
+
+		log.info("Change column type t017_url_ref.special_name to VARCHAR(255) ...");
+		jdbc.getDBLogic().modifyColumn("special_name", ColumnType.VARCHAR255, "t017_url_ref", false, jdbc);
 
 		log.info("Extending datastructure... done\n");
 	}
