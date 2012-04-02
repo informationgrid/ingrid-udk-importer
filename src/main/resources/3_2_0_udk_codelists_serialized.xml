@@ -4475,6 +4475,10 @@
 			<entry>
 				<long>900001</long>
 				<map>
+                    <entry>
+                        <long>150150150</long>
+                        <string>unknown</string>
+                    </entry>
 					<entry>
 						<long>123</long>
 						<string>unknown</string>
@@ -4488,6 +4492,10 @@
 			<entry>
 				<long>900002</long>
 				<map>
+                    <entry>
+                        <long>150150150</long>
+                        <string>faxback</string>
+                    </entry>
 					<entry>
 						<long>123</long>
 						<string>faxback</string>
@@ -4501,6 +4509,10 @@
 			<entry>
 				<long>900003</long>
 				<map>
+                    <entry>
+                        <long>150150150</long>
+                        <string>mobileRadio</string>
+                    </entry>
 					<entry>
 						<long>123</long>
 						<string>mobile radio</string>
@@ -4514,6 +4526,10 @@
 			<entry>
 				<long>900004</long>
 				<map>
+                    <entry>
+                        <long>150150150</long>
+                        <string>broadcast</string>
+                    </entry>
 					<entry>
 						<long>123</long>
 						<string>broadcast</string>
@@ -4527,6 +4543,10 @@
 			<entry>
 				<long>900005</long>
 				<map>
+                    <entry>
+                        <long>150150150</long>
+                        <string>videoText</string>
+                    </entry>
 					<entry>
 						<long>123</long>
 						<string>video text</string>
@@ -4540,6 +4560,10 @@
 			<entry>
 				<long>900006</long>
 				<map>
+                    <entry>
+                        <long>150150150</long>
+                        <string>analogPhotography</string>
+                    </entry>
 					<entry>
 						<long>123</long>
 						<string>Analog Photography</string>
@@ -4553,6 +4577,10 @@
 			<entry>
 				<long>900007</long>
 				<map>
+                    <entry>
+                        <long>150150150</long>
+                        <string>microfilm</string>
+                    </entry>
 					<entry>
 						<long>123</long>
 						<string>microfilm</string>
@@ -4566,6 +4594,10 @@
 			<entry>
 				<long>900008</long>
 				<map>
+                    <entry>
+                        <long>150150150</long>
+                        <string>zipDrive</string>
+                    </entry>
 					<entry>
 						<long>123</long>
 						<string>Zip Drive</string>
@@ -4579,6 +4611,10 @@
 			<entry>
 				<long>900009</long>
 				<map>
+                    <entry>
+                        <long>150150150</long>
+                        <string>email</string>
+                    </entry>
 					<entry>
 						<long>123</long>
 						<string>e-mail</string>
@@ -4592,6 +4628,10 @@
 			<entry>
 				<long>900010</long>
 				<map>
+                    <entry>
+                        <long>150150150</long>
+                        <string>infoKiosk</string>
+                    </entry>
 					<entry>
 						<long>123</long>
 						<string>Info Kiosk</string>
@@ -5149,6 +5189,10 @@
 			<entry>
 				<long>9002</long>
 				<map>
+                    <entry>
+                        <long>150150150</long>
+                        <string>Foot</string>
+                    </entry>
 					<entry>
 						<long>123</long>
 						<string>Foot</string>
@@ -5162,19 +5206,27 @@
 			<entry>
 				<long>4</long>
 				<map>
+                    <entry>
+                        <long>150150150</long>
+                        <string>Inch</string>
+                    </entry>
 					<entry>
 						<long>123</long>
-						<string>Zoll</string>
+						<string>Inch</string>
 					</entry>
 					<entry>
 						<long>150</long>
-						<string>Inch</string>
+						<string>Zoll</string>
 					</entry>
 				</map>
 			</entry>
 			<entry>
 				<long>9036</long>
 				<map>
+                    <entry>
+                        <long>150150150</long>
+                        <string>Kilometre</string>
+                    </entry>
 					<entry>
 						<long>123</long>
 						<string>Kilometre</string>
@@ -5188,6 +5240,10 @@
 			<entry>
 				<long>9001</long>
 				<map>
+                    <entry>
+                        <long>150150150</long>
+                        <string>Metre</string>
+                    </entry>
 					<entry>
 						<long>123</long>
 						<string>Metre</string>
@@ -6669,6 +6725,10 @@
                 <long>1</long>
                 <map>
                     <entry>
+                        <long>150150150</long>
+                        <string>information system</string>
+                    </entry>
+                    <entry>
                         <long>123</long>
                         <string>Information System</string>
                     </entry>
@@ -6682,6 +6742,10 @@
                 <long>2</long>
                 <map>
                     <entry>
+                        <long>150150150</long>
+                        <string>non geographic service</string>
+                    </entry>
+                    <entry>
                         <long>123</long>
                         <string>Non Geographic Service</string>
                     </entry>
@@ -6694,6 +6758,10 @@
             <entry>
                 <long>3</long>
                 <map>
+                    <entry>
+                        <long>150150150</long>
+                        <string>application</string>
+                    </entry>
                     <entry>
                         <long>123</long>
                         <string>Application</string>
