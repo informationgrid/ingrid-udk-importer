@@ -44,6 +44,7 @@
         "Spezifikation der Konformität" and "Nutzungsbedingungen" now have new syslists (6005, 6020), also allowing free entries. 
         Syslist entries 6005 contain publication date at end of value, not shown in IGE but used in IDF mapping.
         "Nutzungsbedingungen" changed from table to textarea with separate dialog for selection from syslist.
+        Add Javascript to profile for "INSPIRE-Themen" adapting content of "Kodierungsschema der geographischen Daten" (only class 1).
       </action>
       <action type="update" dev="wemove" issue="INGRID32-45">
       	Changed syslist.name + .description to datatype TEXT to support syslist entries containing longer text (e.g. multiple lines from textarea like "Nutzungsbedingungen").

@@ -40,7 +40,7 @@ import de.ingrid.utils.udk.UtilsLanguageCodelist;
  *   <li>Profile: Add Javascript for "Sprache der Ressource" and "Zeichensatz des Datensatzes" handling visibility and behaviour, see INGRID32-43
  *   <li>Move field "Datendefizit" to rubric "Datenqualität" (Profile), migrate data from table "Datendefizit" to field, remove table/data/syslist 7110, see INGRID32-48
  *   <li>Move fields "Lagegenauigkeit" and "Höhengenauigkeit" to rubric "Datenqualität" (Profile), migrate data from table "Absoulte Positionsgenauigkeit", remove table/data/syslist 7117, see INGRID32-48
- *   <li>Profile: Add Javascript for "Datendefizit" handling visibility of rubric "Datenqualität", see INGRID32-48  
+ *   <li>Profile: Add Javascript for "Datendefizit" handling visibility of rubric "Datenqualität", see INGRID32-48
  *   <li>Profile: Move field "Geoinformation/Karte - Sachdaten/Attributinformation" next to "Schlüsselkatalog", on Input make "Schlüsselkatalog" mandatory, see INGRID32-50
  *   <li>New control "Objektartenkatalog" for "Datensammlung / Datenbank" (Profile), new db table "object_types_catalogue" replacing also old "t011_obj_geo table", migrate data ..., see INGRID32-50
  *   <li>Change Syslist 505 (Address Rollenbezeichner), also migrate data, then COMMENTED migration, see INGRID32-46
@@ -54,6 +54,7 @@ import de.ingrid.utils.udk.UtilsLanguageCodelist;
  *   <li>Add t02_address.hide_address column, see INGRID32-37
  *   <li>Change sys_list.lang_id to VARCHAR(255) + update syslists in catalog from file to match repo, also writes NEW "languages" (iso, req_value), see INGRID32-24
  *   <li>Change column type t017_url_ref.special_name to VARCHAR(255), see https://dev2.wemove.com/jira/browse/INGRID-2110
+ *   <li>Profile: Add Javascript for "INSPIRE-Themen" handling content of "Kodierungsschema der geographischen Daten" (only class 1), see INGRID32-47
  * </ul>
  */
 public class IDCStrategy3_2_0 extends IDCStrategyDefault {
@@ -1344,10 +1345,10 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
     	Controls control = MdekProfileUtils.findControl(profileBean, "uiElement5042");
 		String jsCode = startTag +
 "dojo.subscribe(\"/onObjectClassChange\", function(c) {\n" +
-"if (c.objClass === \"Class3\") {\n" +
+"if (c.objClass == \"Class3\") {\n" +
 "  // hide in 'Geodatendienst'\n" +
 "  UtilUI.setHide(\"uiElement5042\");\n" +
-"} else if (c.objClass === \"Class0\" || c.objClass === \"Class4\" || c.objClass === \"Class6\") {\n" +
+"} else if (c.objClass == \"Class0\" || c.objClass == \"Class4\" || c.objClass == \"Class6\") {\n" +
 "  // optional in classes 'Organisationenseinheit' + 'Vorhaben' + 'Informationssystem'\n" +
 "  UtilUI.setOptional(\"uiElement5042\");\n" +
 "} else {\n" +
@@ -1364,7 +1365,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		jsCode = startTag +
 "dojo.subscribe(\"/onObjectClassChange\", function(c) {\n" +
 "// only in 'Geo-Information/Karte', then optional\n" +
-"if (c.objClass === \"Class1\") {\n" +
+"if (c.objClass == \"Class1\") {\n" +
 "  UtilUI.setOptional(\"uiElement5043\");\n" +
 "} else {\n" +
 "  UtilUI.setHide(\"uiElement5043\");\n" +
@@ -1380,7 +1381,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		jsCode = startTag +
 "dojo.subscribe(\"/onObjectClassChange\", function(c) {\n" +
 "// only in 'Geo-Information/Karte', then mandatory\n" +
-"if (c.objClass === \"Class1\") {\n" +
+"if (c.objClass == \"Class1\") {\n" +
 "  UtilUI.setMandatory(\"uiElement5060\");\n" +
 "} else {\n" +
 "  UtilUI.setHide(\"uiElement5060\");\n" +
@@ -1389,22 +1390,90 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		MdekProfileUtils.addToScriptedProperties(control, jsCode);
 		
 		//------------- 'INSPIRE-Themen'
-		log.info("'INSPIRE-Themen'(uiElement5064): mandatory in 'Geo-Information/Karte', optional in classes 'Geodatendienst' + 'Informationssystem/Dienst/Anwendung' + 'Datensammlung/Datenbank'");
+		log.info("'INSPIRE-Themen'(uiElement5064): REPLACE JS IN PROFILE (instead of adding) !\n" +
+			"- mandatory in 'Geo-Information/Karte', optional in classes 'Geodatendienst' + 'Informationssystem/Dienst/Anwendung' + 'Datensammlung/Datenbank'\n" +
+			"- class 1: on input adapt content of 'Kodierungsschema der geographischen Daten'(uiElement1315)\n" +
+			"- show/hide DQ tables dependent from themes");
     	control = MdekProfileUtils.findControl(profileBean, "uiElement5064");
     	control.setIsMandatory(false);
     	control.setIsVisible("hide");
 		jsCode = startTag +
+"// On change of object class:\n" +
+"// Make 'INSPIRE-Themen'(uiElement5064) optional, mandatory or hide it dependent from new class.\n" +
+"\n" +
 "dojo.subscribe(\"/onObjectClassChange\", function(c) {\n" +
-"if (c.objClass === \"Class3\" || c.objClass === \"Class5\" || c.objClass === \"Class6\") {\n" +
+"if (c.objClass == \"Class3\" || c.objClass == \"Class5\" || c.objClass == \"Class6\") {\n" +
 "  // optional in 'Geodatendienst' + 'Datensammlung/Datenbank' + 'Informationssystem/Dienst/Anwendung'\n" +
 "  UtilUI.setOptional(\"uiElement5064\");\n" +
-"} else if (c.objClass === \"Class1\") {\n" +
+"} else if (c.objClass == \"Class1\") {\n" +
 "  // mandatory in class 'Geo-Information/Karte'\n" +
 "  UtilUI.setMandatory(\"uiElement5064\");\n" +
 "} else {\n" +
 "  UtilUI.setHide(\"uiElement5064\");\n" +
-"}});\n"
+"}});\n" +
+"\n" +
+"// Class 1: On input 'INSPIRE-Themen'(uiElement5064 / thesaurusInspire)\n" +
+"// - adapt content of 'Kodierungsschema der geographischen Daten'(uiElement1315 / availabilityDataFormatInspire)\n" +
+"// - show/hide DQ tables dependent from themes\n" +
+"\n" +
+"// initial show/hide of DQ tables dependent from themes\n" +
+"applyRule7();\n" +
+"\n" +
+"// Function for adapting 'Kodierungsschema der geographischen Daten' to passed 'INSPIRE-Themen'\n" +
+"function uiElement1315AdaptToThemes(themes) {\n" +
+"  // Set 'Kodierungsschema' as text because of ComboBox(!).\n" +
+"\n" +
+"  // Set default here. May be changed below.\n" +
+"  dijit.byId(\"availabilityDataFormatInspire\").attr(\"value\", 'Geographic Markup Language (GML)', true);\n" +
+"\n" +
+"  // Geographical names (103) -> Geographical names GML Application Schema (18)\n" +
+"  if (dojo.some(themes, function(themeKey) {return (themeKey == 103); })) {\n" +
+"    dijit.byId(\"availabilityDataFormatInspire\").attr(\"value\", 'Geographical names GML Application Schema', true);\n" +
+"  }\n" +
+"  // Administrative units (104) -> Administrative units GML application schema (16)\n" +
+"  if (dojo.some(themes, function(themeKey) {return (themeKey == 104); })) {\n" +
+"    dijit.byId(\"availabilityDataFormatInspire\").attr(\"value\", 'Administrative units GML application schema', true);\n" +
+"  }\n" +
+"  // Addresses (105) -> Addresses GML application schema (15)\n" +
+"  if (dojo.some(themes, function(themeKey) {return (themeKey == 105); })) {\n" +
+"    dijit.byId(\"availabilityDataFormatInspire\").attr(\"value\", 'Addresses GML application schema', true);\n" +
+"  }\n" +
+"  // Cadastral parcels (106) -> Cadastral Parcels GML Application Schema (17)\n" +
+"  if (dojo.some(themes, function(themeKey) {return (themeKey == 106); })) {\n" +
+"    dijit.byId(\"availabilityDataFormatInspire\").attr(\"value\", 'Cadastral Parcels GML Application Schema', true);\n" +
+"  }\n" +
+"  // Transport networks (107) -> Common Transport Elements GML Application Schema (7)\n" +
+"  if (dojo.some(themes, function(themeKey) {return (themeKey == 107); })) {\n" +
+"    dijit.byId(\"availabilityDataFormatInspire\").attr(\"value\", 'Common Transport Elements GML Application Schema', true);\n" +
+"  }\n" +
+"  // Hydrography (108) -> Hydrography GML application schema (2)\n" +
+"  if (dojo.some(themes, function(themeKey) {return (themeKey == 108); })) {\n" +
+"    dijit.byId(\"availabilityDataFormatInspire\").attr(\"value\", 'Hydrography GML application schema', true);\n" +
+"  }\n" +
+"  // Protected sites (109) -> Protected Sites - Full GML Application Schema (14)\n" +
+"  if (dojo.some(themes, function(themeKey) {return (themeKey == 109); })) {\n" +
+"    dijit.byId(\"availabilityDataFormatInspire\").attr(\"value\", 'Protected Sites - Full GML Application Schema', true);\n" +
+"  }\n" +
+"}\n" +
+"// Input Handler for 'INSPIRE-Themen' called when changed\n" +
+"function uiElement5064InputHandler() {\n" +
+"  var objClass = dijit.byId(\"objectClass\").getValue();\n" +
+"  if (objClass == \"Class1\") {\n" +
+"    // Get INSPIRE themes\n" +
+"    var themes = UtilList.tableDataToList(UtilGrid.getTableData(\"thesaurusInspire\"));\n" +
+"    \n" +
+"    //  Adapt 'Kodierungsschema'\n" +
+"    uiElement1315AdaptToThemes(themes);\n" +
+"    //  Show/hide DQ tables in class 1 dependent from themes\n" +
+"    applyRule7();\n" +
+"  }\n" +
+"}\n" +
+"dojo.connect(UtilGrid.getTable(\"thesaurusInspire\"), \"onDataChanged\", uiElement5064InputHandler);\n"
 + endTag;
+		// -------------------------------------
+		// !!! REPLACE ALL JS FOR INSPIRE-Themen
+		// -------------------------------------
+		MdekProfileUtils.removeAllScriptedProperties(control);
 		MdekProfileUtils.addToScriptedProperties(control, jsCode);
 		
 		//------------- 'INSPIRE-relevanter Datensatz'
@@ -1415,7 +1484,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		jsCode = startTag +
 "dojo.subscribe(\"/onObjectClassChange\", function(c) {\n" +
 "// only in 'Geo-Information/Karte' + 'Geodatendienst' + 'Dienst/Anwendung/Informationssystem', then optional but always show\n" +
-"if (c.objClass === \"Class1\" || c.objClass === \"Class3\" || c.objClass === \"Class6\") {\n" +
+"if (c.objClass == \"Class1\" || c.objClass == \"Class3\" || c.objClass == \"Class6\") {\n" +
 "  UtilUI.setShow(\"uiElement6000\");\n" +
 "} else {\n" +
 "  UtilUI.setHide(\"uiElement6000\");\n" +
@@ -1425,15 +1494,15 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 "  if (dijit.byId(\"isInspireRelevant\").checked) {\n" +
 "    UtilUI.setMandatory(\"uiElement5064\");\n" +
 "  } else {\n" +
-"    if (\"Class1\" === UtilUdk.getObjectClass()) {\n" +
+"    if (\"Class1\" == UtilUdk.getObjectClass()) {\n" +
 "      UtilUI.setMandatory(\"uiElement5064\");\n" +
 "    } else {\n" +
 "      UtilUI.setOptional(\"uiElement5064\");\n" +
 "    }\n" +
 "  }\n" +
 "}\n" +
-"dojo.connect(dijit.byId(\"isInspireRelevant\"), \"onChange\", function(val) {uiElement6000InputHandler();});\n" +
-"dojo.connect(dijit.byId(\"isInspireRelevant\"), \"onClick\", function(obj, field) {uiElement6000InputHandler();});\n"
+"dojo.connect(dijit.byId(\"isInspireRelevant\"), \"onChange\", function() {uiElement6000InputHandler();});\n" +
+"dojo.connect(dijit.byId(\"isInspireRelevant\"), \"onClick\", function() {uiElement6000InputHandler();});\n"
 + endTag;
 		MdekProfileUtils.addToScriptedProperties(control, jsCode);
 
@@ -1443,7 +1512,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		jsCode = startTag +
 "dojo.subscribe(\"/onObjectClassChange\", function(c) {\n" +
 "// show Rubrik 'Datenqualität' only in 'Geo-Information/Karte'\n" +
-"if (c.objClass === \"Class1\") {\n" +
+"if (c.objClass == \"Class1\") {\n" +
 "  UtilUI.setShow(\"refClass1DQ\");\n" +
 "} else {\n" +
 "  UtilUI.setHide(\"refClass1DQ\");\n" +
