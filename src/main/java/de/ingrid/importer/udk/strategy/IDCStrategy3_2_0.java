@@ -1461,9 +1461,11 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 "  if (objClass == \"Class1\") {\n" +
 "    // Get INSPIRE themes\n" +
 "    var themes = UtilList.tableDataToList(UtilGrid.getTableData(\"thesaurusInspire\"));\n" +
-"    \n" +
-"    //  Adapt 'Kodierungsschema'\n" +
-"    uiElement1315AdaptToThemes(themes);\n" +
+"\n" +
+"    // Adapt 'Kodierungsschema' to 'INSPIRE-Themen'\n" +
+"// !!! UNCOMMENT the following line if 'Kodierungsschema' should be adapted to 'INSPIRE-Themen' !!!\n" +
+"//    uiElement1315AdaptToThemes(themes);\n" +
+"\n" +
 "    //  Show/hide DQ tables in class 1 dependent from themes\n" +
 "    applyRule7();\n" +
 "  }\n" +
