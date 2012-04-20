@@ -1489,12 +1489,18 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 "} else {\n" +
 "  UtilUI.setHide(\"uiElement6000\");\n" +
 "}});\n" +
-"// make 'INSPIRE-Themen' mandatory when selected\n" +
+"// make 'INSPIRE-Themen' mandatory when selected except in 'Geodatendienst'\n" +
+"// make optional when unselected except in 'Geo-Information/Karte'\n" +
 "function uiElement6000InputHandler() {\n" +
+"  var objClass = UtilUdk.getObjectClass();\n" +
 "  if (dijit.byId(\"isInspireRelevant\").checked) {\n" +
-"    UtilUI.setMandatory(\"uiElement5064\");\n" +
+"    if (objClass == \"Class3\") {\n" +
+"      UtilUI.setOptional(\"uiElement5064\");\n" +
+"    } else {\n" +
+"      UtilUI.setMandatory(\"uiElement5064\");\n" +
+"    }\n" +
 "  } else {\n" +
-"    if (\"Class1\" == UtilUdk.getObjectClass()) {\n" +
+"    if (objClass == \"Class1\") {\n" +
 "      UtilUI.setMandatory(\"uiElement5064\");\n" +
 "    } else {\n" +
 "      UtilUI.setOptional(\"uiElement5064\");\n" +
