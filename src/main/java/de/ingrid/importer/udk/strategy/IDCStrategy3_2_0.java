@@ -1495,7 +1495,12 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 "  var objClass = UtilUdk.getObjectClass();\n" +
 "  if (dijit.byId(\"isInspireRelevant\").checked) {\n" +
 "    if (objClass == \"Class3\") {\n" +
+"\n" +
+"// !!! 'Geodatendienst': 'INSPIRE-Themen' OPTIONAL OR MANDATORY when checkbox selected ? Comment the one not wanted !\n" +
+"\n" +
 "      UtilUI.setOptional(\"uiElement5064\");\n" +
+"//      UtilUI.setMandatory(\"uiElement5064\");\n" +
+"\n" +
 "    } else {\n" +
 "      UtilUI.setMandatory(\"uiElement5064\");\n" +
 "    }\n" +
