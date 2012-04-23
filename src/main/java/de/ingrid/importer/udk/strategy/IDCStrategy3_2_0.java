@@ -1484,33 +1484,43 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
     	control.setIsMandatory(false);
     	control.setIsVisible("hide");
 		jsCode = startTag +
+"// only visible in 'Geo-Information/Karte' + 'Geodatendienst' + 'Dienst/Anwendung/Informationssystem'\n" +
+"function uiElement6000IsVisibleInClass(objClass) {\n" +
+"  if (objClass == \"Class1\" || objClass == \"Class3\" || objClass == \"Class6\") {\n" +
+"    return true;\n" +
+"  }\n" +
+"  return false;\n" +
+"}\n" +
 "dojo.subscribe(\"/onObjectClassChange\", function(c) {\n" +
-"// only in 'Geo-Information/Karte' + 'Geodatendienst' + 'Dienst/Anwendung/Informationssystem', then optional but always show\n" +
-"if (c.objClass == \"Class1\" || c.objClass == \"Class3\" || c.objClass == \"Class6\") {\n" +
+"if (uiElement6000IsVisibleInClass(c.objClass)) {\n" +
 "  UtilUI.setShow(\"uiElement6000\");\n" +
 "} else {\n" +
 "  UtilUI.setHide(\"uiElement6000\");\n" +
 "}});\n" +
+"\n" +
 "// make 'INSPIRE-Themen' mandatory when selected except in 'Geodatendienst'\n" +
 "// make optional when unselected except in 'Geo-Information/Karte'\n" +
 "function uiElement6000InputHandler() {\n" +
+"  // ONLY react if checkbox is visible in current class !\n" +
 "  var objClass = UtilUdk.getObjectClass();\n" +
-"  if (dijit.byId(\"isInspireRelevant\").checked) {\n" +
-"    if (objClass == \"Class3\") {\n" +
+"  if (uiElement6000IsVisibleInClass(objClass)) {\n" +
+"    if (dijit.byId(\"isInspireRelevant\").checked) {\n" +
+"      if (objClass == \"Class3\") {\n" +
 "\n" +
-"// !!! 'Geodatendienst': 'INSPIRE-Themen' OPTIONAL OR MANDATORY when checkbox selected ? Comment the one not wanted !\n" +
+"  // !!! 'Geodatendienst': 'INSPIRE-Themen' OPTIONAL OR MANDATORY when checkbox selected ? Comment the one not wanted !\n" +
 "\n" +
-"      UtilUI.setOptional(\"uiElement5064\");\n" +
-"//      UtilUI.setMandatory(\"uiElement5064\");\n" +
+"        UtilUI.setOptional(\"uiElement5064\");\n" +
+"//        UtilUI.setMandatory(\"uiElement5064\");\n" +
 "\n" +
+"      } else {\n" +
+"        UtilUI.setMandatory(\"uiElement5064\");\n" +
+"      }\n" +
 "    } else {\n" +
-"      UtilUI.setMandatory(\"uiElement5064\");\n" +
-"    }\n" +
-"  } else {\n" +
-"    if (objClass == \"Class1\") {\n" +
-"      UtilUI.setMandatory(\"uiElement5064\");\n" +
-"    } else {\n" +
-"      UtilUI.setOptional(\"uiElement5064\");\n" +
+"      if (objClass == \"Class1\") {\n" +
+"        UtilUI.setMandatory(\"uiElement5064\");\n" +
+"      } else {\n" +
+"        UtilUI.setOptional(\"uiElement5064\");\n" +
+"      }\n" +
 "    }\n" +
 "  }\n" +
 "}\n" +
