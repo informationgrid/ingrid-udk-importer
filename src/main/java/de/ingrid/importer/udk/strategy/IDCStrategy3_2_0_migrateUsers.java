@@ -3,8 +3,12 @@
  */
 package de.ingrid.importer.udk.strategy;
 
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.UUID;
 
@@ -17,7 +21,8 @@ import de.ingrid.mdek.MdekUtils.WorkState;
 
 /**
  * Changes InGrid 3.2.0: migrate user addresses to separated "hidden" addresses !<br>
- * User Addresses will be copied to
+ * ALSO WRITES .sql FILE for import in mdek database changin the USER ADDRESS UUIDS !!!<br>
+ * IGC: User Addresses will be copied to
  * <ul>
  *   <li>new address_node:<br>
  *       - no working version (= published version)<br>
@@ -47,6 +52,12 @@ public class IDCStrategy3_2_0_migrateUsers extends IDCStrategyDefault {
 	private static Log log = LogFactory.getLog(IDCStrategy3_2_0_migrateUsers.class);
 
 	private static final String MY_VERSION = VALUE_IDC_VERSION_3_2_0_MIGRATE_USERS;
+	
+	/** timestamp, partner and catalog uuid will be added to file name */
+	String outputFilename = "igc3.2.0_UpdateMdek";
+	String outputEncoding = "UTF-8";
+
+	Writer outputWriter = null;
 
 	public String getIDCVersion() {
 		return MY_VERSION;
@@ -367,11 +378,41 @@ public class IDCStrategy3_2_0_migrateUsers extends IDCStrategyDefault {
 			psUpdateAllCatalogModUuid.setString(2, oldAddrUuid); // old mod_uuid
 			numInserted = psUpdateAllCatalogModUuid.executeUpdate();
 			log.info("UPDATED " + numInserted + " t03_catalogue -> mod_uuid from " + oldAddrUuid + " to " + newAddrUuid);
+			
+			// finally write our sql statement to file for updating mdek !
+			if (outputWriter == null) {
+				// add timestamp
+				outputFilename = outputFilename + "_" + (System.currentTimeMillis() / 1000);
+				// add partner
+				String catPartner = getCatalogPartner();
+				if (catPartner != null) {
+					outputFilename = outputFilename + "_" + catPartner.trim().replaceAll(" ", "");
+				}
+				// add catalog uuid
+				String catUuid = getCatalogUuid();
+				if (catUuid != null) {
+					outputFilename = outputFilename + "_" + catUuid.trim();
+				}
+				outputFilename = outputFilename + ".sql";
+				log.info("Writing to file: " + outputFilename);
+
+				outputWriter = new OutputStreamWriter(new FileOutputStream(outputFilename), outputEncoding);
+			}
+
+			outputWriter.write(
+				"UPDATE user_data " +
+				"SET addr_uuid = '" + newAddrUuid + "' " +
+				"WHERE addr_uuid = '" + oldAddrUuid + "';\n");
 
 			numUserProcessed++;
 		}
 		rsUser.close();
 		stUser.close();
+		
+		// close Writer if something written !
+		if (outputWriter != null) {
+			outputWriter.close();
+		}
 
 		log.info("Migrated " + numUserProcessed + " User Addresses");
 		log.info("Migrating User Addresses... done\n");
@@ -511,5 +552,47 @@ public class IDCStrategy3_2_0_migrateUsers extends IDCStrategyDefault {
 		public String toString() {
 			return "" + firstname + ", " + lastname + ", " + email + ", " + institution; 
 		}
+	}
+
+	private String getCatalogUuid() throws Exception {
+		String retValue = null;
+		String sql = "SELECT cat_uuid  FROM t03_catalogue";
+		try {
+			Statement st = jdbc.createStatement();
+			ResultSet rs = jdbc.executeQuery(sql, st);
+			// has to be there !!!
+			rs.next();
+
+			retValue = rs.getString(1);
+			
+			rs.close();
+			st.close();
+
+		} catch (SQLException e) {
+			log.error("Error executing SQL: " + sql, e);
+			throw e;
+		}
+		return retValue;
+	}
+
+	private String getCatalogPartner() throws Exception {
+		String retValue = null;
+		String sql = "SELECT partner_name FROM t03_catalogue";
+		try {
+			Statement st = jdbc.createStatement();
+			ResultSet rs = jdbc.executeQuery(sql, st);
+			// has to be there !!!
+			rs.next();
+
+			retValue = rs.getString(1);
+			
+			rs.close();
+			st.close();
+
+		} catch (SQLException e) {
+			log.error("Error executing SQL: " + sql, e);
+			throw e;
+		}
+		return retValue;
 	}
 }
