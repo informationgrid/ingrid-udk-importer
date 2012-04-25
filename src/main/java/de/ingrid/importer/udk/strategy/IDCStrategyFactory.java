@@ -80,6 +80,8 @@ public class IDCStrategyFactory {
 			return new IDCStrategy3_2_0_a();
 		} else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_3_2_0_FIX_VARCHAR)) {
 			return new IDCStrategy3_2_0_fixVarchar();
+		} else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_3_2_0_MIGRATE_USERS)) {
+			return new IDCStrategy3_2_0_migrateUsers();
         } else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_3_2_0)) {
             return new IDCStrategy3_2_0();
 		} else {
