@@ -546,7 +546,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
     				String newValue = entry.getValue();
 
     				if (!oldValue.equals(newValue)) {
-                		log.error("WE UPDATE DIFFERENT VALUE in syslist entry ! entry -> '" + oldValue + "'/'" + newValue + "', "
+                		log.warn("WE UPDATE DIFFERENT VALUE in syslist entry ! entry -> '" + oldValue + "'/'" + newValue + "', "
                 				+ entry.getCodeListId() + "/" + entry.getDomainId() + "/" + entry.getLangId() + " (oldValue/newValue, listId/entryId/language)");
     				}
 
