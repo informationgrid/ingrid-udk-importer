@@ -5,6 +5,9 @@
   </properties>
   <body>
     <release version="3.2.0-SNAPSHOT" date="????-??-??" description="Release InGrid 3.2. New IGC Schema 3.2.0">
+      <action type="add" dev="wemove" issue="INGRID32-36">
+        Migrate user addresses to separate hidden addresses not visible in IGE.  
+      </action>
       <action type="add" dev="wemove" issue="INGRID32-37">
         Add column 'hide_address' to table 't02_address' for hiding address from search and display.
       </action>

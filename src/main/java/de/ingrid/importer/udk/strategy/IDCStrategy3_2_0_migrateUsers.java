@@ -21,8 +21,8 @@ import de.ingrid.mdek.MdekUtils.WorkState;
 
 /**
  * Changes InGrid 3.2.0: migrate user addresses to separated "hidden" addresses !<br>
- * ALSO WRITES .sql FILE for import in mdek database changin the USER ADDRESS UUIDS !!!<br>
- * IGC: User Addresses will be copied to
+ * <p><b>ALSO WRITES .sql FILE for import in mdek database changin the USER ADDRESS UUIDS !!!</b>
+ * <p>IGC: User Addresses will be copied to
  * <ul>
  *   <li>new address_node:<br>
  *       - no working version (= published version)<br>
@@ -412,6 +412,17 @@ public class IDCStrategy3_2_0_migrateUsers extends IDCStrategyDefault {
 		// close Writer if something written !
 		if (outputWriter != null) {
 			outputWriter.close();
+
+			String msgAlarm = "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
+			String msg = "USERDATA IN IGC CHANGED ! IMPORT the written file '" + outputFilename + "' into your 'mdek' database !!!";
+
+			System.out.println("\n\n" + msgAlarm);
+			System.out.println(msg);
+			System.out.println(msgAlarm + "\n");
+
+			log.warn(msgAlarm);
+			log.warn(msg);
+			log.warn(msgAlarm + "\n");
 		}
 
 		log.info("Migrated " + numUserProcessed + " User Addresses");
