@@ -31,6 +31,7 @@ import de.ingrid.mdek.MdekUtils.WorkState;
  *       - containing main data, adr_type = 100 (-> IGE_USER)
  *   <li>new t021_communications:<br>
  *       - containing phone and email as normal email and email as free entry emailPointOfContact
+ *   <li>new address_metadata (empty, but needed for inner joins)
  * </ul>
  * Then the following tables ARE UPDATED FROM OLD TO NEW ADDR UUID OF USER !
  * <ul>
@@ -85,10 +86,13 @@ public class IDCStrategy3_2_0_migrateUsers extends IDCStrategyDefault {
 
 		// Update/Insert Data -> use PreparedStatements to avoid problems when value String contains "'" !!!
 
+		PreparedStatement psInsertAddressMetadata = jdbc.prepareStatement(
+				"INSERT INTO address_metadata (id) VALUES (?)");
+
 		PreparedStatement psInsertAddress = jdbc.prepareStatement(
 			"INSERT INTO t02_address " +
-			"(id, adr_uuid, adr_type, institution, lastname, firstname, street, postcode, city, work_state) VALUES " +
-			"(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			"(id, adr_uuid, adr_type, institution, lastname, firstname, street, postcode, city, work_state, addr_metadata_id) VALUES " +
+			"(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 		PreparedStatement psInsertCommunication = jdbc.prepareStatement(
 				"INSERT INTO t021_communication " +
@@ -189,7 +193,18 @@ public class IDCStrategy3_2_0_migrateUsers extends IDCStrategyDefault {
 	    		continue;
 			}
 
-			// first insert new address
+			// first insert new address_metadata (empty, but needed for inner joins)
+			//-------------------------
+			long newAddrMetadataId = getNextId();
+			psInsertAddressMetadata.setLong(1, newAddrMetadataId); // id
+			int numInserted = psInsertAddressMetadata.executeUpdate();
+			if (numInserted > 0) {
+				log.info("ADDED " + numInserted + " NEW USER address_metadata (empty)");
+			} else {
+        		log.error("PROBLEMS ADDING NEW USER address_metadata (empty)");
+			}
+			
+			// then insert new address
 			//-------------------------
 			long newAddrId = getNextId();
 			String newAddrUuid = generateUuid();
@@ -205,7 +220,8 @@ public class IDCStrategy3_2_0_migrateUsers extends IDCStrategyDefault {
 			psInsertAddress.setString(8, addrHelper.postcode);
 			psInsertAddress.setString(9, addrHelper.city);
 			psInsertAddress.setString(10, WorkState.VEROEFFENTLICHT.getDbValue()); // work_state
-			int numInserted = psInsertAddress.executeUpdate();
+			psInsertAddress.setLong(11, newAddrMetadataId); // addr_metadata_id
+			numInserted = psInsertAddress.executeUpdate();
 			if (numInserted > 0) {
 				log.info("ADDED " + numInserted + " NEW USER t02_address migrated from " + oldAddrUuid + " (" + newAddrUuid + ", " + addrHelper + ")");
 			} else {
