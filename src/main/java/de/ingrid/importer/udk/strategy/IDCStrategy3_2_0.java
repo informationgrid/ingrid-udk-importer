@@ -28,13 +28,10 @@ import de.ingrid.utils.udk.UtilsLanguageCodelist;
 
 /**
  * <p>
- * Changes InGrid 3.2:<p>
+ * Changes InGrid 3.2 + Changes AK-IGE etc.<p>
  * <ul>
  *   <li> adding NEW syslists for "Spezifikation der Konformität" (6005) and "Nutzungsbedingungen" (6020), modify according tables (add _key/_value), see INGRID32-28
- * </ul>
- * Changes AK-IGE:<p>
- * <ul>
- *   <li>Add "publication_date" as metadata to syslist 6005, drop column from object_conformity, see INGRID32-47  
+ *   <li>Add "publication_date" as metadata to syslist 6005, drop column from object_conformity, see INGRID32-47
  *   <li>Profile: Move rubric "Verschlagwortung" after rubric "Allgemeines", move table "INSPIRE-Themen" from "Allgemeines" to "Verschlagwortung", see INGRID32-44  
  *   <li>Profile: Add Javascript for "ISO-Themenkategorie", "INSPIRE-Themen"/"INSPIRE-relevanter Datensatz" handling visibility and behaviour, see INGRID32-44, INGRID32-49
  *   <li>Profile: Add Javascript for "Sprache der Ressource" and "Zeichensatz des Datensatzes" handling visibility and behaviour, see INGRID32-43
@@ -55,6 +52,7 @@ import de.ingrid.utils.udk.UtilsLanguageCodelist;
  *   <li>Change sys_list.lang_id to VARCHAR(255) + update syslists in catalog from file to match repo, also writes NEW "languages" (iso, req_value), see INGRID32-24
  *   <li>Change column type t017_url_ref.special_name to VARCHAR(255), see https://dev2.wemove.com/jira/browse/INGRID-2110
  *   <li>Profile: Add Javascript for "INSPIRE-Themen" handling content of "Kodierungsschema der geographischen Daten" (only class 1), see INGRID32-47
+ *   <li>Add t011_obj_serv.coupling_type, see INGRID32-86
  * </ul>
  */
 public class IDCStrategy3_2_0 extends IDCStrategyDefault {
@@ -184,6 +182,9 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 
 		log.info("Change column type t017_url_ref.special_name to VARCHAR(255) ...");
 		jdbc.getDBLogic().modifyColumn("special_name", ColumnType.VARCHAR255, "t017_url_ref", false, jdbc);
+
+		log.info("Add column 'coupling_type' to table 't011_obj_serv' ...");
+		jdbc.getDBLogic().addColumn("coupling_type", ColumnType.VARCHAR255, "t011_obj_serv", false, null, jdbc);
 
 		log.info("Extending datastructure... done\n");
 	}
