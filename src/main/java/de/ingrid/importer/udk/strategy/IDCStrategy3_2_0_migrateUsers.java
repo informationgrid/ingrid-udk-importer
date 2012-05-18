@@ -101,8 +101,8 @@ public class IDCStrategy3_2_0_migrateUsers extends IDCStrategyDefault {
 
 		PreparedStatement psInsertAddressNode = jdbc.prepareStatement(
 				"INSERT INTO address_node " +
-				"(id, addr_uuid, addr_id, addr_id_published, fk_addr_uuid, tree_path) VALUES " +
-				"(?, ?, ?, ?, ?, ?)");
+				"(id, addr_uuid, addr_id, fk_addr_uuid, tree_path) VALUES " +
+				"(?, ?, ?, ?, ?)");
 
 		PreparedStatement psUpdateCurrentUserAddrUuid = jdbc.prepareStatement(
 				"UPDATE idc_user SET " +
@@ -278,14 +278,13 @@ public class IDCStrategy3_2_0_migrateUsers extends IDCStrategyDefault {
 				}
 			}
 
-			// then insert new address node
+			// then insert new address node (addr_id_published ALWAYS NULL)
 			//--------------------------------
 			psInsertAddressNode.setLong(1, getNextId()); // id
 			psInsertAddressNode.setString(2, newAddrUuid); // adr_uuid
 			psInsertAddressNode.setLong(3, newAddrId); // addr_id
-			psInsertAddressNode.setLong(4, newAddrId); // addr_id_published
-			psInsertAddressNode.setString(5, AddressType.getIGEUserParentUuid()); // fk_addr_uuid
-			psInsertAddressNode.setString(6, ""); // tree_path
+			psInsertAddressNode.setString(4, AddressType.getIGEUserParentUuid()); // fk_addr_uuid
+			psInsertAddressNode.setString(5, ""); // tree_path
 			numInserted = psInsertAddressNode.executeUpdate();
 			if (numInserted > 0) {
 				log.info("ADDED " + numInserted + " NEW USER address_node " + newAddrUuid + " with addrId " + newAddrId + " as work / publish");
@@ -461,11 +460,11 @@ public class IDCStrategy3_2_0_migrateUsers extends IDCStrategyDefault {
 			// we migrate published version !
 			long addrId = addrIdPubl;
 	    	if (addrId == 0) {
-	    		log.error("User Address (Parent?) NOT PUBLISHED, we migrate working version !!! " + addrUuid);
+	    		log.error("User Address (or Parent) NOT PUBLISHED, we migrate working version !!! " + addrUuid);
 	    		addrId = addrIdWork;
 	    	} else {
 	        	if (addrIdWork != addrIdPubl) {
-	        		log.warn("User Address (Parent?) HAS WORKING VERSION, we migrate published version !!! " + addrUuid);
+	        		log.warn("User Address (or Parent) HAS WORKING VERSION, we migrate published version !!! " + addrUuid);
 	        	}
 	    	}
 	    	
