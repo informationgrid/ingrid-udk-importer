@@ -8,11 +8,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -53,6 +55,7 @@ import de.ingrid.utils.udk.UtilsLanguageCodelist;
  *   <li>Change column type t017_url_ref.special_name to VARCHAR(255), see https://dev2.wemove.com/jira/browse/INGRID-2110
  *   <li>Profile: Add Javascript for "INSPIRE-Themen" handling content of "Kodierungsschema der geographischen Daten" (only class 1), see INGRID32-47
  *   <li>Add t011_obj_serv.coupling_type, see INGRID32-86
+ *   <li>Reverse references from "Geo-Information/Karte" (class 1) to "Geodatendienst" (class 3), see INGRID32-85
  * </ul>
  */
 public class IDCStrategy3_2_0 extends IDCStrategyDefault {
@@ -130,6 +133,10 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 
 		System.out.print("  Updating t011_obj_serv_op_platform...");
 		updateT011ObjServOpPlatform();
+		System.out.println("done.");
+
+		System.out.print("  Updating object_reference...");
+		updateObjectReference();
 		System.out.println("done.");
 
 		System.out.print("  Update Profile in database...");
@@ -707,8 +714,209 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		st.close();
 		psUpdate.close();
 
-		log.info("Updated " + numProcessed + " entries... done");
+		log.info("Updated " + numProcessed + " entries.");
 		log.info("Updating object_conformity... done\n");
+	}
+
+	private void updateObjectReference() throws Exception {
+		log.info("\nUpdating object_reference...");
+
+		final int CLASS_DATA = 1; // Geo-Information/Karte
+		final int CLASS_SERVICE = 3; // Geodatendienst
+
+		final int REF_TYPE_BASISDATEN = 3210;
+		final String REF_NAME_BASISDATEN = "Basisdaten";
+		final int REF_TYPE_LINK_TO_SERVICE = 5066;
+
+		// Verweise vom Typ „Verweis zu Dienst", welche nicht auf ein Objekt der Klasse 
+		// Geodatendienst verweisen, werden in die Tabelle „Verweise zu" verschoben, see INGRID32-85
+
+		log.info("Update references of type 'Link to Service' (5066) to ordinary references (type -1) if not pointing to a Service ...");
+
+		// use PreparedStatement to avoid problems when value String contains "'" !!!
+		PreparedStatement psUpdate = jdbc.prepareStatement(
+				"UPDATE object_reference SET " +
+				"special_ref = -1 " +
+				"WHERE id = ?");
+
+		Statement st = jdbc.createStatement();
+		ResultSet rs = jdbc.executeQuery(
+				"SELECT oRef.id, oRef.obj_from_id, oRef.obj_to_uuid " +
+				"FROM object_reference oRef, t01_object obj " +
+				"WHERE " +
+				"oRef.special_ref = " + REF_TYPE_LINK_TO_SERVICE +
+				" AND oRef.obj_to_uuid = obj.obj_uuid " +
+				"AND (obj.obj_class IS NULL " +
+				"OR obj.obj_class != " + CLASS_SERVICE + ")"
+				, st);
+		int numProcessedNotPointingToService = 0;
+		while (rs.next()) {
+			long referenceId = rs.getLong("id");
+			long fromId = rs.getLong("obj_from_id");
+			String toUuid = rs.getString("obj_to_uuid");
+
+			psUpdate.setLong(1, referenceId);
+			psUpdate.executeUpdate();
+
+			numProcessedNotPointingToService++;
+			log.debug("Set type of object_reference from " + REF_TYPE_LINK_TO_SERVICE + " to -1 ! object_reference (ID -> UUID): " + fromId + " -> " + toUuid);
+		}
+		rs.close();
+		st.close();
+		psUpdate.close();
+
+
+		// Es gibt jetzt nur Verweise vom Dienst zu den Daten, d.h. die Verweise "von Daten zu Dienst" müssen umgekehrt
+		// werden zu "von Dienst zu Daten" und den Typ "Basisdaten" (3210), falls solch ein Verweis noch nicht existiert !
+		// see INGRID32-85
+
+		log.info("Reverse references 'Data to Service' to 'Service to Data' (added in WORKING and PUBLISHED version of Service !) ...");
+
+		psUpdate = jdbc.prepareStatement(
+				"UPDATE object_reference SET " +
+				"obj_from_id = ?, " +
+				"special_ref = " + REF_TYPE_BASISDATEN + ", " +
+				"special_name = '" + REF_NAME_BASISDATEN + "', " +
+				"obj_to_uuid = ? " +
+				"WHERE id = ?");
+
+		PreparedStatement psInsert = jdbc.prepareStatement(
+				"INSERT INTO object_reference " +
+				"(id, obj_from_id, obj_to_uuid, line, special_ref, special_name, descr) " +
+				"VALUES (?,?,?, 10, " + REF_TYPE_BASISDATEN + ", '" + REF_NAME_BASISDATEN +
+				"', '3.2.0: Migrated from Data to Service reference !')");
+
+		st = jdbc.createStatement();
+		// Fetch 'Data to Service' references.
+		// NOTICE: This fetches WORKING and PUBLISHED version of the service, so we set 'Service to Data' reference in both versions !
+		rs = jdbc.executeQuery(
+				"SELECT oRef.id as refId, " +
+				"objFrom.id as dataId, objFrom.obj_uuid as dataUuid, " +
+				"objTo.id as serviceId, objTo.obj_uuid as serviceUuid " +
+				"FROM object_reference oRef, " +
+				"t01_object objFrom, " +
+				"t01_object objTo " +
+				"WHERE " +
+				"oRef.obj_from_id = objFrom.id " +
+				"AND oRef.obj_to_uuid = objTo.obj_uuid " +
+				"AND objFrom.obj_class = " + CLASS_DATA +
+				" AND objTo.obj_class = " + CLASS_SERVICE +
+				" order by dataId, serviceId"
+				, st);
+		int numReverted = 0;
+		Set<Long> idsUsedReferences = new HashSet<Long>(); 
+		int numDeletedDataToService = 0;
+		int numDeletedServiceToData = 0;
+		int numUpdatedServiceToDataWrongType = 0;
+		while (rs.next()) {
+			// NOTICE: id of object_reference is fetched MULTIPLE times, e.g. when 
+			// TO-Service-UUID has working version, then both versions are fetched via UUID
+			long refIdDataToService = rs.getLong("refId");
+			long dataId = rs.getLong("dataId");
+			String dataUuid = rs.getString("dataUuid");
+			long serviceId = rs.getLong("serviceId");
+			String serviceUuid = rs.getString("serviceUuid");
+
+
+			// Check whether reverse reference 'Service to Data' already exists !
+    		Statement st2 = jdbc.createStatement();
+    		ResultSet rs2 = jdbc.executeQuery(
+    				"SELECT * " +
+    				"FROM object_reference " +
+    				"WHERE " +
+    				"obj_from_id = " + serviceId +
+    				" AND obj_to_uuid = '" + dataUuid + "'"
+    				, st2);
+    		int numRefsServiceToData = 0;
+    		while (rs2.next()) {
+    			numRefsServiceToData++;
+    			
+    			long refIdServiceToData = rs2.getLong("id");
+    			int refTypeServiceToData = rs2.getInt("special_ref");
+    			
+    			if (numRefsServiceToData > 1) {
+    				log.warn("!!! Found more than one reference from same Service to same Data object ! " +
+    					"WE DELETE REFERENCE (ID -> UUID): " + serviceId + " -> " + dataUuid);
+    				jdbc.executeUpdate("DELETE FROM object_reference WHERE id=" + refIdServiceToData);
+    				numDeletedServiceToData++;				
+    			} else {
+    				if (REF_TYPE_BASISDATEN != refTypeServiceToData) {
+        				log.warn("!!! Found reference from Service to Data object of wrong type, we set to type 'Basisdaten' (" + REF_TYPE_BASISDATEN + ") ! " +
+            				"REFERENCE (ID -> UUID): " + serviceId + " -> " + dataUuid);    					
+        				jdbc.executeUpdate(
+        						"UPDATE object_reference " +
+        						"SET special_ref = " + REF_TYPE_BASISDATEN +
+        						" WHERE id = " + refIdServiceToData);
+        				numUpdatedServiceToDataWrongType++;
+    				}
+    			}
+    		}
+    		rs2.close();
+    		st2.close();
+
+
+			if (numRefsServiceToData > 0) {
+				// Reference Service -> Data exists, we DELETE reference Data -> Service !
+				int numDeleted = 0;
+				if (!idsUsedReferences.contains(refIdDataToService)) {
+					numDeleted = jdbc.executeUpdate("DELETE FROM object_reference WHERE id=" + refIdDataToService);					
+				}
+				if (numDeleted > 0) {
+					log.info("Found corresponding reference 'Service to Data', we DELETED reference 'Data to Service' !\n" +
+	        				"     Corresponding 'Service to Data' (ID -> UUID): " + serviceId + " -> " + dataUuid +
+	        				", DELETED 'Data to Service' (ID -> UUID): " + dataId + " -> " + serviceUuid);
+					numDeletedDataToService++;					
+				}
+			} else {
+				// Reference 'Service->Data' NOT there, we create reference 'Service->Data'
+				// WE UPDATE EXISTING REFERENCE IF NOT USED YET OR CREATE NEW REFERENCE IF ALREADY USED
+				// (e.g. may be reversed in former different version of service UUID when working version exists !)
+				if (idsUsedReferences.contains(refIdDataToService)) {
+					// CREATE NEW REFERENCE
+					log.info("We create NEW reference 'Service to Data' cause id of 'Data to Service' reference already used !\n" +
+	        				"     REFERENCE 'Data to Service' (ID -> UUID): " + dataId + " -> " + serviceUuid +
+	        				" BECOMES 'Service to Data' (ID -> UUID): " + serviceId + " -> " + dataUuid);
+
+					psInsert.setLong(1, getNextId());
+					psInsert.setLong(2, serviceId);
+					psInsert.setString(3, dataUuid);
+					psInsert.executeUpdate();
+
+				} else {
+					// UPDATE EXISTING REFERENCE
+					log.info("We revert reference 'Data to Service' to 'Service to Data' reference !\n" +
+	        				"     REFERENCE 'Data to Service' (ID -> UUID): " + dataId + " -> " + serviceUuid +
+	        				" BECOMES 'Service to Data' (ID -> UUID): " + serviceId + " -> " + dataUuid);
+
+					psUpdate.setLong(1, serviceId);
+					psUpdate.setString(2, dataUuid);
+					psUpdate.setLong(3, refIdDataToService);
+					psUpdate.executeUpdate();
+					
+					// remember the ID of this reverted reference, may be read again then we do NOT have to use it again !
+					idsUsedReferences.add(refIdDataToService);
+				}
+
+				numReverted++;
+			}
+		}
+		rs.close();
+		st.close();
+		psUpdate.close();
+		psInsert.close();
+
+		log.info("Changed " + numProcessedNotPointingToService + " object_references from type 'Link to Service' (5066) to type -1, cause not pointing to a Service.");
+		log.info("Reverted " + numReverted + " object_references from 'Data to Service' to 'Service to Data' references.");
+		if (numDeletedDataToService > 0) {
+			log.info("Deleted " + numDeletedDataToService + " object_references of type 'Data to Service' because corresponding reference 'Service to Data' already there.");			
+		}
+		if (numDeletedServiceToData > 0) {
+			log.warn("Deleted " + numDeletedServiceToData + " object_references of type 'Service to Data' because found more than one reference from same Service to same Data object.");			
+		}
+		if (numUpdatedServiceToDataWrongType > 0) {
+			log.warn("Changed " + numUpdatedServiceToDataWrongType + " object_references 'Service to Data' to correct type 'Basisdaten' (" + REF_TYPE_BASISDATEN + ").");			
+		}
+		log.info("Updating object_reference... done\n");		
 	}
 
 	private void updateT011ObjServOpPlatform() throws Exception {
@@ -1179,7 +1387,6 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 			String titleValue = rs.getString("keyc_value");
 			String date = rs.getString("key_date");
 			String version = rs.getString("edition");
-			
 					
 			psInsert.setLong(1, getNextId());
 			psInsert.setLong(2, objId);

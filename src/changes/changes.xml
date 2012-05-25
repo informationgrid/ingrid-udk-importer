@@ -5,8 +5,11 @@
   </properties>
   <body>
     <release version="3.2.0-SNAPSHOT" date="????-??-??" description="Release InGrid 3.2. New IGC Schema 3.2.0">
+      <action type="add" dev="wemove" issue="INGRID32-85">
+        Migrate references "Data to Service" to references "Service to Data". Only "Service to Data" references now !
+      </action>
       <action type="add" dev="wemove" issue="INGRID32-86">
-        Add column 'coupling_type' to table 't011_obj_serv' for coupling service to data object.  
+        Add column 'coupling_type' to table 't011_obj_serv' for coupling service to data object.
       </action>
       <action type="add" dev="wemove" issue="INGRID32-36">
         Migrate user addresses to separate hidden addresses not visible in IGE.  
