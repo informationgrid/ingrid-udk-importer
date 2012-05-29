@@ -56,6 +56,7 @@ import de.ingrid.utils.udk.UtilsLanguageCodelist;
  *   <li>Profile: Add Javascript for "INSPIRE-Themen" handling content of "Kodierungsschema der geographischen Daten" (only class 1), see INGRID32-47
  *   <li>Add t011_obj_serv.coupling_type, see INGRID32-86
  *   <li>Reverse references from "Geo-Information/Karte" (class 1) to "Geodatendienst" (class 3), see INGRID32-85
+ *   <li>Profile: Add new legacy field "Kopplungstyp" and Javascript, see INGRID32-100
  * </ul>
  */
 public class IDCStrategy3_2_0 extends IDCStrategyDefault {
@@ -833,16 +834,19 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
     			
     			long refIdServiceToData = rs2.getLong("id");
     			int refTypeServiceToData = rs2.getInt("special_ref");
+    			String refNameServiceToData = rs2.getString("special_name");
     			
     			if (numRefsServiceToData > 1) {
     				log.warn("!!! Found more than one reference from same Service to same Data object ! " +
-    					"WE DELETE REFERENCE (ID -> UUID): " + serviceId + " -> " + dataUuid);
+    					"WE DELETE REFERENCE (ID -> UUID (type)): " + serviceId + " -> " + dataUuid + " (" +
+    					refTypeServiceToData + "/" + refNameServiceToData + ")");
     				jdbc.executeUpdate("DELETE FROM object_reference WHERE id=" + refIdServiceToData);
     				numDeletedServiceToData++;				
     			} else {
     				if (REF_TYPE_BASISDATEN != refTypeServiceToData) {
         				log.warn("!!! Found reference from Service to Data object of wrong type, we set to type 'Basisdaten' (" + REF_TYPE_BASISDATEN + ") ! " +
-            				"REFERENCE (ID -> UUID): " + serviceId + " -> " + dataUuid);    					
+            				"REFERENCE (ID -> UUID (type)): " + serviceId + " -> " + dataUuid + " (" +
+        					refTypeServiceToData + "/" + refNameServiceToData + ")");
         				jdbc.executeUpdate(
         						"UPDATE object_reference " +
         						"SET special_ref = " + REF_TYPE_BASISDATEN +
@@ -1540,6 +1544,17 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		rubric = MdekProfileUtils.findRubric(profileBean, "refClass3");
 		index = MdekProfileUtils.findControlIndex(profileBean, rubric, "uiElementN023");
 		MdekProfileUtils.addControl(profileBean, control, rubric, index);
+
+		log.info("Add new LEGACY control 'Geodatendienst - Fachbezug - Kopplungstyp' before 'Version des Services'");
+    	control = new Controls();
+        control.setIsLegacy(true);
+        control.setId("uiElement3221");
+        control.setIsMandatory(true);
+        control.setIsVisible("show");
+    	rubric = MdekProfileUtils.findRubric(profileBean, "refClass3");
+    	// add before 'Version des Services'
+		index = MdekProfileUtils.findControlIndex(profileBean, rubric, "uiElement3230");
+		MdekProfileUtils.addControl(profileBean, control, rubric, index);
 	}
 
 	/** Manipulate JS in Controls */
@@ -1799,6 +1814,20 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 + endTag;
 		MdekProfileUtils.addToScriptedProperties(control, jsCode);
 
+		//------------- 'Geodatendienst - Kopplungstyp' on input 'tight' make 'Basisdaten' mandatory
+		log.info("'Geodatendienst - Kopplungstyp'(uiElement3221): on input 'tight' make 'Basisdaten'(uiElement3345) mandatory");
+    	control = MdekProfileUtils.findControl(profileBean, "uiElement3221");
+		jsCode = startTag +
+"// make 'Basisdaten' mandatory on input 'tight'\n" +
+"dojo.connect(dijit.byId(\"ref3CouplingType\"), \"onChange\", function(value) {\n" +
+"  if (value === \"tight\") {\n" +
+"    UtilUI.setMandatory(\"uiElement3345\");\n" +
+"  } else {\n" +
+"    UtilUI.setOptional(\"uiElement3345\");\n" +
+"  }\n" +
+"});\n"
++ endTag;
+		MdekProfileUtils.addToScriptedProperties(control, jsCode);
 	}
 
 	private void cleanUpDataStructure() throws Exception {

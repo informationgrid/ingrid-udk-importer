@@ -8,8 +8,9 @@
       <action type="add" dev="wemove" issue="INGRID32-85">
         Migrate references "Data to Service" to references "Service to Data". Only "Service to Data" references now !
       </action>
-      <action type="add" dev="wemove" issue="INGRID32-86">
+      <action type="add" dev="wemove" issue="INGRID32-86, INGRID32-100">
         Add column 'coupling_type' to table 't011_obj_serv' for coupling service to data object.
+        Also add new legacy field 'Coupling type' to Profile including JavaScript for handling state of 'Presentational Data'. 
       </action>
       <action type="add" dev="wemove" issue="INGRID32-36">
         Migrate user addresses to separate hidden addresses not visible in IGE.  
