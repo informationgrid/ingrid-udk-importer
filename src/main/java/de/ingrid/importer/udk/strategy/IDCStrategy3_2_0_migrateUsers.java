@@ -192,6 +192,15 @@ public class IDCStrategy3_2_0_migrateUsers extends IDCStrategyDefault {
 	    		log.error("PROBLEMS READING USER ADDRESS, we continue !!!" + addrUuid);
 	    		continue;
 			}
+			// post process address, add USER tag, see INGRID32-36
+			String userTag = " [Nutzer]";
+			if (addrHelper.firstname != null && addrHelper.firstname.length() > 0) {
+				addrHelper.firstname += userTag;
+			} else if (addrHelper.lastname != null && addrHelper.lastname.length() > 0) {
+				addrHelper.lastname += userTag;
+			} else if (addrHelper.institution != null && addrHelper.institution.length() > 0) {
+				addrHelper.institution += userTag;
+			}
 
 			// first insert new address_metadata (empty, but needed for inner joins)
 			//-------------------------
