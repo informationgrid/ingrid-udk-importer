@@ -57,6 +57,7 @@ import de.ingrid.utils.udk.UtilsLanguageCodelist;
  *   <li>Add t011_obj_serv.coupling_type, see INGRID32-86
  *   <li>Reverse references from "Geo-Information/Karte" (class 1) to "Geodatendienst" (class 3), see INGRID32-85
  *   <li>Profile: Add new legacy field "Kopplungstyp" and Javascript, see INGRID32-100
+ *   <li>Make syslists 6010, 6020 maintainable, not part of syslist repository, see INGRID32-51
  * </ul>
  */
 public class IDCStrategy3_2_0 extends IDCStrategyDefault {
@@ -420,6 +421,20 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		sqlStr = "UPDATE sys_list SET is_default = 'N' WHERE lst_id = 510";
 		numUpdated = jdbc.executeUpdate(sqlStr);
 		log.debug("Set " + numUpdated +	" entries to is_default = 'N' (all languages).");
+
+// ---------------------------
+		log.info("Make syslist 6010 maintainable, not part of syslist repo (\"Verfügbarkeit - Zugangsbeschränkungen\")...");
+
+		sqlStr = "UPDATE sys_list SET maintainable = 1 WHERE lst_id = 6010";
+		numUpdated = jdbc.executeUpdate(sqlStr);
+		log.debug("Set " + numUpdated +	" entries to maintainable = 1 (all languages).");
+
+// ---------------------------
+		log.info("Make syslist 6020 maintainable, not part of syslist repo (\"Verfügbarkeit - Nutzungsbedingungen\")...");
+
+		sqlStr = "UPDATE sys_list SET maintainable = 1 WHERE lst_id = 6020";
+		numUpdated = jdbc.executeUpdate(sqlStr);
+		log.debug("Set " + numUpdated +	" entries to maintainable = 1 (all languages).");
 
 // ---------------------------
 		log.info("Updating sys_list... done\n");
