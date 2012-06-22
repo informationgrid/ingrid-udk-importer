@@ -213,7 +213,7 @@ public class IDCStrategy3_2_0_migrateUsers extends IDCStrategyDefault {
         		log.error("PROBLEMS ADDING NEW USER address_metadata (empty)");
 			}
 			
-			// then insert new address
+			// then insert new address of user (always IN_BEARBEITUNG)
 			//-------------------------
 			long newAddrId = getNextId();
 			String newAddrUuid = generateUuid();
@@ -228,7 +228,7 @@ public class IDCStrategy3_2_0_migrateUsers extends IDCStrategyDefault {
 			psInsertAddress.setString(7, addrHelper.street);
 			psInsertAddress.setString(8, addrHelper.postcode);
 			psInsertAddress.setString(9, addrHelper.city);
-			psInsertAddress.setString(10, WorkState.VEROEFFENTLICHT.getDbValue()); // work_state
+			psInsertAddress.setString(10, WorkState.IN_BEARBEITUNG.getDbValue()); // work_state
 			psInsertAddress.setLong(11, newAddrMetadataId); // addr_metadata_id
 			numInserted = psInsertAddress.executeUpdate();
 			if (numInserted > 0) {
