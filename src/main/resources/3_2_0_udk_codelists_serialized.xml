@@ -6094,6 +6094,7 @@
 		<!--
 			MD_RestrictionCode see
 			http://www.isotc211.org/2005/resources/CodeList/gmxCodelists.xml
+			Needed for IDF Mapping !
 		-->
 		<long>524</long>
 		<map>
@@ -6239,6 +6240,7 @@
 		<!--
 			MD_RestrictionCode see
 			http://www.isotc211.org/2005/resources/CodeList/gmxCodelists.xml
+			Needed for IDF Mapping ?
 		-->
 		<long>511</long>
 		<map>
