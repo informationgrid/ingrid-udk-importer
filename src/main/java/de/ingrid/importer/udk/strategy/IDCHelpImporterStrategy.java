@@ -42,6 +42,9 @@ public class IDCHelpImporterStrategy implements IDCStrategy {
 		this.jdbc = jdbc;
 	}
 
+	public ImportDescriptor getImportDescriptor() {
+		return importDescriptor;
+	}
 	public void setImportDescriptor(ImportDescriptor descriptor) {
 		importDescriptor = descriptor;
 	}

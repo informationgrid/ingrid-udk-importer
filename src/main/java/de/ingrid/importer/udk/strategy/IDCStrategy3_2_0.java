@@ -106,8 +106,13 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		// ---------------------------------
 
 		System.out.print("  Updating sys_list...");
-		updateSysList();
+		// first add all stuff before file is read (add syslists, new entries etc.)
+		updateSysListBeforeFile();
+		// then update from file ! may add english entries, e.g. when catalog formerly was created via 102_clean !
+		// FILE DOES NOT contain/change maintainable, default settings !
 		updateSysListsFromFile();
+		// the do stuff affecting all entries , e.g. set entries maintainable, drop syslists ...
+		updateSysListAfterFile();
 		System.out.println("done.");
 
 		System.out.print("  Updating object_use...");
@@ -198,8 +203,8 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		log.info("Extending datastructure... done\n");
 	}
 
-	protected void updateSysList() throws Exception {
-		log.info("\nUpdating sys_list...");
+	protected void updateSysListBeforeFile() throws Exception {
+		log.info("\nUpdating sys_list before file is read...");
 
 // ---------------------------
 		int lstId = 6005;
@@ -346,20 +351,6 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		psUpdate.close();
 
 // ---------------------------
-		log.info("Delete syslist 7110 (DQ_110_CompletenessOmission = nameOfMeasure for DQ Table 'Datendefizit')...");
-
-		sqlStr = "DELETE FROM sys_list where lst_id = 7110";
-		int numUpdated = jdbc.executeUpdate(sqlStr);
-		log.debug("Deleted " + numUpdated +	" entries (all languages).");
-
-// ---------------------------
-		log.info("Delete syslist 7117 (DQ_117_AbsoluteExternalPositionalAccuracy = nameOfMeasure for DQ Table 'Absoulte Positionsgenauigkeit')...");
-
-		sqlStr = "DELETE FROM sys_list where lst_id = 7117";
-		numUpdated = jdbc.executeUpdate(sqlStr);
-		log.debug("Deleted " + numUpdated +	" entries (all languages).");
-
-// ---------------------------
 		lstId = 2000;
 		log.info("Insert new entries \"3109/Objektartenkatalog\", \"9990/Datendownload\", " +
 				"\"9999/unspezifischer Verweis\" to syslist" + lstId +	" (link type) ...");
@@ -378,13 +369,6 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		writeNewSyslist(lstId, false, newSyslistMap_de, newSyslistMap_en, -1, -1, null, null);
 
 		log.info("Updating sys_list... done\n");
-
-// ---------------------------
-		log.info("Delete syslist 2240 (url datatype for t017_url_ref.datatype_key/.datatype_value...");
-
-		sqlStr = "DELETE FROM sys_list where lst_id = 2240";
-		numUpdated = jdbc.executeUpdate(sqlStr);
-		log.debug("Deleted " + numUpdated +	" entries (all languages).");
 
 // ---------------------------
 		lstId = SYSLIST_ID_OPERATION_PLATFORM;
@@ -416,6 +400,34 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		writeNewSyslist(lstId, true, newSyslistMap_de, newSyslistMap_en, -1, -1, null, null);
 
 // ---------------------------
+		log.info("Updating sys_list before file is read... done\n");
+	}
+
+	protected void updateSysListAfterFile() throws Exception {
+		log.info("\nUpdating sys_list after file is read...");
+
+// ---------------------------
+		log.info("Delete syslist 7110 (DQ_110_CompletenessOmission = nameOfMeasure for DQ Table 'Datendefizit')...");
+
+		sqlStr = "DELETE FROM sys_list where lst_id = 7110";
+		int numUpdated = jdbc.executeUpdate(sqlStr);
+		log.debug("Deleted " + numUpdated +	" entries (all languages).");
+
+// ---------------------------
+		log.info("Delete syslist 7117 (DQ_117_AbsoluteExternalPositionalAccuracy = nameOfMeasure for DQ Table 'Absoulte Positionsgenauigkeit')...");
+
+		sqlStr = "DELETE FROM sys_list where lst_id = 7117";
+		numUpdated = jdbc.executeUpdate(sqlStr);
+		log.debug("Deleted " + numUpdated +	" entries (all languages).");
+
+// ---------------------------
+		log.info("Delete syslist 2240 (url datatype for t017_url_ref.datatype_key/.datatype_value...");
+
+		sqlStr = "DELETE FROM sys_list where lst_id = 2240";
+		numUpdated = jdbc.executeUpdate(sqlStr);
+		log.debug("Deleted " + numUpdated +	" entries (all languages).");
+
+// ---------------------------
 		log.info("Remove default values from syslist 510 (\"Zeichensatz des Datensatzes\")...");
 
 		sqlStr = "UPDATE sys_list SET is_default = 'N' WHERE lst_id = 510";
@@ -437,7 +449,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		log.debug("Set " + numUpdated +	" entries to maintainable = 1 (all languages).");
 
 // ---------------------------
-		log.info("Updating sys_list... done\n");
+		log.info("Updating sys_list after file is read... done\n");
 	}
 
 	/**
@@ -512,7 +524,8 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		psInsert.close();
 	}
 
-    /** Update syslists in IGC catalog from file to match repo. Also writes NEW "languages" (iso, req_value) */
+    /** Update syslists in IGC catalog from file to match repo. Also writes NEW "languages" (iso, req_value).
+     * <b>FILE DOES NOT contain maintainable, default settings !!!</b> */
     private void updateSysListsFromFile() throws Exception {
 		log.info("\nUpdating sys_list from file to match REPO ! ...");
 

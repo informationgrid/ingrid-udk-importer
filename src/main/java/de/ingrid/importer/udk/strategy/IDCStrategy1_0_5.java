@@ -13,8 +13,8 @@ import java.util.Set;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import de.ingrid.importer.udk.jdbc.JDBCHelper;
 import de.ingrid.importer.udk.jdbc.DBLogic.ColumnType;
+import de.ingrid.importer.udk.jdbc.JDBCHelper;
 import de.ingrid.importer.udk.util.UtilsCountryCodelist;
 import de.ingrid.importer.udk.util.UtilsLanguageCodelist;
 
@@ -33,7 +33,7 @@ public class IDCStrategy1_0_5 extends IDCStrategyDefault {
 	private final String OLD_COUNTRY_CODE_GERMANY = "de";
 	private final String OLD_COUNTRY_ZIP_CODE_GERMANY = "D";
 	
-	// catalog language: will be determined. Default is "de".
+	/** catalog language: will be determined. Default is "de" */
 	private String catalogLanguageShortcut = "de";
 
 	public String getIDCVersion() {
@@ -200,13 +200,17 @@ public class IDCStrategy1_0_5 extends IDCStrategyDefault {
 		while (rs.next()) {
 			long catId = rs.getLong("id");
 			String catName = rs.getString("cat_name");
-//			String catCountryShortcut = rs.getString("country_code");
+			String catalogCountryShortcut = rs.getString("country_code");
 			catalogLanguageShortcut = rs.getString("language_code");
 
-			// determine country
-			// we always set "germany". All catalogs are created with "de" ! Can be edited via IGE.
-			Integer newCountryCode = UtilsCountryCodelist.NEW_COUNTRY_KEY_GERMANY;
-			String newCountryName = UtilsCountryCodelist.NEW_COUNTRY_VALUE_GERMANY_DE;
+			// determine country, default is "germany". Can be edited via IGE.
+			Integer newCountryCode = UtilsCountryCodelist.getCodeFromShortcut(catalogCountryShortcut);
+			if (newCountryCode == null) {
+				log.error("!!! Problems determining country of catalog from t03_catalogue.country_code '" +
+					catalogCountryShortcut + "' ! We set country to GERMANY !");
+				newCountryCode = UtilsCountryCodelist.NEW_COUNTRY_KEY_GERMANY;
+			}
+			String newCountryName = UtilsCountryCodelist.getNameFromCode(newCountryCode, catalogLanguageShortcut);
 			
 			// determine language
 			Integer newLangCode = UtilsLanguageCodelist.getCodeFromShortcut(catalogLanguageShortcut);
@@ -244,7 +248,7 @@ public class IDCStrategy1_0_5 extends IDCStrategyDefault {
 			log.info("Map old 'country_code' to new 'country_key'/'country_value'...");
 		}
 
-		// then add entries for ALL t01_objects (no matter whether working or published version) 
+		// then add entries for ALL t02_address (no matter whether working or published version) 
 		String sql = "select distinct addrNode.id as addrNodeId, " +
 			"addr.id as addrId, addr.country_code, addr.postcode, addr.postbox_pc, addr.adr_uuid " +
 			"from t02_address addr, address_node addrNode " +
@@ -256,10 +260,6 @@ public class IDCStrategy1_0_5 extends IDCStrategyDefault {
 		int numProcessed = 0;
 		while (rs.next()) {
 			String countryCode = rs.getString("country_code");
-			// NOTICE: all other countries were lost during initial migration of data !
-			if (!OLD_COUNTRY_CODE_GERMANY.equals(countryCode)) {
-				continue;
-			}
 
 			long addrNodeId = rs.getLong("addrNodeId");
 			long addrId = rs.getLong("addrId");
@@ -270,20 +270,25 @@ public class IDCStrategy1_0_5 extends IDCStrategyDefault {
 			String newPostcode = null;
 			String newPostboxPostcode = null;
 			String sqlUpdatePlz = "";
-			if (postcode != null && postcode.trim().length() > 0) {
-				newPostcode = OLD_COUNTRY_ZIP_CODE_GERMANY + "-" + postcode;
-				sqlUpdatePlz = "postcode = '" + newPostcode + "', ";
-			}
-			if (postboxPostcode != null && postboxPostcode.trim().length() > 0) {
-				newPostboxPostcode = OLD_COUNTRY_ZIP_CODE_GERMANY + "-" + postboxPostcode;
-				sqlUpdatePlz += "postbox_pc = '" + newPostboxPostcode + "', ";
+			if (OLD_COUNTRY_CODE_GERMANY.equals(countryCode)) {
+				if (postcode != null && postcode.trim().length() > 0) {
+					newPostcode = OLD_COUNTRY_ZIP_CODE_GERMANY + "-" + postcode;
+					sqlUpdatePlz = "postcode = '" + newPostcode + "', ";
+				}
+				if (postboxPostcode != null && postboxPostcode.trim().length() > 0) {
+					newPostboxPostcode = OLD_COUNTRY_ZIP_CODE_GERMANY + "-" + postboxPostcode;
+					sqlUpdatePlz += "postbox_pc = '" + newPostboxPostcode + "', ";
+				}
 			}
 
-			// determine country
-			// we always set "germany". All other languages are lost from initial migration and are skipped (see above).
-			Integer newCountryCode = UtilsCountryCodelist.NEW_COUNTRY_KEY_GERMANY;
-			String newCountryName = UtilsCountryCodelist.NEW_COUNTRY_VALUE_GERMANY_DE;
-			
+			// determine country, default is "germany".
+			Integer newCountryCode = UtilsCountryCodelist.getCodeFromShortcut(countryCode);
+			if (newCountryCode == null) {
+				log.error("!!! Problems determining country from t02_address.country_code '" +
+						countryCode + "' for address " + addrUuid +	" ! We set country to GERMANY !");
+				newCountryCode = UtilsCountryCodelist.NEW_COUNTRY_KEY_GERMANY;
+			}
+			String newCountryName = UtilsCountryCodelist.getNameFromCode(newCountryCode, catalogLanguageShortcut);
 
 			jdbc.executeUpdate("UPDATE t02_address SET " +
 				sqlUpdatePlz +

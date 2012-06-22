@@ -224,7 +224,7 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		sqlStr = "DELETE FROM sys_list where lst_id = " + lstId;
 		jdbc.executeUpdate(sqlStr);
 
-		// insert new syslist
+		// insert new syslist (de)
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
 			+ getNextId() + ", " + lstId + ", 1, 'de', 'konform', 0, 'N')");
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
@@ -232,6 +232,14 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
 			+ getNextId() + ", " + lstId + ", " + defaultSyslist6000EntryId + ", 'de', '"
 			+ defaultSyslist6000EntryValue + "', 0, 'Y')");
+
+		// insert new syslist (en)
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
+			+ getNextId() + ", " + lstId + ", 1, 'en', 'conformant', 0, 'N')");
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
+			+ getNextId() + ", " + lstId + ", 2, 'en', 'not conformant', 0, 'N')");
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
+			+ getNextId() + ", " + lstId + ", " + defaultSyslist6000EntryId + ", 'en', 'not evaluated', 0, 'Y')");
 
 		// --------------------
 
@@ -244,7 +252,7 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 		sqlStr = "DELETE FROM sys_list where lst_id = " + lstId;
 		jdbc.executeUpdate(sqlStr);
 
-		// insert new syslist
+		// insert new syslist (de)
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
 			+ getNextId() + ", " + lstId + ", " + noData_Syslist6010EntryId + ", 'de', '" + noData_Syslist6010EntryValue 
 			+ "', 0, 'Y')");
@@ -265,6 +273,26 @@ public class IDCStrategy1_0_3 extends IDCStrategyDefault {
 			+ getNextId() + ", " + lstId + ", 8, 'de', 'aufgrund des Schutzes einer Person', 0, 'N')");
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
 			+ getNextId() + ", " + lstId + ", 9, 'de', 'aufgrund des Schutzes von Umweltbereichen', 0, 'N')");
+
+		// insert new syslist (en)
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
+			+ getNextId() + ", " + lstId + ", " + noData_Syslist6010EntryId + ", 'en', 'no conditions apply', 0, 'Y')");
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
+			+ getNextId() + ", " + lstId + ", 2, 'en', 'the confidentiality of the proceedings of public authorities', 0, 'N')");
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
+			+ getNextId() + ", " + lstId + ", 3, 'en', 'international relations, public security or national defence', 0, 'N')");
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
+			+ getNextId() + ", " + lstId + ", 4, 'en', 'the course of justice', 0, 'N')");
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
+			+ getNextId() + ", " + lstId + ", 5, 'en', 'the confidentiality of commercial or industrial information', 0, 'N')");
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
+			+ getNextId() + ", " + lstId + ", " + existingData_Syslist6010EntryId + ", 'en', 'intellectual property rights', 0, 'N')");
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
+			+ getNextId() + ", " + lstId + ", 7, 'en', 'the confidentiality of personal data and/or files', 0, 'N')");
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
+			+ getNextId() + ", " + lstId + ", 8, 'en', 'the interests or protection of any person', 0, 'N')");
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
+			+ getNextId() + ", " + lstId + ", 9, 'en', 'the protection of the environment', 0, 'N')");
 
 		// --------------------
 

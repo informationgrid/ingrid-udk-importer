@@ -4,6 +4,7 @@
 package de.ingrid.importer.udk;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author joachim
@@ -11,22 +12,22 @@ import java.util.ArrayList;
  */
 public class ImportDescriptor {
 
-	/** * Database parameter: DB Url */
+	/** Database parameter: DB Url */
 	private String dbURL = "";
 
-	/** * Database parameter: JDBC driver class */
+	/** Database parameter: JDBC driver class */
 	private String dbDriver = "";
 
-	/** * Database parameter: DB user name */
+	/** Database parameter: DB user name */
 	private String dbUser = "";
 
-	/** * Database parameter: DB user password */
+	/** Database parameter: DB user password */
 	private String dbPass = "";
 
-	/** * Database Name: Oracle / MySQL / MSSQL */
+	/** Database Name: Oracle / MySQL / MSSQL */
 	private String dbName = "";
 
-	/** * Datenbankschema/-Katalog */
+	/** Datenbankschema/-Katalog */
 	private String dbSchema = "";
 
 	private String configurationFile = "conf/descriptor.properties";
@@ -36,143 +37,73 @@ public class ImportDescriptor {
 	private String idcEmailDefault = null;
 	private String idcProfileFileName = null;
 
-	/**
-	 * ArrayList to store import files
-	 * 
-	 */
-	private ArrayList<String> files = new ArrayList<String>();
+	private String idcCatalogueName = null;
+	private String idcPartnerName = null;
+	private String idcProviderName = null;
+	private String idcCatalogueCountry = null;
 
-	/**
-	 * @return the dbDriver
-	 */
+	/** ArrayList to store import files */
+	private List<String> files = new ArrayList<String>();
+
 	public String getDbDriver() {
 		return dbDriver;
 	}
-
-	/**
-	 * @param dbDriver
-	 *            the dbDriver to set
-	 */
 	public void setDbDriver(String dbDriver) {
 		this.dbDriver = dbDriver;
 	}
 
-	/**
-	 * @return the dbName
-	 */
 	public String getDbName() {
 		return dbName;
 	}
-
-	/**
-	 * @param dbName
-	 *            the dbName to set
-	 */
 	public void setDbName(String dbName) {
 		this.dbName = dbName;
 	}
 
-	/**
-	 * @return the dbPass
-	 */
 	public String getDbPass() {
 		return dbPass;
 	}
-
-	/**
-	 * @param dbPass
-	 *            the dbPass to set
-	 */
 	public void setDbPass(String dbPass) {
 		this.dbPass = dbPass;
 	}
 
-	/**
-	 * @return the dbSchema
-	 */
 	public String getDbSchema() {
 		return dbSchema;
 	}
-
-	/**
-	 * @param dbSchema
-	 *            the dbSchema to set
-	 */
 	public void setDbSchema(String dbSchema) {
 		this.dbSchema = dbSchema;
 	}
 
-	/**
-	 * @return the dbURL
-	 */
 	public String getDbURL() {
 		return dbURL;
 	}
-
-	/**
-	 * @param dbURL
-	 *            the dbURL to set
-	 */
 	public void setDbURL(String dbURL) {
 		this.dbURL = dbURL;
 	}
 
-	/**
-	 * @return the dbUser
-	 */
 	public String getDbUser() {
 		return dbUser;
 	}
-
-	/**
-	 * @param dbUser
-	 *            the dbUser to set
-	 */
 	public void setDbUser(String dbUser) {
 		this.dbUser = dbUser;
 	}
 
-	/**
-	 * @return the files
-	 */
-	public ArrayList<String> getFiles() {
+	public List<String> getFiles() {
 		return files;
 	}
-
-	/**
-	 * @param files
-	 *            the files to set
-	 */
-	public void setFiles(ArrayList<String> files) {
+	public void setFiles(List<String> files) {
 		this.files = files;
 	}
 
-	/**
-	 * @return the configurationFile
-	 */
 	public String getConfigurationFile() {
 		return configurationFile;
 	}
-
-	/**
-	 * @param configurationFile
-	 *            the configurationFile to set
-	 */
 	public void setConfigurationFile(String configurationFile) {
 		this.configurationFile = configurationFile;
 	}
 
-	/**
-	 * @return the idcVersion
-	 */
 	public String getIdcVersion() {
 		return idcVersion;
 	}
-
-	/**
-	 * @param idcVersion
-	 *            the idcVersion to set
-	 */
 	public void setIdcVersion(String udkDbVersion) {
 		this.idcVersion = udkDbVersion;
 	}
@@ -196,5 +127,33 @@ public class ImportDescriptor {
 	}
 	public void setIdcProfileFileName(String idcProfileFileName) {
 		this.idcProfileFileName = idcProfileFileName;
+	}
+
+	public String getIdcCatalogueName() {
+		return idcCatalogueName;
+	}
+	public void setIdcCatalogueName(String idcCatalogueName) {
+		this.idcCatalogueName = idcCatalogueName;
+	}
+
+	public String getIdcPartnerName() {
+		return idcPartnerName;
+	}
+	public void setIdcPartnerName(String idcPartnerName) {
+		this.idcPartnerName = idcPartnerName;
+	}
+
+	public String getIdcProviderName() {
+		return idcProviderName;
+	}
+	public void setIdcProviderName(String idcProviderName) {
+		this.idcProviderName = idcProviderName;
+	}
+
+	public String getIdcCatalogueCountry() {
+		return idcCatalogueCountry;
+	}
+	public void setIdcCatalogueCountry(String idcCatalogueCountry) {
+		this.idcCatalogueCountry = idcCatalogueCountry;
 	}
 }

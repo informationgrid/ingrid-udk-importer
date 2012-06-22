@@ -133,6 +133,7 @@ public interface IDCStrategy {
 	public void setDataProvider(DataProvider data);
 
 	public void setImportDescriptor(ImportDescriptor descriptor);
+	public ImportDescriptor getImportDescriptor();
 
 	public void setJDBCConnectionProxy(JDBCConnectionProxy jdbc);
 	

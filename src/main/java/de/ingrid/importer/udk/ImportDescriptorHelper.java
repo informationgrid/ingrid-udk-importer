@@ -4,6 +4,7 @@
 package de.ingrid.importer.udk;
 
 import java.io.File;
+import java.net.URL;
 import java.util.List;
 
 import org.apache.commons.configuration.ConfigurationException;
@@ -140,28 +141,7 @@ public class ImportDescriptorHelper {
 				}
 				idcCatalogLanguage = args[++i];
 			} else {
-				File f = new File(args[i]);
-				if (f.isDirectory()) {
-					// read directory
-					ImportDescriptorHelper.addDirectory(f, descr.getFiles());
-				} else if (f.getName().endsWith(".zip")) {
-					if (log.isDebugEnabled()) {
-						log.debug("Zip archive found. Extracting to " + getTmpDir());
-					}
-					List<String> vExtracted = extractZipFile(f, getTmpDir() + "/");
-
-					if (vExtracted != null) {
-						for (int j = 0; j < vExtracted.size(); j++) {
-							descr.getFiles().add(vExtracted.get(j));
-						}
-					} else {
-						log.error("Error unzipping '" + f.getName() + "'.");
-						throw new IllegalArgumentException("Error unzipping '" + f.getName() + "'.");
-					}
-				} else if (f.isFile()) {
-					// read file
-					descr.getFiles().add(f.getAbsolutePath());
-				}
+				addDataFile(args[i], descr);
 			}
 		}
 
@@ -186,6 +166,11 @@ public class ImportDescriptorHelper {
 		descr.setIdcEmailDefault(configuration.getString("idc.email.default", ""));
 		descr.setIdcProfileFileName(configuration.getString("idc.profile.file", ""));
 
+		descr.setIdcCatalogueName(configuration.getString("idc.catalogue.name", ""));
+		descr.setIdcPartnerName(configuration.getString("idc.partner.name", ""));
+		descr.setIdcProviderName(configuration.getString("idc.provider.name", ""));
+		descr.setIdcCatalogueCountry(configuration.getString("idc.catalogue.country", ""));
+
 		// set passed command line attributes, have highest prio !
 		if (dbUser != null) {
 			descr.setDbUser(dbUser);
@@ -208,6 +193,42 @@ public class ImportDescriptorHelper {
 		}
 */
 		return descr;
+	}
+
+	/** Analyses the given fileName and adds data files to passed descriptor.
+	 * @param fileName file name (with absolute path or not) or directory or ... 
+	 * @param descr the descriptor where to add data
+	 */
+	public static void addDataFile(String fileName, ImportDescriptor descr) {
+		File f = new File(fileName);
+
+		// try to load from class path if not existent !
+		if (!f.exists()) {
+			URL url = descr.getClass().getResource(fileName);
+			f = new File(url.getPath());
+		}
+
+		if (f.isDirectory()) {
+			// read directory
+			ImportDescriptorHelper.addDirectory(f, descr.getFiles());
+		} else if (f.getName().endsWith(".zip")) {
+			if (log.isDebugEnabled()) {
+				log.debug("Zip archive found. Extracting to " + getTmpDir());
+			}
+			List<String> vExtracted = extractZipFile(f, getTmpDir() + "/");
+
+			if (vExtracted != null) {
+				for (int j = 0; j < vExtracted.size(); j++) {
+					descr.getFiles().add(vExtracted.get(j));
+				}
+			} else {
+				log.error("Error unzipping '" + f.getName() + "'.");
+				throw new IllegalArgumentException("Error unzipping '" + f.getName() + "'.");
+			}
+		} else if (f.isFile()) {
+			// read file
+			descr.getFiles().add(f.getAbsolutePath());
+		}
 	}
 
 }

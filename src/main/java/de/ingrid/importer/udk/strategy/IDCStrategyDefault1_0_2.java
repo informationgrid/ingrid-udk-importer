@@ -297,10 +297,19 @@ public abstract class IDCStrategyDefault1_0_2 extends IDCStrategyDefault {
 				+ dataProvider.getId() + ", 2010, 3360, 'de', 'Standort', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
+				+ dataProvider.getId() + ", 2010, 3360, 'en', 'Location', 0)");
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
 				+ dataProvider.getId() + ", 2010, 3400, 'de', 'Projektleiter', 0)");
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
+				+ dataProvider.getId() + ", 2010, 3400, 'en', 'Project Manager', 0)");
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
 				+ dataProvider.getId() + ", 2010, 3410, 'de', 'Beteiligte', 0)");
+		dataProvider.setId(dataProvider.getId() + 1);
+		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
+				+ dataProvider.getId() + ", 2010, 3410, 'en', 'Participants', 0)");
 
 		dataProvider.setId(dataProvider.getId() + 1);
 		jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable) VALUES ("
