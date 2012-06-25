@@ -22,6 +22,8 @@ public interface IDCStrategy {
 
 	/** initial version/strategy */
 	static String VALUE_IDC_VERSION_102 = "1.0.2";
+	static String VALUE_STRATEGY_102_CLEAN = "1.0.2_clean";
+
 	/** FIX strategy (writes NO version) for fixing wrong syslists. ALSO INTEGRATED IN STRATEGY WORKFLOW */
 	static String VALUE_IDC_VERSION_102_FIX_SYSLIST = "1.0.2_fix_syslist_100_101";
 	/** SNS Spatial Type Update */
@@ -91,7 +93,7 @@ public interface IDCStrategy {
 	 * Contains all according versions/strategies in ascending order.
 	 * NOTICE: THESE VERSIONS ARE MAPPED TO STRATEGIES IN STRATEGY FACTORY !!! */
 	static String[] STRATEGY_WORKFLOW = new String[] {
-		VALUE_IDC_VERSION_102,
+		VALUE_IDC_VERSION_102, // may be changed to VALUE_STRATEGY_102_CLEAN if no UDK data passed
 		VALUE_IDC_VERSION_102_FIX_SYSLIST,
 		VALUE_IDC_VERSION_102_SNS_SPATIAL_TYPE,
 		VALUE_IDC_VERSION_103,

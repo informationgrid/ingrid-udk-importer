@@ -61,14 +61,15 @@ public class Importer {
 			System.out.println("Problems determining current IDC Version, see log for details.");
 			return;
 		}
-		String newIDCVersionFromDescriptor = descriptor.getIdcVersion();
-		System.out.println("\ninfo: current version of IDC: " + oldIDCVersion
-			+ ", requested version of IDC from passed \"properties\": " + newIDCVersionFromDescriptor);
+		String msg = "Current version of IDC: " + oldIDCVersion + 
+			", requested version of IDC from passed \"properties\": " + descriptor.getIdcVersion();
+		System.out.println("\ninfo: " + msg);
+		log.info(msg);
 
 		List<IDCStrategy> strategiesToExecute = new ArrayList<IDCStrategy>();
 		try {
 			IDCStrategyFactory idcStrategyFactory = new IDCStrategyFactory();
-			strategiesToExecute = idcStrategyFactory.getIdcStrategiesToExecute(oldIDCVersion, newIDCVersionFromDescriptor);
+			strategiesToExecute = idcStrategyFactory.getIdcStrategiesToExecute(oldIDCVersion, descriptor);
 		} catch (Exception e) {
 			log.error("Problems extracting strategies to execute !", e);
 			System.out.println("\nProblems determining strategies to execute, see log for details.");
@@ -81,7 +82,7 @@ public class Importer {
 			if (strategy.getIDCVersion() != null) {
 				targetVersionInfo = " (target IDC Version: " + strategy.getIDCVersion() + ")";
 			}
-			String msg = "\n\nExecuting strategy " + strategy + targetVersionInfo;
+			msg = "\n\nExecuting strategy " + strategy + targetVersionInfo;
 			System.out.println(msg);
 			log.info(msg);
 
