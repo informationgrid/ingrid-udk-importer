@@ -59,7 +59,6 @@ public class IDCSNSSpatialTypeStrategy extends IDCStrategyDefault {
 
 		jdbc.commit();
 		System.out.println("Update finished successfully.");
-		System.out.println("REMEMBER: full sys_lists (including full localization) have to be imported via csv (in case not yet done).");
 	}
 
 	protected void updateSpatialRefValue() throws Exception {
