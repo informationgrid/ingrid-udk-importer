@@ -1,3 +1,13 @@
+Dieses Verzeichnis enthält die globalen und lokalen Syslisten für Bund und Länder, die ehemals, nach
+Upgrade des IGC Katalogs auf die Version 1.0.3, per csv Dateien eingespielt werden sollten.
+Dies ist mit Einführung des zentralen Codelisten Repositories nicht mehr nötig, mit dem die globalen
+Syslisten gepflegt werden.
+Nur die Bundeslandspezifischen lokalen Listen könenn eventuell zum Abgleich herangezogen werden (z.B.
+Liste 1350 "Rechtliche Grundlagen").
+Nachfolgend das ehemalige Vorgehen zum Import der csv Dateien.
+
+
+!!! DEPRECATED !!!
 
 Syslisten
 =========
