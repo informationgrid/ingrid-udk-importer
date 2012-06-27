@@ -317,9 +317,9 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			log.info("Importing " + entityName + "...");
 		}
 
-		pSqlStr = "INSERT INTO t03_catalogue (id, cat_uuid, cat_name, country_code,"
+		pSqlStr = "INSERT INTO t03_catalogue (id, cat_uuid, cat_name, partner_name , provider_name, country_code,"
 				+ "workflow_control, expiry_duration, create_time, mod_uuid, mod_time, language_code) VALUES "
-				+ "( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ "( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		PreparedStatement p = jdbc.prepareStatement(pSqlStr);
 
@@ -346,6 +346,8 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 				p.setInt(cnt++, row.getInteger("primary_key")); // id
 				p.setString(cnt++, row.get("cat_id")); // cat_uuid
 				p.setString(cnt++, row.get("catalogue")); // cat_name
+				p.setString(cnt++, getImportDescriptor().getIdcPartnerName()); // partner_name
+				p.setString(cnt++, getImportDescriptor().getIdcProviderName()); // provider_name
 				p.setString(cnt++, IDCStrategyHelper.transCountryCode(row.get("country"))); // country_code
 				p.setString(cnt++, "N"); // workflow_control
 				p.setNull(cnt++, Types.INTEGER); // expiry_duration

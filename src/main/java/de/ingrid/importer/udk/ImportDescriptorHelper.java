@@ -99,10 +99,17 @@ public class ImportDescriptorHelper {
 
 	public static ImportDescriptor getDescriptor(String[] args) {
 		ImportDescriptor descr = new ImportDescriptor();
+		String dbUrl = null;
+		String dbDriver = null;
 		String dbUser = null;
 		String dbPasswd = null;
+		String idcLanguage = null;
+		String idcEmail = null;
+		String idcName = null;
+		String idcPartner = null;
+		String idcProvider = null;
+		String idcCountry = null;
 		String idcVersion = null;
-		String idcCatalogLanguage = null;
 
 		for (int i = 0; i < args.length; i++) {
 			if (args[i].equalsIgnoreCase("-u")) {
@@ -139,7 +146,56 @@ public class ImportDescriptorHelper {
 					System.out.println(msg);
 					throw new IllegalArgumentException(msg);
 				}
-				idcCatalogLanguage = args[++i];
+				idcLanguage = args[++i];
+			} else if (args[i].equalsIgnoreCase("-dburl")) {
+				if (args.length <= i + 1) {
+					String msg = "Missing argument for parameter '-dburl' (Database Url).";
+					System.out.println(msg);
+					throw new IllegalArgumentException(msg);
+				}
+				dbUrl = args[++i];
+			} else if (args[i].equalsIgnoreCase("-dbdriver")) {
+				if (args.length <= i + 1) {
+					String msg = "Missing argument for parameter '-dbdriver' (Database Driver).";
+					System.out.println(msg);
+					throw new IllegalArgumentException(msg);
+				}
+				dbDriver = args[++i];
+			} else if (args[i].equalsIgnoreCase("-email")) {
+				if (args.length <= i + 1) {
+					String msg = "Missing argument for parameter '-email' (Catalogue Admin E-Mail).";
+					System.out.println(msg);
+					throw new IllegalArgumentException(msg);
+				}
+				idcEmail = args[++i];
+			} else if (args[i].equalsIgnoreCase("-name")) {
+				if (args.length <= i + 1) {
+					String msg = "Missing argument for parameter '-name' (Catalogue Name).";
+					System.out.println(msg);
+					throw new IllegalArgumentException(msg);
+				}
+				idcName = args[++i];
+			} else if (args[i].equalsIgnoreCase("-partner")) {
+				if (args.length <= i + 1) {
+					String msg = "Missing argument for parameter '-partner' (Catalogue Partner full name).";
+					System.out.println(msg);
+					throw new IllegalArgumentException(msg);
+				}
+				idcPartner = args[++i];
+			} else if (args[i].equalsIgnoreCase("-provider")) {
+				if (args.length <= i + 1) {
+					String msg = "Missing argument for parameter '-provider' (Catalogue Provider full name).";
+					System.out.println(msg);
+					throw new IllegalArgumentException(msg);
+				}
+				idcProvider = args[++i];
+			} else if (args[i].equalsIgnoreCase("-country")) {
+				if (args.length <= i + 1) {
+					String msg = "Missing argument for parameter '-country' (Catalogue Country code).";
+					System.out.println(msg);
+					throw new IllegalArgumentException(msg);
+				}
+				idcCountry = args[++i];
 			} else {
 				addDataFile(args[i], descr);
 			}
@@ -181,17 +237,31 @@ public class ImportDescriptorHelper {
 		if (idcVersion != null) {
 			descr.setIdcVersion(idcVersion);
 		}
-		if (idcCatalogLanguage != null) {
-			descr.setIdcCatalogueLanguage(idcCatalogLanguage);
+		if (idcLanguage != null) {
+			descr.setIdcCatalogueLanguage(idcLanguage);
+		}
+		if (dbUrl != null) {
+			descr.setDbURL(dbUrl);
+		}
+		if (dbDriver != null) {
+			descr.setDbDriver(dbDriver);
+		}
+		if (idcEmail != null) {
+			descr.setIdcEmailDefault(idcEmail);
+		}
+		if (idcName != null) {
+			descr.setIdcCatalogueName(idcName);
+		}
+		if (idcPartner != null) {
+			descr.setIdcPartnerName(idcPartner);
+		}
+		if (idcProvider != null) {
+			descr.setIdcProviderName(idcProvider);
+		}
+		if (idcCountry != null) {
+			descr.setIdcCatalogueCountry(idcCountry);
 		}
 		
-		// udk import data file/directory is NOT mandatory ! e.g. not necessary when starting importer as updater !
-/*
-		if (descr.getFiles() == null || descr.getFiles().isEmpty()) {
-			log.error("No import files specified.");
-			throw new IllegalArgumentException("No import files specified.");
-		}
-*/
 		return descr;
 	}
 

@@ -7,7 +7,8 @@
     <release version="3.2.0-SNAPSHOT" date="????-??-??" description="Release InGrid 3.2. New IGC Schema 3.2.0">
       <action type="add" dev="wemove" issue="INGRID-2120">
         Added new strategy 1.0.2_clean for generating initial empty catalog without passing UDK data.
-        When catalog is created the initial strategy (1.0.2) is chosen automatically dependent from passing UDK data or not.
+        When catalog is created then initial strategy (1.0.2) is chosen automatically dependent from whether UDK data passed or not.
+        Nearly all configuration parameters can be passed as command line parameters now.
       </action>
       <action type="add" dev="wemove" issue="INGRID32-85">
         Migrate references "Data to Service" to references "Service to Data". Only "Service to Data" references now !

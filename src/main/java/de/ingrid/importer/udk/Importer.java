@@ -34,7 +34,11 @@ public class Importer {
 			descriptor = ImportDescriptorHelper.getDescriptor(args);
 			System.out.println("done.");
 		} catch (IllegalArgumentException e) {
-			System.out.println("Error parsing input parameters.\n\nusage: java ingrid-udk-importer.jar [-u <user>] [-p <password>] [-v <idc version>] [-l <idc language>] -c <config file> <file/directory> [file/directory]");
+			System.out.println("Error parsing input parameters.\n\nusage: java -Xmx1024M -jar <ingrid-udk-importer.jar> -c <config file> " +
+				"[<udk data file/directory> <udk data file/directory> ...] " +
+				"[-v <igc version>] [-l <igc language>] [-email <igc email>] [-partner <igc partner name>] [-provider <igc provider name>] " +
+				"[-name <igc catalog name>] [-country <igc country code>] " +
+				"[-u <db user>] [-p <db password>] [-dburl <db url>] [-dbdriver <db driver>]");
 			return;
 		}
 
