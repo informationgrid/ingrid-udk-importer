@@ -270,6 +270,10 @@ public class ImportDescriptorHelper {
 	 * @param descr the descriptor where to add data
 	 */
 	public static void addDataFile(String fileName, ImportDescriptor descr) {
+		if (fileName == null || fileName.trim().length() == 0) {
+			return;
+		}
+
 		File f = new File(fileName);
 
 		// try to load from class path if not existent !
