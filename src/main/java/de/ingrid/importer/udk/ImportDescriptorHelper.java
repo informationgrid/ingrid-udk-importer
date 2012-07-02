@@ -274,6 +274,10 @@ public class ImportDescriptorHelper {
 			return;
 		}
 
+		if (log.isInfoEnabled()) {
+			log.info("Try adding UDK data file '" + fileName + "'");
+		}
+
 		File f = new File(fileName);
 
 		// try to load from class path if not existent !
