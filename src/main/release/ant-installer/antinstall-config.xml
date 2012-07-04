@@ -11,7 +11,7 @@
 
         <text property="dbUser" displayText="MySQL Benutzername:" defaultValue="root" />
         <text property="dbPassword" displayText="MySQL Benutzer-Passwort:" defaultValue="" />
-        <text property="dbAlias" displayText="MySQL Datenbank-Alias (IGC):" defaultValue="//localhost/igc_???" />
+        <text property="dbAlias" displayText="MySQL Datenbank-Alias (IGC):" defaultValue="jdbc:mysql://localhost/igc_???" />
 
         <comment bold="false" displayText="" explanatoryText="Diese Daten werden für den Zugriff auf den InGridCatalog (IGC) benötigt." />
         <comment bold="true" displayText="" explanatoryText="Falls eine andere Datenbank als MySQL zum Einsatz kommt, müssen die Anpassungen an der Datei descriptor.properties manuell vorgenommen werden." />

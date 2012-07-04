@@ -56,6 +56,9 @@ public class JDBCConnectionProxy {
 			p.setProperty("user",descriptor.getDbUser());
 			p.setProperty("password",descriptor.getDbPass());
 //			p.setProperty("jdbcCompliantTruncation","false"); //new line
+			if (log.isDebugEnabled()) {
+				log.debug("Connecting to database, url='" + url + "'");
+			}
 			fConnection = DriverManager.getConnection(url,p);
 
 			String dbSchema = descriptor.getDbSchema();
@@ -69,14 +72,14 @@ public class JDBCConnectionProxy {
 			
 
 		} catch (SQLException e) {
-			log.error("Can't connect to database! Please check your connection parameters.");
+			log.error("Can't connect to database! Please check your connection parameters.", e);
 			throw new RuntimeException("Can't connect to database! Please check your connection parameters.");
 
 		} catch (ClassNotFoundException e) {
-			log.error("Can't connect to database! Error while getting/instantiating JDBC driver '" + descriptor.getDbDriver() + "'.");
+			log.error("Can't connect to database! Error while getting/instantiating JDBC driver '" + descriptor.getDbDriver() + "'.", e);
 			throw new RuntimeException("Can't connect to database! Error while getting/instantiating JDBC driver '" + descriptor.getDbDriver() + "'.");
 		} catch (Exception e) {
-			log.error("Can't connect to database!");
+			log.error("Can't connect to database!", e);
 			throw new RuntimeException("Can't connect to database!");
 		}
 	}
