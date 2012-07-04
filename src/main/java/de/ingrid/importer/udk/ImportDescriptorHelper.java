@@ -4,6 +4,8 @@
 package de.ingrid.importer.udk;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
 
@@ -65,14 +67,14 @@ public class ImportDescriptorHelper {
 	  }	
 	
 
-	private static List<String> extractZipFile(final File f, final String targetDir) {
+	private static List<String> extractZipFile(InputStream inStream, final String targetDir) {
 
 		boolean keepSubfolders = false;
 
 		String[] accFiles = { ".xml" };
 		ZipperFilter zipperFilter = new ZipperFilter(accFiles);
 
-		return Zipper.extractZipFile(f, targetDir, keepSubfolders, zipperFilter);
+		return Zipper.extractZipFile(inStream, targetDir, keepSubfolders, zipperFilter);
 	}
 
 	private static String getTmpDir() {
@@ -279,21 +281,53 @@ public class ImportDescriptorHelper {
 		}
 
 		File f = new File(fileName);
+		InputStream myInputStream = null;
 
 		// try to load from class path if not existent !
 		if (!f.exists()) {
 			URL url = descr.getClass().getResource(fileName);
-			f = new File(url.getPath());
+			if (log.isInfoEnabled()) {
+				log.info("File not found, try loading via classLoader, resulting url='" + url.getPath() + "'");
+			}
+
+			if (url != null) {
+				f = new File(url.getPath());
+				if (log.isInfoEnabled()) {
+					log.info("Resulting file='" + f + "', file exists=" + f.exists());
+				}
+
+				if (!f.exists()) {
+					myInputStream = descr.getClass().getResourceAsStream(fileName);
+					if (log.isInfoEnabled()) {
+						log.info("Try loading as stream, e.g. from jar file -> Resulting InputStream=" + myInputStream);
+					}					
+				}
+			}
+		}
+		
+		if (!f.exists() && myInputStream == null) {
+			log.warn("File/Directory '" + fileName + "' not found, ignored !");
+			return;
 		}
 
-		if (f.isDirectory()) {
+		if (f.exists() && f.isDirectory()) {
 			// read directory
 			ImportDescriptorHelper.addDirectory(f, descr.getFiles());
 		} else if (f.getName().endsWith(".zip")) {
 			if (log.isDebugEnabled()) {
 				log.debug("Zip archive found. Extracting to " + getTmpDir());
 			}
-			List<String> vExtracted = extractZipFile(f, getTmpDir() + "/");
+			// we always extract via stream to be able to work with zip resources from jar !
+			if (myInputStream == null) {
+				// we have a file, not a stream from jar, so we get the stream to the file
+				try {
+					myInputStream = new FileInputStream(f);					
+				} catch (Exception ex) {
+					log.warn("Problems getting stream from file " + f + ", ignored !");
+					return;
+				}
+			}
+			List<String> vExtracted = extractZipFile(myInputStream, getTmpDir() + "/");
 
 			if (vExtracted != null) {
 				for (int j = 0; j < vExtracted.size(); j++) {
@@ -303,7 +337,7 @@ public class ImportDescriptorHelper {
 				log.error("Error unzipping '" + f.getName() + "'.");
 				throw new IllegalArgumentException("Error unzipping '" + f.getName() + "'.");
 			}
-		} else if (f.isFile()) {
+		} else if (f.exists() && f.isFile()) {
 			// read file
 			descr.getFiles().add(f.getAbsolutePath());
 		}

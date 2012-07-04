@@ -6,11 +6,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.List;
 import java.util.zip.ZipEntry;
-import java.util.zip.ZipException;
-import java.util.zip.ZipFile;
+import java.util.zip.ZipInputStream;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -38,7 +36,10 @@ public class Zipper {
 	 *         files from the ZipperFilter.
 	 * @return null if the input data was invalid or an Exception occurs
 	 */
-	public static final List<String> extractZipFile(final File zipFile, final String targetDir, final boolean keepSubfolders, ZipperFilter zipperFilter) {
+	public static final List<String> extractZipFile(InputStream myInputStream, final String targetDir, final boolean keepSubfolders, ZipperFilter zipperFilter) {
+		if (log.isDebugEnabled()) {
+			log.debug("extractZipFile: inputStream=" + myInputStream + ", targetDir='" + targetDir + "', keepSubfolders=" + keepSubfolders);				
+		}
 
 		ArrayList<String> extractedFiles = new ArrayList<String>();
 
@@ -47,14 +48,10 @@ public class Zipper {
 		File outdir = new File(targetDir);
 
 		// make some checks
-		if (!zipFile.exists()) {
-			System.err.println("The given ZIP-file does NOT exists: " + zipFile + ".");
-			return null;
-		} else if (!zipFile.canRead()) {
-			System.err.println("Can't read the file: " + zipFile + ".");
-			return null;
-		} else if (outdir.isFile()) {
-			System.err.println("The Target Directory \"" + outdir + "\" must not be a file .");
+		if (outdir.isFile()) {
+			String msg = "The Target Directory \"" + outdir + "\" must not be a file .";
+			log.error(msg);
+			System.err.println(msg);
 			return null;
 		}
 
@@ -63,15 +60,23 @@ public class Zipper {
 
 		// Start Unzipping ...
 		try {
-			ZipFile zfile = new ZipFile(zipFile, ZipFile.OPEN_READ);
+			if (log.isDebugEnabled()) {
+				log.debug("Start unzipping");
+			}
 
-			Enumeration<? extends ZipEntry> en = zfile.entries();
+			ZipInputStream zis = new ZipInputStream(myInputStream);
+			if (log.isDebugEnabled()) {
+				log.debug("ZipInputStream from InputStream=" + zis);
+			}			
 
 			// for every zip-entry
-			while (en.hasMoreElements()) {
-				ZipEntry zEntry = (ZipEntry) en.nextElement();
-
-				String name = zEntry.toString();
+			ZipEntry zEntry;
+			String name;
+			while ((zEntry = zis.getNextEntry()) != null) {
+				name = zEntry.toString();
+				if (log.isDebugEnabled()) {
+					log.debug("Zip Entry name: " + name + ", size:" + zEntry.getSize());
+				}
 
 				boolean isDir = name.endsWith(separator);
 				// System.out.println("------------------------------");
@@ -113,7 +118,10 @@ public class Zipper {
 					fos = new FileOutputStream(outputFile);
 
 					// write the File
-					writeFile(zfile.getInputStream(zEntry), fos, buffersize);
+					if (log.isDebugEnabled()) {
+						log.debug("Write Zip Entry '" + name + "' to file '" + outputFile + "'");
+					}
+					writeFile(zis, fos, buffersize);
 					if (log.isDebugEnabled()) {
 						log.debug("FILE WRITTEN: " + outputFile.getAbsolutePath());
 					}
@@ -138,12 +146,10 @@ public class Zipper {
 
 			} // end while
 
-			zfile.close();
+			zis.close();
 
-		} catch (ZipException e) {
-			e.printStackTrace();
-			return null;
-		} catch (IOException e) {
+		} catch (Exception e) {
+			log.error("Problems unzipping file", e);
 			e.printStackTrace();
 			return null;
 		}
@@ -153,7 +159,7 @@ public class Zipper {
 
 	/**
 	 * Simply writes from the InputStream to the OutputStream with the given
-	 * Buffer Size.
+	 * Buffer Size. Does NOT close the InputStream. 
 	 * 
 	 * @param is
 	 *            The InputStream
@@ -169,9 +175,14 @@ public class Zipper {
 		byte[] buf = new byte[buffersize];
 		int len = 0;
 		while ((len = is.read(buf)) != -1) {
+//			if (log.isDebugEnabled()) {
+//				log.debug("Read " + len + " bytes from input stream.");
+//			}
 			os.write(buf, 0, len);
+//			if (log.isDebugEnabled()) {
+//				log.debug("Wrote " + len + " bytes to output stream.");
+//			}
 		}
-		is.close();
 		os.close();
 	}
 
