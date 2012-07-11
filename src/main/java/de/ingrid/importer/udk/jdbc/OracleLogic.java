@@ -86,8 +86,8 @@ public class OracleLogic implements DBLogic {
 			String sql = "ALTER TABLE " + tableName + " ADD " + tmpColName + " CLOB";
 			if (notNull) {
 				sql += " NOT NULL";
-				// NOTICE: adding default value causes ERROR ! is added by jdbc
-				// automatically !
+				// NOTICE: CAUSES ERROR ON ORACLE if already NOT NULL ! (ORA-01442: Die auf NOT NULL zu ändernde Spalte ist bereits NOT NULL)
+				// NOTICE: adding default value causes ERROR ! is added by jdbc automatically !
 			}
 			jdbc.executeUpdate(sql);
 
@@ -104,8 +104,8 @@ public class OracleLogic implements DBLogic {
 			String sql = "ALTER TABLE " + tableName + " MODIFY " + colName + " " + mapColumnTypeToSQL(colType);
 			if (notNull) {
 				sql += " NOT NULL";
-				// NOTICE: adding default value causes ERROR ! is added by jdbc
-				// automatically !
+				// NOTICE: CAUSES ERROR ON ORACLE if already NOT NULL ! (ORA-01442: Die auf NOT NULL zu ändernde Spalte ist bereits NOT NULL)
+				// NOTICE: adding default value causes ERROR ! is added by jdbc automatically !
 			}
 			jdbc.executeUpdate(sql);
 		}

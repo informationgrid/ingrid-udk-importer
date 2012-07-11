@@ -36,8 +36,9 @@ public interface DBLogic {
 	/**
 	 * Modify column type or constraint (NOT NULL).
 	 * DDL Operation ! CAUSES COMMIT ON MySQL ! 
-	 * @param notNull pass true if column value cannot be null.
-	 * 		NOTICE: if true the default value is set per jdbc automatically ? (at least when type string)
+	 * @param notNull pass true if column value cannot be null.<br>
+	 * 		NOTICE: if true the default value is set per jdbc automatically ? (at least when type string)<br>
+	 * 		NOTICE: On ORACLE do NOT pass true if NOT NULL constraint already set, CAUSES ERROR ORA-01442: Die auf NOT NULL zu ändernde Spalte ist bereits NOT NULL
 	 */
 	void modifyColumn(String colName, ColumnType colType, String tableName, 
 		boolean notNull, JDBCConnectionProxy jdbc) throws SQLException;

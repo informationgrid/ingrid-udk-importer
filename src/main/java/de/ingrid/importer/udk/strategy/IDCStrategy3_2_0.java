@@ -182,7 +182,12 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		jdbc.getDBLogic().modifyColumn("description", ColumnType.TEXT_NO_CLOB, "sys_list", false, jdbc);
 
 		log.info("Change column type sys_list.lang_id to VARCHAR(255) ...");
-		jdbc.getDBLogic().modifyColumn("lang_id", ColumnType.VARCHAR255, "sys_list", true, jdbc);
+		boolean isNotNull = true;
+		if (jdbc.isOracle()) {
+			// NOTICE: NOT NULL constraint already set. Set it again causes error on Oracle (ORA-01442).
+			isNotNull = false;
+		}
+		jdbc.getDBLogic().modifyColumn("lang_id", ColumnType.VARCHAR255, "sys_list", isNotNull, jdbc);
 
 		log.info("Add column 'cat_namespace' to table 't03_catalogue' ...");
 		jdbc.getDBLogic().addColumn("cat_namespace", ColumnType.VARCHAR1024, "t03_catalogue", false, null, jdbc);
