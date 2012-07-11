@@ -56,7 +56,7 @@ import de.ingrid.utils.udk.UtilsLanguageCodelist;
  *   <li>Profile: Add Javascript for "INSPIRE-Themen" handling content of "Kodierungsschema der geographischen Daten" (only class 1), see INGRID32-47
  *   <li>Add t011_obj_serv.coupling_type, see INGRID32-86
  *   <li>Reverse references from "Geo-Information/Karte" (class 1) to "Geodatendienst" (class 3), see INGRID32-85
- *   <li>Profile: Add new legacy field "Kopplungstyp" and Javascript, see INGRID32-100
+ *   <li>Profile: Add new legacy field "Kopplungstyp" and Javascript, see INGRID32-100, INGRID32-126
  *   <li>Make syslists 6010, 6020 maintainable, not part of syslist repository, see INGRID32-51
  * </ul>
  */
@@ -1577,7 +1577,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
     	control = new Controls();
         control.setIsLegacy(true);
         control.setId("uiElement3221");
-        control.setIsMandatory(true);
+        control.setIsMandatory(false);
         control.setIsVisible("show");
     	rubric = MdekProfileUtils.findRubric(profileBean, "refClass3");
     	// add before 'Version des Services'
@@ -1842,7 +1842,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 + endTag;
 		MdekProfileUtils.addToScriptedProperties(control, jsCode);
 
-		//------------- 'Geodatendienst - Kopplungstyp' on input 'tight' make 'Basisdaten' mandatory
+		//------------- 'Geodatendienst - Fachbezug - Kopplungstyp' on input 'tight' make 'Basisdaten' mandatory
 		log.info("'Geodatendienst - Kopplungstyp'(uiElement3221): on input 'tight' make 'Basisdaten'(uiElement3345) mandatory");
     	control = MdekProfileUtils.findControl(profileBean, "uiElement3221");
 		jsCode = startTag +
@@ -1852,6 +1852,25 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 "    UtilUI.setMandatory(\"uiElement3345\");\n" +
 "  } else {\n" +
 "    UtilUI.setOptional(\"uiElement3345\");\n" +
+"  }\n" +
+"});\n"
++ endTag;
+		MdekProfileUtils.addToScriptedProperties(control, jsCode);
+
+		//------------- 'Geodatendienst - Fachbezug - Dargestellte Daten' on input change Kopplungstyp, see INGRID32-126
+		log.info("'Geodatendienst - Dargestellte Daten'(uiElement3345): on input change Kopplungstyp");
+    	control = MdekProfileUtils.findControl(profileBean, "uiElement3345");
+		jsCode = startTag +
+"// on input change Kopplungstyp\n" +
+"dojo.connect(dijit.byId(\"ref3BaseDataLink\"), \"onDataChanged\", function() {\n" +
+"  var couplingType = dijit.byId(\"ref3CouplingType\");\n" +
+"  var isMixed = couplingType.value == \"mixed\";\n" +
+"  if (isMixed != true) {\n" +
+"    if (this.data.length > 0) {\n" +
+"      couplingType.set(\"value\", \"tight\");\n" +
+"    } else {\n" +
+"      couplingType.set(\"value\", \"loose\");\n" +
+"    }\n" +
 "  }\n" +
 "});\n"
 + endTag;
