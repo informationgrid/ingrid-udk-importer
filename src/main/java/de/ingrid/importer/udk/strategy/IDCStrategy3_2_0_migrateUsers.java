@@ -15,9 +15,6 @@ import java.util.UUID;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import de.ingrid.mdek.MdekUtils;
-import de.ingrid.mdek.MdekUtils.AddressType;
-import de.ingrid.mdek.MdekUtils.WorkState;
 
 /**
  * Changes InGrid 3.2.0: migrate user addresses to separated "hidden" addresses !<br>
@@ -53,6 +50,19 @@ public class IDCStrategy3_2_0_migrateUsers extends IDCStrategyDefault {
 	private static Log log = LogFactory.getLog(IDCStrategy3_2_0_migrateUsers.class);
 
 	private static final String MY_VERSION = VALUE_IDC_VERSION_3_2_0_MIGRATE_USERS;
+
+	// NOTICE: WE DO NOT IMPORT THIS STUFF FROM MdekUtils (mdek_api.jar) to avoid circular dependency for release.
+	// (importer is now included in IGE installer !). Also this is the "frozen" state at 3.2.0
+	private static final Integer ADDRESS_TYPE_INSTITUTION = 0;
+	private static final Integer HIDDEN_ADDRESS_TYPE_IGE_USER = 100;
+	private static final String IGE_USER_PARENT_UUID = "IGE_USER";
+	private static final String WORK_STATE_IN_BEARBEITUNG = "B";
+	/** Entry ID of PHONE in syslist COMM_TYPE (4430) */
+	public final static Integer COMM_TYPE_PHONE = 1;
+	/** Entry ID of EMAIL in syslist COMM_TYPE (4430) */
+	public final static Integer COMM_TYPE_EMAIL = 3;
+	/** Free Entry VALUE of EMAIL for point of contact. Stored with key -1 in communication table ! */
+	public final static String COMM_VALUE_EMAIL_POINT_OF_CONTACT = "emailPointOfContact";
 	
 	/** timestamp, partner and catalog uuid will be added to file name */
 	String outputFilename = "igc3.2.0_UpdateMdek";
@@ -221,14 +231,14 @@ public class IDCStrategy3_2_0_migrateUsers extends IDCStrategyDefault {
 
 			psInsertAddress.setLong(1, newAddrId); // id
 			psInsertAddress.setString(2, newAddrUuid); // uuid
-			psInsertAddress.setInt(3, AddressType.getHiddenAddressTypeIGEUser()); // adr_type
+			psInsertAddress.setInt(3, HIDDEN_ADDRESS_TYPE_IGE_USER); // adr_type
 			psInsertAddress.setString(4, addrHelper.institution);
 			psInsertAddress.setString(5, addrHelper.lastname);
 			psInsertAddress.setString(6, addrHelper.firstname);
 			psInsertAddress.setString(7, addrHelper.street);
 			psInsertAddress.setString(8, addrHelper.postcode);
 			psInsertAddress.setString(9, addrHelper.city);
-			psInsertAddress.setString(10, WorkState.IN_BEARBEITUNG.getDbValue()); // work_state
+			psInsertAddress.setString(10, WORK_STATE_IN_BEARBEITUNG); // work_state
 			psInsertAddress.setLong(11, newAddrMetadataId); // addr_metadata_id
 			numInserted = psInsertAddress.executeUpdate();
 			if (numInserted > 0) {
@@ -246,7 +256,7 @@ public class IDCStrategy3_2_0_migrateUsers extends IDCStrategyDefault {
 				psInsertCommunication.setLong(1, getNextId()); // id
 				psInsertCommunication.setLong(2, newAddrId); // adr_id
 				psInsertCommunication.setInt(3, line++); // line
-				psInsertCommunication.setInt(4, MdekUtils.COMM_TYPE_EMAIL); // commtype_key
+				psInsertCommunication.setInt(4, COMM_TYPE_EMAIL); // commtype_key
 				psInsertCommunication.setString(5, "E-Mail"); // commtype_value
 				psInsertCommunication.setString(6, addrHelper.email); // comm_value
 				numInserted = psInsertCommunication.executeUpdate();
@@ -261,7 +271,7 @@ public class IDCStrategy3_2_0_migrateUsers extends IDCStrategyDefault {
 				psInsertCommunication.setLong(2, newAddrId); // adr_id
 				psInsertCommunication.setInt(3, line++); // line
 				psInsertCommunication.setInt(4, -1); // commtype_key
-				psInsertCommunication.setString(5, MdekUtils.COMM_VALUE_EMAIL_POINT_OF_CONTACT); // commtype_value
+				psInsertCommunication.setString(5, COMM_VALUE_EMAIL_POINT_OF_CONTACT); // commtype_value
 				psInsertCommunication.setString(6, addrHelper.email); // comm_value
 				numInserted = psInsertCommunication.executeUpdate();
 				if (numInserted > 0) {
@@ -276,7 +286,7 @@ public class IDCStrategy3_2_0_migrateUsers extends IDCStrategyDefault {
 				psInsertCommunication.setLong(1, getNextId()); // id
 				psInsertCommunication.setLong(2, newAddrId); // adr_id
 				psInsertCommunication.setInt(3, line++); // line
-				psInsertCommunication.setInt(4, MdekUtils.COMM_TYPE_PHONE); // commtype_key
+				psInsertCommunication.setInt(4, COMM_TYPE_PHONE); // commtype_key
 				psInsertCommunication.setString(5, "Telefon"); // commtype_value
 				psInsertCommunication.setString(6, addrHelper.phone); // comm_value
 				numInserted = psInsertCommunication.executeUpdate();
@@ -292,7 +302,7 @@ public class IDCStrategy3_2_0_migrateUsers extends IDCStrategyDefault {
 			psInsertAddressNode.setLong(1, getNextId()); // id
 			psInsertAddressNode.setString(2, newAddrUuid); // adr_uuid
 			psInsertAddressNode.setLong(3, newAddrId); // addr_id
-			psInsertAddressNode.setString(4, AddressType.getIGEUserParentUuid()); // fk_addr_uuid
+			psInsertAddressNode.setString(4, IGE_USER_PARENT_UUID); // fk_addr_uuid
 			psInsertAddressNode.setString(5, ""); // tree_path
 			numInserted = psInsertAddressNode.executeUpdate();
 			if (numInserted > 0) {
@@ -519,9 +529,9 @@ public class IDCStrategy3_2_0_migrateUsers extends IDCStrategyDefault {
             				continue;
             			}
             			
-            			if (commtypeKey.equals(MdekUtils.COMM_TYPE_EMAIL)) {
+            			if (commtypeKey.equals(COMM_TYPE_EMAIL)) {
             				myAddressToExtend.email = commValue;
-            			} else if (commtypeKey.equals(MdekUtils.COMM_TYPE_PHONE)) {
+            			} else if (commtypeKey.equals(COMM_TYPE_PHONE)) {
             				myAddressToExtend.phone = commValue;            				
             			} else if (commtypeKey.equals(-1)) {
                 			// just for sure, remember email entered as free entry !
@@ -546,7 +556,7 @@ public class IDCStrategy3_2_0_migrateUsers extends IDCStrategyDefault {
 		stNode.close();
 
 		// read parent if not institution yet to extract full institution !
-    	if (addrParentUuid != null && !AddressType.INSTITUTION.getDbValue().equals(addrType)) {
+    	if (addrParentUuid != null && !ADDRESS_TYPE_INSTITUTION.equals(addrType)) {
     		readAddress(addrParentUuid, false, myAddressToExtend);
     	}
 
