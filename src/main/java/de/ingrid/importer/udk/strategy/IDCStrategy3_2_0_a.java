@@ -8,10 +8,10 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import de.ingrid.mdek.beans.ProfileBean;
-import de.ingrid.mdek.beans.Rubric;
-import de.ingrid.mdek.beans.controls.Controls;
-import de.ingrid.mdek.profile.ProfileMapper;
+import de.ingrid.utils.ige.profile.ProfileMapper;
+import de.ingrid.utils.ige.profile.beans.ProfileBean;
+import de.ingrid.utils.ige.profile.beans.Rubric;
+import de.ingrid.utils.ige.profile.beans.controls.Controls;
 
 /**
  * Changes InGrid 3.2.0 first part (a):<p>

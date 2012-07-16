@@ -15,13 +15,13 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import de.ingrid.importer.udk.jdbc.DBLogic.ColumnType;
-import de.ingrid.mdek.beans.ProfileBean;
-import de.ingrid.mdek.beans.Rubric;
-import de.ingrid.mdek.beans.controls.ExtendedControls;
-import de.ingrid.mdek.beans.controls.OptionEntry;
-import de.ingrid.mdek.beans.controls.SelectControl;
-import de.ingrid.mdek.beans.controls.TextControl;
-import de.ingrid.mdek.profile.ProfileMapper;
+import de.ingrid.utils.ige.profile.ProfileMapper;
+import de.ingrid.utils.ige.profile.beans.ProfileBean;
+import de.ingrid.utils.ige.profile.beans.Rubric;
+import de.ingrid.utils.ige.profile.beans.controls.ExtendedControls;
+import de.ingrid.utils.ige.profile.beans.controls.OptionEntry;
+import de.ingrid.utils.ige.profile.beans.controls.SelectControl;
+import de.ingrid.utils.ige.profile.beans.controls.TextControl;
 import de.ingrid.utils.tool.StringUtil;
 
 /**

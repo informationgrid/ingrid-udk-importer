@@ -21,11 +21,11 @@ import org.apache.commons.logging.LogFactory;
 
 import de.ingrid.importer.udk.jdbc.DBLogic.ColumnType;
 import de.ingrid.importer.udk.util.UtilsUdkCodelistsSerialized;
-import de.ingrid.mdek.beans.ProfileBean;
-import de.ingrid.mdek.beans.Rubric;
-import de.ingrid.mdek.beans.controls.Controls;
-import de.ingrid.mdek.profile.ProfileMapper;
-import de.ingrid.mdek.util.MdekProfileUtils;
+import de.ingrid.utils.ige.profile.MdekProfileUtils;
+import de.ingrid.utils.ige.profile.ProfileMapper;
+import de.ingrid.utils.ige.profile.beans.ProfileBean;
+import de.ingrid.utils.ige.profile.beans.Rubric;
+import de.ingrid.utils.ige.profile.beans.controls.Controls;
 import de.ingrid.utils.udk.UtilsLanguageCodelist;
 
 /**
