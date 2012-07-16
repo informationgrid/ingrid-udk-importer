@@ -45,6 +45,13 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <artifactId>maven-release-plugin</artifactId>
+        <configuration>
+          <!-- DIFFERENT ORDER OF GOALS ! deploy after assembly so release installer is written to repo ! Needed in IGE iPlug -->
+          <preparationGoals>clean verify changes:changes-report assembly:assembly deploy wagon:upload -Dproject.url=</preparationGoals>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 
