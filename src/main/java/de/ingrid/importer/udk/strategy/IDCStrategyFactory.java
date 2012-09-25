@@ -88,6 +88,8 @@ public class IDCStrategyFactory {
 			return new IDCStrategy3_2_0_migrateUsers();
         } else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_3_2_0)) {
             return new IDCStrategy3_2_0();
+        } else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_3_3_0)) {
+            return new IDCStrategy3_3_0();
 		} else {
 			log.error("Unknown IDC version '" + idcVersion + "'.");
 			throw new IllegalArgumentException("Unknown IDC version '" + idcVersion + "'.");
