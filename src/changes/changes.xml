@@ -4,6 +4,12 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
+    <release version="3.2.1" date="2012-09-26" description="Add-Ons + Bugfixes for Release InGrid 3.2">
+      <action type="add" dev="wemove">
+        Added documentation and script for migrating existing IGC catalog from MySQL to Oracle.
+      </action>
+    </release>
+
     <release version="3.2.0" date="2012-07-16" description="Release InGrid 3.2">
       <action type="add" dev="wemove" issue="INGRID-2120">
         Added new strategy 1.0.2_clean for generating initial empty catalog without passing UDK data.
