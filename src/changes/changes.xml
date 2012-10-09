@@ -4,6 +4,12 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
+    <release version="3.3.0-SNAPSHOT" date="??" description="Release InGrid 3.3">
+      <action type="add" dev="wemove" issue="INGRID33-5">
+        Add column 'data' to table 'sys_list' for adding data to syslist entries.
+      </action>
+    </release>
+
     <release version="3.2.1" date="2012-09-26" description="Add-Ons + Bugfixes for Release InGrid 3.2">
       <action type="add" dev="wemove">
         Added documentation and script for migrating existing IGC catalog from MySQL to Oracle.
