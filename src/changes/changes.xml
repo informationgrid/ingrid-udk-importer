@@ -5,6 +5,9 @@
   </properties>
   <body>
     <release version="3.3.0-SNAPSHOT" date="??" description="Release InGrid 3.3">
+      <action type="add" dev="wemove" issue="INGRID33-10">
+        Move address note to address comment and remove note field.
+      </action>
       <action type="add" dev="wemove" issue="INGRID33-5">
         Add column 'data' to table 'sys_list' for adding data to syslist entries.
       </action>
