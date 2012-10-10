@@ -48,7 +48,7 @@ public class IDCStrategy3_3_0 extends IDCStrategyDefault {
 		// THEN PERFORM DATA MANIPULATIONS !
 		// ---------------------------------
 
-		System.out.print("  Updating object_types_catalogue...");
+		System.out.print("  Migrating t02_address.descr...");
 		migrateT02AddressDescr();
 		System.out.println("done.");
 
