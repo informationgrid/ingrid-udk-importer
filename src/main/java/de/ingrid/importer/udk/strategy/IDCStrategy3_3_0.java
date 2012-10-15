@@ -99,7 +99,7 @@ public class IDCStrategy3_3_0 extends IDCStrategyDefault {
 		Statement st = jdbc.createStatement();
 		ResultSet rs = jdbc.executeQuery(sqlSelectOldData, st);
 		int numProcessed = 0;
-		String prefix = "Dieser Eintrag wurde automatisch aus dem Feld Notiz überführt.\n";
+		String prefix = "[Dieser Eintrag wurde automatisch aus dem Feld Notiz überführt.]\n";
 		String catAdminUuid = getCatAdminUuid();
 		while (rs.next()) {
 
