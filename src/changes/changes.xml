@@ -5,6 +5,9 @@
   </properties>
   <body>
     <release version="3.3.0-SNAPSHOT" date="??" description="Release InGrid 3.3">
+      <action type="add" dev="wemove" issue="INGRID33-12">
+        Add column 'publish_id' to 't02_address' for handling publication condition of addresses.
+      </action>
       <action type="add" dev="wemove" issue="INGRID33-10">
         Move address note to address comment and remove note field.
       </action>

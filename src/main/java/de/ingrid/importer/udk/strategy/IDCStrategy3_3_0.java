@@ -20,6 +20,7 @@ import de.ingrid.importer.udk.jdbc.DBLogic.ColumnType;
  * <ul>
  *   <li>Add sys_list.data column, see INGRID33-5
  *   <li>Drop t02_address.descr column, migrate to address_comment, see INGRID33-10
+ *   <li>Add t02_address.publish_id, initialize to 1 (Internet), see INGRID33-12
  * </ul>
  */
 public class IDCStrategy3_3_0 extends IDCStrategyDefault {
@@ -52,6 +53,10 @@ public class IDCStrategy3_3_0 extends IDCStrategyDefault {
 		migrateT02AddressDescr();
 		System.out.println("done.");
 
+		System.out.print("  Initialize t02_address.publish_id...");
+		initializeT02AddressPublishId();
+		System.out.println("done.");
+
 		// FINALLY EXECUTE ALL "DROPPING" DDL OPERATIONS ! These ones may cause commit (e.g. on MySQL)
 		// ---------------------------------
 
@@ -68,6 +73,9 @@ public class IDCStrategy3_3_0 extends IDCStrategyDefault {
 
 		log.info("Add column 'data' to table 'sys_list' ...");
 		jdbc.getDBLogic().addColumn("data", ColumnType.TEXT_NO_CLOB, "sys_list", false, null, jdbc);
+
+		log.info("Add column 'publish_id' to table 't02_address' ...");
+		jdbc.getDBLogic().addColumn("publish_id", ColumnType.INTEGER, "t02_address", false, null, jdbc);
 
 		log.info("Extending datastructure... done\n");
 	}
@@ -136,8 +144,17 @@ public class IDCStrategy3_3_0 extends IDCStrategyDefault {
 		psSelectCommentLine.close();
 		psInsert.close();
 
-		log.info("Transferred " + numProcessed + " entries... done");
+		log.info("Transferred " + numProcessed + " entries.");
 		log.info("Migrate data from 't02_address.descr' to 'address_comment'... done\n");
+	}
+
+	private void initializeT02AddressPublishId() throws Exception {
+		log.info("\nInitialize 't02_address.publish_id' to 1 (Internet)...");
+
+		int numUpdated = jdbc.executeUpdate("UPDATE t02_address SET publish_id = 1");
+
+		log.info("Initialized " + numUpdated + " addresses to publish_id=1 (Internet)");
+		log.info("Initialize 't02_address.publish_id' to 1 (Internet)... done\n");
 	}
 
 	private void cleanUpDataStructure() throws Exception {
