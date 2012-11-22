@@ -38,8 +38,8 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 	protected ImportDescriptor importDescriptor = null;
 	protected JDBCConnectionProxy jdbc = null;
 
-	String sqlStr = null;
-	String pSqlStr = null;
+	protected String sqlStr = null;
+	protected String pSqlStr = null;
 
 	protected static List<String> invalidModTypes;
 

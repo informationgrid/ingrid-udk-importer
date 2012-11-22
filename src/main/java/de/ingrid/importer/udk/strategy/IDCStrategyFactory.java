@@ -11,6 +11,37 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import de.ingrid.importer.udk.ImportDescriptor;
+import de.ingrid.importer.udk.strategy.v1.IDCFixImportStrategy;
+import de.ingrid.importer.udk.strategy.v1.IDCFixSysList100_101Strategy;
+import de.ingrid.importer.udk.strategy.v1.IDCFixTreePathStrategy;
+import de.ingrid.importer.udk.strategy.v1.IDCSNSSpatialTypeStrategy;
+import de.ingrid.importer.udk.strategy.v1.IDCStrategy1_0_2;
+import de.ingrid.importer.udk.strategy.v1.IDCStrategy1_0_2_clean;
+import de.ingrid.importer.udk.strategy.v1.IDCStrategy1_0_3;
+import de.ingrid.importer.udk.strategy.v1.IDCStrategy1_0_4;
+import de.ingrid.importer.udk.strategy.v1.IDCStrategy1_0_4_fixInspireThemes;
+import de.ingrid.importer.udk.strategy.v1.IDCStrategy1_0_5;
+import de.ingrid.importer.udk.strategy.v1.IDCStrategy1_0_5_fixCountryCodelist;
+import de.ingrid.importer.udk.strategy.v1.IDCStrategy1_0_6;
+import de.ingrid.importer.udk.strategy.v1.IDCStrategy1_0_6_fixSysListInspire;
+import de.ingrid.importer.udk.strategy.v1.IDCStrategy1_0_7;
+import de.ingrid.importer.udk.strategy.v1.IDCStrategy1_0_8;
+import de.ingrid.importer.udk.strategy.v1.IDCStrategy1_0_9;
+import de.ingrid.importer.udk.strategy.v2.IDCStrategy2_3_0;
+import de.ingrid.importer.udk.strategy.v2.IDCStrategy2_3_0_checkInspireObjects;
+import de.ingrid.importer.udk.strategy.v2.IDCStrategy2_3_1;
+import de.ingrid.importer.udk.strategy.v2.IDCStrategy2_3_1_1_fix_subnode_permission;
+import de.ingrid.importer.udk.strategy.v2.IDCStrategy2_3_1_add_subtree_permission;
+import de.ingrid.importer.udk.strategy.v30.IDCStrategy3_0_0;
+import de.ingrid.importer.udk.strategy.v30.IDCStrategy3_0_0_fixErfassungsgrad;
+import de.ingrid.importer.udk.strategy.v30.IDCStrategy3_0_0_fixFreeEntry;
+import de.ingrid.importer.udk.strategy.v30.IDCStrategy3_0_0_fixSyslist;
+import de.ingrid.importer.udk.strategy.v30.IDCStrategy3_0_1;
+import de.ingrid.importer.udk.strategy.v32.IDCStrategy3_2_0;
+import de.ingrid.importer.udk.strategy.v32.IDCStrategy3_2_0_a;
+import de.ingrid.importer.udk.strategy.v32.IDCStrategy3_2_0_fixVarchar;
+import de.ingrid.importer.udk.strategy.v32.IDCStrategy3_2_0_migrateUsers;
+import de.ingrid.importer.udk.strategy.v33.IDCStrategy3_3_0;
 
 /**
  * @author joachim
