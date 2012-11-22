@@ -88,7 +88,8 @@ public interface IDCStrategy {
 	/** InGrid 3.2 changes */
     static String VALUE_IDC_VERSION_3_2_0 = "3.2.0";
 	/** InGrid 3.3 changes */
-    static String VALUE_IDC_VERSION_3_3_0 = "3.3.0-SNAPSHOT";
+    static String VALUE_IDC_VERSION_3_3_0_a = "3.3.0_a";
+    static String VALUE_IDC_VERSION_3_3_0_b = "3.3.0_b";
 	
 
 	/** Order of strategies to execute to obtain most recent IGC.
@@ -129,7 +130,8 @@ public interface IDCStrategy {
 		VALUE_IDC_VERSION_3_2_0_FIX_VARCHAR, // writes no Version
 		VALUE_IDC_VERSION_3_2_0_MIGRATE_USERS,
 		VALUE_IDC_VERSION_3_2_0,
-		VALUE_IDC_VERSION_3_3_0,
+		VALUE_IDC_VERSION_3_3_0_a,
+		VALUE_IDC_VERSION_3_3_0_b,
 	};
 
 		

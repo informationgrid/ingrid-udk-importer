@@ -24,11 +24,11 @@ import de.ingrid.importer.udk.strategy.IDCStrategyDefault;
  *   <li>Add t02_address.publish_id, initialize to 1 (Internet), see INGRID33-12
  * </ul>
  */
-public class IDCStrategy3_3_0 extends IDCStrategyDefault {
+public class IDCStrategy3_3_0_a extends IDCStrategyDefault {
 
-	private static Log log = LogFactory.getLog(IDCStrategy3_3_0.class);
+	private static Log log = LogFactory.getLog(IDCStrategy3_3_0_a.class);
 
-	private static final String MY_VERSION = VALUE_IDC_VERSION_3_3_0;
+	private static final String MY_VERSION = VALUE_IDC_VERSION_3_3_0_a;
 
 	public String getIDCVersion() {
 		return MY_VERSION;
