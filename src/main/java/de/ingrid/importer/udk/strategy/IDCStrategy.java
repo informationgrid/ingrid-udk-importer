@@ -88,7 +88,7 @@ public interface IDCStrategy {
 	/** InGrid 3.2 changes */
     static String VALUE_IDC_VERSION_3_2_0 = "3.2.0";
 	/** InGrid 3.3 changes */
-    static String VALUE_IDC_VERSION_3_3_0_a = "3.3.0_a";
+    static String VALUE_IDC_VERSION_3_3_0_a = "3.3.0-SNAPSHOT"; // was -SNAPSHOT before introducing _a _b ...
     static String VALUE_IDC_VERSION_3_3_0_b = "3.3.0_b";
 	
 
