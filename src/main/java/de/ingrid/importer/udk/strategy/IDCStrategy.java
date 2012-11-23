@@ -90,6 +90,7 @@ public interface IDCStrategy {
 	/** InGrid 3.3 changes */
     static String VALUE_IDC_VERSION_3_3_0_a = "3.3.0-SNAPSHOT"; // was -SNAPSHOT before introducing _a _b ...
     static String VALUE_IDC_VERSION_3_3_0_b = "3.3.0_b";
+    static String VALUE_IDC_VERSION_3_3_0_c = "3.3.0_c";
 	
 
 	/** Order of strategies to execute to obtain most recent IGC.
@@ -132,6 +133,7 @@ public interface IDCStrategy {
 		VALUE_IDC_VERSION_3_2_0,
 		VALUE_IDC_VERSION_3_3_0_a,
 		VALUE_IDC_VERSION_3_3_0_b,
+		VALUE_IDC_VERSION_3_3_0_c,
 	};
 
 		

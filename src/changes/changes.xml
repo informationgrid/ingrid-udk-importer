@@ -17,6 +17,9 @@
       <action type="update" dev="wemove" issue="INGRID33-27">
         Increase size of URL link (t017_url_ref.url_link).
       </action>
+      <action type="fix" dev="wemove" issue="INGRID33-26">
+        Change reference from "Geodatendienst" to "Geo-Information/Karte" to type "Gekoppelte Daten".
+      </action>
     </release>
 
     <release version="3.2.1" date="2012-09-26" description="Add-Ons + Bugfixes for Release InGrid 3.2">
