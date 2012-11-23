@@ -42,7 +42,7 @@ import de.ingrid.utils.udk.UtilsLanguageCodelist;
  *   <li>Move fields "Lagegenauigkeit" and "Höhengenauigkeit" to rubric "Datenqualität" (Profile), migrate data from table "Absoulte Positionsgenauigkeit", remove table/data/syslist 7117, see INGRID32-48
  *   <li>Profile: Add Javascript for "Datendefizit" handling visibility of rubric "Datenqualität", see INGRID32-48
  *   <li>Profile: Move field "Geoinformation/Karte - Sachdaten/Attributinformation" next to "Schlüsselkatalog", on Input make "Schlüsselkatalog" mandatory, see INGRID32-50
- *   <li>New control "Objektartenkatalog" for "Datensammlung / Datenbank" (Profile), new db table "object_types_catalogue" replacing also old "t011_obj_geo table", migrate data ..., see INGRID32-50
+ *   <li>New control "Objektartenkatalog" for "Datensammlung / Datenbank" (Profile), new db table "object_types_catalogue" replacing also old "t011_obj_geo_keyc table", migrate data ..., see INGRID32-50
  *   <li>Change Syslist 505 (Address Rollenbezeichner), also migrate data, then COMMENTED migration, see INGRID32-46
  *   <li>Profile: Remove Publishable JS call from "Nutzungsbedingungen", now textfield, not table anymore, see INGRID32-45
  *   <li>Change syslist.name + .description to TEXT, see INGRID32-45
@@ -1395,6 +1395,11 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		log.info("Updating object_types_catalogue... done\n");
 	}
 		
+	/** Migrate Objektklasse 1 (Geoinformation/Karte) - Schlüsselkatalog to new table object_types_catalogue.
+	 * Old table t011_obj_geo_keyc will be dropped.
+	 * New table is shared with Objektklasse 5 (Datensammlung/Datenbank) - Objektartenkatalog.
+	 * See INGRID32-50 
+	 */
 	private void migrateT011ObjGeoKeyc() throws Exception {
 		log.info("\nMigrate data from 't011_obj_geo_keyc' to 'object_types_catalogue'...");
 
@@ -1447,6 +1452,10 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		log.info("Migrate data from 't011_obj_geo_keyc' to 'object_types_catalogue' ... done\n");
 	}
 
+	/** New Field: Objektklasse 5 (Datensammlung/Datenbank) - Objektartenkatalog.
+	 * Add default Objektartenkatalog for every database parameter !
+	 * See INGRID32-50 
+	 */
 	private void migrateT011ObjDataPara() throws Exception {
 		log.info("\nAdd default entry in 'object_types_catalogue' for data from 't011_obj_data_para'...");
 
