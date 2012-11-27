@@ -60,7 +60,7 @@ public class IDCStrategy3_3_0_c extends IDCStrategyDefault3_3 {
 
 // ---------------------------
 		int lstId = 2000;
-		log.info("Insert new entry \"3600/Gekoppelte Daten\" to syslist" + lstId +	" (link type) ...");
+		log.info("Insert new entry \"3600/Gekoppelte Daten\" to syslist " + lstId +	" (link type) ...");
 
 		// german syslist
 		LinkedHashMap<Integer, String> newSyslistMap_de = new LinkedHashMap<Integer, String>();
@@ -71,7 +71,11 @@ public class IDCStrategy3_3_0_c extends IDCStrategyDefault3_3 {
 		newSyslistMap_en = new LinkedHashMap<Integer, String>(); 
 		newSyslistMap_en.put(3600, "Coupled Data");
 
-		writeNewSyslist(lstId, false, newSyslistMap_de, newSyslistMap_en, -1, -1, null, null);
+		try {
+			writeNewSyslist(lstId, false, newSyslistMap_de, newSyslistMap_en, -1, -1, null, null);
+		} catch (Exception ex) {
+			log.warn("Problems adding new entry \"3600/Gekoppelte Daten\" to syslist " + lstId + " (already there !?), we ignore !", ex);
+		}
 
 		log.info("Updating sys_list... done\n");
 	}
