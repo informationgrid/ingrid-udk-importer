@@ -18,21 +18,22 @@ import org.apache.commons.logging.LogFactory;
  *   <li>New Verweistyp 'Gekoppelte Daten' in syslist 2000, migrate 'Basisdaten (3210)' to 'Gekoppelte Ressource', see INGRID33-26
  * </ul>
  */
-public class IDCStrategy3_3_0_c extends IDCStrategyDefault3_3 {
+public class IDCStrategy3_3_0_fixServiceToData extends IDCStrategyDefault3_3 {
 
-	private static Log log = LogFactory.getLog(IDCStrategy3_3_0_c.class);
+	private static Log log = LogFactory.getLog(IDCStrategy3_3_0_fixServiceToData.class);
 
-	private static final String MY_VERSION = VALUE_IDC_VERSION_3_3_0_c;
-
+    /**
+     * Deliver NO Version, this strategy should NOT trigger a strategy workflow (of missing former
+     * versions) and can be executed on its own !
+     * NOTICE: BUT may be executed in workflow (part of workflow array) !
+     * @see de.ingrid.importer.udk.strategy.IDCStrategy#getIDCVersion()
+     */
 	public String getIDCVersion() {
-		return MY_VERSION;
+		return null;
 	}
 
 	public void execute() throws Exception {
 		jdbc.setAutoCommit(false);
-
-		// write version of IGC structure !
-		setGenericKey(KEY_IDC_VERSION, MY_VERSION);
 
 		// THEN EXECUTE ALL "CREATING" DDL OPERATIONS ! NOTICE: causes commit (e.g. on MySQL)
 		// ---------------------------------

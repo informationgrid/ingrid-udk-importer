@@ -89,8 +89,10 @@ public interface IDCStrategy {
     static String VALUE_IDC_VERSION_3_2_0 = "3.2.0";
 	/** InGrid 3.3 changes */
     static String VALUE_IDC_VERSION_3_3_0_a = "3.3.0-SNAPSHOT"; // was -SNAPSHOT before introducing _a _b ...
+    /** Migrate 'Basisdaten (3210)' to 'Gekoppelte Ressource', see INGRID33-26
+     * -> writes NO version, can be executed on its own ! */
+    static String VALUE_IDC_VERSION_3_3_0_FIX_SERVICE_TO_DATA = "3.3.0_fixServiceToData";
     static String VALUE_IDC_VERSION_3_3_0_b = "3.3.0_b";
-    static String VALUE_IDC_VERSION_3_3_0_c = "3.3.0_c";
 	
 
 	/** Order of strategies to execute to obtain most recent IGC.
@@ -132,8 +134,8 @@ public interface IDCStrategy {
 		VALUE_IDC_VERSION_3_2_0_MIGRATE_USERS,
 		VALUE_IDC_VERSION_3_2_0,
 		VALUE_IDC_VERSION_3_3_0_a,
+		VALUE_IDC_VERSION_3_3_0_FIX_SERVICE_TO_DATA,
 		VALUE_IDC_VERSION_3_3_0_b,
-		VALUE_IDC_VERSION_3_3_0_c,
 	};
 
 		
