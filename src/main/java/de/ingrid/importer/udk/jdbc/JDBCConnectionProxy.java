@@ -123,6 +123,10 @@ public class JDBCConnectionProxy {
 		return dbLogic;
 	}
 
+	public String getCatalog() throws SQLException {
+		return fConnection.getCatalog();
+	}
+
 	public boolean isOracle() {
 		return OracleLogic.class.isAssignableFrom(getDBLogic().getClass());
 	}

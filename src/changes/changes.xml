@@ -14,6 +14,9 @@
       <action type="add" dev="wemove" issue="INGRID33-5">
         Add column 'data' to table 'sys_list' for adding data to syslist entries.
       </action>
+      <action type="update" dev="wemove" issue="INGRID-2221">
+        Set default value of catalog namespace if empty.
+      </action>
       <action type="update" dev="wemove" issue="INGRID33-27">
         Increase size of URL link (t017_url_ref.url_link).
       </action>

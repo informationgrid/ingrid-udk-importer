@@ -93,6 +93,8 @@ public interface IDCStrategy {
      * -> writes NO version, can be executed on its own ! */
     static String VALUE_IDC_VERSION_3_3_0_FIX_SERVICE_TO_DATA = "3.3.0_fixServiceToData";
     static String VALUE_IDC_VERSION_3_3_0_b = "3.3.0_b";
+    /** -> writes NO version, can be executed on its own ! */
+    static String VALUE_IDC_VERSION_3_3_0_FIX_CATALOG_NAMESPACE = "3.3.0_fixCatalogNamespace";
 	
 
 	/** Order of strategies to execute to obtain most recent IGC.
@@ -136,6 +138,7 @@ public interface IDCStrategy {
 		VALUE_IDC_VERSION_3_3_0_a,
 		VALUE_IDC_VERSION_3_3_0_FIX_SERVICE_TO_DATA,
 		VALUE_IDC_VERSION_3_3_0_b,
+		VALUE_IDC_VERSION_3_3_0_FIX_CATALOG_NAMESPACE,
 	};
 
 		
