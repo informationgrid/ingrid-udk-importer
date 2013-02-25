@@ -124,7 +124,12 @@ public class JDBCConnectionProxy {
 	}
 
 	public String getCatalog() throws SQLException {
-		return fConnection.getCatalog();
+		String myCatalog = fConnection.getCatalog();
+		if (myCatalog == null && isOracle()) {
+			myCatalog = descriptor.getDbUser();
+		}
+
+		return myCatalog;
 	}
 
 	public boolean isOracle() {
