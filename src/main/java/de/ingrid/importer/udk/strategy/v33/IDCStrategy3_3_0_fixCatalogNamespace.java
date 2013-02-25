@@ -39,7 +39,9 @@ public class IDCStrategy3_3_0_fixCatalogNamespace extends IDCStrategyDefault {
 		// PERFORM DATA MANIPULATIONS !
 		// ----------------------------
 
+		System.out.print("  Update t03_catalogue.cat_namespace...");
 		updateT03CatalogueNamespace();
+		System.out.println("done.");
 
 		jdbc.commit();
 		System.out.println("Update finished successfully.");
