@@ -43,6 +43,7 @@ import de.ingrid.importer.udk.strategy.v32.IDCStrategy3_2_0_fixVarchar;
 import de.ingrid.importer.udk.strategy.v32.IDCStrategy3_2_0_migrateUsers;
 import de.ingrid.importer.udk.strategy.v33.IDCStrategy3_3_0_a;
 import de.ingrid.importer.udk.strategy.v33.IDCStrategy3_3_0_b;
+import de.ingrid.importer.udk.strategy.v33.IDCStrategy3_3_0_c;
 import de.ingrid.importer.udk.strategy.v33.IDCStrategy3_3_0_fixCatalogNamespace;
 import de.ingrid.importer.udk.strategy.v33.IDCStrategy3_3_0_fixServiceToData;
 
@@ -130,6 +131,11 @@ public class IDCStrategyFactory {
             return new IDCStrategy3_3_0_b();
         } else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_3_3_0_FIX_CATALOG_NAMESPACE)) {
             return new IDCStrategy3_3_0_fixCatalogNamespace();
+        } else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_3_3_0_c)) {
+            return new IDCStrategy3_3_0_c();
+// add when releasing
+//        } else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_3_3_0_RELEASE)) {
+//            return new IDCStrategy3_3_0_RELEASE();
 		} else {
 			log.error("Unknown IDC version '" + idcVersion + "'.");
 			throw new IllegalArgumentException("Unknown IDC version '" + idcVersion + "'.");

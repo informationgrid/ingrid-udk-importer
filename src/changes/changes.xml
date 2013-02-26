@@ -17,6 +17,9 @@
       <action type="update" dev="wemove" issue="INGRID-2221">
         Set default value of catalog namespace if empty.
       </action>
+      <action type="update" dev="wemove" issue="INGRID-2220">
+        Add JS to profile to avoid null entries in Sachdaten/Attributinformationen (Klasse 1).
+      </action>
       <action type="update" dev="wemove" issue="INGRID33-27">
         Increase size of URL link (t017_url_ref.url_link).
       </action>
