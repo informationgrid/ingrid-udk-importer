@@ -143,8 +143,7 @@ public interface IDCStrategy {
 		VALUE_IDC_VERSION_3_3_0_b,
 		VALUE_IDC_VERSION_3_3_0_FIX_CATALOG_NAMESPACE,
 		VALUE_IDC_VERSION_3_3_0_c,
-		// add when releasing !!!
-//		VALUE_IDC_VERSION_3_3_0_RELEASE,
+		VALUE_IDC_VERSION_3_3_0_RELEASE,
 	};
 
 		
