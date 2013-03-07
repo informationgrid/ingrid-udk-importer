@@ -121,7 +121,7 @@ public class IDCStrategy3_3_0_a extends IDCStrategyDefault {
 				psSelectCommentLine.setLong(1, addrId);
     			ResultSet rsLine = psSelectCommentLine.executeQuery();
     			if (rsLine.next()) {
-    				lineValue = rs.getInt("line") + 1;
+    				lineValue = rsLine.getInt("line") + 1;
     			}
     			rsLine.close();
 
