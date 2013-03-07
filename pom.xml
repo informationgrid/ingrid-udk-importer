@@ -8,7 +8,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>de.ingrid</groupId>
   <artifactId>ingrid-udk-importer</artifactId>
-  <version>3.4.0-SNAPSHOT</version>
+  <version>3.3.0</version>
   <name>InGrid UDK-IGC Importer (IGC Updater)</name>
   <build>
     <finalName>${project.artifactId}-${project.version}</finalName>
@@ -162,7 +162,7 @@
         </repository>
 	</repositories>
   <scm>
-    <connection>scm:svn:https://harrison.its-technidata.de:444/svn/ingrid/ingrid-udk-importer/trunk</connection>
-    <developerConnection>scm:svn:https://harrison.its-technidata.de:444/svn/ingrid/ingrid-udk-importer/trunk</developerConnection>
+    <connection>scm:svn:https://harrison.its-technidata.de:444/svn/ingrid/ingrid-udk-importer/tags/ingrid-udk-importer-3.3.0</connection>
+    <developerConnection>scm:svn:https://harrison.its-technidata.de:444/svn/ingrid/ingrid-udk-importer/tags/ingrid-udk-importer-3.3.0</developerConnection>
   </scm>
 </project>
