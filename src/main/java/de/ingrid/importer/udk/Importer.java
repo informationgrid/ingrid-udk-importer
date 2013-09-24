@@ -134,6 +134,7 @@ public class Importer {
 		
 		if (!errorOccured) {
 			System.out.println("\nImporter/Updater executed succesfully.");
+			System.out.println("See log for further details.");
 		}
 	}
 }

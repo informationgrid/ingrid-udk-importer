@@ -44,7 +44,7 @@ public class IDCStrategy3_4_0_fixOrigId extends IDCStrategyDefault {
 		System.out.println("done.");
 
 		jdbc.commit();
-		System.out.println("Fix finished successfully. See log.log for further details.");
+		System.out.println("Fix finished successfully.");
 	}
 
 	private void fixObjectOrigId() throws Exception {
