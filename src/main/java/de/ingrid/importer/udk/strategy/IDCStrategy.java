@@ -98,6 +98,10 @@ public interface IDCStrategy {
     static String VALUE_IDC_VERSION_3_3_0_c = "3.3.0_c";
     /** Release strategy just updating database version to 3.3.0 !!! */
     static String VALUE_IDC_VERSION_3_3_0_RELEASE = "3.3.0";
+    /** -> writes NO version, can be executed on its own ! */
+    static String VALUE_IDC_VERSION_3_4_0_FIX_ORIG_ID = "3.4.0_fixOrigId";
+    /** Release strategy just updating database version to 3.4.0 AND reloading syslists !!! */
+    static String VALUE_IDC_VERSION_3_4_0_RELEASE = "3.4.0";
 	
 
 	/** Order of strategies to execute to obtain most recent IGC.
@@ -144,6 +148,8 @@ public interface IDCStrategy {
 		VALUE_IDC_VERSION_3_3_0_FIX_CATALOG_NAMESPACE,
 		VALUE_IDC_VERSION_3_3_0_c,
 		VALUE_IDC_VERSION_3_3_0_RELEASE,
+		VALUE_IDC_VERSION_3_4_0_FIX_ORIG_ID, // writes no Version
+		VALUE_IDC_VERSION_3_4_0_RELEASE,
 	};
 
 		

@@ -4,6 +4,12 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
+    <release version="3.4.0-SNAPSHOT" date="????-??-??" description="Release InGrid 3.4">
+      <action type="fix" dev="wemove" issue="INGRID-2299">
+        Remove duplicate Original IDs from copied objects.
+      </action>
+    </release>
+
     <release version="3.3.0" date="2013-03-05" description="Release InGrid 3.3">
       <action type="add" dev="wemove" issue="INGRID33-12">
         Add column 'publish_id' to 't02_address' for handling publication condition of addresses.

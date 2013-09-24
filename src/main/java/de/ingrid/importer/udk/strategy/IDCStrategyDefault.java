@@ -241,6 +241,15 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		return retValue;
 	}
 
+	/** Delete entry with given key from sys_generic_key table.
+	 * @param key key name of entry to delete
+	 * @return number of deleted entries
+	 */
+	protected int deleteGenericKey(String key) throws Exception {
+		int numDeleted = jdbc.executeUpdate("DELETE FROM sys_generic_key WHERE key_name='" + key + "'");
+		return numDeleted;
+	}
+
     /** Convert InputStream to String.
      * @param is the stream
      * @param charsetName pass null to use default "UTF-8"
