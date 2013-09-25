@@ -1,7 +1,7 @@
 /**
  * 
  */
-package de.ingrid.importer.udk.strategy.v34;
+package de.ingrid.importer.udk.strategy.v331;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,14 +14,14 @@ import de.ingrid.importer.udk.strategy.IDCStrategyDefault;
 
 /**
  * <p>
- * Changes InGrid 3.4<p>
+ * Changes InGrid 3.3.1<p>
  * <ul>
  *   <li>Remove duplicated Orig IDs in copies of objects, see INGRID-2299
  * </ul>
  */
-public class IDCStrategy3_4_0_fixOrigId extends IDCStrategyDefault {
+public class IDCStrategy3_3_1_fixOrigId extends IDCStrategyDefault {
 
-	private static Log log = LogFactory.getLog(IDCStrategy3_4_0_fixOrigId.class);
+	private static Log log = LogFactory.getLog(IDCStrategy3_3_1_fixOrigId.class);
 
     /**
      * Deliver NO Version, this strategy should NOT trigger a strategy workflow (of missing former
