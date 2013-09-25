@@ -367,6 +367,22 @@ public class OracleLogic implements DBLogic {
 		jdbc.commit();
 	}
 
+	public void createTableObjectOpenDataCategory(JDBCConnectionProxy jdbc) throws SQLException {
+		String sql = "CREATE TABLE object_open_data_category (" +
+				"id NUMBER(24,0) NOT NULL, " +
+				"version NUMBER(10,0) DEFAULT '0' NOT NULL, " +
+				"obj_id NUMBER(24,0), " +
+				"line NUMBER(10,0) DEFAULT '0', " +
+				"category_key NUMBER(10,0), " +
+				"category_value VARCHAR2(4000 CHAR))";
+		jdbc.executeUpdate(sql);
+		sql = "ALTER TABLE object_open_data_category ADD CONSTRAINT PRIMARY_ObjectOpenDataCategory PRIMARY KEY ( id ) ENABLE";
+		jdbc.executeUpdate(sql);
+		sql = "CREATE INDEX idxObjODCategory_ObjId ON object_open_data_category ( obj_id )";
+		jdbc.executeUpdate(sql);
+		jdbc.commit();
+	}
+
 	private String mapColumnTypeToSQL(ColumnType colType) {
 		String sql = "";
 

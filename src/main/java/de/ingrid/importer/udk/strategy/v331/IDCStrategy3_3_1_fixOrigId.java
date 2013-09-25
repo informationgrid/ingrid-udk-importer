@@ -18,6 +18,7 @@ import de.ingrid.importer.udk.strategy.IDCStrategyDefault;
  * <ul>
  *   <li>Remove duplicated Orig IDs in copies of objects, see INGRID-2299
  * </ul>
+ * Writes NO Catalog Schema Version to catalog and can be executed on its own !
  */
 public class IDCStrategy3_3_1_fixOrigId extends IDCStrategyDefault {
 

@@ -311,6 +311,20 @@ public class MySQLLogic implements DBLogic {
 		jdbc.executeUpdate(sql);
 	}
 
+	public void createTableObjectOpenDataCategory(JDBCConnectionProxy jdbc) throws SQLException {
+		String sql = "CREATE TABLE object_open_data_category(" +
+				"id BIGINT NOT NULL, " +
+				"version INTEGER NOT NULL DEFAULT 0, " +
+				"obj_id BIGINT, " +
+				"line INTEGER DEFAULT 0, " +
+				"category_key INTEGER, " +
+				"category_value TEXT, " +
+				"PRIMARY KEY (id), " +
+				"INDEX idxObjODCategory_ObjId (obj_id ASC)) " +
+				"ENGINE=InnoDB;";
+		jdbc.executeUpdate(sql);
+	}
+
 	private String mapColumnTypeToSQL(ColumnType colType) {
 		String sql = "";
 

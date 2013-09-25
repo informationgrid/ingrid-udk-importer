@@ -47,6 +47,7 @@ import de.ingrid.importer.udk.strategy.v33.IDCStrategy3_3_0_b;
 import de.ingrid.importer.udk.strategy.v33.IDCStrategy3_3_0_c;
 import de.ingrid.importer.udk.strategy.v33.IDCStrategy3_3_0_fixCatalogNamespace;
 import de.ingrid.importer.udk.strategy.v33.IDCStrategy3_3_0_fixServiceToData;
+import de.ingrid.importer.udk.strategy.v331.IDCStrategy3_3_1_a;
 import de.ingrid.importer.udk.strategy.v331.IDCStrategy3_3_1_fixOrigId;
 import de.ingrid.importer.udk.strategy.v34.IDCStrategy3_4_0_RELEASE;
 
@@ -140,6 +141,8 @@ public class IDCStrategyFactory {
             return new IDCStrategy3_3_0_RELEASE();
         } else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_3_3_1_FIX_ORIG_ID)) {
             return new IDCStrategy3_3_1_fixOrigId();
+        } else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_3_3_1_a)) {
+            return new IDCStrategy3_3_1_a();
         } else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_3_4_0_RELEASE)) {
             return new IDCStrategy3_4_0_RELEASE();
 		} else {

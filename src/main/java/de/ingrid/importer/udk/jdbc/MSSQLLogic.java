@@ -92,4 +92,7 @@ public class MSSQLLogic implements DBLogic {
 	public void createTableObjectTypesCatalogue(JDBCConnectionProxy jdbc) throws SQLException {
 		// TODO !
 	}
+	public void createTableObjectOpenDataCategory(JDBCConnectionProxy jdbc) throws SQLException {
+		// TODO !
+	}
 }

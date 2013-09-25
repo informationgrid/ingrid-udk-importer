@@ -87,7 +87,8 @@ public interface IDCStrategy {
 	static String VALUE_IDC_VERSION_3_2_0_MIGRATE_USERS = "3.2.0_migrateUsers";
 	/** InGrid 3.2 changes */
     static String VALUE_IDC_VERSION_3_2_0 = "3.2.0";
-	/** InGrid 3.3 changes */
+
+	/** InGrid 3.3 */
     static String VALUE_IDC_VERSION_3_3_0_a = "3.3.0-SNAPSHOT"; // was -SNAPSHOT before introducing _a _b ...
     /** Migrate 'Basisdaten (3210)' to 'Gekoppelte Ressource', see INGRID33-26
      * -> writes NO version, can be executed on its own ! */
@@ -98,8 +99,13 @@ public interface IDCStrategy {
     static String VALUE_IDC_VERSION_3_3_0_c = "3.3.0_c";
     /** Release strategy just updating database version to 3.3.0 !!! */
     static String VALUE_IDC_VERSION_3_3_0_RELEASE = "3.3.0";
+
+    /** InGrid 3.3.1 */
+    static String VALUE_IDC_VERSION_3_3_1_a = "3.3.1_a";
     /** -> writes NO version, can be executed on its own ! */
     static String VALUE_IDC_VERSION_3_3_1_FIX_ORIG_ID = "3.3.1_fixOrigId";
+
+	/** InGrid 3.4 */
     /** Release strategy just updating database version to 3.4.0 AND reloading syslists !!! */
     static String VALUE_IDC_VERSION_3_4_0_RELEASE = "3.4.0";
 	
@@ -149,6 +155,7 @@ public interface IDCStrategy {
 		VALUE_IDC_VERSION_3_3_0_c,
 		VALUE_IDC_VERSION_3_3_0_RELEASE,
 		VALUE_IDC_VERSION_3_3_1_FIX_ORIG_ID, // writes no Version
+		VALUE_IDC_VERSION_3_3_1_a,
 		VALUE_IDC_VERSION_3_4_0_RELEASE,
 	};
 
