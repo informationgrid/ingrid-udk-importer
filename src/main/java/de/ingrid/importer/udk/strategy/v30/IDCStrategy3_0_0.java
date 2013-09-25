@@ -385,7 +385,7 @@ public class IDCStrategy3_0_0 extends IDCStrategyDefault {
 		ctrl.setIsVisible(ProfileMapper.IsVisible.OPTIONAL.getDbValue());
 		ctrl.setIsLegacy(false);
 		Map<String, String> labelMap = new HashMap<String, String>();
-		labelMap.put(getCatalogLanguage(), field.name);
+		labelMap.put(getCatalogLanguageFromDescriptor(), field.name);
 		ctrl.setLabel(labelMap);
 		// no Help
 		ctrl.setHelpMessage(new HashMap<String, String>());
@@ -514,7 +514,7 @@ public class IDCStrategy3_0_0 extends IDCStrategyDefault {
 			String itemId = null;
 			if (!listsLocalized.isEmpty()) {				
 				// first check default locale
-				String locale = getCatalogLanguage();
+				String locale = getCatalogLanguageFromDescriptor();
 				itemId = getListItemIdFromValue(listsLocalized.get(locale), listItemValue);
 				
 				if (itemId == null) {

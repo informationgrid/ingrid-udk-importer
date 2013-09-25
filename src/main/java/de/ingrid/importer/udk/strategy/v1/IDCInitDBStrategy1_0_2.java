@@ -108,7 +108,7 @@ public class IDCInitDBStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 		
 		p.setString(cnt++, modId); // mod_uuid,
 		p.setString(cnt++, modTime); // mod_time
-		p.setString(cnt++, getCatalogLanguage()); // language_code
+		p.setString(cnt++, getCatalogLanguageFromDescriptor()); // language_code
 		try {
 			p.executeUpdate();
 		} catch (Exception e) {

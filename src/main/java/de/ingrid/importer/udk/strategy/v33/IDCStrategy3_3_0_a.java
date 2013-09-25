@@ -109,7 +109,7 @@ public class IDCStrategy3_3_0_a extends IDCStrategyDefault {
 		ResultSet rs = jdbc.executeQuery(sqlSelectOldData, st);
 		int numProcessed = 0;
 		String prefix = "[Dieser Eintrag wurde automatisch aus dem Feld Notiz überführt.]\n";
-		String catAdminUuid = getCatAdminUuid();
+		String catAdminUuid = getCatalogAdminUuid();
 		while (rs.next()) {
 
 			long addrId = rs.getLong("id");
@@ -166,31 +166,4 @@ public class IDCStrategy3_3_0_a extends IDCStrategyDefault {
 
 		log.info("Cleaning up datastructure... done\n");
 	}
-
-	/** Format date to database timestamp. */
-	public String dateToTimestamp(Date date) {
-		try {
-			String out = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(date);
-			return out;
-		} catch (Exception ex){
-			log.warn("Problems formating date to timestamp: " + date, ex);
-			return "";
-		}
-	}
-
-	/** Return UUID of CatAdmin of catalog. */
-	public String getCatAdminUuid() throws Exception {
-		String catAdminUuid = null;
-
-		Statement stUser = jdbc.createStatement();
-		ResultSet rsUser = jdbc.executeQuery("SELECT addr_uuid FROM idc_user WHERE idc_role = 1", stUser);
-		if (rsUser.next()) {
-			catAdminUuid = rsUser.getString("addr_uuid");			
-		}
-		rsUser.close();
-		stUser.close();
-		
-		return catAdminUuid;
-	}
-
 }

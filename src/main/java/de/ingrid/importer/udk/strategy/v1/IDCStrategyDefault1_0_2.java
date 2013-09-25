@@ -425,14 +425,14 @@ public abstract class IDCStrategyDefault1_0_2 extends IDCStrategyDefault {
 			+ "street, postcode, postbox, postbox_pc, city, country_code, job, "
 			+ "descr, lastexport_time, expiry_time, work_state, work_version, "
 			+ "mark_deleted, create_time, mod_time, mod_uuid, responsible_uuid) VALUES "
-			+ "( " + dataProvider.getId() + ", '" + getCatalogAdminUuid() + "', NULL, 3, NULL, 'admin', 'admin', 'Frau', -1, 'Dr.', -1, "
+			+ "( " + dataProvider.getId() + ", '" + getCatalogAdminUuidNewCatalog() + "', NULL, 3, NULL, 'admin', 'admin', 'Frau', -1, 'Dr.', -1, "
 			+ "NULL, NULL, NULL, NULL, NULL, NULL, 'Administrator of this catalog.', "
 			+ "'Administrator of this catalog.', NULL, NULL, 'V', 0, "
 			+ "'N', NULL, NULL, NULL, NULL)";
 		jdbc.executeUpdate(sqlStr);
 		
 		dataProvider.setId(dataProvider.getId() + 1);
-		sqlStr = "INSERT INTO address_node ( id , addr_uuid , addr_id , addr_id_published , fk_addr_uuid ) VALUES ( " + dataProvider.getId() + ", '" + getCatalogAdminUuid() + "', "+adrId+", "+adrId+", NULL )"; 
+		sqlStr = "INSERT INTO address_node ( id , addr_uuid , addr_id , addr_id_published , fk_addr_uuid ) VALUES ( " + dataProvider.getId() + ", '" + getCatalogAdminUuidNewCatalog() + "', "+adrId+", "+adrId+", NULL )"; 
 		jdbc.executeUpdate(sqlStr);
 
 		// import default admin group
@@ -444,7 +444,7 @@ public abstract class IDCStrategyDefault1_0_2 extends IDCStrategyDefault {
 		// import default admin user
 		dataProvider.setId(dataProvider.getId() + 1);
 		long userId = dataProvider.getId();
-		sqlStr = "INSERT INTO idc_user ( id, addr_uuid, idc_group_id, idc_role) VALUES (" + userId + ", '"+getCatalogAdminUuid()+"', "+groupId+", "+ROLE_CATALOG_ADMINISTRATOR+" )";
+		sqlStr = "INSERT INTO idc_user ( id, addr_uuid, idc_group_id, idc_role) VALUES (" + userId + ", '"+getCatalogAdminUuidNewCatalog()+"', "+groupId+", "+ROLE_CATALOG_ADMINISTRATOR+" )";
 		jdbc.executeUpdate(sqlStr);
 		
 		// import permissions

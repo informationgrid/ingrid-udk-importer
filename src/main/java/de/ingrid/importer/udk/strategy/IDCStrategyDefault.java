@@ -14,7 +14,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -137,13 +139,34 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		}
 	}
 
-	protected String getCatalogAdminUuid() {
+	/** NOTICE: This GENERATES UUID and is only used FOR CREATING INITIAL CATALOG Admin !!!
+	 * For fetching Admin UUID from existing catalog use getCatalogAdminUuid !!!
+	 * @return
+	 */
+	protected String getCatalogAdminUuidNewCatalog() {
 		if (catalogAdminUuid == null) {
 			catalogAdminUuid = UuidGenerator.getInstance().generateUuid();
 		}
 		return catalogAdminUuid;
 	}
-	protected String getCatalogLanguage() {
+
+	/** Return UUID of CatAdmin of this catalog. */
+	protected String getCatalogAdminUuid() throws Exception {
+		String catAdminUuid = null;
+
+		Statement stUser = jdbc.createStatement();
+		ResultSet rsUser = jdbc.executeQuery("SELECT addr_uuid FROM idc_user WHERE idc_role = 1", stUser);
+		if (rsUser.next()) {
+			catAdminUuid = rsUser.getString("addr_uuid");			
+		}
+		rsUser.close();
+		stUser.close();
+		
+		return catAdminUuid;
+	}
+
+	/** Returns language set in descriptor. If not set return default language ("de"). */
+	protected String getCatalogLanguageFromDescriptor() {
 		return catalogLanguage;
 	}
 
@@ -202,6 +225,17 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 			startIdNextHiLowBlock = startIdNextHiLowBlock + numIdsInHiLowBlock;
 		}
 		return nextId;
+	}
+
+	/** Format date to database timestamp. */
+	protected String dateToTimestamp(Date date) {
+		try {
+			String out = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(date);
+			return out;
+		} catch (Exception ex){
+			log.warn("Problems formating date to timestamp: " + date, ex);
+			return "";
+		}
 	}
 
 	/** New Version WITH ID column !!! */

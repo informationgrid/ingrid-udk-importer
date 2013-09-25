@@ -967,7 +967,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 		Map<String, Integer> compareNameToKeyMap = new HashMap<String, Integer>();
 		Map<Integer, String> platformKeyToNameyMap = new HashMap<Integer, String>();
 		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=" + SYSLIST_ID_OPERATION_PLATFORM +
-				" and lang_id='" + getCatalogLanguage() + "'";
+				" and lang_id='" + getCatalogLanguageFromDescriptor() + "'";
 		Statement st = jdbc.createStatement();
 		ResultSet rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {

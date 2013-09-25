@@ -359,7 +359,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 				}
 				p.setString(cnt++, modId); // mod_uuid,
 				p.setString(cnt++, IDCStrategyHelper.transDateTime(row.get("mod_time"))); // mod_time
-				p.setString(cnt++, getCatalogLanguage()); // language_code
+				p.setString(cnt++, getCatalogLanguageFromDescriptor()); // language_code
 				try {
 					p.executeUpdate();
 				} catch (Exception e) {
@@ -627,7 +627,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 		final List<String> allowedSpecialRefTitleEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefTitleEntryNamesLowerCase = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=4305 and lang_id='" + getCatalogLanguage() + "'";
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=4305 and lang_id='" + getCatalogLanguageFromDescriptor() + "'";
 		Statement st = jdbc.createStatement();
 		ResultSet rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
@@ -643,7 +643,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 		final List<String> allowedSpecialRefAddressEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefAddressEntryNamesLowerCase = new ArrayList<String>();
 
-		sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=4300 and lang_id='" + getCatalogLanguage() + "'";
+		sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=4300 and lang_id='" + getCatalogLanguageFromDescriptor() + "'";
 		st = jdbc.createStatement();
 		rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
@@ -919,7 +919,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=4430 and lang_id='" + getCatalogLanguage() + "'";
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=4430 and lang_id='" + getCatalogLanguageFromDescriptor() + "'";
 		Statement st = jdbc.createStatement();
 		ResultSet rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
@@ -1010,7 +1010,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 
 		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=2000 " +
 				"AND entry_id IN (3100, 3210, 3345, 3515, 3520, 3535, 3555, 3570, 5066) " +
-				"and lang_id='" + getCatalogLanguage() + "'";
+				"and lang_id='" + getCatalogLanguageFromDescriptor() + "'";
 		Statement st = jdbc.createStatement();
 		ResultSet rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
@@ -1214,7 +1214,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 		final List<String> allowedSpecialRefEntries505 = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNames505 = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=505 and lang_id='" + getCatalogLanguage() + "'";
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=505 and lang_id='" + getCatalogLanguageFromDescriptor() + "'";
 		Statement st = jdbc.createStatement();
 		ResultSet rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
@@ -1232,7 +1232,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 
 		sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=2010 " +
 				"AND entry_id IN (3360, 3400, 3410) " +
-				"and lang_id='" + getCatalogLanguage() + "'";
+				"and lang_id='" + getCatalogLanguageFromDescriptor() + "'";
 		st = jdbc.createStatement();
 		rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
@@ -1406,7 +1406,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 					int cnt = 1;
 					p.setLong(cnt++, ++maxId); // id
 					p.setLong(cnt++, lastObjId); // obj_id
-					p.setString(cnt++, getCatalogAdminUuid()); // adr_uuid
+					p.setString(cnt++, getCatalogAdminUuidNewCatalog()); // adr_uuid
 					JDBCHelper.addInteger(p, cnt++, AUSKUNFT_ADDRESS_TYPE ); // type
 					JDBCHelper.addInteger(p, cnt++, line ); // line
 					JDBCHelper.addInteger(p, cnt++, AUSKUNFT_ADDRESS_SPECIAL_REF ); // special_ref
@@ -1867,7 +1867,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=3385 and lang_id='" + getCatalogLanguage() + "'";
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=3385 and lang_id='" + getCatalogLanguageFromDescriptor() + "'";
 		Statement st = jdbc.createStatement();
 		ResultSet rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
@@ -2231,7 +2231,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=3555 and lang_id='" + getCatalogLanguage() + "'";
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=3555 and lang_id='" + getCatalogLanguageFromDescriptor() + "'";
 		Statement st = jdbc.createStatement();
 		ResultSet rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
@@ -2369,7 +2369,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 		final List<Integer> allowedSpecialRefEntries = new ArrayList<Integer>();
 		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=527 and lang_id='" + getCatalogLanguage() + "'";
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=527 and lang_id='" + getCatalogLanguageFromDescriptor() + "'";
 		Statement st = jdbc.createStatement();
 		ResultSet rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
@@ -2618,7 +2618,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=3535 and lang_id='" + getCatalogLanguage() + "'";
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=3535 and lang_id='" + getCatalogLanguageFromDescriptor() + "'";
 		Statement st = jdbc.createStatement();
 		ResultSet rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
@@ -2701,7 +2701,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=5100 and lang_id='" + getCatalogLanguage() + "'";
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=5100 and lang_id='" + getCatalogLanguageFromDescriptor() + "'";
 		Statement st = jdbc.createStatement();
 		ResultSet rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
@@ -2843,7 +2843,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 		final List<String> allowedSpecialWMSRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialWMSRefEntryNamesLowerCase = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=5110 and lang_id='" + getCatalogLanguage() + "'";
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=5110 and lang_id='" + getCatalogLanguageFromDescriptor() + "'";
 		Statement st = jdbc.createStatement();
 		ResultSet rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
@@ -2859,7 +2859,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 		final List<String> allowedSpecialWFSRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialWFSRefEntryNamesLowerCase = new ArrayList<String>();
 
-		sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=5120 and lang_id='" + getCatalogLanguage() + "'";
+		sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=5120 and lang_id='" + getCatalogLanguageFromDescriptor() + "'";
 		st = jdbc.createStatement();
 		rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
@@ -3198,7 +3198,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1350 and lang_id='" + getCatalogLanguage() + "'";
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1350 and lang_id='" + getCatalogLanguageFromDescriptor() + "'";
 		Statement st = jdbc.createStatement();
 		ResultSet rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
@@ -3323,7 +3323,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1320 and lang_id='" + getCatalogLanguage() + "'";
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1320 and lang_id='" + getCatalogLanguageFromDescriptor() + "'";
 		Statement st = jdbc.createStatement();
 		ResultSet rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
@@ -3457,7 +3457,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 		final List<String> allowedDatatypeValuesLowerCase = new ArrayList<String>();
 		final List<String> allowedDatatypeKeys = new ArrayList<String>();
 
-		String sql = "SELECT name, entry_id FROM sys_list WHERE LST_ID=2240 and lang_id='" + getCatalogLanguage() + "'";
+		String sql = "SELECT name, entry_id FROM sys_list WHERE LST_ID=2240 and lang_id='" + getCatalogLanguageFromDescriptor() + "'";
 		Statement st = jdbc.createStatement();
 		ResultSet rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
@@ -3476,7 +3476,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 
 		sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=2000 " +
 				"AND entry_id IN (3100, 3210, 3345, 3515, 3520, 3535, 3555, 3570, 5066) " +
-				"and lang_id='" + getCatalogLanguage() + "'";
+				"and lang_id='" + getCatalogLanguageFromDescriptor() + "'";
 		st = jdbc.createStatement();
 		rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {
@@ -3741,7 +3741,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			freeSpatialReferenceEntryNames = new ArrayList<String>();
 			freeSpatialReferenceEntryNamesLowerCase = new ArrayList<String>();
 
-			String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1100 and lang_id='" + getCatalogLanguage() + "'";
+			String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1100 and lang_id='" + getCatalogLanguageFromDescriptor() + "'";
 			Statement st = jdbc.createStatement();
 			ResultSet rs = jdbc.executeQuery(sql, st);
 			while (rs.next()) {
@@ -4084,7 +4084,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 				p.setString(cnt++, "Z"); // type
 				p.setInt(cnt++, row.getInteger("counter")); // listitem_line
 				p.setString(cnt++, row.get("data")); // listitem_value
-				p.setString(cnt++, getCatalogLanguage()); // lang_code
+				p.setString(cnt++, getCatalogLanguageFromDescriptor()); // lang_code
 				try {
 					p.executeUpdate();
 				} catch (Exception e) {
@@ -4170,7 +4170,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 		final List<String> allowedSpecialRefEntryNames = new ArrayList<String>();
 		final List<String> allowedSpecialRefEntryNamesLowerCase = new ArrayList<String>();
 
-		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1370 and lang_id='" + getCatalogLanguage() + "'";
+		String sql = "SELECT entry_id, name FROM sys_list WHERE lst_id=1370 and lang_id='" + getCatalogLanguageFromDescriptor() + "'";
 		Statement st = jdbc.createStatement();
 		ResultSet rs = jdbc.executeQuery(sql, st);
 		while (rs.next()) {

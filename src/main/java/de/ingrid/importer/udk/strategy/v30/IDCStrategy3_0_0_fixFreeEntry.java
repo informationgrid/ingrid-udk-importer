@@ -97,7 +97,7 @@ public class IDCStrategy3_0_0_fixFreeEntry extends IDCStrategyDefault {
 		ResultSet rs = jdbc.executeQuery(sql, st);
 		Set<Long> processedNodeIds = new HashSet<Long>();
 		int numProcessed = 0;
-		String catalogLanguage = getCatalogLanguage();
+		String catalogLanguage = getCatalogLanguageFromDescriptor();
 //		Integer igcLangCode = UtilsLanguageCodelist.getCodeFromShortcut(catalogLanguage);
 
 		while (rs.next()) {

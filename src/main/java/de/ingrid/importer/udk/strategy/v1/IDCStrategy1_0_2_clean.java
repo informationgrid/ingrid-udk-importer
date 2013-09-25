@@ -113,7 +113,7 @@ public class IDCStrategy1_0_2_clean extends IDCStrategyDefault1_0_2 {
 		
 		p.setString(cnt++, modUuid); // mod_uuid,
 		p.setString(cnt++, modTime); // mod_time
-		p.setString(cnt++, getCatalogLanguage()); // language_code
+		p.setString(cnt++, getCatalogLanguageFromDescriptor()); // language_code
 		try {
 			p.executeUpdate();
 		} catch (Exception e) {
@@ -140,7 +140,7 @@ public class IDCStrategy1_0_2_clean extends IDCStrategyDefault1_0_2 {
 		// set default language of metadata entities (=default entry in sys_list 99999999)
 
 		// was read from descriptor
-		String catLang = getCatalogLanguage();
+		String catLang = getCatalogLanguageFromDescriptor();
 
 		if ("de".equals(catLang)) {
 			jdbc.executeUpdate("UPDATE sys_list SET is_default = 'N' WHERE lst_id=99999999");
