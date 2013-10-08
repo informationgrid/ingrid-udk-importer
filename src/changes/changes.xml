@@ -5,6 +5,9 @@
   </properties>
   <body>
     <release version="3.4.0-SNAPSHOT" date="????-??-??" description="Release InGrid 3.4">
+      <action type="add" dev="wemove" issue="REDMINE-118">
+        Add columns t017_url_ref.datatype_key / datatype_value for datatype of url reference.
+      </action>
       <action type="add" dev="wemove" issue="REDMINE-128">
         Add column t01_object.is_open_data and table object_open_data_category for open data implementation.
       </action>
