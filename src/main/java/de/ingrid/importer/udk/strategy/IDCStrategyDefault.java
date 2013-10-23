@@ -240,6 +240,8 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 
 	/** New Version WITH ID column !!! */
 	protected void setGenericKey(String key, String value) throws Exception {
+		log.info("Set sys_generic_key '" + key + "'='" + value + "'");
+
 		jdbc.executeUpdate("DELETE FROM sys_generic_key WHERE key_name='" + key + "'");
 
 		// use PreparedStatement to avoid problems when value String contains "'" !!!
@@ -280,6 +282,7 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 	 * @return number of deleted entries
 	 */
 	protected int deleteGenericKey(String key) throws Exception {
+		log.info("Delete sys_generic_key '" + key + "'");
 		int numDeleted = jdbc.executeUpdate("DELETE FROM sys_generic_key WHERE key_name='" + key + "'");
 		return numDeleted;
 	}

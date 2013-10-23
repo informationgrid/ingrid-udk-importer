@@ -62,7 +62,6 @@ public class IDCStrategy3_3_0_c extends IDCStrategyDefault {
 
 		// write Profile !
         profileXml = profileMapper.mapBeanToXmlString(profileBean);
-		log.debug("Resulting IGC Profile:" + profileXml);
 		setGenericKey(KEY_PROFILE_XML, profileXml);        	
 
 		log.info("Update Profile in database... done\n");

@@ -129,7 +129,7 @@ public class IDCStrategy3_2_0_a extends IDCStrategyDefault {
     		// write Profile !
             profileXml = profileMapper.mapBeanToXmlString(profileBean);
     		if (log.isDebugEnabled()) {
-    			log.debug("Resulting IGC Profile (removed legacyControl \"uiElementN016\" = env categories):" + profileXml);
+    			log.debug("Resulting IGC Profile (removed legacyControl \"uiElementN016\" = env categories):");
     		}
     		setGenericKey(KEY_PROFILE_XML, profileXml);        	
         }
