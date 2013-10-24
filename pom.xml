@@ -56,17 +56,15 @@
   </build>
 
   <!-- ==================== DEPENDENCY MANAGEMENT ==================== -->
-<!--
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>ojdbc</groupId>
-        <artifactId>ojdbc</artifactId>
-        <version>14</version>
+        <groupId>de.ingrid</groupId>
+        <artifactId>ingrid-utils-ige</artifactId>
+        <version>3.4.0-SNAPSHOT</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
--->
   <!-- ==================== DEPENDENCIES ==================== -->
   <dependencies>
     <dependency>
