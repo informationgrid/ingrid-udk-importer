@@ -106,6 +106,7 @@ public interface IDCStrategy {
     static String VALUE_IDC_VERSION_3_3_1_a = "3.3.1_a";
     static String VALUE_IDC_VERSION_3_3_1_b = "3.3.1_b";
     static String VALUE_IDC_VERSION_3_3_1_c = "3.3.1_c";
+    static String VALUE_IDC_VERSION_3_3_1_d = "3.3.1_d";
     /** Release strategy just updating database version to 3.3.1 AND reloading syslists !!! */
     static String VALUE_IDC_VERSION_3_3_1_RELEASE = "3.3.1";
 
@@ -162,6 +163,7 @@ public interface IDCStrategy {
 		VALUE_IDC_VERSION_3_3_1_a,
 		VALUE_IDC_VERSION_3_3_1_b,
 		VALUE_IDC_VERSION_3_3_1_c,
+		VALUE_IDC_VERSION_3_3_1_d,
 		VALUE_IDC_VERSION_3_3_1_RELEASE,
 		VALUE_IDC_VERSION_3_4_0_RELEASE,
 	};

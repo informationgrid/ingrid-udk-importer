@@ -5,6 +5,9 @@
   </properties>
   <body>
     <release version="3.3.1-SNAPSHOT" date="????-??-??" description="Release InGrid 3.3.1">
+      <action type="add" dev="wemove" issue="REDMINE-245">
+        Migrate "open data" from additional fields (HH) to new Open Data checkbox and categories.
+      </action>
       <action type="add" dev="wemove" issue="REDMINE-128">
         Profile: Add new legacy fields "Open Data checkbox" + "Kategorien".
       </action>
