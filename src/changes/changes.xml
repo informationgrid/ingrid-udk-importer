@@ -8,6 +8,9 @@
       <action type="add" dev="wemove" issue="INGRID-2302">
         Profile: Fix JS in "INSPIRE Themen" so "Kodierungsschema" is set via syslist ID and not text.
       </action>
+      <action type="add" dev="wemove" issue="REDMINE-245">
+        Migrate "open data" from additional fields (HH) to new Open Data checkbox and categories.
+      </action>
       <action type="add" dev="wemove" issue="REDMINE-128">
         Profile: Add new legacy fields "Open Data checkbox" + "Kategorien".
       </action>
