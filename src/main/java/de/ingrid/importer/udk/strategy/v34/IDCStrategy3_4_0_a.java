@@ -16,7 +16,7 @@ import de.ingrid.utils.ige.profile.beans.controls.Controls;
  * <p>
  * Changes InGrid 3.4.0<p>
  * <ul>
- *   <li>Profile: Fix JS in "Verschlagwortung - INSPIRE Themen", set combo box via entry id, see INGRID-2302
+ *   <li>Profile: Fix JS in "Verschlagwortung - INSPIRE Themen", adapt dependent fields now via call of "applyRuleThesaurusInspire()", see INGRID-2302
  * </ul>
  * Writes NEW Catalog Schema Version to catalog !
  */
@@ -81,7 +81,7 @@ public class IDCStrategy3_4_0_a extends IDCStrategyDefault {
 
 		//------------- 'INSPIRE-Themen'
 		log.info("'INSPIRE-Themen'(uiElement5064): " +
-			"FIX 3.2.0 JS IN PROFILE: setComboBySyslistValue via ID and not via text !");
+			"FIX 3.2.0 JS IN PROFILE: adapt dependent fields now via call of internal applyRuleThesaurusInspire() !");
 		Controls control = MdekProfileUtils.findControl(profileBean, "uiElement5064");
     	String jsCode = startTag +
 "// On change of object class:\n" +
@@ -105,42 +105,6 @@ public class IDCStrategy3_4_0_a extends IDCStrategyDefault {
 "// initial show/hide of DQ tables dependent from themes\n" +
 "applyRule7();\n" +
 "\n" +
-"// Function for adapting 'Kodierungsschema der geographischen Daten' to passed 'INSPIRE-Themen'\n" +
-"function uiElement1315AdaptToThemes(themes) {\n" +
-"  // Set 'Kodierungsschema' as text (from syslist value) because of ComboBox(!).\n" +
-"\n" +
-"  // Set default here. May be changed below.\n" +
-"  UtilUI.setComboBySyslistValue(\"availabilityDataFormatInspire\", \"1\");\n" +
-"\n" +
-"  // Geographical names (103) -> Geographical names GML Application Schema (18)\n" +
-"  if (dojo.some(themes, function(themeKey) {return (themeKey == 103); })) {\n" +
-"    UtilUI.setComboBySyslistValue(\"availabilityDataFormatInspire\", \"18\");\n" +
-"  }\n" +
-"  // Administrative units (104) -> Administrative units GML application schema (16)\n" +
-"  if (dojo.some(themes, function(themeKey) {return (themeKey == 104); })) {\n" +
-"    UtilUI.setComboBySyslistValue(\"availabilityDataFormatInspire\", \"16\");\n" +
-"  }\n" +
-"  // Addresses (105) -> Addresses GML application schema (15)\n" +
-"  if (dojo.some(themes, function(themeKey) {return (themeKey == 105); })) {\n" +
-"    UtilUI.setComboBySyslistValue(\"availabilityDataFormatInspire\", \"15\");\n" +
-"  }\n" +
-"  // Cadastral parcels (106) -> Cadastral Parcels GML Application Schema (17)\n" +
-"  if (dojo.some(themes, function(themeKey) {return (themeKey == 106); })) {\n" +
-"    UtilUI.setComboBySyslistValue(\"availabilityDataFormatInspire\", \"17\");\n" +
-"  }\n" +
-"  // Transport networks (107) -> Common Transport Elements GML Application Schema (7)\n" +
-"  if (dojo.some(themes, function(themeKey) {return (themeKey == 107); })) {\n" +
-"    UtilUI.setComboBySyslistValue(\"availabilityDataFormatInspire\", \"7\");\n" +
-"  }\n" +
-"  // Hydrography (108) -> Hydrography GML application schema (2)\n" +
-"  if (dojo.some(themes, function(themeKey) {return (themeKey == 108); })) {\n" +
-"    UtilUI.setComboBySyslistValue(\"availabilityDataFormatInspire\", \"2\");\n" +
-"  }\n" +
-"  // Protected sites (109) -> Protected Sites - Full GML Application Schema (14)\n" +
-"  if (dojo.some(themes, function(themeKey) {return (themeKey == 109); })) {\n" +
-"    UtilUI.setComboBySyslistValue(\"availabilityDataFormatInspire\", \"14\");\n" +
-"  }\n" +
-"}\n" +
 "// Input Handler for 'INSPIRE-Themen' called when changed\n" +
 "function uiElement5064InputHandler() {\n" +
 "  var objClass = dijit.byId(\"objectClass\").getValue();\n" +
@@ -148,9 +112,9 @@ public class IDCStrategy3_4_0_a extends IDCStrategyDefault {
 "    // Get INSPIRE themes\n" +
 "    var themes = UtilList.tableDataToList(UtilGrid.getTableData(\"thesaurusInspire\"));\n" +
 "\n" +
-"    // Adapt 'Kodierungsschema' to 'INSPIRE-Themen'\n" +
-"// !!! UNCOMMENT the following line if 'Kodierungsschema' should be adapted to 'INSPIRE-Themen' !!!\n" +
-"//    uiElement1315AdaptToThemes(themes);\n" +
+"    // Adapt 'Kodierungsschema', 'Konformität' etc. to 'INSPIRE-Themen'\n" +
+"// !!! COMMENT the following line if \"dependent\" fields should NOT be adapted to 'INSPIRE-Themen' !!!\n" +
+"    applyRuleThesaurusInspire();\n" +
 "\n" +
 "    //  Show/hide DQ tables in class 1 dependent from themes\n" +
 "    applyRule7();\n" +

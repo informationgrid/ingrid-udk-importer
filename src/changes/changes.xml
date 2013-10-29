@@ -6,7 +6,7 @@
   <body>
     <release version="3.4.0-SNAPSHOT" date="????-??-??" description="Release InGrid 3.4">
       <action type="add" dev="wemove" issue="INGRID-2302">
-        Profile: Fix JS in "INSPIRE Themen" so "Kodierungsschema" is set via syslist ID and not text.
+        Profile: Fix JS in "INSPIRE Themen" so dependent fields are now adapted via call of internal JS method ("Kodierungsschema", "Konformität").
       </action>
       <action type="add" dev="wemove" issue="REDMINE-245">
         Migrate "open data" from additional fields (HH) to new Open Data checkbox and categories.
