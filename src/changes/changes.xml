@@ -4,18 +4,16 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
-    <release version="3.3.1-SNAPSHOT" date="????-??-??" description="Release InGrid 3.3.1">
+    <release version="3.3.1" date="2013-10-30" description="Release InGrid 3.3.1">
       <action type="add" dev="wemove" issue="REDMINE-245">
         Migrate "open data" from additional fields (HH) to new Open Data checkbox and categories.
-      </action>
-      <action type="add" dev="wemove" issue="REDMINE-128">
-        Profile: Add new legacy fields "Open Data checkbox" + "Kategorien".
       </action>
       <action type="add" dev="wemove" issue="REDMINE-118">
         Add columns t017_url_ref.datatype_key / datatype_value for datatype of url reference.
       </action>
       <action type="add" dev="wemove" issue="REDMINE-128">
         Add column t01_object.is_open_data and table object_open_data_category for open data implementation.
+        Profile: Add new legacy fields "Open Data checkbox" + "Kategorien".
       </action>
       <action type="fix" dev="wemove" issue="INGRID-2299">
         Remove duplicate Original IDs from copied objects.
