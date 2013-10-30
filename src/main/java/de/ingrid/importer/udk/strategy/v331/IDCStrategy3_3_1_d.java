@@ -80,7 +80,7 @@ public class IDCStrategy3_3_1_d extends IDCStrategyDefault {
 				"FROM t01_object obj, searchterm_obj sto, searchterm_value stv " +
 				"WHERE obj.id = sto.obj_id " +
 				"AND sto.searchterm_id = stv.id " +
-				"AND (stv.term = '#opendata_hh#' OR stv.term = 'opendata') " +
+				"AND stv.term = '#opendata_hh#' " +
 				"ORDER BY obj.id"
 				, st);
 
