@@ -102,6 +102,10 @@ public class IDCStrategy3_4_0_a extends IDCStrategyDefault {
 "// - adapt content of 'Kodierungsschema der geographischen Daten'(uiElement1315 / availabilityDataFormatInspire)\n" +
 "// - show/hide DQ tables dependent from themes\n" +
 "\n" +
+"// Adapt 'Kodierungsschema', 'Konformität' etc. to 'INSPIRE-Themen'. Also connects listener to INSPIRE themes.\n" +
+"// !!! COMMENT the following line if \"dependent\" fields should NOT be adapted to 'INSPIRE-Themen' !!!\n" +
+"applyRuleThesaurusInspire();\n" +
+"\n" +
 "// initial show/hide of DQ tables dependent from themes\n" +
 "applyRule7();\n" +
 "\n" +
@@ -109,13 +113,6 @@ public class IDCStrategy3_4_0_a extends IDCStrategyDefault {
 "function uiElement5064InputHandler() {\n" +
 "  var objClass = dijit.byId(\"objectClass\").getValue();\n" +
 "  if (objClass == \"Class1\") {\n" +
-"    // Get INSPIRE themes\n" +
-"    var themes = UtilList.tableDataToList(UtilGrid.getTableData(\"thesaurusInspire\"));\n" +
-"\n" +
-"    // Adapt 'Kodierungsschema', 'Konformität' etc. to 'INSPIRE-Themen'\n" +
-"// !!! COMMENT the following line if \"dependent\" fields should NOT be adapted to 'INSPIRE-Themen' !!!\n" +
-"    applyRuleThesaurusInspire();\n" +
-"\n" +
 "    //  Show/hide DQ tables in class 1 dependent from themes\n" +
 "    applyRule7();\n" +
 "  }\n" +
