@@ -4,6 +4,13 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
+    <release version="3.3.2-SNAPSHOT" date="????-??-??" description="Release InGrid 3.3.2">
+      <action type="add" dev="wemove" issue="REDMINE-230">
+        Add columns t011_obj_serv.has_atom_download and t03_catalogue.atom_download_url for atom downloadservice implementation.
+        Profile: Add new legacy field "Als ATOM-Download Dienst bereitstellen" (Checkbox).
+      </action>
+    </release>
+    	
     <release version="3.3.1" date="2013-10-30" description="Release InGrid 3.3.1">
       <action type="add" dev="wemove" issue="REDMINE-245">
         Migrate "open data" from additional fields (HH) to new Open Data checkbox and categories.

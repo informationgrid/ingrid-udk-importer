@@ -110,9 +110,10 @@ public interface IDCStrategy {
     /** Release strategy just updating database version to 3.3.1 AND reloading syslists !!! */
     static String VALUE_IDC_VERSION_3_3_1_RELEASE = "3.3.1";
 
-	/** InGrid 3.4 */
-    /** Release strategy just updating database version to 3.4.0 AND reloading syslists !!! */
-    static String VALUE_IDC_VERSION_3_4_0_RELEASE = "3.4.0";
+    /** InGrid 3.3.2 */
+    static String VALUE_IDC_VERSION_3_3_2_a = "3.3.2_a";
+    /** Release strategy just updating database version to 3.3.2 AND reloading syslists !!! */
+    static String VALUE_IDC_VERSION_3_3_2_RELEASE = "3.3.2";
 	
 
 	/** Order of strategies to execute to obtain most recent IGC.
@@ -165,7 +166,8 @@ public interface IDCStrategy {
 		VALUE_IDC_VERSION_3_3_1_c,
 		VALUE_IDC_VERSION_3_3_1_d,
 		VALUE_IDC_VERSION_3_3_1_RELEASE,
-		VALUE_IDC_VERSION_3_4_0_RELEASE,
+		VALUE_IDC_VERSION_3_3_2_a,
+		VALUE_IDC_VERSION_3_3_2_RELEASE
 	};
 
 		

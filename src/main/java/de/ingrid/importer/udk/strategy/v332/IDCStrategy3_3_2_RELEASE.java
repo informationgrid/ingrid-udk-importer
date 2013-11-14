@@ -1,20 +1,18 @@
-package de.ingrid.importer.udk.strategy.v34;
+package de.ingrid.importer.udk.strategy.v332;
 
 import de.ingrid.importer.udk.strategy.IDCStrategyDefault;
 
 /**
  * <p>
- * Changes InGrid 3.4<p>
+ * Changes InGrid 3.3.2<p>
  * <ul>
  *   <li>Set database catalog version to final release version !
  *   <li>RELOAD ALL SYSLISTS due to removing lastModifiedSyslist entry from sys_generic_key 
  * </ul>
  */
-public class IDCStrategy3_4_0_RELEASE extends IDCStrategyDefault {
+public class IDCStrategy3_3_2_RELEASE extends IDCStrategyDefault {
 
-//	private static Log log = LogFactory.getLog(IDCStrategy3_4_0_RELEASE.class);
-
-	private static final String MY_VERSION = VALUE_IDC_VERSION_3_4_0_RELEASE;
+	private static final String MY_VERSION = VALUE_IDC_VERSION_3_3_2_RELEASE;
 
 	public String getIDCVersion() {
 		return MY_VERSION;
