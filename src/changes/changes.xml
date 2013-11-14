@@ -6,10 +6,17 @@
   <body>
     <release version="3.4.0-SNAPSHOT" date="????-??-??" description="Release InGrid 3.4">
       <action type="add" dev="wemove" issue="INGRID-2302">
-        Profile: Fix JS in "INSPIRE Themen" so dependent fields are now adapted via call of internal JS method ("Kodierungsschema", "Konformit√§t").
+        Profile: Fix JS in "INSPIRE Themen" so dependent fields are now adapted via call of internal JS method ("Kodierungsschema", "Konformit‰t").
       </action>
     </release>
 
+    <release version="3.3.2-SNAPSHOT" date="????-??-??" description="Release InGrid 3.3.2">
+      <action type="add" dev="wemove" issue="REDMINE-230">
+        Add columns t011_obj_serv.has_atom_download and t03_catalogue.atom_download_url for atom downloadservice implementation.
+        Profile: Add new legacy field "Als ATOM-Download Dienst bereitstellen" (Checkbox).
+      </action>
+    </release>
+    	
     <release version="3.3.1" date="2013-10-30" description="Release InGrid 3.3.1">
       <action type="add" dev="wemove" issue="REDMINE-245">
         Migrate "open data" from additional fields (HH) to new Open Data checkbox and categories.
