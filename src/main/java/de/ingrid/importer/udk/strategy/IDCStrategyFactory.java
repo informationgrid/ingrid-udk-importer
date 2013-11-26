@@ -57,6 +57,7 @@ import de.ingrid.importer.udk.strategy.v332.IDCStrategy3_3_2_RELEASE;
 import de.ingrid.importer.udk.strategy.v332.IDCStrategy3_3_2_a;
 import de.ingrid.importer.udk.strategy.v34.IDCStrategy3_4_0_RELEASE;
 import de.ingrid.importer.udk.strategy.v34.IDCStrategy3_4_0_a;
+import de.ingrid.importer.udk.strategy.v34.IDCStrategy3_4_0_b;
 
 /**
  * @author joachim
@@ -164,6 +165,8 @@ public class IDCStrategyFactory {
             return new IDCStrategy3_3_2_RELEASE();
         } else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_3_4_0_a)) {
             return new IDCStrategy3_4_0_a();
+        } else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_3_4_0_b)) {
+            return new IDCStrategy3_4_0_b();
         } else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_3_4_0_RELEASE)) {
             return new IDCStrategy3_4_0_RELEASE();
 		} else {

@@ -6,7 +6,10 @@
   <body>
     <release version="3.4.0-SNAPSHOT" date="????-??-??" description="Release InGrid 3.4">
       <action type="add" dev="wemove" issue="INGRID-2302">
-        Profile: Fix JS in "INSPIRE Themen" so dependent fields are now adapted via call of internal JS method ("Kodierungsschema", "Konformität").
+        Profile: Fix JS in "INSPIRE Themen" so dependent fields are now adapted via call of internal JS method ("Kodierungsschema", "Konformitï¿½t").
+      </action>
+      <action type="update" dev="wemove" issue="INGRID-2300">
+        Increase size of restriction value (object_access.restriction_value).
       </action>
     </release>
 
