@@ -138,10 +138,19 @@
         </exclusion>
       </exclusions>
     </dependency>
+<!-- Oracle 10 ! -->
     <dependency>
 	    <groupId>ojdbc</groupId>
 	    <artifactId>ojdbc</artifactId>
 	</dependency>
+<!-- Oracle 11 ! -->
+<!--
+    <dependency>
+        <groupId>com.oracle</groupId>
+        <artifactId>ojdbc6</artifactId>
+        <version>11.2.0.2</version>
+    </dependency>
+-->
     <dependency>
       <!-- Needed at runtime for reading 3_2_0_udk_codelists_serialized.xml -->
       <groupId>com.thoughtworks.xstream</groupId>
