@@ -4,6 +4,12 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
+    <release version="3.5.0-SNAPSHOT" date="????" description="????">
+      <action type="update" dev="wemove" issue="REDMINE-508">
+        Increase size of operation url (t011_obj_serv_op_connpoint.connect_point).
+      </action>
+    </release>
+
     <release version="3.4.0" date="2013-02-25" description="Release InGrid 3.4.0">
       <action type="add" dev="wemove" issue="INGRID-2302">
         Profile: Fix JS in "INSPIRE Themen" so dependent fields are now adapted via call of internal JS method ("Kodierungsschema", "Konformität").
