@@ -1,10 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  **************************************************-
+  InGrid UDK-IGC Importer (IGC Updater)
+  ==================================================
+  Copyright (C) 2014 wemove digital solutions GmbH
+  ==================================================
+  Licensed under the EUPL, Version 1.1 or – as soon they will be
+  approved by the European Commission - subsequent versions of the
+  EUPL (the "Licence");
+
+  You may not use this work except in compliance with the Licence.
+  You may obtain a copy of the Licence at:
+
+  http://ec.europa.eu/idabc/eupl5
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the Licence is distributed on an "AS IS" basis,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the Licence for the specific language governing permissions and
+  limitations under the Licence.
+  **************************************************#
+  -->
+
 <document>
   <properties>
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
-    <release version="3.5.0-SNAPSHOT" date="????" description="????">
+    <release version="3.5.0-SNAPSHOT" date="2014-xx-xx" description="Release InGrid 3.5.0">
+      <action type="add" dev="wemove" issue="REDMINE-524">
+        Added license header to all source files for Open Source migration.
+      </action>
       <action type="update" dev="wemove" issue="REDMINE-508">
         Increase size of operation url (t011_obj_serv_op_connpoint.connect_point).
       </action>
@@ -25,7 +51,7 @@
         Profile: Add new legacy field "Als ATOM-Download Dienst bereitstellen" (Checkbox).
       </action>
     </release>
-    	
+
     <release version="3.3.1" date="2013-10-30" description="Release InGrid 3.3.1">
       <action type="add" dev="wemove" issue="REDMINE-245">
         Migrate "open data" from additional fields (HH) to new Open Data checkbox and categories.
@@ -87,7 +113,7 @@
         Also add new legacy field 'Coupling type' to Profile including JavaScript for handling state of 'Presentational Data'.
       </action>
       <action type="add" dev="wemove" issue="INGRID32-36">
-        Migrate user addresses to separate hidden addresses not visible in IGE.  
+        Migrate user addresses to separate hidden addresses not visible in IGE.
       </action>
       <action type="add" dev="wemove" issue="INGRID32-37">
         Add column 'hide_address' to table 't02_address' for hiding address from search and display.
@@ -115,11 +141,11 @@
       </action>
       <action type="update" dev="wemove" issue="INGRID32-50">
         Add new control "Datensammlung/Datenbank - Fachbezug - Objektartenkatalog" with new database table, also replacing table of "Geoinformation/Karte - Schlüsselkatalog".
-        Move field "Geoinformation/Karte - Fachbezug - Sachdaten/Attributinformation" next to "Schlüsselkatalog", on Input make "Schlüsselkatalog" mandatory (Profile). 
+        Move field "Geoinformation/Karte - Fachbezug - Sachdaten/Attributinformation" next to "Schlüsselkatalog", on Input make "Schlüsselkatalog" mandatory (Profile).
       </action>
       <action type="update" dev="wemove" issue="INGRID32-48">
         Move fields from "Fachbezug" to rubric "Datenqualität" (Profile) and migrate data from DQ tables. Remove according DQ tables/data/syslists.
-        Handle visibility of rubric "Datenqualität" via JS in first control (Profile). 
+        Handle visibility of rubric "Datenqualität" via JS in first control (Profile).
       </action>
       <action type="update" dev="wemove" issue="INGRID32-44, INGRID32-49">
         Update behaviour of "ISO-Themenkategorie" and "INSPIRE-Thema"/"INSPIRE-relevanter Datensatz" in Profile. Change positions.
@@ -128,7 +154,7 @@
         Update behaviour of "Sprache der Ressource" and "Zeichensatz des Datensatzes" in Profile.
       </action>
       <action type="update" dev="wemove" issue="INGRID32-28, INGRID32-47, INGRID32-45">
-        "Spezifikation der Konformität" and "Nutzungsbedingungen" now have new syslists (6005, 6020), also allowing free entries. 
+        "Spezifikation der Konformität" and "Nutzungsbedingungen" now have new syslists (6005, 6020), also allowing free entries.
         Syslist entries 6005 contain publication date at end of value, not shown in IGE but used in IDF mapping.
         "Nutzungsbedingungen" changed from table to textarea with separate dialog for selection from syslist.
         Add Javascript to profile for "INSPIRE-Themen" adapting content of "Kodierungsschema der geographischen Daten" (only class 1).

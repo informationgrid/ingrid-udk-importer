@@ -1,2 +1,24 @@
+---
+-- **************************************************-
+-- InGrid UDK-IGC Importer (IGC Updater)
+-- ==================================================
+-- Copyright (C) 2014 wemove digital solutions GmbH
+-- ==================================================
+-- Licensed under the EUPL, Version 1.1 or – as soon they will be
+-- approved by the European Commission - subsequent versions of the
+-- EUPL (the "Licence");
+-- 
+-- You may not use this work except in compliance with the Licence.
+-- You may obtain a copy of the Licence at:
+-- 
+-- http://ec.europa.eu/idabc/eupl5
+-- 
+-- Unless required by applicable law or agreed to in writing, software
+-- distributed under the Licence is distributed on an "AS IS" basis,
+-- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+-- See the Licence for the specific language governing permissions and
+-- limitations under the Licence.
+-- **************************************************#
+---
 
 DELETE FROM sys_list WHERE lst_id IN (100, 101, 102, 502, 505, 510, 515, 517, 518, 520, 523, 525, 526, 527, 528, 1200, 1230, 1320, 1400, 1410, 2000, 2010, 2240, 2251, 3230, 3385, 3571, 4300, 4305, 4430, 5000, 5100, 5105, 5110, 5120, 5130, 5200, 6000, 6010, 99999999);
