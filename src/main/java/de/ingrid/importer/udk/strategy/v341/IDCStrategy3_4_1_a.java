@@ -33,7 +33,7 @@ import de.ingrid.importer.udk.strategy.IDCStrategyDefault;
 
 /**
  * <p>
- * Changes InGrid 3.4.1<p>
+ * Changes InGrid 3.4.1 (or 3.5, if no branch release)<p>
  * <ul>
  *   <li>increase t011_obj_serv_op_connpoint.connect_point, see https://redmine.wemove.com/issues/508
  * </ul>

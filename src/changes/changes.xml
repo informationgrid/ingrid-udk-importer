@@ -31,6 +31,9 @@
       <action type="add" dev="wemove" issue="REDMINE-524">
         Added license header to all source files for Open Source migration.
       </action>
+      <action type="update" dev="wemove" issue="REDMINE-557">
+        Added new iso entries to syslists accessConstraints (List-ID 6010) + useConstraints (List-ID 6020).
+      </action>
       <action type="update" dev="wemove" issue="REDMINE-508">
         Increase size of operation url (t011_obj_serv_op_connpoint.connect_point).
       </action>
