@@ -34,7 +34,7 @@ import de.ingrid.importer.udk.strategy.IDCStrategyDefault;
  * <p>
  * Changes InGrid 3.4.1 (or 3.5, if no branch release)<p>
  * <ul>
- *   <li>insert iso entries in codelists accessConstraints (List-ID 6010) + useConstraints (List-ID 6020), see https://redmine.wemove.com/issues/557
+ *   <li>Update and insert entries (iso) in codelists accessConstraints (List-ID 6010) + useConstraints (List-ID 6020), see https://redmine.wemove.com/issues/557
  * </ul>
  */
 public class IDCStrategy3_4_1_b extends IDCStrategyDefault {
@@ -78,9 +78,12 @@ public class IDCStrategy3_4_1_b extends IDCStrategyDefault {
 		if (log.isInfoEnabled()) {
 			log.info("Updating syslist 6010 (ISO: accessConstraints)...");
 		}
+ 
+		int numUpdated = jdbc.executeUpdate("UPDATE sys_list SET name = 'Es gelten keine Bedingungen' WHERE lst_id = 6010 and (name = 'keine' OR name = 'Keine')");
+		numUpdated += jdbc.executeUpdate("UPDATE sys_list SET name = 'Bedingungen unbekannt' WHERE lst_id = 6010 and name = 'unbekannt'");
+		log.debug("Updated " + numUpdated +	" entry(ies) ...");
 
-		int numUpdated = 0;
-		numUpdated += jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
+		numUpdated = jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
 				+ getNextId() + ", 6010, 1, 'iso', 'Es gelten keine Bedingungen', 1, 'Y')");
 		numUpdated += jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
 				+ getNextId() + ", 6010, 10, 'iso', 'Bedingungen unbekannt', 1, 'N')");
@@ -93,8 +96,10 @@ public class IDCStrategy3_4_1_b extends IDCStrategyDefault {
 			log.info("Updating syslist 6020 (ISO: useConstraints)...");
 		}
 
-		numUpdated = 0;
-		numUpdated += jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
+		numUpdated = jdbc.executeUpdate("UPDATE sys_list SET name = 'Es gelten keine Bedingungen' WHERE lst_id = 6020 and (name = 'keine' OR name = 'Keine')");
+		log.debug("Updated " + numUpdated +	" entry(ies) ...");
+
+		numUpdated = jdbc.executeUpdate("INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, maintainable, is_default) VALUES ("
 				+ getNextId() + ", 6020, 1, 'iso', 'Es gelten keine Bedingungen', 1, 'N')");
 
 		if (log.isInfoEnabled()) {
