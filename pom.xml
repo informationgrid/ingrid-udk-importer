@@ -34,6 +34,7 @@
               <appendAssemblyId>true</appendAssemblyId>
               <descriptors>
                 <descriptor>src/main/assembly/jar-with-dependencies.xml</descriptor>
+                <descriptor>src/main/assembly/bin.xml</descriptor>
               </descriptors>
               <archive>
                 <manifest>
@@ -49,7 +50,7 @@
         <artifactId>maven-release-plugin</artifactId>
         <configuration>
           <!-- USE assembly:single for release so release installer is deployed to repo ! Needed in IGE iPlug -->
-          <preparationGoals>clean verify changes:changes-report assembly:single deploy wagon:upload -Dproject.url=</preparationGoals>
+          <preparationGoals>clean verify changes:changes-report deploy wagon:upload -Dproject.url=</preparationGoals>
         </configuration>
       </plugin>
     </plugins>
