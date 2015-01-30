@@ -3,7 +3,7 @@
   <parent>
     <groupId>de.ingrid</groupId>
     <artifactId>ingrid-releases-pom</artifactId>
-    <version>3.5.0-SNAPSHOT-R304</version>
+    <version>3.5.0</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>de.ingrid</groupId>
@@ -144,10 +144,10 @@
     </dependency>
 <!-- Oracle 10 ! -->
     <dependency>
-	    <groupId>ojdbc</groupId>
-	    <artifactId>ojdbc</artifactId>
-	    <version>14</version>
-	</dependency>
+        <groupId>ojdbc</groupId>
+        <artifactId>ojdbc</artifactId>
+        <version>14</version>
+    </dependency>
 <!-- Oracle 11 ! -->
 <!--
     <dependency>
@@ -170,15 +170,15 @@
     </dependency>
   </dependencies>
   <!-- NEVER DELETE: InGrid repo needed for download of parent pom if not present ! -->
-	<repositories>
-		<repository>
+    <repositories>
+        <repository>
           <id>de.ingrid.all</id>
           <name>Maven Repo InGrid</name>
-          <url>http://harrison.its-technidata.de/archiva/repository/ingrid-all</url>
+          <url>https://dev.informationgrid.eu/archiva/repository/ingrid-all</url>
         </repository>
-	</repositories>
+    </repositories>
   <scm>
-    <connection>scm:svn:https://harrison.its-technidata.de:444/svn/ingrid/ingrid-udk-importer/trunk</connection>
-    <developerConnection>scm:svn:https://harrison.its-technidata.de:444/svn/ingrid/ingrid-udk-importer/trunk</developerConnection>
+    <connection>scm:git:git@github.com:informationgrid/ingrid-udk-importer.git</connection>
+    <developerConnection>scm:git:git@github.com:informationgrid/ingrid-udk-importer.git</developerConnection>
   </scm>
 </project>
