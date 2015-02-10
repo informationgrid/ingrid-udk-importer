@@ -1,7 +1,7 @@
 UDK Importer
 ============
 
-This software is part of the InGrid software package. The UDK Importer (German: **U**mwelt **D**aten **Katalog** or Engish InGrid Catalog) is part of the IGE iPlug and handles all database update related functionality (alter database structure, alter default database content). It can run also stand alone to update a database manually.
+This software is part of the InGrid software package. The UDK Importer (German: **U**mwelt **D**aten **K**atalog or Engish InGrid Catalog) is part of the IGE iPlug and handles all database update related functionality (alter database structure, alter default database content). It can run also stand alone to update a database manually.
 
 
 Requirements
