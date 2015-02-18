@@ -34,7 +34,7 @@
             <outputDirectory>${project.artifactId}-${project.version}/</outputDirectory>
             <includes>
                 <include>descriptor.properties</include>
-                <include>ingrid-igc-schema_102.sql</include>
+                <include>ingrid-igc-schema_102*.sql</include>
                 <include>syslist_import/**/*</include>
             </includes>
         </fileSet>
