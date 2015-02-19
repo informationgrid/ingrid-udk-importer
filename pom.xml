@@ -24,6 +24,7 @@
             </archive>
         </configuration>
         <executions>
+          <!-- first build our exe jar with different main class -->
           <execution>
             <id>make-jar-with-dependencies</id>
             <phase>package</phase>
@@ -34,7 +35,6 @@
               <appendAssemblyId>true</appendAssemblyId>
               <descriptors>
                 <descriptor>src/main/assembly/jar-with-dependencies.xml</descriptor>
-                <descriptor>src/main/assembly/bin.xml</descriptor>
               </descriptors>
               <archive>
                 <manifest>
@@ -43,6 +43,13 @@
                 </manifest>
               </archive>
             </configuration>
+          </execution>
+          <!-- then installer jar (all settings inherited from ingrid-releases-pom) -->
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
           </execution>
         </executions>
       </plugin>
