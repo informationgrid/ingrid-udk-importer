@@ -31,6 +31,9 @@
       <action type="add" dev="wemove" issue="REDMINE-47">
         Edit service version via syslists. Replace column t011_obj_serv_version.serv_version with version_key/_value, adding new syslists, migrating data.
       </action>
+      <action type="update" dev="wemove" issue="REDMINE-13">
+        Geo-Dataset/-Service: Separate namespace and resource identifier with "/" instead of "#" (t03_catalogue.cat_namespace, t011_obj_geo.datasource_uuid).
+      </action>
     </release>
 
     <release version="3.5.0" date="2015-01-30" description="Release InGrid 3.5.0">
