@@ -42,22 +42,24 @@ import de.ingrid.importer.udk.strategy.IDCStrategyDefault;
  * <li>Separate namespace and resource identifier with "/" instead of "#", see
  * https://dev.informationgrid.eu/redmine/issues/13
  * </ul>
+ * Writes NO Catalog Schema Version to catalog and can be executed on its own !
  */
-public class IDCStrategy3_6_1_b extends IDCStrategyDefault {
+public class IDCStrategy3_6_1_fixNamespaceSeparator extends IDCStrategyDefault {
 
-    private static Log log = LogFactory.getLog( IDCStrategy3_6_1_b.class );
+    private static Log log = LogFactory.getLog( IDCStrategy3_6_1_fixNamespaceSeparator.class );
 
-    private static final String MY_VERSION = VALUE_IDC_VERSION_3_6_1_b;
-
+    /**
+     * Deliver NO Version, this strategy should NOT trigger a strategy workflow (of missing former
+     * versions) and can be executed on its own !
+     * NOTICE: BUT may be executed in workflow (part of workflow array) !
+     * @see de.ingrid.importer.udk.strategy.IDCStrategy#getIDCVersion()
+     */
     public String getIDCVersion() {
-        return MY_VERSION;
+        return null;
     }
 
     public void execute() throws Exception {
         jdbc.setAutoCommit( false );
-
-        // write version of IGC structure !
-        setGenericKey( KEY_IDC_VERSION, MY_VERSION );
 
         // THEN PERFORM DATA MANIPULATIONS !
         // ---------------------------------
