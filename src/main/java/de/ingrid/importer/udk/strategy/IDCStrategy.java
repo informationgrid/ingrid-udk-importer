@@ -151,6 +151,8 @@ public interface IDCStrategy {
     static String VALUE_IDC_VERSION_3_5_0_RELEASE = "3.5.0";
 
     /** InGrid 3.6 */
+    /** -> writes NO version, can be executed on its own ! */
+    static String VALUE_IDC_VERSION_3_6_1_FIX_NAMESPACE_SEPARATOR = "3.6.1_fixNamespaceSeparator";
     static String VALUE_IDC_VERSION_3_6_1_a = "3.6.1_a";
 
 
@@ -212,6 +214,7 @@ public interface IDCStrategy {
 		VALUE_IDC_VERSION_3_4_1_a,
 		VALUE_IDC_VERSION_3_4_1_b,
 		VALUE_IDC_VERSION_3_5_0_RELEASE,
+        VALUE_IDC_VERSION_3_6_1_FIX_NAMESPACE_SEPARATOR, // writes no Version
         VALUE_IDC_VERSION_3_6_1_a,
 	};
 
