@@ -154,6 +154,7 @@ public interface IDCStrategy {
     /** -> writes NO version, can be executed on its own ! */
     static String VALUE_IDC_VERSION_3_6_1_FIX_NAMESPACE_SEPARATOR = "3.6.1_fixNamespaceSeparator";
     static String VALUE_IDC_VERSION_3_6_1_a = "3.6.1_a";
+    static String VALUE_IDC_VERSION_3_6_1_b = "3.6.1_b";
 
 
 	/** Order of strategies to execute to obtain most recent IGC.
@@ -216,6 +217,7 @@ public interface IDCStrategy {
 		VALUE_IDC_VERSION_3_5_0_RELEASE,
         VALUE_IDC_VERSION_3_6_1_FIX_NAMESPACE_SEPARATOR, // writes no Version
         VALUE_IDC_VERSION_3_6_1_a,
+        VALUE_IDC_VERSION_3_6_1_b,
 	};
 
 		

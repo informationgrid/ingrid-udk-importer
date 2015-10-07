@@ -41,13 +41,17 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import de.ingrid.codelists.model.CodeList;
+import de.ingrid.codelists.model.CodeListEntry;
 import de.ingrid.importer.udk.ImportDescriptor;
 import de.ingrid.importer.udk.jdbc.JDBCConnectionProxy;
 import de.ingrid.importer.udk.provider.DataProvider;
+import de.ingrid.importer.udk.util.InitialCodeListServiceFactory;
 import de.ingrid.importer.udk.util.UuidGenerator;
 
 /**
@@ -308,6 +312,67 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		int numDeleted = jdbc.executeUpdate("DELETE FROM sys_generic_key WHERE key_name='" + key + "'");
 		return numDeleted;
 	}
+
+    /**
+     * Add syslists to IGC catalog from initial syslists in ingrid-codelist-service.
+     * <b>ONLY ADDED IF NOT ALREADY PRESENT !</b>
+     * @param syslists ids of syslists to add
+     * @throws Exception sql statement, result set, jdbc exception ...
+     */
+    protected void addSysListsFromInitial(int[] syslists) throws Exception {
+        log.info( "\nAdding sys_lists from initial syslists ! ..." );
+
+        String psSql = "SELECT name FROM sys_list WHERE lst_id = ?";
+        PreparedStatement psSelect = jdbc.prepareStatement( psSql );
+
+        psSql = "INSERT INTO sys_list (id, lst_id, entry_id, lang_id, name, description, data) " + "VALUES (?,?,?,?,?,?,?)";
+        PreparedStatement psInsert = jdbc.prepareStatement( psSql );
+
+        for (int newSyslistId : syslists) {
+            // first check, whether list exists
+            psSelect.setLong( 1, newSyslistId );
+            ResultSet rs = psSelect.executeQuery();
+            if (rs.next()) {
+                // syslist exists, we skip this one assuming list has same content !
+                log.warn( "Syslist " + newSyslistId + " already exists ! We skip adding Syslist assuming correct entries !!!" );
+                rs.close();
+                continue;
+            }
+            rs.close();
+
+            // Add new syslist
+            CodeList newSyslist = InitialCodeListServiceFactory.instance().getCodeList( Integer.toString( newSyslistId ) );
+            List<CodeListEntry> listEntries = newSyslist.getEntries();
+
+            for (CodeListEntry entry : listEntries) {
+                Map<String, String> entryLocalisations = entry.getLocalisations();
+                for (String entryLangId : entryLocalisations.keySet()) {
+                    String entryValue = entryLocalisations.get( entryLangId );
+
+                    // INSERT
+                    psInsert.setLong( 1, getNextId() );
+                    psInsert.setLong( 2, newSyslistId );
+                    psInsert.setLong( 3, Long.decode( entry.getId() ) );
+                    psInsert.setString( 4, entryLangId );
+                    psInsert.setString( 5, entryValue );
+                    psInsert.setString( 6, entry.getDescription() );
+                    psInsert.setString( 7, entry.getData() );
+                    int numInserted = psInsert.executeUpdate();
+                    if (numInserted > 0) {
+                        String msg = "ADDED " + numInserted + " NEW entry: " + newSyslistId + "/" + entry.getId() + "/" + entryLangId + "/" + entryValue
+                                + " (listId/entryId/language/value)";
+                        log.info( "NEW SYSLIST ENTRY -> " + msg );
+                    } else {
+                        log.error( "PROBLEMS ADDING NEW entry: listId/entryId/language/value = " + newSyslistId + "/" + entry.getId() + "/" + entryLangId + "/" + entryValue );
+                    }
+                }
+            }
+        }
+        psSelect.close();
+        psInsert.close();
+
+        log.info( "Adding sys_lists from initial syslists ! ... done\n" );
+    }
 
     /** Convert InputStream to String.
      * @param is the stream
