@@ -39,8 +39,8 @@ import de.ingrid.importer.udk.strategy.IDCStrategyDefault;
  * Changes InGrid 3.6.1
  * <p>
  * <ul>
- * <li>Add object_use_constraints table with license_key/_value for editing
- * useConstraints (syslist 6500), see
+ * <li>Add object_use_constraint table with license_key/_value for editing
+ * ISO useConstraints (syslist 6500), see
  * https://dev.informationgrid.eu/redmine/issues/13 (part 2.)
  * </ul>
  */
@@ -75,7 +75,7 @@ public class IDCStrategy3_6_1_b extends IDCStrategyDefault {
         addSysListsFromInitial( new int[] { 6500 } );
         System.out.println( "done." );
 
-        System.out.print( "  Migrating object_use to new object_use_constraints..." );
+        System.out.print( "  Migrating object_use to new object_use_constraint..." );
         migrateObjectUse();
         System.out.println( "done." );
 
@@ -90,16 +90,16 @@ public class IDCStrategy3_6_1_b extends IDCStrategyDefault {
     private void extendDataStructure() throws Exception {
         log.info( "\nExtending datastructure -> CAUSES COMMIT ! ..." );
 
-        log.info( "Create table 'object_use_constraints'..." );
-        jdbc.getDBLogic().createTableObjectUseConstraints( jdbc );
+        log.info( "Create table 'object_use_constraint'..." );
+        jdbc.getDBLogic().createTableObjectUseConstraint( jdbc );
 
         log.info( "Extending datastructure... done\n" );
     }
 
     private void migrateObjectUse() throws Exception {
-        log.info( "\nUpdating object_use and object_use_constraints..." );
+        log.info( "\nUpdating object_use and object_use_constraint..." );
 
-        log.info( "Transfer license from object_use to object_use_constraints ..." );
+        log.info( "Transfer license from object_use to object_use_constraint ..." );
 
         // object_use may contain entries from license syslist if the object is
         // open data.
@@ -110,7 +110,7 @@ public class IDCStrategy3_6_1_b extends IDCStrategyDefault {
 
         PreparedStatement psSelectIsOpenData = jdbc.prepareStatement( "SELECT is_open_data FROM t01_object WHERE id = ?" );
 
-        PreparedStatement psInsertObjUseConstr = jdbc.prepareStatement( "INSERT INTO object_use_constraints " + "(id, obj_id, line, license_key, license_value) "
+        PreparedStatement psInsertObjUseConstr = jdbc.prepareStatement( "INSERT INTO object_use_constraint " + "(id, obj_id, line, license_key, license_value) "
                 + "VALUES (?,?,?,?,?)" );
 
         String sql = "select id, obj_id, terms_of_use_key, terms_of_use_value from object_use";
@@ -158,12 +158,12 @@ public class IDCStrategy3_6_1_b extends IDCStrategyDefault {
         psSelectIsOpenData.close();
         psInsertObjUseConstr.close();
 
-        log.info( "Copied " + numTransferred + " licenses from object_use to object_use_constraints." );
+        log.info( "Copied " + numTransferred + " licenses from object_use to object_use_constraint." );
 
         // finally set all object_use entries to free text !
         int numUpdated = jdbc.executeUpdate( "UPDATE object_use SET terms_of_use_key = -1" );
         log.info( "Updated " + numUpdated + " entries in object_use to free text (terms_of_use_key = -1)." );
 
-        log.info( "Updating object_use and object_use_constraints... done\n" );
+        log.info( "Updating object_use and object_use_constraint... done\n" );
     }
 }

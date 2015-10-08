@@ -347,8 +347,8 @@ public class MySQLLogic implements DBLogic {
 		jdbc.executeUpdate(sql);
 	}
 
-    public void createTableObjectUseConstraints(JDBCConnectionProxy jdbc) throws SQLException {
-        String sql = "CREATE TABLE object_use_constraints ("
+    public void createTableObjectUseConstraint(JDBCConnectionProxy jdbc) throws SQLException {
+        String sql = "CREATE TABLE object_use_constraint ("
                 + "id BIGINT NOT NULL, "
                 + "version INTEGER NOT NULL DEFAULT 0, "
                 + "obj_id BIGINT, "

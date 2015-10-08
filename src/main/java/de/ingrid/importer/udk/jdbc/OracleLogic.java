@@ -405,8 +405,8 @@ public class OracleLogic implements DBLogic {
 		jdbc.commit();
 	}
 
-	public void createTableObjectUseConstraints(JDBCConnectionProxy jdbc) throws SQLException {
-        String sql = "CREATE TABLE object_use_constraints ("
+	public void createTableObjectUseConstraint(JDBCConnectionProxy jdbc) throws SQLException {
+        String sql = "CREATE TABLE object_use_constraint ("
                 + "id NUMBER(24,0) NOT NULL, "
                 + "version NUMBER(10,0) DEFAULT '0' NOT NULL, "
                 + "obj_id NUMBER(24,0), "
@@ -414,9 +414,9 @@ public class OracleLogic implements DBLogic {
                 + "license_key NUMBER(10,0), "
                 + "license_value VARCHAR2(4000 CHAR))";
         jdbc.executeUpdate(sql);
-        sql = "ALTER TABLE object_use_constraints ADD CONSTRAINT PRIMARY_ObjectUseConstraints PRIMARY KEY ( id ) ENABLE";
+        sql = "ALTER TABLE object_use_constraint ADD CONSTRAINT PRIMARY_ObjectUseConstraint PRIMARY KEY ( id ) ENABLE";
         jdbc.executeUpdate(sql);
-        sql = "CREATE INDEX idxObjUConstr_ObjId ON object_use_constraints ( obj_id )";
+        sql = "CREATE INDEX idxObjUConstr_ObjId ON object_use_constraint ( obj_id )";
         jdbc.executeUpdate(sql);
         jdbc.commit();
 	}

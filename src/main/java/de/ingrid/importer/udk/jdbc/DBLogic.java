@@ -133,5 +133,5 @@ public interface DBLogic {
 	void createTableObjectOpenDataCategory(JDBCConnectionProxy jdbc) throws SQLException;
 
     /** DDL Operation ! CAUSES COMMIT ON MySQL ! */
-    void createTableObjectUseConstraints(JDBCConnectionProxy jdbc) throws SQLException;
+    void createTableObjectUseConstraint(JDBCConnectionProxy jdbc) throws SQLException;
 }
