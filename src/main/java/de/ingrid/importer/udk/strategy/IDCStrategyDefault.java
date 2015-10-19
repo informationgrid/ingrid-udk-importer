@@ -196,6 +196,28 @@ public abstract class IDCStrategyDefault implements IDCStrategy {
 		return catalogLanguage;
 	}
 
+    protected int readCatalogLanguageKey() throws Exception {
+        int langKey = -1;
+        String sql = "SELECT language_key FROM t03_catalogue";
+        try {
+            Statement st = jdbc.createStatement();
+            ResultSet rs = jdbc.executeQuery(sql, st);
+            // has to be there !!!
+            rs.next();
+
+            langKey = rs.getInt(1);
+            
+            rs.close();
+            st.close();
+
+        } catch (SQLException e) {
+            log.error("Error executing SQL: " + sql, e);
+            throw e;
+        }
+
+        return langKey;
+    }
+
 	protected void setHiLoGeneratorViaId(long lastId) throws SQLException {
 		sqlStr = "DELETE FROM hibernate_unique_key";
 		jdbc.executeUpdate(sqlStr);

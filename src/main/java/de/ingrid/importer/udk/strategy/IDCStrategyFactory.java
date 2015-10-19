@@ -86,6 +86,7 @@ import de.ingrid.importer.udk.strategy.v35.IDCStrategy3_5_0_RELEASE;
 import de.ingrid.importer.udk.strategy.v36.IDCStrategy3_6_1_a;
 import de.ingrid.importer.udk.strategy.v36.IDCStrategy3_6_1_b;
 import de.ingrid.importer.udk.strategy.v36.IDCStrategy3_6_1_fixNamespaceSeparator;
+import de.ingrid.importer.udk.strategy.v36.IDCStrategy3_6_1_fixSyslist6100;
 
 /**
  * @author joachim
@@ -205,6 +206,8 @@ public class IDCStrategyFactory {
             return new IDCStrategy3_5_0_RELEASE();
         } else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_3_6_1_FIX_NAMESPACE_SEPARATOR)) {
             return new IDCStrategy3_6_1_fixNamespaceSeparator();
+        } else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_3_6_1_FIX_SYSLIST_6100)) {
+            return new IDCStrategy3_6_1_fixSyslist6100();
         } else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_3_6_1_a)) {
             return new IDCStrategy3_6_1_a();
         } else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_3_6_1_b)) {
