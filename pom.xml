@@ -3,12 +3,12 @@
   <parent>
     <groupId>de.ingrid</groupId>
     <artifactId>ingrid-releases-pom</artifactId>
-    <version>3.5.1</version>
+    <version>3.6.1</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>de.ingrid</groupId>
   <artifactId>ingrid-udk-importer</artifactId>
-  <version>3.6.0-SNAPSHOT</version>
+  <version>3.6.1</version>
   <name>InGrid UDK-IGC Importer (IGC Updater)</name>
   <build>
     <finalName>${project.artifactId}-${project.version}</finalName>
@@ -53,33 +53,44 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>external.atlassian.jgitflow</groupId>
+        <artifactId>jgitflow-maven-plugin</artifactId>
+        <version>1.0-m5.1</version>
+        <configuration>
+          <defaultOriginUrl>https://github.com/informationgrid/ingrid-udk-importer</defaultOriginUrl>
+          <noDeploy>true</noDeploy>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 
   <!-- ==================== DEPENDENCY MANAGEMENT ==================== -->
-
+<!--
   <dependencyManagement>
     <dependencies>
       <dependency>
         <groupId>de.ingrid</groupId>
         <artifactId>ingrid-version-management-pom</artifactId>
-        <version>3.6.0-SNAPSHOT</version>
+        <version>3.6.0</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
     </dependencies>
   </dependencyManagement>
-
+-->
   <!-- ==================== DEPENDENCIES ==================== -->
   <dependencies>
     <dependency>
       <!-- Needed for Mapping of Profile -->
       <groupId>de.ingrid</groupId>
       <artifactId>ingrid-utils-ige</artifactId>
+      <version>3.5.0</version>
     </dependency>
     <dependency>
       <groupId>de.ingrid</groupId>
       <artifactId>ingrid-utils</artifactId>
+      <version>3.6.0</version>
       <exclusions>
         <exclusion>
           <groupId>org.springframework</groupId>
@@ -92,6 +103,29 @@
         <exclusion>
           <groupId>com.thoughtworks.xstream</groupId>
           <artifactId>xstream</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>de.ingrid</groupId>
+      <artifactId>ingrid-codelist-service</artifactId>
+      <version>3.6.1</version>
+      <exclusions>
+        <exclusion>
+          <groupId>commons-httpclient</groupId>
+          <artifactId>commons-httpclient</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.codehaus.jettison</groupId>
+          <artifactId>jettison</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>opensymphony</groupId>
+          <artifactId>quartz</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring</artifactId>
         </exclusion>
       </exclusions>
     </dependency>

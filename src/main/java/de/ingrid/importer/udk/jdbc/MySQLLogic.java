@@ -347,6 +347,20 @@ public class MySQLLogic implements DBLogic {
 		jdbc.executeUpdate(sql);
 	}
 
+    public void createTableObjectUseConstraint(JDBCConnectionProxy jdbc) throws SQLException {
+        String sql = "CREATE TABLE object_use_constraint ("
+                + "id BIGINT NOT NULL, "
+                + "version INTEGER NOT NULL DEFAULT 0, "
+                + "obj_id BIGINT, "
+                + "line INTEGER DEFAULT 0, "
+                + "license_key INTEGER, "
+                + "license_value TEXT, "
+                + "PRIMARY KEY (id), "
+                + "INDEX idxObjUConstr_ObjId (obj_id ASC)) "
+                + "ENGINE=InnoDB;";
+        jdbc.executeUpdate(sql);        
+    }
+
 	private String mapColumnTypeToSQL(ColumnType colType) {
 		String sql = "";
 

@@ -117,4 +117,7 @@ public class MSSQLLogic implements DBLogic {
 	public void createTableObjectOpenDataCategory(JDBCConnectionProxy jdbc) throws SQLException {
 		// TODO !
 	}
+    public void createTableObjectUseConstraint(JDBCConnectionProxy jdbc) throws SQLException {
+        // TODO !
+    }
 }

@@ -149,7 +149,17 @@ public interface IDCStrategy {
     static String VALUE_IDC_VERSION_3_4_1_b = "3.4.1_b";
     /** Release strategy just updating database version to 3.5.0 AND reloading syslists !!! */
     static String VALUE_IDC_VERSION_3_5_0_RELEASE = "3.5.0";
-	
+
+    /** InGrid 3.6 */
+    /** -> writes NO version, can be executed on its own ! */
+    static String VALUE_IDC_VERSION_3_6_1_FIX_NAMESPACE_SEPARATOR = "3.6.1_fixNamespaceSeparator";
+    static String VALUE_IDC_VERSION_3_6_1_FIX_SYSLIST_6100 = "3.6.1_fixSyslist6100";
+    static String VALUE_IDC_VERSION_3_6_1_FIX_INSPIRE_ISO = "3.6.1_fixInspireISO";
+    static String VALUE_IDC_VERSION_3_6_1_a = "3.6.1_a";
+    static String VALUE_IDC_VERSION_3_6_1_b = "3.6.1_b";
+    /** Release strategy just updating database version to 3.6.1 AND reloading syslists !!! */
+    static String VALUE_IDC_VERSION_3_6_1_RELEASE = "3.6.1";
+
 
 	/** Order of strategies to execute to obtain most recent IGC.
 	 * Contains all according versions/strategies in ascending order.
@@ -195,20 +205,32 @@ public interface IDCStrategy {
 		VALUE_IDC_VERSION_3_3_0_FIX_CATALOG_NAMESPACE,
 		VALUE_IDC_VERSION_3_3_0_c,
 		VALUE_IDC_VERSION_3_3_0_RELEASE,
+
 		VALUE_IDC_VERSION_3_3_1_FIX_ORIG_ID, // writes no Version
 		VALUE_IDC_VERSION_3_3_1_a,
 		VALUE_IDC_VERSION_3_3_1_b,
 		VALUE_IDC_VERSION_3_3_1_c,
 		VALUE_IDC_VERSION_3_3_1_d,
 		VALUE_IDC_VERSION_3_3_1_RELEASE,
+
 		VALUE_IDC_VERSION_3_3_2_a,
 		VALUE_IDC_VERSION_3_3_2_RELEASE,
+
 		VALUE_IDC_VERSION_3_4_0_a,
 		VALUE_IDC_VERSION_3_4_0_b,
 		VALUE_IDC_VERSION_3_4_0_RELEASE,
+
 		VALUE_IDC_VERSION_3_4_1_a,
 		VALUE_IDC_VERSION_3_4_1_b,
 		VALUE_IDC_VERSION_3_5_0_RELEASE,
+
+        VALUE_IDC_VERSION_3_6_1_FIX_NAMESPACE_SEPARATOR, // writes no Version
+        VALUE_IDC_VERSION_3_6_1_FIX_SYSLIST_6100, // writes no Version
+        VALUE_IDC_VERSION_3_6_1_FIX_INSPIRE_ISO, // writes no Version
+        VALUE_IDC_VERSION_3_6_1_a,
+        VALUE_IDC_VERSION_3_6_1_b,
+        VALUE_IDC_VERSION_3_6_1_RELEASE,
+
 	};
 
 		

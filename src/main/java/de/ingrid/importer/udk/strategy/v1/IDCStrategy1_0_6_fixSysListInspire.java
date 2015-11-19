@@ -25,9 +25,6 @@
  */
 package de.ingrid.importer.udk.strategy.v1;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
@@ -35,7 +32,6 @@ import java.util.Map.Entry;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import de.ingrid.importer.udk.strategy.IDCStrategy;
 import de.ingrid.importer.udk.strategy.IDCStrategyDefault;
 import de.ingrid.utils.udk.UtilsLanguageCodelist;
 
@@ -212,27 +208,5 @@ public class IDCStrategy1_0_6_fixSysListInspire extends IDCStrategyDefault {
 			
 			// NO fixing of data values. In object data only entry id is stored !
 		}
-	}
-
-	private int readCatalogLanguageKey() throws Exception {
-		int langKey = -1;
-		String sql = "SELECT language_key FROM t03_catalogue";
-		try {
-			Statement st = jdbc.createStatement();
-			ResultSet rs = jdbc.executeQuery(sql, st);
-			// has to be there !!!
-			rs.next();
-
-			langKey = rs.getInt(1);
-			
-			rs.close();
-			st.close();
-
-		} catch (SQLException e) {
-			log.error("Error executing SQL: " + sql, e);
-			throw e;
-		}
-
-		return langKey;
 	}
 }
