@@ -28,16 +28,16 @@
   </properties>
   <body>
     <release version="3.6.1-SNAPSHOT" date="??" description="??">
+      <action type="add" dev="wemove" issue="REDMINE-13 2.)">
+        Add new table object_use_constraint with license_key/_value for editing ISO useConstraints (syslist 6500). Migrate data from object_use.
+      </action>
       <action type="add" dev="wemove" issue="REDMINE-47">
         Edit service version via syslists. Replace column t011_obj_serv_version.serv_version with version_key/_value, adding new syslists, migrating data.
       </action>
-      <action type="update" dev="wemove" issue="REDMINE-13">
-        Map INSPIRE themes to ISO Categories according to GDI-DE and add missing ISO categories to data. 
+      <action type="update" dev="wemove" issue="REDMINE-13 3.)">
+        Migrate searchterm values due to update of syslist 6100 (INSPIRE Themes). Map INSPIRE themes to ISO Categories according to GDI-DE and add missing ISO categories to records. 
       </action>
-      <action type="update" dev="wemove" issue="REDMINE-13">
-        Migrate searchterm values due to update of syslist 6100 (INSPIRE Themes).
-      </action>
-      <action type="update" dev="wemove" issue="REDMINE-13">
+      <action type="update" dev="wemove" issue="REDMINE-13 1.)">
         Geo-Dataset/-Service: Separate namespace and resource identifier with "/" instead of "#" (t03_catalogue.cat_namespace, t011_obj_geo.datasource_uuid).
       </action>
     </release>

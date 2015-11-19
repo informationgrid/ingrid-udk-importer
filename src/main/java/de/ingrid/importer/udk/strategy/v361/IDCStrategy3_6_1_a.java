@@ -23,7 +23,7 @@
 /**
  * 
  */
-package de.ingrid.importer.udk.strategy.v36;
+package de.ingrid.importer.udk.strategy.v361;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
