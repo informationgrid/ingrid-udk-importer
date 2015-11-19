@@ -27,7 +27,7 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
-    <release version="3.6.1-SNAPSHOT" date="??" description="??">
+    <release version="3.6.1" date="2015-11-19" description="Release InGrid 3.6.1">
       <action type="add" dev="wemove" issue="REDMINE-13 2.)">
         Add new table object_use_constraint with license_key/_value for editing ISO useConstraints (syslist 6500). Migrate data from object_use.
       </action>
