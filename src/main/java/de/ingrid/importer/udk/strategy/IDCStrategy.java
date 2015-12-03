@@ -150,7 +150,7 @@ public interface IDCStrategy {
     /** Release strategy just updating database version to 3.5.0 AND reloading syslists !!! */
     static String VALUE_IDC_VERSION_3_5_0_RELEASE = "3.5.0";
 
-    /** InGrid 3.6 */
+    /** InGrid 3.6.1 */
     /** -> writes NO version, can be executed on its own ! */
     static String VALUE_IDC_VERSION_3_6_1_FIX_NAMESPACE_SEPARATOR = "3.6.1_fixNamespaceSeparator";
     static String VALUE_IDC_VERSION_3_6_1_FIX_SYSLIST_6100 = "3.6.1_fixSyslist6100";
@@ -159,6 +159,9 @@ public interface IDCStrategy {
     static String VALUE_IDC_VERSION_3_6_1_b = "3.6.1_b";
     /** Release strategy just updating database version to 3.6.1 AND reloading syslists !!! */
     static String VALUE_IDC_VERSION_3_6_1_RELEASE = "3.6.1";
+    static String VALUE_IDC_VERSION_3_6_1_1_a = "3.6.1.1_a";
+    /** Release strategy just updating database version to 3.6.1.1 AND reloading syslists !!! */
+    static String VALUE_IDC_VERSION_3_6_1_1_RELEASE = "3.6.1.1";
 
 
 	/** Order of strategies to execute to obtain most recent IGC.
@@ -230,7 +233,8 @@ public interface IDCStrategy {
         VALUE_IDC_VERSION_3_6_1_a,
         VALUE_IDC_VERSION_3_6_1_b,
         VALUE_IDC_VERSION_3_6_1_RELEASE,
-
+        VALUE_IDC_VERSION_3_6_1_1_a,
+        VALUE_IDC_VERSION_3_6_1_1_RELEASE,
 	};
 
 		
