@@ -27,7 +27,7 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
-    <release version="3.6.2" date="2016-05-19" description="Release InGrid 3.6.2">
+    <release version="3.6.2" date="2016-05-23" description="Release InGrid 3.6.2">
       <action type="update" dev="wemove" issue="REDMINE-223">
         Make "Anwendungseinschränkungen" (useLimitation) optional.
       </action>
