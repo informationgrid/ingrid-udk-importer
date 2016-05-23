@@ -27,6 +27,12 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
+    <release version="3.6.2" date="2016-05-23" description="Release InGrid 3.6.2">
+      <action type="update" dev="wemove" issue="REDMINE-223">
+        Make "Anwendungseinschränkungen" (useLimitation) optional.
+      </action>
+    </release>
+
     <release version="3.6.1.1" date="2015-12-03" description="Bugfix Release InGrid 3.6.1.1">
       <action type="fix" dev="wemove" issue="REDMINE-225">
         Add new field "Nutzungsbeschränkungen" to profile to appear in "additional fields" in frontend.

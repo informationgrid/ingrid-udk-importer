@@ -20,21 +20,21 @@
  * limitations under the Licence.
  * **************************************************#
  */
-package de.ingrid.importer.udk.strategy.v361;
+package de.ingrid.importer.udk.strategy.v362;
 
 import de.ingrid.importer.udk.strategy.IDCStrategyDefault;
 
 /**
  * <p>
- * Changes InGrid 3.6.1.1<p>
+ * Changes InGrid 3.6.2<p>
  * <ul>
  *   <li>Set database catalog version to final release version !
  *   <li>RELOAD ALL SYSLISTS due to removing lastModifiedSyslist entry from sys_generic_key 
  * </ul>
  */
-public class IDCStrategy3_6_1_1_RELEASE extends IDCStrategyDefault {
+public class IDCStrategy3_6_2_RELEASE extends IDCStrategyDefault {
 
-	private static final String MY_VERSION = VALUE_IDC_VERSION_3_6_1_1_RELEASE;
+	private static final String MY_VERSION = VALUE_IDC_VERSION_3_6_2_RELEASE;
 
 	public String getIDCVersion() {
 		return MY_VERSION;

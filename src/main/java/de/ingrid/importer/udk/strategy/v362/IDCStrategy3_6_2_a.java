@@ -20,8 +20,10 @@
  * limitations under the Licence.
  * **************************************************#
  */
-
-package de.ingrid.importer.udk.strategy.v361;
+/**
+ * 
+ */
+package de.ingrid.importer.udk.strategy.v362;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -30,24 +32,21 @@ import de.ingrid.importer.udk.strategy.IDCStrategyDefault;
 import de.ingrid.utils.ige.profile.MdekProfileUtils;
 import de.ingrid.utils.ige.profile.ProfileMapper;
 import de.ingrid.utils.ige.profile.beans.ProfileBean;
-import de.ingrid.utils.ige.profile.beans.Rubric;
 import de.ingrid.utils.ige.profile.beans.controls.Controls;
 
 /**
  * <p>
- * Changes InGrid 3.6.1.1
+ * Changes InGrid 3.6.2
  * <p>
  * <ul>
- * <li>Profile: Add missing new legacy field "Nutzungsbeschränkungen", see
- * https://dev.informationgrid.eu/redmine/issues/225
+ * <li>make useLimitation optional (Anwendungseinschränkungen), see https://dev.informationgrid.eu/redmine/issues/223
  * </ul>
- * Writes NEW Catalog Schema Version to catalog !
  */
-public class IDCStrategy3_6_1_1_a extends IDCStrategyDefault {
+public class IDCStrategy3_6_2_a extends IDCStrategyDefault {
 
-    private static Log log = LogFactory.getLog( IDCStrategy3_6_1_1_a.class );
+    private static Log log = LogFactory.getLog( IDCStrategy3_6_2_a.class );
 
-    private static final String MY_VERSION = VALUE_IDC_VERSION_3_6_1_1_a;
+    private static final String MY_VERSION = VALUE_IDC_VERSION_3_6_2_a;
 
     String profileXml = null;
     ProfileMapper profileMapper;
@@ -66,47 +65,43 @@ public class IDCStrategy3_6_1_1_a extends IDCStrategyDefault {
         // THEN PERFORM DATA MANIPULATIONS !
         // ---------------------------------
 
-        System.out.print( "  Update Profile in database..." );
+        System.out.print("  Update Profile in database...");
         updateProfile();
-        System.out.println( "done." );
+        System.out.println("done.");
 
         jdbc.commit();
         System.out.println( "Update finished successfully." );
     }
 
     private void updateProfile() throws Exception {
-        log.info( "\nUpdate Profile in database..." );
+        log.info("\nUpdate Profile in database...");
 
         // read profile
-        String profileXml = readGenericKey( KEY_PROFILE_XML );
+        String profileXml = readGenericKey(KEY_PROFILE_XML);
         if (profileXml == null) {
-            throw new Exception( "igcProfile not set !" );
+            throw new Exception("igcProfile not set !");
         }
         profileMapper = new ProfileMapper();
-        profileBean = profileMapper.mapStringToBean( profileXml );
+        profileBean = profileMapper.mapStringToBean(profileXml);            
 
-        updateRubricsAndControls( profileBean );
+        updateRubricsAndControls(profileBean);
+
+//      updateJavaScript(profileBean);
 
         // write Profile !
-        profileXml = profileMapper.mapBeanToXmlString( profileBean );
-        setGenericKey( KEY_PROFILE_XML, profileXml );
+        profileXml = profileMapper.mapBeanToXmlString(profileBean);
+        setGenericKey(KEY_PROFILE_XML, profileXml);         
 
-        log.info( "Update Profile in database... done\n" );
+        log.info("Update Profile in database... done\n");
     }
 
-    /**
-     * Manipulate structure of rubrics / controls, NO Manipulation of JS. Also
-     * removes/adds controls
+    /** Manipulate structure of rubrics / controls, NO Manipulation of JS.
+     * Also removes/adds controls
      */
     private void updateRubricsAndControls(ProfileBean profileBean) {
-        log.info( "Add new LEGACY control 'Verfügbarkeit  - Nutzungsbeschränkungen' after 'Zugangsbeschränkungen'" );
-        Controls control = new Controls();
-        control.setIsLegacy( true );
-        control.setId( "uiElementN027" );
-        control.setIsMandatory( false );
-        control.setIsVisible( "show" );
-        Rubric rubric = MdekProfileUtils.findRubric( profileBean, "availability" );
-        int index = MdekProfileUtils.findControlIndex( profileBean, rubric, "uiElementN025" );
-        MdekProfileUtils.addControl( profileBean, control, rubric, index + 1 );
+        log.info("'Anwendungseinschränkungen'(uiElementN026 / useLimitation): make always optional but show");
+        Controls control = MdekProfileUtils.findControl(profileBean, "uiElementN026");
+        control.setIsMandatory(false);
+        control.setIsVisible("show");
     }
 }

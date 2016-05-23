@@ -2,7 +2,7 @@
  * **************************************************-
  * InGrid UDK-IGC Importer (IGC Updater)
  * ==================================================
- * Copyright (C) 2014 - 2015 wemove digital solutions GmbH
+ * Copyright (C) 2014 - 2016 wemove digital solutions GmbH
  * ==================================================
  * Licensed under the EUPL, Version 1.1 or – as soon they will be
  * approved by the European Commission - subsequent versions of the
@@ -91,6 +91,8 @@ import de.ingrid.importer.udk.strategy.v361.IDCStrategy3_6_1_b;
 import de.ingrid.importer.udk.strategy.v361.IDCStrategy3_6_1_fixInspireISO;
 import de.ingrid.importer.udk.strategy.v361.IDCStrategy3_6_1_fixNamespaceSeparator;
 import de.ingrid.importer.udk.strategy.v361.IDCStrategy3_6_1_fixSyslist6100;
+import de.ingrid.importer.udk.strategy.v362.IDCStrategy3_6_2_RELEASE;
+import de.ingrid.importer.udk.strategy.v362.IDCStrategy3_6_2_a;
 
 /**
  * @author joachim
@@ -224,6 +226,10 @@ public class IDCStrategyFactory {
             return new IDCStrategy3_6_1_1_a();
         } else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_3_6_1_1_RELEASE)) {
             return new IDCStrategy3_6_1_1_RELEASE();
+        } else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_3_6_2_a)) {
+            return new IDCStrategy3_6_2_a();
+        } else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_3_6_2_RELEASE)) {
+            return new IDCStrategy3_6_2_RELEASE();
 		} else {
 			log.error("Unknown IDC version '" + idcVersion + "'.");
 			throw new IllegalArgumentException("Unknown IDC version '" + idcVersion + "'.");
