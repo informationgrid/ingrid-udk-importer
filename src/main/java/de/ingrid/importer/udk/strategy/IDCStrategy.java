@@ -167,6 +167,7 @@ public interface IDCStrategy {
     static String VALUE_IDC_VERSION_3_6_2_a = "3.6.2_a";
     /** Release strategy just updating database version to 3.6.2 AND reloading syslists !!! */
     static String VALUE_IDC_VERSION_3_6_2_RELEASE = "3.6.2";
+    static String VALUE_IDC_VERSION_3_6_2_FIX_CONSTRAINTS_HH = "3.6.2_fixConstraintsHH";
 
 
 	/** Order of strategies to execute to obtain most recent IGC.
