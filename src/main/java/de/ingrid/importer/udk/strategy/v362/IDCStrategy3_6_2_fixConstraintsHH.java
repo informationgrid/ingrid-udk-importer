@@ -38,9 +38,10 @@ import de.ingrid.importer.udk.strategy.IDCStrategyDefault;
  * <p>
  * Changes InGrid 3.6.2
  * <p>
- * Fix migration of constrains (IDCStrategy3_6_1_b) for LGV_HH. See Email "AW: Fragen zu unserer Instalaltion InGrid 3.6.2" 05.07.2016 12:59.
+ * Fix migration of constrains (IDCStrategy3_6_1_b) for LGV_HH see https://redmine.wemove.com/issues/911
  * <ul>
  * <li>- wenn "OpenData" oder "Veröffentlichung gemäß HmbTG" gesetzt
+ * <li>- ODER wenn "Anwendungseinschränkungen" (object_use) beginnt mit "Datenlizenz Deutschland - Namensnennung - Version 2.0;"
  * <li>- dann übernehme Inhalt aus "Anwendungseinschränkungen" (object_use) in das neue Feld "Nutzungsbedingungen" (object_use_constraint), wenn noch nicht vorhanden
  * <li>- und lösche Inhalt von "Anwendungseinschränkungen" (object_use)
  * </ul>
@@ -83,6 +84,7 @@ public class IDCStrategy3_6_2_fixConstraintsHH extends IDCStrategyDefault {
         // But changed entries from syslist were not transferred !
         // We transfer content of object_use to object_use_constraint:
         // - if "open data" or "Veröffentlichung gemäß HmbTG" set
+        // - OR if content starts with "Datenlizenz Deutschland - Namensnennung - Version 2.0;"
         // - and content not already in object_use_constraint
         // The result in object_use_constraint is always a free entry with key -1.
 
@@ -142,9 +144,15 @@ public class IDCStrategy3_6_2_fixConstraintsHH extends IDCStrategyDefault {
             }
             rs2.close();
 
-            // if NOT OpenData and NOT HmbTG then continue.
-            if (!("Y".equals( isOpenData )) && !("true".equals( isHmbTG ))) {
-//                log.info( "Ignore OBJECT [id:" + objId + "]: NOT OpenData and NOT HmbTG (object_use = '" + useValue + "')");
+            // check whether starting with prefix
+            String prefixLicense = "Datenlizenz Deutschland - Namensnennung - Version 2.0;";
+            boolean startsWithPrefix = useValue.trim().startsWith( prefixLicense);
+
+            // if NOT OpenData and NOT HmbTG and NOT starting with prefix then skip 
+            if (!("Y".equals( isOpenData )) &&
+                    !("true".equals( isHmbTG )) &&
+                    !startsWithPrefix) {
+//                log.info( "Ignore OBJECT [id:" + objId + "]: NOT OpenData and NOT HmbTG and NOT license (object_use = '" + useValue + "')");
                 continue;
             }
 
