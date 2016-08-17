@@ -94,6 +94,7 @@ import de.ingrid.importer.udk.strategy.v361.IDCStrategy3_6_1_fixSyslist6100;
 import de.ingrid.importer.udk.strategy.v362.IDCStrategy3_6_2_RELEASE;
 import de.ingrid.importer.udk.strategy.v362.IDCStrategy3_6_2_a;
 import de.ingrid.importer.udk.strategy.v362.IDCStrategy3_6_2_fixConstraintsHH;
+import de.ingrid.importer.udk.strategy.v400.IDCStrategy4_0_0_a;
 
 /**
  * @author joachim
@@ -233,6 +234,8 @@ public class IDCStrategyFactory {
             return new IDCStrategy3_6_2_RELEASE();
         } else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_3_6_2_FIX_CONSTRAINTS_HH)) {
             return new IDCStrategy3_6_2_fixConstraintsHH();
+        } else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_4_0_0_a)) {
+            return new IDCStrategy4_0_0_a();
 		} else {
 			log.error("Unknown IDC version '" + idcVersion + "'.");
 			throw new IllegalArgumentException("Unknown IDC version '" + idcVersion + "'.");
