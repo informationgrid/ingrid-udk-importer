@@ -25,28 +25,18 @@
  */
 package de.ingrid.importer.udk.strategy.v400;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.Map;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import de.ingrid.codelists.model.CodeList;
-import de.ingrid.codelists.model.CodeListEntry;
 import de.ingrid.importer.udk.jdbc.DBLogic.ColumnType;
 import de.ingrid.importer.udk.strategy.IDCStrategyDefault;
-import de.ingrid.importer.udk.util.InitialCodeListServiceFactory;
 
 /**
  * <p>
- * Changes InGrid 3.6.1
+ * Changes InGrid 4.0.0
  * <p>
  * <ul>
- * <li>replace t011_obj_serv_version.serv_version with version_key/_value for
- * new syslists, see https://redmine.wemove.com/issues/724
- * (https://dev.informationgrid.eu/redmine/issues/47)
+ * <li>Add column 'hours_of_service' to table 't02_address', see https://dev.informationgrid.eu/redmine/issues/380 
  * </ul>
  */
 public class IDCStrategy4_0_0_a extends IDCStrategyDefault {
