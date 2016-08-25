@@ -31,6 +31,9 @@
       <action type="update" dev="wemove" issue="REDMINE-380">
         Add new field/column to address "Hours of Service". 
       </action>
+      <action type="add" dev="wemove" issue="REDMINE-413">
+        Added fix strategy for constraints for HH.
+      </action>
     </release>
     
     <release version="3.6.2" date="2016-05-23" description="Release InGrid 3.6.2">
