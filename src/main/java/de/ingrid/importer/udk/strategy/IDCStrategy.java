@@ -171,6 +171,8 @@ public interface IDCStrategy {
     
     /** InGrid 4.0.0 */
     static String VALUE_IDC_VERSION_4_0_0_a = "4.0.0_a";
+    /** Release strategy just updating database version to 4.0.0 AND reloading syslists !!! */
+    static String VALUE_IDC_VERSION_4_0_0_RELEASE = "4.0.0";
 
 
 	/** Order of strategies to execute to obtain most recent IGC.
@@ -248,7 +250,8 @@ public interface IDCStrategy {
         VALUE_IDC_VERSION_3_6_2_a,
         VALUE_IDC_VERSION_3_6_2_RELEASE,
         
-        VALUE_IDC_VERSION_4_0_0_a
+        VALUE_IDC_VERSION_4_0_0_a,
+        VALUE_IDC_VERSION_4_0_0_RELEASE,
 	};
 
 		
