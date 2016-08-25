@@ -27,6 +27,15 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
+    <release version="4.0.0" date="2016-08-25" description="Release InGrid 4.0.0">
+      <action type="update" dev="wemove" issue="REDMINE-380">
+        Add new field/column to address "Hours of Service". 
+      </action>
+      <action type="add" dev="wemove" issue="REDMINE-413">
+        Added fix strategy for constraints for HH.
+      </action>
+    </release>
+    
     <release version="3.6.2" date="2016-05-23" description="Release InGrid 3.6.2">
       <action type="update" dev="wemove" issue="REDMINE-223">
         Make "Anwendungseinschränkungen" (useLimitation) optional.
