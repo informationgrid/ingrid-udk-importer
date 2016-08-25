@@ -109,7 +109,7 @@
     <dependency>
       <groupId>de.ingrid</groupId>
       <artifactId>ingrid-codelist-service</artifactId>
-      <version>3.6.3-SNAPSHOT</version>
+      <version>4.0.0</version>
       <exclusions>
         <exclusion>
           <groupId>commons-httpclient</groupId>
