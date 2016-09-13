@@ -40,6 +40,7 @@ import de.ingrid.importer.udk.util.UuidGenerator;
 
 /**
  * Strategy 1.0.2_clean for generating initial empty catalog without passing UDK data.
+ * NOTICE: Operates on catalog already including all tables, execute ingrid-igc-schema_102*.sql before !
  */
 public class IDCStrategy1_0_2_clean extends IDCStrategyDefault1_0_2 {
 
