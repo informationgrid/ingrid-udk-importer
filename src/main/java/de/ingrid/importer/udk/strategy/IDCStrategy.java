@@ -176,7 +176,6 @@ public interface IDCStrategy {
     
     /** InGrid 4.0.1 */
     static String VALUE_IDC_VERSION_4_0_1_a = "4.0.1_a";
-    static String VALUE_IDC_VERSION_4_0_1_b = "4.0.1_b";
     /** Release strategy just updating database version to 4.0.1 */
     // static String VALUE_IDC_VERSION_4_0_1_RELEASE = "4.0.1";
 
@@ -260,7 +259,6 @@ public interface IDCStrategy {
         VALUE_IDC_VERSION_4_0_0_RELEASE,
         
         VALUE_IDC_VERSION_4_0_1_a
-        //TODO when #369 is finished: , VALUE_IDC_VERSION_4_0_1_b
 	};
 
 		
