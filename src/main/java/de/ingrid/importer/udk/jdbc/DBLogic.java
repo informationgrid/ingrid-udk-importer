@@ -37,6 +37,7 @@ public interface DBLogic {
 		TEXT_NO_CLOB,
 		MEDIUMTEXT,
 		VARCHAR1,
+        VARCHAR17,
 		VARCHAR50,
 		VARCHAR255,
 		VARCHAR1024,

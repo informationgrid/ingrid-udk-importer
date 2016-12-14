@@ -27,6 +27,21 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
+    <release version="4.0.1-SNAPSHOT" date="????-??-??" description="??">
+      <action type="add" dev="wemove" issue="REDMINE-107">
+        Add new column 'lastexpiry_time' to object/address metadata for saving date of last sent expiry email.
+      </action>
+      <action type="add" dev="wemove" issue="REDMINE-369">
+        Add new column 'adv_compatible' to object.
+      </action>
+      <action type="add" dev="wemove" issue="REDMINE-367">
+        Add new column 'inspire_conform' to object.
+      </action>
+      <action type="add" dev="wemove" issue="REDMINE-375">
+        Add new column 'administrative_area' to address with new local syslist 6250.
+      </action>
+    </release>
+    
     <release version="4.0.0" date="2016-08-25" description="Release InGrid 4.0.0">
       <action type="update" dev="wemove" issue="REDMINE-380">
         Add new field/column to address "Hours of Service". 

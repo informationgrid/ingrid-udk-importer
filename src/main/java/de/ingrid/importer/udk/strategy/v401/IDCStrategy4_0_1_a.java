@@ -26,7 +26,6 @@
 package de.ingrid.importer.udk.strategy.v401;
 
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 
@@ -42,7 +41,7 @@ import de.ingrid.importer.udk.strategy.IDCStrategyDefault;
  * <p>
  * <ul>
  * <li>Add column 'adv_compatible' to table 't01_object', see https://dev.informationgrid.eu/redmine/issues/369</li> 
- * <li>Add column 'administrative_area' to table 't02_address', see https://dev.informationgrid.eu/redmine/issues/375</li> 
+ * <li>Add column 'administrative_area' to table 't02_address' with new local syslist 6250 (specific to catalog), see https://dev.informationgrid.eu/redmine/issues/375</li> 
  * <li>Add column 'inspire_conform' to table 't01_object', see https://dev.informationgrid.eu/redmine/issues/367</li> 
  * </ul>
  */

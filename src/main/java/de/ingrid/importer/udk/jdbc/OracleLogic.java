@@ -432,6 +432,8 @@ public class OracleLogic implements DBLogic {
 			sql = "CLOB";
 		} else if (colType == ColumnType.VARCHAR1) {
 			sql = "VARCHAR2(1 CHAR)";
+        } else if (colType == ColumnType.VARCHAR17) {
+            sql = "VARCHAR2(17 CHAR)";
 		} else if (colType == ColumnType.VARCHAR50) {
 			sql = "VARCHAR2(50 CHAR)";
 		} else if (colType == ColumnType.VARCHAR255) {

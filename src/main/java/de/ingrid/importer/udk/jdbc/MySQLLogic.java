@@ -370,6 +370,8 @@ public class MySQLLogic implements DBLogic {
 			sql = "MEDIUMTEXT";
 		} else if (colType == ColumnType.VARCHAR1) {
 			sql = "VARCHAR(1)";
+        } else if (colType == ColumnType.VARCHAR17) {
+            sql = "VARCHAR(17)";
 		} else if (colType == ColumnType.VARCHAR50) {
 			sql = "VARCHAR(50)";
 		} else if (colType == ColumnType.VARCHAR255) {
