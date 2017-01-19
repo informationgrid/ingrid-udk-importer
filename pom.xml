@@ -196,7 +196,7 @@
       <!-- Needed at runtime for reading 3_2_0_udk_codelists_serialized.xml -->
       <groupId>com.thoughtworks.xstream</groupId>
       <artifactId>xstream</artifactId>
-      <version>1.4.4</version>
+      <version>1.4.8</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>

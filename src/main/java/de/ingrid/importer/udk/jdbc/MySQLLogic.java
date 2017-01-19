@@ -382,6 +382,8 @@ public class MySQLLogic implements DBLogic {
 			sql = "INTEGER";
 		} else if (colType == ColumnType.BIGINT) {
 			sql = "BIGINT";
+		} else if (colType == ColumnType.DOUBLE) {
+		    sql = "DOUBLE";
 		}
 		
 		return sql;
