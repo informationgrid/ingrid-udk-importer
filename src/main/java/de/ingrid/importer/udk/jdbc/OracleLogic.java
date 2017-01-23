@@ -29,6 +29,8 @@ import java.sql.Statement;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import de.ingrid.importer.udk.jdbc.DBLogic.ColumnType;
+
 /**
  * This class implements the database logic for Oracle
  * 
@@ -444,6 +446,8 @@ public class OracleLogic implements DBLogic {
 			sql = "NUMBER(10,0)";
 		} else if (colType == ColumnType.BIGINT) {
 			sql = "NUMBER(24,0)";
+		} else if (colType == ColumnType.DOUBLE) {
+            sql = "FLOAT";
 		}
 
 		return sql;

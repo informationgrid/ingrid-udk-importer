@@ -43,6 +43,9 @@
       <action type="fix" dev="wemove" issue="REDMINE-459">
         Add new fields "Vorschaugrafik" / "Dateibeschreibung" to profile to appear in "additional fields" in frontend.
       </action>
+      <action type="add" dev="wemove" issue="REDMINE-378">
+        Add new column "gridPosAccuracy".
+      </action>
     </release>
     
     <release version="4.0.0" date="2016-08-25" description="Release InGrid 4.0.0">

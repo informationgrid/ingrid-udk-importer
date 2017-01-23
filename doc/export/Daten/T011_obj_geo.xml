@@ -47,6 +47,10 @@
 			 rs:basecolumn='POS_ACCURACY_VERTICAL'>
 			<s:datatype dt:type='float' dt:maxLength='8' rs:precision='15' rs:fixedlength='true'/>
 		</s:AttributeType>
+		<s:AttributeType name='GRID_POS_ACCURACY' rs:number='11' rs:nullable='true' rs:writeunknown='true' rs:basetable='T011_OBJ_GEO'
+			 rs:basecolumn='GRID_POS_ACCURACY'>
+			<s:datatype dt:type='float' dt:maxLength='8' rs:precision='15' rs:fixedlength='true'/>
+		</s:AttributeType>
 		<s:AttributeType name='KEYC_INCL_W_DATASET' rs:number='12' rs:nullable='true' rs:writeunknown='true' rs:basetable='T011_OBJ_GEO'
 			 rs:basecolumn='KEYC_INCL_W_DATASET'>
 			<s:datatype dt:type='number' rs:dbtype='numeric' dt:maxLength='19' rs:scale='0' rs:precision='3' rs:fixedlength='true'/>

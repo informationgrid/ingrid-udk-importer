@@ -42,7 +42,8 @@ public interface DBLogic {
 		VARCHAR255,
 		VARCHAR1024,
 		INTEGER,
-		BIGINT
+		BIGINT,
+		DOUBLE
 	}
 
 	void setSchema(Connection connection, String schema) throws Exception;
