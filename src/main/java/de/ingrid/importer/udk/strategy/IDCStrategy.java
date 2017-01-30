@@ -180,7 +180,7 @@ public interface IDCStrategy {
     static String VALUE_IDC_VERSION_4_0_1_c = "4.0.1_c";
     static String VALUE_IDC_VERSION_4_0_1_d = "4.0.1_d";
     /** Release strategy just updating database version to 4.0.1 */
-    // static String VALUE_IDC_VERSION_4_0_1_RELEASE = "4.0.1";
+    static String VALUE_IDC_VERSION_4_0_1_RELEASE = "4.0.1";
 
 
 	/** Order of strategies to execute to obtain most recent IGC.
@@ -261,10 +261,11 @@ public interface IDCStrategy {
         VALUE_IDC_VERSION_4_0_0_a,
         VALUE_IDC_VERSION_4_0_0_RELEASE,
         
-        VALUE_IDC_VERSION_4_0_1_a,
+        // VALUE_IDC_VERSION_4_0_1_a, // this strategy is needed in future version (#369)
         VALUE_IDC_VERSION_4_0_1_b,
         VALUE_IDC_VERSION_4_0_1_c,
-        VALUE_IDC_VERSION_4_0_1_d
+        VALUE_IDC_VERSION_4_0_1_d,
+        VALUE_IDC_VERSION_4_0_1_RELEASE
 	};
 
 		
