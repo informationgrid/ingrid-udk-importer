@@ -2,7 +2,7 @@
  * **************************************************-
  * InGrid UDK-IGC Importer (IGC Updater)
  * ==================================================
- * Copyright (C) 2014 - 2016 wemove digital solutions GmbH
+ * Copyright (C) 2014 - 2017 wemove digital solutions GmbH
  * ==================================================
  * Licensed under the EUPL, Version 1.1 or – as soon they will be
  * approved by the European Commission - subsequent versions of the
@@ -28,6 +28,8 @@ import java.sql.Statement;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import de.ingrid.importer.udk.jdbc.DBLogic.ColumnType;
 
 /**
  * This class implements the database logic for Oracle
@@ -432,6 +434,8 @@ public class OracleLogic implements DBLogic {
 			sql = "CLOB";
 		} else if (colType == ColumnType.VARCHAR1) {
 			sql = "VARCHAR2(1 CHAR)";
+        } else if (colType == ColumnType.VARCHAR17) {
+            sql = "VARCHAR2(17 CHAR)";
 		} else if (colType == ColumnType.VARCHAR50) {
 			sql = "VARCHAR2(50 CHAR)";
 		} else if (colType == ColumnType.VARCHAR255) {
@@ -442,6 +446,8 @@ public class OracleLogic implements DBLogic {
 			sql = "NUMBER(10,0)";
 		} else if (colType == ColumnType.BIGINT) {
 			sql = "NUMBER(24,0)";
+		} else if (colType == ColumnType.DOUBLE) {
+            sql = "FLOAT";
 		}
 
 		return sql;

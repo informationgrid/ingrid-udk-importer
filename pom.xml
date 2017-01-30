@@ -3,13 +3,13 @@
   <parent>
     <groupId>de.ingrid</groupId>
     <artifactId>ingrid-releases-pom</artifactId>
-    <version>3.6.2</version>
+    <version>4.0.1</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
-  <groupId>de.ingrid</groupId>
   <artifactId>ingrid-udk-importer</artifactId>
-  <version>4.0.0</version>
+  <version>4.0.1</version>
   <name>InGrid UDK-IGC Importer (IGC Updater)</name>
+  <description>This component migrates a IGC database.</description>
   <build>
     <finalName>${project.artifactId}-${project.version}</finalName>
     <plugins>
@@ -85,12 +85,12 @@
       <!-- Needed for Mapping of Profile -->
       <groupId>de.ingrid</groupId>
       <artifactId>ingrid-utils-ige</artifactId>
-      <version>3.5.0</version>
+      <version>4.0.1</version>
     </dependency>
     <dependency>
       <groupId>de.ingrid</groupId>
       <artifactId>ingrid-utils</artifactId>
-      <version>3.6.2</version>
+      <version>4.0.1</version>
       <exclusions>
         <exclusion>
           <groupId>org.springframework</groupId>
@@ -109,7 +109,7 @@
     <dependency>
       <groupId>de.ingrid</groupId>
       <artifactId>ingrid-codelist-service</artifactId>
-      <version>4.0.0</version>
+      <version>4.0.1</version>
       <exclusions>
         <exclusion>
           <groupId>commons-httpclient</groupId>
@@ -196,7 +196,7 @@
       <!-- Needed at runtime for reading 3_2_0_udk_codelists_serialized.xml -->
       <groupId>com.thoughtworks.xstream</groupId>
       <artifactId>xstream</artifactId>
-      <version>1.4.4</version>
+      <version>1.4.8</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>

@@ -2,7 +2,7 @@
  * **************************************************-
  * InGrid UDK-IGC Importer (IGC Updater)
  * ==================================================
- * Copyright (C) 2014 - 2016 wemove digital solutions GmbH
+ * Copyright (C) 2014 - 2017 wemove digital solutions GmbH
  * ==================================================
  * Licensed under the EUPL, Version 1.1 or – as soon they will be
  * approved by the European Commission - subsequent versions of the
@@ -37,11 +37,13 @@ public interface DBLogic {
 		TEXT_NO_CLOB,
 		MEDIUMTEXT,
 		VARCHAR1,
+        VARCHAR17,
 		VARCHAR50,
 		VARCHAR255,
 		VARCHAR1024,
 		INTEGER,
-		BIGINT
+		BIGINT,
+		DOUBLE
 	}
 
 	void setSchema(Connection connection, String schema) throws Exception;

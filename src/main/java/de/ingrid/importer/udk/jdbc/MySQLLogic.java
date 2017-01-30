@@ -2,7 +2,7 @@
  * **************************************************-
  * InGrid UDK-IGC Importer (IGC Updater)
  * ==================================================
- * Copyright (C) 2014 - 2016 wemove digital solutions GmbH
+ * Copyright (C) 2014 - 2017 wemove digital solutions GmbH
  * ==================================================
  * Licensed under the EUPL, Version 1.1 or – as soon they will be
  * approved by the European Commission - subsequent versions of the
@@ -370,6 +370,8 @@ public class MySQLLogic implements DBLogic {
 			sql = "MEDIUMTEXT";
 		} else if (colType == ColumnType.VARCHAR1) {
 			sql = "VARCHAR(1)";
+        } else if (colType == ColumnType.VARCHAR17) {
+            sql = "VARCHAR(17)";
 		} else if (colType == ColumnType.VARCHAR50) {
 			sql = "VARCHAR(50)";
 		} else if (colType == ColumnType.VARCHAR255) {
@@ -380,6 +382,8 @@ public class MySQLLogic implements DBLogic {
 			sql = "INTEGER";
 		} else if (colType == ColumnType.BIGINT) {
 			sql = "BIGINT";
+		} else if (colType == ColumnType.DOUBLE) {
+		    sql = "DOUBLE";
 		}
 		
 		return sql;

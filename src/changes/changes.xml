@@ -27,6 +27,18 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
+    <release version="4.0.1" date="2016-01-30" description="Release InGrid 4.0.1">
+      <action type="add" dev="wemove" issue="REDMINE-107">
+        Add new column 'lastexpiry_time' to object/address metadata for saving date of last sent expiry email.
+      </action>
+      <action type="fix" dev="wemove" issue="REDMINE-459">
+        Add new fields "Vorschaugrafik" / "Dateibeschreibung" to profile to appear in "additional fields" in frontend.
+      </action>
+      <action type="add" dev="wemove" issue="REDMINE-378">
+        Add new column "gridPosAccuracy".
+      </action>
+    </release>
+    
     <release version="4.0.0" date="2016-08-25" description="Release InGrid 4.0.0">
       <action type="update" dev="wemove" issue="REDMINE-380">
         Add new field/column to address "Hours of Service". 

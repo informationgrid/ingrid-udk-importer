@@ -23,7 +23,7 @@
 /**
  * 
  */
-package de.ingrid.importer.udk.strategy.v400;
+package de.ingrid.importer.udk.strategy.v401;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -33,17 +33,17 @@ import de.ingrid.importer.udk.strategy.IDCStrategyDefault;
 
 /**
  * <p>
- * Changes InGrid 4.0.0
+ * Changes InGrid 4.0.1
  * <p>
  * <ul>
- * <li>Add column 'hours_of_service' to table 't02_address', see https://dev.informationgrid.eu/redmine/issues/380 
+ * <li>Add column 'grid_pos_accuracy' to table 't011_obj_geo', see https://dev.informationgrid.eu/redmine/issues/378</li> 
  * </ul>
  */
-public class IDCStrategy4_0_0_a extends IDCStrategyDefault {
+public class IDCStrategy4_0_1_d extends IDCStrategyDefault {
 
-    private static Log log = LogFactory.getLog( IDCStrategy4_0_0_a.class );
+    private static Log log = LogFactory.getLog( IDCStrategy4_0_1_d.class );
 
-    private static final String MY_VERSION = VALUE_IDC_VERSION_4_0_0_a;
+    private static final String MY_VERSION = VALUE_IDC_VERSION_4_0_1_d;
 
     public String getIDCVersion() {
         return MY_VERSION;
@@ -61,6 +61,7 @@ public class IDCStrategy4_0_0_a extends IDCStrategyDefault {
 
         System.out.print( "  Extend datastructure..." );
         extendDataStructure();
+        
         System.out.println( "done." );
 
         // FINALLY EXECUTE ALL "DROPPING" DDL OPERATIONS ! These ones may cause
@@ -74,10 +75,10 @@ public class IDCStrategy4_0_0_a extends IDCStrategyDefault {
     private void extendDataStructure() throws Exception {
         log.info( "\nExtending datastructure -> CAUSES COMMIT ! ..." );
 
-        log.info( "Add column 'hours_of_service' to table 't02_address' ..." );
-        jdbc.getDBLogic().addColumn( "hours_of_service", ColumnType.VARCHAR255, "t02_address", false, null, jdbc );
-
+        log.info( "Add column 'grid_pos_accuracy' to table 't011_obj_geo' ..." );
+        jdbc.getDBLogic().addColumn( "grid_pos_accuracy", ColumnType.DOUBLE, "t011_obj_geo", false, null, jdbc );
+        
         log.info( "Extending datastructure... done\n" );
     }
-
+    
 }

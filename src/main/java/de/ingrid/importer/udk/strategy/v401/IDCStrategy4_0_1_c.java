@@ -21,7 +21,7 @@
  * **************************************************#
  */
 
-package de.ingrid.importer.udk.strategy.v361;
+package de.ingrid.importer.udk.strategy.v401;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -35,19 +35,19 @@ import de.ingrid.utils.ige.profile.beans.controls.Controls;
 
 /**
  * <p>
- * Changes InGrid 3.6.1.1
+ * Changes InGrid 4.0.1
  * <p>
  * <ul>
- * <li>Profile: Add missing new legacy field "Nutzungsbeschränkungen", see
- * https://dev.informationgrid.eu/redmine/issues/225
+ * <li>Profile: Add missing legacy fields "Vorschaugrafik" / "Dateibeschreibung", see
+ * https://dev.informationgrid.eu/redmine/issues/459
  * </ul>
  * Writes NEW Catalog Schema Version to catalog !
  */
-public class IDCStrategy3_6_1_1_a extends IDCStrategyDefault {
+public class IDCStrategy4_0_1_c extends IDCStrategyDefault {
 
-    private static Log log = LogFactory.getLog( IDCStrategy3_6_1_1_a.class );
+    private static Log log = LogFactory.getLog( IDCStrategy4_0_1_c.class );
 
-    private static final String MY_VERSION = VALUE_IDC_VERSION_3_6_1_1_a;
+    private static final String MY_VERSION = VALUE_IDC_VERSION_4_0_1_c;
 
     String profileXml = null;
     ProfileMapper profileMapper;
@@ -99,14 +99,22 @@ public class IDCStrategy3_6_1_1_a extends IDCStrategyDefault {
      * removes/adds controls
      */
     private void updateRubricsAndControls(ProfileBean profileBean) {
-        log.info( "Add new LEGACY control 'Verfügbarkeit  - Nutzungsbeschränkungen' after 'Zugangsbeschränkungen'" );
+        log.info( "Add new LEGACY control 'Allgemeines - Vorschaugrafik' after 'Kurzbezeichnung'" );
         Controls control = new Controls();
         control.setIsLegacy( true );
-        control.setId( "uiElementN027" );
+        control.setId( "uiElement5100" );
         control.setIsMandatory( false );
-        control.setIsVisible( "show" );
-        Rubric rubric = MdekProfileUtils.findRubric( profileBean, "availability" );
-        int index = MdekProfileUtils.findControlIndex( profileBean, rubric, "uiElementN025" );
+        control.setIsVisible( "optional" );
+        Rubric rubric = MdekProfileUtils.findRubric( profileBean, "general" );
+        int index = MdekProfileUtils.findControlIndex( profileBean, rubric, "uiElement5000" );
         MdekProfileUtils.addControl( profileBean, control, rubric, index + 1 );
+
+        log.info( "Add new LEGACY control 'Allgemeines - Dateibeschreibung' after 'Vorschaugrafik'" );
+        control = new Controls();
+        control.setIsLegacy( true );
+        control.setId( "uiElement5105" );
+        control.setIsMandatory( false );
+        control.setIsVisible( "optional" );
+        MdekProfileUtils.addControl( profileBean, control, rubric, index + 2 );
     }
 }
