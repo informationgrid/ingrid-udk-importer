@@ -67,6 +67,8 @@ public class JDBCConnectionProxy {
 				dbLogic = new MSSQLLogic();
 			} else if (descriptor.getDbDriver().indexOf("mysql") != -1) {
 				dbLogic = new MySQLLogic();
+            } else if (descriptor.getDbDriver().indexOf("postgresql") != -1) {
+                dbLogic = new PostgreSQLLogic();
 			} else {
 				log.error("Unsupported DB driver: " + descriptor.getDbDriver());
 				throw new RuntimeException("Unsupported DB driver: " + descriptor.getDbDriver());
