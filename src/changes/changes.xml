@@ -27,6 +27,12 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
+    <release version="4.0.2-SNAPSHOT" date="????-??-??" description="???">
+      <action type="add" dev="wemove" issue="REDMINE-438">
+        Added support for PostgreSQL (initial schema and all strategies).
+      </action>
+    </release>
+    
     <release version="4.0.1" date="2016-01-30" description="Release InGrid 4.0.1">
       <action type="add" dev="wemove" issue="REDMINE-107">
         Add new column 'lastexpiry_time' to object/address metadata for saving date of last sent expiry email.
