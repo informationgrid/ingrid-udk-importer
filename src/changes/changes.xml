@@ -27,7 +27,7 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
-    <release version="4.0.2-SNAPSHOT" date="????-??-??" description="???">
+    <release version="4.0.2" date="2017-04-06" description="Release InGrid 4.0.2">
       <action type="add" dev="wemove" issue="REDMINE-438">
         Added support for PostgreSQL (initial schema and all strategies).
       </action>
