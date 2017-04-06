@@ -29,8 +29,6 @@ import java.sql.Statement;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import de.ingrid.importer.udk.jdbc.DBLogic.ColumnType;
-
 /**
  * This class implements the database logic for Oracle
  * 
@@ -59,10 +57,14 @@ public class OracleLogic implements DBLogic {
 			return;
 		}
 
-		Statement statement = connection.createStatement();
+        if (log.isDebugEnabled()) {
+            log.debug("Setting schema to " + schema);
+        }
 
-		String changeSchema = "alter session set current_schema = " + schema;
-		statement.executeUpdate(changeSchema);
+		Statement statement = connection.createStatement();
+        String changeSchema = "alter session set current_schema = " + schema;
+        statement.executeUpdate(changeSchema);
+        statement.close();
 	}
 
 	public void addColumn(String colName, ColumnType colType, String tableName, boolean notNull, Object defaultValue,
