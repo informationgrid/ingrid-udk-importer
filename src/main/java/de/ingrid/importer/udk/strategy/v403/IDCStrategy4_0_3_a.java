@@ -23,7 +23,7 @@
 /**
  * 
  */
-package de.ingrid.importer.udk.strategy.v401;
+package de.ingrid.importer.udk.strategy.v403;
 
 import java.sql.PreparedStatement;
 import java.util.Iterator;
@@ -37,7 +37,7 @@ import de.ingrid.importer.udk.strategy.IDCStrategyDefault;
 
 /**
  * <p>
- * Changes InGrid 4.0.1
+ * Changes InGrid 4.0.3_a
  * <p>
  * <ul>
  * <li>Add column 'adv_compatible' to table 't01_object', see https://dev.informationgrid.eu/redmine/issues/369</li> 
@@ -45,11 +45,11 @@ import de.ingrid.importer.udk.strategy.IDCStrategyDefault;
  * <li>Add column 'inspire_conform' to table 't01_object', see https://dev.informationgrid.eu/redmine/issues/367</li> 
  * </ul>
  */
-public class IDCStrategy4_0_1_a extends IDCStrategyDefault {
+public class IDCStrategy4_0_3_a extends IDCStrategyDefault {
 
-    private static Log log = LogFactory.getLog( IDCStrategy4_0_1_a.class );
+    private static Log log = LogFactory.getLog( IDCStrategy4_0_3_a.class );
 
-    private static final String MY_VERSION = VALUE_IDC_VERSION_4_0_1_a;
+    private static final String MY_VERSION = VALUE_IDC_VERSION_4_0_3_a;
 
     public String getIDCVersion() {
         return MY_VERSION;
