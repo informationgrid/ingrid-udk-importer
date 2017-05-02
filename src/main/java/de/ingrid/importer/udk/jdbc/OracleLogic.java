@@ -454,4 +454,19 @@ public class OracleLogic implements DBLogic {
 
 		return sql;
 	}
+
+    @Override
+    public void createTableAdvProductGroup(JDBCConnectionProxy jdbc) throws SQLException {
+        String sql = "CREATE TABLE adv_product_group ( id NUMBER(24,0) NOT NULL,"
+                + "  version NUMBER(10,0) DEFAULT '0' NOT NULL, obj_id NUMBER(24,0),"
+                + "  line NUMBER(10,0) DEFAULT '0', product_key NUMBER(10,0),"
+                + "  product_value VARCHAR2(255 CHAR))";
+        jdbc.executeUpdate(sql);
+        sql = "ALTER TABLE object_conformity ADD CONSTRAINT PRIMARY_10 PRIMARY KEY ( id ) ENABLE";
+        jdbc.executeUpdate(sql);
+        sql = "CREATE INDEX idxObjConf_ObjId ON adv_product_group ( obj_id )";
+        jdbc.executeUpdate(sql);
+        jdbc.commit();
+        
+    }
 }

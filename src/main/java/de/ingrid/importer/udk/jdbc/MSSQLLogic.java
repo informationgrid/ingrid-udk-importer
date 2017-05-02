@@ -120,4 +120,10 @@ public class MSSQLLogic implements DBLogic {
     public void createTableObjectUseConstraint(JDBCConnectionProxy jdbc) throws SQLException {
         // TODO !
     }
+
+    @Override
+    public void createTableAdvProductGroup(JDBCConnectionProxy jdbc) throws SQLException {
+        // TODO !
+        
+    }
 }

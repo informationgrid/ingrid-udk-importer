@@ -388,4 +388,19 @@ public class MySQLLogic implements DBLogic {
 		
 		return sql;
 	}
+
+    @Override
+    public void createTableAdvProductGroup(JDBCConnectionProxy jdbc) throws SQLException {
+        String sql = "CREATE TABLE adv_product_group (" +
+            "id BIGINT NOT NULL, " +
+            "version INTEGER NOT NULL DEFAULT 0, " +
+            "obj_id BIGINT, " +
+            "line INTEGER DEFAULT 0, " +
+            "product_key INTEGER, " +
+            "product_value VARCHAR(255), " +
+            "PRIMARY KEY (id), " +
+            "INDEX idxObjConf_ObjId (obj_id ASC)) " +
+            "ENGINE=InnoDB;";
+        jdbc.executeUpdate( sql );
+    }
 }

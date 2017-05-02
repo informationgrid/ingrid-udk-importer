@@ -407,4 +407,19 @@ public class PostgreSQLLogic implements DBLogic {
 		
 		return sql;
 	}
+
+    @Override
+    public void createTableAdvProductGroup(JDBCConnectionProxy jdbc) throws SQLException {
+        String sql = "CREATE TABLE adv_product_group(" +
+            "id BIGINT NOT NULL, " +
+            "version INTEGER NOT NULL DEFAULT 0, " +
+            "obj_id BIGINT, " +
+            "line INTEGER DEFAULT 0, " +
+            "product_key INTEGER, " +
+            "product_value VARCHAR(255), " +
+            "PRIMARY KEY (id))";
+        jdbc.executeUpdate(sql);
+        sql = "CREATE INDEX idxObjConf_ObjId ON adv_product_group (obj_id ASC)";
+        jdbc.executeUpdate(sql);
+    }
 }

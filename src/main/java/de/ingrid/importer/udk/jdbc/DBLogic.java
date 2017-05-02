@@ -136,4 +136,7 @@ public interface DBLogic {
 
     /** DDL Operation ! CAUSES COMMIT ON MySQL ! */
     void createTableObjectUseConstraint(JDBCConnectionProxy jdbc) throws SQLException;
+
+    /** DDL Operation ! CAUSES COMMIT ON MySQL ! */
+    void createTableAdvProductGroup(JDBCConnectionProxy jdbc) throws SQLException;
 }
