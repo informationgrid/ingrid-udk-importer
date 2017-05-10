@@ -22,12 +22,15 @@
  */
 package de.ingrid.importer.udk.jdbc;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.core.io.ClassPathResource;
 
 /**
  * This class implements the database logic for PostgreSQL
@@ -421,5 +424,19 @@ public class PostgreSQLLogic implements DBLogic {
         jdbc.executeUpdate(sql);
         sql = "CREATE INDEX idxObjConf_ObjId ON adv_product_group (obj_id ASC)";
         jdbc.executeUpdate(sql);
+    }
+
+    @Override
+    public void createDatabase(JDBCConnectionProxy jdbc, Connection dbConnection, String dbName, String user) throws SQLException {
+        // TODO: check if this works!
+        String sql = "CREATE DATABASE " + dbName + " DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;";
+        jdbc.executeUpdate( dbConnection, sql );
+    }
+
+    @Override
+    public void importFileToDatabase(JDBCConnectionProxy jdbc) throws SQLException, IOException {
+        // TODO: check if this works!
+        InputStream importStream = new ClassPathResource( "/ingrid-igc-schema_102_postgres.sql" ).getInputStream();
+        jdbc.importFile( importStream  );
     }
 }

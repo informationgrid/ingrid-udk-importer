@@ -124,6 +124,15 @@ public class MSSQLLogic implements DBLogic {
     @Override
     public void createTableAdvProductGroup(JDBCConnectionProxy jdbc) throws SQLException {
         // TODO !
-        
+    }
+
+    @Override
+    public void createDatabase(JDBCConnectionProxy jdbc, Connection dbConnection, String dbName, String user) throws SQLException {
+        // TODO !
+    }
+    
+    @Override
+    public void importFileToDatabase(JDBCConnectionProxy jdbc) throws SQLException {
+        // TODO !
     }
 }

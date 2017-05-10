@@ -25,14 +25,9 @@
  */
 package de.ingrid.importer.udk.strategy.v403;
 
-import java.sql.PreparedStatement;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import de.ingrid.importer.udk.jdbc.DBLogic.ColumnType;
 import de.ingrid.importer.udk.strategy.IDCStrategyDefault;
 
 /**

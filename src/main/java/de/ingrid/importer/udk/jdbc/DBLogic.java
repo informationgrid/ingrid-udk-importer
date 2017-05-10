@@ -22,6 +22,7 @@
  */
 package de.ingrid.importer.udk.jdbc;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -139,4 +140,8 @@ public interface DBLogic {
 
     /** DDL Operation ! CAUSES COMMIT ON MySQL ! */
     void createTableAdvProductGroup(JDBCConnectionProxy jdbc) throws SQLException;
+
+    void createDatabase(JDBCConnectionProxy jdbcConnectionProxy, Connection dbConnection, String dbName, String user) throws SQLException;
+    
+    void importFileToDatabase(JDBCConnectionProxy jdbcConnectionProxy) throws SQLException, IOException;
 }

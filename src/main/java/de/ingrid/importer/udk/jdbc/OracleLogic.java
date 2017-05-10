@@ -22,6 +22,7 @@
  */
 package de.ingrid.importer.udk.jdbc;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -467,6 +468,18 @@ public class OracleLogic implements DBLogic {
         sql = "CREATE INDEX idxObjConf_ObjId ON adv_product_group ( obj_id )";
         jdbc.executeUpdate(sql);
         jdbc.commit();
+        
+    }
+
+    @Override
+    public void createDatabase(JDBCConnectionProxy jdbcConnectionProxy, Connection dbConnection, String dbName, String user) throws SQLException {
+        // TODO implement if possible
+        
+    }
+
+    @Override
+    public void importFileToDatabase(JDBCConnectionProxy jdbcConnectionProxy) throws SQLException, IOException {
+        // TODO implement if possible
         
     }
 }
