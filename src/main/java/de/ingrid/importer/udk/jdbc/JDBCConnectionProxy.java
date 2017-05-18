@@ -58,6 +58,11 @@ public class JDBCConnectionProxy {
 		connectToDB();
 	}
 
+
+	private void setSchema() throws Exception {
+        this.dbLogic.setSchema(this.fConnection, this.descriptor.getDbSchema());	    
+	}
+
 	private void connectToDB() throws Exception {
 	    String url = null;
 	    Properties p = null;
@@ -80,15 +85,6 @@ public class JDBCConnectionProxy {
 				throw new RuntimeException("Unsupported DB driver: " + descriptor.getDbDriver());
 			}
 
-			String dbSchema = descriptor.getDbSchema();
-
-			if (dbLogic != null) {
-				dbLogic.setSchema(fConnection, dbSchema);
-			}
-			if (log.isDebugEnabled()) {
-				log.debug("Connecting to database... success.");
-			}
-			
 			Class.forName(descriptor.getDbDriver());
 			url = descriptor.getDbURL();
 			p = new Properties();
@@ -99,6 +95,12 @@ public class JDBCConnectionProxy {
 			    log.debug("Connecting to database, url='" + url + "'");
 			}
 			fConnection = DriverManager.getConnection(url,p);
+			
+			setSchema();
+
+            if (log.isDebugEnabled()) {
+                log.debug("Connecting to database... success.");
+            }
 
 		} catch (SQLException e) {
 		    if (e.getMessage().contains( "Unknown database" )) {
@@ -109,6 +111,9 @@ public class JDBCConnectionProxy {
     		        String msg = "\n\nCreated new database and imported initial version: " + url;
     	            System.out.println(msg);
     	            log.info(msg);
+
+    	            setSchema();
+
 		        } catch (SQLException e2) {
 		            log.error("Can't create or connect to database! Please check your connection parameters.", e2);
 	                throw new RuntimeException("Can't create or connect to database! Please check your connection parameters.");
