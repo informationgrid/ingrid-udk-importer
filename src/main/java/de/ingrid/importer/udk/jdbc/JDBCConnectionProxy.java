@@ -103,12 +103,15 @@ public class JDBCConnectionProxy {
             }
 
 		} catch (SQLException e) {
-		    if (e.getMessage().contains( "Unknown database" )) {
+		    String msg = e.getMessage();
+//		    int errCode = e.getErrorCode();
+//		    String state = e.getSQLState();
+		    if (msg.contains( "Unknown database" ) || msg.contains( "existiert nicht" )) {
 		        try {
     		        createDatabase(p);
     		        fConnection = DriverManager.getConnection(url, p);
     		        this.dbLogic.importFileToDatabase( this );
-    		        String msg = "\n\nCreated new database and imported initial version: " + url;
+    		        msg = "\n\nCreated new database and imported initial version: " + url;
     	            System.out.println(msg);
     	            log.info(msg);
 
@@ -135,7 +138,7 @@ public class JDBCConnectionProxy {
 	private void createDatabase(Properties p) throws SQLException {
 	    String url = descriptor.getDbURL();
         int pos = url.lastIndexOf( "/" );
-        String dbUrl = url.substring( 0, pos );
+        String dbUrl = url.substring( 0, pos + 1 );
         String dbName = url.substring( pos + 1 );
         
         Connection dbConnection = DriverManager.getConnection( dbUrl, p);

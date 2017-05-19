@@ -413,7 +413,7 @@ public class PostgreSQLLogic implements DBLogic {
 
     @Override
     public void createTableAdvProductGroup(JDBCConnectionProxy jdbc) throws SQLException {
-        String sql = "CREATE TABLE adv_product_group(" +
+        String sql = "CREATE TABLE adv_product_group (" +
             "id BIGINT NOT NULL, " +
             "version INTEGER NOT NULL DEFAULT 0, " +
             "obj_id BIGINT, " +
@@ -422,14 +422,14 @@ public class PostgreSQLLogic implements DBLogic {
             "product_value VARCHAR(255), " +
             "PRIMARY KEY (id))";
         jdbc.executeUpdate(sql);
-        sql = "CREATE INDEX idxObjConf_ObjId ON adv_product_group (obj_id ASC)";
+        sql = "CREATE INDEX idxAdvPG_ObjId ON adv_product_group (obj_id ASC)";
         jdbc.executeUpdate(sql);
     }
 
     @Override
     public void createDatabase(JDBCConnectionProxy jdbc, Connection dbConnection, String dbName, String user) throws SQLException {
         // TODO: check if this works!
-        String sql = "CREATE DATABASE " + dbName + " DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;";
+        String sql = "CREATE DATABASE " + dbName + " WITH OWNER = " + user + " ENCODING='UTF8' CONNECTION LIMIT=-1";
         jdbc.executeUpdate( dbConnection, sql );
     }
 
