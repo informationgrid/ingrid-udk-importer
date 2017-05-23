@@ -185,6 +185,7 @@ public interface IDCStrategy {
     static String VALUE_IDC_VERSION_4_0_3_a = "4.0.3_a";
     static String VALUE_IDC_VERSION_4_0_3_b = "4.0.3_b";
     static String VALUE_IDC_VERSION_4_0_3_RELEASE = "4.0.3";
+    static String VALUE_IDC_VERSION_4_0_3_fixKeywordsAdVMIS = "4.0.3_fixKeywordsAdVMIS";
 
 	/** Order of strategies to execute to obtain most recent IGC.
 	 * Contains all according versions/strategies in ascending order.
@@ -270,6 +271,7 @@ public interface IDCStrategy {
         VALUE_IDC_VERSION_4_0_1_RELEASE,
         
         VALUE_IDC_VERSION_4_0_3_a,
+        VALUE_IDC_VERSION_4_0_3_fixKeywordsAdVMIS, // writes no Version
         VALUE_IDC_VERSION_4_0_3_b
         // VALUE_IDC_VERSION_4_0_3_RELEASE
 	};

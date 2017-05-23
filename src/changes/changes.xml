@@ -27,6 +27,21 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
+    <release version="4.0.3-SNAPSHOT" date="2017-xx-xx" description="Release InGrid 4.0.3">
+      <action type="add" dev="wemove" issue="REDMINE-369">
+        Added new column 'is_adv_compatible' to t01_object.
+      </action>
+      <action type="add" dev="wemove" issue="REDMINE-375">
+        Added new column 'administrative_area_key' and 'administrative_area_key' to t02_address.
+      </action>
+      <action type="add" dev="wemove" issue="REDMINE-367">
+        Added new column 'is_inspire_conform' to t01_object.
+      </action>
+      <action type="add" dev="wemove" issue="REDMINE-388">
+        Added new table 'adv_product_group'.
+      </action>
+    </release>
+    
     <release version="4.0.2" date="2017-04-06" description="Release InGrid 4.0.2">
       <action type="add" dev="wemove" issue="REDMINE-438">
         Added support for PostgreSQL (initial schema and all strategies).
