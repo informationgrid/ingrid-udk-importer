@@ -27,7 +27,7 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
-    <release version="4.0.3-SNAPSHOT" date="2017-xx-xx" description="Release InGrid 4.0.3">
+    <release version="4.0.3" date="2017-06-13" description="Release InGrid 4.0.3">
       <action type="add" dev="wemove" issue="REDMINE-369">
         Added new column 'is_adv_compatible' to t01_object.
       </action>

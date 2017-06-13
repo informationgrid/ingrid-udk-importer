@@ -272,8 +272,8 @@ public interface IDCStrategy {
         
         VALUE_IDC_VERSION_4_0_3_a,
         VALUE_IDC_VERSION_4_0_3_fixKeywordsAdVMIS, // writes no Version
-        VALUE_IDC_VERSION_4_0_3_b
-        // VALUE_IDC_VERSION_4_0_3_RELEASE
+        VALUE_IDC_VERSION_4_0_3_b,
+        VALUE_IDC_VERSION_4_0_3_RELEASE
 	};
 
 		
