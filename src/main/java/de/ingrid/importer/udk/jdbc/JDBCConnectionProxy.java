@@ -25,6 +25,8 @@
  */
 package de.ingrid.importer.udk.jdbc;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -32,6 +34,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
+import java.util.Scanner;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -55,7 +58,15 @@ public class JDBCConnectionProxy {
 		connectToDB();
 	}
 
+
+	private void setSchema() throws Exception {
+        this.dbLogic.setSchema(this.fConnection, this.descriptor.getDbSchema());	    
+	}
+
 	private void connectToDB() throws Exception {
+	    String url = null;
+	    Properties p = null;
+	    
 		try {
 			if (log.isDebugEnabled()) {
 				log.debug("Connecting to database...");
@@ -75,29 +86,45 @@ public class JDBCConnectionProxy {
 			}
 
 			Class.forName(descriptor.getDbDriver());
-			String url=(descriptor.getDbURL());
-			Properties p = new Properties();
+			url = descriptor.getDbURL();
+			p = new Properties();
 			p.setProperty("user",descriptor.getDbUser());
 			p.setProperty("password",descriptor.getDbPass());
 //			p.setProperty("jdbcCompliantTruncation","false"); //new line
 			if (log.isDebugEnabled()) {
-				log.debug("Connecting to database, url='" + url + "'");
+			    log.debug("Connecting to database, url='" + url + "'");
 			}
 			fConnection = DriverManager.getConnection(url,p);
-
-			String dbSchema = descriptor.getDbSchema();
-
-			if (dbLogic != null) {
-				dbLogic.setSchema(fConnection, dbSchema);
-			}
-			if (log.isDebugEnabled()) {
-				log.debug("Connecting to database... success.");
-			}
 			
+			setSchema();
+
+            if (log.isDebugEnabled()) {
+                log.debug("Connecting to database... success.");
+            }
 
 		} catch (SQLException e) {
-			log.error("Can't connect to database! Please check your connection parameters.", e);
-			throw new RuntimeException("Can't connect to database! Please check your connection parameters.");
+		    String msg = e.getMessage();
+//		    int errCode = e.getErrorCode();
+//		    String state = e.getSQLState();
+		    if (msg.contains( "Unknown database" ) || msg.contains( "existiert nicht" )) {
+		        try {
+    		        createDatabase(p);
+    		        fConnection = DriverManager.getConnection(url, p);
+    		        this.dbLogic.importFileToDatabase( this );
+    		        msg = "\n\nCreated new database and imported initial version: " + url;
+    	            System.out.println(msg);
+    	            log.info(msg);
+
+    	            setSchema();
+
+		        } catch (SQLException e2) {
+		            log.error("Can't create or connect to database! Please check your connection parameters.", e2);
+	                throw new RuntimeException("Can't create or connect to database! Please check your connection parameters.");
+		        }
+		    } else {
+    			log.error("Can't connect to database! Please check your connection parameters.", e);
+    			throw new RuntimeException("Can't connect to database! Please check your connection parameters.");
+		    }
 
 		} catch (ClassNotFoundException e) {
 			log.error("Can't connect to database! Error while getting/instantiating JDBC driver '" + descriptor.getDbDriver() + "'.", e);
@@ -108,7 +135,19 @@ public class JDBCConnectionProxy {
 		}
 	}
 
-	public void setAutoCommit(boolean autoCommit) throws SQLException {
+	private void createDatabase(Properties p) throws SQLException {
+	    String url = descriptor.getDbURL();
+        int pos = url.lastIndexOf( "/" );
+        String dbUrl = url.substring( 0, pos + 1 );
+        String dbName = url.substring( pos + 1 );
+        
+        Connection dbConnection = DriverManager.getConnection( dbUrl, p);
+        
+        this.dbLogic.createDatabase( this, dbConnection, dbName, descriptor.getDbUser() );
+        
+    }
+
+    public void setAutoCommit(boolean autoCommit) throws SQLException {
 		fConnection.setAutoCommit(autoCommit);
 	}
 
@@ -125,14 +164,48 @@ public class JDBCConnectionProxy {
 	}
 
 	public int executeUpdate(String sql) throws SQLException {
-		Statement statement = fConnection.createStatement();
-		int result = statement.executeUpdate(sql);
-		statement.close();
-		return result;
+		return executeUpdate( fConnection, sql );
+	}
+	
+	public int executeUpdate(Connection connection, String sql) throws SQLException {
+	    Statement statement = connection.createStatement();
+	    int result = statement.executeUpdate(sql);
+	    statement.close();
+	    return result;
 	}
 
 	public ResultSet executeQuery(String sql, Statement statement) throws SQLException {
 		return statement.executeQuery(sql);
+	}
+	
+	public void importFile(InputStream importFileStream) throws FileNotFoundException, SQLException {
+        Scanner s = new Scanner(importFileStream);
+//        s.useDelimiter("(;(\r)?\n)|(--\n)");
+        s.useDelimiter("(;(\r)?\n)|((\r)?\n)?(--)?.*(--(\r)?\n)");
+        Statement st = null;
+        try
+        {
+            st = fConnection.createStatement();
+            while (s.hasNext())
+            {
+                String line = s.next();
+                if (line.startsWith("/*!") && line.endsWith("*/"))
+                {
+                    int i = line.indexOf(' ');
+                    line = line.substring(i + 1, line.length() - " */".length());
+                }
+
+                if (line.trim().length() > 0)
+                {
+                    st.execute(line);
+                }
+            }
+        }
+        finally
+        {
+            if (st != null) st.close();
+            if (s != null) s.close();
+        }
 	}
 	
 	public PreparedStatement prepareStatement(String sql) throws SQLException {

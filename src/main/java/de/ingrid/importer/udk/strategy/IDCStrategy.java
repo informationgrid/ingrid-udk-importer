@@ -175,13 +175,17 @@ public interface IDCStrategy {
     static String VALUE_IDC_VERSION_4_0_0_RELEASE = "4.0.0";
     
     /** InGrid 4.0.1 */
-    static String VALUE_IDC_VERSION_4_0_1_a = "4.0.1_a";
     static String VALUE_IDC_VERSION_4_0_1_b = "4.0.1_b";
     static String VALUE_IDC_VERSION_4_0_1_c = "4.0.1_c";
     static String VALUE_IDC_VERSION_4_0_1_d = "4.0.1_d";
     /** Release strategy just updating database version to 4.0.1 */
     static String VALUE_IDC_VERSION_4_0_1_RELEASE = "4.0.1";
 
+    /** InGrid 4.0.3 */
+    static String VALUE_IDC_VERSION_4_0_3_a = "4.0.3_a";
+    static String VALUE_IDC_VERSION_4_0_3_b = "4.0.3_b";
+    static String VALUE_IDC_VERSION_4_0_3_RELEASE = "4.0.3";
+    static String VALUE_IDC_VERSION_4_0_3_fixKeywordsAdVMIS = "4.0.3_fixKeywordsAdVMIS";
 
 	/** Order of strategies to execute to obtain most recent IGC.
 	 * Contains all according versions/strategies in ascending order.
@@ -261,11 +265,15 @@ public interface IDCStrategy {
         VALUE_IDC_VERSION_4_0_0_a,
         VALUE_IDC_VERSION_4_0_0_RELEASE,
         
-        // VALUE_IDC_VERSION_4_0_1_a, // this strategy is needed in future version (#369)
         VALUE_IDC_VERSION_4_0_1_b,
         VALUE_IDC_VERSION_4_0_1_c,
         VALUE_IDC_VERSION_4_0_1_d,
-        VALUE_IDC_VERSION_4_0_1_RELEASE
+        VALUE_IDC_VERSION_4_0_1_RELEASE,
+        
+        VALUE_IDC_VERSION_4_0_3_a,
+        VALUE_IDC_VERSION_4_0_3_fixKeywordsAdVMIS, // writes no Version
+        VALUE_IDC_VERSION_4_0_3_b,
+        VALUE_IDC_VERSION_4_0_3_RELEASE
 	};
 
 		

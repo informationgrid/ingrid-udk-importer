@@ -96,11 +96,14 @@ import de.ingrid.importer.udk.strategy.v362.IDCStrategy3_6_2_a;
 import de.ingrid.importer.udk.strategy.v362.IDCStrategy3_6_2_fixConstraintsHH;
 import de.ingrid.importer.udk.strategy.v400.IDCStrategy4_0_0_RELEASE;
 import de.ingrid.importer.udk.strategy.v400.IDCStrategy4_0_0_a;
-import de.ingrid.importer.udk.strategy.v401.IDCStrategy4_0_1_a;
+import de.ingrid.importer.udk.strategy.v401.IDCStrategy4_0_1_RELEASE;
 import de.ingrid.importer.udk.strategy.v401.IDCStrategy4_0_1_b;
 import de.ingrid.importer.udk.strategy.v401.IDCStrategy4_0_1_c;
 import de.ingrid.importer.udk.strategy.v401.IDCStrategy4_0_1_d;
-import de.ingrid.importer.udk.strategy.v401.IDCStrategy4_0_1_RELEASE;
+import de.ingrid.importer.udk.strategy.v403.IDCStrategy4_0_3_RELEASE;
+import de.ingrid.importer.udk.strategy.v403.IDCStrategy4_0_3_a;
+import de.ingrid.importer.udk.strategy.v403.IDCStrategy4_0_3_b;
+import de.ingrid.importer.udk.strategy.v403.IDCStrategy4_0_3_fixKeywordsAdVMIS;
 
 /**
  * @author joachim
@@ -244,8 +247,6 @@ public class IDCStrategyFactory {
             return new IDCStrategy4_0_0_a();
         } else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_4_0_0_RELEASE)) {
             return new IDCStrategy4_0_0_RELEASE();
-        } else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_4_0_1_a)) {
-            return new IDCStrategy4_0_1_a();
         } else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_4_0_1_b)) {
             return new IDCStrategy4_0_1_b();
         } else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_4_0_1_c)) {
@@ -254,6 +255,14 @@ public class IDCStrategyFactory {
             return new IDCStrategy4_0_1_d();
         } else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_4_0_1_RELEASE)) {
             return new IDCStrategy4_0_1_RELEASE();
+        } else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_4_0_3_a)) {
+            return new IDCStrategy4_0_3_a();
+        } else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_4_0_3_b)) {
+            return new IDCStrategy4_0_3_b();
+        } else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_4_0_3_fixKeywordsAdVMIS)) {
+            return new IDCStrategy4_0_3_fixKeywordsAdVMIS();
+        } else if (idcVersion.equals(IDCStrategy.VALUE_IDC_VERSION_4_0_3_RELEASE)) {
+            return new IDCStrategy4_0_3_RELEASE();
 		} else {
 			log.error("Unknown IDC version '" + idcVersion + "'.");
 			throw new IllegalArgumentException("Unknown IDC version '" + idcVersion + "'.");

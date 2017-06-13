@@ -22,12 +22,15 @@
  */
 package de.ingrid.importer.udk.jdbc;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.core.io.ClassPathResource;
 
 /**
  * This class implements the database logic for PostgreSQL
@@ -407,4 +410,33 @@ public class PostgreSQLLogic implements DBLogic {
 		
 		return sql;
 	}
+
+    @Override
+    public void createTableAdvProductGroup(JDBCConnectionProxy jdbc) throws SQLException {
+        String sql = "CREATE TABLE adv_product_group (" +
+            "id BIGINT NOT NULL, " +
+            "version INTEGER NOT NULL DEFAULT 0, " +
+            "obj_id BIGINT, " +
+            "line INTEGER DEFAULT 0, " +
+            "product_key INTEGER, " +
+            "product_value VARCHAR(255), " +
+            "PRIMARY KEY (id))";
+        jdbc.executeUpdate(sql);
+        sql = "CREATE INDEX idxAdvPG_ObjId ON adv_product_group (obj_id ASC)";
+        jdbc.executeUpdate(sql);
+    }
+
+    @Override
+    public void createDatabase(JDBCConnectionProxy jdbc, Connection dbConnection, String dbName, String user) throws SQLException {
+        // TODO: check if this works!
+        String sql = "CREATE DATABASE " + dbName + " WITH OWNER = " + user + " ENCODING='UTF8' CONNECTION LIMIT=-1";
+        jdbc.executeUpdate( dbConnection, sql );
+    }
+
+    @Override
+    public void importFileToDatabase(JDBCConnectionProxy jdbc) throws SQLException, IOException {
+        // TODO: check if this works!
+        InputStream importStream = new ClassPathResource( "/ingrid-igc-schema_102_postgres.sql" ).getInputStream();
+        jdbc.importFile( importStream  );
+    }
 }

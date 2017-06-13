@@ -22,8 +22,13 @@
  */
 package de.ingrid.importer.udk.jdbc;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
+
+import org.springframework.core.io.ClassPathResource;
 
 /**
  * This class implements the database logic for MySQL
@@ -388,4 +393,34 @@ public class MySQLLogic implements DBLogic {
 		
 		return sql;
 	}
+
+    @Override
+    public void createTableAdvProductGroup(JDBCConnectionProxy jdbc) throws SQLException {
+        String sql = "CREATE TABLE adv_product_group (" +
+            "id BIGINT NOT NULL, " +
+            "version INTEGER NOT NULL DEFAULT 0, " +
+            "obj_id BIGINT, " +
+            "line INTEGER DEFAULT 0, " +
+            "product_key INTEGER, " +
+            "product_value VARCHAR(255), " +
+            "PRIMARY KEY (id), " +
+            "INDEX idxObjConf_ObjId (obj_id ASC)) " +
+            "ENGINE=InnoDB;";
+        jdbc.executeUpdate( sql );
+    }
+
+    @Override
+    public void createDatabase(JDBCConnectionProxy jdbc, Connection dbConnection, String dbName, String user) throws SQLException {
+        String sql = "CREATE DATABASE " + dbName + " DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;";
+        jdbc.executeUpdate( dbConnection, sql );
+        
+        //sql = "GRANT ALL PRIVILEGES ON" + dbName + ".* TO '" + user + "'@'localhost' WITH GRANT OPTION;";
+        //jdbc.executeUpdate( dbConnection, sql );
+    }
+    
+    @Override
+    public void importFileToDatabase(JDBCConnectionProxy jdbc) throws IOException, SQLException {
+        InputStream importStream = new ClassPathResource( "/ingrid-igc-schema_102.sql" ).getInputStream();
+        jdbc.importFile( importStream  );
+    }
 }
