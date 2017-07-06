@@ -409,6 +409,20 @@ public class MySQLLogic implements DBLogic {
         jdbc.executeUpdate( sql );
     }
 
+    public void createTableObjectDataLanguage(JDBCConnectionProxy jdbc) throws SQLException {
+        String sql = "CREATE TABLE object_data_language ("
+                + "id BIGINT NOT NULL, "
+                + "version INTEGER NOT NULL DEFAULT 0, "
+                + "obj_id BIGINT, "
+                + "line INTEGER DEFAULT 0, "
+                + "data_language_key INTEGER, "
+                + "data_language_value VARCHAR(255), "
+                + "PRIMARY KEY (id), "
+                + "INDEX idxObjDLang_ObjId (obj_id ASC)) "
+                + "ENGINE=InnoDB;";
+        jdbc.executeUpdate(sql);        
+    }
+
     @Override
     public void createDatabase(JDBCConnectionProxy jdbc, Connection dbConnection, String dbName, String user) throws SQLException {
         String sql = "CREATE DATABASE " + dbName + " DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;";
