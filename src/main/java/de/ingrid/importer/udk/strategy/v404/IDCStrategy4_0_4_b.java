@@ -66,6 +66,10 @@ public class IDCStrategy4_0_4_b extends IDCStrategyDefault {
         updateSysList();
         System.out.println( "done." );
 
+        System.out.print( "  Migrating data..." );
+        migrateData();
+        System.out.println( "done." );
+
         // FINALLY EXECUTE ALL "DROPPING" DDL OPERATIONS ! These ones may cause
         // commit (e.g. on MySQL)
         // ---------------------------------
@@ -85,12 +89,21 @@ public class IDCStrategy4_0_4_b extends IDCStrategyDefault {
 
         numUpdated = jdbc.executeUpdate("UPDATE sys_list SET name = 'Es gelten keine Zugriffsbeschränkungen' WHERE lst_id = 6010 and name = 'Es gelten keine Bedingungen'");
         numUpdated += jdbc.executeUpdate("UPDATE sys_list SET name = 'no limitations to public access' WHERE lst_id = 6010 and name = 'no conditions apply'");
-        log.debug("Modified " + numUpdated + " entry(ies) ...");
+        log.debug("Modified " + numUpdated + " entry(ies).");
 
         // delete "Bedingungen unbekannt"
         numUpdated = jdbc.executeUpdate("DELETE FROM sys_list where lst_id = 6010 and entry_id = 10");
         log.debug("Deleted " + numUpdated + " entries (all languages).");
 
         log.info("\nUpdate syslist 6010...done\n" );
+    }
+
+    private void migrateData() throws Exception {
+        log.info("\nMigrate object_access to updated syslist 6010...");
+
+        int numUpdated = jdbc.executeUpdate("UPDATE object_access SET restriction_key = -1 WHERE restriction_key = 10");
+        log.debug("Set  " + numUpdated + " entry(ies) to free entries cause syslist entry 10 removed");
+
+        log.info("\nMigrate object_access to updated syslist 6010...done\n" );
     }
 }
