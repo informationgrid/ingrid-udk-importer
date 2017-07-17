@@ -31,6 +31,9 @@
       <action type="add" dev="wemove" issue="REDMINE-199">
         Added new table object_data_language for multiple data languages.
       </action>
+      <action type="update" dev="wemove" issue="REDMINE-563">
+        Update syslist 6010 (accessConstraints) will be moved to codelist-repo.
+      </action>
     </release>
     
     <release version="4.0.3" date="2017-06-13" description="Release InGrid 4.0.3">
