@@ -23,7 +23,7 @@
 /**
  * 
  */
-package de.ingrid.importer.udk.strategy.v404;
+package de.ingrid.importer.udk.strategy.v420;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -33,18 +33,18 @@ import de.ingrid.importer.udk.strategy.IDCStrategyDefault;
 
 /**
  * <p>
- * Changes InGrid 4.0.4
+ * Changes InGrid 4.2.0
  * <p>
  * <ul>
  * <li>add new columns for storing spatial representation info (grid), see
  * https://dev.informationgrid.eu/redmine/issues/381
  * </ul>
  */
-public class IDCStrategy4_0_4_c extends IDCStrategyDefault {
+public class IDCStrategy4_2_0_a extends IDCStrategyDefault {
 
-    private static Log log = LogFactory.getLog( IDCStrategy4_0_4_c.class );
+    private static Log log = LogFactory.getLog( IDCStrategy4_2_0_a.class );
 
-    private static final String MY_VERSION = VALUE_IDC_VERSION_4_0_4_c;
+    private static final String MY_VERSION = VALUE_IDC_VERSION_4_2_0_a;
 
     public String getIDCVersion() {
         return MY_VERSION;
