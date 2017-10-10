@@ -27,6 +27,12 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
+    <release version="4.2.0-SNAPSHOT" date="2017-xx-xx" description="Release InGrid 4.2.0">
+      <action type="add" dev="wemove" issue="REDMINE-381">
+        Added new columns to hold spatial representation info for grids.
+      </action>
+    </release>
+    
     <release version="4.1.0" date="2017-10-04" description="Release InGrid 4.1.0">
       <action type="add" dev="wemove" issue="REDMINE-199">
         Added new table object_data_language for multiple data languages.
