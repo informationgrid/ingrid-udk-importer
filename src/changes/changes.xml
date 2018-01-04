@@ -27,7 +27,7 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
-    <release version="4.2.0-SNAPSHOT" date="2017-xx-xx" description="Release InGrid 4.2.0">
+    <release version="4.2.0" date="2018-01-04" description="Release InGrid 4.2.0">
       <action type="add" dev="wemove" issue="REDMINE-381">
         Added new columns to hold spatial representation info for grids.
       </action>
