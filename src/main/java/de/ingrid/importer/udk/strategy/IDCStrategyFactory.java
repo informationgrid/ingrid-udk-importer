@@ -2,7 +2,7 @@
  * **************************************************-
  * InGrid UDK-IGC Importer (IGC Updater)
  * ==================================================
- * Copyright (C) 2014 - 2017 wemove digital solutions GmbH
+ * Copyright (C) 2014 - 2018 wemove digital solutions GmbH
  * ==================================================
  * Licensed under the EUPL, Version 1.1 or – as soon they will be
  * approved by the European Commission - subsequent versions of the
@@ -107,6 +107,7 @@ import de.ingrid.importer.udk.strategy.v403.IDCStrategy4_0_3_fixKeywordsAdVMIS;
 import de.ingrid.importer.udk.strategy.v404.IDCStrategy4_0_4_a;
 import de.ingrid.importer.udk.strategy.v404.IDCStrategy4_0_4_b;
 import de.ingrid.importer.udk.strategy.v410.IDCStrategy4_1_0_RELEASE;
+import de.ingrid.importer.udk.strategy.v420.IDCStrategy4_2_0_RELEASE;
 import de.ingrid.importer.udk.strategy.v420.IDCStrategy4_2_0_a;
 
 /**
@@ -275,6 +276,8 @@ public class IDCStrategyFactory {
             return new IDCStrategy4_1_0_RELEASE();
         } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_4_2_0_a )) {
             return new IDCStrategy4_2_0_a();
+        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_4_2_0_RELEASE )) {
+            return new IDCStrategy4_2_0_RELEASE();
         } else {
             log.error( "Unknown IDC version '" + idcVersion + "'." );
             throw new IllegalArgumentException( "Unknown IDC version '" + idcVersion + "'." );
