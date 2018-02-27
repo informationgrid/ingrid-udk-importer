@@ -74,8 +74,11 @@ public class IDCStrategy4_3_0_a extends IDCStrategyDefault {
     private void extendDataStructure() throws Exception {
         LOG.info( "\nExtending datastructure object_conformity." );
 
-        jdbc.getDBLogic().addColumn( "is_inspire", DBLogic.ColumnType.VARCHAR1, "object_conformity", true, "'Y'", jdbc );
+        jdbc.getDBLogic().addColumn( "is_inspire", DBLogic.ColumnType.VARCHAR1, "object_conformity", false, "'Y'", jdbc );
         jdbc.getDBLogic().addColumn( "publication_date", DBLogic.ColumnType.VARCHAR17, "object_conformity", false, null, jdbc ); // TODO default value?
+
+        String sql = "UPDATE object_conformity SET is_inspire = 'Y'";
+        jdbc.executeUpdate(sql);
 
         LOG.info( "Finished extending datastructure.\n" );
     }
