@@ -28,6 +28,9 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import java.sql.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
 
 import static java.lang.Long.getLong;
 
@@ -63,7 +66,7 @@ public class IDCStrategy4_3_0_a extends IDCStrategyDefault {
         // ---------------------------------
 
         System.out.print( "  Extend data structure..." );
-        extendDataStructure();
+        updateObjectConformityTable();
         createFreeConformitySyslist();
         System.out.println( "done." );
 
@@ -71,16 +74,56 @@ public class IDCStrategy4_3_0_a extends IDCStrategyDefault {
         System.out.println( "Update finished successfully." );
     }
 
-    private void extendDataStructure() throws Exception {
+    private void updateObjectConformityTable() throws Exception {
         LOG.info( "\nExtending datastructure object_conformity." );
 
-        jdbc.getDBLogic().addColumn( "is_inspire", DBLogic.ColumnType.VARCHAR1, "object_conformity", false, "'Y'", jdbc );
-        jdbc.getDBLogic().addColumn( "publication_date", DBLogic.ColumnType.VARCHAR17, "object_conformity", false, null, jdbc ); // TODO default value?
-
-        String sql = "UPDATE object_conformity SET is_inspire = 'Y'";
-        jdbc.executeUpdate(sql);
+        extendObjectConformityTable();
+        insertNewObjectConformityValues();
 
         LOG.info( "Finished extending datastructure.\n" );
+    }
+
+    private void extendObjectConformityTable() throws SQLException {
+        jdbc.getDBLogic().addColumn( "is_inspire", DBLogic.ColumnType.VARCHAR1, "object_conformity", false, "'Y'", jdbc );
+        jdbc.getDBLogic().addColumn( "publication_date", DBLogic.ColumnType.VARCHAR17, "object_conformity", false, null, jdbc );
+    }
+
+    private void insertNewObjectConformityValues() throws SQLException {
+        // Set all existing values as INSPIRE conformities
+        LOG.info("Setting default value of object_conformity.is_inpire to 'Y'.");
+        String sql = "UPDATE object_conformity SET is_inspire = 'Y'";
+        jdbc.executeUpdate(sql);
+        LOG.info("Finshed setting default value of object_conformity.is_inpire.");
+
+        // Copy dates from the sys_list table
+        Map<Integer, String> entries = new HashMap<>();
+        Statement statement = jdbc.createStatement();
+        sql = "SELECT entry_id AS entry_id, data AS the_date " +
+                "FROM sys_list WHERE lst_id = 6005 " +
+                "GROUP BY entry_id, data";
+        ResultSet rs = jdbc.executeQuery(sql, statement);
+        while (rs.next()) {
+            entries.put(rs.getInt("entry_id"), rs.getString("the_date"));
+        }
+        statement.close();
+
+        LOG.info("Copying values from sys_list.data to object_conformity.publication_date.");
+        statement = jdbc.createStatement(
+                ResultSet.TYPE_SCROLL_INSENSITIVE,
+                ResultSet.CONCUR_UPDATABLE
+        );
+        sql = "SELECT id AS id, specification_key, publication_date FROM object_conformity";
+        rs = statement.executeQuery(sql);
+        while (rs.next()) {
+            int key = rs.getInt("specification_key");
+            if (key < 0) continue;
+
+            String s = entries.get(key).replaceAll("-", "") + "000000000";
+            rs.updateString("publication_date", s);
+            rs.updateRow();
+        }
+        statement.close();
+        LOG.info("Finshed copying values from sys_list.data to object_conformity.publication_date.");
     }
 
     private void createFreeConformitySyslist() throws Exception {
