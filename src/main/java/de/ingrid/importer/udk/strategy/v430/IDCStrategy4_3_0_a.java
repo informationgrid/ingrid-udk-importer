@@ -27,6 +27,7 @@ import de.ingrid.importer.udk.strategy.IDCStrategyDefault;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import javax.swing.plaf.nimbus.State;
 import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -93,57 +94,53 @@ public class IDCStrategy4_3_0_a extends IDCStrategyDefault {
         LOG.info("Setting default value of object_conformity.is_inpire to 'Y'.");
         String sql = "UPDATE object_conformity SET is_inspire = 'Y'";
         jdbc.executeUpdate(sql);
-        LOG.info("Finshed setting default value of object_conformity.is_inpire.");
+        LOG.info("Finished setting default value of object_conformity.is_inpire.");
 
         // Copy dates from the sys_list table
         Map<Integer, String> entries = new HashMap<>();
-        Statement statement = jdbc.createStatement();
-        sql = "SELECT entry_id AS entry_id, data AS the_date " +
-                "FROM sys_list WHERE lst_id = 6005 " +
-                "GROUP BY entry_id, data";
-        ResultSet rs = jdbc.executeQuery(sql, statement);
-        while (rs.next()) {
-            entries.put(rs.getInt("entry_id"), rs.getString("the_date"));
+        try (Statement statement = jdbc.createStatement()) {
+            sql = "SELECT entry_id AS entry_id, data AS the_date " +
+                    "FROM sys_list WHERE lst_id = 6005 " +
+                    "GROUP BY entry_id, data";
+            ResultSet rs = jdbc.executeQuery(sql, statement);
+            while (rs.next()) {
+                entries.put(rs.getInt("entry_id"), rs.getString("the_date"));
+            }
         }
-        statement.close();
 
         LOG.info("Copying values from sys_list.data to object_conformity.publication_date.");
-        statement = jdbc.createStatement(
-                ResultSet.TYPE_SCROLL_INSENSITIVE,
-                ResultSet.CONCUR_UPDATABLE
-        );
-        sql = "SELECT id AS id, specification_key, publication_date FROM object_conformity";
-        rs = statement.executeQuery(sql);
-        while (rs.next()) {
-            int key = rs.getInt("specification_key");
-            if (key < 0) continue;
+        try (Statement statement = jdbc.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE)) {
+            sql = "SELECT id AS id, specification_key, publication_date FROM object_conformity";
+            ResultSet rs = statement.executeQuery(sql);
+            while (rs.next()) {
+                int key = rs.getInt("specification_key");
+                if (key < 0) continue;
 
-            String s = entries.get(key).replaceAll("-", "") + "000000000";
-            rs.updateString("publication_date", s);
-            rs.updateRow();
+                String s = entries.get(key).replaceAll("-", "") + "000000000";
+                rs.updateString("publication_date", s);
+                rs.updateRow();
+            }
         }
-        statement.close();
-        LOG.info("Finshed copying values from sys_list.data to object_conformity.publication_date.");
+        LOG.info("Finished copying values from sys_list.data to object_conformity.publication_date.");
     }
 
     private void createFreeConformitySyslist() throws Exception {
         LOG.info("Adding values to table sys_list for free entries.");
 
-        String sql = "SELECT MAX(id) AS maxid FROM sys_list";
-        Statement maxIdStm = jdbc.createStatement();
-        ResultSet resultSet = jdbc.executeQuery(sql, maxIdStm);
-        resultSet.next();
-        long id = resultSet.getLong("maxid");
-
-        PreparedStatement insertStm = jdbc.prepareStatement("INSERT INTO sys_list " +
+        String sqlMaxId = "SELECT MAX(id) AS maxid FROM sys_list";
+        String sqlInsert = "INSERT INTO sys_list " +
                 "(id, version, lst_id, entry_id, lang_id, name, description, maintainable, is_default, line, data) VALUES " +
-                "(?,  0,       6006,   1,        ?,       ?,    NULL,        1,            'N',        0,    '2018-02-22')");
+                "(?,  0,       6006,   1,        ?,       ?,    NULL,        1,            'N',        0,    '2018-02-22')";
+        try (Statement maxIdStm = jdbc.createStatement();
+             PreparedStatement insertStm = jdbc.prepareStatement(sqlInsert)) {
+            ResultSet resultSet = jdbc.executeQuery(sqlMaxId, maxIdStm);
+            resultSet.next();
+            long id = resultSet.getLong("maxid");
 
-        insertCodelistEntry(insertStm, ++id,"de", "Konformität - Freier Eintrag");
-        insertCodelistEntry(insertStm, ++id,"en","Conformity - Free entry");
 
-        maxIdStm.close();
-        insertStm.close();
+            insertCodelistEntry(insertStm, ++id, "de", "Konformität - Freier Eintrag");
+            insertCodelistEntry(insertStm, ++id, "en", "Conformity - Free entry");
+        }
 
         LOG.info("Finished adding values to sys_list.");
     }
