@@ -27,13 +27,12 @@ import de.ingrid.importer.udk.strategy.IDCStrategyDefault;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import javax.swing.plaf.nimbus.State;
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
-
-import static java.lang.Long.getLong;
 
 /**
  * Changes InGrid 4.3.0
@@ -66,13 +65,13 @@ public class IDCStrategy4_3_0_a extends IDCStrategyDefault {
         // (e.g. on MySQL)
         // ---------------------------------
 
-        System.out.print( "  Extend data structure..." );
+        LOG.info( "  Extend data structure..." );
         updateObjectConformityTable();
         createFreeConformitySyslist();
-        System.out.println( "done." );
+        LOG.info( "done." );
 
         jdbc.commit();
-        System.out.println( "Update finished successfully." );
+        LOG.info( "Update finished successfully." );
     }
 
     private void updateObjectConformityTable() throws Exception {
@@ -98,20 +97,22 @@ public class IDCStrategy4_3_0_a extends IDCStrategyDefault {
 
         // Copy dates from the sys_list table
         Map<Integer, String> entries = new HashMap<>();
-        try (Statement statement = jdbc.createStatement()) {
-            sql = "SELECT entry_id AS entry_id, data AS the_date " +
-                    "FROM sys_list WHERE lst_id = 6005 " +
-                    "GROUP BY entry_id, data";
-            ResultSet rs = jdbc.executeQuery(sql, statement);
+        sql = "SELECT entry_id AS entry_id, data AS the_date " +
+                "FROM sys_list WHERE lst_id = 6005 " +
+                "GROUP BY entry_id, data";
+        try (
+                Statement statement = jdbc.createStatement();
+                ResultSet rs = jdbc.executeQuery(sql, statement)) {
             while (rs.next()) {
                 entries.put(rs.getInt("entry_id"), rs.getString("the_date"));
             }
         }
 
         LOG.info("Copying values from sys_list.data to object_conformity.publication_date.");
-        try (Statement statement = jdbc.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE)) {
-            sql = "SELECT id AS id, specification_key, publication_date FROM object_conformity";
-            ResultSet rs = statement.executeQuery(sql);
+        sql = "SELECT id AS id, specification_key, publication_date FROM object_conformity";
+        try (
+                Statement statement = jdbc.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+                ResultSet rs = statement.executeQuery(sql)) {
             while (rs.next()) {
                 int key = rs.getInt("specification_key");
                 if (key < 0) continue;
@@ -132,8 +133,8 @@ public class IDCStrategy4_3_0_a extends IDCStrategyDefault {
                 "(id, version, lst_id, entry_id, lang_id, name, description, maintainable, is_default, line, data) VALUES " +
                 "(?,  0,       6006,   1,        ?,       ?,    NULL,        1,            'N',        0,    '2018-02-22')";
         try (Statement maxIdStm = jdbc.createStatement();
-             PreparedStatement insertStm = jdbc.prepareStatement(sqlInsert)) {
-            ResultSet resultSet = jdbc.executeQuery(sqlMaxId, maxIdStm);
+             PreparedStatement insertStm = jdbc.prepareStatement(sqlInsert);
+             ResultSet resultSet = jdbc.executeQuery(sqlMaxId, maxIdStm)) {
             resultSet.next();
             long id = resultSet.getLong("maxid");
 
@@ -153,7 +154,7 @@ public class IDCStrategy4_3_0_a extends IDCStrategyDefault {
         int idx = 1;
         stm.setLong(idx++, id);
         stm.setString(idx++, lang);
-        stm.setString(idx++, name);
+        stm.setString(idx, name);
 
         stm.executeUpdate();
         stm.clearParameters();
