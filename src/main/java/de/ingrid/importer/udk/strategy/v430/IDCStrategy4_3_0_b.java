@@ -29,6 +29,7 @@ import de.ingrid.importer.udk.strategy.IDCStrategyDefault;
 import de.ingrid.utils.ige.profile.MdekProfileUtils;
 import de.ingrid.utils.ige.profile.ProfileMapper;
 import de.ingrid.utils.ige.profile.beans.ProfileBean;
+import de.ingrid.utils.ige.profile.beans.Rubric;
 import de.ingrid.utils.ige.profile.beans.controls.Controls;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -48,6 +49,9 @@ public class IDCStrategy4_3_0_b extends IDCStrategyDefault {
 	private static final Log LOG = LogFactory.getLog(IDCStrategy4_3_0_b.class);
 
 	private static final String MY_VERSION = VALUE_IDC_VERSION_4_3_0_b;
+
+	private static final String INSPIRE_THEME_ELEMENT = "uiElement5064";
+	private static final String OPTIONAL_KEYWORDS_ELEMENT = "uiElement1409";
 
 	public String getIDCVersion() {
 		return MY_VERSION;
@@ -82,6 +86,8 @@ public class IDCStrategy4_3_0_b extends IDCStrategyDefault {
 		ProfileBean profileBean = profileMapper.mapStringToBean(profileXml);
 
 		updateJavaScript(profileBean);
+		updateControl(profileBean, INSPIRE_THEME_ELEMENT, false, "optional");
+		updateControl(profileBean, OPTIONAL_KEYWORDS_ELEMENT, false, "show");
 
 		// write Profile !
         profileXml = profileMapper.mapBeanToXmlString(profileBean);
@@ -93,8 +99,7 @@ public class IDCStrategy4_3_0_b extends IDCStrategyDefault {
 	private void updateJavaScript(ProfileBean profileBean) {
 		LOG.info("Don't make 'INSPIRE-Themen' a required input. For INSPIRE-relevant metadatesets, this input will be made required in JS behaviours.");
 
-		final String elem = "uiElement5064";
-		Controls control = MdekProfileUtils.findControl(profileBean, elem);
+		Controls control = MdekProfileUtils.findControl(profileBean, INSPIRE_THEME_ELEMENT);
 
 		String previousStartTag = "// START 3.4.0_a update";
 		String previousEndTag = "// 3.4.0_a END";
@@ -104,13 +109,13 @@ public class IDCStrategy4_3_0_b extends IDCStrategyDefault {
 		if (MdekProfileUtils.replaceInScriptedProperties(control, previousStartTag, previousEndTag, script)) {
 		    String msg = String.format(
 		    		"'INSPIRE-Themen' (%s): Updated props to ->%n%s%n",
-					elem,
+					INSPIRE_THEME_ELEMENT,
 					control.getScriptedProperties());
 			LOG.debug(msg);
 		} else {
 			String msg = String.format(
 					"'INSPIRE-Themen' (%s): Failed to update props. Start/end tags not found. Current props -> ->%n%s%n",
-					elem,
+					INSPIRE_THEME_ELEMENT,
 					control.getScriptedProperties());
 			LOG.warn(msg);
 		}
@@ -142,6 +147,25 @@ public class IDCStrategy4_3_0_b extends IDCStrategyDefault {
 		sb.append(endTag                                                                                            );
 
 		return sb.toString();
+	}
+
+	private void updateControl (
+			ProfileBean profileBean,
+			String uiElement,
+			boolean isMandatory,
+			String visibility) {
+		LOG.info(String.format("Updating properties for element: %s", uiElement));
+
+		Controls control = new Controls();
+		control.setIsLegacy(true);
+		control.setId(uiElement);
+		control.setIsMandatory(isMandatory);
+		control.setIsVisible(visibility);
+		Rubric rubric = MdekProfileUtils.findRubric( profileBean, "thesaurus" );
+		int index = MdekProfileUtils.findControlIndex( profileBean, rubric, uiElement );
+		MdekProfileUtils.removeControl(profileBean, uiElement);
+		MdekProfileUtils.addControl(profileBean, control, rubric, index);
+		LOG.info(String.format("Updated properties for element: %s", uiElement));
 	}
 
 	private void deleteKeinInspireThemaSearchTermValue() throws SQLException {
