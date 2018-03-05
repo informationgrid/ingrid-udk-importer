@@ -105,42 +105,11 @@ public class IDCStrategy3_4_0_a extends IDCStrategyDefault {
 		log.info("'INSPIRE-Themen'(uiElement5064): " +
 			"FIX 3.2.0 JS IN PROFILE: adapt dependent fields now via call of internal applyRuleThesaurusInspire() !");
 		Controls control = MdekProfileUtils.findControl(profileBean, "uiElement5064");
-    	String jsCode = startTag +
-"// On change of object class:\n" +
-"// Make 'INSPIRE-Themen'(uiElement5064) optional, mandatory or hide it dependent from new class.\n" +
-"\n" +
-"dojo.subscribe(\"/onObjectClassChange\", function(c) {\n" +
-"if (c.objClass == \"Class3\" || c.objClass == \"Class5\" || c.objClass == \"Class6\") {\n" +
-"  // optional in 'Geodatendienst' + 'Datensammlung/Datenbank' + 'Informationssystem/Dienst/Anwendung'\n" +
-"  UtilUI.setOptional(\"uiElement5064\");\n" +
-"} else if (c.objClass == \"Class1\") {\n" +
-"  // mandatory in class 'Geo-Information/Karte'\n" +
-"  UtilUI.setMandatory(\"uiElement5064\");\n" +
-"} else {\n" +
-"  UtilUI.setHide(\"uiElement5064\");\n" +
-"}});\n" +
-"\n" +
-"// Class 1: On input 'INSPIRE-Themen'(uiElement5064 / thesaurusInspire)\n" +
-"// - adapt content of 'Kodierungsschema der geographischen Daten'(uiElement1315 / availabilityDataFormatInspire)\n" +
-"// - show/hide DQ tables dependent from themes\n" +
-"\n" +
-"// Adapt 'Kodierungsschema', 'Konformität' etc. to 'INSPIRE-Themen'. Also connects listener to INSPIRE themes.\n" +
-"// !!! COMMENT the following line if \"dependent\" fields should NOT be adapted to 'INSPIRE-Themen' !!!\n" +
-"applyRuleThesaurusInspire();\n" +
-"\n" +
-"// initial show/hide of DQ tables dependent from themes\n" +
-"applyRule7();\n" +
-"\n" +
-"// Input Handler for 'INSPIRE-Themen' called when changed\n" +
-"function uiElement5064InputHandler() {\n" +
-"  var objClass = dijit.byId(\"objectClass\").getValue();\n" +
-"  if (objClass == \"Class1\") {\n" +
-"    //  Show/hide DQ tables in class 1 dependent from themes\n" +
-"    applyRule7();\n" +
-"  }\n" +
-"}\n" +
-"dojo.connect(UtilGrid.getTable(\"thesaurusInspire\"), \"onDataChanged\", uiElement5064InputHandler);\n"
-+ endTag;
+
+		// JavaScript content made empty because it will be replaced in strategy 4.3.0_b
+		// So remove everything except the tags
+		// see: https://redmine.informationgrid.eu/issues/816
+		String jsCode = String.format("%s%n%s%n", startTag, endTag);
 		// -------------------------------------
 		// !!! REPLACE FORMER 3.2.0 stuff with fixed stuff !
 		// -------------------------------------
