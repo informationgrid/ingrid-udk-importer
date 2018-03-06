@@ -34,7 +34,12 @@ import de.ingrid.utils.ige.profile.beans.controls.Controls;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * <p>
@@ -170,12 +175,44 @@ public class IDCStrategy4_3_0_b extends IDCStrategyDefault {
 
 	private void deleteKeinInspireThemaSearchTermValue() throws SQLException {
 		LOG.info("Deleting 'Kein INSPIRE-Thema' entry from searchterm_value table.");
-		String sql = "DELETE FROM searchterm_value WHERE type = 'I' AND entry_id = 99999";
-		int count = jdbc.executeUpdate(sql);
-		if (count > 0) {
-			LOG.info(String.format("%d entries deleted from searchterm_value table.", count));
-		} else {
-			LOG.info("No deletable entries found in searchterm_value table.");
+		String sqlSelect = "SELECT searchterm_value.id AS svid, t01_object.id AS objid " +
+				"           FROM searchterm_obj" +
+				"           JOIN searchterm_value ON searchterm_obj.searchterm_id = searchterm_value.id " +
+				"           JOIN t01_object ON searchterm_obj.obj_id = t01_object.id" +
+				"           WHERE searchterm_value.type = 'I' AND searchterm_value.entry_id = 99999";
+		String sqlDelete = "DELETE FROM searchterm_value WHERE id = ?";
+		String sqlUpdate = "UPDATE t01_object SET mod_time = ? WHERE id = ?";
+
+		try (
+				Statement stm = jdbc.createStatement();
+				ResultSet rs = jdbc.executeQuery(sqlSelect, stm);
+				PreparedStatement stmDelete = jdbc.prepareStatement(sqlDelete);
+				PreparedStatement stmUpdate = jdbc.prepareStatement(sqlUpdate)) {
+		    int count = 0;
+			rs.beforeFirst();
+			DateTimeFormatter pattern = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS");
+			for(;rs.next(); count++) {
+			    // Extract ids from JOIN result set
+				long svid = rs.getLong("svid");
+				long objid = rs.getLong("objid");
+
+				// Delete the search term
+				stmDelete.setLong(1, svid);
+				stmDelete.executeUpdate();
+				stmDelete.clearParameters();
+
+				// Update the modified time for updated objects
+				String updateTime = pattern.format(LocalDateTime.now());
+				stmUpdate.setString(1, updateTime);
+				stmUpdate.setLong(2, objid);
+				stmUpdate.executeUpdate();
+				stmUpdate.clearParameters();
+			}
+			if (count > 0) {
+				LOG.info(String.format("%d entry/entries deleted from searchterm_value table.", count));
+			} else {
+				LOG.info("No deletable entries found in searchterm_value table.");
+			}
 		}
 	}
 }
