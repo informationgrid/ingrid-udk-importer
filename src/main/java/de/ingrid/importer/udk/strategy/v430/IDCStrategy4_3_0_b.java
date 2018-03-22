@@ -43,11 +43,11 @@ import java.time.format.DateTimeFormatter;
 
 /**
  * <p>
- * Changes InGrid 3.4.0<p>
+ * Changes InGrid 4.3.0
+ * <p>
  * <ul>
- *   <li>Profile: Fix JS in "Verschlagwortung - INSPIRE Themen", adapt dependent fields now via call of "applyRuleThesaurusInspire()", see INGRID-2302
+ * <li>Change behavior of "INSPIRE-Themen" and remove 'Kein INSPIRE-Thema' entries, see <a href="https://redmine.informationgrid.eu/issues/816">#816</a> 
  * </ul>
- * Writes NEW Catalog Schema Version to catalog !
  */
 public class IDCStrategy4_3_0_b extends IDCStrategyDefault {
 

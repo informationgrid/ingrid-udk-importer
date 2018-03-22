@@ -35,13 +35,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * <p>
  * Changes InGrid 4.3.0
- *
- * Adds new columns to the conformity table to be able to specify custom
- * conformity specifications.
- *
- * @see <a href="https://redmine.informationgrid.eu/issues/859" />
- *
+ * <p>
+ * <ul>
+ * <li>Adds new columns to the conformity table to be able to specify custom
+ * conformity specifications, see <a href="https://redmine.informationgrid.eu/issues/859">#859</a> 
+ * </ul>
  */
 public class IDCStrategy4_3_0_a extends IDCStrategyDefault {
 

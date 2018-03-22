@@ -27,9 +27,9 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
-    <release version="4.3.0-SNAPSHOT" date="2018-xx-xx" description="Release InGrid 4.3.0">
+    <release version="4.3.0" date="2018-03-22" description="Release InGrid 4.3.0">
       <action type="update" dev="wemove" issue="REDMINE-816">
-        Remove 'Kein INSPIRE-Thema' entires from INSPIRE themes.
+        Change behavior of "INSPIRE-Themen" and remove 'Kein INSPIRE-Thema' entries.
       </action>
       <action type="update" dev="wemove" issue="REDMINE-859">
         Added new columns for saving a) whether the conformity is inspire or a free entry, and b) the conformity publication date.
