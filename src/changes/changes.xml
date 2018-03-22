@@ -27,6 +27,15 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
+    <release version="4.3.0" date="2018-03-22" description="Release InGrid 4.3.0">
+      <action type="update" dev="wemove" issue="REDMINE-816">
+        Change behavior of "INSPIRE-Themen" and remove 'Kein INSPIRE-Thema' entries.
+      </action>
+      <action type="update" dev="wemove" issue="REDMINE-859">
+        Added new columns for saving a) whether the conformity is inspire or a free entry, and b) the conformity publication date.
+      </action>
+    </release>
+
     <release version="4.2.0" date="2018-01-04" description="Release InGrid 4.2.0">
       <action type="add" dev="wemove" issue="REDMINE-381">
         Added new columns to hold spatial representation info for grids.
@@ -372,3 +381,4 @@
     </release>
   </body>
 </document>
+
