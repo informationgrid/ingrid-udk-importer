@@ -29,7 +29,6 @@ import de.ingrid.importer.udk.strategy.IDCStrategyDefault;
 import de.ingrid.utils.ige.profile.MdekProfileUtils;
 import de.ingrid.utils.ige.profile.ProfileMapper;
 import de.ingrid.utils.ige.profile.beans.ProfileBean;
-import de.ingrid.utils.ige.profile.beans.Rubric;
 import de.ingrid.utils.ige.profile.beans.controls.Controls;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -161,15 +160,10 @@ public class IDCStrategy4_3_0_b extends IDCStrategyDefault {
 			String visibility) {
 		LOG.info(String.format("Updating properties for element: %s", uiElement));
 
-		Controls control = new Controls();
-		control.setIsLegacy(true);
-		control.setId(uiElement);
+		Controls control = MdekProfileUtils.findControl(profileBean, uiElement);
 		control.setIsMandatory(isMandatory);
 		control.setIsVisible(visibility);
-		Rubric rubric = MdekProfileUtils.findRubric( profileBean, "thesaurus" );
-		int index = MdekProfileUtils.findControlIndex( profileBean, rubric, uiElement );
-		MdekProfileUtils.removeControl(profileBean, uiElement);
-		MdekProfileUtils.addControl(profileBean, control, rubric, index);
+
 		LOG.info(String.format("Updated properties for element: %s", uiElement));
 	}
 
