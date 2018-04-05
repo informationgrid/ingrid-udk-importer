@@ -211,7 +211,11 @@ public class JDBCConnectionProxy {
 	public PreparedStatement prepareStatement(String sql) throws SQLException {
 		return fConnection.prepareStatement(sql);
 	}
-	
+
+	public Statement createStatement(int resultSetType, int resultSetConcurrency) throws SQLException {
+		return fConnection.createStatement(resultSetType, resultSetConcurrency);
+	}
+
 	public Statement createStatement() throws SQLException {
 		return fConnection.createStatement();
 	}
