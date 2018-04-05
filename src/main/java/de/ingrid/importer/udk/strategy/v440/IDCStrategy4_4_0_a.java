@@ -23,7 +23,7 @@
 /**
  * 
  */
-package de.ingrid.importer.udk.strategy.v430;
+package de.ingrid.importer.udk.strategy.v440;
 
 import de.ingrid.importer.udk.jdbc.DBLogic.ColumnType;
 import de.ingrid.importer.udk.strategy.IDCStrategyDefault;
@@ -32,18 +32,18 @@ import org.apache.commons.logging.LogFactory;
 
 /**
  * <p>
- * Changes InGrid 4.3.0
+ * Changes InGrid 4.4.0
  * <p>
  * <ul>
  * <li>add new columns for storing date for publication, see
  * https://redmine.informationgrid.eu/issues/601
  * </ul>
  */
-public class IDCStrategy4_3_0_a extends IDCStrategyDefault {
+public class IDCStrategy4_4_0_a extends IDCStrategyDefault {
 
-    private static Log log = LogFactory.getLog( IDCStrategy4_3_0_a.class );
+    private static Log log = LogFactory.getLog( IDCStrategy4_4_0_a.class );
 
-    private static final String MY_VERSION = VALUE_IDC_VERSION_4_3_0_a;
+    private static final String MY_VERSION = VALUE_IDC_VERSION_4_4_0_a;
 
     public String getIDCVersion() {
         return MY_VERSION;

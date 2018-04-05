@@ -29,7 +29,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import de.ingrid.importer.udk.strategy.v430.IDCStrategy4_3_0_a;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -110,6 +109,7 @@ import de.ingrid.importer.udk.strategy.v404.IDCStrategy4_0_4_b;
 import de.ingrid.importer.udk.strategy.v410.IDCStrategy4_1_0_RELEASE;
 import de.ingrid.importer.udk.strategy.v420.IDCStrategy4_2_0_RELEASE;
 import de.ingrid.importer.udk.strategy.v420.IDCStrategy4_2_0_a;
+import de.ingrid.importer.udk.strategy.v440.IDCStrategy4_4_0_a;
 
 /**
  * @author joachim
@@ -279,8 +279,8 @@ public class IDCStrategyFactory {
             return new IDCStrategy4_2_0_a();
         } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_4_2_0_RELEASE )) {
             return new IDCStrategy4_2_0_RELEASE();
-        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_4_3_0_a )) {
-            return new IDCStrategy4_3_0_a();
+        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_4_4_0_a)) {
+            return new IDCStrategy4_4_0_a();
         } else {
             log.error( "Unknown IDC version '" + idcVersion + "'." );
             throw new IllegalArgumentException( "Unknown IDC version '" + idcVersion + "'." );

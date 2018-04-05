@@ -197,9 +197,9 @@ public interface IDCStrategy {
     static String VALUE_IDC_VERSION_4_2_0_a = "4.2.0_a";
     static String VALUE_IDC_VERSION_4_2_0_RELEASE = "4.2.0";
 
-    /** InGrid 4.3.0 */
-    static String VALUE_IDC_VERSION_4_3_0_a = "4.3.0_a";
-    static String VALUE_IDC_VERSION_4_3_0_RELEASE = "4.3.0";
+    /** InGrid 4.4.0 */
+    static String VALUE_IDC_VERSION_4_4_0_a = "4.4.0_a";
+    static String VALUE_IDC_VERSION_4_4_0_RELEASE = "4.4.0";
 
 	/** Order of strategies to execute to obtain most recent IGC.
 	 * Contains all according versions/strategies in ascending order.
@@ -296,7 +296,7 @@ public interface IDCStrategy {
         VALUE_IDC_VERSION_4_2_0_a,
         VALUE_IDC_VERSION_4_2_0_RELEASE,
 
-        VALUE_IDC_VERSION_4_3_0_a
+        VALUE_IDC_VERSION_4_4_0_a
 	};
 
 		
