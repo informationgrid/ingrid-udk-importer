@@ -31,6 +31,9 @@
       <action type="update" dev="wemove" issue="REDMINE-601">
         Added column for saving a future publication date for metadata sets.
       </action>
+      <action type="fix" dev="wemove">
+        Fix postgres error when updating to 4.3.0 (in 4_3_0_b strategy).
+      </action>
     </release>
 
     <release version="4.3.0" date="2018-03-26" description="Release InGrid 4.3.0">
