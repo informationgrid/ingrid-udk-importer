@@ -70,7 +70,7 @@ public class IDCStrategy4_4_0_a extends IDCStrategyDefault {
     private void extendDataStructure() throws Exception {
         log.info( "\nExtending datastructure t01_object -> CAUSES COMMIT ! ..." );
 
-        jdbc.getDBLogic().addColumn( "publication_date", ColumnType.VARCHAR255, "t01_object", false, null, jdbc );
+        jdbc.getDBLogic().addColumn( "to_be_published_on", ColumnType.DATE, "t01_object", false, null, jdbc );
 
         log.info( "Extending datastructure... done\n" );
     }

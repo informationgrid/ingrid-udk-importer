@@ -34,6 +34,7 @@ import java.sql.SQLException;
 public interface DBLogic {
 	
 	public static enum ColumnType {
+		DATE,
 		TEXT,
 		TEXT_NO_CLOB,
 		MEDIUMTEXT,

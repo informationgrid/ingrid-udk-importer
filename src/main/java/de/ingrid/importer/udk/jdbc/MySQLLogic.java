@@ -389,6 +389,8 @@ public class MySQLLogic implements DBLogic {
 			sql = "BIGINT";
 		} else if (colType == ColumnType.DOUBLE) {
 		    sql = "DOUBLE";
+		} else if (colType == ColumnType.DATE) {
+		    sql = "DATE";
 		}
 		
 		return sql;
