@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import de.ingrid.importer.udk.strategy.v440.IDCStrategy4_4_0_b;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -290,6 +291,8 @@ public class IDCStrategyFactory {
             return new IDCStrategy4_3_0_RELEASE();
         } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_4_4_0_a)) {
             return new IDCStrategy4_4_0_a();
+        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_4_4_0_b)) {
+            return new IDCStrategy4_4_0_b();
         } else {
             log.error( "Unknown IDC version '" + idcVersion + "'." );
             throw new IllegalArgumentException( "Unknown IDC version '" + idcVersion + "'." );
