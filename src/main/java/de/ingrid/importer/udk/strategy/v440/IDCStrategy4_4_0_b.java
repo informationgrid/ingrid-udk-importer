@@ -47,6 +47,7 @@ import java.util.List;
  */
 public class IDCStrategy4_4_0_b extends IDCStrategyDefault {
 
+    public static final String DEFAULT_UVP_CODELIST = "9000";
     private static Log log = LogFactory.getLog(IDCStrategy4_4_0_b.class);
 
     private static final String MY_VERSION = VALUE_IDC_VERSION_4_4_0_b;
@@ -114,6 +115,10 @@ public class IDCStrategy4_4_0_b extends IDCStrategyDefault {
         JSONParser jsonParser = new JSONParser();
 
         String behaviours = readGenericKey("BEHAVIOURS");
+        if (behaviours == null) {
+            return DEFAULT_UVP_CODELIST;
+        }
+
         JSONArray json = (JSONArray) jsonParser.parse(behaviours);
 
         // get the defined category id or return default id (9000)
@@ -125,9 +130,9 @@ public class IDCStrategy4_4_0_b extends IDCStrategyDefault {
                     return params.stream()
                             .filter(param -> "categoryCodelist".equals(((JSONObject) param).get("id")))
                             .findFirst().map(categoryCodelist -> ((JSONObject) categoryCodelist).get("value"))
-                            .orElse("9000");
+                            .orElse(DEFAULT_UVP_CODELIST);
                 })
-                .orElse("9000"); // default codelist for UVP
+                .orElse(DEFAULT_UVP_CODELIST); // default codelist for UVP
     }
 
     /**
