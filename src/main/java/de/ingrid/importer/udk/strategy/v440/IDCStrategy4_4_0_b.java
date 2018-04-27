@@ -102,7 +102,12 @@ public class IDCStrategy4_4_0_b extends IDCStrategyDefault {
             boolean migrated = migrateByPreviousState(psNeedsExamination, objId);
 
             if (!migrated) {
-                migrateByUvpNumber(uvpCodelistEntries, psUVPCategoryItems, objId);
+                migrated = migrateByUvpNumber(uvpCodelistEntries, psUVPCategoryItems, objId);
+            }
+
+            // set new checkbox to "NO" if none of the above conditions apply
+            if (!migrated) {
+                tickCheckboxPreExaminationAccomplished(objId, false);
             }
         }
 
@@ -150,7 +155,7 @@ public class IDCStrategy4_4_0_b extends IDCStrategyDefault {
 
             if ("true".equals(valueNeedsExamination)) {
                 log.debug("migrate UVP checkbox");
-                tickCheckboxPreExaminationAccomplished(objId);
+                tickCheckboxPreExaminationAccomplished(objId, true);
                 result = true;
             }
 
@@ -168,7 +173,7 @@ public class IDCStrategy4_4_0_b extends IDCStrategyDefault {
      * @param objId              is the ID of the dataset
      * @throws Exception gets thrown if an error occurred
      */
-    private void migrateByUvpNumber(List<CodeListEntry> uvpCodelistEntries, PreparedStatement psUVPCategoryItems, long objId) throws Exception {
+    private boolean migrateByUvpNumber(List<CodeListEntry> uvpCodelistEntries, PreparedStatement psUVPCategoryItems, long objId) throws Exception {
         JSONParser jsonParser = new JSONParser();
 
         psUVPCategoryItems.setLong(1, objId);
@@ -187,16 +192,17 @@ public class IDCStrategy4_4_0_b extends IDCStrategyDefault {
                     String type = (String) json.get("type");
 
                     if ("A".equals(type) || "S".equals(type)) {
-                        tickCheckboxPreExaminationAccomplished(objId);
+                        tickCheckboxPreExaminationAccomplished(objId, true);
 
                         // one is enough
                         resultSet.close();
-                        return;
+                        return true;
                     }
                 }
             }
         }
         resultSet.close();
+        return false;
     }
 
     /**
@@ -205,10 +211,11 @@ public class IDCStrategy4_4_0_b extends IDCStrategyDefault {
      * @param objId is the ID of the dataset
      * @throws Exception gets thrown if an error occurred
      */
-    private void tickCheckboxPreExaminationAccomplished(long objId) throws Exception {
-        String sqlDelete = "DELETE FROM additional_field_data WHERE obj_id = " + objId + " AND field_key = 'uvpPreExaminationAccomplished'";
+    private void tickCheckboxPreExaminationAccomplished(long objId, boolean isAccomplished) throws Exception {
+        String accomplishedField = isAccomplished ? "uvpPreExaminationAccomplished" : "uvpPreExaminationNotAccomplished";
+        String sqlDelete = "DELETE FROM additional_field_data WHERE obj_id = " + objId + " AND (field_key = 'uvpPreExaminationAccomplished' OR field_key = 'uvpPreExaminationNotAccomplished')";
         String sqlAdd = "INSERT INTO additional_field_data (id, obj_id, field_key, list_item_id, data) "
-                + "VALUES (" + getNextId() + ", " + objId + ", 'uvpPreExaminationAccomplished', NULL, 'true')";
+                + "VALUES (" + getNextId() + ", " + objId + ", '" + accomplishedField + "', NULL, 'true')";
 
         jdbc.executeUpdate(sqlDelete);
         jdbc.executeUpdate(sqlAdd);
