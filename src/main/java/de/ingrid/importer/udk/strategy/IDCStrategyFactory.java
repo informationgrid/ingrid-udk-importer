@@ -29,7 +29,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import de.ingrid.importer.udk.strategy.v440.IDCStrategy4_4_0_b;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -113,7 +112,10 @@ import de.ingrid.importer.udk.strategy.v420.IDCStrategy4_2_0_a;
 import de.ingrid.importer.udk.strategy.v430.IDCStrategy4_3_0_RELEASE;
 import de.ingrid.importer.udk.strategy.v430.IDCStrategy4_3_0_a;
 import de.ingrid.importer.udk.strategy.v430.IDCStrategy4_3_0_b;
+import de.ingrid.importer.udk.strategy.v431.IDCStrategy4_3_1_RELEASE;
+import de.ingrid.importer.udk.strategy.v431.IDCStrategy4_3_1_fixSearchtermReferences;
 import de.ingrid.importer.udk.strategy.v440.IDCStrategy4_4_0_a;
+import de.ingrid.importer.udk.strategy.v440.IDCStrategy4_4_0_b;
 
 /**
  * @author joachim
@@ -289,6 +291,10 @@ public class IDCStrategyFactory {
             return new IDCStrategy4_3_0_b();
         } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_4_3_0_RELEASE )) {
             return new IDCStrategy4_3_0_RELEASE();
+        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_4_3_1_fixSearchtermReferences )) {
+            return new IDCStrategy4_3_1_fixSearchtermReferences();
+        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_4_3_1_RELEASE )) {
+            return new IDCStrategy4_3_1_RELEASE();
         } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_4_4_0_a)) {
             return new IDCStrategy4_4_0_a();
         } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_4_4_0_b)) {
