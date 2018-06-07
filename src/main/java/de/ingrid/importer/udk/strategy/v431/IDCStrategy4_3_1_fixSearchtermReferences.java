@@ -62,7 +62,7 @@ public class IDCStrategy4_3_1_fixSearchtermReferences extends IDCStrategyDefault
 		// THEN PERFORM DATA MANIPULATIONS !
 		// ---------------------------------
 
-		LOG.info("Update Profile in database...");
+		LOG.info("Delete all searchterm_obj pointing to missing searchterm_value...");
 		fixSearchTermReferences();
 		LOG.info("done.");
 
@@ -71,10 +71,10 @@ public class IDCStrategy4_3_1_fixSearchtermReferences extends IDCStrategyDefault
 	}
 
 	private void fixSearchTermReferences() throws SQLException {
-		PreparedStatement psDeleteUnreferencedValues = jdbc.prepareStatement(
-				"DELETE FROM searchterm_obj " +
-						"WHERE NOT EXISTS (SELECT * FROM searchterm_value sv WHERE sv.id = searchterm_obj.searchterm_id)");
-
-		psDeleteUnreferencedValues.executeUpdate();
+        int numUpdated = jdbc.executeUpdate(
+                "DELETE FROM searchterm_obj " +
+                        "WHERE NOT EXISTS (SELECT sv.id FROM searchterm_value sv WHERE sv.id = searchterm_obj.searchterm_id)"
+                );
+        LOG.debug("Deleted " + numUpdated + " records from searchterm_obj.");
 	}
 }
