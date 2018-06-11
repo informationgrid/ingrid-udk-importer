@@ -53,11 +53,21 @@ public class IDCStrategy4_4_0_b extends IDCStrategyDefault {
     private static final String MY_VERSION = VALUE_IDC_VERSION_4_4_0_b;
 
     public String getIDCVersion() {
+        // Returning version here enables strategy workflow !
+        // So all former versions in IDCStrategy.STRATEGY_WORKFLOW are executed !
+        // Returning null disables version tracking ... 
+        // Well we keep version here having a special strategy:
+        // - no version written to catalog
+        // - but all former versions in workflow are executed, if catalog version is below this one !
+        // - if catalog is above this one, just this strategy is executed
         return MY_VERSION;
     }
 
     public void execute() throws Exception {
         jdbc.setAutoCommit(false);
+
+        // NOTICE:
+        // This is a "fix strategy" writing no version !
 
         // do not write version of IGC structure, since migration can be done multiple times !
         // setGenericKey(KEY_IDC_VERSION, MY_VERSION);

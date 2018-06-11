@@ -75,6 +75,6 @@ public class IDCStrategy4_3_1_fixSearchtermReferences extends IDCStrategyDefault
                 "DELETE FROM searchterm_obj " +
                         "WHERE NOT EXISTS (SELECT sv.id FROM searchterm_value sv WHERE sv.id = searchterm_obj.searchterm_id)"
                 );
-        LOG.debug("Deleted " + numUpdated + " records from searchterm_obj.");
+        LOG.info("Deleted " + numUpdated + " records from searchterm_obj.");
 	}
 }

@@ -203,13 +203,16 @@ public interface IDCStrategy {
 	static String VALUE_IDC_VERSION_4_3_0_RELEASE = "4.3.0";
 
 	/** InGrid 4.3.1 */
+	/** writes no version, triggers no workflow */
 	static String VALUE_IDC_VERSION_4_3_1_fixSearchtermReferences = "4.3.1_fixSearchtermReferences";
 	static String VALUE_IDC_VERSION_4_3_1_RELEASE = "4.3.1";
 
     /** InGrid 4.4.0 */
     static String VALUE_IDC_VERSION_4_4_0_a = "4.4.0_a";
+    /** writes no version, BUT triggers workflow */
     static String VALUE_IDC_VERSION_4_4_0_b = "4.4.0_b";
-    static String VALUE_IDC_VERSION_4_4_0_RELEASE = "4.4.0";
+    /** writes no version, BUT triggers workflow */
+    static String VALUE_IDC_VERSION_4_4_0_c = "4.4.0_c";
 
 	/** Order of strategies to execute to obtain most recent IGC.
 	 * Contains all according versions/strategies in ascending order.
@@ -314,7 +317,8 @@ public interface IDCStrategy {
         VALUE_IDC_VERSION_4_3_1_RELEASE,
 
         VALUE_IDC_VERSION_4_4_0_a,
-        VALUE_IDC_VERSION_4_4_0_b
+        VALUE_IDC_VERSION_4_4_0_b,
+        VALUE_IDC_VERSION_4_4_0_c
 	};
 
 		
