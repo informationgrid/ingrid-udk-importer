@@ -319,7 +319,8 @@ public interface IDCStrategy {
 
         VALUE_IDC_VERSION_4_4_0_a,
         VALUE_IDC_VERSION_4_4_0_b,
-        VALUE_IDC_VERSION_4_4_0_c
+        VALUE_IDC_VERSION_4_4_0_c,
+        VALUE_IDC_VERSION_4_4_0_RELEASE
 	};
 
 		
