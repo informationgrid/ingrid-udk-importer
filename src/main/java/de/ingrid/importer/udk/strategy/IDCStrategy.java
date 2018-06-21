@@ -213,6 +213,7 @@ public interface IDCStrategy {
     static String VALUE_IDC_VERSION_4_4_0_b = "4.4.0_b";
     /** writes no version, BUT triggers workflow */
     static String VALUE_IDC_VERSION_4_4_0_c = "4.4.0_c";
+    static String VALUE_IDC_VERSION_4_4_0_RELEASE = "4.4.0";
 
 	/** Order of strategies to execute to obtain most recent IGC.
 	 * Contains all according versions/strategies in ascending order.
