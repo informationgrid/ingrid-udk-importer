@@ -183,7 +183,6 @@ public class IDCStrategy4_3_0_b extends IDCStrategyDefault {
 				PreparedStatement stmDelete = jdbc.prepareStatement(sqlDelete);
 				PreparedStatement stmUpdate = jdbc.prepareStatement(sqlUpdate)) {
 		    int count = 0;
-			rs.beforeFirst();
 			DateTimeFormatter pattern = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS");
 			for(;rs.next(); count++) {
 			    // Extract ids from JOIN result set

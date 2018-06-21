@@ -47,9 +47,12 @@ public class Importer {
 	 */
 	private static Log log = LogFactory.getLog(Importer.class);
 
+	public static Boolean importSuccess = null;
+
 	public static void main(String[] args) {
 
 		System.out.println("Starting import.");
+		importSuccess = null;
 		ImportDescriptor descriptor = null;
 		try {
 			System.out.print("  reading input parameter...");
@@ -149,6 +152,7 @@ public class Importer {
 			if (!executed) {
 				System.out.println("\nError executing strategy " + strategy + targetVersionInfo + ", see log for details");
 				errorOccured = true;
+				importSuccess = false;
 				// STOP !!!
 				break;
 			}
@@ -157,6 +161,7 @@ public class Importer {
 		if (!errorOccured) {
 			System.out.println("\nImporter/Updater executed succesfully.");
 			System.out.println("See log for further details.");
+			importSuccess = true;
 		}
 	}
 }

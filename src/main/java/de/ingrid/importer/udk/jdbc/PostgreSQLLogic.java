@@ -406,6 +406,8 @@ public class PostgreSQLLogic implements DBLogic {
 			sql = "BIGINT";
 		} else if (colType == ColumnType.DOUBLE) {
 		    sql = "DOUBLE PRECISION";
+		} else if (colType == ColumnType.DATE) {
+			sql = "DATE";
 		}
 		
 		return sql;

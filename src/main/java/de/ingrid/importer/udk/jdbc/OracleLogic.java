@@ -451,6 +451,8 @@ public class OracleLogic implements DBLogic {
 			sql = "NUMBER(24,0)";
 		} else if (colType == ColumnType.DOUBLE) {
             sql = "FLOAT";
+		} else if (colType == ColumnType.DATE) {
+			sql = "DATE";
 		}
 
 		return sql;

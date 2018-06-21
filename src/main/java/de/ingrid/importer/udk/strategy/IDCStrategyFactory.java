@@ -112,6 +112,12 @@ import de.ingrid.importer.udk.strategy.v420.IDCStrategy4_2_0_a;
 import de.ingrid.importer.udk.strategy.v430.IDCStrategy4_3_0_RELEASE;
 import de.ingrid.importer.udk.strategy.v430.IDCStrategy4_3_0_a;
 import de.ingrid.importer.udk.strategy.v430.IDCStrategy4_3_0_b;
+import de.ingrid.importer.udk.strategy.v431.IDCStrategy4_3_1_RELEASE;
+import de.ingrid.importer.udk.strategy.v431.IDCStrategy4_3_1_fixSearchtermReferences;
+import de.ingrid.importer.udk.strategy.v440.IDCStrategy4_4_0_RELEASE;
+import de.ingrid.importer.udk.strategy.v440.IDCStrategy4_4_0_a;
+import de.ingrid.importer.udk.strategy.v440.IDCStrategy4_4_0_b;
+import de.ingrid.importer.udk.strategy.v440.IDCStrategy4_4_0_c;
 
 /**
  * @author joachim
@@ -287,6 +293,18 @@ public class IDCStrategyFactory {
             return new IDCStrategy4_3_0_b();
         } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_4_3_0_RELEASE )) {
             return new IDCStrategy4_3_0_RELEASE();
+        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_4_3_1_fixSearchtermReferences )) {
+            return new IDCStrategy4_3_1_fixSearchtermReferences();
+        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_4_3_1_RELEASE )) {
+            return new IDCStrategy4_3_1_RELEASE();
+        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_4_4_0_a)) {
+            return new IDCStrategy4_4_0_a();
+        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_4_4_0_b)) {
+            return new IDCStrategy4_4_0_b();
+        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_4_4_0_c)) {
+            return new IDCStrategy4_4_0_c();
+        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_4_4_0_RELEASE )) {
+            return new IDCStrategy4_4_0_RELEASE();
         } else {
             log.error( "Unknown IDC version '" + idcVersion + "'." );
             throw new IllegalArgumentException( "Unknown IDC version '" + idcVersion + "'." );
