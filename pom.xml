@@ -7,9 +7,16 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>ingrid-udk-importer</artifactId>
-  <version>4.4.0</version>
+  <version>4.4.1</version>
   <name>InGrid UDK-IGC Importer (IGC Updater)</name>
   <description>This component migrates a IGC database.</description>
+
+  <properties>
+    <ingrid-codelist-service.version>4.4.0</ingrid-codelist-service.version>
+    <ingrid-utils.version>4.0.1</ingrid-utils.version>
+    <ingrid-utils-ige.version>4.0.1</ingrid-utils-ige.version>
+  </properties>
+
   <build>
     <finalName>${project.artifactId}-${project.version}</finalName>
     <plugins>
@@ -85,12 +92,12 @@
       <!-- Needed for Mapping of Profile -->
       <groupId>de.ingrid</groupId>
       <artifactId>ingrid-utils-ige</artifactId>
-      <version>4.0.1</version>
+      <version>${ingrid-utils-ige.version}</version>
     </dependency>
     <dependency>
       <groupId>de.ingrid</groupId>
       <artifactId>ingrid-utils</artifactId>
-      <version>4.0.1</version>
+      <version>${ingrid-utils.version}</version>
       <exclusions>
         <exclusion>
           <groupId>org.springframework</groupId>
@@ -109,7 +116,7 @@
     <dependency>
       <groupId>de.ingrid</groupId>
       <artifactId>ingrid-codelist-service</artifactId>
-      <version>4.3.0</version>
+      <version>${ingrid-codelist-service.version}</version>
       <exclusions>
         <exclusion>
           <groupId>commons-httpclient</groupId>
