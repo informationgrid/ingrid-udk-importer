@@ -20,9 +20,6 @@
  * limitations under the Licence.
  * **************************************************#
  */
-/**
- * 
- */
 package de.ingrid.importer.udk.jdbc;
 
 import java.io.FileNotFoundException;
@@ -72,13 +69,13 @@ public class JDBCConnectionProxy {
 				log.debug("Connecting to database...");
 			}
 
-			if (descriptor.getDbDriver().indexOf("oracle") != -1) {
+			if (descriptor.getDbDriver().contains("oracle")) {
 				dbLogic = new OracleLogic();
-			} else if (descriptor.getDbDriver().indexOf("microsoft") != -1) {
+			} else if (descriptor.getDbDriver().contains("microsoft")) {
 				dbLogic = new MSSQLLogic();
-			} else if (descriptor.getDbDriver().indexOf("mysql") != -1) {
+			} else if (descriptor.getDbDriver().contains("mysql")) {
 				dbLogic = new MySQLLogic();
-            } else if (descriptor.getDbDriver().indexOf("postgresql") != -1) {
+            } else if (descriptor.getDbDriver().contains("postgresql")) {
                 dbLogic = new PostgreSQLLogic();
 			} else {
 				log.error("Unsupported DB driver: " + descriptor.getDbDriver());
@@ -104,9 +101,8 @@ public class JDBCConnectionProxy {
 
 		} catch (SQLException e) {
 		    String msg = e.getMessage();
-//		    int errCode = e.getErrorCode();
-//		    String state = e.getSQLState();
-		    if (msg.contains( "Unknown database" ) || msg.contains( "existiert nicht" )) {
+
+		    if (msg.contains( "Unknown database" ) || msg.contains( "existiert nicht" ) || msg.contains( "does not exist" )) {
 		        try {
     		        createDatabase(p);
     		        fConnection = DriverManager.getConnection(url, p);
@@ -204,7 +200,7 @@ public class JDBCConnectionProxy {
         finally
         {
             if (st != null) st.close();
-            if (s != null) s.close();
+            s.close();
         }
 	}
 	
