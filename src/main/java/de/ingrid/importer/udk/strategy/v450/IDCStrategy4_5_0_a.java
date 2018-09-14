@@ -32,11 +32,10 @@ import org.apache.commons.logging.LogFactory;
 
 /**
  * <p>
- * Changes InGrid 4.5.0
+ * Changes InGrid 4.5.0_a
  * <p>
  * <ul>
- * <li>add new columns for storing date for parent identifier, see
- * https://redmine.informationgrid.eu/issues/364
+ * <li>add new columns for storing date for parent identifier, see https://redmine.informationgrid.eu/issues/364</li>
  * </ul>
  */
 public class IDCStrategy4_5_0_a extends IDCStrategyDefault {

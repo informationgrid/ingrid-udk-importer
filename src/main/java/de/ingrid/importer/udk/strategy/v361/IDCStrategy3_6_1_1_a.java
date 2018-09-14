@@ -38,7 +38,7 @@ import de.ingrid.utils.ige.profile.beans.controls.Controls;
  * Changes InGrid 3.6.1.1
  * <p>
  * <ul>
- * <li>Profile: Add missing new legacy field "Nutzungsbeschränkungen", see
+ * <li>Profile: Add missing new legacy field "Nutzungsbeschrï¿½nkungen", see
  * https://dev.informationgrid.eu/redmine/issues/225
  * </ul>
  * Writes NEW Catalog Schema Version to catalog !
@@ -99,7 +99,7 @@ public class IDCStrategy3_6_1_1_a extends IDCStrategyDefault {
      * removes/adds controls
      */
     private void updateRubricsAndControls(ProfileBean profileBean) {
-        log.info( "Add new LEGACY control 'Verfügbarkeit  - Nutzungsbeschränkungen' after 'Zugangsbeschränkungen'" );
+        log.info( "Add new LEGACY control 'VerfÃ¼gbarkeit  - NutzungsbeschrÃ¤nkungen' after 'ZugangsbeschrÃ¤nkungen'" );
         Controls control = new Controls();
         control.setIsLegacy( true );
         control.setId( "uiElementN027" );

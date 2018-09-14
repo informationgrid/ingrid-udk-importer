@@ -27,16 +27,21 @@ package de.ingrid.importer.udk.strategy.v450;
 
 import de.ingrid.importer.udk.jdbc.DBLogic.ColumnType;
 import de.ingrid.importer.udk.strategy.IDCStrategyDefault;
+import de.ingrid.utils.ige.profile.MdekProfileUtils;
+import de.ingrid.utils.ige.profile.ProfileMapper;
+import de.ingrid.utils.ige.profile.beans.ProfileBean;
+import de.ingrid.utils.ige.profile.beans.Rubric;
+import de.ingrid.utils.ige.profile.beans.controls.Controls;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
  * <p>
- * Changes InGrid 4.5.0
+ * Changes InGrid 4.5.0_b
  * <p>
  * <ul>
- * <li>add new columns for storing source of a license, see
- * https://redmine.informationgrid.eu/issues/1066
+ * <li>add new columns for storing source of a license, see https://redmine.informationgrid.eu/issues/1066</li>
+ * <li>update profile and make availabilityUseConstraints optional</li>
  * </ul>
  */
 public class IDCStrategy4_5_0_b extends IDCStrategyDefault {
@@ -55,12 +60,12 @@ public class IDCStrategy4_5_0_b extends IDCStrategyDefault {
         // write version of IGC structure !
         setGenericKey( KEY_IDC_VERSION, MY_VERSION );
 
-        // THEN EXECUTE ALL "CREATING" DDL OPERATIONS ! NOTICE: causes commit
-        // (e.g. on MySQL)
-        // ---------------------------------
-
         System.out.print( "  Extend datastructure..." );
         extendDataStructure();
+        System.out.println( "done." );
+
+        System.out.print( "  Update Profile..." );
+        updateProfile();
         System.out.println( "done." );
 
         jdbc.commit();
@@ -75,4 +80,34 @@ public class IDCStrategy4_5_0_b extends IDCStrategyDefault {
         log.info( "Extending datastructure... done\n" );
     }
 
+    private void updateProfile() throws Exception {
+        log.info( "\nUpdate Profile in database..." );
+
+        // read profile
+        String profileXml = readGenericKey( KEY_PROFILE_XML );
+        if (profileXml == null) {
+            throw new Exception( "igcProfile not set !" );
+        }
+        ProfileMapper profileMapper = new ProfileMapper();
+        ProfileBean profileBean = profileMapper.mapStringToBean(profileXml);
+
+        updateRubricsAndControls(profileBean);
+
+        // write Profile !
+        profileXml = profileMapper.mapBeanToXmlString(profileBean);
+        setGenericKey( KEY_PROFILE_XML, profileXml );
+
+        log.info( "Update Profile in database... done\n" );
+    }
+
+    /**
+     * Manipulate structure of rubrics / controls, NO Manipulation of JS. Also
+     * removes/adds controls
+     */
+    private void updateRubricsAndControls(ProfileBean profileBean) {
+        log.info( "Updating visibility of access constraints to 'optional'" );
+
+        Controls control = MdekProfileUtils.findControl( profileBean, "uiElementN026" );
+        control.setIsVisible("optional");
+    }
 }
