@@ -27,6 +27,18 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
+    <release version="4.5.0" date="2018-10-11" description="Release InGrid 4.5.0">
+      <action type="add" dev="wemove" issue="REDMINE-1066">
+        Add strategy to add new column source for a license. Make "accessConstraints" field optional.
+      </action>
+      <action type="add" dev="wemove" issue="REDMINE-364">
+        Add strategy for creating new parentIdentifier DB-field.
+      </action>
+      <action type="fix" dev="wemove" issue="REDMINE-1192">
+        Fix postgres detection on english system.
+      </action>
+    </release>
+      
     <release version="4.4.1" date="2018-06-25" description="Release InGrid 4.4.1">
       <action type="update" dev="wemove" issue="REDMINE-1121">
         Use latest codelists library to avoid missing codelists when migrating (4.4.0_b strategy).
