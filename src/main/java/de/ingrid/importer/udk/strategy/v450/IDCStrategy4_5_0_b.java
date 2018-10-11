@@ -20,38 +20,35 @@
  * limitations under the Licence.
  * **************************************************#
  */
+/**
+ * 
+ */
+package de.ingrid.importer.udk.strategy.v450;
 
-package de.ingrid.importer.udk.strategy.v361;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
+import de.ingrid.importer.udk.jdbc.DBLogic.ColumnType;
 import de.ingrid.importer.udk.strategy.IDCStrategyDefault;
 import de.ingrid.utils.ige.profile.MdekProfileUtils;
 import de.ingrid.utils.ige.profile.ProfileMapper;
 import de.ingrid.utils.ige.profile.beans.ProfileBean;
 import de.ingrid.utils.ige.profile.beans.Rubric;
 import de.ingrid.utils.ige.profile.beans.controls.Controls;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * <p>
- * Changes InGrid 3.6.1.1
+ * Changes InGrid 4.5.0_b
  * <p>
  * <ul>
- * <li>Profile: Add missing new legacy field "Nutzungsbeschr�nkungen", see
- * https://dev.informationgrid.eu/redmine/issues/225
+ * <li>add new columns for storing source of a license, see https://redmine.informationgrid.eu/issues/1066</li>
+ * <li>update profile and make availabilityUseConstraints optional</li>
  * </ul>
- * Writes NEW Catalog Schema Version to catalog !
  */
-public class IDCStrategy3_6_1_1_a extends IDCStrategyDefault {
+public class IDCStrategy4_5_0_b extends IDCStrategyDefault {
 
-    private static Log log = LogFactory.getLog( IDCStrategy3_6_1_1_a.class );
+    private static Log log = LogFactory.getLog( IDCStrategy4_5_0_b.class );
 
-    private static final String MY_VERSION = VALUE_IDC_VERSION_3_6_1_1_a;
-
-    String profileXml = null;
-    ProfileMapper profileMapper;
-    ProfileBean profileBean = null;
+    private static final String MY_VERSION = VALUE_IDC_VERSION_4_5_0_b;
 
     public String getIDCVersion() {
         return MY_VERSION;
@@ -63,15 +60,24 @@ public class IDCStrategy3_6_1_1_a extends IDCStrategyDefault {
         // write version of IGC structure !
         setGenericKey( KEY_IDC_VERSION, MY_VERSION );
 
-        // THEN PERFORM DATA MANIPULATIONS !
-        // ---------------------------------
+        System.out.print( "  Extend datastructure..." );
+        extendDataStructure();
+        System.out.println( "done." );
 
-        System.out.print( "  Update Profile in database..." );
+        System.out.print( "  Update Profile..." );
         updateProfile();
         System.out.println( "done." );
 
         jdbc.commit();
         System.out.println( "Update finished successfully." );
+    }
+
+    private void extendDataStructure() throws Exception {
+        log.info( "\nExtending datastructure t01_object -> CAUSES COMMIT ! ..." );
+
+        jdbc.getDBLogic().addColumn( "source", ColumnType.TEXT, "object_use_constraint", false, null, jdbc );
+
+        log.info( "Extending datastructure... done\n" );
     }
 
     private void updateProfile() throws Exception {
@@ -82,13 +88,13 @@ public class IDCStrategy3_6_1_1_a extends IDCStrategyDefault {
         if (profileXml == null) {
             throw new Exception( "igcProfile not set !" );
         }
-        profileMapper = new ProfileMapper();
-        profileBean = profileMapper.mapStringToBean( profileXml );
+        ProfileMapper profileMapper = new ProfileMapper();
+        ProfileBean profileBean = profileMapper.mapStringToBean(profileXml);
 
-        updateRubricsAndControls( profileBean );
+        updateRubricsAndControls(profileBean);
 
         // write Profile !
-        profileXml = profileMapper.mapBeanToXmlString( profileBean );
+        profileXml = profileMapper.mapBeanToXmlString(profileBean);
         setGenericKey( KEY_PROFILE_XML, profileXml );
 
         log.info( "Update Profile in database... done\n" );
@@ -99,14 +105,9 @@ public class IDCStrategy3_6_1_1_a extends IDCStrategyDefault {
      * removes/adds controls
      */
     private void updateRubricsAndControls(ProfileBean profileBean) {
-        log.info( "Add new LEGACY control 'Verfügbarkeit  - Nutzungsbeschränkungen' after 'Zugangsbeschränkungen'" );
-        Controls control = new Controls();
-        control.setIsLegacy( true );
-        control.setId( "uiElementN027" );
-        control.setIsMandatory( false );
-        control.setIsVisible( "show" );
-        Rubric rubric = MdekProfileUtils.findRubric( profileBean, "availability" );
-        int index = MdekProfileUtils.findControlIndex( profileBean, rubric, "uiElementN025" );
-        MdekProfileUtils.addControl( profileBean, control, rubric, index + 1 );
+        log.info( "Updating visibility of access constraints to 'optional'" );
+
+        Controls control = MdekProfileUtils.findControl( profileBean, "uiElementN026" );
+        control.setIsVisible("optional");
     }
 }
