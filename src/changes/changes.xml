@@ -27,6 +27,12 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
+    <release version="4.6.0-SNAPSHOT" date="????-??-??" description="??">
+      <action type="update" dev="wemove" issue="1212">
+        Update Oracle driver to ojdbc7 for Oracle 12.
+      </action>
+    </release>
+
     <release version="4.5.0" date="2018-10-11" description="Release InGrid 4.5.0">
       <action type="add" dev="wemove" issue="REDMINE-1066">
         Add strategy to add new column source for a license. Make "accessConstraints" field optional.
