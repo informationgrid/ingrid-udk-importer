@@ -38,7 +38,7 @@ import de.ingrid.importer.udk.strategy.IDCStrategyDefault;
  * Changes InGrid 4.5.3
  * <p>
  * Remove ISO Themes from all metadata if not Geo-Dataset (#1099)<br>
- * NOTICE: Writes NO Version to catalog but triggers workflow and can be executed on its own (fix strategy)
+ * NOTICE: Writes NO Version to catalog but triggers workflow
  */
 public class IDCStrategy4_5_3_fixISOThemes extends IDCStrategyDefault {
 
@@ -53,12 +53,18 @@ public class IDCStrategy4_5_3_fixISOThemes extends IDCStrategyDefault {
         // Well we keep version here having a special strategy:
         // - no version written to catalog
         // - but all former versions in workflow are executed, if catalog version is below this one !
-        // - if catalog is above this one, just this strategy is executed
+        // - return null here if you want to execute this one on its own without strategy workflow (can be changed later on when higher strategy added !)
         return MY_VERSION;
     }
 
     public void execute() throws Exception {
         jdbc.setAutoCommit( false );
+
+        // NOTICE:
+        // This is a "fix strategy" writing no version !
+
+        // do not write version of IGC structure, since migration can be done multiple times !
+        // setGenericKey(KEY_IDC_VERSION, MY_VERSION);
 
         // THEN PERFORM DATA MANIPULATIONS !
         // ---------------------------------

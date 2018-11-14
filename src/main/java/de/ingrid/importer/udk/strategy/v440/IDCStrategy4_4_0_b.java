@@ -59,7 +59,7 @@ public class IDCStrategy4_4_0_b extends IDCStrategyDefault {
         // Well we keep version here having a special strategy:
         // - no version written to catalog
         // - but all former versions in workflow are executed, if catalog version is below this one !
-        // - if catalog is above this one, just this strategy is executed
+        // - return null here if you want to execute this one on its own without strategy workflow (can be changed later on when higher strategy added !)
         return MY_VERSION;
     }
 
