@@ -7,12 +7,12 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>ingrid-udk-importer</artifactId>
-  <version>4.5.0</version>
+  <version>4.6.0</version>
   <name>InGrid UDK-IGC Importer (IGC Updater)</name>
   <description>This component migrates a IGC database.</description>
 
   <properties>
-    <ingrid-codelist-service.version>4.5.0</ingrid-codelist-service.version>
+    <ingrid-codelist-service.version>4.5.2</ingrid-codelist-service.version>
     <ingrid-utils.version>4.0.1</ingrid-utils.version>
     <ingrid-utils-ige.version>4.0.1</ingrid-utils-ige.version>
   </properties>
@@ -190,20 +190,18 @@
         </exclusion>
       </exclusions>
     </dependency>
-<!-- Oracle 10 ! -->
+<!--
     <dependency>
         <groupId>ojdbc</groupId>
         <artifactId>ojdbc</artifactId>
         <version>14</version>
     </dependency>
-<!-- Oracle 11 ! -->
-<!--
-    <dependency>
-        <groupId>com.oracle</groupId>
-        <artifactId>ojdbc6</artifactId>
-        <version>11.2.0.2</version>
-    </dependency>
 -->
+    <dependency>
+      <groupId>com.oracle</groupId>
+      <artifactId>ojdbc7</artifactId>
+      <version>12.1.0.2</version>
+    </dependency>
     <dependency>
       <!-- Needed at runtime for reading 3_2_0_udk_codelists_serialized.xml -->
       <groupId>com.thoughtworks.xstream</groupId>
@@ -223,6 +221,11 @@
       <id>nexus</id>
       <name>Nexus Repo</name>
       <url>https://nexus.informationgrid.eu/repository/maven-public</url>
+    </repository>
+    <repository>
+      <id>nexus_ojdbc7</id>
+      <name>Nexus Repo for ojdbc7</name>
+      <url>http://nexus.saas.hand-china.com/content/repositories/rdc</url>
     </repository>
   </repositories>
   <scm>
