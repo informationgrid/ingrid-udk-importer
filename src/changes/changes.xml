@@ -27,6 +27,12 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
+    <release version="4.7.0-SNAPSHOT" date="????-??-??" description="??">
+      <action type="add" dev="wemove" issue="564">
+        Add strategy to remove Codelist 6020.
+      </action>
+    </release>
+
     <release version="4.6.0" date="2019-01-14" description="Release InGrid 4.6.0">
       <action type="add" dev="wemove" issue="1099">
         Add strategy to remove ISO themes from non Geo-Datasets.
@@ -47,13 +53,13 @@
         Fix postgres detection on english system.
       </action>
     </release>
-      
+
     <release version="4.4.1" date="2018-06-25" description="Release InGrid 4.4.1">
       <action type="update" dev="wemove" issue="REDMINE-1121">
         Use latest codelists library to avoid missing codelists when migrating (4.4.0_b strategy).
       </action>
     </release>
-      
+
     <release version="4.4.0" date="2018-06-21" description="Release InGrid 4.4.0">
       <action type="update" dev="wemove" issue="REDMINE-601">
         Added column for saving a future publication date for metadata sets.
@@ -80,7 +86,7 @@
         Added new columns to hold spatial representation info for grids.
       </action>
     </release>
-    
+
     <release version="4.1.0" date="2017-10-04" description="Release InGrid 4.1.0">
       <action type="add" dev="wemove" issue="REDMINE-199">
         Added new table object_data_language for multiple data languages.
@@ -89,7 +95,7 @@
         Update syslist 6010 (accessConstraints) will be moved to codelist-repo.
       </action>
     </release>
-    
+
     <release version="4.0.3" date="2017-06-13" description="Release InGrid 4.0.3">
       <action type="add" dev="wemove" issue="REDMINE-369">
         Added new column 'is_adv_compatible' to t01_object.
@@ -104,13 +110,13 @@
         Added new table 'adv_product_group'.
       </action>
     </release>
-    
+
     <release version="4.0.2" date="2017-04-06" description="Release InGrid 4.0.2">
       <action type="add" dev="wemove" issue="REDMINE-438">
         Added support for PostgreSQL (initial schema and all strategies).
       </action>
     </release>
-    
+
     <release version="4.0.1" date="2016-01-30" description="Release InGrid 4.0.1">
       <action type="add" dev="wemove" issue="REDMINE-107">
         Add new column 'lastexpiry_time' to object/address metadata for saving date of last sent expiry email.
@@ -122,16 +128,16 @@
         Add new column "gridPosAccuracy".
       </action>
     </release>
-    
+
     <release version="4.0.0" date="2016-08-25" description="Release InGrid 4.0.0">
       <action type="update" dev="wemove" issue="REDMINE-380">
-        Add new field/column to address "Hours of Service". 
+        Add new field/column to address "Hours of Service".
       </action>
       <action type="add" dev="wemove" issue="REDMINE-413">
         Added fix strategy for constraints for HH.
       </action>
     </release>
-    
+
     <release version="3.6.2" date="2016-05-23" description="Release InGrid 3.6.2">
       <action type="update" dev="wemove" issue="REDMINE-223">
         Make "Anwendungseinschränkungen" (useLimitation) optional.
@@ -152,7 +158,7 @@
         Edit service version via syslists. Replace column t011_obj_serv_version.serv_version with version_key/_value, adding new syslists, migrating data.
       </action>
       <action type="update" dev="wemove" issue="REDMINE-13 3.)">
-        Migrate searchterm values due to update of syslist 6100 (INSPIRE Themes). Map INSPIRE themes to ISO Categories according to GDI-DE and add missing ISO categories to records. 
+        Migrate searchterm values due to update of syslist 6100 (INSPIRE Themes). Map INSPIRE themes to ISO Categories according to GDI-DE and add missing ISO categories to records.
       </action>
       <action type="update" dev="wemove" issue="REDMINE-13 1.)">
         Geo-Dataset/-Service: Separate namespace and resource identifier with "/" instead of "#" (t03_catalogue.cat_namespace, t011_obj_geo.datasource_uuid).
@@ -420,4 +426,3 @@
     </release>
   </body>
 </document>
-

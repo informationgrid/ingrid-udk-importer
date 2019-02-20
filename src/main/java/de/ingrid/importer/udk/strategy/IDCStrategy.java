@@ -7,12 +7,12 @@
  * Licensed under the EUPL, Version 1.1 or – as soon they will be
  * approved by the European Commission - subsequent versions of the
  * EUPL (the "Licence");
- * 
+ *
  * You may not use this work except in compliance with the Licence.
  * You may obtain a copy of the Licence at:
- * 
+ *
  * http://ec.europa.eu/idabc/eupl5
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the Licence is distributed on an "AS IS" basis,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -21,7 +21,7 @@
  * **************************************************#
  */
 /**
- * 
+ *
  */
 package de.ingrid.importer.udk.strategy;
 
@@ -31,16 +31,16 @@ import de.ingrid.importer.udk.provider.DataProvider;
 
 /**
  * @author Administrator
- * 
+ *
  */
 public interface IDCStrategy {
-	
+
 	/** Key for sys_generic_key table to set/extract version of idc schema. */
 	static String KEY_IDC_VERSION = "IDC_VERSION";
 	/** Key for sys_generic_key table to set/extract Profile of catalog (flexible datamodel). */
 	static String KEY_PROFILE_XML = "profileXML";
 
-	// ALL VERSIONS/STRATEGIES EXECUTED IN STRATEGY WORKFLOW ! 
+	// ALL VERSIONS/STRATEGIES EXECUTED IN STRATEGY WORKFLOW !
 
 	/** initial version/strategy */
 	static String VALUE_IDC_VERSION_102 = "1.0.2";
@@ -74,11 +74,11 @@ public interface IDCStrategy {
 	static String VALUE_IDC_VERSION_109 = "1.0.9";
 	/** CHECK strategy (writes NO version). ALSO INTEGRATED IN STRATEGY WORKFLOW !
 	 * <br>InGrid 2.3: Check INSPIRE Objects on missing data and do protocol -> can be executed on its own !
-	 * <br>SWITCH OF STRATEGY VERSION ! Strategy Version (first two digits) correlates now with InGrid 
+	 * <br>SWITCH OF STRATEGY VERSION ! Strategy Version (first two digits) correlates now with InGrid
 	 * project version !!! */
 	static String VALUE_IDC_VERSION_2_3_0_CHECK_INSPIRE_OBJECTS = "2.3.0_checkInspireObjects";
 	/** InGrid 2.3: INSPIRE theme affects fields of Geoinformation/Karte.
-	 * <br>SWITCH OF STRATEGY VERSION ! Strategy Version (first two digits) correlates now with InGrid 
+	 * <br>SWITCH OF STRATEGY VERSION ! Strategy Version (first two digits) correlates now with InGrid
 	 * project version !!! */
 	static String VALUE_IDC_VERSION_2_3_0 = "2.3.0";
 	/** InGrid 2.3 NI: new write_subtree permission */
@@ -168,12 +168,12 @@ public interface IDCStrategy {
     /** Release strategy just updating database version to 3.6.2 AND reloading syslists !!! */
     static String VALUE_IDC_VERSION_3_6_2_RELEASE = "3.6.2";
     static String VALUE_IDC_VERSION_3_6_2_FIX_CONSTRAINTS_HH = "3.6.2_fixConstraintsHH";
-    
+
     /** InGrid 4.0.0 */
     static String VALUE_IDC_VERSION_4_0_0_a = "4.0.0_a";
     /** Release strategy just updating database version to 4.0.0 AND reloading syslists !!! */
     static String VALUE_IDC_VERSION_4_0_0_RELEASE = "4.0.0";
-    
+
     /** InGrid 4.0.1 */
     static String VALUE_IDC_VERSION_4_0_1_b = "4.0.1_b";
     static String VALUE_IDC_VERSION_4_0_1_c = "4.0.1_c";
@@ -192,7 +192,7 @@ public interface IDCStrategy {
     static String VALUE_IDC_VERSION_4_0_4_a = "4.0.4_a";
     static String VALUE_IDC_VERSION_4_0_4_b = "4.0.4_b";
     static String VALUE_IDC_VERSION_4_1_0_RELEASE = "4.1.0";
-    
+
     /** InGrid 4.2.0 */
     static String VALUE_IDC_VERSION_4_2_0_a = "4.2.0_a";
     static String VALUE_IDC_VERSION_4_2_0_RELEASE = "4.2.0";
@@ -225,6 +225,10 @@ public interface IDCStrategy {
     /** writes no version, BUT triggers workflow */
     static String VALUE_IDC_VERSION_4_5_3_fixISOThemes = "4.5.3_fixISOThemes";
     static String VALUE_IDC_VERSION_4_6_0_RELEASE = "4.6.0";
+
+    /** InGrid 4.7.0 */
+    /** writes no version, BUT triggers workflow */
+    static String VALUE_IDC_VERSION_4_7_0_a = "4.7.0_a";
 
 	/** Order of strategies to execute to obtain most recent IGC.
 	 * Contains all according versions/strategies in ascending order.
@@ -300,24 +304,24 @@ public interface IDCStrategy {
 
         VALUE_IDC_VERSION_3_6_2_a,
         VALUE_IDC_VERSION_3_6_2_RELEASE,
-        
+
         VALUE_IDC_VERSION_4_0_0_a,
         VALUE_IDC_VERSION_4_0_0_RELEASE,
-        
+
         VALUE_IDC_VERSION_4_0_1_b,
         VALUE_IDC_VERSION_4_0_1_c,
         VALUE_IDC_VERSION_4_0_1_d,
         VALUE_IDC_VERSION_4_0_1_RELEASE,
-        
+
         VALUE_IDC_VERSION_4_0_3_a,
         VALUE_IDC_VERSION_4_0_3_fixKeywordsAdVMIS, // writes no Version
         VALUE_IDC_VERSION_4_0_3_b,
         VALUE_IDC_VERSION_4_0_3_RELEASE,
-        
+
         VALUE_IDC_VERSION_4_0_4_a,
         VALUE_IDC_VERSION_4_0_4_b,
         VALUE_IDC_VERSION_4_1_0_RELEASE,
-        
+
         VALUE_IDC_VERSION_4_2_0_a,
         VALUE_IDC_VERSION_4_2_0_RELEASE,
 
@@ -336,12 +340,14 @@ public interface IDCStrategy {
         VALUE_IDC_VERSION_4_5_0_a,
         VALUE_IDC_VERSION_4_5_0_b,
         VALUE_IDC_VERSION_4_5_0_RELEASE,
-        
+
         VALUE_IDC_VERSION_4_5_3_fixISOThemes,
-        VALUE_IDC_VERSION_4_6_0_RELEASE
+        VALUE_IDC_VERSION_4_6_0_RELEASE,
+
+        VALUE_IDC_VERSION_4_7_0_a
 	};
 
-		
+
 	public void execute() throws Exception;
 
 	public void setDataProvider(DataProvider data);
@@ -350,7 +356,7 @@ public interface IDCStrategy {
 	public ImportDescriptor getImportDescriptor();
 
 	public void setJDBCConnectionProxy(JDBCConnectionProxy jdbc);
-	
+
 	/**
 	 * Get the IDC Version generated by this strategy (written into IDC catalog).
 	 * After executing the strategy, the IDC structure is according to this version (but may have

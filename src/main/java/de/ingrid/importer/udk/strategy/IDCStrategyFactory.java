@@ -7,12 +7,12 @@
  * Licensed under the EUPL, Version 1.1 or – as soon they will be
  * approved by the European Commission - subsequent versions of the
  * EUPL (the "Licence");
- * 
+ *
  * You may not use this work except in compliance with the Licence.
  * You may obtain a copy of the Licence at:
- * 
+ *
  * http://ec.europa.eu/idabc/eupl5
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the Licence is distributed on an "AS IS" basis,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -21,7 +21,7 @@
  * **************************************************#
  */
 /**
- * 
+ *
  */
 package de.ingrid.importer.udk.strategy;
 
@@ -123,10 +123,11 @@ import de.ingrid.importer.udk.strategy.v450.IDCStrategy4_5_0_a;
 import de.ingrid.importer.udk.strategy.v450.IDCStrategy4_5_0_b;
 import de.ingrid.importer.udk.strategy.v453.IDCStrategy4_5_3_fixISOThemes;
 import de.ingrid.importer.udk.strategy.v460.IDCStrategy4_6_0_RELEASE;
+import de.ingrid.importer.udk.strategy.v470.IDCStrategy4_7_0_a;
 
 /**
  * @author joachim
- * 
+ *
  */
 public class IDCStrategyFactory {
 
@@ -320,6 +321,8 @@ public class IDCStrategyFactory {
             return new IDCStrategy4_5_3_fixISOThemes();
         } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_4_6_0_RELEASE )) {
             return new IDCStrategy4_6_0_RELEASE();
+        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_4_7_0_a )) {
+            return new IDCStrategy4_7_0_a();
         } else {
             log.error( "Unknown IDC version '" + idcVersion + "'." );
             throw new IllegalArgumentException( "Unknown IDC version '" + idcVersion + "'." );
@@ -329,10 +332,10 @@ public class IDCStrategyFactory {
     /**
 	 * Get all strategies to execute to obtain the new version.
 	 * NOTICE: If initial setup (old version null), then the initial strategy for catalog setup is dependent from whether
-	 * udk data is passed. If data is passed then it is imported via 102 strategy, else clean setup via 102_clean strategy is executed.  
+	 * udk data is passed. If data is passed then it is imported via 102 strategy, else clean setup via 102_clean strategy is executed.
 	 * @param oldIdcVersion "old" version of idc-catalog (set in database), PASS NULL TO START FROM SCRATCH !
 	 * @param descriptor contains passed udk data (or not) and target version of catalog !
-	 * @return ordered list of strategies to execute one by one (start with index 0) 
+	 * @return ordered list of strategies to execute one by one (start with index 0)
      * @throws Exception
      */
     public List<IDCStrategy> getIdcStrategiesToExecute(String oldIdcVersion, ImportDescriptor descriptor) throws Exception {
@@ -357,7 +360,7 @@ public class IDCStrategyFactory {
 
         } else {
             // new strategy generates a new version !
-			// execute strategies for versions in between and finally requested new strategy. 
+			// execute strategies for versions in between and finally requested new strategy.
 
             // compare index of old and new version, obtain indices in between
             List<String> allVersions = Arrays.asList( IDCStrategy.STRATEGY_WORKFLOW );
