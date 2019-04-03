@@ -230,6 +230,10 @@ public interface IDCStrategy {
     /** writes no version, BUT triggers workflow */
     static String VALUE_IDC_VERSION_4_7_0_a = "4.7.0_a";
 
+
+    /** InGrid 5.0.0 */
+    String VALUE_IDC_VERSION_5_0_0_a = "5.0.0_a";
+
 	/** Order of strategies to execute to obtain most recent IGC.
 	 * Contains all according versions/strategies in ascending order.
 	 * NOTICE: THESE VERSIONS ARE MAPPED TO STRATEGIES IN STRATEGY FACTORY !!! */
@@ -344,7 +348,9 @@ public interface IDCStrategy {
         VALUE_IDC_VERSION_4_5_3_fixISOThemes,
         VALUE_IDC_VERSION_4_6_0_RELEASE,
 
-        VALUE_IDC_VERSION_4_7_0_a
+        VALUE_IDC_VERSION_4_7_0_a,
+
+        VALUE_IDC_VERSION_5_0_0_a
 	};
 
 
