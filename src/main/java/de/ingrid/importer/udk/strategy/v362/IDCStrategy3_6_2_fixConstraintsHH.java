@@ -4,7 +4,7 @@
  * ==================================================
  * Copyright (C) 2014 - 2019 wemove digital solutions GmbH
  * ==================================================
- * Licensed under the EUPL, Version 1.1 or â€“ as soon they will be
+ * Licensed under the EUPL, Version 1.1 or Ã¢â‚¬â€œ as soon they will be
  * approved by the European Commission - subsequent versions of the
  * EUPL (the "Licence");
  * 
@@ -40,10 +40,10 @@ import de.ingrid.importer.udk.strategy.IDCStrategyDefault;
  * <p>
  * Fix migration of constrains (IDCStrategy3_6_1_b) for LGV_HH see https://redmine.wemove.com/issues/911
  * <ul>
- * <li>- wenn "OpenData" oder "Veröffentlichung gemäß HmbTG" gesetzt
- * <li>- ODER wenn "Anwendungseinschränkungen" (object_use) beginnt mit "Datenlizenz Deutschland - Namensnennung - Version 2.0;"
- * <li>- dann übernehme Inhalt aus "Anwendungseinschränkungen" (object_use) in das neue Feld "Nutzungsbedingungen" (object_use_constraint), wenn noch nicht vorhanden
- * <li>- und lösche Inhalt von "Anwendungseinschränkungen" (object_use)
+ * <li>- wenn "OpenData" oder "VerÃ¶ffentlichung gemÃ¤ÃŸ HmbTG" gesetzt
+ * <li>- ODER wenn "AnwendungseinschrÃ¤nkungen" (object_use) beginnt mit "Datenlizenz Deutschland - Namensnennung - Version 2.0;"
+ * <li>- dann Ã¼bernehme Inhalt aus "AnwendungseinschrÃ¤nkungen" (object_use) in das neue Feld "Nutzungsbedingungen" (object_use_constraint), wenn noch nicht vorhanden
+ * <li>- und lÃ¶sche Inhalt von "AnwendungseinschrÃ¤nkungen" (object_use)
  * </ul>
  */
 public class IDCStrategy3_6_2_fixConstraintsHH extends IDCStrategyDefault {
@@ -83,7 +83,7 @@ public class IDCStrategy3_6_2_fixConstraintsHH extends IDCStrategyDefault {
         // Unchanged object_use entries from syslist 6500 (license) already transferred to object_use_constraint (IDCStrategy3_6_1_b) !
         // But changed entries from syslist were not transferred !
         // We transfer content of object_use to object_use_constraint:
-        // - if "open data" or "Veröffentlichung gemäß HmbTG" set
+        // - if "open data" or "VerÃ¶ffentlichung gemÃ¤ÃŸ HmbTG" set
         // - OR if content starts with "Datenlizenz Deutschland - Namensnennung - Version 2.0;"
         // - and content not already in object_use_constraint
         // The result in object_use_constraint is always a free entry with key -1.

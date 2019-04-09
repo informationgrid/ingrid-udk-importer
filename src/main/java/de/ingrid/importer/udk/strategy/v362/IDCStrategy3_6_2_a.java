@@ -4,7 +4,7 @@
  * ==================================================
  * Copyright (C) 2014 - 2019 wemove digital solutions GmbH
  * ==================================================
- * Licensed under the EUPL, Version 1.1 or – as soon they will be
+ * Licensed under the EUPL, Version 1.1 or â€“ as soon they will be
  * approved by the European Commission - subsequent versions of the
  * EUPL (the "Licence");
  * 
@@ -39,7 +39,7 @@ import de.ingrid.utils.ige.profile.beans.controls.Controls;
  * Changes InGrid 3.6.2
  * <p>
  * <ul>
- * <li>make useLimitation optional (Anwendungseinschr�nkungen), see https://dev.informationgrid.eu/redmine/issues/223
+ * <li>make useLimitation optional (Anwendungseinschränkungen), see https://dev.informationgrid.eu/redmine/issues/223
  * </ul>
  */
 public class IDCStrategy3_6_2_a extends IDCStrategyDefault {
@@ -99,7 +99,7 @@ public class IDCStrategy3_6_2_a extends IDCStrategyDefault {
      * Also removes/adds controls
      */
     private void updateRubricsAndControls(ProfileBean profileBean) {
-        log.info("'Anwendungseinschr�nkungen'(uiElementN026 / useLimitation): make always optional but show");
+        log.info("'Anwendungseinschränkungen'(uiElementN026 / useLimitation): make always optional but show");
         Controls control = MdekProfileUtils.findControl(profileBean, "uiElementN026");
         control.setIsMandatory(false);
         control.setIsVisible("show");
