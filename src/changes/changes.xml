@@ -27,7 +27,7 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
-    <release version="4.7.0-SNAPSHOT" date="????-??-??" description="??">
+    <release version="5.0.0" date="2019-04-09" description="Release InGrid 5.0.0">
       <action type="add" dev="wemove" issue="564">
         Add strategy to remove Codelist 6020.
       </action>

@@ -226,9 +226,11 @@ public interface IDCStrategy {
     static String VALUE_IDC_VERSION_4_5_3_fixISOThemes = "4.5.3_fixISOThemes";
     static String VALUE_IDC_VERSION_4_6_0_RELEASE = "4.6.0";
 
-    /** InGrid 4.7.0 */
+    /** InGrid 5.0.0 */
+    // 4.7.0 never released ! we just keep these strategies in v470 package !
     /** writes no version, BUT triggers workflow */
     static String VALUE_IDC_VERSION_4_7_0_a = "4.7.0_a";
+    static String VALUE_IDC_VERSION_5_0_0_RELEASE = "5.0.0";
 
 	/** Order of strategies to execute to obtain most recent IGC.
 	 * Contains all according versions/strategies in ascending order.
@@ -344,7 +346,8 @@ public interface IDCStrategy {
         VALUE_IDC_VERSION_4_5_3_fixISOThemes,
         VALUE_IDC_VERSION_4_6_0_RELEASE,
 
-        VALUE_IDC_VERSION_4_7_0_a
+        VALUE_IDC_VERSION_4_7_0_a,
+        VALUE_IDC_VERSION_5_0_0_RELEASE
 	};
 
 
