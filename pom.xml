@@ -51,13 +51,6 @@
               </archive>
             </configuration>
           </execution>
-          <!-- then installer jar (all settings inherited from ingrid-releases-pom) -->
-          <execution>
-            <phase>package</phase>
-            <goals>
-              <goal>single</goal>
-            </goals>
-          </execution>
         </executions>
       </plugin>
       <plugin>
