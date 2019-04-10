@@ -12,11 +12,11 @@ Requirements
 Installation
 ------------
 
-Download from https://dev.informationgrid.eu/ingrid-distributions/ingrid-udk-importer/
+Download from https://distributions.informationgrid.eu/ingrid-udk-importer/
  
 or
 
-build from source with `mvn package assembly:single`.
+build from source with `mvn clean package`.
 
 Execute
 
