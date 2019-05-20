@@ -77,7 +77,7 @@ public class IDCStrategy5_1_0_a extends IDCStrategyDefault {
 
     private void migrateLicenseData() throws Exception {
 
-        PreparedStatement psLicensesToMigrate = jdbc.prepareStatement( "SELECT * FROM object_use_constraint WHERE license_value='keine'" );
+        PreparedStatement psLicensesToMigrate = jdbc.prepareStatement( "SELECT * FROM object_use_constraint WHERE license_value='keine' OR license_value='Keine'" );
         PreparedStatement psUpdateLicense = jdbc.prepareStatement( "UPDATE object_use_constraint SET license_key=26, license_value='Es gelten keine Bedingungen' WHERE id=?" );
 
         ResultSet resultSet = psLicensesToMigrate.executeQuery();
