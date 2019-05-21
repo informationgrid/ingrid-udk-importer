@@ -211,11 +211,20 @@ public class IDCStrategy4_6_5_fixMetaVerLicenses extends IDCStrategyDefault {
             int index = licenseText.lastIndexOf( SOURCE_LABEL );
             if (index != -1) {
                 retSource = licenseText.substring( index + SOURCE_LABEL.length() ).trim();
-                if (retSource.startsWith( "\"" ) || retSource.startsWith( "'" )) {
-                    retSource = retSource.substring( 1 );
-                }
-                if (retSource.endsWith( "\"" ) || retSource.endsWith( "'" )) {
-                    retSource = retSource.substring( 0, retSource.length() - 1 );
+                if (retSource.startsWith( "\"" )) {
+                    // check whether we have an opening quote with a closing
+                    // quote at end, then remove quotes
+                    if (retSource.indexOf( "\"", 1 ) == retSource.length() - 1) {
+                        retSource = retSource.substring( 1 );
+                        retSource = retSource.substring( 0, retSource.length() - 1 );
+                    }
+                } else if (retSource.startsWith( "'" )) {
+                    // check whether we have an opening quote with a closing
+                    // quote at end, then remove opening quote
+                    if (retSource.indexOf( "'", 1 ) == retSource.length() - 1) {
+                        retSource = retSource.substring( 1 );
+                        retSource = retSource.substring( 0, retSource.length() - 1 );
+                    }
                 }
             }
         }
