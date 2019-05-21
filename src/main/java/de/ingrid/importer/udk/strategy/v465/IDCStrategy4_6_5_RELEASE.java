@@ -47,9 +47,8 @@ public class IDCStrategy4_6_5_RELEASE extends IDCStrategyDefault {
     public void execute() throws Exception {
         jdbc.setAutoCommit( false );
 
-        // WE KEEP OLD VERSION TO AVOID CONFLICTS WITH FRONTEND !
-        // This is just for fixing MetaVer !
-        // setGenericKey(KEY_IDC_VERSION, MY_VERSION);
+        // write version of IGC structure !
+        setGenericKey( KEY_IDC_VERSION, MY_VERSION );
 
         // delete time stamp of last update of syslists to reload all syslists
         // (reload from initial codelist file from codelist service if no repo
