@@ -123,6 +123,8 @@ import de.ingrid.importer.udk.strategy.v450.IDCStrategy4_5_0_a;
 import de.ingrid.importer.udk.strategy.v450.IDCStrategy4_5_0_b;
 import de.ingrid.importer.udk.strategy.v453.IDCStrategy4_5_3_fixISOThemes;
 import de.ingrid.importer.udk.strategy.v460.IDCStrategy4_6_0_RELEASE;
+import de.ingrid.importer.udk.strategy.v465.IDCStrategy4_6_5_RELEASE;
+import de.ingrid.importer.udk.strategy.v465.IDCStrategy4_6_5_fixMetaVerLicenses;
 
 /**
  * @author joachim
@@ -302,17 +304,17 @@ public class IDCStrategyFactory {
             return new IDCStrategy4_3_1_fixSearchtermReferences();
         } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_4_3_1_RELEASE )) {
             return new IDCStrategy4_3_1_RELEASE();
-        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_4_4_0_a)) {
+        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_4_4_0_a )) {
             return new IDCStrategy4_4_0_a();
-        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_4_4_0_b)) {
+        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_4_4_0_b )) {
             return new IDCStrategy4_4_0_b();
-        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_4_4_0_c)) {
+        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_4_4_0_c )) {
             return new IDCStrategy4_4_0_c();
         } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_4_4_0_RELEASE )) {
             return new IDCStrategy4_4_0_RELEASE();
-        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_4_5_0_a)) {
+        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_4_5_0_a )) {
             return new IDCStrategy4_5_0_a();
-        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_4_5_0_b)) {
+        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_4_5_0_b )) {
             return new IDCStrategy4_5_0_b();
         } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_4_5_0_RELEASE )) {
             return new IDCStrategy4_5_0_RELEASE();
@@ -320,6 +322,10 @@ public class IDCStrategyFactory {
             return new IDCStrategy4_5_3_fixISOThemes();
         } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_4_6_0_RELEASE )) {
             return new IDCStrategy4_6_0_RELEASE();
+        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_4_6_5_fixMetaVerLicenses )) {
+            return new IDCStrategy4_6_5_fixMetaVerLicenses();
+        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_4_6_5_RELEASE )) {
+            return new IDCStrategy4_6_5_RELEASE();
         } else {
             log.error( "Unknown IDC version '" + idcVersion + "'." );
             throw new IllegalArgumentException( "Unknown IDC version '" + idcVersion + "'." );
@@ -327,12 +333,20 @@ public class IDCStrategyFactory {
     }
 
     /**
-	 * Get all strategies to execute to obtain the new version.
-	 * NOTICE: If initial setup (old version null), then the initial strategy for catalog setup is dependent from whether
-	 * udk data is passed. If data is passed then it is imported via 102 strategy, else clean setup via 102_clean strategy is executed.  
-	 * @param oldIdcVersion "old" version of idc-catalog (set in database), PASS NULL TO START FROM SCRATCH !
-	 * @param descriptor contains passed udk data (or not) and target version of catalog !
-	 * @return ordered list of strategies to execute one by one (start with index 0) 
+     * Get all strategies to execute to obtain the new version. NOTICE: If
+     * initial setup (old version null), then the initial strategy for catalog
+     * setup is dependent from whether udk data is passed. If data is passed
+     * then it is imported via 102 strategy, else clean setup via 102_clean
+     * strategy is executed.
+     * 
+     * @param oldIdcVersion
+     *            "old" version of idc-catalog (set in database), PASS NULL TO
+     *            START FROM SCRATCH !
+     * @param descriptor
+     *            contains passed udk data (or not) and target version of
+     *            catalog !
+     * @return ordered list of strategies to execute one by one (start with
+     *         index 0)
      * @throws Exception
      */
     public List<IDCStrategy> getIdcStrategiesToExecute(String oldIdcVersion, ImportDescriptor descriptor) throws Exception {
@@ -346,7 +360,8 @@ public class IDCStrategyFactory {
         }
 
         // get REAL version from requested strategy
-		// NOTICE: may be null, if strategy is independent from idc version, meaning can be executed any time
+        // NOTICE: may be null, if strategy is independent from idc version,
+        // meaning can be executed any time
         // -> we don't assure executing of former strategies !
         IDCStrategy newStrategy = getIdcStrategy( newIdcVersionFromDescriptor );
         String newIdcVersion = newStrategy.getIDCVersion();
@@ -357,7 +372,8 @@ public class IDCStrategyFactory {
 
         } else {
             // new strategy generates a new version !
-			// execute strategies for versions in between and finally requested new strategy. 
+            // execute strategies for versions in between and finally requested
+            // new strategy.
 
             // compare index of old and new version, obtain indices in between
             List<String> allVersions = Arrays.asList( IDCStrategy.STRATEGY_WORKFLOW );
@@ -374,7 +390,8 @@ public class IDCStrategyFactory {
             int oldIndex = -1;
             if (oldIdcVersion == null) {
                 // INITIAL SETUP
-				// If no UDK data passed change first strategy to clean setup of catalog.
+                // If no UDK data passed change first strategy to clean setup of
+                // catalog.
                 if (descriptor.getFiles().size() == 0) {
                     allVersions.set( 0, IDCStrategy.VALUE_STRATEGY_102_CLEAN );
                 }
@@ -389,7 +406,8 @@ public class IDCStrategyFactory {
                 }
             }
 
-			// set up default strategies for obtaining versions in between. Newest strategy is requested strategy.
+            // set up default strategies for obtaining versions in between.
+            // Newest strategy is requested strategy.
             if (oldIndex < newIndex) {
                 for (int i = oldIndex + 1; i <= newIndex; i++) {
                     // add strategy for that version !
