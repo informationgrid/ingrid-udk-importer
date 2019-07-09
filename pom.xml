@@ -7,13 +7,13 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>ingrid-udk-importer</artifactId>
-  <version>5.0.0</version>
+  <version>5.1.0</version>
   <name>InGrid UDK-IGC Importer (IGC Updater)</name>
   <description>This component migrates a IGC database.</description>
 
   <properties>
-    <ingrid-codelist-service.version>5.0.0</ingrid-codelist-service.version>
-    <ingrid-utils.version>5.0.0</ingrid-utils.version>
+    <ingrid-codelist-service.version>5.1.0</ingrid-codelist-service.version>
+    <ingrid-utils.version>5.1.0</ingrid-utils.version>
     <ingrid-utils-ige.version>4.0.1</ingrid-utils-ige.version>
   </properties>
 
@@ -50,13 +50,6 @@
                 </manifest>
               </archive>
             </configuration>
-          </execution>
-          <!-- then installer jar (all settings inherited from ingrid-releases-pom) -->
-          <execution>
-            <phase>package</phase>
-            <goals>
-              <goal>single</goal>
-            </goals>
           </execution>
         </executions>
       </plugin>
