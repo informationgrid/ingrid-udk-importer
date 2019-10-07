@@ -55,7 +55,7 @@ public class IDCStrategy5_2_0_a extends IDCStrategyDefault {
         // - no version written to catalog
         // - but all former versions in workflow are executed, if catalog version is below this one !
         // - return null here if you want to execute this one on its own without strategy workflow (can be changed later on when higher strategy added !)
-        return null;
+        return MY_VERSION;
     }
 
     public void execute() throws Exception {
@@ -64,8 +64,8 @@ public class IDCStrategy5_2_0_a extends IDCStrategyDefault {
         // NOTICE:
         // This is a "fix strategy" writing no version !
 
-        // do not write version of IGC structure, since migration can be done multiple times !
-        // setGenericKey(KEY_IDC_VERSION, MY_VERSION);
+        // do write version of IGC structure, since migration shall only be run once!
+         setGenericKey(KEY_IDC_VERSION, MY_VERSION);
 
         // THEN PERFORM DATA MANIPULATIONS !
         // ---------------------------------
