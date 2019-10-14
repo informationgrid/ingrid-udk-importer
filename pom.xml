@@ -13,7 +13,7 @@
 
   <properties>
     <ingrid-codelist-service.version>5.2.0-SNAPSHOT</ingrid-codelist-service.version>
-    <ingrid-utils.version>5.1.0</ingrid-utils.version>
+    <ingrid-utils.version>5.2.0</ingrid-utils.version>
     <ingrid-utils-ige.version>4.0.1</ingrid-utils-ige.version>
   </properties>
 

@@ -234,7 +234,7 @@ public class IDCStrategy5_2_0_a extends IDCStrategyDefault {
     }
 
     private void removeInspireRichtlinie() throws SQLException {
-        String sql = "SELECT oc.id, obj_uuid FROM t01_object JOIN object_conformity oc on t01_object.id = oc.obj_id WHERE oc.specification_key=13";
+        String sql = "SELECT oc.id, obj_uuid FROM t01_object JOIN object_conformity oc on t01_object.id = oc.obj_id WHERE oc.specification_key=13 OR oc.specification_value='INSPIRE-Richtlinie'";
         PreparedStatement psInspireRichtlinie = jdbc.prepareStatement(sql);
         PreparedStatement psDeleteQuery = jdbc.prepareStatement("DELETE FROM object_conformity WHERE id=?");
 
