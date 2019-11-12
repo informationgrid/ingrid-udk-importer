@@ -1,4 +1,4 @@
-package de.ingrid.importer.udk.strategy.v500;
+package de.ingrid.importer.udk.strategy.v530;
 
 import de.ingrid.importer.udk.strategy.IDCStrategyDefault;
 import de.ingrid.utils.ige.profile.MdekProfileUtils;
@@ -8,10 +8,10 @@ import de.ingrid.utils.ige.profile.beans.controls.Controls;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public final class IDCStrategy5_0_0_a extends IDCStrategyDefault {
-    private static final Log LOG = LogFactory.getLog(IDCStrategy5_0_0_a.class);
+public final class IDCStrategy5_3_0_a extends IDCStrategyDefault {
+    private static final Log LOG = LogFactory.getLog(IDCStrategy5_3_0_a.class);
 
-    private static final String MY_VERSION = VALUE_IDC_VERSION_5_0_0_a;
+    private static final String MY_VERSION = VALUE_IDC_VERSION_5_3_0_a;
 
     @Override
     public String getIDCVersion() {
