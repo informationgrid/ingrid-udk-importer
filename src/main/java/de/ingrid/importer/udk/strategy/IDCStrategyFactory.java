@@ -344,6 +344,8 @@ public class IDCStrategyFactory {
             return new IDCStrategy5_2_1_a();
         } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_5_2_1_b )) {
             return new IDCStrategy5_2_1_b();
+        /*} else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_5_2_1_c )) {
+            return new IDCStrategy5_2_1_c();*/
         } else {
             log.error( "Unknown IDC version '" + idcVersion + "'." );
             throw new IllegalArgumentException( "Unknown IDC version '" + idcVersion + "'." );

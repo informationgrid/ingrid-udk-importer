@@ -443,7 +443,22 @@ public class PostgreSQLLogic implements DBLogic {
         jdbc.executeUpdate(sql);
     }
 
-    @Override
+	@Override
+	public void createTablePriorityDataset(JDBCConnectionProxy jdbc) throws SQLException {
+		String sql = "CREATE TABLE priority_dataset ("
+				+ "id BIGINT NOT NULL, "
+				+ "version INTEGER NOT NULL DEFAULT 0, "
+				+ "obj_id BIGINT, "
+				+ "line INTEGER DEFAULT 0, "
+				+ "priority_key INTEGER, "
+				+ "priority_value VARCHAR(255), "
+				+ "PRIMARY KEY (id))";
+		jdbc.executeUpdate(sql);
+		sql = "CREATE INDEX idxObjDLang_ObjId ON object_data_language (obj_id ASC)";
+		jdbc.executeUpdate(sql);
+	}
+
+	@Override
     public void createDatabase(JDBCConnectionProxy jdbc, Connection dbConnection, String dbName, String user) throws SQLException {
         // TODO: check if this works!
         String sql = "CREATE DATABASE " + dbName + " WITH OWNER = " + user + " ENCODING='UTF8' CONNECTION LIMIT=-1";

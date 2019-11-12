@@ -145,6 +145,9 @@ public interface DBLogic {
     /** DDL Operation ! CAUSES COMMIT ON MySQL ! */
     void createTableObjectDataLanguage(JDBCConnectionProxy jdbc) throws SQLException;
 
+    /** DDL Operation ! CAUSES COMMIT ON MySQL ! */
+    void createTablePriorityDataset(JDBCConnectionProxy jdbc) throws SQLException;
+
     void createDatabase(JDBCConnectionProxy jdbcConnectionProxy, Connection dbConnection, String dbName, String user) throws SQLException;
     
     void importFileToDatabase(JDBCConnectionProxy jdbcConnectionProxy) throws SQLException, IOException;
