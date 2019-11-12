@@ -46,11 +46,11 @@ import java.sql.SQLException;
  * <p>
  * Add date field for application schema
  */
-public class IDCStrategy5_2_1_b extends IDCStrategyDefault {
+public class IDCStrategy5_2_1_d extends IDCStrategyDefault {
 
-    private static Log log = LogFactory.getLog(IDCStrategy5_2_1_b.class);
+    private static Log log = LogFactory.getLog(IDCStrategy5_2_1_d.class);
 
-    private static final String MY_VERSION = VALUE_IDC_VERSION_5_2_1_c;
+    private static final String MY_VERSION = VALUE_IDC_VERSION_5_2_1_d;
 
     CodeList codeList6300 = InitialCodeListServiceFactory.instance().getCodeList(Integer.toString(6300));
 
