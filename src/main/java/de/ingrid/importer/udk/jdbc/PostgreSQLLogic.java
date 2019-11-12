@@ -454,7 +454,7 @@ public class PostgreSQLLogic implements DBLogic {
 				+ "priority_value VARCHAR(255), "
 				+ "PRIMARY KEY (id))";
 		jdbc.executeUpdate(sql);
-		sql = "CREATE INDEX idxObjDLang_ObjId ON object_data_language (obj_id ASC)";
+		sql = "CREATE INDEX idxPrioData_ObjId ON priority_dataset (obj_id ASC)";
 		jdbc.executeUpdate(sql);
 	}
 

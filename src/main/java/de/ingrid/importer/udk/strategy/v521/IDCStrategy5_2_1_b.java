@@ -73,7 +73,7 @@ public class IDCStrategy5_2_1_b extends IDCStrategyDefault {
     private void extendDataStructure() throws Exception {
         log.info( "\nExtending datastructure -> CAUSES COMMIT ! ..." );
 
-        log.info( "Create table 'object_use_constraint'..." );
+        log.info( "Create table 'priority_dataset'..." );
         jdbc.getDBLogic().createTablePriorityDataset( jdbc );
 
         log.info( "Extending datastructure... done\n" );

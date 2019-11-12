@@ -435,7 +435,7 @@ public class MySQLLogic implements DBLogic {
 				+ "priority_key INTEGER, "
 				+ "priority_value VARCHAR(255), "
 				+ "PRIMARY KEY (id), "
-				+ "INDEX idxObjDLang_ObjId (obj_id ASC)) "
+				+ "INDEX idxPrioData_ObjId (obj_id ASC)) "
 				+ "ENGINE=InnoDB;";
 		jdbc.executeUpdate(sql);
 	}
