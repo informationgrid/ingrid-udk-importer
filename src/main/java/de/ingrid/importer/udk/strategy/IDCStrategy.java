@@ -226,13 +226,22 @@ public interface IDCStrategy {
     static String VALUE_IDC_VERSION_4_5_3_fixISOThemes = "4.5.3_fixISOThemes";
     static String VALUE_IDC_VERSION_4_6_0_RELEASE = "4.6.0";
 
-    /** InGrid 4.7.0 */
+    /** InGrid 5.0.0 */
+    // 4.7.0 never released ! we just keep these strategies in v470 package !
     /** writes no version, BUT triggers workflow */
     static String VALUE_IDC_VERSION_4_7_0_a = "4.7.0_a";
+    static String VALUE_IDC_VERSION_5_0_0_RELEASE = "5.0.0";
 
+    static String VALUE_IDC_VERSION_5_1_0_a = "5.1.0_a";
+    static String VALUE_IDC_VERSION_5_1_0_RELEASE = "5.1.0";
 
-    /** InGrid 5.0.0 */
-    String VALUE_IDC_VERSION_5_0_0_a = "5.0.0_a";
+    static String VALUE_IDC_VERSION_5_2_0_a = "5.2.0_a";
+    static String VALUE_IDC_VERSION_5_2_0_RELEASE = "5.2.0";
+
+    static String VALUE_IDC_VERSION_5_2_1_a = "5.2.1_a";
+    static String VALUE_IDC_VERSION_5_2_1_b = "5.2.1_b";
+//    static String VALUE_IDC_VERSION_5_2_1_c = "5.2.1_c";
+    static String VALUE_IDC_VERSION_5_2_1_d = "5.2.1_d";
 
 	/** InGrid 5.3.0 */
 	String VALUE_IDC_VERSION_5_3_0_a = "5.3.0_a";
@@ -352,8 +361,20 @@ public interface IDCStrategy {
         VALUE_IDC_VERSION_4_6_0_RELEASE,
 
         VALUE_IDC_VERSION_4_7_0_a,
+        VALUE_IDC_VERSION_5_0_0_RELEASE,
 
-        VALUE_IDC_VERSION_5_0_0_a
+        VALUE_IDC_VERSION_5_1_0_a,
+        VALUE_IDC_VERSION_5_1_0_RELEASE,
+
+		VALUE_IDC_VERSION_5_2_0_a,
+		VALUE_IDC_VERSION_5_2_0_RELEASE,
+
+		VALUE_IDC_VERSION_5_2_1_a,
+		VALUE_IDC_VERSION_5_2_1_b,/*
+		VALUE_IDC_VERSION_5_2_1_c,*/
+
+        VALUE_IDC_VERSION_5_3_0_a
+
 	};
 
 

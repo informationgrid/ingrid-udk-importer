@@ -493,7 +493,24 @@ public class OracleLogic implements DBLogic {
         jdbc.commit();
     }
 
-    @Override
+	@Override
+	public void createTablePriorityDataset(JDBCConnectionProxy jdbc) throws SQLException {
+		String sql = "CREATE TABLE priority_dataset ("
+				+ "id NUMBER(24,0) NOT NULL, "
+				+ "version NUMBER(10,0) DEFAULT '0' NOT NULL, "
+				+ "obj_id NUMBER(24,0), "
+				+ "line NUMBER(10,0) DEFAULT '0', "
+				+ "priority_key NUMBER(10,0), "
+				+ "priority_value VARCHAR2(255 CHAR))";
+		jdbc.executeUpdate(sql);
+		sql = "ALTER TABLE object_data_language ADD CONSTRAINT PRIMARY_ObjectDataLanguage PRIMARY KEY ( id ) ENABLE";
+		jdbc.executeUpdate(sql);
+		sql = "CREATE INDEX idxObjDLang_ObjId ON object_data_language ( obj_id )";
+		jdbc.executeUpdate(sql);
+		jdbc.commit();
+	}
+
+	@Override
     public void createDatabase(JDBCConnectionProxy jdbcConnectionProxy, Connection dbConnection, String dbName, String user) throws SQLException {
         // TODO implement if possible
         

@@ -130,7 +130,12 @@ public class MSSQLLogic implements DBLogic {
         // TODO !
     }
 
-    @Override
+	@Override
+	public void createTablePriorityDataset(JDBCConnectionProxy jdbc) throws SQLException {
+		// TODO !
+	}
+
+	@Override
     public void createDatabase(JDBCConnectionProxy jdbc, Connection dbConnection, String dbName, String user) throws SQLException {
         // TODO !
     }

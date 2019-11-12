@@ -27,7 +27,19 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
-    <release version="4.7.0-SNAPSHOT" date="????-??-??" description="??">
+    <release version="5.2.0" date="2019-10-22" description="Release InGrid 5.2.0">
+      <action type="add" dev="wemove" issue="1274">
+        Migration of conformity values (#1274)
+      </action>
+    </release>
+
+    <release version="5.1.0" date="2019-07-09" description="Release InGrid 5.1.0">
+      <action type="add" dev="wemove" issue="1218">
+        Add new strategy to migrate use constraints.
+      </action>
+    </release>
+
+    <release version="5.0.0" date="2019-04-09" description="Release InGrid 5.0.0">
       <action type="add" dev="wemove" issue="564">
         Add strategy to remove Codelist 6020.
       </action>

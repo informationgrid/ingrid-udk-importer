@@ -40,10 +40,10 @@ import de.ingrid.importer.udk.strategy.IDCStrategyDefault;
  * <p>
  * Fix migration of constrains (IDCStrategy3_6_1_b) for LGV_HH see https://redmine.wemove.com/issues/911
  * <ul>
- * <li>- wenn "OpenData" oder "Verˆffentlichung gem‰ﬂ HmbTG" gesetzt
- * <li>- ODER wenn "Anwendungseinschr‰nkungen" (object_use) beginnt mit "Datenlizenz Deutschland - Namensnennung - Version 2.0;"
- * <li>- dann ¸bernehme Inhalt aus "Anwendungseinschr‰nkungen" (object_use) in das neue Feld "Nutzungsbedingungen" (object_use_constraint), wenn noch nicht vorhanden
- * <li>- und lˆsche Inhalt von "Anwendungseinschr‰nkungen" (object_use)
+ * <li>- wenn "OpenData" oder "Ver√∂ffentlichung gem√§√ü HmbTG" gesetzt
+ * <li>- ODER wenn "Anwendungseinschr√§nkungen" (object_use) beginnt mit "Datenlizenz Deutschland - Namensnennung - Version 2.0;"
+ * <li>- dann √ºbernehme Inhalt aus "Anwendungseinschr√§nkungen" (object_use) in das neue Feld "Nutzungsbedingungen" (object_use_constraint), wenn noch nicht vorhanden
+ * <li>- und l√∂sche Inhalt von "Anwendungseinschr√§nkungen" (object_use)
  * </ul>
  */
 public class IDCStrategy3_6_2_fixConstraintsHH extends IDCStrategyDefault {
@@ -83,7 +83,7 @@ public class IDCStrategy3_6_2_fixConstraintsHH extends IDCStrategyDefault {
         // Unchanged object_use entries from syslist 6500 (license) already transferred to object_use_constraint (IDCStrategy3_6_1_b) !
         // But changed entries from syslist were not transferred !
         // We transfer content of object_use to object_use_constraint:
-        // - if "open data" or "Verˆffentlichung gem‰ﬂ HmbTG" set
+        // - if "open data" or "Ver√∂ffentlichung gem√§√ü HmbTG" set
         // - OR if content starts with "Datenlizenz Deutschland - Namensnennung - Version 2.0;"
         // - and content not already in object_use_constraint
         // The result in object_use_constraint is always a free entry with key -1.

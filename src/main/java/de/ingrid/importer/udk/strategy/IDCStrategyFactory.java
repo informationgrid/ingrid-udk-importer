@@ -29,6 +29,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import de.ingrid.importer.udk.strategy.v510.IDCStrategy5_1_0_RELEASE;
+import de.ingrid.importer.udk.strategy.v510.IDCStrategy5_1_0_a;
+import de.ingrid.importer.udk.strategy.v520.IDCStrategy5_2_0_RELEASE;
+import de.ingrid.importer.udk.strategy.v520.IDCStrategy5_2_0_a;
+import de.ingrid.importer.udk.strategy.v521.IDCStrategy5_2_1_a;
+import de.ingrid.importer.udk.strategy.v521.IDCStrategy5_2_1_b;
 import de.ingrid.importer.udk.strategy.v530.IDCStrategy5_3_0_a;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -125,6 +131,7 @@ import de.ingrid.importer.udk.strategy.v450.IDCStrategy4_5_0_b;
 import de.ingrid.importer.udk.strategy.v453.IDCStrategy4_5_3_fixISOThemes;
 import de.ingrid.importer.udk.strategy.v460.IDCStrategy4_6_0_RELEASE;
 import de.ingrid.importer.udk.strategy.v470.IDCStrategy4_7_0_a;
+import de.ingrid.importer.udk.strategy.v500.IDCStrategy5_0_0_RELEASE;
 
 /**
  * @author joachim
@@ -324,6 +331,22 @@ public class IDCStrategyFactory {
             return new IDCStrategy4_6_0_RELEASE();
         } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_4_7_0_a )) {
             return new IDCStrategy4_7_0_a();
+        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_5_0_0_RELEASE )) {
+            return new IDCStrategy5_0_0_RELEASE();
+        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_5_1_0_a )) {
+            return new IDCStrategy5_1_0_a();
+        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_5_1_0_RELEASE )) {
+            return new IDCStrategy5_1_0_RELEASE();
+        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_5_2_0_a )) {
+            return new IDCStrategy5_2_0_a();
+        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_5_2_0_RELEASE )) {
+            return new IDCStrategy5_2_0_RELEASE();
+        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_5_2_1_a )) {
+            return new IDCStrategy5_2_1_a();
+        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_5_2_1_b )) {
+            return new IDCStrategy5_2_1_b();
+        /*} else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_5_2_1_c )) {
+            return new IDCStrategy5_2_1_c();*/
         } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_5_3_0_a )) {
             return new IDCStrategy5_3_0_a();
         } else {
