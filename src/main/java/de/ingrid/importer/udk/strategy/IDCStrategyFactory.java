@@ -20,9 +20,6 @@
  * limitations under the Licence.
  * **************************************************#
  */
-/**
- *
- */
 package de.ingrid.importer.udk.strategy;
 
 import java.util.ArrayList;
@@ -35,6 +32,7 @@ import de.ingrid.importer.udk.strategy.v520.IDCStrategy5_2_0_RELEASE;
 import de.ingrid.importer.udk.strategy.v520.IDCStrategy5_2_0_a;
 import de.ingrid.importer.udk.strategy.v521.IDCStrategy5_2_1_a;
 import de.ingrid.importer.udk.strategy.v521.IDCStrategy5_2_1_b;
+import de.ingrid.importer.udk.strategy.v521.IDCStrategy5_2_1_c;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -140,7 +138,7 @@ public class IDCStrategyFactory {
 
     private static Log log = LogFactory.getLog( IDCStrategyFactory.class );
 
-    private IDCStrategy getIdcStrategy(String idcVersion) throws Exception {
+    private IDCStrategy getIdcStrategy(String idcVersion) {
         if (idcVersion == null) {
             log.error( "IDC version  not set in import descriptor." );
             throw new IllegalArgumentException( "IDC version  not set in import descriptor." );
@@ -344,8 +342,8 @@ public class IDCStrategyFactory {
             return new IDCStrategy5_2_1_a();
         } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_5_2_1_b )) {
             return new IDCStrategy5_2_1_b();
-        /*} else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_5_2_1_c )) {
-            return new IDCStrategy5_2_1_c();*/
+        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_5_2_1_c )) {
+            return new IDCStrategy5_2_1_c();
         } else {
             log.error( "Unknown IDC version '" + idcVersion + "'." );
             throw new IllegalArgumentException( "Unknown IDC version '" + idcVersion + "'." );
@@ -359,10 +357,9 @@ public class IDCStrategyFactory {
 	 * @param oldIdcVersion "old" version of idc-catalog (set in database), PASS NULL TO START FROM SCRATCH !
 	 * @param descriptor contains passed udk data (or not) and target version of catalog !
 	 * @return ordered list of strategies to execute one by one (start with index 0)
-     * @throws Exception
      */
-    public List<IDCStrategy> getIdcStrategiesToExecute(String oldIdcVersion, ImportDescriptor descriptor) throws Exception {
-        ArrayList<IDCStrategy> strategiesToExecute = new ArrayList<IDCStrategy>();
+    public List<IDCStrategy> getIdcStrategiesToExecute(String oldIdcVersion, ImportDescriptor descriptor) {
+        ArrayList<IDCStrategy> strategiesToExecute = new ArrayList<>();
 
         String newIdcVersionFromDescriptor = descriptor.getIdcVersion();
         if (newIdcVersionFromDescriptor == null) {
