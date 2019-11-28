@@ -22,37 +22,28 @@
  */
 package de.ingrid.importer.udk.strategy.v521;
 
-import de.ingrid.codelists.model.CodeList;
-import de.ingrid.codelists.model.CodeListEntry;
-import de.ingrid.importer.udk.jdbc.DBLogic;
 import de.ingrid.importer.udk.strategy.IDCStrategyDefault;
-import de.ingrid.importer.udk.util.InitialCodeListServiceFactory;
 import de.ingrid.utils.ige.profile.MdekProfileUtils;
 import de.ingrid.utils.ige.profile.ProfileMapper;
 import de.ingrid.utils.ige.profile.beans.ProfileBean;
-import de.ingrid.utils.ige.profile.beans.Rubric;
-import de.ingrid.utils.ige.profile.beans.controls.Controls;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
  * <p>
- * Changes InGrid 5.2.1_b
+ * Changes InGrid 5.2.1_d
  * <p>
- * Add date field for application schema
+ * Remove field encoding schema and migrate data
  */
 public class IDCStrategy5_2_1_d extends IDCStrategyDefault {
 
     private static Log log = LogFactory.getLog(IDCStrategy5_2_1_d.class);
 
     private static final String MY_VERSION = VALUE_IDC_VERSION_5_2_1_d;
-
-    CodeList codeList6300 = InitialCodeListServiceFactory.instance().getCodeList(Integer.toString(6300));
 
     public String getIDCVersion() {
         // Returning version here enables strategy workflow !
@@ -77,28 +68,15 @@ public class IDCStrategy5_2_1_d extends IDCStrategyDefault {
         // THEN PERFORM DATA MANIPULATIONS !
         // ---------------------------------
 
-        log.info("Add new field 'date' ...");
-        addDateColumn();
-
         log.info("Migrate data ...");
         migrateData();
 
+        log.info("Delete table object_format_inspire");
+        deleteTable();
+
         log.info("Update Profile ...");
         // read profile
-        String profileXml = readGenericKey(KEY_PROFILE_XML);
-        if (profileXml == null) {
-            throw new Exception("igcProfile not set !");
-        }
-        ProfileMapper profileMapper = new ProfileMapper();
-        ProfileBean profileBean = profileMapper.mapStringToBean(profileXml);
-//        ProfileBean profileBean = MdekProfileUtils.getProfileBean();
-
-        addFieldToProfile(profileBean);
-        makeFieldOptional(profileBean);
-
-        // write Profile !
-        profileXml = profileMapper.mapBeanToXmlString(profileBean);
-        setGenericKey(KEY_PROFILE_XML, profileXml);
+        updateProfile();
 
         System.out.println("done.");
 
@@ -106,14 +84,34 @@ public class IDCStrategy5_2_1_d extends IDCStrategyDefault {
         System.out.println("Update finished successfully.");
     }
 
-    private void migrateData() throws Exception {
+    private void updateProfile() throws Exception {
+        String profileXml = readGenericKey(KEY_PROFILE_XML);
+        if (profileXml == null) {
+            throw new Exception("igcProfile not set !");
+        }
+        ProfileMapper profileMapper = new ProfileMapper();
+        ProfileBean profileBean = profileMapper.mapStringToBean(profileXml);
 
-        handleGMLEntry();
-        handleApplicationSchemaDate();
+        removeObjectFormatInspireField(profileBean);
+
+        // write Profile !
+        profileXml = profileMapper.mapBeanToXmlString(profileBean);
+        setGenericKey(KEY_PROFILE_XML, profileXml);
+    }
+
+    private void removeObjectFormatInspireField(ProfileBean profileBean) {
+
+         MdekProfileUtils.removeControl(profileBean, "uiElement1315");
 
     }
 
-    private void handleGMLEntry() throws Exception {
+    /**
+     * For INSPIRE-relevant geodatasets there has to be a valid GML entry with a version in the
+     * data format table. If there's one but no version then add version '3.2'. If no GML entry
+     * is found, then one is added with version '3.2'
+     * @throws Exception if SQL query failed
+     */
+    private void migrateData() throws Exception {
 
         PreparedStatement psClasses1AndInspire = jdbc
                 .prepareStatement("SELECT * FROM t01_object WHERE obj_class='1' AND is_inspire_relevant='Y'");
@@ -150,65 +148,13 @@ public class IDCStrategy5_2_1_d extends IDCStrategyDefault {
         }
         psClasses1AndInspire.close();
         psHasGMLEntry.close();
-        psAddGMLEntry.close();
         psUpdateGMLVersion.close();
 
     }
 
-    private void handleApplicationSchemaDate() throws SQLException {
+    private void deleteTable() throws SQLException {
 
-        PreparedStatement psFormatInspire = jdbc.prepareStatement("SELECT * FROM object_format_inspire");
-        PreparedStatement psUpdateFormatInspire = jdbc.prepareStatement("UPDATE object_format_inspire SET date = ? WHERE obj_id = ?");
-
-        ResultSet resultSet = psFormatInspire.executeQuery();
-        while (resultSet.next()) {
-            int format_key = resultSet.getInt("format_key");
-            Date date = resultSet.getDate("date");
-            if (format_key != -1 && date == null) {
-                long objId = resultSet.getLong("obj_id");
-                psUpdateFormatInspire.setString(1, mapFormatKeyToDate(String.valueOf(format_key)));
-                psUpdateFormatInspire.setLong(2, objId);
-                psUpdateFormatInspire.executeUpdate();
-            }
-        }
-
-        psFormatInspire.close();
-        psUpdateFormatInspire.close();
-
-    }
-
-    private String mapFormatKeyToDate(String key) {
-        for (CodeListEntry entry : codeList6300.getEntries()) {
-            if (entry.getId().equalsIgnoreCase(key)) {
-                return entry.getData().split("\",\"")[2];
-            }
-        }
-        return null;
-    }
-
-    private void addFieldToProfile(ProfileBean profileBean) {
-        Rubric rubric = MdekProfileUtils.findRubric(profileBean, "availability");
-        Integer uiElement1315Index = MdekProfileUtils.findControlIndex(profileBean, rubric, "uiElement1315");
-
-        Controls control = new Controls();
-        control.setIsLegacy(true);
-        control.setId("uiElement1316");
-        control.setIsMandatory(false);
-        control.setIsVisible("optional");
-
-        MdekProfileUtils.addControl(profileBean, control, rubric, uiElement1315Index + 1);
-    }
-
-    private void makeFieldOptional(ProfileBean profileBean) {
-
-        Controls control = MdekProfileUtils.findControl(profileBean, "uiElement1315");
-        control.setIsMandatory(false);
-
-    }
-
-    private void addDateColumn() throws SQLException {
-
-        jdbc.getDBLogic().addColumn("date", DBLogic.ColumnType.DATE, "object_format_inspire", false, null, jdbc);
+        jdbc.getDBLogic().dropTable("object_format_inspire", jdbc);
 
     }
 }
