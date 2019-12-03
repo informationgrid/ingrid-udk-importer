@@ -50,11 +50,15 @@ public final class IDCStrategy5_3_0_a extends IDCStrategyDefault {
         Controls control;
         // Remove control for preview image path
         control = MdekProfileUtils.removeControl(profileBean, "uiElement5100");
-        LOG.info(String.format("Removing control with id '%s' from profile", control.getId()));
+        if (control != null) {
+            LOG.info(String.format("Removing control with id '%s' from profile", control.getId()));
+        }
 
         // Remove control for preview image description
         control = MdekProfileUtils.removeControl(profileBean, "uiElement5105");
-        LOG.info(String.format("Removing control with id '%s' from profile", control.getId()));
+        if (control != null) {
+            LOG.info(String.format("Removing control with id '%s' from profile", control.getId()));
+        }
 
         // write Profile !
         profileXml = profileMapper.mapBeanToXmlString(profileBean);
