@@ -113,8 +113,8 @@ public class IDCStrategy5_2_1_d extends IDCStrategyDefault {
      */
     private void migrateData() throws Exception {
 
-        PreparedStatement psClasses1AndInspire = jdbc
-                .prepareStatement("SELECT * FROM t01_object WHERE obj_class='1' AND is_inspire_relevant='Y'");
+        PreparedStatement psClasses1AndInspireConform = jdbc
+                .prepareStatement("SELECT * FROM t01_object WHERE obj_class='1' AND is_inspire_relevant='Y' AND is_inspire_conform='Y'");
         PreparedStatement psHasGMLEntry = jdbc
                 .prepareStatement("SELECT * FROM t0110_avail_format WHERE obj_id=? AND format_key=14");
         PreparedStatement psAddGMLEntry = jdbc
@@ -123,7 +123,7 @@ public class IDCStrategy5_2_1_d extends IDCStrategyDefault {
                 .prepareStatement("UPDATE t0110_avail_format SET ver='3.2' WHERE obj_id=? AND format_key=14");
 
         // check if GML with version exists for INSPIRE relevant datasets
-        ResultSet inspireResult = psClasses1AndInspire.executeQuery();
+        ResultSet inspireResult = psClasses1AndInspireConform.executeQuery();
         while (inspireResult.next()) {
             long objId = inspireResult.getLong("id");
             psHasGMLEntry.setLong(1, objId);
@@ -146,7 +146,7 @@ public class IDCStrategy5_2_1_d extends IDCStrategyDefault {
                 psAddGMLEntry.execute();
             }
         }
-        psClasses1AndInspire.close();
+        psClasses1AndInspireConform.close();
         psHasGMLEntry.close();
         psUpdateGMLVersion.close();
 
