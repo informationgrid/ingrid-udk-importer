@@ -12,9 +12,9 @@
   <description>This component migrates a IGC database.</description>
 
   <properties>
-    <ingrid-codelist-service.version>5.3.0-SNAPSHOT</ingrid-codelist-service.version>
+    <ingrid-codelist-service.version>5.3.0</ingrid-codelist-service.version>
     <ingrid-utils.version>5.2.0</ingrid-utils.version>
-    <ingrid-utils-ige.version>5.3.0-SNAPSHOT</ingrid-utils-ige.version>
+    <ingrid-utils-ige.version>5.3.0</ingrid-utils-ige.version>
   </properties>
 
   <build>
