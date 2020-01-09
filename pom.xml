@@ -7,14 +7,14 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>ingrid-udk-importer</artifactId>
-  <version>5.2.0</version>
+  <version>5.3.0</version>
   <name>InGrid UDK-IGC Importer (IGC Updater)</name>
   <description>This component migrates a IGC database.</description>
 
   <properties>
-    <ingrid-codelist-service.version>5.2.0</ingrid-codelist-service.version>
+    <ingrid-codelist-service.version>5.3.0</ingrid-codelist-service.version>
     <ingrid-utils.version>5.2.0</ingrid-utils.version>
-    <ingrid-utils-ige.version>4.0.1</ingrid-utils-ige.version>
+    <ingrid-utils-ige.version>5.3.0</ingrid-utils-ige.version>
   </properties>
 
   <build>
@@ -86,6 +86,12 @@
       <groupId>de.ingrid</groupId>
       <artifactId>ingrid-utils-ige</artifactId>
       <version>${ingrid-utils-ige.version}</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>log4j</artifactId>
+          <groupId>log4j</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>de.ingrid</groupId>
@@ -140,9 +146,20 @@
       <version>9.4.1212</version>
     </dependency>
     <dependency>
-      <groupId>log4j</groupId>
-      <artifactId>log4j</artifactId>
-      <version>1.2.14</version>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>2.12.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-1.2-api</artifactId>
+      <version>2.12.1</version>
+    </dependency>
+    <!-- Needed for log4j2, otherwise setting feature error occurs  -->
+    <dependency>
+      <groupId>xerces</groupId>
+      <artifactId>xercesImpl</artifactId>
+      <version>2.11.0</version>
     </dependency>
     <dependency>
       <groupId>commons-configuration</groupId>

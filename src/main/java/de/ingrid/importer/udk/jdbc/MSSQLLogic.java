@@ -2,7 +2,7 @@
  * **************************************************-
  * InGrid UDK-IGC Importer (IGC Updater)
  * ==================================================
- * Copyright (C) 2014 - 2019 wemove digital solutions GmbH
+ * Copyright (C) 2014 - 2020 wemove digital solutions GmbH
  * ==================================================
  * Licensed under the EUPL, Version 1.1 or – as soon they will be
  * approved by the European Commission - subsequent versions of the
@@ -130,7 +130,12 @@ public class MSSQLLogic implements DBLogic {
         // TODO !
     }
 
-    @Override
+	@Override
+	public void createTablePriorityDataset(JDBCConnectionProxy jdbc) throws SQLException {
+		// TODO !
+	}
+
+	@Override
     public void createDatabase(JDBCConnectionProxy jdbc, Connection dbConnection, String dbName, String user) throws SQLException {
         // TODO !
     }

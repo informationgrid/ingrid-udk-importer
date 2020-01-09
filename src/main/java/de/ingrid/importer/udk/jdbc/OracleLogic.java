@@ -2,7 +2,7 @@
  * **************************************************-
  * InGrid UDK-IGC Importer (IGC Updater)
  * ==================================================
- * Copyright (C) 2014 - 2019 wemove digital solutions GmbH
+ * Copyright (C) 2014 - 2020 wemove digital solutions GmbH
  * ==================================================
  * Licensed under the EUPL, Version 1.1 or – as soon they will be
  * approved by the European Commission - subsequent versions of the
@@ -493,7 +493,24 @@ public class OracleLogic implements DBLogic {
         jdbc.commit();
     }
 
-    @Override
+	@Override
+	public void createTablePriorityDataset(JDBCConnectionProxy jdbc) throws SQLException {
+		String sql = "CREATE TABLE priority_dataset ("
+				+ "id NUMBER(24,0) NOT NULL, "
+				+ "version NUMBER(10,0) DEFAULT '0' NOT NULL, "
+				+ "obj_id NUMBER(24,0), "
+				+ "line NUMBER(10,0) DEFAULT '0', "
+				+ "priority_key NUMBER(10,0), "
+				+ "priority_value VARCHAR2(255 CHAR))";
+		jdbc.executeUpdate(sql);
+		sql = "ALTER TABLE priority_dataset ADD CONSTRAINT PRIMARY_PriorityDataset PRIMARY KEY ( id ) ENABLE";
+		jdbc.executeUpdate(sql);
+		sql = "CREATE INDEX idxPrioData_ObjId ON priority_dataset ( obj_id )";
+		jdbc.executeUpdate(sql);
+		jdbc.commit();
+	}
+
+	@Override
     public void createDatabase(JDBCConnectionProxy jdbcConnectionProxy, Connection dbConnection, String dbName, String user) throws SQLException {
         // TODO implement if possible
         
