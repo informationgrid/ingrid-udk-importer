@@ -1,4 +1,4 @@
-package de.ingrid.importer.udk.strategy.v530;
+package de.ingrid.importer.udk.strategy.v540;
 
 import de.ingrid.importer.udk.strategy.IDCStrategyDefault;
 import de.ingrid.utils.ige.profile.MdekProfileUtils;
@@ -8,10 +8,10 @@ import de.ingrid.utils.ige.profile.beans.controls.Controls;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public final class IDCStrategy5_3_0_a extends IDCStrategyDefault {
-    private static final Log LOG = LogFactory.getLog(IDCStrategy5_3_0_a.class);
+public final class IDCStrategy5_4_0 extends IDCStrategyDefault {
+    private static final Log LOG = LogFactory.getLog(IDCStrategy5_4_0.class);
 
-    private static final String MY_VERSION = VALUE_IDC_VERSION_5_3_0_a;
+    private static final String MY_VERSION = VALUE_IDC_VERSION_5_4_0;
 
     @Override
     public String getIDCVersion() {
@@ -27,7 +27,7 @@ public final class IDCStrategy5_3_0_a extends IDCStrategyDefault {
 
         // THEN PERFORM DATA MANIPULATIONS !
         // ---------------------------------
-        LOG.info("Removing fields for preivew image and preview image description from profile...");
+        LOG.info("Removing fields for preview image and preview image description from profile...");
         updateProfile();
         LOG.info("done.");
 
