@@ -27,6 +27,18 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
+    <release version="5.3.0" date="2020-01-09" description="Release InGrid 5.3.0">
+      <action type="add" dev="wemove" issue="1517">
+        Add column spatial_scope and migrate data.
+      </action>
+      <action type="add" dev="wemove" issue="1516">
+        Add new table priority_dataset.
+      </action>
+      <action type="add" dev="wemove" issue="1273">
+        Create new date field for application schema, migrate data, remove JS behaviors from profile. Remove field encoding schema.
+      </action>
+    </release>
+
     <release version="5.2.0" date="2019-10-22" description="Release InGrid 5.2.0">
       <action type="add" dev="wemove" issue="1274">
         Migration of conformity values (#1274)

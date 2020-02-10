@@ -2,7 +2,7 @@
  * **************************************************-
  * InGrid UDK-IGC Importer (IGC Updater)
  * ==================================================
- * Copyright (C) 2014 - 2019 wemove digital solutions GmbH
+ * Copyright (C) 2014 - 2020 wemove digital solutions GmbH
  * ==================================================
  * Licensed under the EUPL, Version 1.1 or – as soon they will be
  * approved by the European Commission - subsequent versions of the
@@ -435,7 +435,7 @@ public class MySQLLogic implements DBLogic {
 				+ "priority_key INTEGER, "
 				+ "priority_value VARCHAR(255), "
 				+ "PRIMARY KEY (id), "
-				+ "INDEX idxObjDLang_ObjId (obj_id ASC)) "
+				+ "INDEX idxPrioData_ObjId (obj_id ASC)) "
 				+ "ENGINE=InnoDB;";
 		jdbc.executeUpdate(sql);
 	}

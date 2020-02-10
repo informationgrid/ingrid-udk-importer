@@ -2,7 +2,7 @@
  * **************************************************-
  * InGrid UDK-IGC Importer (IGC Updater)
  * ==================================================
- * Copyright (C) 2014 - 2019 wemove digital solutions GmbH
+ * Copyright (C) 2014 - 2020 wemove digital solutions GmbH
  * ==================================================
  * Licensed under the EUPL, Version 1.1 or – as soon they will be
  * approved by the European Commission - subsequent versions of the
@@ -454,7 +454,7 @@ public class PostgreSQLLogic implements DBLogic {
 				+ "priority_value VARCHAR(255), "
 				+ "PRIMARY KEY (id))";
 		jdbc.executeUpdate(sql);
-		sql = "CREATE INDEX idxObjDLang_ObjId ON object_data_language (obj_id ASC)";
+		sql = "CREATE INDEX idxPrioData_ObjId ON priority_dataset (obj_id ASC)";
 		jdbc.executeUpdate(sql);
 	}
 

@@ -2,7 +2,7 @@
  * **************************************************-
  * InGrid UDK-IGC Importer (IGC Updater)
  * ==================================================
- * Copyright (C) 2014 - 2019 wemove digital solutions GmbH
+ * Copyright (C) 2014 - 2020 wemove digital solutions GmbH
  * ==================================================
  * Licensed under the EUPL, Version 1.1 or – as soon they will be
  * approved by the European Commission - subsequent versions of the
@@ -503,9 +503,9 @@ public class OracleLogic implements DBLogic {
 				+ "priority_key NUMBER(10,0), "
 				+ "priority_value VARCHAR2(255 CHAR))";
 		jdbc.executeUpdate(sql);
-		sql = "ALTER TABLE object_data_language ADD CONSTRAINT PRIMARY_ObjectDataLanguage PRIMARY KEY ( id ) ENABLE";
+		sql = "ALTER TABLE priority_dataset ADD CONSTRAINT PRIMARY_PriorityDataset PRIMARY KEY ( id ) ENABLE";
 		jdbc.executeUpdate(sql);
-		sql = "CREATE INDEX idxObjDLang_ObjId ON object_data_language ( obj_id )";
+		sql = "CREATE INDEX idxPrioData_ObjId ON priority_dataset ( obj_id )";
 		jdbc.executeUpdate(sql);
 		jdbc.commit();
 	}

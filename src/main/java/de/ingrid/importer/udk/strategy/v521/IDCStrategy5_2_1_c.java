@@ -22,21 +22,27 @@
  */
 package de.ingrid.importer.udk.strategy.v521;
 
+import de.ingrid.importer.udk.jdbc.DBLogic.ColumnType;
 import de.ingrid.importer.udk.strategy.IDCStrategyDefault;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  * <p>
- * Changes InGrid 5.2.1_b
+ * Changes InGrid 5.2.1_c
  * <p>
- * Add table priority_dataset
+ * Add column spatial_scope
  */
-public class IDCStrategy5_2_1_b extends IDCStrategyDefault {
+public class IDCStrategy5_2_1_c extends IDCStrategyDefault {
 
-    private static Log log = LogFactory.getLog(IDCStrategy5_2_1_b.class);
+    private static final String REGION_ID = "885989663";
+    private static Log log = LogFactory.getLog(IDCStrategy5_2_1_c.class);
 
-    private static final String MY_VERSION = VALUE_IDC_VERSION_5_2_1_b;
+    private static final String MY_VERSION = VALUE_IDC_VERSION_5_2_1_c;
 
     public String getIDCVersion() {
         // Returning version here enables strategy workflow !
@@ -61,8 +67,9 @@ public class IDCStrategy5_2_1_b extends IDCStrategyDefault {
         // THEN PERFORM DATA MANIPULATIONS !
         // ---------------------------------
 
-        System.out.print( "  Add table priority_dataset ..." );
+        System.out.print( "  Add column spatial_scope and migrate data ..." );
         extendDataStructure();
+        migrateData();
 
         System.out.println("done.");
 
@@ -73,9 +80,27 @@ public class IDCStrategy5_2_1_b extends IDCStrategyDefault {
     private void extendDataStructure() throws Exception {
         log.info( "\nExtending datastructure -> CAUSES COMMIT ! ..." );
 
-        log.info( "Create table 'priority_dataset'..." );
-        jdbc.getDBLogic().createTablePriorityDataset( jdbc );
+        log.info( "Add column 'spatial_scope'..." );
+        jdbc.getDBLogic().addColumn("spatial_scope", ColumnType.INTEGER, "t01_object", false, null, jdbc);
 
         log.info( "Extending datastructure... done\n" );
+    }
+
+    private void migrateData() throws SQLException {
+        PreparedStatement psClasses1AndInspire = jdbc
+                .prepareStatement("SELECT * FROM t01_object WHERE obj_class='1' AND is_inspire_relevant='Y'");
+
+        PreparedStatement psUpdate = jdbc
+                .prepareStatement("UPDATE t01_object SET spatial_scope='" + REGION_ID + "' WHERE id=?");
+
+        ResultSet inspireResult = psClasses1AndInspire.executeQuery();
+        while (inspireResult.next()) {
+            long id = inspireResult.getLong("id");
+            psUpdate.setLong(1, id);
+            psUpdate.executeUpdate();
+        }
+
+        psClasses1AndInspire.close();
+        psUpdate.close();
     }
 }

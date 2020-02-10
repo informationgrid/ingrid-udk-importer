@@ -2,7 +2,7 @@
  * **************************************************-
  * InGrid UDK-IGC Importer (IGC Updater)
  * ==================================================
- * Copyright (C) 2014 - 2019 wemove digital solutions GmbH
+ * Copyright (C) 2014 - 2020 wemove digital solutions GmbH
  * ==================================================
  * Licensed under the EUPL, Version 1.1 or – as soon they will be
  * approved by the European Commission - subsequent versions of the
@@ -240,11 +240,10 @@ public interface IDCStrategy {
 
     static String VALUE_IDC_VERSION_5_2_1_a = "5.2.1_a";
     static String VALUE_IDC_VERSION_5_2_1_b = "5.2.1_b";
-//    static String VALUE_IDC_VERSION_5_2_1_c = "5.2.1_c";
+    static String VALUE_IDC_VERSION_5_2_1_c = "5.2.1_c";
     static String VALUE_IDC_VERSION_5_2_1_d = "5.2.1_d";
-
-	/** InGrid 5.3.0 */
-	String VALUE_IDC_VERSION_5_3_0_a = "5.3.0_a";
+    // 5.2.1 never released ! we just keep above strategies in v521 package and release in v530 package
+    static String VALUE_IDC_VERSION_5_3_0_RELEASE = "5.3.0_a";
 
 	/** Order of strategies to execute to obtain most recent IGC.
 	 * Contains all according versions/strategies in ascending order.
@@ -370,9 +369,10 @@ public interface IDCStrategy {
 		VALUE_IDC_VERSION_5_2_0_RELEASE,
 
 		VALUE_IDC_VERSION_5_2_1_a,
-		VALUE_IDC_VERSION_5_2_1_b,/*
-		VALUE_IDC_VERSION_5_2_1_c,*/
-
+		VALUE_IDC_VERSION_5_2_1_b,
+		VALUE_IDC_VERSION_5_2_1_c,
+		VALUE_IDC_VERSION_5_2_1_d,
+		VALUE_IDC_VERSION_5_3_0_RELEASE,
         VALUE_IDC_VERSION_5_3_0_a
 
 	};
