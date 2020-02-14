@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import de.ingrid.importer.udk.strategy.v540.IDCStrategy5_4_0_b;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
