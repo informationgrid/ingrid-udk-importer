@@ -244,6 +244,7 @@ public interface IDCStrategy {
     static String VALUE_IDC_VERSION_5_2_1_d = "5.2.1_d";
     // 5.2.1 never released ! we just keep above strategies in v521 package and release in v530 package
     static String VALUE_IDC_VERSION_5_3_0_RELEASE = "5.3.0";
+    static String VALUE_IDC_VERSION_5_3_5_a = "5.3.5_a";
 
 	/** Order of strategies to execute to obtain most recent IGC.
 	 * Contains all according versions/strategies in ascending order.
@@ -372,7 +373,9 @@ public interface IDCStrategy {
 		VALUE_IDC_VERSION_5_2_1_b,
 		VALUE_IDC_VERSION_5_2_1_c,
 		VALUE_IDC_VERSION_5_2_1_d,
-		VALUE_IDC_VERSION_5_3_0_RELEASE
+		VALUE_IDC_VERSION_5_3_0_RELEASE,
+
+		VALUE_IDC_VERSION_5_3_5_a
 	};
 
 
