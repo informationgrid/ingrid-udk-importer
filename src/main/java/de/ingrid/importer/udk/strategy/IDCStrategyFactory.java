@@ -7,12 +7,12 @@
  * Licensed under the EUPL, Version 1.1 or – as soon they will be
  * approved by the European Commission - subsequent versions of the
  * EUPL (the "Licence");
- *
+ * 
  * You may not use this work except in compliance with the Licence.
  * You may obtain a copy of the Licence at:
- *
+ * 
  * http://ec.europa.eu/idabc/eupl5
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the Licence is distributed on an "AS IS" basis,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -131,7 +131,8 @@ import de.ingrid.importer.udk.strategy.v521.IDCStrategy5_2_1_b;
 import de.ingrid.importer.udk.strategy.v521.IDCStrategy5_2_1_c;
 import de.ingrid.importer.udk.strategy.v521.IDCStrategy5_2_1_d;
 import de.ingrid.importer.udk.strategy.v530.IDCStrategy5_3_0_RELEASE;
-import de.ingrid.importer.udk.strategy.v540.IDCStrategy5_4_0;
+import de.ingrid.importer.udk.strategy.v530.IDCStrategy5_3_5_a;
+import de.ingrid.importer.udk.strategy.v540.IDCStrategy5_4_0_a;
 
 /**
  * @author joachim
@@ -351,8 +352,12 @@ public class IDCStrategyFactory {
             return new IDCStrategy5_2_1_d();
         } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_5_3_0_RELEASE )) {
             return new IDCStrategy5_3_0_RELEASE();
-        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_5_4_0 )) {
-            return new IDCStrategy5_4_0();
+        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_5_3_5_a)) {
+            return new IDCStrategy5_3_5_a();
+        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_5_4_0_a)) {
+            return new IDCStrategy5_4_0_a();
+        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_5_4_0_b )) {
+            return new IDCStrategy5_4_0_b();
         } else {
             log.error( "Unknown IDC version '" + idcVersion + "'." );
             throw new IllegalArgumentException( "Unknown IDC version '" + idcVersion + "'." );
