@@ -8,10 +8,10 @@ import de.ingrid.utils.ige.profile.beans.controls.Controls;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public final class IDCStrategy5_4_0_b extends IDCStrategyDefault {
-    private static final Log LOG = LogFactory.getLog(IDCStrategy5_4_0_b.class);
+public final class IDCStrategy5_4_0_c extends IDCStrategyDefault {
+    private static final Log LOG = LogFactory.getLog(IDCStrategy5_4_0_c.class);
 
-    private static final String MY_VERSION = VALUE_IDC_VERSION_5_4_0_b;
+    private static final String MY_VERSION = VALUE_IDC_VERSION_5_4_0_c;
 
     @Override
     public String getIDCVersion() {
