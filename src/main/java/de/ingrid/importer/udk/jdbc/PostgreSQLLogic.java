@@ -25,6 +25,7 @@ package de.ingrid.importer.udk.jdbc;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -471,4 +472,19 @@ public class PostgreSQLLogic implements DBLogic {
         InputStream importStream = new ClassPathResource( "/ingrid-igc-schema_102_postgres.sql" ).getInputStream();
         jdbc.importFile( importStream  );
     }
+
+	@Override
+	public int checkIndexExists(JDBCConnectionProxy jdbc, String tableName, String indexName) throws SQLException{
+		indexName = indexName.toLowerCase();
+		tableName = tableName.toLowerCase();
+		String sql = "SELECT count(*) AS index_exists " +
+				"FROM pg_indexes " +
+				"WHERE tablename = '" + tableName + "' AND indexname = '" + indexName + "'";
+		Statement st = jdbc.createStatement();
+		ResultSet exists = jdbc.executeQuery( sql, st );
+
+		exists.next();
+
+		return exists.getInt("index_exists");
+	}
 }
