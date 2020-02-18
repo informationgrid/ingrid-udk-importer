@@ -27,6 +27,12 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
+    <release version="5.4.0-SNAPSHOT" date="???" description="???">
+      <action type="add" dev="wemove" issue="1600">
+        Add indexes to table additional_field_data.
+      </action>
+    </release>
+
     <release version="5.3.5" date="2020-02-14" description="Release InGrid 5.3.5">
       <action type="add" dev="wemove" issue="1276">
         Update visibility of some fields from data quality.
