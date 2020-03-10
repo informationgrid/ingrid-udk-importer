@@ -28,11 +28,14 @@
   </properties>
   <body>
     <release version="5.4.0-SNAPSHOT" date="???" description="???">
-      <action type="fix" dev="wemove" issue="1762">
-        Fix 5.2.0a strategie eingeführt mit #1274 (Konformitäten). Gilt nur für Updates von InGrid Versionen vor 5.2.0.
+      <action type="add" dev="wemove" issue="1084">
+        Add new column metadata_time to t01_object and copy mod_time to metadata_time for handling metadata date.
       </action>
       <action type="add" dev="wemove" issue="1600">
         Add indexes to table additional_field_data.
+      </action>
+      <action type="fix" dev="wemove" issue="1762">
+        Fix 5.2.0a strategie eingeführt mit #1274 (Konformitäten). Gilt nur für Updates von InGrid Versionen vor 5.2.0.
       </action>
     </release>
 
