@@ -7,7 +7,7 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>ingrid-udk-importer</artifactId>
-  <version>5.3.7</version>
+  <version>5.3.8-SNAPSHOT</version>
   <name>InGrid UDK-IGC Importer (IGC Updater)</name>
   <description>This component migrates a IGC database.</description>
 
