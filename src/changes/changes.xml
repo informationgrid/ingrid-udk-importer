@@ -29,7 +29,7 @@
   <body>
     <release version="5.4.0-SNAPSHOT" date="???" description="???">
       <action type="add" dev="wemove" issue="1084">
-        Add new column metadata_time to t01_object and copy mod_time to metadata_time for handling metadata date.
+        Add new columns metadata_time and iso_hash to t01_object for handling metadata date.
       </action>
       <action type="add" dev="wemove" issue="1600">
         Add indexes to table additional_field_data.

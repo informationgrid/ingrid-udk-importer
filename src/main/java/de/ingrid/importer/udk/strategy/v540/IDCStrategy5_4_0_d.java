@@ -25,20 +25,23 @@ package de.ingrid.importer.udk.strategy.v540;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import de.ingrid.importer.udk.jdbc.DBLogic.ColumnType;
 import de.ingrid.importer.udk.strategy.IDCStrategyDefault;
+import de.ingrid.importer.udk.strategy.IDCStrategyHelper;
 
 /**
  * <p>
  * Changes InGrid 5.4.0_d
  * <p>
  * <ul>
- * <li>Add new field metadata_time for metadata date and transfer mod_time to metadata_time
+ * <li>Add new field metadata_time for metadata date and set to current date
  * see https://redmine.informationgrid.eu/issues/1084 (part 3.)
+ * <li>Add new field iso_hash for iso fingerprint
  * </ul>
  */
 public class IDCStrategy5_4_0_d extends IDCStrategyDefault {
@@ -85,37 +88,42 @@ public class IDCStrategy5_4_0_d extends IDCStrategyDefault {
 
         jdbc.getDBLogic().addColumn( "metadata_time", ColumnType.VARCHAR17, "t01_object", false, null, jdbc );
 
+        log.info( "Extending datastructure t01_object add column iso_hash -> CAUSES COMMIT ! ..." );
+
+        jdbc.getDBLogic().addColumn( "iso_hash", ColumnType.VARCHAR255, "t01_object", false, null, jdbc );
+
         log.info( "Extending datastructure... done" );
     }
 
     private void migrateData() throws SQLException {
         log.info( "Updating t01_object..." );
-        log.info( "Transfer mod_time to metadata_time ..." );
+        log.info( "Set metadata_time to current date ..." );
 
-        PreparedStatement psSelect = jdbc.prepareStatement("SELECT id, mod_time FROM t01_object");
+        PreparedStatement psSelect = jdbc.prepareStatement("SELECT id FROM t01_object");
         PreparedStatement psUpdate = jdbc.prepareStatement("UPDATE t01_object SET metadata_time=? WHERE id=?");
+
+        String currentTime = IDCStrategyHelper.transDateTime(new Date());
 
         ResultSet rs = psSelect.executeQuery();
         int numTransferred = 0;
         while (rs.next()) {
             long id = rs.getLong("id");
-            String modTime = rs.getString( "mod_time" );
 
-            psUpdate.setString(1, modTime);
+            psUpdate.setString(1, currentTime);
             psUpdate.setLong(2, id);
 
             int numUpdated = psUpdate.executeUpdate();
             if (numUpdated > 0) {
                 numTransferred++; 
             } else {
-                log.warn( "PROBLEMS transferring [mod_time:'" + modTime + "'] in t01_object [id:" + id + "] !" );
+                log.warn( "PROBLEMS setting  [metadata_time:'" + currentTime + "'] in t01_object [id:" + id + "] !" );
             }
         }
         rs.close();
         psSelect.close();
         psUpdate.close();
 
-        log.info( "Transferred " + numTransferred + " mod_time to metadata_time." );
+        log.info( "Set " + numTransferred + " metadata_time to current date." );
         log.info( "Updating t01_object... done" );
     }
 }
