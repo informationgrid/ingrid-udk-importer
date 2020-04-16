@@ -39,7 +39,7 @@ import de.ingrid.importer.udk.strategy.IDCStrategyHelper;
  * Changes InGrid 5.4.0_d
  * <p>
  * <ul>
- * <li>Add new field metadata_time for metadata date and set to current date
+ * <li>Add new field metadata_time for metadata date and set to current date for all published objects
  * see https://redmine.informationgrid.eu/issues/1084 (part 3.)
  * <li>Add new field iso_hash for iso fingerprint
  * </ul>
@@ -97,9 +97,11 @@ public class IDCStrategy5_4_0_d extends IDCStrategyDefault {
 
     private void migrateData() throws SQLException {
         log.info( "Updating t01_object..." );
-        log.info( "Set metadata_time to current date ..." );
+        log.info( "Set metadata_time to current date in published objects..." );
 
-        PreparedStatement psSelect = jdbc.prepareStatement("SELECT id FROM t01_object");
+        PreparedStatement psSelect = jdbc.prepareStatement("SELECT id FROM t01_object WHERE work_state=?");
+        psSelect.setString(1, "V");
+
         PreparedStatement psUpdate = jdbc.prepareStatement("UPDATE t01_object SET metadata_time=? WHERE id=?");
 
         String currentTime = IDCStrategyHelper.transDateTime(new Date());
