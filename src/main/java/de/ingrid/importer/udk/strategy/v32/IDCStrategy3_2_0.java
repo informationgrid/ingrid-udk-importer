@@ -399,7 +399,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 
 // ---------------------------
 		lstId = SYSLIST_ID_OPERATION_PLATFORM;
-		log.info("Inserting new syslist " + lstId +	" = \"Operation - Unterstützte Platformen\"...");
+		log.info("Inserting new syslist " + lstId +	" = \"Operation - Unterstützte Plattformen\"...");
 
 		// german syslist
 		newSyslistMap_de = new LinkedHashMap<Integer, String>();

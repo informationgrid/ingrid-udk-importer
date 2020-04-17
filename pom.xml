@@ -7,13 +7,13 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>ingrid-udk-importer</artifactId>
-  <version>5.3.5</version>
+  <version>5.4.0</version>
   <name>InGrid UDK-IGC Importer (IGC Updater)</name>
   <description>This component migrates a IGC database.</description>
 
   <properties>
-    <ingrid-codelist-service.version>5.3.0</ingrid-codelist-service.version>
-    <ingrid-utils.version>5.2.0</ingrid-utils.version>
+    <ingrid-codelist-service.version>5.4.0</ingrid-codelist-service.version>
+    <ingrid-utils.version>5.4.0</ingrid-utils.version>
     <ingrid-utils-ige.version>5.3.0</ingrid-utils-ige.version>
   </properties>
 

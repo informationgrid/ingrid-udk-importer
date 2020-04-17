@@ -144,4 +144,10 @@ public class MSSQLLogic implements DBLogic {
     public void importFileToDatabase(JDBCConnectionProxy jdbc) throws SQLException {
         // TODO !
     }
+
+	@Override
+	public int checkIndexExists(JDBCConnectionProxy jdbc, String tableName, String indexName) throws SQLException{
+		//TODO
+		return 1;
+	}
 }

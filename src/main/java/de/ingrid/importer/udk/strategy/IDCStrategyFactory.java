@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import de.ingrid.importer.udk.strategy.v530.IDCStrategy5_3_5_a;
+import de.ingrid.importer.udk.strategy.v540.*;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -132,6 +132,7 @@ import de.ingrid.importer.udk.strategy.v521.IDCStrategy5_2_1_b;
 import de.ingrid.importer.udk.strategy.v521.IDCStrategy5_2_1_c;
 import de.ingrid.importer.udk.strategy.v521.IDCStrategy5_2_1_d;
 import de.ingrid.importer.udk.strategy.v530.IDCStrategy5_3_0_RELEASE;
+import de.ingrid.importer.udk.strategy.v530.IDCStrategy5_3_5_a;
 
 /**
  * @author joachim
@@ -353,6 +354,16 @@ public class IDCStrategyFactory {
             return new IDCStrategy5_3_0_RELEASE();
         } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_5_3_5_a)) {
             return new IDCStrategy5_3_5_a();
+        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_5_4_0_a)) {
+            return new IDCStrategy5_4_0_a();
+        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_5_4_0_b )) {
+            return new IDCStrategy5_4_0_b();
+        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_5_4_0_c)) {
+            return new IDCStrategy5_4_0_c();
+        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_5_4_0_d)) {
+            return new IDCStrategy5_4_0_d();
+        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_5_4_0_RELEASE)) {
+            return new IDCStrategy5_4_0_RELEASE();
         } else {
             log.error( "Unknown IDC version '" + idcVersion + "'." );
             throw new IllegalArgumentException( "Unknown IDC version '" + idcVersion + "'." );

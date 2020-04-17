@@ -70,7 +70,7 @@ public class IDCStrategy5_2_0_a extends IDCStrategyDefault {
         // THEN PERFORM DATA MANIPULATIONS !
         // ---------------------------------
 
-        System.out.print("Migrate conformity data ...");
+        System.out.println("Migrate conformity data ...");
         migrateConformityData();
         removeInspireRichtlinie();
         migrateToFreeEntries();
@@ -90,7 +90,10 @@ public class IDCStrategy5_2_0_a extends IDCStrategyDefault {
         while (resultSetClasses1And3.next()) {
             // get isInspireRelevant and isInspireConform information
             long objID = resultSetClasses1And3.getLong("id");
+            String objUUID = resultSetClasses1And3.getString("obj_uuid");
+            String objName = resultSetClasses1And3.getString("obj_name");
             long objClass = resultSetClasses1And3.getLong("obj_class");
+
             boolean isInspireRelevant = "Y".equals(resultSetClasses1And3.getString("is_inspire_relevant"));
             boolean isInspireConform = "Y".equals(resultSetClasses1And3.getString("is_inspire_conform"));
 
@@ -100,26 +103,47 @@ public class IDCStrategy5_2_0_a extends IDCStrategyDefault {
 
             if (isInspireRelevant) {
 
+                log.info("Working on dataset with class '" + objClass + "' '" + objName + "' (" + objUUID + ") ");
                 boolean hasNeededEntry = false;
                 int fallBackDegree = -1;
+                String lastConformity = null;
                 while (resultSetConformities.next()) {
                     int specificationKey = resultSetConformities.getInt("specification_key");
+                    String specificationValue = resultSetConformities.getString("specification_value");
+                    int degreeKey = resultSetConformities.getInt("degree_key");
                     if ((objClass == 1 && specificationKey == 12 ) || (objClass == 3 && specificationKey == 10)) {
+                        log.info("Analyse conformities: INSPIRE VO '" + specificationValue + "' with degree '" + getConformityDegreeFromId(degreeKey) + "' in document with ID '" + objID + "' found. Not changed! Further analysis skipped.");
                         hasNeededEntry = true;
-                        // check and fix conform value
-                        handleConformityValue(resultSetConformities, isInspireConform);
+                        // do nothing, keep the existing VO entries since
+                        // we do not know if a editor has deliberately changed
+                        // the degree of the conformity
+                        break;
                     } else {
-                        int degreeKey = resultSetConformities.getInt("degree_key");
                         if (degreeKey == 3) { // nicht evaluiert
                             fallBackDegree = 3;
-                        } else if (fallBackDegree != 3) {
+                            log.info("Analyse conformities: Conformity '" + specificationValue + "' with degree 'nicht evaluiert' in document with ID '" + objID + "' found. Use degree 'nicht evaluiert' for later use.");
+                            // one degree of "nicht evaluiert" of other conformities is sufficient
+                            // to specify the VO as "nicht evaluiert"
+                            break;
+                        } else if (fallBackDegree != degreeKey && fallBackDegree != -1) {
+                            log.info("Analyse conformities: Different degrees found in conformities '" + lastConformity +
+                                    "' ('" + getConformityDegreeFromId(fallBackDegree) + "') and '" + specificationValue +
+                                    "' ('" + getConformityDegreeFromId(degreeKey) + "') found in document with ID '" + objID +
+                                    "' found. Use degree 'nicht evaluiert' for later use.");
+                            // degrees differ in conformities of the dataset
+                            // set degree to "nicht evaluiert"
+                            fallBackDegree = 3;
+                            break;
+                        } else {
+                            log.info("Analyse conformities: Conformity '" + specificationValue + "' with degree '" + getConformityDegreeFromId(degreeKey) + "' in document with ID '" + objID + "' found.");
                             fallBackDegree = degreeKey;
                         }
                     }
+                    lastConformity =  specificationValue;
                 }
 
                 // if no VO is found, then add a correct one
-                if (!hasNeededEntry) {
+                if (!hasNeededEntry && fallBackDegree != -1) {
 
                     if (objClass == 1) {
 
@@ -131,16 +155,8 @@ public class IDCStrategy5_2_0_a extends IDCStrategyDefault {
 
                     }
                 }
-
-            } else {
-                // make sure if VO is chosen, that it is "not conform"
-                while (resultSetConformities.next()) {
-                    int specificationKey = resultSetConformities.getInt("specification_key");
-                    if (specificationKey >= 10 && specificationKey <= 12) {
-                        // make sure the degree is set to "not conform"
-                        handleConformityValue(resultSetConformities, false);
-                    }
-                }
+                log.info("");
+                log.info("");
             }
 
             resultSetConformities.close();
@@ -160,16 +176,11 @@ public class IDCStrategy5_2_0_a extends IDCStrategyDefault {
                 .filter(entry -> specificationKeyString.equals(entry.getId()))
                 .findFirst();
 
-        Optional<CodeListEntry> clEntry6000 = InitialCodeListServiceFactory.instance().getCodeList("6000")
-                .getEntries().stream()
-                .filter(entry -> degreeKeyString.equals(entry.getId()))
-                .findFirst();
-
         if (clEntry6005.isPresent()) {
 
             String specificationValue = clEntry6005.get().getField("de");
             String specificationData = clEntry6005.get().getData();
-            String degreeValue = clEntry6000.get().getField("de");
+            String degreeValue = getConformityDegreeFromId(degreeKey);
 
             log.info("Adding conformity '" + specificationValue + "' with degree '" + degreeValue + "' to document with ID: " + objID);
 
@@ -192,56 +203,28 @@ public class IDCStrategy5_2_0_a extends IDCStrategyDefault {
                 .format(new SimpleDateFormat("yyyy-MM-dd").parse(dateFromCodelistData));
     }
 
-
-    /**
-     * make sure if VO is chosen, that it is "conform" if is_inspire_conform
-     * make sure if VO is chosen, that it is "not conform" unless is_inspire_conform
-     *
-     * @param resultSetConformities
-     * @param isInspireConform
-     * @throws SQLException
-     */
-    private void handleConformityValue(ResultSet resultSetConformities, boolean isInspireConform) throws SQLException {
-        PreparedStatement psFixConformity = jdbc.prepareStatement(
-                "UPDATE object_conformity SET degree_key=?, degree_value=? WHERE id=?");
-        int degreeKey = resultSetConformities.getInt("degree_key");
-        long id = resultSetConformities.getLong("id");
-
-        // if INSPIRE conform but degree is not "conform"
-        if (isInspireConform && degreeKey != 1) {
-
-            log.info("Update conformity to 'conform' for id: " + id);
-
-            // fix conformity value
-            psFixConformity.setInt(1, 1);
-            psFixConformity.setString(2, "konform");
-            psFixConformity.setLong(3, id);
-            psFixConformity.executeUpdate();
+    private String getConformityDegreeFromId(int degreeId) {
+        Optional<CodeListEntry> clEntry6000 = InitialCodeListServiceFactory.instance().getCodeList("6000")
+                .getEntries().stream()
+                .filter(entry -> (degreeId + "").equals(entry.getId()))
+                .findFirst();
+        if (clEntry6000.isPresent()) {
+            return clEntry6000.get().getField("de");
+        } else {
+            return null;
         }
-        // if not INSPIRE conform but degree is not "not conform"
-        else if (!isInspireConform && degreeKey != 2) {
-
-            log.info("Update conformity to 'not conform' for id: " + id);
-
-            // fix conformity value
-            psFixConformity.setInt(1, 2);
-            psFixConformity.setString(2, "nicht konform");
-            psFixConformity.setLong(3, resultSetConformities.getLong("id"));
-            psFixConformity.executeUpdate();
-        }
-
-        psFixConformity.close();
     }
 
+
     private void removeInspireRichtlinie() throws SQLException {
-        String sql = "SELECT oc.id, obj_uuid FROM t01_object JOIN object_conformity oc on t01_object.id = oc.obj_id WHERE oc.specification_key=13 OR oc.specification_value='INSPIRE-Richtlinie'";
+        String sql = "SELECT oc.id, obj_uuid, obj_name FROM t01_object JOIN object_conformity oc on t01_object.id = oc.obj_id WHERE oc.specification_key=13 OR oc.specification_value='INSPIRE-Richtlinie'";
         PreparedStatement psInspireRichtlinie = jdbc.prepareStatement(sql);
         PreparedStatement psDeleteQuery = jdbc.prepareStatement("DELETE FROM object_conformity WHERE id=?");
 
         ResultSet resultSet = psInspireRichtlinie.executeQuery();
 
         while (resultSet.next()) {
-            log.info("Remove INSPIRE Richtlinie from: " + resultSet.getString("obj_uuid"));
+            log.info("Remove INSPIRE Richtlinie from: '" + resultSet.getString("obj_name") + "' (" + resultSet.getString("obj_uuid") + ")");
             psDeleteQuery.setLong(1, resultSet.getLong("id"));
             psDeleteQuery.executeUpdate();
         }
@@ -250,7 +233,7 @@ public class IDCStrategy5_2_0_a extends IDCStrategyDefault {
     }
 
     private void migrateToFreeEntries() throws SQLException {
-        String sql = "SELECT oc.id FROM t01_object JOIN object_conformity oc on t01_object.id = oc.obj_id " +
+        String sql = "SELECT oc.id, oc.specification_value, obj_uuid, obj_name FROM t01_object JOIN object_conformity oc on t01_object.id = oc.obj_id " +
                 "WHERE oc.specification_key>-1 AND (oc.specification_key<10 OR oc.specification_key>13)";
         PreparedStatement psUpdateConformityToFree = jdbc.prepareStatement(
                 "UPDATE object_conformity SET specification_key=-1 WHERE id=?");
@@ -259,7 +242,7 @@ public class IDCStrategy5_2_0_a extends IDCStrategyDefault {
 
         ResultSet resultSet = psFreeEntries.executeQuery();
         while (resultSet.next()) {
-            log.info("Migrate conformity to free entry: " + resultSet.getLong("id"));
+            log.info("Migrate conformity '" + resultSet.getString("specification_value") + "' (" + resultSet.getLong("id") + ") to free entry for dataset '" + resultSet.getString("obj_name") + "' (" + resultSet.getString("obj_uuid") + ").");
             psUpdateConformityToFree.setLong(1, resultSet.getLong("id"));
             psUpdateConformityToFree.executeUpdate();
         }

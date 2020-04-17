@@ -151,4 +151,6 @@ public interface DBLogic {
     void createDatabase(JDBCConnectionProxy jdbcConnectionProxy, Connection dbConnection, String dbName, String user) throws SQLException;
     
     void importFileToDatabase(JDBCConnectionProxy jdbcConnectionProxy) throws SQLException, IOException;
+
+    int checkIndexExists(JDBCConnectionProxy jdbc, String tableName, String indexName) throws SQLException;
 }

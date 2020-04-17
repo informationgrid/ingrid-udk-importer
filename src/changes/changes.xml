@@ -27,6 +27,24 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
+    <release version="5.4.0" date="2020-04-17" description="Release InGrid 5.4.0">
+      <action type="add" dev="wemove" issue="1084">
+        Add new columns metadata_time and iso_hash to t01_object for handling metadata date.
+      </action>
+      <action type="add" dev="wemove" issue="1600">
+        Add indexes to table additional_field_data.
+      </action>
+      <action type="fix" dev="wemove" issue="1762">
+        Fix 5.2.0a strategie eingeführt mit #1274 (Konformitäten). Gilt nur für Updates von InGrid Versionen vor 5.2.0.
+      </action>
+      <action type="update" dev="wemove" issue="1236">
+        Remove old profile controls for preview image and description
+      </action>
+      <action type="update" dev="wemove" issue="1276">
+        Update visibility of data quality fields
+      </action>
+    </release>
+
     <release version="5.3.5" date="2020-02-14" description="Release InGrid 5.3.5">
       <action type="add" dev="wemove" issue="1276">
         Update visibility of some fields from data quality.
