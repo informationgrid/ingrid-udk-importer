@@ -27,6 +27,12 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
+    <release version="5.6.0-SNAPSHOT" date="2020-XX-XX" description="Release InGrid 5.6.0">
+      <action type="add" dev="wemove" issue="1817">
+        Add new column explanation to object_conformity.
+      </action>
+    </release>
+
     <release version="5.4.0" date="2020-04-17" description="Release InGrid 5.4.0">
       <action type="add" dev="wemove" issue="1084">
         Add new columns metadata_time and iso_hash to t01_object for handling metadata date.
