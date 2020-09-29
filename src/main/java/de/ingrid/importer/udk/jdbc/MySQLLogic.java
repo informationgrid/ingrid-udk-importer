@@ -162,6 +162,21 @@ public class MySQLLogic implements DBLogic {
         jdbc.executeUpdate( sql );
     }
 
+    public void createTableT011ObjGeoAxisDim(JDBCConnectionProxy jdbc) throws SQLException {
+        String sql = "CREATE TABLE t011_obj_geo_axisdim(" +
+                "id BIGINT NOT NULL, " +
+                "version INTEGER NOT NULL DEFAULT 0, " +
+                "obj_geo_id BIGINT, " +
+                "line INTEGER DEFAULT 0, " +
+                "name TEXT, " +
+                "count INTEGER, " +
+                "axis_resolution DOUBLE, " +
+                "PRIMARY KEY (id), " +
+                "INDEX idxOGeoAxisDim_OGeoId (obj_geo_id ASC)) " +
+                "ENGINE=InnoDB;";
+        jdbc.executeUpdate( sql );
+    }
+
     public void createTableSysGui(JDBCConnectionProxy jdbc) throws SQLException {
         String sql = "CREATE TABLE sys_gui(" +
                 "id BIGINT NOT NULL, " +

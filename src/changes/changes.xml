@@ -31,6 +31,9 @@
       <action type="add" dev="wemove" issue="1817">
         Add new column explanation to object_conformity.
       </action>
+      <action type="add" dev="wemove" issue="1267">
+        Add new table t011_obj_geo_axisdim
+      </action>
     </release>
 
     <release version="5.4.0" date="2020-04-17" description="Release InGrid 5.4.0">

@@ -78,6 +78,12 @@ public class MSSQLLogic implements DBLogic {
 	public void createTableT011ObjServScale(JDBCConnectionProxy jdbc) throws SQLException {
 		// TODO !
 	}
+
+	@Override
+	public void createTableT011ObjGeoAxisDim(JDBCConnectionProxy jdbc) throws SQLException {
+		// TODO
+	}
+
 	public void createTableSysGui(JDBCConnectionProxy jdbc) throws SQLException {
 		// TODO !
 	}

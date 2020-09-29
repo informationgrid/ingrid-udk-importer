@@ -211,6 +211,20 @@ public class OracleLogic implements DBLogic {
         jdbc.commit();
     }
 
+    @Override
+    public void createTableT011ObjGeoAxisDim(JDBCConnectionProxy jdbc) throws SQLException {
+        String sql = "CREATE TABLE t011_obj_geo_axisdim ( id NUMBER(24,0) NOT NULL,"
+                + "  version NUMBER(10,0) DEFAULT '0' NOT NULL, obj_geo_id NUMBER(24,0),"
+                + "  line NUMBER(10,0) DEFAULT '0', name VARCHAR2(255 CHAR), count NUMBER(10,0),"
+                + "  axis_resolution FLOAT)";
+        jdbc.executeUpdate( sql );
+        sql = "ALTER TABLE t011_obj_geo_axisdim ADD CONSTRAINT PRIMARY_52 PRIMARY KEY ( id ) ENABLE";
+        jdbc.executeUpdate( sql );
+        sql = "CREATE INDEX idxOGeoAxisDim_OGeoId ON t011_obj_geo_axisdim ( obj_geo_id )";
+        jdbc.executeUpdate( sql );
+        jdbc.commit();
+    }
+
     public void createTableSysGui(JDBCConnectionProxy jdbc) throws SQLException {
         String sql = "CREATE TABLE sys_gui ( id NUMBER(24,0) NOT NULL,"
                 + "  version NUMBER(10,0) DEFAULT '0' NOT NULL, gui_id VARCHAR2(100 CHAR) NOT NULL,"

@@ -38,7 +38,7 @@ import java.sql.SQLException;
 
 /**
  * <p>
- * Changes InGrid 5.5.0_a
+ * Changes InGrid 5.6.0_a
  * <p>
  * Add explanation column to object_conformity table
  */
