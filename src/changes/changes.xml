@@ -31,6 +31,9 @@
       <action type="add" dev="wemove" issue="1817">
         Add new column explanation to object_conformity.
       </action>
+      <action type="add" dev="wemove" issue="1429">
+        Add new table t011_obj_geo_data_bases
+      </action>
       <action type="add" dev="wemove" issue="1267">
         Add new table t011_obj_geo_axisdim
       </action>

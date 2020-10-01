@@ -225,6 +225,19 @@ public class OracleLogic implements DBLogic {
         jdbc.commit();
     }
 
+    @Override
+    public void createTableT011ObjGeoDataBases(JDBCConnectionProxy jdbc) throws SQLException {
+        String sql = "CREATE TABLE t011_obj_geo_data_bases ( id NUMBER(24,0) NOT NULL,"
+                + "  version NUMBER(10,0) DEFAULT '0' NOT NULL, obj_geo_id NUMBER(24,0),"
+                + "  line NUMBER(10,0) DEFAULT '0', data_base VARCHAR2(1024 CHAR)";
+        jdbc.executeUpdate( sql );
+        sql = "ALTER TABLE t011_obj_geo_data_basis ADD CONSTRAINT PRIMARY_52 PRIMARY KEY ( id ) ENABLE";
+        jdbc.executeUpdate( sql );
+        sql = "CREATE INDEX idxOGeoDataBases_OGeoId ON t011_obj_geo_data_basis ( obj_geo_id )";
+        jdbc.executeUpdate( sql );
+        jdbc.commit();
+    }
+
     public void createTableSysGui(JDBCConnectionProxy jdbc) throws SQLException {
         String sql = "CREATE TABLE sys_gui ( id NUMBER(24,0) NOT NULL,"
                 + "  version NUMBER(10,0) DEFAULT '0' NOT NULL, gui_id VARCHAR2(100 CHAR) NOT NULL,"

@@ -106,6 +106,8 @@ public interface DBLogic {
 	/** DDL Operation ! CAUSES COMMIT ON MySQL ! */
 	void createTableT011ObjGeoAxisDim(JDBCConnectionProxy jdbc) throws SQLException;
 	/** DDL Operation ! CAUSES COMMIT ON MySQL ! */
+	void createTableT011ObjGeoDataBases(JDBCConnectionProxy jdbc) throws SQLException;
+	/** DDL Operation ! CAUSES COMMIT ON MySQL ! */
 	void createTableSysGui(JDBCConnectionProxy jdbc) throws SQLException;
 	/** DDL Operation ! CAUSES COMMIT ON MySQL ! */
 	void createTablesMetadata(JDBCConnectionProxy jdbc) throws SQLException;

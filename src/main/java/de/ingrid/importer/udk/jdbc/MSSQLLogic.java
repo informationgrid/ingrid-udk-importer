@@ -84,6 +84,11 @@ public class MSSQLLogic implements DBLogic {
 		// TODO
 	}
 
+	@Override
+	public void createTableT011ObjGeoDataBases(JDBCConnectionProxy jdbc) throws SQLException {
+		// TODO
+	}
+
 	public void createTableSysGui(JDBCConnectionProxy jdbc) throws SQLException {
 		// TODO !
 	}
