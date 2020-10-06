@@ -28,6 +28,9 @@
   </properties>
   <body>
     <release version="5.6.0-SNAPSHOT" date="2020-XX-XX" description="Release InGrid 5.6.0">
+      <action type="update" dev="wemove" issue="1215">
+        Migrate time_type 'am' to 'von'
+      </action>
       <action type="add" dev="wemove" issue="1817">
         Add new column explanation to object_conformity.
       </action>
