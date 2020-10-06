@@ -201,7 +201,7 @@ public class PostgreSQLLogic implements DBLogic {
 
 	@Override
 	public void createTableT011ObjGeoDataBases(JDBCConnectionProxy jdbc) throws SQLException {
-		String sql = "CREATE TABLE t011_obj_geo_data_basis(" +
+		String sql = "CREATE TABLE t011_obj_geo_data_bases(" +
 				"id BIGINT NOT NULL, " +
 				"version INTEGER NOT NULL DEFAULT 0, " +
 				"obj_geo_id BIGINT, " +
@@ -209,7 +209,7 @@ public class PostgreSQLLogic implements DBLogic {
 				"data_base TEXT, " +
 				"PRIMARY KEY (id))";
 		jdbc.executeUpdate(sql);
-		sql = "CREATE INDEX idxOGeoDataBases_OGeoId ON t011_obj_geo_data_basis (obj_geo_id ASC)";
+		sql = "CREATE INDEX idxOGeoDataBases_OGeoId ON t011_obj_geo_data_bases (obj_geo_id ASC)";
 		jdbc.executeUpdate(sql);
 	}
 

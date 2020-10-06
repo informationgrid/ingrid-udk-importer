@@ -75,7 +75,7 @@ public class IDCStrategy5_6_0_d extends IDCStrategyDefault {
     private void extendDataStructure() throws Exception {
         log.info( "\nExtending datastructure -> CAUSES COMMIT ! ..." );
 
-        log.info( "Add database 't011_obj_geo_data_basis'..." );
+        log.info( "Add database 't011_obj_geo_data_bases'..." );
         jdbc.getDBLogic().createTableT011ObjGeoDataBases(jdbc);
 
         log.info( "Extending datastructure... done\n" );

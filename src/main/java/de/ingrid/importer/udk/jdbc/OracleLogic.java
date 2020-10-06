@@ -231,9 +231,9 @@ public class OracleLogic implements DBLogic {
                 + "  version NUMBER(10,0) DEFAULT '0' NOT NULL, obj_geo_id NUMBER(24,0),"
                 + "  line NUMBER(10,0) DEFAULT '0', data_base VARCHAR2(1024 CHAR)";
         jdbc.executeUpdate( sql );
-        sql = "ALTER TABLE t011_obj_geo_data_basis ADD CONSTRAINT PRIMARY_52 PRIMARY KEY ( id ) ENABLE";
+        sql = "ALTER TABLE t011_obj_geo_data_bases ADD CONSTRAINT PRIMARY_52 PRIMARY KEY ( id ) ENABLE";
         jdbc.executeUpdate( sql );
-        sql = "CREATE INDEX idxOGeoDataBases_OGeoId ON t011_obj_geo_data_basis ( obj_geo_id )";
+        sql = "CREATE INDEX idxOGeoDataBases_OGeoId ON t011_obj_geo_data_bases ( obj_geo_id )";
         jdbc.executeUpdate( sql );
         jdbc.commit();
     }
