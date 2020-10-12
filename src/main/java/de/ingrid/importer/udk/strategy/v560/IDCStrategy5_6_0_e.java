@@ -32,9 +32,9 @@ import java.sql.SQLException;
 
 /**
  * <p>
- * Changes InGrid 5.6.0_a
+ * Changes InGrid 5.6.0_e
  * <p>
- * Add explanation column to object_conformity table
+ * Migrate time_type from 'am' to 'von' #1215
  */
 public class IDCStrategy5_6_0_e extends IDCStrategyDefault {
 

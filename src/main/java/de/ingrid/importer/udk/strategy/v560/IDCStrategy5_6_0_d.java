@@ -33,9 +33,9 @@ import java.sql.SQLException;
 
 /**
  * <p>
- * Changes InGrid 5.6.0_a
+ * Changes InGrid 5.6.0_d
  * <p>
- * Add explanation column to object_conformity table
+ * Add new table t011_obj_geo_data_bases #1429
  */
 public class IDCStrategy5_6_0_d extends IDCStrategyDefault {
 
