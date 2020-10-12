@@ -92,7 +92,7 @@ public class IDCStrategy5_6_0_d extends IDCStrategyDefault {
             PreparedStatement pstmt = jdbc.prepareStatement("INSERT INTO t011_obj_geo_data_bases (id, obj_geo_id, data_base) VALUES (?, ?, ? )");
             pstmt.setInt(1,numTransferred+1);
             pstmt.setLong(2,id);
-            pstmt.setNString(3, data_base);
+            pstmt.setString(3, data_base);
             pstmt.execute();
             numTransferred++;
         }
