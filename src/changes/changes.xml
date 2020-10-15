@@ -27,7 +27,7 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
-    <release version="5.6.0-SNAPSHOT" date="2020-XX-XX" description="Release InGrid 5.6.0">
+    <release version="5.6.0" date="2020-10-15" description="Release InGrid 5.6.0">
       <action type="update" dev="wemove" issue="1215">
         Migrate time_type 'am' to 'von'
       </action>
