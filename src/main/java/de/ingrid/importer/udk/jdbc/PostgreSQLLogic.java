@@ -182,6 +182,37 @@ public class PostgreSQLLogic implements DBLogic {
         sql = "CREATE INDEX idxOSrvScal_OSrvId ON t011_obj_serv_scale (obj_serv_id ASC)";
         jdbc.executeUpdate(sql);
 	}
+
+	@Override
+	public void createTableT011ObjGeoAxisDim(JDBCConnectionProxy jdbc) throws SQLException {
+		String sql = "CREATE TABLE t011_obj_geo_axisdim(" +
+				"id BIGINT NOT NULL, " +
+				"version INTEGER NOT NULL DEFAULT 0, " +
+				"obj_geo_id BIGINT, " +
+				"line INTEGER DEFAULT 0, " +
+				"name TEXT, " +
+				"count INTEGER, " +
+				"axis_resolution DOUBLE PRECISION, " +
+				"PRIMARY KEY (id))";
+		jdbc.executeUpdate(sql);
+		sql = "CREATE INDEX idxOGeoAxisDim_OGeoId ON t011_obj_geo_axisdim (obj_geo_id ASC)";
+		jdbc.executeUpdate(sql);
+	}
+
+	@Override
+	public void createTableT011ObjGeoDataBases(JDBCConnectionProxy jdbc) throws SQLException {
+		String sql = "CREATE TABLE t011_obj_geo_data_bases(" +
+				"id BIGINT NOT NULL, " +
+				"version INTEGER NOT NULL DEFAULT 0, " +
+				"obj_geo_id BIGINT, " +
+				"line INTEGER DEFAULT 0, " +
+				"data_base TEXT, " +
+				"PRIMARY KEY (id))";
+		jdbc.executeUpdate(sql);
+		sql = "CREATE INDEX idxOGeoDataBases_OGeoId ON t011_obj_geo_data_bases (obj_geo_id ASC)";
+		jdbc.executeUpdate(sql);
+	}
+
 	public void createTableSysGui(JDBCConnectionProxy jdbc) throws SQLException {
 		String sql = "CREATE TABLE sys_gui(" +
 			"id BIGINT NOT NULL, " +
