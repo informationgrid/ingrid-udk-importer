@@ -252,6 +252,13 @@ public interface IDCStrategy {
     static String VALUE_IDC_VERSION_5_4_0_d = "5.4.0_d";
     static String VALUE_IDC_VERSION_5_4_0_RELEASE = "5.4.0";
 
+    static String VALUE_IDC_VERSION_5_6_0_a = "5.6.0_a";
+    static String VALUE_IDC_VERSION_5_6_0_b = "5.6.0_b";
+    static String VALUE_IDC_VERSION_5_6_0_c = "5.6.0_c";
+    static String VALUE_IDC_VERSION_5_6_0_d = "5.6.0_d";
+    static String VALUE_IDC_VERSION_5_6_0_e = "5.6.0_e";
+	static String VALUE_IDC_VERSION_5_6_0_RELEASE = "5.6.0";
+
 	/** Order of strategies to execute to obtain most recent IGC.
 	 * Contains all according versions/strategies in ascending order.
 	 * NOTICE: THESE VERSIONS ARE MAPPED TO STRATEGIES IN STRATEGY FACTORY !!! */
@@ -386,7 +393,14 @@ public interface IDCStrategy {
 		VALUE_IDC_VERSION_5_4_0_b,
 		VALUE_IDC_VERSION_5_4_0_c,
 		VALUE_IDC_VERSION_5_4_0_d,
-		VALUE_IDC_VERSION_5_4_0_RELEASE
+		VALUE_IDC_VERSION_5_4_0_RELEASE,
+
+		VALUE_IDC_VERSION_5_6_0_a,
+        VALUE_IDC_VERSION_5_6_0_b,
+        VALUE_IDC_VERSION_5_6_0_c,
+        VALUE_IDC_VERSION_5_6_0_d,
+        VALUE_IDC_VERSION_5_6_0_e,
+		VALUE_IDC_VERSION_5_6_0_RELEASE
 	};
 
 
