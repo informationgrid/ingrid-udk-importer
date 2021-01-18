@@ -261,7 +261,8 @@ public interface IDCStrategy {
 
 	static String VALUE_IDC_VERSION_5_6_2_RELEASE = "5.6.2";
 
-    static String VALUE_IDC_VERSION_5_7_0_a = "5.7.0_a";
+	static String VALUE_IDC_VERSION_5_7_0_a = "5.7.0_a";
+	static String VALUE_IDC_VERSION_5_7_0_RELEASE = "5.7.0";
 
 	/** Order of strategies to execute to obtain most recent IGC.
 	 * Contains all according versions/strategies in ascending order.
@@ -408,7 +409,8 @@ public interface IDCStrategy {
 
 		VALUE_IDC_VERSION_5_6_2_RELEASE,
 
-		VALUE_IDC_VERSION_5_7_0_a
+		VALUE_IDC_VERSION_5_7_0_a,
+		VALUE_IDC_VERSION_5_7_0_RELEASE
 	};
 
 
