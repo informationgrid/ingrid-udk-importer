@@ -2,7 +2,7 @@
  * **************************************************-
  * InGrid UDK-IGC Importer (IGC Updater)
  * ==================================================
- * Copyright (C) 2014 - 2020 wemove digital solutions GmbH
+ * Copyright (C) 2014 - 2021 wemove digital solutions GmbH
  * ==================================================
  * Licensed under the EUPL, Version 1.1 or – as soon they will be
  * approved by the European Commission - subsequent versions of the
@@ -29,6 +29,8 @@ import java.util.List;
 import de.ingrid.importer.udk.strategy.v540.*;
 import de.ingrid.importer.udk.strategy.v560.*;
 import de.ingrid.importer.udk.strategy.v562.IDCStrategy5_6_2_RELEASE;
+import de.ingrid.importer.udk.strategy.v570.IDCStrategy5_7_0_RELEASE;
+import de.ingrid.importer.udk.strategy.v570.IDCStrategy5_7_0_a;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -380,6 +382,10 @@ public class IDCStrategyFactory {
             return new IDCStrategy5_6_0_RELEASE();
         } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_5_6_2_RELEASE)) {
             return new IDCStrategy5_6_2_RELEASE();
+        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_5_7_0_a)) {
+            return new IDCStrategy5_7_0_a();
+        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_5_7_0_RELEASE)) {
+            return new IDCStrategy5_7_0_RELEASE();
         } else {
             log.error( "Unknown IDC version '" + idcVersion + "'." );
             throw new IllegalArgumentException( "Unknown IDC version '" + idcVersion + "'." );

@@ -27,6 +27,11 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
+    <release version="5.7.0" date="2021-01-18" description="Release InGrid 5.7.0">
+      <action type="update" dev="wemove" issue="967">
+        Change english localisation to german in 'administrative_area' syslist 6250.
+      </action>
+    </release>
     <release version="5.6.2" date="2020-11-05" description="Release InGrid 5.6.2">
       <action type="update" dev="wemove" issue="">
         Remove timestamp from last codelist update to force reloading NOKIS codelist.
