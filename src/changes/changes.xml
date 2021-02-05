@@ -27,7 +27,7 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
-    <release version="5.7.1" date="2021-xx-xx" description="Release InGrid 5.7.1">
+    <release version="5.7.1" date="2021-02-05" description="Release InGrid 5.7.1">
       <action type="fix" dev="wemove" issue="2337">
         Fix value for isInspire of free conformity entries
       </action>
