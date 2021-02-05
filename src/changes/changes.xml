@@ -27,6 +27,12 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
+    <release version="5.7.1" date="2021-02-05" description="Release InGrid 5.7.1">
+      <action type="fix" dev="wemove" issue="2337">
+        Fix value for isInspire of free conformity entries
+      </action>
+    </release>
+    
     <release version="5.7.0" date="2021-01-18" description="Release InGrid 5.7.0">
       <action type="update" dev="wemove" issue="967">
         Change english localisation to german in 'administrative_area' syslist 6250.
