@@ -134,14 +134,17 @@ public class JDBCConnectionProxy {
 
 	private void createDatabase(Properties p) throws SQLException {
 	    String url = descriptor.getDbURL();
+        // remove params from url if present
+        if ( url.contains( "?" ) ) url = url.substring( 0, url.indexOf("?") );
+
         int pos = url.lastIndexOf( "/" );
         String dbUrl = url.substring( 0, pos + 1 );
         String dbName = url.substring( pos + 1 );
-        
+
         Connection dbConnection = DriverManager.getConnection( dbUrl, p);
-        
+
         this.dbLogic.createDatabase( this, dbConnection, dbName, descriptor.getDbUser() );
-        
+
     }
 
     public void setAutoCommit(boolean autoCommit) throws SQLException {
