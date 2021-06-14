@@ -27,7 +27,10 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
-    <release version="5.8.0-SNAPSHOT" date="2021-xx-xx" description="Release 5.8.0-SNAPSHOT">
+    <release version="5.8.3" date="2021-06-14" description="Release 5.8.3">
+      <action type="fix" dev="wemove" issue="">
+        Stabilize create DB behaviour for non existing Databases
+      </action>
     </release>
 
     <release version="5.7.1" date="2021-02-05" description="Release InGrid 5.7.1">
