@@ -101,6 +101,7 @@ public class JDBCConnectionProxy {
 
 		} catch (SQLException e) {
 		    String msg = e.getMessage();
+		    if (e.getCause() != null) msg += e.getCause().getMessage();
 
 		    if (msg.contains( "Unknown database" ) || msg.contains( "existiert nicht" ) || msg.contains( "does not exist" )) {
 		        try {
