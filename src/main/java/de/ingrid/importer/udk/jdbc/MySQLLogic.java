@@ -421,6 +421,8 @@ public class MySQLLogic implements DBLogic {
             sql = "VARCHAR(255)";
         } else if (colType == ColumnType.VARCHAR1024) {
             sql = "VARCHAR(1024)";
+        } else if (colType == ColumnType.VARCHAR4096) {
+            sql = "VARCHAR(4096)";
         } else if (colType == ColumnType.INTEGER) {
             sql = "INTEGER";
         } else if (colType == ColumnType.BIGINT) {
