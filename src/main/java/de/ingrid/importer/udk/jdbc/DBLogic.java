@@ -43,6 +43,7 @@ public interface DBLogic {
 		VARCHAR50,
 		VARCHAR255,
 		VARCHAR1024,
+		VARCHAR4096,
 		INTEGER,
 		BIGINT,
 		DOUBLE
