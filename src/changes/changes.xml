@@ -27,8 +27,8 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
-    <release version="5.8.3" date="2021-06-14" description="Release 5.8.3">
-      <action type="fix" dev="wemove" issue="">
+    <release version="5.9.0" date="2021-07-17" description="Release 5.9.0">
+      <action type="fix" dev="wemove">
         Stabilize create DB behaviour for non existing Databases
       </action>
     </release>
