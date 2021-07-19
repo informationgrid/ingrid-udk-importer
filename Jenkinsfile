@@ -52,9 +52,10 @@ pipeline {
                     echo "Release: $VERSION"
                     // check license
                     // check is release version
+                    // check release strategy exists
                     // deploy to distribution
                     // send release email
-                    sh 'mvn clean deploy -Prelease'
+                    sh 'mvn clean deploy -Prelease -Prelease-udk'
                 }
             }
         }

@@ -243,4 +243,22 @@
     <developerConnection>scm:git:git@github.com:informationgrid/ingrid-udk-importer.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
+  <profiles>
+    <profile>
+      <id>release-udk</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+              <systemPropertyVariables>
+                <udkReleaseVersion>${project.version}</udkReleaseVersion>
+              </systemPropertyVariables>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>

@@ -23,6 +23,7 @@
 package de.ingrid.importer.udk.strategy;
 
 import junit.framework.TestCase;
+import junit.framework.Assert;
 
 public class IDCStrategyHelperTest extends TestCase {
 
@@ -50,4 +51,19 @@ public class IDCStrategyHelperTest extends TestCase {
 		assertEquals(IDCStrategyHelper.transformNativeKey2FullAgs(null), "");
 		assertEquals(IDCStrategyHelper.transformNativeKey2FullAgs("1234"), "");
 	}
+
+    public void testReleaseStrategyExists() {
+        // property is only set if udk importer release is in progress
+        if (System.getProperty("udkReleaseVersion") != null) {
+            String version = System.getProperty("udkReleaseVersion");
+            String strategyFolder = "v" + version.replaceAll("\\.", ""); // e.g. v590
+            String strategyName = "IDCStrategy" + version.replaceAll("\\.", "_") + "_RELEASE"; // e.g. IDCStrategy5_9_0_RELEASE
+            String strategyClassname = "de.ingrid.importer.udk.strategy." + strategyFolder + "." + strategyName;
+            try {
+                Class.forName(strategyClassname);
+            } catch (ClassNotFoundException e) {
+                Assert.fail("should have a class called " + strategyClassname);
+            }
+        }
+    }
 }
