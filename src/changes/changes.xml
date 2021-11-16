@@ -27,6 +27,13 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
+    <release version="5.11.0" date="2021-XX-XX" description="Release 5.9.0">
+      <action type="update" dev="wemove" issue="1989">
+        Add patch to Update opendata categories to match GovData categories.
+        This change requires a migration so codelist-repository,
+        mdek and portal must all be updated.
+      </action>
+    </release>
     <release version="5.9.0" date="2021-07-17" description="Release 5.9.0">
       <action type="fix" dev="wemove">
         Stabilize create DB behaviour for non existing Databases
