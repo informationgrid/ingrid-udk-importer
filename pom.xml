@@ -3,11 +3,11 @@
   <parent>
     <groupId>de.ingrid</groupId>
     <artifactId>ingrid-releases-pom</artifactId>
-    <version>5.6.2</version>
+    <version>5.11.0</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>ingrid-udk-importer</artifactId>
-  <version>5.9.0</version>
+  <version>5.11.0</version>
   <name>InGrid UDK-IGC Importer (IGC Updater)</name>
   <description>This component migrates a IGC database.</description>
 
@@ -148,18 +148,18 @@
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-core</artifactId>
-      <version>2.12.1</version>
+      <version>2.17.1</version>
     </dependency>
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-1.2-api</artifactId>
-      <version>2.12.1</version>
+      <version>2.17.1</version>
     </dependency>
     <!-- Needed for log4j2, otherwise setting feature error occurs  -->
     <dependency>
       <groupId>xerces</groupId>
       <artifactId>xercesImpl</artifactId>
-      <version>2.11.0</version>
+      <version>2.12.0</version>
     </dependency>
     <dependency>
       <groupId>commons-configuration</groupId>
@@ -216,7 +216,7 @@
       <!-- Needed at runtime for reading 3_2_0_udk_codelists_serialized.xml -->
       <groupId>com.thoughtworks.xstream</groupId>
       <artifactId>xstream</artifactId>
-      <version>1.4.8</version>
+      <version>1.4.18</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
@@ -243,4 +243,22 @@
     <developerConnection>scm:git:git@github.com:informationgrid/ingrid-udk-importer.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
+  <profiles>
+    <profile>
+      <id>release-udk</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+              <systemPropertyVariables>
+                <udkReleaseVersion>${project.version}</udkReleaseVersion>
+              </systemPropertyVariables>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>

@@ -2,7 +2,7 @@
  * **************************************************-
  * InGrid UDK-IGC Importer (IGC Updater)
  * ==================================================
- * Copyright (C) 2014 - 2021 wemove digital solutions GmbH
+ * Copyright (C) 2014 - 2022 wemove digital solutions GmbH
  * ==================================================
  * Licensed under the EUPL, Version 1.1 or – as soon they will be
  * approved by the European Commission - subsequent versions of the
@@ -270,6 +270,9 @@ public interface IDCStrategy {
 	static String VALUE_IDC_VERSION_5_9_0_a = "5.9.0_a";
 	static String VALUE_IDC_VERSION_5_9_0_RELEASE = "5.9.0";
 
+	static String VALUE_IDC_VERSION_5_11_0_a = "5.11.0_a";
+	static String VALUE_IDC_VERSION_5_11_0_RELEASE = "5.11.0";
+
 	/** Order of strategies to execute to obtain most recent IGC.
 	 * Contains all according versions/strategies in ascending order.
 	 * NOTICE: THESE VERSIONS ARE MAPPED TO STRATEGIES IN STRATEGY FACTORY !!! */
@@ -422,7 +425,10 @@ public interface IDCStrategy {
 		VALUE_IDC_VERSION_5_7_1_RELEASE,
 
 		VALUE_IDC_VERSION_5_9_0_a,
-		VALUE_IDC_VERSION_5_9_0_RELEASE
+		VALUE_IDC_VERSION_5_9_0_RELEASE,
+
+		VALUE_IDC_VERSION_5_11_0_a,
+		VALUE_IDC_VERSION_5_11_0_RELEASE
 	};
 
 
