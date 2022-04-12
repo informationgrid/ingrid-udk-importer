@@ -27,6 +27,12 @@
     <title>Changes Ingrid UDK - IGC Importer (IGC Updater)</title>
   </properties>
   <body>
+    <release version="5.12.0" date="2022-04-12" description="Release 5.12.0">
+      <action type="update" dev="wemove" issue="">
+        Update libs for security
+      </action>
+    </release>
+
     <release version="5.11.0" date="2021-01-18" description="Release 5.11.0">
       <action type="update" dev="wemove" issue="1989">
         Add patch to Update opendata categories to match GovData categories.
@@ -37,7 +43,7 @@
         Fix log4j security hole.
       </action>
     </release>
-    
+
     <release version="5.9.0" date="2021-07-17" description="Release 5.9.0">
       <action type="fix" dev="wemove">
         Stabilize create DB behaviour for non existing Databases
@@ -49,7 +55,7 @@
         Fix value for isInspire of free conformity entries
       </action>
     </release>
-    
+
     <release version="5.7.0" date="2021-01-18" description="Release InGrid 5.7.0">
       <action type="update" dev="wemove" issue="967">
         Change english localisation to german in 'administrative_area' syslist 6250.
