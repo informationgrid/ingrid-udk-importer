@@ -116,7 +116,7 @@ public class UtilsUdkCodelistsSerialized {
 */
     public void removeUnwantedSyslists(int[] listIds) {
     	for (int listId : listIds) {
-            Object removedObj = codeListsFromFile.remove(new Long(listId));
+            Object removedObj = codeListsFromFile.remove(Long.valueOf(listId));
             LOG.debug("Removed syslist " + listId + " from read syslists from file, removed object = " + removedObj);
     	}
     }

@@ -1117,7 +1117,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 
 					if (fieldValueWasNull) {
 						try {
-							psUpdateDQField.setDouble(1, new Double(dqTableValue));
+							psUpdateDQField.setDouble(1, Double.valueOf(dqTableValue));
 							psUpdateDQField.setLong(2, objId);
 							psUpdateDQField.executeUpdate();
 							numProcessed++;
@@ -1201,7 +1201,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 					// transfer Lagegenauigkeit from table to field if field is null
 					if (dqTableMeasureKey == syslist7117EntryKeyLagegenauigkeit && lageFieldValueWasNull) {
 						try {
-							psUpdateDQFieldLage.setDouble(1, new Double(dqTableValue));
+							psUpdateDQFieldLage.setDouble(1, Double.valueOf(dqTableValue));
 							psUpdateDQFieldLage.setLong(2, objId);
 							psUpdateDQFieldLage.executeUpdate();
 							numProcessed++;
@@ -1219,7 +1219,7 @@ public class IDCStrategy3_2_0 extends IDCStrategyDefault {
 					// transfer Höhengenauigkeit  from table to field if field is null
 					if (dqTableMeasureKey == syslist7117EntryKeyHoehegenauigkeit && hoeheFieldValueWasNull) {
 						try {
-							psUpdateDQFieldHoehe.setDouble(1, new Double(dqTableValue));
+							psUpdateDQFieldHoehe.setDouble(1, Double.valueOf(dqTableValue));
 							psUpdateDQFieldHoehe.setLong(2, objId);
 							psUpdateDQFieldHoehe.executeUpdate();
 							numProcessed++;

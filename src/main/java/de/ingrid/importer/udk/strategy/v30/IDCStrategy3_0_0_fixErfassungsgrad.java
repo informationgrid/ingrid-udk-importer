@@ -26,6 +26,7 @@
 package de.ingrid.importer.udk.strategy.v30;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -93,7 +94,7 @@ public class IDCStrategy3_0_0_fixErfassungsgrad extends IDCStrategyDefault {
 
 			try {
 				// round 2 decimals after digit
-				newRecGrade = new BigDecimal(newRecGrade).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+				newRecGrade = new BigDecimal(newRecGrade).setScale(2, RoundingMode.HALF_UP).doubleValue();
 			} catch (Exception ex) {
 				log.error("Problems rounding " + newRecGrade + " to 2 decimals after digit, we keep unrounded value." + ex);
 			}

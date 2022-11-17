@@ -26,14 +26,14 @@
         <version>4.35.1</version>
         <configuration>
           <activeRecipes>
-            <recipe>org.openrewrite.java.testing.junit5.JUnit5BestPractices</recipe>
+            <recipe>org.openrewrite.java.migrate.UpgradeJava17</recipe>
           </activeRecipes>
         </configuration>
         <dependencies>
           <dependency>
             <groupId>org.openrewrite.recipe</groupId>
-            <artifactId>rewrite-testing-frameworks</artifactId>
-            <version>1.29.0</version>
+            <artifactId>rewrite-migrate-java</artifactId>
+            <version>1.13.0</version>
           </dependency>
         </dependencies>
       </plugin>
@@ -41,11 +41,11 @@
         <artifactId>maven-assembly-plugin</artifactId>
         <!-- Add Type of Component to be added to Manifest of Installer for Upgrade Server -->
         <configuration>
-            <archive>
-              <manifestEntries>
-                  <ingridComponentType>UDK_IMPORTER_UPDATER</ingridComponentType>
+          <archive>
+            <manifestEntries>
+              <ingridComponentType>UDK_IMPORTER_UPDATER</ingridComponentType>
             </manifestEntries>
-            </archive>
+          </archive>
         </configuration>
         <executions>
           <!-- first build our exe jar with different main class -->
@@ -77,6 +77,14 @@
         <configuration>
           <defaultOriginUrl>https://github.com/informationgrid/ingrid-udk-importer</defaultOriginUrl>
           <noDeploy>true</noDeploy>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jdeprscan-plugin</artifactId>
+        <version>3.0.0-alpha-1</version>
+        <configuration>
+          <release>11</release>
         </configuration>
       </plugin>
     </plugins>
