@@ -22,21 +22,26 @@
  */
 package de.ingrid.importer.udk.strategy;
 
-import junit.framework.TestCase;
-import junit.framework.Assert;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
-public class IDCStrategyHelperTest extends TestCase {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.fail;
 
+public class IDCStrategyHelperTest {
+
+    @Test
     public void testTransDateTime() {
         assertEquals(IDCStrategyHelper.transDateTime("20071212153212"), "20071212153212000");
-        assertEquals(IDCStrategyHelper.transDateTime("20072312153212"), null);
+        assertNull(IDCStrategyHelper.transDateTime("20072312153212"));
         String dateTime = null;
-        assertEquals(IDCStrategyHelper.transDateTime(dateTime), null);
-        assertEquals(IDCStrategyHelper.transDateTime(""), null);
+        assertNull(IDCStrategyHelper.transDateTime(dateTime));
+        assertNull(IDCStrategyHelper.transDateTime(""));
     }
 
+    @Test
     public void testTransformNativeKey2TopicId() {
         assertEquals(IDCStrategyHelper.transformNativeKey2TopicId("12345678"), "GEMEINDE1234500678");
         assertEquals(IDCStrategyHelper.transformNativeKey2TopicId("12345"), "KREIS1234500000");
@@ -45,6 +50,7 @@ public class IDCStrategyHelperTest extends TestCase {
         assertEquals(IDCStrategyHelper.transformNativeKey2TopicId("123"), "");
     }
 
+    @Test
     public void testTransformNativeKey2FullAgs() {
         assertEquals(IDCStrategyHelper.transformNativeKey2FullAgs("12345678"), "12345678");
         assertEquals(IDCStrategyHelper.transformNativeKey2FullAgs("12345"), "12345000");
@@ -54,6 +60,7 @@ public class IDCStrategyHelperTest extends TestCase {
         assertEquals(IDCStrategyHelper.transformNativeKey2FullAgs("1234"), "");
     }
 
+    @Test
     public void testReleaseStrategyExists() {
         // property is only set if udk importer release is in progress
         if (System.getProperty("udkReleaseVersion") != null) {
@@ -68,7 +75,7 @@ public class IDCStrategyHelperTest extends TestCase {
             try {
                 Class.forName(strategyClassname);
             } catch (ClassNotFoundException e) {
-                Assert.fail("should have a class called " + strategyClassname);
+                fail("should have a class called " + strategyClassname);
             }
         }
     }
