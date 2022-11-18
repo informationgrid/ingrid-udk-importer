@@ -132,7 +132,7 @@ public class PostgreSQLLogic implements DBLogic {
 
 	public void addKey(String tableName, String keyName, String columns,
 					   JDBCConnectionProxy jdbc) throws SQLException {
-		String sql = "ALTER TABLE " + tableName + " ADD PRIMARY KEY ( " + columns + ")";
+		String sql = "ALTER TABLE " + tableName + " ADD UNIQUE ( " + columns + ")";
 		jdbc.executeUpdate( sql );
 	}
 
