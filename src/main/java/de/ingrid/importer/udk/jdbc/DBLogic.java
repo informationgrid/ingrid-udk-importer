@@ -90,6 +90,10 @@ public interface DBLogic {
 	void addIndex(String colName, String tableName, String indexName,
 		JDBCConnectionProxy jdbc) throws SQLException;
 
+	void dropKey(String tableName, String keyName, JDBCConnectionProxy jdbc) throws SQLException;
+	
+	void addKey(String tableName, String keyName, String columns, JDBCConnectionProxy jdbc) throws SQLException;
+	
 	/** DDL Operation ! CAUSES COMMIT ON MySQL ! DROP a column. */
 	void dropColumn(String colName, String tableName, JDBCConnectionProxy jdbc) throws SQLException;
 

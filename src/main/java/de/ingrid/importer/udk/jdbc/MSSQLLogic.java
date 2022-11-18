@@ -66,6 +66,16 @@ public class MSSQLLogic implements DBLogic {
 		// TODO		
 	}
 
+	@Override
+	public void dropKey(String tableName, String keyName, JDBCConnectionProxy jdbc) throws SQLException {
+		
+	}
+
+	@Override
+	public void addKey(String tableName, String keyName, String columns, JDBCConnectionProxy jdbc) throws SQLException {
+
+	}
+
 	public void createTableObjectConformity(JDBCConnectionProxy jdbc) throws SQLException {
 		// TODO !
 	}
