@@ -7,12 +7,12 @@
  * Licensed under the EUPL, Version 1.1 or – as soon they will be
  * approved by the European Commission - subsequent versions of the
  * EUPL (the "Licence");
- * 
+ *
  * You may not use this work except in compliance with the Licence.
  * You may obtain a copy of the Licence at:
- * 
+ *
  * http://ec.europa.eu/idabc/eupl5
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the Licence is distributed on an "AS IS" basis,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -27,6 +27,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import de.ingrid.importer.udk.strategy.v5110.IDCStrategy5_11_0_RELEASE;
+import de.ingrid.importer.udk.strategy.v5150.IDCStrategy5_15_0_a;
+import de.ingrid.importer.udk.strategy.v5150.IDCStrategy5_15_0_b;
 import de.ingrid.importer.udk.strategy.v540.*;
 import de.ingrid.importer.udk.strategy.v560.*;
 import de.ingrid.importer.udk.strategy.v562.IDCStrategy5_6_2_RELEASE;
@@ -404,6 +406,10 @@ public class IDCStrategyFactory {
             return new IDCStrategy5_11_0_a();
         } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_5_11_0_RELEASE)) {
             return new IDCStrategy5_11_0_RELEASE();
+        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_5_15_0_a)) {
+            return new IDCStrategy5_15_0_a();
+        } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_5_15_0_b)) {
+            return new IDCStrategy5_15_0_b();
         } else {
             log.error( "Unknown IDC version '" + idcVersion + "'." );
             throw new IllegalArgumentException( "Unknown IDC version '" + idcVersion + "'." );

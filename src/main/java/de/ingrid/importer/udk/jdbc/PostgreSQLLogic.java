@@ -124,6 +124,18 @@ public class PostgreSQLLogic implements DBLogic {
         jdbc.executeUpdate(sql);
 	}
 
+	public void dropKey(String tableName, String keyName,
+						JDBCConnectionProxy jdbc) throws SQLException {
+		String sql = "ALTER TABLE " + tableName + " DROP CONSTRAINT " + keyName;
+		jdbc.executeUpdate( sql );
+	}
+
+	public void addKey(String tableName, String keyName, String columns,
+					   JDBCConnectionProxy jdbc) throws SQLException {
+		String sql = "ALTER TABLE " + tableName + " ADD UNIQUE ( " + columns + ")";
+		jdbc.executeUpdate( sql );
+	}
+
 	public void createTableObjectConformity(JDBCConnectionProxy jdbc) throws SQLException {
 		String sql = "CREATE TABLE object_conformity(" +
 			"id BIGINT NOT NULL, " +

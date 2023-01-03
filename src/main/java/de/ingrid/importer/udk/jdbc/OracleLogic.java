@@ -160,6 +160,16 @@ public class OracleLogic implements DBLogic {
         jdbc.commit();
     }
 
+    @Override
+    public void dropKey(String tableName, String keyName, JDBCConnectionProxy jdbc) throws SQLException {
+        
+    }
+
+    @Override
+    public void addKey(String tableName, String keyName, String columns, JDBCConnectionProxy jdbc) throws SQLException {
+
+    }
+
     public void createTableObjectConformity(JDBCConnectionProxy jdbc) throws SQLException {
         String sql = "CREATE TABLE object_conformity ( id NUMBER(24,0) NOT NULL,"
                 + "  version NUMBER(10,0) DEFAULT '0' NOT NULL, obj_id NUMBER(24,0),"
