@@ -231,7 +231,7 @@
       <!-- Needed at runtime for reading 3_2_0_udk_codelists_serialized.xml -->
       <groupId>com.thoughtworks.xstream</groupId>
       <artifactId>xstream</artifactId>
-      <version>1.4.19</version>
+      <version>1.4.20</version>
     </dependency>
   </dependencies>
   <!-- NEVER DELETE: InGrid repo needed for download of parent pom if not present ! -->
