@@ -527,7 +527,7 @@ public class IDCStrategy3_0_0 extends IDCStrategyDefault {
 				list = new ArrayList<ListItem>();
 				listsLocalized.put(locale, list);
 			}
-			String listItemId = new Integer(list.size()+1).toString();
+			String listItemId = Integer.valueOf(list.size() + 1).toString();
 			list.add(new ListItem(listItemId, itemValue));
 		}
 		/** Checks all lists beginning with default localized list

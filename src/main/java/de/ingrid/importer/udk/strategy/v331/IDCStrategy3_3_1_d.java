@@ -157,7 +157,7 @@ public class IDCStrategy3_3_1_d extends IDCStrategyDefault {
 					psInsertCategory.setLong(1, getNextId()); // id
 					psInsertCategory.setLong(2, objId); // obj_id
 					psInsertCategory.setInt(3, line++); // line
-					psInsertCategory.setInt(4, new Integer(entryId)); // category_key
+					psInsertCategory.setInt(4, Integer.valueOf(entryId)); // category_key
 					psInsertCategory.setString(5, entryValue); // category_value
 					numUpdated = psInsertCategory.executeUpdate();
 					if (numUpdated > 0) {
