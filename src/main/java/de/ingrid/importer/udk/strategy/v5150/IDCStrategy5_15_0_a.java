@@ -20,50 +20,49 @@
  * limitations under the Licence.
  * **************************************************#
  */
-/**
- * 
- */
-package de.ingrid.importer.udk.strategy.v590;
+package de.ingrid.importer.udk.strategy.v5150;
 
-import de.ingrid.importer.udk.jdbc.DBLogic;
+import de.ingrid.importer.udk.jdbc.PostgreSQLLogic;
 import de.ingrid.importer.udk.strategy.IDCStrategyDefault;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-
 /**
  * <p>
- * Changes InGrid 5.9.0_a
+ * Changes InGrid 5.15.0_a
  * <p>
  * <ul>
- * <li>Increase Varchar size for obj_name field in t01_object
+ * <li>Adapt t012_obj_adr table
  * </ul>
  */
-public class IDCStrategy5_9_0_a extends IDCStrategyDefault {
+public class IDCStrategy5_15_0_a extends IDCStrategyDefault {
 
-    private static Log log = LogFactory.getLog( IDCStrategy5_9_0_a.class );
+    private static final Log log = LogFactory.getLog(IDCStrategy5_15_0_a.class);
 
-    private static final String MY_VERSION = VALUE_IDC_VERSION_5_9_0_a;
+    private static final String MY_VERSION = VALUE_IDC_VERSION_5_15_0_a;
 
     public String getIDCVersion() {
         return MY_VERSION;
     }
 
     public void execute() throws Exception {
-        jdbc.setAutoCommit( false );
+        jdbc.setAutoCommit(false);
 
         // write version of IGC structure !
-        setGenericKey( KEY_IDC_VERSION, MY_VERSION );
+        setGenericKey(KEY_IDC_VERSION, MY_VERSION);
 
         try {
-            log.info( "Updating obj_name field in t01_object ..." );
-            jdbc.getDBLogic().modifyColumn("obj_name", DBLogic.ColumnType.VARCHAR4096, "t01_object", false, jdbc);
+            log.info("Updating obj_name field in t01_object ...");
+            String key = "obj_id";
+            if (jdbc.getDBLogic() instanceof PostgreSQLLogic) {
+                key = "t012_obj_adr_obj_id_adr_uuid_type_key";
+            }
+            jdbc.getDBLogic().dropKey("t012_obj_adr", key, jdbc);
+            jdbc.getDBLogic().addKey("t012_obj_adr", key, "obj_id, adr_uuid, type, special_name", jdbc);
         } catch (Exception ex) {
             log.warn("Problems updating obj_name field in t01_object: ", ex);
         }
         jdbc.commit();
-        System.out.println( "Update finished successfully." );
+        System.out.println("Update finished successfully.");
     }
 }

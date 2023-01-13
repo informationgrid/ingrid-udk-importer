@@ -2,7 +2,7 @@
  * **************************************************-
  * InGrid UDK-IGC Importer (IGC Updater)
  * ==================================================
- * Copyright (C) 2014 - 2022 wemove digital solutions GmbH
+ * Copyright (C) 2014 - 2023 wemove digital solutions GmbH
  * ==================================================
  * Licensed under the EUPL, Version 1.1 or – as soon they will be
  * approved by the European Commission - subsequent versions of the
@@ -510,9 +510,9 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 					p.setString(cnt++, (String) timeMap.get("time_type")); // time_type
 					Integer publishId = row.getInteger("publish_id");
 					if (publishId == null) {
-						publishId = new Integer(3);
+						publishId = Integer.valueOf(3);
 					} else if (publishId.intValue() == 4) {
-						publishId = new Integer(3);
+						publishId = Integer.valueOf(3);
 					}
 					JDBCHelper.addInteger(p, cnt++, publishId); // publish_id
 					p.setString(cnt++, row.get("dataset_alternate_name")); // dataset_alternate_name
@@ -1320,18 +1320,18 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 					String specialName = null;
 					
 					if (row.getInteger("typ") == null || row.getInteger("typ").intValue() == 999 || row.getInteger("typ").intValue() == -1) {
-						type = new Integer(-1);
+						type = Integer.valueOf(-1);
 					// if type is valid
 					} else if (row.getInteger("typ").intValue() >= 0 && row.getInteger("typ").intValue() <= 9) {
 						type = IDCStrategyHelper.transAddressTypeUdk2Idc(row.getInteger("typ"));
-						specialRef = new Integer(505);
+						specialRef = Integer.valueOf(505);
 						specialName = allowedSpecialRefEntryNames505.get(allowedSpecialRefEntries505.indexOf(type.toString()));
 					// if typ is invalid
 					} else  {
 						log.info("Invalid udk address type detected (type='" + row.getInteger("typ")
 								+ "', special_name='" + row.get("special_name")
 								+ "'). The record will be imported as free entry.");
-						type = new Integer(-1);
+						type = Integer.valueOf(-1);
 					}
 
 					// handle 2010 syslist if no entry yet
@@ -1345,7 +1345,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 							if (entryIndex != -1) {
 								// if special_ref is valid
 								type = row.getInteger("special_ref");
-								specialRef = new Integer(2010);
+								specialRef = Integer.valueOf(2010);
 								specialName = allowedSpecialRefEntryNames2010.get(entryIndex);
 							}
 						} else if (row.get("special_name") != null) {
@@ -1357,11 +1357,11 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 								if (objClass != null) {
 									if (specialReferenceTypeId == 3360 && objClass.intValue() == 2) {
 										type = specialReferenceTypeId;
-										specialRef = new Integer(2010);
+										specialRef = Integer.valueOf(2010);
 										specialName = allowedSpecialRefEntryNames2010.get(entryIndex);
 									} else if ((specialReferenceTypeId == 3400 || specialReferenceTypeId == 3410)&& objClass.intValue() == 4) {
 										type = specialReferenceTypeId;
-										specialRef = new Integer(2010);
+										specialRef = Integer.valueOf(2010);
 										specialName = allowedSpecialRefEntryNames2010.get(entryIndex);
 									}
 								}
@@ -1555,7 +1555,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 								log.error("Error executing SQL: " + pSearchtermValue.toString(), e);
 								throw e;
 							}
-							searchTermValues.put(row.get("searchterm").concat("_F"), new Long(dataProvider.getId()));
+							searchTermValues.put(row.get("searchterm").concat("_F"), Long.valueOf(dataProvider.getId()));
 							pSearchtermValueId = dataProvider.getId();
 						}
 
@@ -1622,7 +1622,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 									throw e;
 								}
 								pSearchtermSnsId = dataProvider.getId();
-								searchTermSnsValues.put(snsTopicId, new Long(pSearchtermSnsId));
+								searchTermSnsValues.put(snsTopicId, Long.valueOf(pSearchtermSnsId));
 							}
 
 							// store the search term
@@ -1640,7 +1640,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 								log.error("Error executing SQL: " + pSearchtermValue.toString(), e);
 								throw e;
 							}
-							searchTermValues.put(snsSearchTermCheckIdent, new Long(dataProvider.getId()));
+							searchTermValues.put(snsSearchTermCheckIdent, Long.valueOf(dataProvider.getId()));
 							pSearchtermValueId = dataProvider.getId();
 						}
 
@@ -1697,7 +1697,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 								log.error("Error executing SQL: " + pSearchtermValue.toString(), e);
 								throw e;
 							}
-							searchTermValues.put(row.get("searchterm").concat("_F"), new Long(dataProvider.getId()));
+							searchTermValues.put(row.get("searchterm").concat("_F"), Long.valueOf(dataProvider.getId()));
 							pSearchtermValueId = dataProvider.getId();
 						}
 
@@ -1763,7 +1763,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 									throw e;
 								}
 								pSearchtermSnsId = dataProvider.getId();
-								searchTermSnsValues.put(snsTopicId, new Long(pSearchtermSnsId));
+								searchTermSnsValues.put(snsTopicId, Long.valueOf(pSearchtermSnsId));
 							}
 
 							// store the search term
@@ -1781,7 +1781,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 								log.error("Error executing SQL: " + pSearchtermValue.toString(), e);
 								throw e;
 							}
-							searchTermValues.put(snsSearchTermCheckIdent, new Long(dataProvider.getId()));
+							searchTermValues.put(snsSearchTermCheckIdent, Long.valueOf(dataProvider.getId()));
 							pSearchtermValueId = dataProvider.getId();
 						}
 
@@ -3818,7 +3818,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			JDBCHelper.addDouble(psInsertSpatialRefValue, cnt++, y2); // y2
 			try {
 				psInsertSpatialRefValue.executeUpdate();
-				storedFreeSpatialReferences.put(freeSpatialRefKey, new Long(pSpatialRefValueId));
+				storedFreeSpatialReferences.put(freeSpatialRefKey, Long.valueOf(pSpatialRefValueId));
 			} catch (Exception e) {
 				log.error("Error executing SQL: " + psInsertSpatialRefValue.toString(), e);
 				throw e;
@@ -3920,7 +3920,7 @@ public class IDCStrategy1_0_2 extends IDCStrategyDefault1_0_2 {
 			JDBCHelper.addDouble(psInsertSpatialRefValue, cnt++, y2); // y2
 			try {
 				psInsertSpatialRefValue.executeUpdate();
-				storedNativeAGSKeys.put(nativeAGSKey, new Long(pSpatialRefValueId));
+				storedNativeAGSKeys.put(nativeAGSKey, Long.valueOf(pSpatialRefValueId));
 			} catch (Exception e) {
 				log.error("Error executing SQL: " + psInsertSpatialRefValue.toString(), e);
 				throw e;

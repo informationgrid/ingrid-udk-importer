@@ -2,7 +2,7 @@
  * **************************************************-
  * InGrid UDK-IGC Importer (IGC Updater)
  * ==================================================
- * Copyright (C) 2014 - 2022 wemove digital solutions GmbH
+ * Copyright (C) 2014 - 2023 wemove digital solutions GmbH
  * ==================================================
  * Licensed under the EUPL, Version 1.1 or – as soon they will be
  * approved by the European Commission - subsequent versions of the
@@ -64,6 +64,16 @@ public class MSSQLLogic implements DBLogic {
 	public void addIndex(String colName, String tableName, String indexName,
 			JDBCConnectionProxy jdbc) throws SQLException {
 		// TODO		
+	}
+
+	@Override
+	public void dropKey(String tableName, String keyName, JDBCConnectionProxy jdbc) throws SQLException {
+		
+	}
+
+	@Override
+	public void addKey(String tableName, String keyName, String columns, JDBCConnectionProxy jdbc) throws SQLException {
+
 	}
 
 	public void createTableObjectConformity(JDBCConnectionProxy jdbc) throws SQLException {

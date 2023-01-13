@@ -2,7 +2,7 @@
  * **************************************************-
  * InGrid UDK-IGC Importer (IGC Updater)
  * ==================================================
- * Copyright (C) 2014 - 2022 wemove digital solutions GmbH
+ * Copyright (C) 2014 - 2023 wemove digital solutions GmbH
  * ==================================================
  * Licensed under the EUPL, Version 1.1 or – as soon they will be
  * approved by the European Commission - subsequent versions of the
@@ -83,16 +83,16 @@ public class IDCStrategyHelper {
 		addressTypeLookup.put("8", "9");
 		addressTypeLookup.put("9", "10");
 		
-		udkAddressTypes.put(new Integer(0), "auskunft");
-		udkAddressTypes.put(new Integer(1), "datenhalter");
-		udkAddressTypes.put(new Integer(2), "datenverantwortlicher");
-		udkAddressTypes.put(new Integer(3), "anbieter");
-		udkAddressTypes.put(new Integer(4), "benutzer");
-		udkAddressTypes.put(new Integer(5), "vertrieb");
-		udkAddressTypes.put(new Integer(6), "herkunft");
-		udkAddressTypes.put(new Integer(7), "datenerfassung");
-		udkAddressTypes.put(new Integer(8), "auswertung");
-		udkAddressTypes.put(new Integer(9), "herausgeber");
+		udkAddressTypes.put(Integer.valueOf(0), "auskunft");
+		udkAddressTypes.put(Integer.valueOf(1), "datenhalter");
+		udkAddressTypes.put(Integer.valueOf(2), "datenverantwortlicher");
+		udkAddressTypes.put(Integer.valueOf(3), "anbieter");
+		udkAddressTypes.put(Integer.valueOf(4), "benutzer");
+		udkAddressTypes.put(Integer.valueOf(5), "vertrieb");
+		udkAddressTypes.put(Integer.valueOf(6), "herkunft");
+		udkAddressTypes.put(Integer.valueOf(7), "datenerfassung");
+		udkAddressTypes.put(Integer.valueOf(8), "auswertung");
+		udkAddressTypes.put(Integer.valueOf(9), "herausgeber");
 	}
 
 	/**

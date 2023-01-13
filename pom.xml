@@ -3,18 +3,19 @@
   <parent>
     <groupId>de.ingrid</groupId>
     <artifactId>ingrid-releases-pom</artifactId>
-    <version>5.11.0</version>
+    <version>6.0.0</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>ingrid-udk-importer</artifactId>
-  <version>5.12.0</version>
+  <version>6.0.0</version>
   <name>InGrid UDK-IGC Importer (IGC Updater)</name>
   <description>This component migrates a IGC database.</description>
 
   <properties>
-    <ingrid-codelist-service.version>5.7.0</ingrid-codelist-service.version>
-    <ingrid-utils.version>5.5.0</ingrid-utils.version>
-    <ingrid-utils-ige.version>5.3.0</ingrid-utils-ige.version>
+    <ingrid-codelist-service.version>6.0.0</ingrid-codelist-service.version>
+    <ingrid-utils.version>6.0.0</ingrid-utils.version>
+    <ingrid-utils-ige.version>6.0.0</ingrid-utils-ige.version>
+    <java.version>17</java.version>
   </properties>
 
   <build>
@@ -24,11 +25,11 @@
         <artifactId>maven-assembly-plugin</artifactId>
         <!-- Add Type of Component to be added to Manifest of Installer for Upgrade Server -->
         <configuration>
-            <archive>
-              <manifestEntries>
-                  <ingridComponentType>UDK_IMPORTER_UPDATER</ingridComponentType>
+          <archive>
+            <manifestEntries>
+              <ingridComponentType>UDK_IMPORTER_UPDATER</ingridComponentType>
             </manifestEntries>
-            </archive>
+          </archive>
         </configuration>
         <executions>
           <!-- first build our exe jar with different main class -->
@@ -60,6 +61,14 @@
         <configuration>
           <defaultOriginUrl>https://github.com/informationgrid/ingrid-udk-importer</defaultOriginUrl>
           <noDeploy>true</noDeploy>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jdeprscan-plugin</artifactId>
+        <version>3.0.0-alpha-1</version>
+        <configuration>
+          <release>11</release>
         </configuration>
       </plugin>
     </plugins>
@@ -148,18 +157,24 @@
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-core</artifactId>
-      <version>2.17.1</version>
+      <version>2.19.0</version>
     </dependency>
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-1.2-api</artifactId>
-      <version>2.17.1</version>
+      <version>2.19.0</version>
     </dependency>
     <!-- Needed for log4j2, otherwise setting feature error occurs  -->
     <dependency>
       <groupId>xerces</groupId>
       <artifactId>xercesImpl</artifactId>
       <version>2.12.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>5.9.1</version>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>commons-configuration</groupId>
@@ -216,13 +231,7 @@
       <!-- Needed at runtime for reading 3_2_0_udk_codelists_serialized.xml -->
       <groupId>com.thoughtworks.xstream</groupId>
       <artifactId>xstream</artifactId>
-      <version>1.4.19</version>
-    </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
+      <version>1.4.20</version>
     </dependency>
   </dependencies>
   <!-- NEVER DELETE: InGrid repo needed for download of parent pom if not present ! -->
@@ -235,7 +244,7 @@
     <repository>
       <id>nexus_ojdbc7</id>
       <name>Nexus Repo for ojdbc7</name>
-      <url>http://nexus.saas.hand-china.com/content/repositories/rdc</url>
+      <url>https://nexus.saas.hand-china.com/content/repositories/rdc</url>
     </repository>
   </repositories>
   <scm>

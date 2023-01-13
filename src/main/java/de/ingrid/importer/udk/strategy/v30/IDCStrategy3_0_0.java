@@ -2,7 +2,7 @@
  * **************************************************-
  * InGrid UDK-IGC Importer (IGC Updater)
  * ==================================================
- * Copyright (C) 2014 - 2022 wemove digital solutions GmbH
+ * Copyright (C) 2014 - 2023 wemove digital solutions GmbH
  * ==================================================
  * Licensed under the EUPL, Version 1.1 or – as soon they will be
  * approved by the European Commission - subsequent versions of the
@@ -527,7 +527,7 @@ public class IDCStrategy3_0_0 extends IDCStrategyDefault {
 				list = new ArrayList<ListItem>();
 				listsLocalized.put(locale, list);
 			}
-			String listItemId = new Integer(list.size()+1).toString();
+			String listItemId = Integer.valueOf(list.size() + 1).toString();
 			list.add(new ListItem(listItemId, itemValue));
 		}
 		/** Checks all lists beginning with default localized list

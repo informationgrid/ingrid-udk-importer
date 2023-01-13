@@ -21,31 +21,31 @@
  * **************************************************#
  */
 /**
- * 
+ *
  */
-package de.ingrid.importer.udk.strategy.v590;
+package de.ingrid.importer.udk.strategy.v5150;
 
-import de.ingrid.importer.udk.jdbc.DBLogic;
 import de.ingrid.importer.udk.strategy.IDCStrategyDefault;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  * <p>
- * Changes InGrid 5.9.0_a
+ * Changes InGrid 5.15.0_b
  * <p>
  * <ul>
- * <li>Increase Varchar size for obj_name field in t01_object
+ * <li>Migrate adv-product group (#1535)</li>
  * </ul>
  */
-public class IDCStrategy5_9_0_a extends IDCStrategyDefault {
+public class IDCStrategy5_15_0_b extends IDCStrategyDefault {
 
-    private static Log log = LogFactory.getLog( IDCStrategy5_9_0_a.class );
+    private static Log log = LogFactory.getLog( IDCStrategy5_15_0_b.class );
 
-    private static final String MY_VERSION = VALUE_IDC_VERSION_5_9_0_a;
+    private static final String MY_VERSION = VALUE_IDC_VERSION_5_15_0_b;
 
     public String getIDCVersion() {
         return MY_VERSION;
@@ -57,13 +57,25 @@ public class IDCStrategy5_9_0_a extends IDCStrategyDefault {
         // write version of IGC structure !
         setGenericKey( KEY_IDC_VERSION, MY_VERSION );
 
-        try {
-            log.info( "Updating obj_name field in t01_object ..." );
-            jdbc.getDBLogic().modifyColumn("obj_name", DBLogic.ColumnType.VARCHAR4096, "t01_object", false, jdbc);
-        } catch (Exception ex) {
-            log.warn("Problems updating obj_name field in t01_object: ", ex);
-        }
+        // delete time stamp of last update of syslists to reload all syslists
+        // (reload from initial codelist file from codelist service if no repo connected).
+        // Thus we guarantee syslists are up to date !
+        deleteGenericKey( "lastModifiedSyslist" );
+
+        migrateData();
+
         jdbc.commit();
         System.out.println( "Update finished successfully." );
     }
+
+    private void migrateData() {
+        try {
+            PreparedStatement pstmt = jdbc.prepareStatement( "UPDATE adv_product_group SET product_key='28', product_value='Fachübergreifende Anzeigesysteme' WHERE product_key=7" );
+            pstmt.execute();
+            log.info( "Migrated dataset successfully" );
+        } catch (Exception ex) {
+            log.warn( "Problems migrating fields in adv_product_group: ", ex );
+        }
+    }
 }
+

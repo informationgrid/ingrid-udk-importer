@@ -2,7 +2,7 @@
  * **************************************************-
  * InGrid UDK-IGC Importer (IGC Updater)
  * ==================================================
- * Copyright (C) 2014 - 2022 wemove digital solutions GmbH
+ * Copyright (C) 2014 - 2023 wemove digital solutions GmbH
  * ==================================================
  * Licensed under the EUPL, Version 1.1 or – as soon they will be
  * approved by the European Commission - subsequent versions of the
@@ -157,7 +157,7 @@ public class IDCStrategy3_3_1_d extends IDCStrategyDefault {
 					psInsertCategory.setLong(1, getNextId()); // id
 					psInsertCategory.setLong(2, objId); // obj_id
 					psInsertCategory.setInt(3, line++); // line
-					psInsertCategory.setInt(4, new Integer(entryId)); // category_key
+					psInsertCategory.setInt(4, Integer.valueOf(entryId)); // category_key
 					psInsertCategory.setString(5, entryValue); // category_value
 					numUpdated = psInsertCategory.executeUpdate();
 					if (numUpdated > 0) {

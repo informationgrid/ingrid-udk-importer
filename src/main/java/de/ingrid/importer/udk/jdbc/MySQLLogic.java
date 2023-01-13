@@ -2,7 +2,7 @@
  * **************************************************-
  * InGrid UDK-IGC Importer (IGC Updater)
  * ==================================================
- * Copyright (C) 2014 - 2022 wemove digital solutions GmbH
+ * Copyright (C) 2014 - 2023 wemove digital solutions GmbH
  * ==================================================
  * Licensed under the EUPL, Version 1.1 or – as soon they will be
  * approved by the European Commission - subsequent versions of the
@@ -96,6 +96,18 @@ public class MySQLLogic implements DBLogic {
         jdbc.executeUpdate( sql );
     }
 
+    public void dropKey(String tableName, String keyName,
+            JDBCConnectionProxy jdbc) throws SQLException {
+        String sql = "ALTER TABLE " + tableName + " DROP KEY " + keyName;
+        jdbc.executeUpdate( sql );
+    }
+    
+    public void addKey(String tableName, String keyName, String columns,
+            JDBCConnectionProxy jdbc) throws SQLException {
+        String sql = "ALTER TABLE " + tableName + " ADD CONSTRAINT " + keyName + " UNIQUE ( " + columns + ")";
+        jdbc.executeUpdate( sql );
+    }
+    
     public void addIndex(String colName, String tableName, String indexName,
             JDBCConnectionProxy jdbc) throws SQLException {
         String sql = "ALTER TABLE " + tableName + " ADD INDEX " + indexName + " (" + colName + ")";

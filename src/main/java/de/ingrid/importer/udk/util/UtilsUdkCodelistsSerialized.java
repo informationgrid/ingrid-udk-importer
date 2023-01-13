@@ -2,7 +2,7 @@
  * **************************************************-
  * InGrid UDK-IGC Importer (IGC Updater)
  * ==================================================
- * Copyright (C) 2014 - 2022 wemove digital solutions GmbH
+ * Copyright (C) 2014 - 2023 wemove digital solutions GmbH
  * ==================================================
  * Licensed under the EUPL, Version 1.1 or – as soon they will be
  * approved by the European Commission - subsequent versions of the
@@ -116,7 +116,7 @@ public class UtilsUdkCodelistsSerialized {
 */
     public void removeUnwantedSyslists(int[] listIds) {
     	for (int listId : listIds) {
-            Object removedObj = codeListsFromFile.remove(new Long(listId));
+            Object removedObj = codeListsFromFile.remove(Long.valueOf(listId));
             LOG.debug("Removed syslist " + listId + " from read syslists from file, removed object = " + removedObj);
     	}
     }
