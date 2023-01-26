@@ -32,17 +32,17 @@ import org.apache.commons.logging.LogFactory;
 
 /**
  * <p>
- * Changes InGrid 6.1.0_a
+ * Changes InGrid 6.1.0_b
  * <p>
  * <ul>
- * <li>Update column types for UUID</li>
+ * <li>Fix column types for address UUID</li>
  * </ul>
  */
-public class IDCStrategy6_1_0_a extends IDCStrategyDefault {
+public class IDCStrategy6_1_0_b extends IDCStrategyDefault {
 
-    private static Log log = LogFactory.getLog( IDCStrategy6_1_0_a.class );
+    private static Log log = LogFactory.getLog( IDCStrategy6_1_0_b.class );
 
-    private static final String MY_VERSION = VALUE_IDC_VERSION_6_1_0_a;
+    private static final String MY_VERSION = VALUE_IDC_VERSION_6_1_0_b;
 
     public String getIDCVersion() {
         return MY_VERSION;
@@ -68,17 +68,8 @@ public class IDCStrategy6_1_0_a extends IDCStrategyDefault {
     private void migrateData() {
         try {
             
-            jdbc.getDBLogic().modifyColumn("obj_uuid", DBLogic.ColumnType.VARCHAR255, "object_node", true, jdbc);
-            jdbc.getDBLogic().modifyColumn("fk_obj_uuid", DBLogic.ColumnType.VARCHAR255, "object_node", false, jdbc);
-
-            jdbc.getDBLogic().modifyColumn("addr_uuid", DBLogic.ColumnType.VARCHAR255, "address_node", true, jdbc);
-            jdbc.getDBLogic().modifyColumn("fk_addr_uuid", DBLogic.ColumnType.VARCHAR255, "address_node", false, jdbc);
-
-            jdbc.getDBLogic().modifyColumn("obj_uuid", DBLogic.ColumnType.VARCHAR255, "t01_object", true, jdbc);
-            jdbc.getDBLogic().modifyColumn("adr_uuid", DBLogic.ColumnType.VARCHAR255, "t02_address", true, jdbc);
-            
-            jdbc.getDBLogic().modifyColumn("addr_uuid", DBLogic.ColumnType.VARCHAR255, "idc_user", true, jdbc);
-            jdbc.getDBLogic().modifyColumn("obj_to_uuid", DBLogic.ColumnType.VARCHAR255, "object_reference", true, jdbc);
+            jdbc.getDBLogic().modifyColumn("adr_uuid", DBLogic.ColumnType.VARCHAR255, "t02_address", false, jdbc);
+            jdbc.getDBLogic().modifyColumn("addr_uuid", DBLogic.ColumnType.VARCHAR255, "idc_user", false, jdbc);
             
             log.info( "Migrated database successfully" );
         } catch (Exception ex) {
