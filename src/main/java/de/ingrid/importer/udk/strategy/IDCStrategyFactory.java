@@ -29,7 +29,7 @@ import java.util.List;
 import de.ingrid.importer.udk.strategy.v5110.IDCStrategy5_11_0_RELEASE;
 import de.ingrid.importer.udk.strategy.v5150.IDCStrategy5_15_0_a;
 import de.ingrid.importer.udk.strategy.v5150.IDCStrategy5_15_0_b;
-import de.ingrid.importer.udk.strategy.v601.IDCStrategy6_0_1;
+import de.ingrid.importer.udk.strategy.v601.IDCStrategy6_0_1_RELEASE;
 import de.ingrid.importer.udk.strategy.v540.*;
 import de.ingrid.importer.udk.strategy.v560.*;
 import de.ingrid.importer.udk.strategy.v562.IDCStrategy5_6_2_RELEASE;
@@ -412,7 +412,7 @@ public class IDCStrategyFactory {
         } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_5_15_0_b)) {
             return new IDCStrategy5_15_0_b();
         } else if (idcVersion.equals( IDCStrategy.VALUE_IDC_VERSION_6_0_1)) {
-            return new IDCStrategy6_0_1();
+            return new IDCStrategy6_0_1_RELEASE();
         } else {
             log.error( "Unknown IDC version '" + idcVersion + "'." );
             throw new IllegalArgumentException( "Unknown IDC version '" + idcVersion + "'." );

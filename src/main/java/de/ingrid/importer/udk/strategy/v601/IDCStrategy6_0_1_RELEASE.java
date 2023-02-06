@@ -38,9 +38,9 @@ import org.apache.commons.logging.LogFactory;
  * <li>Update column types for UUID and SYSLIST_ID</li>
  * </ul>
  */
-public class IDCStrategy6_0_1 extends IDCStrategyDefault {
+public class IDCStrategy6_0_1_RELEASE extends IDCStrategyDefault {
 
-    private static Log log = LogFactory.getLog( IDCStrategy6_0_1.class );
+    private static Log log = LogFactory.getLog( IDCStrategy6_0_1_RELEASE.class );
 
     private static final String MY_VERSION = VALUE_IDC_VERSION_6_0_1;
 
