@@ -23,7 +23,7 @@
 /**
  *
  */
-package de.ingrid.importer.udk.strategy.v610;
+package de.ingrid.importer.udk.strategy.v601;
 
 import de.ingrid.importer.udk.jdbc.DBLogic;
 import de.ingrid.importer.udk.strategy.IDCStrategyDefault;
@@ -38,11 +38,11 @@ import org.apache.commons.logging.LogFactory;
  * <li>Update column types for UUID and SYSLIST_ID</li>
  * </ul>
  */
-public class IDCStrategy6_1_0_a extends IDCStrategyDefault {
+public class IDCStrategy6_0_1 extends IDCStrategyDefault {
 
-    private static Log log = LogFactory.getLog( IDCStrategy6_1_0_a.class );
+    private static Log log = LogFactory.getLog( IDCStrategy6_0_1.class );
 
-    private static final String MY_VERSION = VALUE_IDC_VERSION_6_1_0_a;
+    private static final String MY_VERSION = VALUE_IDC_VERSION_6_0_1;
 
     public String getIDCVersion() {
         return MY_VERSION;
@@ -75,9 +75,9 @@ public class IDCStrategy6_1_0_a extends IDCStrategyDefault {
             jdbc.getDBLogic().modifyColumn("fk_addr_uuid", DBLogic.ColumnType.VARCHAR255, "address_node", false, jdbc);
 
             jdbc.getDBLogic().modifyColumn("obj_uuid", DBLogic.ColumnType.VARCHAR255, "t01_object", true, jdbc);
-            jdbc.getDBLogic().modifyColumn("adr_uuid", DBLogic.ColumnType.VARCHAR255, "t02_address", true, jdbc);
+            jdbc.getDBLogic().modifyColumn("adr_uuid", DBLogic.ColumnType.VARCHAR255, "t02_address", false, jdbc);
             
-            jdbc.getDBLogic().modifyColumn("addr_uuid", DBLogic.ColumnType.VARCHAR255, "idc_user", true, jdbc);
+            jdbc.getDBLogic().modifyColumn("addr_uuid", DBLogic.ColumnType.VARCHAR255, "idc_user", false, jdbc);
             jdbc.getDBLogic().modifyColumn("obj_to_uuid", DBLogic.ColumnType.VARCHAR255, "object_reference", true, jdbc);
             
             log.info( "Migrated database successfully" );
