@@ -277,6 +277,7 @@ public interface IDCStrategy {
 	static String VALUE_IDC_VERSION_5_15_0_b = "5.15.0_b";
 	
 	static String VALUE_IDC_VERSION_6_0_0 = "6.0.0";
+	static String VALUE_IDC_VERSION_6_0_1 = "6.0.1";
 	static String VALUE_IDC_VERSION_6_1_0_a = "6.1.0_a";
 	static String VALUE_IDC_VERSION_6_1_0_b = "6.1.0_b";
 
@@ -440,6 +441,7 @@ public interface IDCStrategy {
 		VALUE_IDC_VERSION_5_15_0_a,
 		VALUE_IDC_VERSION_5_15_0_b,
 		VALUE_IDC_VERSION_6_0_0,
+		VALUE_IDC_VERSION_6_0_1,
 		VALUE_IDC_VERSION_6_1_0_a,
 		VALUE_IDC_VERSION_6_1_0_b
 	};
