@@ -1,4 +1,14 @@
 
+## 6.1.0 (14.04.2023)
+
+### Features
+
+* Workaround für parentIdentifier mit problematischem Format (#3786)
+
+
+
+
+    
 ## 6.0.0 (13.01.2023)
 
 ### Features
