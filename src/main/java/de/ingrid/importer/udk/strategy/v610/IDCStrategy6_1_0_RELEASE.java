@@ -20,36 +20,34 @@
  * limitations under the Licence.
  * **************************************************#
  */
-/**
- *
- */
-package de.ingrid.importer.udk.strategy.v601;
+package de.ingrid.importer.udk.strategy.v610;
 
-import de.ingrid.importer.udk.jdbc.DBLogic;
 import de.ingrid.importer.udk.strategy.IDCStrategyDefault;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * <p>
- * Changes InGrid 6.1.0_a
- * <p>
- * <ul>
- * <li>Update column types for UUID</li>
- * </ul>
+ * RELEASE InGrid 6.1.0<p>
  */
-public class IDCStrategy6_0_1 extends IDCStrategyDefault {
+public class IDCStrategy6_1_0_RELEASE extends IDCStrategyDefault {
 
-    private static Log log = LogFactory.getLog( IDCStrategy6_0_1.class );
+	private static final String MY_VERSION = VALUE_IDC_VERSION_6_1_0;
 
-    private static final String MY_VERSION = VALUE_IDC_VERSION_6_0_1;
+	public String getIDCVersion() {
+		return MY_VERSION;
+	}
 
-    public String getIDCVersion() {
-        return MY_VERSION;
-    }
+	public void execute() throws Exception {
+		jdbc.setAutoCommit(false);
 
-    public void execute() throws Exception {
-        // do nothing since it's coming from support branch
-    }
+		// write version of IGC structure !
+		setGenericKey(KEY_IDC_VERSION, MY_VERSION);
 
+		// delete time stamp of last update of syslists to reload all syslists
+		// (reload from initial codelist file from codelist service if no repo connected).
+		// Thus we guarantee syslists are up to date !
+		deleteGenericKey("lastModifiedSyslist");
+
+		jdbc.commit();
+		System.out.println("Update finished successfully.");
+	}
 }
